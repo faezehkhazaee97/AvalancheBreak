@@ -1,0 +1,401 @@
+Marker,Placement,Ablation_Axis,Seq_Length,Trial,N_Boundaries,Shared_Sequence,TAR,SAR
+|,periodic,marker+placement baseline,8,0,1,AABBAABA,0.75,0.0
+|,periodic,marker+placement baseline,8,1,1,BAAABABA,0.5,0.0
+|,periodic,marker+placement baseline,8,2,1,BBAABAAA,0.5,0.0
+|,periodic,marker+placement baseline,8,3,1,BABABBBA,0.875,0.0
+|,periodic,marker+placement baseline,8,4,1,ABBBBABA,0.875,0.0
+|,periodic,marker+placement baseline,8,5,1,BAAABABB,0.5,0.0
+|,periodic,marker+placement baseline,8,6,1,AAAABAAB,0.875,0.0
+|,periodic,marker+placement baseline,8,7,1,BBBABBBA,0.5,0.0
+|,periodic,marker+placement baseline,8,8,1,BBBBBBBA,1.0,1.0
+|,periodic,marker+placement baseline,8,9,1,AAABBAAA,0.75,0.0
+|,periodic,marker+placement baseline,8,10,1,BBBAABBB,0.75,0.0
+|,periodic,marker+placement baseline,8,11,1,AABBBAAA,0.875,0.0
+|,periodic,marker+placement baseline,8,12,1,BAABBAAA,0.625,0.0
+|,periodic,marker+placement baseline,8,13,1,BABAABBB,1.0,1.0
+|,periodic,marker+placement baseline,8,14,1,ABABBBAB,0.375,0.0
+|,periodic,marker+placement baseline,8,15,1,ABABBBAB,0.375,0.0
+|,periodic,marker+placement baseline,8,16,1,ABBAAABA,0.875,0.0
+|,periodic,marker+placement baseline,8,17,1,AAABBAAB,0.75,0.0
+|,periodic,marker+placement baseline,8,18,1,BBABAABB,0.375,0.0
+|,periodic,marker+placement baseline,8,19,1,ABABABAB,0.5,0.0
+|,periodic,marker+placement baseline,16,0,3,BBAAABABBAABABBB,0.9375,0.0
+|,periodic,marker+placement baseline,16,1,3,BBAABBBABBAABABA,0.75,0.0
+|,periodic,marker+placement baseline,16,2,3,ABBAABBBAABABBAA,0.875,0.0
+|,periodic,marker+placement baseline,16,3,3,ABBAAABAABABAAAB,0.75,0.0
+|,periodic,marker+placement baseline,16,4,3,AAAAAABBABBBAAAB,0.8125,0.0
+|,periodic,marker+placement baseline,16,5,3,AABBBABABBBBAAAA,0.8125,0.0
+|,periodic,marker+placement baseline,16,6,3,BBABBAAAAABBBABA,0.6875,0.0
+|,periodic,marker+placement baseline,16,7,3,AAABAAAAAAABBAAB,0.8125,0.0
+|,periodic,marker+placement baseline,16,8,3,AAABABAAAABABABA,0.875,0.0
+|,periodic,marker+placement baseline,16,9,3,BBBAAABABABAAABA,0.9375,0.0
+|,periodic,marker+placement baseline,16,10,3,BBBBBBAAABABBAAA,0.5625,0.0
+|,periodic,marker+placement baseline,16,11,3,ABAABAAABAAAAAAA,0.6875,0.0
+|,periodic,marker+placement baseline,16,12,3,ABBAAAAAAABAAABA,0.875,0.0
+|,periodic,marker+placement baseline,16,13,3,BABBBAAABAABBAAA,0.875,0.0
+|,periodic,marker+placement baseline,16,14,3,BBAAABAABBABBAAB,0.8125,0.0
+|,periodic,marker+placement baseline,16,15,3,BBABBBBBBABAAAAA,0.25,0.0
+|,periodic,marker+placement baseline,16,16,3,ABBBBAAAABAAABAB,0.6875,0.0
+|,periodic,marker+placement baseline,16,17,3,ABBABBAABBABBAAB,0.8125,0.0
+|,periodic,marker+placement baseline,16,18,3,AAAAABBBBABBBABA,0.875,0.0
+|,periodic,marker+placement baseline,16,19,3,BAAAAAABAABBBBBA,0.5,0.0
+|,periodic,marker+placement baseline,32,0,7,AABABBBABABAABABBBBAAABBBBBABBAB,0.75,0.0
+|,periodic,marker+placement baseline,32,1,7,ABABBBBAAAAABABBABBBAABBBAAABABA,0.21875,0.0
+|,periodic,marker+placement baseline,32,2,7,BABAAABAABBBAABBABAABABABABBAABA,0.71875,0.0
+|,periodic,marker+placement baseline,32,3,7,BBAABBBAAAABBBABAAAABBABAABBBABA,0.84375,0.0
+|,periodic,marker+placement baseline,32,4,7,BBBBBABBAAABBABABAAABABAABBABABB,0.46875,0.0
+|,periodic,marker+placement baseline,32,5,7,AABABAAAABBAAABAABBBBBABAABABABB,0.71875,0.0
+|,periodic,marker+placement baseline,32,6,7,BBAAABABBABAABBBBBAAAABBBABAAAAB,0.625,0.0
+|,periodic,marker+placement baseline,32,7,7,BAAAABBBBAAABAAABBABABABBABBABBB,0.75,0.0
+|,periodic,marker+placement baseline,32,8,7,BBABBAABBBABBABBAABBABABBABBABBA,0.28125,0.0
+|,periodic,marker+placement baseline,32,9,7,ABBBBAAAAABBAAABBBBBBABABBAABAAB,0.625,0.0
+|,periodic,marker+placement baseline,32,10,7,AAAAABBABBABABABAAABBABBBBABBAAA,0.71875,0.0
+|,periodic,marker+placement baseline,32,11,7,BABABABABAABAAABAAABBBBBABABBBAB,0.78125,0.0
+|,periodic,marker+placement baseline,32,12,7,BAABABBAAAABBBBABAABAABAABABBAAB,0.75,0.0
+|,periodic,marker+placement baseline,32,13,7,BABABABBAABBBAAABBAAAAABBABAABBA,0.75,0.0
+|,periodic,marker+placement baseline,32,14,7,BABAAAAABAABBABBAABBBBAAABABBBAA,0.8125,0.0
+|,periodic,marker+placement baseline,32,15,7,BBAABAABBBBBBBABBBBBBBBBBABABAAA,0.8125,0.0
+|,periodic,marker+placement baseline,32,16,7,ABABBBAAABABBABBBBAABBBAABABAABA,0.71875,0.0
+|,periodic,marker+placement baseline,32,17,7,ABBAAAAAABBABAAABAABAABBAAAAABAB,0.875,0.0
+|,periodic,marker+placement baseline,32,18,7,AAABAAAABBBBBAABBBAAABAABAABBABB,0.65625,0.0
+|,periodic,marker+placement baseline,32,19,7,BAABAAAAABABABBABBBBAAAABBBAABAA,0.84375,0.0
+|,periodic,marker+placement baseline,64,0,15,BBBBABABBABABABBAABABAABBAABAABAAABBAAABBAABAAAABBBAAAABBABBBBAA,0.640625,0.0
+|,periodic,marker+placement baseline,64,1,15,BABBBAABAABABBBBBABABBBAABAABBABAAABBABABBAABAABAAAAAABAABAABABA,0.59375,0.0
+|,periodic,marker+placement baseline,64,2,15,BBAAAABAABAAABBAABABBBAAAAAAAABABBBAABABABBBABABAAAABABAAABABABA,0.609375,0.0
+|,periodic,marker+placement baseline,64,3,15,BABBAAABBBAAABBABBABBABBAABBBAABAAABBAABABBBABABAABBAABBBBBBBAAB,0.71875,0.0
+|,periodic,marker+placement baseline,64,4,15,BABBBBBABBAABAABBAAAAAABABBAAAABAAAAAAABABABBAABBABABBBAABBBAAAA,0.53125,0.0
+|,periodic,marker+placement baseline,64,5,15,ABABBBABABAAABBAAAAAAAABAAAAAAABAAABAABAABAABBAABBAAAABBAABAABAB,0.609375,0.0
+|,periodic,marker+placement baseline,64,6,15,ABBBAABBAAAAAAAAABABAAAAABABBABBBAABAABABBABAABAABABBAABBAAAAAAB,0.6875,0.0
+|,periodic,marker+placement baseline,64,7,15,AABBBBAABBAABAABABABBAABBAAAABAAABBABBABBBBBABBBAAAABABBABBAABAA,0.625,0.0
+|,periodic,marker+placement baseline,64,8,15,BAAAAABBBBAAAAABBBAABBBBAABBAABAABBBABBABAAAABABBABBBABAAABABAAB,0.546875,0.0
+|,periodic,marker+placement baseline,64,9,15,BBBABBBAABBABBBBAABBAAABBAAABABAAAAAABAABBBAAABAABAAABAAAABAABAA,0.5,0.0
+|,periodic,marker+placement baseline,64,10,15,ABAAAAAAABBBBAABAAAABABBAABABAABBBAAAABBAABAAAABBBABBAAABABBBABA,0.671875,0.0
+|,periodic,marker+placement baseline,64,11,15,BABAABAABABBABAABAAAABABABABBAAAAABBBBBBAABBAAAAAABBABBABBBBAABA,0.625,0.0
+|,periodic,marker+placement baseline,64,12,15,BBAABABBAAAABABAABABBBABBBBBBAAABAAABAABBBAABABABABBBAABABABABAB,0.65625,0.0
+|,periodic,marker+placement baseline,64,13,15,BABBBBAAAAAABABBBBABBBBAAAAAABBAABBBBAAAAAAABBAABAABBAABBBABAABB,0.53125,0.0
+|,periodic,marker+placement baseline,64,14,15,ABBAAABAABAABBABABABBBAABBBBABAABBAABABBBBBBBBABBBAAABAAABBBABBB,0.625,0.0
+|,periodic,marker+placement baseline,64,15,15,BAABBBBBABBAAAABAABBBABABAAABBABAABAAAAABAAABAABBBBAAAABABABABBA,0.515625,0.0
+|,periodic,marker+placement baseline,64,16,15,AABBBBBAAAAABBABBBAABBBABAABBAABBBBBABABBABBBBABAABBABBBABBBBAAB,0.59375,0.0
+|,periodic,marker+placement baseline,64,17,15,AAAABBBABBBABABBAABAABBBAABBABBBBBBAABBBBBBBABAAAAABBBBBAAABAABA,0.609375,0.0
+|,periodic,marker+placement baseline,64,18,15,BBAABABBBAABABBBABBAAAABAAABABABAABBABABABBAAAAABBABBBAAAAAAABBB,0.796875,0.0
+|,periodic,marker+placement baseline,64,19,15,BBBBAABBBAABBABABAABBABBBBBABBABBBAABAABBABAAAABAABAAAAABBAAAABB,0.75,0.0
+;,periodic,marker identity,8,0,1,AABBAABA,0.75,0.0
+;,periodic,marker identity,8,1,1,BAAABABA,0.25,0.0
+;,periodic,marker identity,8,2,1,BBAABAAA,0.5,0.0
+;,periodic,marker identity,8,3,1,BABABBBA,0.75,0.0
+;,periodic,marker identity,8,4,1,ABBBBABA,0.375,0.0
+;,periodic,marker identity,8,5,1,BAAABABB,0.5,0.0
+;,periodic,marker identity,8,6,1,AAAABAAB,0.875,0.0
+;,periodic,marker identity,8,7,1,BBBABBBA,0.625,0.0
+;,periodic,marker identity,8,8,1,BBBBBBBA,1.0,1.0
+;,periodic,marker identity,8,9,1,AAABBAAA,0.75,0.0
+;,periodic,marker identity,8,10,1,BBBAABBB,0.75,0.0
+;,periodic,marker identity,8,11,1,AABBBAAA,0.875,0.0
+;,periodic,marker identity,8,12,1,BAABBAAA,0.5,0.0
+;,periodic,marker identity,8,13,1,BABAABBB,1.0,1.0
+;,periodic,marker identity,8,14,1,ABABBBAB,0.875,0.0
+;,periodic,marker identity,8,15,1,ABABBBAB,0.875,0.0
+;,periodic,marker identity,8,16,1,ABBAAABA,0.75,0.0
+;,periodic,marker identity,8,17,1,AAABBAAB,0.875,0.0
+;,periodic,marker identity,8,18,1,BBABAABB,0.625,0.0
+;,periodic,marker identity,8,19,1,ABABABAB,1.0,1.0
+;,periodic,marker identity,16,0,3,BBAAABABBAABABBB,0.6875,0.0
+;,periodic,marker identity,16,1,3,BBAABBBABBAABABA,0.75,0.0
+;,periodic,marker identity,16,2,3,ABBAABBBAABABBAA,0.8125,0.0
+;,periodic,marker identity,16,3,3,ABBAAABAABABAAAB,0.8125,0.0
+;,periodic,marker identity,16,4,3,AAAAAABBABBBAAAB,0.75,0.0
+;,periodic,marker identity,16,5,3,AABBBABABBBBAAAA,0.625,0.0
+;,periodic,marker identity,16,6,3,BBABBAAAAABBBABA,0.625,0.0
+;,periodic,marker identity,16,7,3,AAABAAAAAAABBAAB,1.0,1.0
+;,periodic,marker identity,16,8,3,AAABABAAAABABABA,0.75,0.0
+;,periodic,marker identity,16,9,3,BBBAAABABABAAABA,0.6875,0.0
+;,periodic,marker identity,16,10,3,BBBBBBAAABABBAAA,0.625,0.0
+;,periodic,marker identity,16,11,3,ABAABAAABAAAAAAA,0.6875,0.0
+;,periodic,marker identity,16,12,3,ABBAAAAAAABAAABA,0.625,0.0
+;,periodic,marker identity,16,13,3,BABBBAAABAABBAAA,0.9375,0.0
+;,periodic,marker identity,16,14,3,BBAAABAABBABBAAB,0.8125,0.0
+;,periodic,marker identity,16,15,3,BBABBBBBBABAAAAA,0.4375,0.0
+;,periodic,marker identity,16,16,3,ABBBBAAAABAAABAB,0.875,0.0
+;,periodic,marker identity,16,17,3,ABBABBAABBABBAAB,0.75,0.0
+;,periodic,marker identity,16,18,3,AAAAABBBBABBBABA,0.5,0.0
+;,periodic,marker identity,16,19,3,BAAAAAABAABBBBBA,0.4375,0.0
+;,periodic,marker identity,32,0,7,AABABBBABABAABABBBBAAABBBBBABBAB,0.75,0.0
+;,periodic,marker identity,32,1,7,ABABBBBAAAAABABBABBBAABBBAAABABA,0.21875,0.0
+;,periodic,marker identity,32,2,7,BABAAABAABBBAABBABAABABABABBAABA,0.84375,0.0
+;,periodic,marker identity,32,3,7,BBAABBBAAAABBBABAAAABBABAABBBABA,0.875,0.0
+;,periodic,marker identity,32,4,7,BBBBBABBAAABBABABAAABABAABBABABB,0.5625,0.0
+;,periodic,marker identity,32,5,7,AABABAAAABBAAABAABBBBBABAABABABB,0.71875,0.0
+;,periodic,marker identity,32,6,7,BBAAABABBABAABBBBBAAAABBBABAAAAB,0.625,0.0
+;,periodic,marker identity,32,7,7,BAAAABBBBAAABAAABBABABABBABBABBB,0.6875,0.0
+;,periodic,marker identity,32,8,7,BBABBAABBBABBABBAABBABABBABBABBA,0.46875,0.0
+;,periodic,marker identity,32,9,7,ABBBBAAAAABBAAABBBBBBABABBAABAAB,0.65625,0.0
+;,periodic,marker identity,32,10,7,AAAAABBABBABABABAAABBABBBBABBAAA,0.84375,0.0
+;,periodic,marker identity,32,11,7,BABABABABAABAAABAAABBBBBABABBBAB,0.75,0.0
+;,periodic,marker identity,32,12,7,BAABABBAAAABBBBABAABAABAABABBAAB,0.75,0.0
+;,periodic,marker identity,32,13,7,BABABABBAABBBAAABBAAAAABBABAABBA,0.71875,0.0
+;,periodic,marker identity,32,14,7,BABAAAAABAABBABBAABBBBAAABABBBAA,0.71875,0.0
+;,periodic,marker identity,32,15,7,BBAABAABBBBBBBABBBBBBBBBBABABAAA,0.8125,0.0
+;,periodic,marker identity,32,16,7,ABABBBAAABABBABBBBAABBBAABABAABA,0.75,0.0
+;,periodic,marker identity,32,17,7,ABBAAAAAABBABAAABAABAABBAAAAABAB,0.75,0.0
+;,periodic,marker identity,32,18,7,AAABAAAABBBBBAABBBAAABAABAABBABB,0.6875,0.0
+;,periodic,marker identity,32,19,7,BAABAAAAABABABBABBBBAAAABBBAABAA,0.65625,0.0
+;,periodic,marker identity,64,0,15,BBBBABABBABABABBAABABAABBAABAABAAABBAAABBAABAAAABBBAAAABBABBBBAA,0.875,0.0
+;,periodic,marker identity,64,1,15,BABBBAABAABABBBBBABABBBAABAABBABAAABBABABBAABAABAAAAAABAABAABABA,0.796875,0.0
+;,periodic,marker identity,64,2,15,BBAAAABAABAAABBAABABBBAAAAAAAABABBBAABABABBBABABAAAABABAAABABABA,0.625,0.0
+;,periodic,marker identity,64,3,15,BABBAAABBBAAABBABBABBABBAABBBAABAAABBAABABBBABABAABBAABBBBBBBAAB,0.75,0.0
+;,periodic,marker identity,64,4,15,BABBBBBABBAABAABBAAAAAABABBAAAABAAAAAAABABABBAABBABABBBAABBBAAAA,0.484375,0.0
+;,periodic,marker identity,64,5,15,ABABBBABABAAABBAAAAAAAABAAAAAAABAAABAABAABAABBAABBAAAABBAABAABAB,0.765625,0.0
+;,periodic,marker identity,64,6,15,ABBBAABBAAAAAAAAABABAAAAABABBABBBAABAABABBABAABAABABBAABBAAAAAAB,0.703125,0.0
+;,periodic,marker identity,64,7,15,AABBBBAABBAABAABABABBAABBAAAABAAABBABBABBBBBABBBAAAABABBABBAABAA,0.515625,0.0
+;,periodic,marker identity,64,8,15,BAAAAABBBBAAAAABBBAABBBBAABBAABAABBBABBABAAAABABBABBBABAAABABAAB,0.609375,0.0
+;,periodic,marker identity,64,9,15,BBBABBBAABBABBBBAABBAAABBAAABABAAAAAABAABBBAAABAABAAABAAAABAABAA,0.640625,0.0
+;,periodic,marker identity,64,10,15,ABAAAAAAABBBBAABAAAABABBAABABAABBBAAAABBAABAAAABBBABBAAABABBBABA,0.359375,0.0
+;,periodic,marker identity,64,11,15,BABAABAABABBABAABAAAABABABABBAAAAABBBBBBAABBAAAAAABBABBABBBBAABA,0.625,0.0
+;,periodic,marker identity,64,12,15,BBAABABBAAAABABAABABBBABBBBBBAAABAAABAABBBAABABABABBBAABABABABAB,0.609375,0.0
+;,periodic,marker identity,64,13,15,BABBBBAAAAAABABBBBABBBBAAAAAABBAABBBBAAAAAAABBAABAABBAABBBABAABB,0.609375,0.0
+;,periodic,marker identity,64,14,15,ABBAAABAABAABBABABABBBAABBBBABAABBAABABBBBBBBBABBBAAABAAABBBABBB,0.65625,0.0
+;,periodic,marker identity,64,15,15,BAABBBBBABBAAAABAABBBABABAAABBABAABAAAAABAAABAABBBBAAAABABABABBA,0.609375,0.0
+;,periodic,marker identity,64,16,15,AABBBBBAAAAABBABBBAABBBABAABBAABBBBBABABBABBBBABAABBABBBABBBBAAB,0.578125,0.0
+;,periodic,marker identity,64,17,15,AAAABBBABBBABABBAABAABBBAABBABBBBBBAABBBBBBBABAAAAABBBBBAAABAABA,0.671875,0.0
+;,periodic,marker identity,64,18,15,BBAABABBBAABABBBABBAAAABAAABABABAABBABABABBAAAAABBABBBAAAAAAABBB,0.609375,0.0
+;,periodic,marker identity,64,19,15,BBBBAABBBAABBABABAABBABBBBBABBABBBAABAABBABAAAABAABAAAAABBAAAABB,0.640625,0.0
+#,periodic,marker identity,8,0,1,AABBAABA,0.875,0.0
+#,periodic,marker identity,8,1,1,BAAABABA,0.625,0.0
+#,periodic,marker identity,8,2,1,BBAABAAA,0.625,0.0
+#,periodic,marker identity,8,3,1,BABABBBA,0.875,0.0
+#,periodic,marker identity,8,4,1,ABBBBABA,0.375,0.0
+#,periodic,marker identity,8,5,1,BAAABABB,0.5,0.0
+#,periodic,marker identity,8,6,1,AAAABAAB,0.875,0.0
+#,periodic,marker identity,8,7,1,BBBABBBA,0.75,0.0
+#,periodic,marker identity,8,8,1,BBBBBBBA,0.875,0.0
+#,periodic,marker identity,8,9,1,AAABBAAA,0.75,0.0
+#,periodic,marker identity,8,10,1,BBBAABBB,0.875,0.0
+#,periodic,marker identity,8,11,1,AABBBAAA,0.875,0.0
+#,periodic,marker identity,8,12,1,BAABBAAA,0.75,0.0
+#,periodic,marker identity,8,13,1,BABAABBB,1.0,1.0
+#,periodic,marker identity,8,14,1,ABABBBAB,0.375,0.0
+#,periodic,marker identity,8,15,1,ABABBBAB,0.375,0.0
+#,periodic,marker identity,8,16,1,ABBAAABA,0.875,0.0
+#,periodic,marker identity,8,17,1,AAABBAAB,0.75,0.0
+#,periodic,marker identity,8,18,1,BBABAABB,0.875,0.0
+#,periodic,marker identity,8,19,1,ABABABAB,1.0,1.0
+#,periodic,marker identity,16,0,3,BBAAABABBAABABBB,0.9375,0.0
+#,periodic,marker identity,16,1,3,BBAABBBABBAABABA,0.875,0.0
+#,periodic,marker identity,16,2,3,ABBAABBBAABABBAA,0.9375,0.0
+#,periodic,marker identity,16,3,3,ABBAAABAABABAAAB,0.8125,0.0
+#,periodic,marker identity,16,4,3,AAAAAABBABBBAAAB,0.75,0.0
+#,periodic,marker identity,16,5,3,AABBBABABBBBAAAA,0.75,0.0
+#,periodic,marker identity,16,6,3,BBABBAAAAABBBABA,0.6875,0.0
+#,periodic,marker identity,16,7,3,AAABAAAAAAABBAAB,0.5625,0.0
+#,periodic,marker identity,16,8,3,AAABABAAAABABABA,0.75,0.0
+#,periodic,marker identity,16,9,3,BBBAAABABABAAABA,0.4375,0.0
+#,periodic,marker identity,16,10,3,BBBBBBAAABABBAAA,0.5,0.0
+#,periodic,marker identity,16,11,3,ABAABAAABAAAAAAA,0.6875,0.0
+#,periodic,marker identity,16,12,3,ABBAAAAAAABAAABA,1.0,1.0
+#,periodic,marker identity,16,13,3,BABBBAAABAABBAAA,0.5625,0.0
+#,periodic,marker identity,16,14,3,BBAAABAABBABBAAB,0.75,0.0
+#,periodic,marker identity,16,15,3,BBABBBBBBABAAAAA,0.75,0.0
+#,periodic,marker identity,16,16,3,ABBBBAAAABAAABAB,0.75,0.0
+#,periodic,marker identity,16,17,3,ABBABBAABBABBAAB,0.8125,0.0
+#,periodic,marker identity,16,18,3,AAAAABBBBABBBABA,0.6875,0.0
+#,periodic,marker identity,16,19,3,BAAAAAABAABBBBBA,0.375,0.0
+#,periodic,marker identity,32,0,7,AABABBBABABAABABBBBAAABBBBBABBAB,0.6875,0.0
+#,periodic,marker identity,32,1,7,ABABBBBAAAAABABBABBBAABBBAAABABA,0.78125,0.0
+#,periodic,marker identity,32,2,7,BABAAABAABBBAABBABAABABABABBAABA,0.65625,0.0
+#,periodic,marker identity,32,3,7,BBAABBBAAAABBBABAAAABBABAABBBABA,0.6875,0.0
+#,periodic,marker identity,32,4,7,BBBBBABBAAABBABABAAABABAABBABABB,0.71875,0.0
+#,periodic,marker identity,32,5,7,AABABAAAABBAAABAABBBBBABAABABABB,0.6875,0.0
+#,periodic,marker identity,32,6,7,BBAAABABBABAABBBBBAAAABBBABAAAAB,0.46875,0.0
+#,periodic,marker identity,32,7,7,BAAAABBBBAAABAAABBABABABBABBABBB,0.5,0.0
+#,periodic,marker identity,32,8,7,BBABBAABBBABBABBAABBABABBABBABBA,0.5,0.0
+#,periodic,marker identity,32,9,7,ABBBBAAAAABBAAABBBBBBABABBAABAAB,0.5,0.0
+#,periodic,marker identity,32,10,7,AAAAABBABBABABABAAABBABBBBABBAAA,0.75,0.0
+#,periodic,marker identity,32,11,7,BABABABABAABAAABAAABBBBBABABBBAB,0.90625,0.0
+#,periodic,marker identity,32,12,7,BAABABBAAAABBBBABAABAABAABABBAAB,0.8125,0.0
+#,periodic,marker identity,32,13,7,BABABABBAABBBAAABBAAAAABBABAABBA,0.5625,0.0
+#,periodic,marker identity,32,14,7,BABAAAAABAABBABBAABBBBAAABABBBAA,0.125,0.0
+#,periodic,marker identity,32,15,7,BBAABAABBBBBBBABBBBBBBBBBABABAAA,0.78125,0.0
+#,periodic,marker identity,32,16,7,ABABBBAAABABBABBBBAABBBAABABAABA,0.28125,0.0
+#,periodic,marker identity,32,17,7,ABBAAAAAABBABAAABAABAABBAAAAABAB,0.8125,0.0
+#,periodic,marker identity,32,18,7,AAABAAAABBBBBAABBBAAABAABAABBABB,0.5625,0.0
+#,periodic,marker identity,32,19,7,BAABAAAAABABABBABBBBAAAABBBAABAA,0.625,0.0
+#,periodic,marker identity,64,0,15,BBBBABABBABABABBAABABAABBAABAABAAABBAAABBAABAAAABBBAAAABBABBBBAA,0.78125,0.0
+#,periodic,marker identity,64,1,15,BABBBAABAABABBBBBABABBBAABAABBABAAABBABABBAABAABAAAAAABAABAABABA,0.5,0.0
+#,periodic,marker identity,64,2,15,BBAAAABAABAAABBAABABBBAAAAAAAABABBBAABABABBBABABAAAABABAAABABABA,0.640625,0.0
+#,periodic,marker identity,64,3,15,BABBAAABBBAAABBABBABBABBAABBBAABAAABBAABABBBABABAABBAABBBBBBBAAB,0.65625,0.0
+#,periodic,marker identity,64,4,15,BABBBBBABBAABAABBAAAAAABABBAAAABAAAAAAABABABBAABBABABBBAABBBAAAA,0.5,0.0
+#,periodic,marker identity,64,5,15,ABABBBABABAAABBAAAAAAAABAAAAAAABAAABAABAABAABBAABBAAAABBAABAABAB,0.359375,0.0
+#,periodic,marker identity,64,6,15,ABBBAABBAAAAAAAAABABAAAAABABBABBBAABAABABBABAABAABABBAABBAAAAAAB,0.84375,0.0
+#,periodic,marker identity,64,7,15,AABBBBAABBAABAABABABBAABBAAAABAAABBABBABBBBBABBBAAAABABBABBAABAA,0.59375,0.0
+#,periodic,marker identity,64,8,15,BAAAAABBBBAAAAABBBAABBBBAABBAABAABBBABBABAAAABABBABBBABAAABABAAB,0.5,0.0
+#,periodic,marker identity,64,9,15,BBBABBBAABBABBBBAABBAAABBAAABABAAAAAABAABBBAAABAABAAABAAAABAABAA,0.515625,0.0
+#,periodic,marker identity,64,10,15,ABAAAAAAABBBBAABAAAABABBAABABAABBBAAAABBAABAAAABBBABBAAABABBBABA,0.453125,0.0
+#,periodic,marker identity,64,11,15,BABAABAABABBABAABAAAABABABABBAAAAABBBBBBAABBAAAAAABBABBABBBBAABA,0.453125,0.0
+#,periodic,marker identity,64,12,15,BBAABABBAAAABABAABABBBABBBBBBAAABAAABAABBBAABABABABBBAABABABABAB,0.609375,0.0
+#,periodic,marker identity,64,13,15,BABBBBAAAAAABABBBBABBBBAAAAAABBAABBBBAAAAAAABBAABAABBAABBBABAABB,0.421875,0.0
+#,periodic,marker identity,64,14,15,ABBAAABAABAABBABABABBBAABBBBABAABBAABABBBBBBBBABBBAAABAAABBBABBB,0.703125,0.0
+#,periodic,marker identity,64,15,15,BAABBBBBABBAAAABAABBBABABAAABBABAABAAAAABAAABAABBBBAAAABABABABBA,0.671875,0.0
+#,periodic,marker identity,64,16,15,AABBBBBAAAAABBABBBAABBBABAABBAABBBBBABABBABBBBABAABBABBBABBBBAAB,0.671875,0.0
+#,periodic,marker identity,64,17,15,AAAABBBABBBABABBAABAABBBAABBABBBBBBAABBBBBBBABAAAAABBBBBAAABAABA,0.484375,0.0
+#,periodic,marker identity,64,18,15,BBAABABBBAABABBBABBAAAABAAABABABAABBABABABBAAAAABBABBBAAAAAAABBB,0.734375,0.0
+#,periodic,marker identity,64,19,15,BBBBAABBBAABBABABAABBABBBBBABBABBBAABAABBABAAAABAABAAAAABBAAAABB,0.59375,0.0
+|,random,placement regularity,8,0,1,AABBAABA,0.75,0.0
+|,random,placement regularity,8,1,1,BAAABABA,0.75,0.0
+|,random,placement regularity,8,2,1,BBAABAAA,0.75,0.0
+|,random,placement regularity,8,3,1,BABABBBA,0.5,0.0
+|,random,placement regularity,8,4,1,ABBBBABA,0.5,0.0
+|,random,placement regularity,8,5,1,BAAABABB,0.5,0.0
+|,random,placement regularity,8,6,1,AAAABAAB,1.0,1.0
+|,random,placement regularity,8,7,1,BBBABBBA,0.5,0.0
+|,random,placement regularity,8,8,1,BBBBBBBA,0.75,0.0
+|,random,placement regularity,8,9,1,AAABBAAA,0.5,0.0
+|,random,placement regularity,8,10,1,BBBAABBB,0.625,0.0
+|,random,placement regularity,8,11,1,AABBBAAA,0.625,0.0
+|,random,placement regularity,8,12,1,BAABBAAA,0.5,0.0
+|,random,placement regularity,8,13,1,BABAABBB,0.75,0.0
+|,random,placement regularity,8,14,1,ABABBBAB,0.375,0.0
+|,random,placement regularity,8,15,1,ABABBBAB,0.75,0.0
+|,random,placement regularity,8,16,1,ABBAAABA,0.625,0.0
+|,random,placement regularity,8,17,1,AAABBAAB,1.0,1.0
+|,random,placement regularity,8,18,1,BBABAABB,0.25,0.0
+|,random,placement regularity,8,19,1,ABABABAB,0.75,0.0
+|,random,placement regularity,16,0,3,BBAAABABBAABABBB,0.625,0.0
+|,random,placement regularity,16,1,3,BBAABBBABBAABABA,0.5625,0.0
+|,random,placement regularity,16,2,3,ABBAABBBAABABBAA,0.375,0.0
+|,random,placement regularity,16,3,3,ABBAAABAABABAAAB,0.4375,0.0
+|,random,placement regularity,16,4,3,AAAAAABBABBBAAAB,0.75,0.0
+|,random,placement regularity,16,5,3,AABBBABABBBBAAAA,0.625,0.0
+|,random,placement regularity,16,6,3,BBABBAAAAABBBABA,0.3125,0.0
+|,random,placement regularity,16,7,3,AAABAAAAAAABBAAB,0.6875,0.0
+|,random,placement regularity,16,8,3,AAABABAAAABABABA,0.75,0.0
+|,random,placement regularity,16,9,3,BBBAAABABABAAABA,0.5,0.0
+|,random,placement regularity,16,10,3,BBBBBBAAABABBAAA,0.6875,0.0
+|,random,placement regularity,16,11,3,ABAABAAABAAAAAAA,0.375,0.0
+|,random,placement regularity,16,12,3,ABBAAAAAAABAAABA,0.375,0.0
+|,random,placement regularity,16,13,3,BABBBAAABAABBAAA,0.8125,0.0
+|,random,placement regularity,16,14,3,BBAAABAABBABBAAB,0.25,0.0
+|,random,placement regularity,16,15,3,BBABBBBBBABAAAAA,0.6875,0.0
+|,random,placement regularity,16,16,3,ABBBBAAAABAAABAB,0.375,0.0
+|,random,placement regularity,16,17,3,ABBABBAABBABBAAB,0.375,0.0
+|,random,placement regularity,16,18,3,AAAAABBBBABBBABA,0.75,0.0
+|,random,placement regularity,16,19,3,BAAAAAABAABBBBBA,0.25,0.0
+|,random,placement regularity,32,0,7,AABABBBABABAABABBBBAAABBBBBABBAB,0.875,0.0
+|,random,placement regularity,32,1,7,ABABBBBAAAAABABBABBBAABBBAAABABA,0.21875,0.0
+|,random,placement regularity,32,2,7,BABAAABAABBBAABBABAABABABABBAABA,0.46875,0.0
+|,random,placement regularity,32,3,7,BBAABBBAAAABBBABAAAABBABAABBBABA,0.625,0.0
+|,random,placement regularity,32,4,7,BBBBBABBAAABBABABAAABABAABBABABB,0.28125,0.0
+|,random,placement regularity,32,5,7,AABABAAAABBAAABAABBBBBABAABABABB,0.78125,0.0
+|,random,placement regularity,32,6,7,BBAAABABBABAABBBBBAAAABBBABAAAAB,0.09375,0.0
+|,random,placement regularity,32,7,7,BAAAABBBBAAABAAABBABABABBABBABBB,0.5,0.0
+|,random,placement regularity,32,8,7,BBABBAABBBABBABBAABBABABBABBABBA,0.59375,0.0
+|,random,placement regularity,32,9,7,ABBBBAAAAABBAAABBBBBBABABBAABAAB,0.34375,0.0
+|,random,placement regularity,32,10,7,AAAAABBABBABABABAAABBABBBBABBAAA,0.53125,0.0
+|,random,placement regularity,32,11,7,BABABABABAABAAABAAABBBBBABABBBAB,0.40625,0.0
+|,random,placement regularity,32,12,7,BAABABBAAAABBBBABAABAABAABABBAAB,0.34375,0.0
+|,random,placement regularity,32,13,7,BABABABBAABBBAAABBAAAAABBABAABBA,0.71875,0.0
+|,random,placement regularity,32,14,7,BABAAAAABAABBABBAABBBBAAABABBBAA,0.65625,0.0
+|,random,placement regularity,32,15,7,BBAABAABBBBBBBABBBBBBBBBBABABAAA,0.6875,0.0
+|,random,placement regularity,32,16,7,ABABBBAAABABBABBBBAABBBAABABAABA,0.28125,0.0
+|,random,placement regularity,32,17,7,ABBAAAAAABBABAAABAABAABBAAAAABAB,0.53125,0.0
+|,random,placement regularity,32,18,7,AAABAAAABBBBBAABBBAAABAABAABBABB,0.21875,0.0
+|,random,placement regularity,32,19,7,BAABAAAAABABABBABBBBAAAABBBAABAA,0.65625,0.0
+|,random,placement regularity,64,0,15,BBBBABABBABABABBAABABAABBAABAABAAABBAAABBAABAAAABBBAAAABBABBBBAA,0.625,0.0
+|,random,placement regularity,64,1,15,BABBBAABAABABBBBBABABBBAABAABBABAAABBABABBAABAABAAAAAABAABAABABA,0.5625,0.0
+|,random,placement regularity,64,2,15,BBAAAABAABAAABBAABABBBAAAAAAAABABBBAABABABBBABABAAAABABAAABABABA,0.484375,0.0
+|,random,placement regularity,64,3,15,BABBAAABBBAAABBABBABBABBAABBBAABAAABBAABABBBABABAABBAABBBBBBBAAB,0.5625,0.0
+|,random,placement regularity,64,4,15,BABBBBBABBAABAABBAAAAAABABBAAAABAAAAAAABABABBAABBABABBBAABBBAAAA,0.65625,0.0
+|,random,placement regularity,64,5,15,ABABBBABABAAABBAAAAAAAABAAAAAAABAAABAABAABAABBAABBAAAABBAABAABAB,0.28125,0.0
+|,random,placement regularity,64,6,15,ABBBAABBAAAAAAAAABABAAAAABABBABBBAABAABABBABAABAABABBAABBAAAAAAB,0.359375,0.0
+|,random,placement regularity,64,7,15,AABBBBAABBAABAABABABBAABBAAAABAAABBABBABBBBBABBBAAAABABBABBAABAA,0.5625,0.0
+|,random,placement regularity,64,8,15,BAAAAABBBBAAAAABBBAABBBBAABBAABAABBBABBABAAAABABBABBBABAAABABAAB,0.546875,0.0
+|,random,placement regularity,64,9,15,BBBABBBAABBABBBBAABBAAABBAAABABAAAAAABAABBBAAABAABAAABAAAABAABAA,0.328125,0.0
+|,random,placement regularity,64,10,15,ABAAAAAAABBBBAABAAAABABBAABABAABBBAAAABBAABAAAABBBABBAAABABBBABA,0.546875,0.0
+|,random,placement regularity,64,11,15,BABAABAABABBABAABAAAABABABABBAAAAABBBBBBAABBAAAAAABBABBABBBBAABA,0.484375,0.0
+|,random,placement regularity,64,12,15,BBAABABBAAAABABAABABBBABBBBBBAAABAAABAABBBAABABABABBBAABABABABAB,0.546875,0.0
+|,random,placement regularity,64,13,15,BABBBBAAAAAABABBBBABBBBAAAAAABBAABBBBAAAAAAABBAABAABBAABBBABAABB,0.390625,0.0
+|,random,placement regularity,64,14,15,ABBAAABAABAABBABABABBBAABBBBABAABBAABABBBBBBBBABBBAAABAAABBBABBB,0.5625,0.0
+|,random,placement regularity,64,15,15,BAABBBBBABBAAAABAABBBABABAAABBABAABAAAAABAAABAABBBBAAAABABABABBA,0.484375,0.0
+|,random,placement regularity,64,16,15,AABBBBBAAAAABBABBBAABBBABAABBAABBBBBABABBABBBBABAABBABBBABBBBAAB,0.5625,0.0
+|,random,placement regularity,64,17,15,AAAABBBABBBABABBAABAABBBAABBABBBBBBAABBBBBBBABAAAAABBBBBAAABAABA,0.609375,0.0
+|,random,placement regularity,64,18,15,BBAABABBBAABABBBABBAAAABAAABABABAABBABABABBAAAAABBABBBAAAAAAABBB,0.4375,0.0
+|,random,placement regularity,64,19,15,BBBBAABBBAABBABABAABBABBBBBABBABBBAABAABBABAAAABAABAAAAABBAAAABB,0.484375,0.0
+|,periodic_fixed_count,density vs fixed count,8,0,4,AABBAABA,1.0,1.0
+|,periodic_fixed_count,density vs fixed count,8,1,4,BAAABABA,1.0,1.0
+|,periodic_fixed_count,density vs fixed count,8,2,4,BBAABAAA,0.75,0.0
+|,periodic_fixed_count,density vs fixed count,8,3,4,BABABBBA,1.0,1.0
+|,periodic_fixed_count,density vs fixed count,8,4,4,ABBBBABA,1.0,1.0
+|,periodic_fixed_count,density vs fixed count,8,5,4,BAAABABB,1.0,1.0
+|,periodic_fixed_count,density vs fixed count,8,6,4,AAAABAAB,0.75,0.0
+|,periodic_fixed_count,density vs fixed count,8,7,4,BBBABBBA,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,8,8,4,BBBBBBBA,0.75,0.0
+|,periodic_fixed_count,density vs fixed count,8,9,4,AAABBAAA,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,8,10,4,BBBAABBB,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,8,11,4,AABBBAAA,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,8,12,4,BAABBAAA,0.625,0.0
+|,periodic_fixed_count,density vs fixed count,8,13,4,BABAABBB,0.625,0.0
+|,periodic_fixed_count,density vs fixed count,8,14,4,ABABBBAB,0.75,0.0
+|,periodic_fixed_count,density vs fixed count,8,15,4,ABABBBAB,0.75,0.0
+|,periodic_fixed_count,density vs fixed count,8,16,4,ABBAAABA,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,8,17,4,AAABBAAB,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,8,18,4,BBABAABB,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,8,19,4,ABABABAB,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,16,0,4,BBAAABABBAABABBB,0.75,0.0
+|,periodic_fixed_count,density vs fixed count,16,1,4,BBAABBBABBAABABA,0.625,0.0
+|,periodic_fixed_count,density vs fixed count,16,2,4,ABBAABBBAABABBAA,0.5,0.0
+|,periodic_fixed_count,density vs fixed count,16,3,4,ABBAAABAABABAAAB,0.3125,0.0
+|,periodic_fixed_count,density vs fixed count,16,4,4,AAAAAABBABBBAAAB,0.6875,0.0
+|,periodic_fixed_count,density vs fixed count,16,5,4,AABBBABABBBBAAAA,0.3125,0.0
+|,periodic_fixed_count,density vs fixed count,16,6,4,BBABBAAAAABBBABA,0.6875,0.0
+|,periodic_fixed_count,density vs fixed count,16,7,4,AAABAAAAAAABBAAB,0.625,0.0
+|,periodic_fixed_count,density vs fixed count,16,8,4,AAABABAAAABABABA,0.6875,0.0
+|,periodic_fixed_count,density vs fixed count,16,9,4,BBBAAABABABAAABA,0.75,0.0
+|,periodic_fixed_count,density vs fixed count,16,10,4,BBBBBBAAABABBAAA,0.5625,0.0
+|,periodic_fixed_count,density vs fixed count,16,11,4,ABAABAAABAAAAAAA,0.1875,0.0
+|,periodic_fixed_count,density vs fixed count,16,12,4,ABBAAAAAAABAAABA,0.375,0.0
+|,periodic_fixed_count,density vs fixed count,16,13,4,BABBBAAABAABBAAA,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,16,14,4,BBAAABAABBABBAAB,0.8125,0.0
+|,periodic_fixed_count,density vs fixed count,16,15,4,BBABBBBBBABAAAAA,0.875,0.0
+|,periodic_fixed_count,density vs fixed count,16,16,4,ABBBBAAAABAAABAB,0.375,0.0
+|,periodic_fixed_count,density vs fixed count,16,17,4,ABBABBAABBABBAAB,0.5625,0.0
+|,periodic_fixed_count,density vs fixed count,16,18,4,AAAAABBBBABBBABA,0.6875,0.0
+|,periodic_fixed_count,density vs fixed count,16,19,4,BAAAAAABAABBBBBA,0.5,0.0
+|,periodic_fixed_count,density vs fixed count,32,0,4,AABABBBABABAABABBBBAAABBBBBABBAB,0.375,0.0
+|,periodic_fixed_count,density vs fixed count,32,1,4,ABABBBBAAAAABABBABBBAABBBAAABABA,0.4375,0.0
+|,periodic_fixed_count,density vs fixed count,32,2,4,BABAAABAABBBAABBABAABABABABBAABA,0.40625,0.0
+|,periodic_fixed_count,density vs fixed count,32,3,4,BBAABBBAAAABBBABAAAABBABAABBBABA,0.53125,0.0
+|,periodic_fixed_count,density vs fixed count,32,4,4,BBBBBABBAAABBABABAAABABAABBABABB,0.34375,0.0
+|,periodic_fixed_count,density vs fixed count,32,5,4,AABABAAAABBAAABAABBBBBABAABABABB,0.46875,0.0
+|,periodic_fixed_count,density vs fixed count,32,6,4,BBAAABABBABAABBBBBAAAABBBABAAAAB,0.625,0.0
+|,periodic_fixed_count,density vs fixed count,32,7,4,BAAAABBBBAAABAAABBABABABBABBABBB,0.46875,0.0
+|,periodic_fixed_count,density vs fixed count,32,8,4,BBABBAABBBABBABBAABBABABBABBABBA,0.59375,0.0
+|,periodic_fixed_count,density vs fixed count,32,9,4,ABBBBAAAAABBAAABBBBBBABABBAABAAB,0.4375,0.0
+|,periodic_fixed_count,density vs fixed count,32,10,4,AAAAABBABBABABABAAABBABBBBABBAAA,0.5625,0.0
+|,periodic_fixed_count,density vs fixed count,32,11,4,BABABABABAABAAABAAABBBBBABABBBAB,0.46875,0.0
+|,periodic_fixed_count,density vs fixed count,32,12,4,BAABABBAAAABBBBABAABAABAABABBAAB,0.5,0.0
+|,periodic_fixed_count,density vs fixed count,32,13,4,BABABABBAABBBAAABBAAAAABBABAABBA,0.65625,0.0
+|,periodic_fixed_count,density vs fixed count,32,14,4,BABAAAAABAABBABBAABBBBAAABABBBAA,0.6875,0.0
+|,periodic_fixed_count,density vs fixed count,32,15,4,BBAABAABBBBBBBABBBBBBBBBBABABAAA,0.5625,0.0
+|,periodic_fixed_count,density vs fixed count,32,16,4,ABABBBAAABABBABBBBAABBBAABABAABA,0.53125,0.0
+|,periodic_fixed_count,density vs fixed count,32,17,4,ABBAAAAAABBABAAABAABAABBAAAAABAB,0.53125,0.0
+|,periodic_fixed_count,density vs fixed count,32,18,4,AAABAAAABBBBBAABBBAAABAABAABBABB,0.59375,0.0
+|,periodic_fixed_count,density vs fixed count,32,19,4,BAABAAAAABABABBABBBBAAAABBBAABAA,0.6875,0.0
+|,periodic_fixed_count,density vs fixed count,64,0,4,BBBBABABBABABABBAABABAABBAABAABAAABBAAABBAABAAAABBBAAAABBABBBBAA,0.53125,0.0
+|,periodic_fixed_count,density vs fixed count,64,1,4,BABBBAABAABABBBBBABABBBAABAABBABAAABBABABBAABAABAAAAAABAABAABABA,0.46875,0.0
+|,periodic_fixed_count,density vs fixed count,64,2,4,BBAAAABAABAAABBAABABBBAAAAAAAABABBBAABABABBBABABAAAABABAAABABABA,0.53125,0.0
+|,periodic_fixed_count,density vs fixed count,64,3,4,BABBAAABBBAAABBABBABBABBAABBBAABAAABBAABABBBABABAABBAABBBBBBBAAB,0.4375,0.0
+|,periodic_fixed_count,density vs fixed count,64,4,4,BABBBBBABBAABAABBAAAAAABABBAAAABAAAAAAABABABBAABBABABBBAABBBAAAA,0.375,0.0
+|,periodic_fixed_count,density vs fixed count,64,5,4,ABABBBABABAAABBAAAAAAAABAAAAAAABAAABAABAABAABBAABBAAAABBAABAABAB,0.40625,0.0
+|,periodic_fixed_count,density vs fixed count,64,6,4,ABBBAABBAAAAAAAAABABAAAAABABBABBBAABAABABBABAABAABABBAABBAAAAAAB,0.390625,0.0
+|,periodic_fixed_count,density vs fixed count,64,7,4,AABBBBAABBAABAABABABBAABBAAAABAAABBABBABBBBBABBBAAAABABBABBAABAA,0.53125,0.0
+|,periodic_fixed_count,density vs fixed count,64,8,4,BAAAAABBBBAAAAABBBAABBBBAABBAABAABBBABBABAAAABABBABBBABAAABABAAB,0.59375,0.0
+|,periodic_fixed_count,density vs fixed count,64,9,4,BBBABBBAABBABBBBAABBAAABBAAABABAAAAAABAABBBAAABAABAAABAAAABAABAA,0.40625,0.0
+|,periodic_fixed_count,density vs fixed count,64,10,4,ABAAAAAAABBBBAABAAAABABBAABABAABBBAAAABBAABAAAABBBABBAAABABBBABA,0.609375,0.0
+|,periodic_fixed_count,density vs fixed count,64,11,4,BABAABAABABBABAABAAAABABABABBAAAAABBBBBBAABBAAAAAABBABBABBBBAABA,0.421875,0.0
+|,periodic_fixed_count,density vs fixed count,64,12,4,BBAABABBAAAABABAABABBBABBBBBBAAABAAABAABBBAABABABABBBAABABABABAB,0.453125,0.0
+|,periodic_fixed_count,density vs fixed count,64,13,4,BABBBBAAAAAABABBBBABBBBAAAAAABBAABBBBAAAAAAABBAABAABBAABBBABAABB,0.53125,0.0
+|,periodic_fixed_count,density vs fixed count,64,14,4,ABBAAABAABAABBABABABBBAABBBBABAABBAABABBBBBBBBABBBAAABAAABBBABBB,0.375,0.0
+|,periodic_fixed_count,density vs fixed count,64,15,4,BAABBBBBABBAAAABAABBBABABAAABBABAABAAAAABAAABAABBBBAAAABABABABBA,0.515625,0.0
+|,periodic_fixed_count,density vs fixed count,64,16,4,AABBBBBAAAAABBABBBAABBBABAABBAABBBBBABABBABBBBABAABBABBBABBBBAAB,0.546875,0.0
+|,periodic_fixed_count,density vs fixed count,64,17,4,AAAABBBABBBABABBAABAABBBAABBABBBBBBAABBBBBBBABAAAAABBBBBAAABAABA,0.546875,0.0
+|,periodic_fixed_count,density vs fixed count,64,18,4,BBAABABBBAABABBBABBAAAABAAABABABAABBABABABBAAAAABBABBBAAAAAAABBB,0.28125,0.0
+|,periodic_fixed_count,density vs fixed count,64,19,4,BBBBAABBBAABBABABAABBABBBBBABBABBBAABAABBABAAAABAABAAAAABBAAAABB,0.53125,0.0

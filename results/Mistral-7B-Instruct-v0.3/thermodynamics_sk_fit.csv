@@ -1,0 +1,16 @@
+Alphabet_Size,Method,Interval,Beta0,Alpha,N_star,N_points,Fit_Valid
+2,Base,0,0.07365662754516519,1.5987539038563754,6.558833917813866,7,True
+2,Cellular_Bounds,2,,,,7,False
+2,Cellular_Bounds,4,0.06859678304935521,1.274386972248695,12.05110758489412,6,True
+2,Cellular_Bounds,8,,,,5,False
+2,Cellular_Bounds,16,,,,4,False
+4,Base,0,0.3825361050771085,1.250998680407901,5.290983735925391,7,True
+4,Cellular_Bounds,2,0.23642476828690068,1.3453054612965103,5.8618430900845775,7,True
+4,Cellular_Bounds,4,,,,6,False
+4,Cellular_Bounds,8,,,,5,False
+4,Cellular_Bounds,16,,,,4,False
+8,Base,0,0.23642476828690068,1.3453054612965103,5.8618430900845775,7,True
+8,Cellular_Bounds,2,0.07365662754516519,1.5987539038563754,6.558833917813866,7,True
+8,Cellular_Bounds,4,,,,6,False
+8,Cellular_Bounds,8,,,,5,False
+8,Cellular_Bounds,16,,,,4,False
