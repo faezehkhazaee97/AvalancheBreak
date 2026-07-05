@@ -1,0 +1,2 @@
+N_held_out,Beta0_train,Alpha_train,N_star_train,SAR_test_actual,SAR_test_predicted,Abs_Error,Modulus,Method,Interval
+8.0,0.14544817740454152,1.5817911375483515,5.204345171180484,0.05,3.0155008711312733e-13,0.04999999999969845,2,Base,0

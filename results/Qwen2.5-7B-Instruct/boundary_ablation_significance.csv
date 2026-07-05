@@ -1,0 +1,17 @@
+Comparison,Seq_Length,N_pairs,Mean_TAR_A,Mean_TAR_B,P_value_TAR,P_value_SAR,Significant_TAR_p05,Significant_SAR_p05
+| baseline vs ; marker,8,20,0.68125,0.725,0.4700253382012093,1.0,False,False
+| baseline vs ; marker,16,20,0.759375,0.709375,0.17129837330434539,1.0,False,False
+| baseline vs ; marker,32,20,0.6859375,0.6921875,0.7272311328181522,1.0,False,False
+| baseline vs ; marker,64,20,0.621875,0.63671875,0.42053344190931274,1.0,False,False
+| baseline vs # marker,8,20,0.68125,0.74375,0.11660196317136395,1.0,False,False
+| baseline vs # marker,16,20,0.759375,0.71875,0.26084372198335193,1.0,False,False
+| baseline vs # marker,32,20,0.6859375,0.6203125,0.15535425276188064,1.0,False,False
+| baseline vs # marker,64,20,0.621875,0.584375,0.17853943210769962,1.0,False,False
+| periodic vs | random,8,20,0.68125,0.6375,0.4429906628214333,1.0,False,False
+| periodic vs | random,16,20,0.759375,0.528125,0.0015665930356443614,1.0,True,False
+| periodic vs | random,32,20,0.6859375,0.490625,0.0020650741432822143,1.0,True,False
+| periodic vs | random,64,20,0.621875,0.50390625,0.000850069482605579,1.0,True,False
+| density vs | fixed-count,8,20,0.68125,0.85,0.011362292738454925,0.453125,True,False
+| density vs | fixed-count,16,20,0.759375,0.5875,0.010204878240162018,1.0,True,False
+| density vs | fixed-count,32,20,0.6859375,0.5234375,0.00448359833219281,1.0,True,False
+| density vs | fixed-count,64,20,0.621875,0.47421875,0.0002509689139902222,1.0,True,False

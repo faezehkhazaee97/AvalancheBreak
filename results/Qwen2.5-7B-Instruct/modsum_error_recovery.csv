@@ -1,0 +1,4 @@
+Method,Boundary_Adjacent,mean,count
+Base,False,0.25521821631878555,21080
+Cellular_Bounds,False,0.23724618316430465,45653
+Cellular_Bounds,True,0.24219886822958772,18555

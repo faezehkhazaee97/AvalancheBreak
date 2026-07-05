@@ -1,0 +1,15 @@
+# Model weights, HF cache, and environments -- large, machine-specific, never commit
+hf_cache/
+.conda/
+.cache/
+__pycache__/
+*.pyc
+.scratch/
+.claude/
+
+# SLURM logs -- ephemeral, regenerated on every run
+slurm_logs/
+
+# Editor/OS cruft
+.ipynb_checkpoints/
+.DS_Store
