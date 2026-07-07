@@ -1,0 +1,5 @@
+Method,Interval,Beta0,Alpha,N_star,Fit_Valid
+Base,0,0.013195643861246144,1.1128526836623955,41.47509517186318,True
+Cellular_Bounds,4,,,,False
+Cellular_Bounds,8,,,,False
+Cellular_Bounds,16,0.1130541096646166,1.4519443464738282,6.845716709341423,True
