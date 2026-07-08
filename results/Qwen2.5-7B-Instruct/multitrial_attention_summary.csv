@@ -1,0 +1,10 @@
+,0
+n_trials,20.0
+mean_entropy_base,1.022261842517333
+mean_entropy_cell,1.198117887081823
+cell_higher_layers,27.0
+n_layers,28.0
+mean_offdiag_mass_base,0.2840728759765625
+mean_offdiag_mass_cell,0.20712363719940186
+boundary_peak_layer,15.0
+boundary_peak_value,0.18951167071437733
