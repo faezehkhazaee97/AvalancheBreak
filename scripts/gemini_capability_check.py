@@ -15,6 +15,14 @@ locally even Qwen 14B got the position-local sub-task exactly right in
 ~0% of trials (String_Correct ~ 0.00-0.02) -- a stronger model might
 actually attempt that task meaningfully, unlike Qwen/Mistral.
 
+Defaults to gemini-2.5-flash specifically to stay inside the free tier --
+no billing needed. That's a real tradeoff: Flash is a good model but not
+the same frontier tier as Gemini-2.5-Pro, so a null result here (boundaries
+still hurt) is solid evidence, but a positive result (boundaries help)
+would be weaker evidence that capability was the missing ingredient, since
+Flash still isn't the strongest model available. Pass --model gemini-2.5-pro
+for the more decisive version if you later decide the small cost is worth it.
+
 TaskEngine classes below are copied verbatim from the project notebook
 (LLM-Focus.ipynb, cells 25 and 32) so the task itself is byte-for-byte
 identical to what was already run locally -- only the model-calling layer
@@ -25,9 +33,9 @@ Setup:
     export GEMINI_API_KEY=...   (https://aistudio.google.com/apikey)
 
 Usage:
-    python scripts/gemini_capability_check.py            # prints cost estimate, asks to confirm
+    python scripts/gemini_capability_check.py            # gemini-2.5-flash, free tier, prints estimate + confirms
     python scripts/gemini_capability_check.py --yes       # skips confirmation
-    python scripts/gemini_capability_check.py --model gemini-2.5-flash   # cheaper/faster, lower ceiling
+    python scripts/gemini_capability_check.py --model gemini-2.5-pro   # stronger test, likely needs billing
 """
 
 import argparse
@@ -44,8 +52,7 @@ from tqdm import tqdm
 # intervals once you've seen this run cleanly and decided it's worth the
 # extra cost.
 # ============================================================
-MODEL_NAME = "gemini-2.5-pro"       # override with --model gemini-2.5-flash for a cheaper first look
-RESULTS_DIR = "results/gemini-2.5-pro"
+MODEL_NAME = "gemini-2.5-flash"      # free-tier friendly; override with --model gemini-2.5-pro for a stronger test
 
 ADD_SEQUENCE_LENGTHS = [4, 8, 16, 32]
 ADD_PERIODIC_INTERVALS = [0, 4]      # Base, and the interval most used in the local addition analysis
@@ -57,6 +64,7 @@ PAULI_TRIALS = 10
 
 MAX_RETRIES = 5
 RETRY_BACKOFF_SEC = 4
+CALL_DELAY_SEC = 4.5   # gap between calls -- stay comfortably under free-tier requests-per-minute limits
 
 
 # ============================================================
@@ -161,6 +169,7 @@ Output: """
 # ============================================================
 def call_gemini(client, model_name, prompt, max_output_tokens):
     from google.genai import types
+    time.sleep(CALL_DELAY_SEC)   # pace calls to stay under free-tier requests-per-minute limits
     for attempt in range(MAX_RETRIES):
         try:
             resp = client.models.generate_content(
@@ -236,13 +245,19 @@ def main():
         (N, k, t) for N in PAULI_SEQUENCE_LENGTHS for k in PAULI_PERIODIC_INTERVALS for t in range(PAULI_TRIALS)
     ]
     total_calls = len(add_tasks) + len(pauli_tasks)
+    est_minutes = total_calls * CALL_DELAY_SEC / 60
+    results_dir = os.path.join("results", args.model)
 
     print(f"Model: {args.model}")
     print(f"Addition trials queued: {len(add_tasks)}  (lengths={ADD_SEQUENCE_LENGTHS}, intervals={ADD_PERIODIC_INTERVALS}, trials={ADD_TRIALS})")
     print(f"Pauli string trials queued: {len(pauli_tasks)}  (lengths={PAULI_SEQUENCE_LENGTHS}, intervals={PAULI_PERIODIC_INTERVALS}, trials={PAULI_TRIALS})")
-    print(f"Total API calls: {total_calls}")
-    print("Check current per-token pricing at https://ai.google.dev/gemini-api/docs/pricing before running --yes;"
-          " prompts here are short (well under 1K input tokens each) but cost still scales with total_calls above.")
+    print(f"Total API calls: {total_calls}  (paced {CALL_DELAY_SEC}s apart -- at least ~{est_minutes:.0f} min, more if retries kick in)")
+    if "flash" in args.model:
+        print("Using a Flash-tier model: this is intended to stay inside the free tier (no billing needed).")
+    else:
+        print("Using a non-Flash model: this likely requires a billing-enabled Cloud project. Prompts/outputs are"
+              " short, so expected cost is small, but check current pricing at"
+              " https://ai.google.dev/gemini-api/docs/pricing before proceeding.")
 
     if not args.yes:
         resp = input("\nProceed? [y/N] ").strip().lower()
@@ -256,7 +271,7 @@ def main():
     from google import genai
     client = genai.Client()
 
-    os.makedirs(RESULTS_DIR, exist_ok=True)
+    os.makedirs(results_dir, exist_ok=True)
 
     if add_tasks:
         add_engine = AdditionTaskEngine()
@@ -267,7 +282,7 @@ def main():
             except Exception as exc:
                 print(f"Task failed: N={N}, k={k}, t={t} | {exc}")
         add_df = pd.DataFrame(add_results)
-        add_csv = os.path.join(RESULTS_DIR, "addition_grid_api.csv")
+        add_csv = os.path.join(results_dir, "addition_grid_api.csv")
         add_df.to_csv(add_csv, index=False)
         print(f"\nSaved {add_csv}")
         summary = add_df.groupby(["Seq_Length", "Method"])["TAR"].mean().unstack()
@@ -285,7 +300,7 @@ def main():
             except Exception as exc:
                 print(f"Task failed: N={N}, k={k}, t={t} | {exc}")
         pauli_df = pd.DataFrame(pauli_results)
-        pauli_csv = os.path.join(RESULTS_DIR, "pauli_string_grid_api.csv")
+        pauli_csv = os.path.join(results_dir, "pauli_string_grid_api.csv")
         pauli_df.to_csv(pauli_csv, index=False)
         print(f"\nSaved {pauli_csv}")
         summary = pauli_df.groupby(["Seq_Length", "Method"])[["TAR", "String_Correct"]].mean()
