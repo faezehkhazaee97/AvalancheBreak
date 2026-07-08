@@ -167,6 +167,10 @@ Output: """
 # ============================================================
 # GEMINI BACKEND
 # ============================================================
+class DailyQuotaExhausted(Exception):
+    """Free tier's PerDay cap is hit -- won't clear for ~24h, retrying is pointless."""
+
+
 def call_gemini(client, model_name, prompt, max_output_tokens):
     from google.genai import types
     time.sleep(CALL_DELAY_SEC)   # pace calls to stay under free-tier requests-per-minute limits
@@ -182,10 +186,33 @@ def call_gemini(client, model_name, prompt, max_output_tokens):
             )
             return (resp.text or "").strip()
         except Exception as exc:
+            # The free tier has both a per-minute AND a per-day cap. The per-day one
+            # (quotaId containing "PerDay") won't reset for ~24h -- retrying within
+            # this process just burns MAX_RETRIES doing nothing. Fail fast instead so
+            # the caller can stop the whole task set rather than retry every remaining
+            # trial the same way.
+            if "PerDay" in str(exc):
+                raise DailyQuotaExhausted(str(exc)) from exc
             wait = RETRY_BACKOFF_SEC * (2 ** attempt)
             print(f"  [retry {attempt+1}/{MAX_RETRIES}] {exc} -- waiting {wait}s")
             time.sleep(wait)
     raise RuntimeError(f"Gemini call failed after {MAX_RETRIES} retries")
+
+
+def load_done_keys(csv_path):
+    """(Seq_Length, Interval, Trial) tuples already saved from a previous partial run."""
+    if not os.path.exists(csv_path):
+        return set()
+    existing = pd.read_csv(csv_path)
+    return set(zip(existing["Seq_Length"], existing["Interval"], existing["Trial"]))
+
+
+def append_row(csv_path, row: dict):
+    """Append one trial's result immediately, so a quota wall or a kill mid-sweep
+    only loses the trial in flight, not everything completed so far."""
+    df_row = pd.DataFrame([row])
+    write_header = not os.path.exists(csv_path)
+    df_row.to_csv(csv_path, mode="a", header=write_header, index=False)
 
 
 # ============================================================
@@ -275,39 +302,51 @@ def main():
 
     if add_tasks:
         add_engine = AdditionTaskEngine()
-        add_results = []
-        for (N, k, t) in tqdm(add_tasks, desc="Addition (Gemini)"):
-            try:
-                add_results.append(run_addition_trial(client, args.model, add_engine, N, k, t))
-            except Exception as exc:
-                print(f"Task failed: N={N}, k={k}, t={t} | {exc}")
-        add_df = pd.DataFrame(add_results)
         add_csv = os.path.join(results_dir, "addition_grid_api.csv")
-        add_df.to_csv(add_csv, index=False)
-        print(f"\nSaved {add_csv}")
-        summary = add_df.groupby(["Seq_Length", "Method"])["TAR"].mean().unstack()
-        if "Base" in summary.columns and "Cellular_Bounds" in summary.columns:
-            summary["Gap"] = summary["Cellular_Bounds"] - summary["Base"]
-        print("\n--- ADDITION: TAR by length/method ---")
-        print(summary.round(4).to_string())
+        done = load_done_keys(add_csv)
+        if done:
+            print(f"\nResuming addition: {len(done)} trials already completed in {add_csv}, skipping those.")
+        for (N, k, t) in tqdm(add_tasks, desc="Addition (Gemini)"):
+            if (N, k, t) in done:
+                continue
+            try:
+                row = run_addition_trial(client, args.model, add_engine, N, k, t)
+                append_row(add_csv, row)
+            except Exception as exc:
+                print(f"Task failed (quota exhausted or other error, stopping this task set): N={N}, k={k}, t={t} | {exc}")
+                break
+        if os.path.exists(add_csv):
+            add_df = pd.read_csv(add_csv)
+            summary = add_df.groupby(["Seq_Length", "Method"])["TAR"].mean().unstack()
+            if "Base" in summary.columns and "Cellular_Bounds" in summary.columns:
+                summary["Gap"] = summary["Cellular_Bounds"] - summary["Base"]
+            print(f"\n--- ADDITION so far ({len(add_df)}/{len(add_tasks)} trials) in {add_csv} ---")
+            print(summary.round(4).to_string())
 
     if pauli_tasks:
         pauli_engine = PauliStringTaskEngine()
-        pauli_results = []
-        for (N, k, t) in tqdm(pauli_tasks, desc="Pauli string (Gemini)"):
-            try:
-                pauli_results.append(run_pauli_trial(client, args.model, pauli_engine, N, k, t))
-            except Exception as exc:
-                print(f"Task failed: N={N}, k={k}, t={t} | {exc}")
-        pauli_df = pd.DataFrame(pauli_results)
         pauli_csv = os.path.join(results_dir, "pauli_string_grid_api.csv")
-        pauli_df.to_csv(pauli_csv, index=False)
-        print(f"\nSaved {pauli_csv}")
-        summary = pauli_df.groupby(["Seq_Length", "Method"])[["TAR", "String_Correct"]].mean()
-        print("\n--- PAULI STRING: TAR / String_Correct by length/method ---")
-        print(summary.round(4).to_string())
+        done = load_done_keys(pauli_csv)
+        if done:
+            print(f"\nResuming Pauli string: {len(done)} trials already completed in {pauli_csv}, skipping those.")
+        for (N, k, t) in tqdm(pauli_tasks, desc="Pauli string (Gemini)"):
+            if (N, k, t) in done:
+                continue
+            try:
+                row = run_pauli_trial(client, args.model, pauli_engine, N, k, t)
+                append_row(pauli_csv, row)
+            except Exception as exc:
+                print(f"Task failed (quota exhausted or other error, stopping this task set): N={N}, k={k}, t={t} | {exc}")
+                break
+        if os.path.exists(pauli_csv):
+            pauli_df = pd.read_csv(pauli_csv)
+            summary = pauli_df.groupby(["Seq_Length", "Method"])[["TAR", "String_Correct"]].mean()
+            print(f"\n--- PAULI STRING so far ({len(pauli_df)}/{len(pauli_tasks)} trials) in {pauli_csv} ---")
+            print(summary.round(4).to_string())
 
-    print("\nDone.")
+    print("\nDone for this run. Free-tier daily quotas reset ~24h after they were first hit -- "
+          "re-run this same command tomorrow (or whenever quota resets) to pick up where it left off; "
+          "already-completed trials are skipped automatically.")
 
 
 if __name__ == "__main__":
