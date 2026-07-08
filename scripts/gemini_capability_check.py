@@ -47,11 +47,11 @@ from tqdm import tqdm
 MODEL_NAME = "gemini-2.5-pro"       # override with --model gemini-2.5-flash for a cheaper first look
 RESULTS_DIR = "results/gemini-2.5-pro"
 
-ADD_SEQUENCE_LENGTHS = [8, 16, 32]
+ADD_SEQUENCE_LENGTHS = [4, 8, 16, 32]
 ADD_PERIODIC_INTERVALS = [0, 4]      # Base, and the interval most used in the local addition analysis
 ADD_TRIALS = 10
 
-PAULI_SEQUENCE_LENGTHS = [8, 16, 32]
+PAULI_SEQUENCE_LENGTHS = [4, 8, 16, 32]
 PAULI_PERIODIC_INTERVALS = [0, 4]
 PAULI_TRIALS = 10
 
