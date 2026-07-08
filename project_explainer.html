@@ -804,6 +804,12 @@
           context) up toward &sim;0.9 further down (more of its recent history is now inside the crop).
           A dim row or weak-looking self-attention doesn&rsquo;t mean anything is misaligned &mdash; it
           means most of that token&rsquo;s attention budget went somewhere outside this picture.</p>
+        <p><strong>What to conclude:</strong> the two panels look similarly local and diagonal &mdash;
+          each letter mostly attends to itself and its nearest neighbors, in both Base and Cellular. At
+          face value, that says the boundary condition doesn&rsquo;t break the model&rsquo;s basic
+          letter-to-letter attention habit. But treat that comparison cautiously: the right panel has
+          something hidden that the left doesn&rsquo;t &mdash; attention spent on the <code>|</code>
+          tokens themselves isn&rsquo;t shown here at all. Fig. 11 is what fills in that missing piece.</p>
       </figcaption>
     </figure>
   <div class="breakout">
@@ -823,6 +829,14 @@
           and sharply limit how far back information actually travels &mdash; not a free pass-through and
           not a hard reset either. (See the reading note under Fig. 10 &mdash; rows here don&rsquo;t sum
           to 1 for the same cropping reason, not a bug.)</p>
+        <p><strong>What to conclude from this one:</strong> put together, this is the clearest single
+          picture of the mechanism this whole project is testing. Attention stays local and diagonal
+          <em>within</em> each boundary-delimited cell, same as Base. Reaching backward past a boundary
+          is possible but limited &mdash; meaningfully into the cell just before it, essentially gone two
+          cells back. And the boundary tokens absorb a growing share of attention as the sequence gets
+          longer, instead of that attention landing on arbitrary distant letters. Together, that&rsquo;s
+          a real, mechanistic reason boundaries could contain errors: whatever went wrong several cells
+          back has very little attention pathway left to influence what the model is generating now.</p>
       </figcaption>
     </figure>
   </div>
