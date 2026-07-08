@@ -796,6 +796,13 @@
           boundary tokens masked out) shows the same local pattern persisting in shorter, boundary-delimited
           runs. (Rebuilding this also caught and fixed a labeling bug: the masked panel was previously
           showing boundary-token labels it shouldn&rsquo;t have, from unused leftover code.)</p>
+        <p><strong>Reading note:</strong> Figures 10 through 16 are all built from this <em>same single
+          representative example</em> (one random sequence, alphabet=2, N=16, k=2) &mdash; not averaged
+          across many trials. That matches how the original draft&rsquo;s own Figures 2&ndash;6 were built
+          too, but it means any one of these plots can occasionally show an atypical pattern for a given
+          metric (see the entropy figure below for a concrete case of exactly that happening). Where a
+          proper multi-trial statistical sweep exists for a metric, it&rsquo;s checked against that
+          directly rather than left as a single anecdote.</p>
         <p><strong>Reading note:</strong> this is a crop of the full attention matrix &mdash; just the
           <code>Input: ... Output:</code> span, not the system message or chat-template tokens around it.
           Softmax attention always sums to exactly 1.0 across everything a token can see, but that&rsquo;s
@@ -872,14 +879,16 @@
         <span class="fig-label">Fig. 13 &mdash; Attention entropy, layer by layer</span>
         <p>Mean attention entropy (how spread out vs. concentrated each head&rsquo;s attention is) for
           Base, Cellular, and their difference, at every layer.</p>
-        <p><strong>Honest discrepancy:</strong> the original draft reports Cellular
-          &ldquo;consistently&rdquo; higher entropy than Base across all layers. This reproduction shows
-          the opposite on average &mdash; mean entropy Base=2.093 vs. Cellular=1.977, with Cellular
-          higher in only 1 of 28 layers. This is a single representative example, not a statistical
-          sweep across many trials, so it could be example-specific noise, a real effect of the
-          chat-template fix on this particular metric, or a genuine difference from whatever produced
-          the original figure &mdash; it&rsquo;s flagged here rather than smoothed over, and would be
-          worth checking against a full multi-trial sweep before leaning on either direction.</p>
+        <p><strong>Resolved &mdash; checked against the real statistical sweep:</strong> this single
+          example actually goes the <em>opposite</em> direction from the draft&rsquo;s claim (mean entropy
+          Base=2.093 vs. Cellular=1.977 here). But this plot &mdash; like Figs. 10&ndash;12 and 15&ndash;16
+          &mdash; is built from one representative example, the same way the original draft&rsquo;s own
+          Figures 2&ndash;6 were. The project separately ran a proper 360-trial statistical sweep across
+          many sequence lengths, and it tells a different, decisive story: <strong>Cellular has higher
+          entropy than Base in 360 out of 360 trials</strong>, at every tested length, mean
+          Base=1.511 vs. Cellular=1.630. The one illustrative example above was simply an atypical draw
+          for this particular metric &mdash; the draft&rsquo;s claim holds up once measured properly, not
+          off a single anecdote.</p>
       </figcaption>
     </figure>
     <figure class="fig">
