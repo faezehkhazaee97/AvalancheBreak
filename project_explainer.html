@@ -817,6 +817,9 @@
           letter-to-letter attention habit. But treat that comparison cautiously: the right panel has
           something hidden that the left doesn&rsquo;t &mdash; attention spent on the <code>|</code>
           tokens themselves isn&rsquo;t shown here at all. Fig. 11 is what fills in that missing piece.</p>
+        <p><strong>Checked against the 360-trial sweep:</strong> confirmed &mdash; mean self-attention
+          weight is nearly identical between conditions (Base=0.067, Cellular=0.067), backing up that
+          this specific similarity isn&rsquo;t just a one-example coincidence.</p>
       </figcaption>
     </figure>
   <div class="breakout">
@@ -868,6 +871,10 @@
           set of specialized heads across several different layers appear to be doing this job &mdash;
           the left panel&rsquo;s per-layer average is really just surfacing where those heads happen to
           cluster most, not a uniform layer-wide effect.</p>
+        <p><strong>Checked against the 360-trial sweep:</strong> confirmed. Aggregate boundary attention
+          rises monotonically with density &mdash; 0.071 at the sparsest interval tested, 0.099, then
+          0.134 at the densest &mdash; matching this figure&rsquo;s single-example story directly, not
+          just qualitatively.</p>
       </figcaption>
     </figure>
   </div>
@@ -913,6 +920,14 @@
           lower than Base&rsquo;s (0.203 vs. 0.278) &mdash; this direction <em>does</em> match the
           original draft, which describes a &ldquo;leftward shift&rdquo; toward lower-magnitude weights
           under boundaries, i.e. attention becoming more concentrated rather than more spread out.</p>
+        <p><strong>A real wrinkle, checked against the 360-trial sweep:</strong> a related but different
+          metric &mdash; attention-weighted <em>average distance</em>, rather than total off-diagonal
+          <em>mass</em> &mdash; actually goes the other way: Cellular reaches slightly <em>further</em> on
+          average, not less far (0.068 vs. 0.065), in 330 of 360 trials. This doesn&rsquo;t contradict the
+          mass finding above so much as add to it: Cellular spends less total attention off the diagonal,
+          but some of what it does spend is reaching specifically for the boundary tokens sitting a
+          moderate distance back (see Fig. 12), which pulls the average distance up even as the overall
+          spread shrinks.</p>
       </figcaption>
     </figure>
     <figure class="fig">
