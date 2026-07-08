@@ -804,10 +804,16 @@
       <figcaption>
         <span class="fig-label">Fig. 11 &mdash; The same example, boundaries left in</span>
         <p>Same Layer 13 / Head 10 attention as Fig. 10, but without masking out the <code>|</code>
-          tokens (dashed cyan lines mark their row/column). Two things worth noticing: the boundary
-          tokens themselves receive very little attention from other positions (their column is mostly
-          dark, aside from a small self-attention spot), and the local diagonal pattern keeps flowing
-          continuously right through each boundary rather than resetting at it.</p>
+          tokens (dashed cyan lines mark their row/column). Checking the actual numbers behind this
+          image (not just reading the colors) shows two things: boundary tokens receive <em>more</em>
+          attention than a typical letter does, on average, and it grows across the sequence &mdash; the
+          first boundary averages 0.035, the last averages 0.294, versus 0.046 for an average letter
+          column. And when attention does cross a boundary to reach earlier content, it&rsquo;s not a
+          clean, unimpeded flow: the boundary itself absorbs the largest share, a meaningful amount
+          reaches the cell immediately before it, and by two boundaries back it has dropped to
+          essentially zero. Boundaries behave like real checkpoints that both catch attention themselves
+          and sharply limit how far back information actually travels &mdash; not a free pass-through and
+          not a hard reset either.</p>
       </figcaption>
     </figure>
   </div>
