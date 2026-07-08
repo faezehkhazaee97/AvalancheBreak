@@ -849,6 +849,18 @@
           mid-network (layer 15 here vs. layer 13 in the original draft; same qualitative mid-layer spike
           pattern either way). Right: the same measurement broken out per attention head, across all 28
           layers.</p>
+        <p><strong>What the right panel adds:</strong> it breaks the left panel&rsquo;s average apart by
+          individual head, and shows boundary-attention isn&rsquo;t a property of whole layers &mdash;
+          it&rsquo;s concentrated in a small number of specialized heads. At layer 15 (the highest
+          <em>average</em> in the left panel), only 3 of 28 heads exceed 0.3 attention-to-boundary, and
+          one specific head there (head 5, at 0.63) is more than 3&times; that layer&rsquo;s own mean
+          &mdash; it&rsquo;s doing most of the work behind the &ldquo;spike.&rdquo; The single strongest
+          boundary-attending head anywhere in the network isn&rsquo;t even at layer 15 &mdash; it&rsquo;s
+          Layer 11, Head 19 (0.64), with more scattered across layers 16, 20, 3, 1, 17, 19, and 13. So
+          rather than one layer switching on boundary-awareness everywhere at once, a small, scattered
+          set of specialized heads across several different layers appear to be doing this job &mdash;
+          the left panel&rsquo;s per-layer average is really just surfacing where those heads happen to
+          cluster most, not a uniform layer-wide effect.</p>
       </figcaption>
     </figure>
   </div>
