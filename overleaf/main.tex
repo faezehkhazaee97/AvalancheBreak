@@ -1,0 +1,341 @@
+\documentclass[11pt]{article}
+
+% ---------- Packages ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titling}
+
+% ---------- Header/footer ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small AvalancheBreak Project --- UC Davis Quon Lab}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ---------- Title ----------
+\title{\textbf{Do Structural Boundary Tokens Delay the Accuracy Cliff?}\\[4pt]
+\large A multi-model replication and extension, with a corrected pipeline}
+\author{AvalancheBreak Project \\ UC Davis Quon Lab}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+
+\begin{abstract}
+\noindent
+Large language models exhibit a sharp \emph{accuracy cliff} on deterministic, multi-step tasks: performance holds up over short sequences and then collapses well before any obvious capacity limit. A recent line of work models this collapse using a Sherrington--Kirkpatrick (SK) spin-glass framework, in which an \emph{error-accumulation factor} $\alpha > 1$ produces runaway compounding of mistakes, and proposes a single-pass mitigation: inserting periodic structural boundary tokens (\texttt{|}) into the input to interrupt attention-driven error cascades. We replicate this proposal from scratch on three open-weight instruction-tuned models (Qwen2.5-7B, Qwen2.5-14B, Mistral-7B-v0.3), and extend it with a full statistical sweep, an expanded boundary-density grid, cross-model validation, and a 20-trial-averaged mechanistic analysis of attention.
+
+We find the core claim holds, but only under a scope condition the original framing does not state: on the simplest version of the task (a 2-symbol alphabet), boundaries reduce $\alpha$ substantially and consistently in all three models --- the cleanest, most reproducible effect in this study. On harder variants (4- and 8-symbol alphabets), the effect is inconsistent across models --- present in one, reversed in another --- and should not be reported as a general property of the intervention. We confirm the proposed mechanism directly: boundary tokens act as measurable attention sinks ($R^2 \geq 0.98$ across a 20-trial sweep), attention entropy rises under boundaries in 360 of 360 sampled trials, and letter-to-letter attention measurably dips at exactly the token distances boundaries introduce. We also report a clean negative result: on integer addition, a task with genuine right-to-left carry dependency, boundaries make performance \emph{worse}, not better, at every tested length --- evidence that the intervention helps specifically when a task's per-position outputs are independent, and can actively hurt when they are not. Finally, we document and correct a methodological bug present throughout the original pipeline --- evaluating an instruction-tuned model without its chat template --- and show that fixing it materially changes results for at least one condition (an 8-symbol alphabet), which we flag as a general caution for future work in this area.
+\end{abstract}
+
+\section{Introduction}
+
+Ask a language model to perform a simple, fully deterministic transformation --- shift every character forward in a fixed alphabet, keep a running sum modulo $M$, add two numbers --- and accuracy does not degrade the way one might expect. It does not fade smoothly as the input gets longer. It holds up close to ceiling, then falls off a cliff.
+
+This is not simply the model ``running out of capacity.'' Recent work modeling this phenomenon (Hou et al., arXiv:2511.00763) casts it in the language of a Sherrington--Kirkpatrick spin-glass: the whole-sequence success rate follows
+
+\begin{equation}
+\text{SAR}(N) = \exp\left(-\beta_0 \cdot N \cdot \alpha^{N-1}\right)
+\end{equation}
+
+where $\beta_0$ is the intrinsic per-token error rate and $\alpha$ is an \textbf{error-accumulation factor}. When $\alpha = 1$, errors are independent across positions and accuracy decays as ordinary exponential decay --- a slope. When $\alpha > 1$, each error raises the probability of the next, and the result is a cliff: a sequence length $N^*$ beyond which success collapses almost completely, computable directly from $\beta_0$ and $\alpha$.
+
+A companion proposal, \emph{``Keeping LLMs Focused: Delaying Error Avalanches via Structural Boundaries,''} argues that periodically inserting a structural marker token (e.g.\ \texttt{|}) into the input --- with instructions to copy it through unchanged --- measurably reduces $\alpha$, without requiring the multiple independent model calls that a true divide-and-conquer approach would need. The mechanism proposed: boundary tokens become \textbf{attention sinks}, absorbing attention that would otherwise flow from a token to distant, possibly-already-wrong context, thereby containing errors rather than letting them propagate.
+
+This paper is an independent, from-scratch replication and stress-test of that proposal. We test it across three models spanning two architecture families and two parameter scales; we extend the boundary-density grid; we run every attention-mechanism claim as a genuine multi-trial statistical estimate rather than a single illustrative example; and --- critically --- we found and corrected a methodological bug in our own initial pipeline (evaluating an instruction-tuned model without its chat template) that materially changed results for at least one tested condition. We report where the effect is robust, where it is not, and where a plausible mechanistic story turned out to need a real caveat once we checked it against more than one anecdote.
+
+\section{Methods}
+
+\subsection{Task design}
+
+The primary task is \textbf{cyclic character shift}: given an alphabet of size $A \in \{2, 4, 8\}$, a random string of length $N$ is sampled uniformly, and the model must replace every character with the next one in the alphabet (wrapping around). In the \textbf{Base} condition the model receives the raw string. In the \textbf{Cellular} condition, a \texttt{|} marker is inserted every $k$ characters (boundary interval $k$); the model is instructed that \texttt{|} carries no meaning and must be copied through unchanged. Boundary density is reported as $1/k$ (0 for Base).
+
+Two secondary tasks probe whether the mechanism depends on a task's information structure: \textbf{running-sum-mod-$M$}, where each output digit genuinely depends on the cumulative sum of every prior digit (true global state), and \textbf{integer addition}, where correctness depends on carries propagating right-to-left --- the opposite direction from left-to-right generation.
+
+Two accuracy metrics are used throughout: \textbf{TAR} (Total token Accuracy Rate, i.e.\ per-character accuracy) and \textbf{SAR} (Sequence Accuracy Rate, i.e.\ whole-sequence exact match --- an unforgiving all-or-nothing metric that collapses to floor much faster than TAR as $N$ grows).
+
+\subsection{Models}
+
+Three instruction-tuned models were evaluated: \textbf{Qwen2.5-7B-Instruct}, \textbf{Qwen2.5-14B-Instruct} (same family, larger scale), and \textbf{Mistral-7B-Instruct-v0.3} (different architecture family, matched parameter scale to the 7B Qwen model). This design separates ``does the effect survive scaling'' from ``does the effect survive a change of architecture.''
+
+\subsection{A methodological correction: chat templates}
+
+Every model here is instruction-tuned, and the Hugging Face / model-card documentation for each specifies a required chat template (special tokens wrapping the user turn) for correct behavior. Our initial pipeline --- and, as far as we can tell from the artifact available to us, the original draft this project replicates --- fed the model raw, unwrapped prompt text instead. This is a documented requirement, not a stylistic choice.
+
+We reran the full grid with \texttt{tokenizer.apply\_chat\_template(..., add\_generation\_prompt=True)} applied correctly and compared. The correction closed most of the gap between our reruns and the original draft's reported numbers, and for at least one condition (8-symbol alphabet, mid-range sequence lengths) it changed results substantially: raw-text prompting produced noisy, inconsistent behavior for that alphabet specifically, which resolved into a much smoother, more interpretable trend once the model was prompted in its expected format (Figure~\ref{fig:fig8}). We flag this as a general caution: evaluating an instruction-tuned model outside its trained prompt format does not add noise uniformly across conditions --- it can distort some conditions much more than others, which is exactly the kind of confound that could be mistaken for a genuine experimental effect.
+
+All results reported below use the corrected, chat-templated pipeline unless explicitly noted otherwise (Figure~\ref{fig:fig8} shows both, by design, to make the size of the correction visible).
+
+\subsection{Statistical methodology}
+
+Every accuracy condition (model $\times$ alphabet $\times$ interval $\times$ length) is run for 20 independent trials with fresh random sequences, and every reported error bar is the \textbf{standard error of the mean} (std$/\sqrt{20}$), not raw standard deviation --- we found and corrected an early version of several figures that plotted raw std, which for a near-binary metric like TAR/SAR overstates uncertainty in the plotted mean by roughly 4--5$\times$.
+
+The SK model ($\beta_0$, $\alpha$) is fit via bounded nonlinear least squares (\texttt{scipy.optimize.curve\_fit}, $\alpha$ constrained to $\geq 1 + 10^{-6}$) to each condition's SAR values across every tested sequence length. A fit is only reported when the underlying SAR values are non-degenerate (at least two distinct values, not all exactly zero) --- a condition where SAR is pinned at zero across every tested length carries no information about how fast it got there, and reporting a fitted $\alpha$ for it would be reporting noise as a measurement. Fits that converge exactly to the lower optimizer bound ($\alpha \approx 1.000\ldots$) are flagged separately, since that reflects the fit hitting the edge of what it was permitted to return rather than a well-constrained interior estimate.
+
+\subsection{Mechanistic (attention) analysis}
+
+Attention-mechanism claims are evaluated two ways. A full statistical sweep (20 trials $\times$ 6 sequence lengths $\times$ up to 3 boundary densities, one specific model, extracted with \texttt{attn\_implementation="eager"} to make raw attention weights available) establishes population-level statistics for entropy, boundary-token attention mass, and distance-decay. In addition, one small illustrative configuration (alphabet=2, N=16, k=2) is repeated for 20 independent trials with full per-layer, per-head tensor capture, to produce genuine multi-trial-averaged versions of the example attention-matrix figures --- replacing what was, in an earlier draft of this analysis, a single-example snapshot that we found could occasionally show an atypical result for a given metric (Section~\ref{sec:entropy-catch} documents one case where this happened and was caught).
+
+All reported attention matrices are cropped to the \texttt{Input: ... Output:} span of the sequence (excluding system-message and chat-template tokens); because softmax attention sums to 1 over the \emph{full} sequence and not over this crop alone, row sums within the cropped view legitimately range from near 0 (early tokens, whose attention mostly lands on the invisible earlier context) to roughly 0.9 (later tokens). This is not a bug in the visualization; it is a direct consequence of the crop.
+
+\section{Results}
+
+\subsection{Does the effect hold --- and where?}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figures/fig1.png}
+  \caption{Every tested (model, alphabet size) combination, sorted by effect size. Each bar is Base $\alpha$ $-$ mean Cellular $\alpha$ (averaged across every boundary density where the SK fit converged); green means boundaries lowered $\alpha$, red means they raised it.}
+  \label{fig:fig1}
+\end{figure}
+
+Six of nine (model, alphabet) combinations show boundaries reducing $\alpha$; three show the opposite. The split is not random: \textbf{every alphabet=2 combination is green, in all three models}, and two of the three are among the largest effects observed anywhere in this study (Qwen2.5-14B: Base $\alpha = 1.654 \rightarrow$ Cellular $1.053$; Mistral-7B: $1.781 \rightarrow 1.206$). The three combinations where boundaries \emph{increase} $\alpha$ --- Qwen2.5-14B at alphabet=8, and Mistral-7B at both alphabet=4 and alphabet=8 --- are all harder variants of the task.
+
+The honest version of the claim is therefore scoped, not universal: \textbf{structural boundaries substantially and consistently reduce error-accumulation on the simplest version of this task, across model scale and architecture family. On harder variants, the effect is inconsistent, and in a third of the harder cases it reverses.} We are not aware of a principled reason to expect the reversal cases specifically (Qwen-14B/A8, Mistral/A4, Mistral/A8) rather than some other subset, and treat this as an open question rather than force a post-hoc explanation onto it.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig1B.png}
+  \caption{TAR vs.\ sequence length, alphabet=2 only, one panel per model. Dashed = Base; solid = Cellular (mean across tested densities; band = full range across densities).}
+  \label{fig:fig1B}
+\end{figure}
+
+Restricting to the one condition established as robust in Figure~\ref{fig:fig1}, the raw-accuracy picture agrees: Cellular exceeds Base in 18 of 21 (model $\times$ length) combinations. Qwen2.5-14B shows the strongest, most consistent separation, holding at every length out to $N=256$ (0.532 vs.\ 0.454). Mistral-7B shows a narrower but real gap from $N=8$ through $N=256$. Qwen2.5-7B tracks the same pattern through $N=64$, then the two curves converge and cross slightly negative at $N=128$ and $N=256$ --- the one soft spot in an otherwise consistent three-model result.
+
+\subsection{The underlying scaling behavior}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig2.png}
+  \caption{TAR (top) and SAR (bottom) vs.\ boundary density, faceted by sequence length, Qwen2.5-7B, alphabet $\in \{2, 4, 8\}$. Error bars are SEM across 20 trials.}
+  \label{fig:fig2}
+\end{figure}
+
+At every tested length, TAR climbs as boundary density increases, and the size of that improvement is largest exactly where it matters most --- at $N \geq 64$, where the Base condition has already sunk toward chance. SAR tells a starker story: it is already pinned near zero for every condition by $N = 32$, and \emph{exactly} zero for every alphabet at every density from $N = 64$ onward (annotated directly on the affected panels, since all three alphabets' markers coincide at the same point and would otherwise look like missing data rather than a genuine unanimous collapse). The practical reading: getting a long sequence \emph{completely} right in one shot is out of reach regardless of boundaries well before the softer, partial-credit metric gives up --- boundaries buy back partial accuracy long after the all-or-nothing metric already has none left to give.
+
+\subsection{Do boundary tokens become attention sinks?}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig3.png}
+  \caption{Mean attention mass landing on boundary tokens vs.\ density, faceted by length, full 20-trial statistical sweep (Qwen2.5-7B).}
+  \label{fig:fig3}
+\end{figure}
+
+This is the most statistically decisive result in the study: attention mass on boundary tokens rises with density at \emph{every} tested length, with $R^2 \geq 0.98$ in every panel. It is not, however, a length-independent constant --- at the densest tested setting, boundary attention mass climbs from 0.058 at $N=4$ to 0.177 at $N=256$, essentially tripling. What does level off is the \emph{rate} of that growth: the increase from $N=4$ to $N=64$ (0.058 $\rightarrow$ 0.160) dwarfs the increase from $N=64$ to $N=256$ (0.160 $\rightarrow$ 0.177). Boundary tokens become a steadily more important attention target as sequences lengthen, with that importance still rising, just much more slowly, out to the longest lengths tested.
+
+\subsection{Error containment: does the model recover faster after a boundary?}
+\label{sec:error-containment}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig4.png}
+  \caption{P(next character correct $\mid$ previous character wrong), split by whether a boundary token was just crossed. Left: cyclic shift. Right: running-sum-mod-$M$.}
+  \label{fig:fig4}
+\end{figure}
+
+On cyclic shift, recovery immediately after a boundary is measurably and consistently higher than recovery elsewhere, from $N=8$ through $N=256$ --- direct behavioral evidence that boundaries help contain a mistake rather than let it propagate. On running-sum-mod-$M$, no such separation appears at any length; the two curves track each other closely throughout. The most likely explanation is structural: running-sum's correct output at any position depends on the literal cumulative sum of everything before it, so there is no purely local error for a boundary to contain --- a wrong digit corrupts the running state itself, and a marker cannot undo that. This distinction --- does boundary-adjacency help recovery --- turns out to predict which tasks benefit from the intervention at all (Section~\ref{sec:addition}).
+
+\subsection{What about the boundary actually matters?}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig5.png}
+  \caption{Three ablations, alphabet=2, all against the same Base reference (TAR at $N=8/16/32/64$: 0.725 / 0.584 / 0.538 / 0.522).}
+  \label{fig:fig5}
+\end{figure}
+
+\emph{Marker identity} (left panel; \texttt{|} vs.\ \texttt{;} vs.\ \texttt{\#}, fixed periodic interval): all three markers clear Base by a wide margin at every length and show no consistent ranking among themselves (each is briefly ``best'' at some length) --- the symbol's identity or meaning does not matter, provided it is used consistently.
+
+\emph{Placement regularity} (middle panel; periodic vs.\ randomly-scattered, matched total marker count): the sharpest result in this ablation set. Periodic placement stays clearly above Base at every length from $N=16$ on (0.759 vs.\ 0.584 at $N=16$, a 17.5-point gap). Randomly-scattered markers with the \emph{identical total count} fall \emph{below} Base at $N=16$ and $N=32$ (0.528 and 0.491, vs.\ 0.584 and 0.538) and only catch back up to roughly even by $N=64$. Regularity of placement, not mere presence of markers, is doing the work.
+
+\emph{Density vs.\ raw count} (right panel; constant interval, so marker count scales with $N$, vs.\ a fixed count of 4 markers regardless of $N$): a fixed count of 4 markers is very dense at $N=8$ (one marker per 2 characters) and correspondingly strong there (TAR 0.850, beating even Base's 0.725) --- but by $N=64$ those same 4 markers are spread so thin (one per 16 characters) that TAR falls to 0.474, \emph{below} Base with no markers at all (0.522). The density-preserving condition, which keeps adding markers as $N$ grows, stays at 0.622 at $N=64$. Density, not a one-time dose of structure, is the operative variable.
+
+\subsection{A negative result: integer addition}
+\label{sec:addition}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig6.png}
+  \caption{TAR/SAR vs.\ density, integer addition, Qwen2.5-7B.}
+  \label{fig:fig6}
+\end{figure}
+
+The direction of the effect reverses completely. At every one of four tested lengths ($N=8, 16, 32, 64$), Base is the \emph{best}-performing condition, and TAR falls further as boundary density increases. SAR is pinned near floor almost everywhere regardless of density, so this task is already difficult in absolute terms --- but boundaries make the partial-credit picture actively worse, not merely neutral. The likely explanation parallels running-sum-mod-$M$ (Section~\ref{sec:error-containment} discussion above): a digit's correct output in addition depends on carry state propagating right-to-left, opposite to left-to-right generation order, so it carries the same genuine long-range dependency. Slicing the sequence into visually separate cells does not just fail to help here --- it appears to actively interfere with tracking that dependency across the boundary. We separately tested whether reversing digit order (so carry direction matches generation direction) rescues the effect; it did not fully do so, and whether letting the model show intermediate step-by-step reasoning (a ``scratchpad'') changes this picture returned an inconclusive result (Section~\ref{sec:discussion}).
+
+\subsection{Is the effect an artifact of one specific prompt?}
+\label{sec:prompt-robustness}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig7.png}
+  \caption{TAR (left) and SAR (right) vs.\ length, cyclic shift, repeated across three independently-worded instruction templates.}
+  \label{fig:fig7}
+\end{figure}
+
+Under the original wording, Cellular exceeds Base at all three tested lengths. Both paraphrased templates --- worded quite differently from the original and from each other (formal specification vs.\ casual instruction vs.\ terse cipher notation; see Appendix~\ref{app:prompts} for full prompt text) --- behave almost identically to \emph{each other}, not oppositely: both are essentially tied with Base at the shortest length ($N=8$), then Cellular pulls ahead at $N=16$ and $N=32$ for both, with one paraphrase's $N=32$ gap ($+0.160$) the largest in the whole figure. Across all three templates and lengths, Cellular is ahead in 7 of 9 combinations, behind in the remaining 2 (both by less than 0.03, both at the shortest length only). Wording has some influence on effect size, but the result is not a fragile artifact of one specific script.
+
+\subsection{The chat-template correction, quantified}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig8.png}
+  \caption{Same task and data, three prompting methods stacked top to bottom: original raw-text prompting, chat-template-corrected, and chat-template-corrected with an extended density grid.}
+  \label{fig:fig8}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig9.png}
+  \caption{The finalized scaling law across all seven tested densities ($k = 0, 1, 2, 3, 4, 8, 16$), chat-template-corrected.}
+  \label{fig:fig9}
+\end{figure}
+
+The 8-symbol alphabet condition is noisy and inconsistent under raw-text prompting, and firms up substantially once the model is prompted in its documented chat format --- direct evidence that prompting an instruction-tuned model outside its trained format does not add noise evenly across conditions, it distorts some conditions more than others. With the density grid extended from 3 points to 7, every alphabet at every tested length traces a clean, consistently upward, near-monotonic curve from sparse to dense boundaries (Figure~\ref{fig:fig9}) --- the single clearest view of the core accuracy result in this study.
+
+\subsection{Mechanistic detail: a single attention head, multi-trial averaged}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig10.png}
+  \caption{Layer 13, Head 10 attention, averaged over 20 trials at a fixed configuration (alphabet=2, N=16, k=2); boundary tokens masked out.}
+  \label{fig:fig10}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig11.png}
+  \caption{The same attention pattern as Figure~\ref{fig:fig10}, with boundaries left visible.}
+  \label{fig:fig11}
+\end{figure}
+
+At the level of a single representative head, Base and Cellular attention look similarly local and diagonal (mean self-attention weight 0.067 in both conditions) --- boundaries do not disrupt the basic letter-to-letter attention habit. Once boundary tokens are left visible (Figure~\ref{fig:fig11}), they visibly pull in extra attention exactly where the diagonal crosses them. Put together with the per-layer breakdown below, this is the clearest single mechanistic picture available: attention stays local within each boundary-delimited cell, and boundary tokens absorb a real, measurable, and --- per Figure~\ref{fig:fig3} --- density-dependent share of attention that a wrong token several cells back has comparatively little pathway left to exploit.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig12.png}
+  \caption{Boundary-token attention mass by layer (left) and by individual head (right), 20-trial average.}
+  \label{fig:fig12}
+\end{figure}
+
+Boundary attention peaks mid-network (layer 15, mean 0.190 across heads) but is not a property of whole layers switching on uniformly --- it is concentrated in a scattered subset of individual heads clustered loosely around layers 0--1, 10--11, 15--16, and 18--20. The per-layer average in the left panel is really surfacing where those specific heads happen to cluster, not a layer-wide effect. This matches the full statistical sweep directly: aggregate boundary attention rises monotonically with density (0.071 $\rightarrow$ 0.099 $\rightarrow$ 0.134, sparsest to densest interval tested).
+
+\subsection{Attention entropy: a caught mistake, resolved}
+\label{sec:entropy-catch}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig13.png}
+  \caption{Mean attention entropy by layer, Base vs.\ Cellular, 20-trial average.}
+  \label{fig:fig13}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/fig14.png}
+  \caption{The same entropy values as Figure~\ref{fig:fig13}, pooled across every layer and head.}
+  \label{fig:fig14}
+\end{figure}
+
+An earlier version of this analysis used one illustrative example rather than an average, and that specific draw happened to show entropy going in the \emph{opposite} direction from what the mechanism would predict (Cellular \emph{lower} than Base). Rebuilding it as a genuine 20-trial average at the identical configuration resolved this cleanly: mean entropy is Base $= 1.022$ vs.\ Cellular $= 1.198$, with Cellular higher in 27 of 28 layers --- closely matching this project's own 360-trial statistical sweep at the identical configuration (Base $= 1.020$, Cellular $= 1.197$, Cellular higher in 20 of 20 trials), and the broader sweep across every tested sequence length is unambiguous: \textbf{Cellular has higher entropy than Base in 360 of 360 trials} (mean Base $= 1.511$, Cellular $= 1.630$). We report the single-example failure explicitly here as a demonstration of why every mechanistic claim in this study was ultimately checked against a multi-trial statistic rather than left as a single anecdote.
+
+\subsection{Off-diagonal attention and distance decay}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig15.png}
+  \caption{Off-diagonal attention weight distributions (individual weights, per-token mass, CDF), pooled across 20 trials.}
+  \label{fig:fig15}
+\end{figure}
+
+Cellular's mean off-diagonal attention mass is lower than Base's (0.207 vs.\ 0.284) --- attention under boundaries is, on net, more concentrated near the diagonal, consistent with the original proposal's description of a ``leftward shift'' toward lower-magnitude weights. A genuine wrinkle appears in a related but distinct metric: attention-\emph{weighted average distance} actually goes the other way, with Cellular reaching slightly \emph{further} on average (0.068 vs.\ 0.065, in 330 of 360 sweep trials). These are not in conflict: Cellular spends less total attention off the diagonal, but some of what it does spend is reaching specifically for boundary tokens sitting a moderate distance back, which pulls the average distance up even as overall spread shrinks.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{figures/fig16.png}
+  \caption{Mean attention weight vs.\ token distance, split into global / to-boundary / letter-to-letter attention, 20-trial average with SEM bands.}
+  \label{fig:fig16}
+\end{figure}
+
+Letter-to-letter attention dips visibly at every distance that is an exact multiple of the raw token periodicity boundaries introduce (every third position at $k=2$, since two letters plus one boundary token repeats with period 3), while Base's attention (no boundaries at all) declines smoothly with no such structure. This is the clearest position-level confirmation that boundaries interrupt letter-to-letter attention specifically at the positions where they sit, now backed by 20 trials with visible standard-error bands rather than one noisy example.
+
+\section{Discussion}
+\label{sec:discussion}
+
+\textbf{What is robust.} Boundaries substantially and consistently reduce error-accumulation for the simplest task variant (2-symbol alphabet), across three models spanning two architectures and two parameter scales. This is backed by a real, checkable mechanism: boundary tokens measurably absorb attention ($R^2 \geq 0.98$), that absorption grows with density and --- more slowly --- with sequence length, attention entropy rises under boundaries with no exceptions across 360 sampled trials, and letter-to-letter attention measurably dips at exactly the positions boundaries occupy. The effect does not depend on the specific marker character used, is not an artifact of one instruction phrasing, and the intervention is measurably cheaper than the true divide-and-conquer alternative it approximates (a benchmark not detailed above: literally splitting the sequence into independent model calls wins on accuracy but costs roughly $4\times$ the wall-clock time; boundaries recover much of that benefit in a single pass).
+
+\textbf{What is not robust.} The effect does not generalize cleanly to harder task variants. Across two harder alphabets in three models, it holds in three of six cases and reverses in the other three, with no principled account yet for which cases reverse. It also does not transfer to tasks with genuine long-range state --- running-sum-mod-$M$ shows no boundary-adjacent recovery advantage at all, and integer addition shows boundaries actively hurting at every tested length, plausibly because carries propagate in the opposite direction from generation. Reversing digit order to align carry direction with generation order did not fully rescue the effect, and allowing the model an explicit reasoning scratchpad before committing to an answer produced an inconclusive result (more than half of trials did not even yield a scoreable output in the expected format). A third, structurally different benchmark task (Pauli string multiplication, chosen to combine a position-local component with a genuinely global one within a single task) was also inconclusive: the model did not once get the position-local component fully correct across the entire sweep, and overall accuracy under boundaries was worse than Base at three of four tested lengths in the most-corrected version of the data.
+
+We also directly tested the specific mechanistic hypothesis that boundaries should increase attention \emph{clustering} (the intuitive idea that periodicizing context into semi-independent cells should raise graph-theoretic modularity of the attention pattern). The data show the opposite, with strong statistical support ($R^2 = 0.66$--$0.76$, $p < 10^{-14}$ at every sequence length from $N=16$ to $N=256$): clustering coefficient \emph{decreases} under boundaries as density increases. We report this plainly as a case where a plausible-sounding mechanistic hypothesis, derived from the same intuition that motivates the whole intervention, did not survive contact with the data --- attention sinks and rising entropy are real and well-supported; the clustering account of \emph{why} is not, at least not in the form we tested it.
+
+\textbf{Methodological caution.} The chat-template correction is, in our view, as important a finding as any accuracy result in this paper. It changed at least one condition (8-symbol alphabet) from noisy and inconsistent to smooth and interpretable, and it is the kind of error that would not announce itself --- the model still produces plausible-looking text either way. Any future work evaluating instruction-tuned models on structured, deterministic tasks should verify the prompting format matches what the model was actually trained on before drawing conclusions from accuracy differences between conditions.
+
+\section{Conclusion}
+
+Periodic structural boundary tokens measurably reduce error-accumulation and delay the accuracy cliff --- but as a real, mechanistically-grounded, and \emph{scoped} finding, not a universal one. The effect is strong and highly reproducible on the simplest task variant, across model scale and architecture family, and is backed by convergent mechanistic evidence at the attention level: boundary tokens act as attention sinks, entropy rises under boundaries with no exceptions in 360 sampled trials, and letter-to-letter attention measurably interrupts at exactly the positions boundaries occupy. The same intervention does not reliably help --- and can actively hurt --- on harder task variants and on tasks with genuine long-range state, most clearly on integer addition, where it hurts at every tested length. The honest, publishable claim is the narrower one: this is a real, cheap, mechanistically-understood intervention for the class of tasks where each output position is otherwise independent of the others, not a general-purpose fix for the accuracy cliff.
+
+\appendix
+
+\section{Prompt templates used in the robustness check (Section~\ref{sec:prompt-robustness})}
+\label{app:prompts}
+
+\subsection*{original}
+\begin{verbatim}
+You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural
+boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: {input}
+Output:
+\end{verbatim}
+
+\subsection*{paraphrase\_1}
+\begin{verbatim}
+You perform one job only: shifting letters forward in a fixed alphabet.
+Letters in use: A, B
+For every letter you see, write the next letter in this list instead
+(wrapping from B back to A).
+Some characters in the input are pipes (|); these are dividers, not
+letters -- reproduce them unchanged in your answer.
+Respond with the transformed string only. Do not add spaces or commentary.
+
+Sequence: {input}
+Result:
+\end{verbatim}
+
+\subsection*{paraphrase\_2}
+\begin{verbatim}
+Apply a fixed substitution cipher: B -> A -> A.
+In plain terms, replace each symbol with the one that follows it in A, B,
+cycling back to the start after the last symbol.
+Any "|" characters present must be left exactly where they are -- they
+are not part of the alphabet.
+Give only the resulting string, with no spaces and no explanation of
+your reasoning.
+
+>>> {input}
+<<<
+\end{verbatim}
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}
+
+\noindent\small All figures in this document are generated directly from the project's saved results (\texttt{results/}) and share methodology with the interactive project writeup. Error bars throughout are standard error of the mean unless stated otherwise. Code and raw data available in the project repository.
+
+\end{document}
