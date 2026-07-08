@@ -806,6 +806,63 @@
           &mdash; repeated across three differently-worded instruction templates (dashed = Base, solid
           = Cellular, color = template). Only 15 trials per point here (fewer than the 20 used
           elsewhere), which matters for reading the right panel.</p>
+        <p>The three templates, in full, for the same underlying input/output pair:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Template</th><th>Actual prompt text sent to the model</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>original</strong></td>
+                <td style="white-space: pre-line; font-family: var(--font-mono); font-size: 12.5px;">You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -&gt; A, and A -&gt; B.
+Constraint: The input contains vertical bars (|). These are structural
+boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: {input}
+Output: </td>
+              </tr>
+              <tr>
+                <td><strong>paraphrase_1</strong></td>
+                <td style="white-space: pre-line; font-family: var(--font-mono); font-size: 12.5px;">You perform one job only: shifting letters forward in a fixed alphabet.
+Letters in use: A, B
+For every letter you see, write the next letter in this list instead
+(wrapping from B back to A).
+Some characters in the input are pipes (|); these are dividers, not
+letters &mdash; reproduce them unchanged in your answer.
+Respond with the transformed string only. Do not add spaces or commentary.
+
+Sequence: {input}
+Result: </td>
+              </tr>
+              <tr>
+                <td><strong>paraphrase_2</strong></td>
+                <td style="white-space: pre-line; font-family: var(--font-mono); font-size: 12.5px;">Apply a fixed substitution cipher: B -&gt; A -&gt; A.
+In plain terms, replace each symbol with the one that follows it in A, B,
+cycling back to the start after the last symbol.
+Any "|" characters present must be left exactly where they are &mdash;
+they are not part of the alphabet.
+Give only the resulting string, with no spaces and no explanation of
+your reasoning.
+
+&gt;&gt;&gt; {input}
+&lt;&lt;&lt; </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-muted); margin: 10px 2px 0;">Same rule, same
+          constraint on <code>|</code>, same underlying input &mdash; but a different voice (formal
+          spec vs. casual instruction vs. terse cipher notation), different vocabulary for the same
+          concepts (&ldquo;structural boundaries&rdquo; vs. &ldquo;dividers&rdquo; vs. left unnamed),
+          and a different input/output marker each time (<code>Input:/Output:</code> vs.
+          <code>Sequence:/Result:</code> vs. <code>&gt;&gt;&gt;/&lt;&lt;&lt;</code>). That&rsquo;s a
+          real stress-test of wording, not three near-identical rewordings of the same sentence.</p>
         <p><strong>Left (TAR):</strong> under the original wording, Cellular sits clearly above Base at
           all three tested lengths (gap of +0.075 to +0.127). Both paraphrases tell almost the same
           story as each other, not opposite stories: at the shortest length (N=8) they&rsquo;re
