@@ -796,6 +796,14 @@
           boundary tokens masked out) shows the same local pattern persisting in shorter, boundary-delimited
           runs. (Rebuilding this also caught and fixed a labeling bug: the masked panel was previously
           showing boundary-token labels it shouldn&rsquo;t have, from unused leftover code.)</p>
+        <p><strong>Reading note:</strong> this is a crop of the full attention matrix &mdash; just the
+          <code>Input: ... Output:</code> span, not the system message or chat-template tokens around it.
+          Softmax attention always sums to exactly 1.0 across everything a token can see, but that&rsquo;s
+          the <em>full</em> sequence &mdash; within this cropped slice alone, row sums climb from
+          essentially 0 near the top (that token&rsquo;s attention mostly lands on the invisible earlier
+          context) up toward &sim;0.9 further down (more of its recent history is now inside the crop).
+          A dim row or weak-looking self-attention doesn&rsquo;t mean anything is misaligned &mdash; it
+          means most of that token&rsquo;s attention budget went somewhere outside this picture.</p>
       </figcaption>
     </figure>
   <div class="breakout">
@@ -813,7 +821,8 @@
           reaches the cell immediately before it, and by two boundaries back it has dropped to
           essentially zero. Boundaries behave like real checkpoints that both catch attention themselves
           and sharply limit how far back information actually travels &mdash; not a free pass-through and
-          not a hard reset either.</p>
+          not a hard reset either. (See the reading note under Fig. 10 &mdash; rows here don&rsquo;t sum
+          to 1 for the same cropping reason, not a bug.)</p>
       </figcaption>
     </figure>
   </div>
