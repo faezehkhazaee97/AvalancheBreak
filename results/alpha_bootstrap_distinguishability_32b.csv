@@ -1,0 +1,9 @@
+Model,Alphabet,k,Base_Alpha,Cellular_Alpha,Distinguishable_from_Base,Direction,Upper_Bound_Degenerate
+Qwen2.5-32B,4,1,1.059,1.317,False,higher (hurts),False
+Qwen2.5-32B,4,2,1.059,1.0,False,lower (helps),False
+Qwen2.5-32B,4,3,1.059,1.054,False,lower (helps),False
+Qwen2.5-32B,4,4,1.059,1.028,False,lower (helps),False
+Qwen2.5-32B,8,1,1.135,1.299,False,higher (hurts),False
+Qwen2.5-32B,8,2,1.135,1.201,False,higher (hurts),False
+Qwen2.5-32B,8,3,1.135,1.078,False,lower (helps),False
+Qwen2.5-32B,8,4,1.135,1.227,False,higher (hurts),False
