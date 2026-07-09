@@ -182,6 +182,11 @@ def call_gemini(client, model_name, prompt, max_output_tokens):
                 config=types.GenerateContentConfig(
                     temperature=0.0,           # match local greedy decoding as closely as the API allows
                     max_output_tokens=max_output_tokens,
+                    # Gemini 2.5 does internal "thinking" by default; with a small max_output_tokens
+                    # budget, thinking tokens could consume the whole budget and leave nothing for the
+                    # actual visible answer. Disable it -- this is a simple deterministic task, not one
+                    # that needs extended reasoning, and none of the local models used CoT either.
+                    thinking_config=types.ThinkingConfig(thinking_budget=0),
                 ),
             )
             return (resp.text or "").strip()
@@ -224,7 +229,7 @@ def run_addition_trial(client, model_name, engine, N, k, t):
     rng = random.Random(local_seed)
     inp, truth, prompt = engine.build_prompt(N, interval=k, rng=rng)
 
-    raw = call_gemini(client, model_name, prompt, max_output_tokens=N + 40)
+    raw = call_gemini(client, model_name, prompt, max_output_tokens=N + 60)
     pred = raw.split("Explanation")[0].split("\n")[0].strip()
     match = re.match(r"^(\d+)", pred)
     clean_pred = match.group(1)[:len(truth)] if match else ""
@@ -233,7 +238,7 @@ def run_addition_trial(client, model_name, engine, N, k, t):
     tar = sum(binary) / len(truth) if truth else 0.0
     sar = 1.0 if (len(binary) == len(truth) and sum(binary) == len(binary)) else 0.0
     return {"Method": method, "Interval": k, "Seq_Length": N, "Trial": t, "TAR": tar, "SAR": sar,
-            "Input_Given": inp, "Ground_Truth": truth, "LLM_Output": clean_pred}
+            "Input_Given": inp, "Ground_Truth": truth, "LLM_Output": clean_pred, "Raw_Response": raw}
 
 
 def run_pauli_trial(client, model_name, engine, N, k, t):
@@ -242,7 +247,7 @@ def run_pauli_trial(client, model_name, engine, N, k, t):
     rng = random.Random(local_seed)
     inp, truth, prompt = engine.build_prompt(N, interval=k, rng=rng)
 
-    raw = call_gemini(client, model_name, prompt, max_output_tokens=N + 20)
+    raw = call_gemini(client, model_name, prompt, max_output_tokens=N + 40)
     pred = raw.split("Explanation")[0].split("\n")[0].strip()
     match = re.match(r"^([IXYZ+ij-]+)", pred)
     clean_pred = match.group(1)[:len(truth)] if match else ""
@@ -254,7 +259,7 @@ def run_pauli_trial(client, model_name, engine, N, k, t):
     phase_correct = len(clean_pred) == len(truth) and clean_pred[-1] == truth[-1]
     return {"Method": method, "Interval": k, "Seq_Length": N, "Trial": t, "TAR": tar, "SAR": sar,
             "String_Correct": string_correct, "Phase_Correct": phase_correct,
-            "Input_Given": inp, "Ground_Truth": truth, "LLM_Output": clean_pred}
+            "Input_Given": inp, "Ground_Truth": truth, "LLM_Output": clean_pred, "Raw_Response": raw}
 
 
 def main():
