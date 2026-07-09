@@ -233,6 +233,21 @@ True divide-and-conquer wins on accuracy at every tested length, and its advanta
 
 **Implementation details.** Chunks are fixed at 4 characters (matching the boundary-ablation grid's interval=4 condition), non-overlapping, generated independently via separate `model.generate()` calls on the same single A100 GPU used for every other local-model experiment, and concatenated directly with no re-ranking or boundary-stitching correction — cyclic shift's per-position independence makes stitching trivial. This would not be expected to generalize as-is to tasks with cross-chunk dependency (e.g. addition), which is precisely why boundaries and true divide-and-conquer are compared on cyclic shift only here, not on the negative-result tasks. Wall-clock time is measured per-call via `time.perf_counter()` around each `generate()` invocation and summed across a trial's chunks for divide-and-conquer; no batching is used for any of the three conditions, so all three costs are directly comparable call-for-call on identical hardware.
 
+**Exact decomposition prompt.** Each chunk is scored with the identical prompt template as the Base condition — no boundary markers, no chunk-specific instructions, and no indication given to the model that its input is a fragment of a longer sequence:
+```
+You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: Output ONLY the transformed string.
+No spaces, no explanations.
+
+Input: {chunk}
+Output: 
+```
+where `{chunk}` is a single 4-character slice of the full sequence, not the whole input. This is the same template used for the whole-sequence Base condition throughout the paper, applied independently ⌈N/4⌉ times per trial rather than once — the only thing that changes between Base and divide-and-conquer is how many times this exact prompt is called and how much of the sequence each call sees, not any change in wording or instruction.
+
 ### 3.13 Uncertainty in the α estimates
 
 Every α reported so far is a point estimate from a single nonlinear fit, and Fig. 1 additionally averages across boundary densities — both are worth stress-testing directly rather than taking on faith. We bootstrapped every (model, density) fit at alphabet=2 (resampling the 20 trials at each tested length with replacement, refitting, 500 iterations per condition; full results in `results/alpha_bootstrap_ci.csv`).
