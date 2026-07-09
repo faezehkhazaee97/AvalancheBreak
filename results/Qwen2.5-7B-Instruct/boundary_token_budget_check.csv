@@ -1,0 +1,4 @@
+Condition,N_Boundaries,Full_Prompt_Tokens
+|@interval=4,3,92
+<|>@interval=4,3,99
+<|>@interval=12,1,93

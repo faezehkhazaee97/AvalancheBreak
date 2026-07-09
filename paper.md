@@ -147,7 +147,9 @@ On cyclic shift, recovery immediately after a boundary is measurably and consist
 
 Multi-character markers are, if anything, among the strongest performers: `||` is the single best-performing marker at N=8 (TAR 0.838, vs. Base's 0.725) and `<|>` is the best at N=64 (0.656, vs. Base's 0.522) — extending the marker from one character to two or three does not degrade the effect. The natural-token markers (newline, comma) tell a different story, and the one genuine exception to this whole ablation set appears here: at N=8, *both* natural tokens actually score *below* Base (0.638 vs. 0.725) — the only condition anywhere in this marker comparison where a boundary marker underperforms having no boundaries at all. From N=16 on, both natural tokens do clear Base, but by a visibly narrower margin than any of the five deliberately-chosen markers, and for comma specifically that margin shrinks to nearly nothing by N=64 (0.532 vs. Base's 0.522, a gap of 0.010, against gaps of 0.06–0.13 for every deliberately-chosen marker at the same length). One scoring subtlety is worth flagging explicitly: because the standard response-cleanup step truncates a model's output at its first newline (to strip trailing "Explanation" chatter), using the newline character itself as the boundary marker required disabling that truncation specifically for this condition, since otherwise the model's own echoed boundary would truncate its answer before scoring. The overall picture is consistent with marker *distinctiveness* mattering, not merely presence: a marker's identity is fungible among symbols chosen specifically not to occur in the task's normal vocabulary (any of `|`, `;`, `#`, `||`, `<|>` work comparably well), but a token the model already sees constantly in ordinary text is a measurably weaker structural signal, and can even actively hurt at short lengths.
 
-**A tokenization caveat.** Marker length in characters is not the same as marker length in tokens, and this matters for how the `<|>` result above should be read. Tokenizing each marker with Qwen2.5-7B-Instruct's own tokenizer, in the actual context these experiments use (alphabet=2, N=16, interval=4, 3 boundaries inserted): `|`, `;`, `#`, the newline, and the comma each produce an 11-token encoding of the full input string, and — because of BPE merging — so does `||`, despite being two characters. `<|>`, however, encodes as `<`, `|`, `>` (three separate tokens), producing a 17-token encoding of the identical input for the identical nominal N. This means `||`'s result is a genuinely token-count-matched test of marker length: two characters, still one token, performing comparably to every single-character marker. `<|>`'s strong performance is not: at matched character-level interval, it injects three times the token-level structural signal per boundary that every other marker in this comparison does, so its result should be read as evidence that *more boundary tokens per checkpoint can help*, not as a clean test of whether marker length itself is what matters. This sweep does not contain a token-count-matched multi-token marker (e.g. a two-token symbol used at the same overall token budget as the single-token markers), which would be needed to cleanly separate these two explanations — flagged here as a concrete gap for follow-up work rather than retroactively reinterpreted from the existing data.
+**A tokenization caveat.** Marker length in characters is not the same as marker length in tokens, and this matters for how the `<|>` result above should be read. Tokenizing each marker with Qwen2.5-7B-Instruct's own tokenizer, in the actual context these experiments use (alphabet=2, N=16, interval=4, 3 boundaries inserted): `|`, `;`, `#`, the newline, and the comma each produce an 11-token encoding of the full input string, and — because of BPE merging — so does `||`, despite being two characters. `<|>`, however, encodes as `<`, `|`, `>` (three separate tokens), producing a 17-token encoding of the identical input for the identical nominal N. This means `||`'s result is a genuinely token-count-matched test of marker length: two characters, still one token, performing comparably to every single-character marker. `<|>`'s strong performance at matched character-level interval is not, since it injects three times the token-level structural signal per boundary that every other marker in this comparison does.
+
+**Token-budget-matched control.** We closed this gap directly: `|` at interval=4 injects roughly N/4 extra tokens across a length-N sequence (1 token per boundary); `<|>` at interval=12 injects the same total token budget (3 tokens per boundary, but only a third as many boundaries) while remaining a genuine 3-token marker. Tokenizing both at N=16 confirms the match empirically rather than just arithmetically: `|`@interval=4 produces a 92-token prompt, and `<|>`@interval=12 produces a 93-token prompt — matched to within a single token. Once total token budget is equalized this way, `<|>`'s advantage does not just shrink, it reverses: `<|>`@interval=12 gives TAR 0.675 / 0.591 / 0.539 / 0.453 at N=8/16/32/64, *below* both `|`@interval=4 (0.681 / 0.759 / 0.686 / 0.622) and the original, non-budget-matched `<|>`@interval=4 (0.813 / 0.713 / 0.677 / 0.656) at every length except a tie at N=8. This resolves the ambiguity the original sweep left open: `<|>`'s apparent strength was not primarily about total extra tokens somewhere in the sequence — spending the identical token budget as three-times-sparser checkpoints measurably underperforms spending it as more frequent, single-token ones. Checkpoint *frequency* is doing more work here than raw token count, consistent with the density result already established in this section (fixed count vs. constant interval): what matters is a boundary arriving often enough, not how much is written at each one. Full grid in `results/Qwen2.5-7B-Instruct/boundary_ablation_multitoken_budget_matched_grid.csv`, token counts in `boundary_token_budget_check.csv`.
 
 ### 3.6 A negative result: integer addition
 
@@ -294,16 +296,16 @@ Every mechanistic result so far (Sections 3.3–3.11) is correlational: boundary
 
 Ablating just 1.3% of the model's attention heads — and only their attention to boundary-token positions specifically, nothing else — drags accuracy substantially back toward Base, and the size of that drag grows with sequence length: 2.2% of Cellular's TAR benefit over Base is erased at N=8, climbing to 35.2% at N=16, 33.3% at N=32, and 62.6% at N=64. At the longest tested length, ablating ten heads' access to boundary tokens alone erases nearly two-thirds of the entire benefit boundary tokens provide. This is direct causal evidence, not merely correlational, that the attention-sink mechanism proposed in this line of work is functionally necessary for the accuracy gain, at least for the small subset of heads that carry most of the boundary-attention mass — and the fact that the effect strengthens with N mirrors the same length-dependence already seen in the purely correlational boundary-attention-mass result (Figure 3), reinforcing that this is the same mechanism being measured two different ways.
 
-**Is this specific to the boundary-attending heads, or would ablating any 10 heads do the same thing?** As a control, we repeated the identical ablation mechanism, same seeds, same headline condition, but applied to 10 randomly-selected heads (fixed seed, excluding the real target heads) rather than the diagnosed top boundary-attending ones.
+**Is this specific to the boundary-attending heads, or would ablating any 10 heads do the same thing?** As a control, we repeated the identical ablation mechanism, same seeds, same headline condition, but applied to 10 randomly-selected heads (fixed seed, excluding the real target heads) rather than the diagnosed top boundary-attending ones. We also ran a second, sharper control: the 10 heads with the *lowest* boundary-attention mass in the same diagnostic ranking used to pick the real target heads — a stricter test than a random sample, since it asks whether ablating any *identifiable, ranked* subset of heads has an effect, not just any arbitrary one.
 
-| N | Base TAR | Cellular (normal) TAR | Ablated (real target heads) | Ablated (random control heads) |
-|---|---|---|---|---|
-| 8 | 0.675 | 0.956 | 0.950 (−0.006) | 0.969 (+0.013) |
-| 16 | 0.591 | 0.981 | 0.844 (−0.138) | 0.975 (−0.006) |
-| 32 | 0.550 | 0.916 | 0.794 (−0.122) | 0.917 (+0.002) |
-| 64 | 0.521 | 0.772 | 0.615 (−0.157) | 0.767 (−0.005) |
+| N | Base TAR | Cellular (normal) TAR | Ablated (real target heads) | Ablated (random control heads) | Ablated (low-attending heads) |
+|---|---|---|---|---|---|
+| 8 | 0.675 | 0.956 | 0.950 (−0.006) | 0.969 (+0.013) | 0.956 (+0.000) |
+| 16 | 0.591 | 0.981 | 0.844 (−0.138) | 0.975 (−0.006) | 0.963 (−0.019) |
+| 32 | 0.550 | 0.916 | 0.794 (−0.122) | 0.917 (+0.002) | 0.933 (+0.017) |
+| 64 | 0.521 | 0.772 | 0.615 (−0.157) | 0.767 (−0.005) | 0.767 (−0.005) |
 
-The random control heads show no systematic drag at any length — their effects (+0.013, −0.006, +0.002, −0.005) are small and sign-inconsistent, indistinguishable from trial-to-trial noise, while the real target heads show a clear, monotonically growing drag at every length from N=16 on. This directly rules out the duller explanation that ablating *any* 10 heads' access to boundary tokens would hurt by a similar amount: the effect in Section 3.14's main result is specific to the heads that actually attend to boundary tokens the most, not a generic consequence of restricting attention to a handful of arbitrary heads.
+Neither control shows a systematic drag at any length. The random control heads' effects (+0.013, −0.006, +0.002, −0.005) and the low-attending heads' effects (+0.000, −0.019, +0.017, −0.005) are both small and sign-inconsistent, indistinguishable from trial-to-trial noise, while the real target heads show a clear, monotonically growing drag at every length from N=16 on. The low-attending-heads result closes the remaining specificity gap the random control alone left open: it is not merely that *some* arbitrary 10-head subset fails to reproduce the effect, but specifically that heads *ranked lowest* on the same boundary-attention-mass measure used to select the real target heads also fail to reproduce it, in either direction. This directly rules out the duller explanation that ablating *any* 10 heads' access to boundary tokens would hurt by a similar amount: the effect in Section 3.14's main result is specific to the heads that actually attend to boundary tokens the most, not a generic consequence of restricting attention to a handful of arbitrary heads, nor an artifact of the ranking procedure itself. Full grid and head lists in `results/Qwen2.5-7B-Instruct/causal_ablation_lowattend_grid.csv` and `causal_ablation_lowattend_heads.csv`.
 
 ### 3.15 A fourth model family: Phi-3.5-mini-instruct
 
@@ -529,7 +531,7 @@ your reasoning.
 
 ## Appendix B: Follow-up prompts and results for integer addition (carry-direction and scratchpad)
 
-Two follow-up checks on the addition negative result (Section 3.6): does reversing digit order to match carry direction to generation direction help, and does letting the model reason step-by-step before committing to an answer help. Neither fully rescued the effect; both are reported here in full for completeness.
+Two follow-up checks on the addition negative result (Section 3.6): does reversing digit order to match carry direction to generation direction help, and does letting the model reason step-by-step before committing to an answer help. Both checks are run on all four models, not only Qwen2.5-7B. Neither fully rescued the effect; both are reported here in full for completeness.
 
 **Carry-direction (least-significant-digit-first) prompt:**
 ```
@@ -546,15 +548,30 @@ Input: {input}
 Output:
 ```
 
-| N | Base TAR | Cellular TAR | Gap |
-|---|---|---|---|
-| 4  | 0.325 | 0.219 | −0.106 |
-| 8  | 0.306 | 0.231 | −0.075 |
-| 16 | 0.275 | 0.149 | −0.126 |
-| 32 | 0.216 | 0.074 | −0.142 |
-| 64 | 0.198 | 0.054 | −0.144 |
+| Model | N | Base TAR | Cellular TAR | Gap |
+|---|---|---|---|---|
+| Qwen2.5-7B | 4 | 0.412 | 0.150 | −0.262 |
+| Qwen2.5-7B | 8 | 0.356 | 0.135 | −0.221 |
+| Qwen2.5-7B | 16 | 0.359 | 0.108 | −0.252 |
+| Qwen2.5-7B | 32 | 0.291 | 0.058 | −0.232 |
+| Qwen2.5-7B | 64 | 0.168 | 0.049 | −0.119 |
+| Qwen2.5-14B | 4 | 0.512 | 0.198 | −0.315 |
+| Qwen2.5-14B | 8 | 0.356 | 0.171 | −0.185 |
+| Qwen2.5-14B | 16 | 0.400 | 0.116 | −0.284 |
+| Qwen2.5-14B | 32 | 0.353 | 0.101 | −0.253 |
+| Qwen2.5-14B | 64 | 0.262 | 0.077 | −0.185 |
+| Mistral-7B | 4 | 0.438 | 0.185 | −0.253 |
+| Mistral-7B | 8 | 0.419 | 0.196 | −0.223 |
+| Mistral-7B | 16 | 0.369 | 0.120 | −0.249 |
+| Mistral-7B | 32 | 0.334 | 0.061 | −0.273 |
+| Mistral-7B | 64 | 0.209 | 0.054 | −0.155 |
+| Qwen2.5-32B | 4 | 0.463 | 0.247 | −0.215 |
+| Qwen2.5-32B | 8 | 0.475 | 0.224 | −0.251 |
+| Qwen2.5-32B | 16 | 0.425 | 0.119 | −0.306 |
+| Qwen2.5-32B | 32 | 0.408 | 0.069 | −0.339 |
+| Qwen2.5-32B | 64 | 0.338 | 0.054 | −0.283 |
 
-Reversing digit order did not rescue the effect — Cellular remains worse than Base at every tested length, by a similar or larger margin than the original digit order.
+Reversing digit order did not rescue the effect on any model — Cellular remains worse than Base at every one of the 20 (model, length) combinations, by a similar or larger margin than the original digit order (Section 3.6). This is as unanimous as the addition negative result itself: reordering digits changes nothing about which condition wins.
 
 **Scratchpad (explicit step-by-step reasoning) prompt:**
 ```
@@ -570,15 +587,24 @@ Final Answer: <the {length}-digit sum, zero-padded if needed>
 Input: {input}
 ```
 
-Responses were parsed with a two-stage rule: the literal `Final Answer:` line when present (found in 54.5% of responses), falling back to the last standalone run of digits at least as long as the expected answer otherwise, rather than scoring a non-matching response as a complete miss.
+Responses were parsed with a two-stage rule: the literal `Final Answer:` line when present, falling back to the last standalone run of digits at least as long as the expected answer otherwise, rather than scoring a non-matching response as a complete miss. This parse rule matters a great deal here: the rate at which a model actually produces a matching `Final Answer:` line varies enormously across models — 54.5% for Qwen2.5-7B, but only 18.8% for Qwen2.5-32B, 16.4% for Mistral-7B, and 4.2% for Qwen2.5-14B — so the scratchpad instruction itself is followed far less reliably outside Qwen2.5-7B, before any question of whether it helps accuracy.
 
-| N | Base TAR | Cellular TAR | Gap | Base SAR | Cellular SAR |
-|---|---|---|---|---|---|
-| 4  | 0.467 | 0.100 | −0.367 | 0.200 | 0.000 |
-| 8  | 0.133 | 0.100 | −0.033 | 0.000 | 0.000 |
-| 16 | 0.225 | 0.088 | −0.138 | 0.067 | 0.000 |
+| Model | N | Base TAR | Cellular TAR | Gap | Base SAR | Cellular SAR |
+|---|---|---|---|---|---|---|
+| Qwen2.5-7B | 4 | 0.467 | 0.083 | −0.383 | 0.200 | 0.000 |
+| Qwen2.5-7B | 8 | 0.058 | 0.072 | +0.014 | 0.000 | 0.000 |
+| Qwen2.5-7B | 16 | 0.217 | 0.019 | −0.197 | 0.067 | 0.000 |
+| Qwen2.5-14B | 4 | 0.200 | 0.033 | −0.167 | 0.200 | 0.033 |
+| Qwen2.5-14B | 8 | 0.000 | 0.017 | +0.017 | 0.000 | 0.000 |
+| Qwen2.5-14B | 16 | 0.013 | 0.000 | −0.013 | 0.000 | 0.000 |
+| Mistral-7B | 4 | 0.033 | 0.008 | −0.025 | 0.000 | 0.000 |
+| Mistral-7B | 8 | 0.000 | 0.008 | +0.008 | 0.000 | 0.000 |
+| Mistral-7B | 16 | 0.042 | 0.021 | −0.021 | 0.000 | 0.000 |
+| Qwen2.5-32B | 4 | 0.667 | 0.025 | −0.642 | 0.667 | 0.000 |
+| Qwen2.5-32B | 8 | 0.542 | 0.000 | −0.542 | 0.400 | 0.000 |
+| Qwen2.5-32B | 16 | 0.000 | 0.119 | +0.119 | 0.000 | 0.044 |
 
-Cellular underperforms Base at all three tested lengths. Both TAR columns are already low at N≥8 regardless of condition, and this remains a small, exploratory grid (15 trials, 3 lengths) — but within that scope, the negative result is consistent across all three tested lengths.
+Extending this to all four models does not produce a clean replication of the Qwen2.5-7B pattern, and the honest reading is more mixed than the single-model result suggested. At N=4 — the one length where every model still has enough signal above floor to be informative — Cellular underperforms Base for all four models, consistent with the rest of the addition results. At N=8 and N=16, three of the four models (all but Qwen2.5-7B at N=16, and excepting Qwen2.5-32B's N=16 reversal) show accuracy already collapsed to near-zero for both conditions regardless of density, and the sign of the small remaining gap is no longer consistent: Qwen2.5-7B, Qwen2.5-14B, and Mistral-7B each show a tiny positive gap at N=8 (+0.008 to +0.017, on absolute accuracies below 0.08), and Qwen2.5-32B shows a real reversal at N=16 (+0.119) built on a Base condition that has itself collapsed to exactly 0. Given how thin this grid already is (15 trials, 3 lengths, and parse rates for the scratchpad instruction itself ranging from 4% to 55% across models), the right conclusion is that the scratchpad follow-up remains genuinely inconclusive beyond the shortest tested length — informative only at N=4, where it agrees with the rest of the addition evidence, and too underpowered elsewhere to add anything beyond noise around a floor.
 
 ---
 
