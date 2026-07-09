@@ -61,6 +61,8 @@ Every accuracy condition (model × alphabet × interval × length) is run for 20
 
 The SK model (β₀, α) is fit via bounded nonlinear least squares (`scipy.optimize.curve_fit`, α constrained to ≥ 1 + 10⁻⁶) to each condition's SAR values across every tested sequence length. A fit is only reported when the underlying SAR values are non-degenerate (at least two distinct values, not all exactly zero) — a condition where SAR is pinned at zero across every tested length carries no information about how fast it got there, and reporting a fitted α for it would be reporting noise as a measurement. Fits that converge exactly to the lower optimizer bound (α ≈ 1.000...) are flagged separately, since that reflects the fit hitting the edge of what it was permitted to return rather than a well-constrained interior estimate.
 
+**Scoring conventions and decoding.** For tasks where boundary tokens appear in the model's expected output (cyclic shift, running-sum-mod-*M*), both the prediction and the ground truth have `|` characters stripped before TAR/SAR are computed — boundaries are structural, not part of the answer, and are scored as such on both sides of the comparison. Integer addition and Pauli string multiplication never require boundaries in the output at all (the output is pure digits or pure operator/phase characters), so this stripping is moot for those two. Decoding was greedy throughout: `do_sample=False` for all three local models, `temperature=0.0` for the Gemini API calls reported in the Discussion — no sampling variance is folded into any reported accuracy number.
+
 ### 2.5 Mechanistic (attention) analysis
 
 Attention-mechanism claims are evaluated two ways. A full statistical sweep (20 trials × 6 sequence lengths × up to 3 boundary densities, one specific model, extracted with `attn_implementation="eager"` to make raw attention weights available) establishes population-level statistics for entropy, boundary-token attention mass, and distance-decay. In addition, one small illustrative configuration (alphabet=2, N=16, k=2) is repeated for 20 independent trials with full per-layer, per-head tensor capture, to produce genuine multi-trial-averaged versions of the example attention-matrix figures — replacing what was, in an earlier draft of this analysis, a single-example snapshot that we found could occasionally show an atypical result for a given metric (Section 3.6 documents one case where this happened and was caught).
@@ -197,6 +199,16 @@ Letter-to-letter attention dips visibly at every distance that is an exact multi
 
 True divide-and-conquer wins on accuracy at every tested length, and its advantage *grows* with N rather than shrinking: TAR of 0.812 → 0.841 → 0.880 → 0.871 at N = 8/16/32/64, essentially flat-to-improving, while Cellular's TAR (0.744 → 0.759 → 0.678 → 0.599) degrades over the same range. But this comes at a real and growing compute cost: divide-and-conquer takes 1.5× as long as Base at N=8, climbing to 3.0× the cost of Cellular (3.9× the cost of Base) by N=64, since it requires re-processing the prompt from scratch for every chunk rather than in one pass. Structural boundary tokens recover a substantial fraction of divide-and-conquer's accuracy benefit — clearly beating Base through N=32 — for close to Base's own compute cost. This is the direct empirical version of the efficiency argument motivating the whole approach: boundaries are a cheap, single-pass approximation to a more expensive but more effective multi-call strategy, not a replacement for it.
 
+**Implementation details.** Chunks are fixed at 4 characters (matching the boundary-ablation grid's interval=4 condition), non-overlapping, generated independently via separate `model.generate()` calls on the same single A100 GPU used for every other local-model experiment, and concatenated directly with no re-ranking or boundary-stitching correction — cyclic shift's per-position independence makes stitching trivial. This would not be expected to generalize as-is to tasks with cross-chunk dependency (e.g. addition), which is precisely why boundaries and true divide-and-conquer are compared on cyclic shift only here, not on the negative-result tasks. Wall-clock time is measured per-call via `time.perf_counter()` around each `generate()` invocation and summed across a trial's chunks for divide-and-conquer; no batching is used for any of the three conditions, so all three costs are directly comparable call-for-call on identical hardware.
+
+### 3.13 Uncertainty in the α estimates
+
+Every α reported so far is a point estimate from a single nonlinear fit, and Fig. 1 additionally averages across boundary densities — both are worth stress-testing directly rather than taking on faith. We bootstrapped every (model, density) fit at alphabet=2 (resampling the 20 trials at each tested length with replacement, refitting, 500 iterations per condition; full results in `results/alpha_bootstrap_ci.csv`).
+
+Two things fall out cleanly. First, **Base condition α is genuinely underconstrained**: 95% CIs span [1.02, 2.18] for Qwen2.5-7B, [1.05, 2.24] for Qwen2.5-14B, and [1.51, 2.12] for Mistral-7B — wide intervals, consistent with SAR collapsing to floor by N≥64 and leaving few informative points to pin down the fit. Second, **the well-populated Cellular densities that carry the headline claim are considerably better constrained**: Qwen2.5-7B at k=1 gives α=1.037, 95% CI=[1.019, 1.084], comfortably below Base's own lower bound; Qwen2.5-14B at k=2 gives α=1.153, CI=[1.133, 1.164]. The reduction in α from Base to Cellular is not just a point-estimate artifact for these specific, well-supported conditions.
+
+The bootstrap also validates a caution already flagged qualitatively (Section 3.1): fits pinned against the optimizer's lower bound (α≈1.000) turn out to have exactly the unstable behavior that flag was meant to signal — Qwen2.5-7B at k=3 gives a 95% CI of [1.000, 1.679], and Qwen2.5-14B at k=3 and k=4 show the same pattern. These should be read as "the cliff is very flat or absent here," never as a precise measurement, exactly as originally stated — the bootstrap just confirms that caution was warranted rather than overcautious.
+
 ---
 
 ## 4. Discussion
@@ -261,6 +273,59 @@ your reasoning.
 >>> {input}
 <<<
 ```
+
+---
+
+## Appendix B: Follow-up prompts and results for integer addition (carry-direction and scratchpad)
+
+Two follow-up checks on the addition negative result (Section 3.6): does reversing digit order to match carry direction to generation direction help, and does letting the model reason step-by-step before committing to an answer help. Neither fully rescued the effect; both are reported here in full rather than just summarized, per reviewer request.
+
+**Carry-direction (least-significant-digit-first) prompt:**
+```
+You are a deterministic arithmetic calculator.
+Task: Add two {length}-digit numbers. Both input numbers and the expected
+output are written LEAST-SIGNIFICANT-DIGIT FIRST (reversed order, i.e.
+the ones digit comes first).
+Constraint: The input may contain vertical bars (|) as structural
+boundaries -- they carry no numeric meaning, ignore them when computing.
+Output ONLY the {length}-digit sum, also least-significant-digit-first.
+No spaces, no explanations.
+
+Input: {input}
+Output:
+```
+
+| N | Base TAR | Cellular TAR | Gap |
+|---|---|---|---|
+| 4  | 0.325 | 0.219 | −0.106 |
+| 8  | 0.306 | 0.231 | −0.075 |
+| 16 | 0.275 | 0.149 | −0.126 |
+| 32 | 0.216 | 0.074 | −0.142 |
+| 64 | 0.198 | 0.054 | −0.144 |
+
+Reversing digit order did not rescue the effect — Cellular remains worse than Base at every tested length, by a similar or larger margin than the original digit order.
+
+**Scratchpad (explicit step-by-step reasoning) prompt:**
+```
+You are a careful arithmetic assistant.
+Task: Add two {length}-digit numbers.
+Constraint: The input may contain vertical bars (|) as structural
+boundaries -- they carry no numeric meaning, ignore them when computing.
+First, work through the addition step by step from the rightmost
+(least-significant) digit to the left, tracking the carry at each step.
+Then, on its own line, write exactly:
+Final Answer: <the {length}-digit sum, zero-padded if needed>
+
+Input: {input}
+```
+
+| N | Base TAR | Cellular TAR | Gap | Base SAR | Cellular SAR |
+|---|---|---|---|---|---|
+| 4  | 0.317 | 0.117 | −0.200 | 0.133 | 0.033 |
+| 8  | 0.025 | 0.050 | +0.025 | 0.000 | 0.000 |
+| 16 | 0.029 | 0.072 | +0.043 | 0.000 | 0.000 |
+
+Only 52.7% of responses across this entire sweep contained a cleanly parseable `Final Answer:` line (scored 0 when absent, matching how a real deployment would treat a malformed response). Combined with both TAR columns already sitting near floor at N≥8 regardless of condition, this result is inconclusive rather than a clean positive or negative — reported here in full so readers can judge the data quality themselves rather than take our summary characterization on faith.
 
 ---
 
