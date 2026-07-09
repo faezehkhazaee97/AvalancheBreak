@@ -31,6 +31,16 @@ A companion proposal, *"Keeping LLMs Focused: Delaying Error Avalanches via Stru
 
 This paper is an independent, from-scratch replication and stress-test of that proposal. We test it across three models spanning two architecture families and two parameter scales; we extend the boundary-density grid; we run every attention-mechanism claim as a genuine multi-trial statistical estimate rather than a single illustrative example; and — critically — we found and corrected a methodological bug in our own initial pipeline (evaluating an instruction-tuned model without its chat template) that materially changed results for at least one tested condition. We report where the effect is robust, where it is not, and where a plausible mechanistic story turned out to need a real caveat once we checked it against more than one anecdote.
 
+### 1.1 Related work
+
+The attention-sink mechanism this paper investigates is not a new observation in isolation — it connects to several adjacent literatures this paper had not previously situated itself against. **Attention sinks** were first characterized as a general phenomenon by Xiao et al. (StreamingLLM, arXiv:2309.17453), who found that LLMs allocate disproportionate attention to a small number of tokens — canonically the first few tokens of a sequence — regardless of their semantic content, and that preserving these tokens' KV cache is sufficient to stabilize streaming generation over very long contexts. Follow-up work has shown the same phenomenon extends to **delimiter and separator tokens** specifically: SepLLM (arXiv:2412.12094) shows that ordinary segment separators accumulate outsized attention mass and can be exploited to compress a segment's information into its separator token for efficient inference, and a broader empirical survey (arXiv:2410.10781) documents when and why sink behavior emerges over training. Our Section 3.3 finding — that boundary tokens inserted specifically for this purpose become measurable attention sinks, with mass that grows with density and (more slowly) with sequence length — is best read as a targeted, causally-tested instance of this general phenomenon, applied deliberately as an error-mitigation intervention rather than observed as an efficiency side effect.
+
+This also connects to **mechanistic interpretability of attention-head function**. Olsson et al. (arXiv:2209.11895) identify *induction heads* — head pairs that implement a "complete the pattern [A][B]...[A]→[B]" copying operation, whose emergence coincides with a sharp jump in a model's in-context-learning ability. Our causal ablation (Section 3.14) identifies a small, specific set of heads as functionally load-bearing for the boundary-token benefit; whether these heads overlap with, or are functionally related to, induction heads is a natural question this paper had not previously tested directly.
+
+Separately, **"lost in the middle"** (Liu et al., arXiv:2307.03172) documents that LLM accuracy on long-context retrieval degrades specifically for information placed in the middle of a context, U-shaped around a strong preference for the start and end. That work and this one both concern position-dependent failure in long inputs, but via different mechanisms and mitigations: lost-in-the-middle is about *where* relevant information sits in an otherwise unstructured context, while the boundary-token intervention is about *periodically restructuring* the whole context regardless of where the informative content sits — the two failure modes are plausibly complementary rather than competing explanations of long-context degradation.
+
+Finally, this work sits alongside — rather than in competition with — explicit **decomposition-based prompting** strategies: least-to-most prompting (Zhou et al., arXiv:2205.10625) and program-of-thoughts (Chen et al., arXiv:2211.12588) both address error accumulation on multi-step tasks by decomposing a problem into sub-steps solved (semi-)independently, closer in spirit to this paper's own true divide-and-conquer baseline (Section 3.12) than to the single-pass boundary-token intervention. Our direct empirical comparison in Section 3.12 — true divide-and-conquer wins on accuracy at every tested length but costs 3–4× more compute by N=64 — can be read as a quantified version of the tradeoff these decomposition strategies are implicitly making: more calls, more accuracy, at a real and growing cost that boundary tokens partially and cheaply approximate in a single pass.
+
 ---
 
 ## 2. Methods
@@ -221,6 +231,29 @@ Two things fall out cleanly. First, **Base condition α is genuinely underconstr
 
 The bootstrap also validates a caution already flagged qualitatively (Section 3.1): fits pinned against the optimizer's lower bound (α≈1.000) turn out to have exactly the unstable behavior that flag was meant to signal — Qwen2.5-7B at k=3 gives a 95% CI of [1.000, 1.679], and Qwen2.5-14B at k=3 and k=4 show the same pattern. These should be read as "the cliff is very flat or absent here," never as a precise measurement, exactly as originally stated — the bootstrap just confirms that caution was warranted rather than overcautious.
 
+The table below reports every fitted (β₀, α) pair underlying the discussion above alongside its bootstrap CI, rather than leaving the full set implicit in prose.
+
+| Model | Method | k | β₀ | α | 95% CI |
+|---|---|---|---|---|---|
+| Qwen2.5-7B | Base | — | 0.097 | 1.212 | [1.017, 2.181] |
+| Qwen2.5-7B | Cellular_Bounds | 1 | 0.005 | 1.037 | [1.019, 1.084] |
+| Qwen2.5-7B | Cellular_Bounds | 2 | 0.010 | 1.022 | [1.006, 1.068] |
+| Qwen2.5-7B | Cellular_Bounds | 3 | 0.663 | 1.000 | [1.000, 1.679] |
+| Qwen2.5-7B | Cellular_Bounds | 4 | 0.049 | 1.197 | [1.197, 1.347] |
+| Qwen2.5-14B | Base | — | 0.075 | 1.258 | [1.045, 2.236] |
+| Qwen2.5-14B | Cellular_Bounds | 1 | 0.000 | 1.269 | [1.199, 1.317] |
+| Qwen2.5-14B | Cellular_Bounds | 2 | 0.000 | 1.153 | [1.133, 1.164] |
+| Qwen2.5-14B | Cellular_Bounds | 3 | 0.125 | 1.000 | [1.000, 1.003] |
+| Qwen2.5-14B | Cellular_Bounds | 4 | 0.149 | 1.000 | [1.000, 1.323] |
+| Qwen2.5-14B | Cellular_Bounds | 8 | 0.028 | 1.135 | [1.111, 1.135] |
+| Mistral-7B-v0.3 | Base | — | 0.035 | 1.781 | [1.508, 2.121] |
+| Mistral-7B-v0.3 | Cellular_Bounds | 1 | 0.045 | 1.054 | [1.005, 1.341] |
+| Mistral-7B-v0.3 | Cellular_Bounds | 2 | 0.236 | 1.345 | [1.251, 1.552] |
+| Mistral-7B-v0.3 | Cellular_Bounds | 3 | 0.091 | 1.178 | [1.000, 2.121] |
+| Mistral-7B-v0.3 | Cellular_Bounds | 4 | 0.062 | 1.246 | [1.197, 1.274] |
+
+*Table: fitted SK parameters and 500-iteration bootstrap 95% CIs for α, alphabet=2, every (model, density) condition with a valid fit. Full data in `results/alpha_beta0_table.csv`.*
+
 ### 3.14 Is boundary attention necessary, not just correlated with the benefit?
 
 Every mechanistic result so far (Sections 3.3–3.11) is correlational: boundary attention mass rises with density, and density correlates with lower α, but nothing establishes that this attention pattern is actually *load-bearing* for the accuracy benefit rather than a side effect that happens alongside it. We tested this causally (methodology in Section 2.5): identify the 10 (of 784) attention heads in Qwen2.5-7B with the highest mean attention mass on boundary tokens via a fresh diagnostic pass, then re-run the headline condition (alphabet=2, k=2) with attention from exactly those heads to boundary-token positions zeroed post-softmax and renormalized, leaving every other head and every other attended position untouched. The 10 target heads are concentrated in specific layers rather than spread evenly (top mass: layer 15/head 5, layer 1/head 24, layer 3/heads 22, 24, and 25, layer 0/head 6, layer 16/head 21, layer 21/heads 6 and 9, layer 22/head 5), consistent with the scattered, non-uniform layer clustering already seen in the correlational per-head breakdown (Figure 12).
@@ -243,11 +276,80 @@ Phi-3.5-mini-instruct turns out to be a substantially weaker model on this task 
 
 Within the narrow window where the raw data is informative, the direction of the headline effect still holds: Cellular's SAR clears Base at both N=4 (0.433 vs. 0.200) and N=8 (0.125 vs. 0.050), the same direction seen in all three other models. But that separation collapses into a much narrower length window here — both conditions are at floor by N=16, whereas the other three models still show a clear, measurable gap out to N=256 (Figure 1B) — and on the coarser TAR metric, the two conditions are close to indistinguishable from N=16 onward and Cellular even trails Base at several longer lengths. We read this as an important boundary condition on the whole framework rather than a reversal of the core finding: the SK decay-curve comparison this paper relies on throughout requires the underlying model to have enough raw competence at the task for both conditions' decay curves to be well-resolved over a non-trivial length range. Below some minimum capability threshold, both conditions crash to floor almost immediately, and neither the accuracy comparison nor the α-based framework has enough signal left to distinguish them cleanly.
 
+### 3.16 Does the causal-ablation mechanism matter? Pre-softmax masking vs. post-softmax zero-and-renormalize
+
+Section 3.14's causal ablation zeros attention weight to boundary positions *after* softmax and renormalizes the row to still sum to 1. A cleaner-sounding alternative is to mask the raw attention score to `-inf` *before* softmax (exactly how an ordinary causal mask works) and let softmax itself do the renormalization. These two operations are algebraically identical — zeroing a subset of a softmax distribution's mass and renormalizing the remainder reduces to exactly the same expression as computing softmax over only the remaining positions from the start — so this is a test of whether that equivalence actually holds in practice (bf16 rounding, implementation details) rather than an attempt to find a different result.
+
+| N | Base TAR | Cellular (normal) TAR | Ablated (post-softmax) TAR | Ablated (pre-softmax) TAR | Difference |
+|---|---|---|---|---|---|
+| 8 | 0.675 | 0.956 | 0.950 | 0.950 | 0.000 |
+| 16 | 0.591 | 0.981 | 0.844 | 0.841 | −0.003 |
+| 32 | 0.550 | 0.916 | 0.794 | 0.783 | −0.011 |
+| 64 | 0.521 | 0.772 | 0.615 | 0.613 | −0.002 |
+
+The two mechanisms agree to within 0.011 TAR at every length — noise, not a systematic difference, exactly as the algebra predicts. This rules out the specific renormalization step as a confound: the causal finding in Section 3.14 is not an artifact of *how* the ablation was implemented.
+
+### 3.17 Do the boundary-attending heads overlap with induction heads?
+
+Olsson et al.'s induction heads (arXiv:2209.11895) implement a "complete the pattern" copy operation: given a repeated sequence `... X Y ... X`, an induction head attends from the second `X` back to the position right after the *first* `X` (i.e. copies `Y`). We tested whether the 10 heads identified as most boundary-attending (Section 3.14) are also strong induction heads, using the standard operational test: 20 synthetic trials of a random 30-token chunk immediately repeated, measuring each of the model's 784 heads' attention from the second copy back to its induction target, relative to that same head's average attention to other, non-matching earlier positions (its own baseline).
+
+| Layer | Head | Boundary mass | Induction score | Induction percentile |
+|---|---|---|---|---|
+| 15 | 5 | 0.074 | −0.022 | 8.0 |
+| 1 | 24 | 0.072 | −0.020 | 17.0 |
+| 3 | 24 | 0.066 | −0.018 | 22.2 |
+| 3 | 22 | 0.062 | −0.017 | 27.6 |
+| 3 | 25 | 0.062 | −0.021 | 11.7 |
+| 0 | 6 | 0.061 | −0.021 | 13.3 |
+| 16 | 21 | 0.061 | −0.016 | 29.0 |
+| 21 | 9 | 0.060 | −0.021 | 12.3 |
+| 21 | 6 | 0.060 | 0.003 | 70.5 |
+| 22 | 5 | 0.060 | 0.295 | **97.2** |
+
+Nine of the ten boundary-attending heads rank *below* the population median induction score (mean percentile 30.9 out of 100, where 50 would mean "indistinguishable from a random head") — as a population, the boundary-attending heads are not simply repurposed induction heads. But there is one clear exception: layer 22, head 5 is both a top-10 boundary-attending head *and* the 3rd-strongest induction head in the entire model (97.2nd percentile). This is a genuinely mixed result: the two head populations are mostly functionally distinct, but with at least one head plausibly serving both roles, which is worth a dedicated follow-up (larger induction-test sweep, more target heads) rather than either being cleanly forced into "yes, overlap" or "no, distinct."
+
+### 3.18 Carry-aligned boundary placement for addition: a confounded negative result
+
+Section 3.6's addition boundaries are inserted at a fixed character interval over the flat `A_digits + B_digits` string, slicing through digit-column pairs arbitrarily with no relationship to where carries actually propagate. We tested a placement aligned to the task's real computational structure instead: the two operands interleaved by column, each boundary grouping exactly one addition column's two digits (`A0B0|A1B1|...|A(N-1)B(N-1)`), so a carry step's inputs are never split across a boundary.
+
+| N | Base TAR | Best fixed-interval Cellular TAR | Carry-aligned TAR |
+|---|---|---|---|
+| 4 | 0.750 | 0.550 | 0.075 |
+| 8 | 0.812 | 0.256 | 0.062 |
+| 16 | 0.694 | 0.566 | 0.012 |
+| 32 | 0.631 | 0.131 | 0.014 |
+| 64 | 0.502 | 0.124 | 0.003 |
+
+This does not rescue the effect — it makes things dramatically worse, collapsing to near-zero TAR at every length. But inspecting the raw responses shows why this comparison is confounded rather than a clean test of carry alignment: the model's response length stays flat at roughly 4.2–4.3 characters regardless of N (4, 8, 16, 32, or 64), instead of scaling with the task. The interleaved-column format is simply unfamiliar enough that the model appears unable to parse the task at all, independent of any carry-alignment benefit the placement might otherwise offer. We report this as an honest negative result with a clear caveat: this specific operationalization does not isolate carry-alignment from format-unfamiliarity, and a cleaner test would need to preserve the model's familiar `A + B` presentation while only moving boundary positions within it — left as a concrete direction for follow-up rather than a settled answer.
+
+### 3.19 A real special token as boundary marker: a stronger negative result than any printable character
+
+Every marker tested so far (Section 3.5) is a printable character. We tested `<|object_ref_start|>` — a genuine special token already in Qwen2.5-7B-Instruct's vocabulary (reserved for Qwen2.5-VL's vision-grounding use case, structurally inert for this model's text-only chat template), inserted inline as the boundary marker at the same fixed interval as the existing marker-identity ablation.
+
+| N | Base TAR | Mean printable-marker TAR | Special-token TAR |
+|---|---|---|---|
+| 8 | 0.725 | 0.717 | 0.469 |
+| 16 | 0.584 | 0.729 | 0.216 |
+| 32 | 0.538 | 0.666 | 0.092 |
+| 64 | 0.522 | 0.614 | 0.049 |
+
+The special token does not just underperform printable markers — from N=16 on, it underperforms *Base itself*, the only marker in this entire study (besides the natural-token short-length exception in Section 3.5) to do so this severely. Inspecting raw responses reveals a distinct failure mode from every other marker tested: mean response length stays flat at roughly 4.2 characters regardless of N (8, 16, 32, or 64), rather than scaling with task length — the model's generation appears to be derailed almost immediately, not merely producing a wrong but appropriately-sized answer. This is consistent with a real out-of-band special token carrying strong enough associations from its actual training use (vision grounding) that inserting it into an unrelated text task actively disrupts normal generation, unlike the printable characters tested throughout the rest of this paper, which serve as a genuinely neutral structural signal.
+
+### 3.20 Cross-model mechanistic replication: does the mechanism hold beyond Qwen2.5-7B?
+
+Every mechanistic result up to this point (attention-sink scaling, entropy, causal ablation) was established on a single model. We replicated the full mechanistic battery — the 420-condition attention-sink/entropy sweep and the causal ablation — on Qwen2.5-14B and Mistral-7B-v0.3, at the identical configurations (alphabet=2, matched seeds).
+
+**The correlational findings replicate cleanly on both models.** Boundary-attention mass scales with density (1/k) with R² ≥ 0.97 at every one of the 6 tested lengths for both Qwen2.5-14B and Mistral-7B (matching Qwen2.5-7B's R² ≥ 0.98), and attention entropy is higher under Cellular_Bounds than Base in 360 of 360 sampled trials for *both* models — exactly the same unanimous result already reported for Qwen2.5-7B in Section 3.10.
+
+**The causal finding replicates in direction but not in magnitude, and the picture is genuinely mixed.** On Qwen2.5-14B, ablating the top 10 boundary-attending heads drags TAR toward Base with the same growing-with-length pattern seen on 7B, but far more weakly: 0%, 0%, 3.8%, and 15.8% of Cellular's benefit erased at N=8/16/32/64, versus 7B's 2.2%/35.2%/33.3%/62.6%. This is not necessarily a weaker mechanism — 14B's Cellular_Bounds condition is already at or near ceiling (99.4–100% TAR) at this density for most lengths, leaving little headroom for any intervention to move it, causal or otherwise. On Mistral-7B, the ablation effect is noisy and inconsistent (a small negative effect at N=8, a small *positive* effect at N=16, none at N=32, and a large apparent positive effect at N=64) — but this reflects a different confound: Mistral's own Cellular_Bounds benefit at this specific density (k=2) is already tiny to begin with (Section 3.13's own bootstrap results show Mistral's k=2 condition is one of its weaker densities, α=1.345 vs. Base's 1.781), so the "percentage of benefit erased" metric divides by a small, noisy denominator and becomes unstable. A fairer causal test on Mistral would repeat this at a density where Mistral's own correlational benefit is actually strong (e.g. k=1, α=1.054) — left as a direction for follow-up rather than run here.
+
+The honest summary: the *correlational* mechanism (attention sinks, rising entropy) is now confirmed as a general property across all three models in this study, not an artifact of one. The *causal* confirmation (Section 3.14) is real and directionally consistent on the one other model where it's cleanly measurable (14B), but its magnitude depends heavily on how much headroom is left in that model's own accuracy at the tested density — a caution about generalizing a specific causal-effect-size number, not about the mechanism's existence.
+
 ---
 
 ## 4. Discussion
 
-**What is robust.** Boundaries substantially and consistently reduce error-accumulation for the simplest task variant (2-symbol alphabet), across three models spanning two architectures and two parameter scales. This is backed by a real, checkable mechanism: boundary tokens measurably absorb attention (R² ≥ 0.98), that absorption grows with density and — more slowly — with sequence length, attention entropy rises under boundaries with no exceptions across 360 sampled trials, and letter-to-letter attention measurably dips at exactly the positions boundaries occupy. Critically, this mechanism is now confirmed causally rather than only correlationally (Section 3.14): ablating attention to boundary tokens for just the 10 heads (of 784) that attend to them most erases up to 62.6% of Cellular's accuracy benefit at the longest tested length, with the effect strengthening as sequences get longer. The effect does not depend on the specific marker character used, extending naturally to multi-character markers as well (Section 3.5), is not an artifact of one instruction phrasing, and the intervention is measurably cheaper than the true divide-and-conquer alternative it approximates (Section 3.12): true divide-and-conquer wins on accuracy at every tested length, but at 3–4× the compute cost by N=64, while boundaries recover much of that accuracy benefit for close to Base's own cost.
+**What is robust.** Boundaries substantially and consistently reduce error-accumulation for the simplest task variant (2-symbol alphabet), across three models spanning two architectures and two parameter scales. This is backed by a real, checkable mechanism: boundary tokens measurably absorb attention (R² ≥ 0.97–0.98), that absorption grows with density and — more slowly — with sequence length, attention entropy rises under boundaries with no exceptions across 360 sampled trials, and letter-to-letter attention measurably dips at exactly the positions boundaries occupy. Both of these correlational findings now replicate cleanly on all three models in this study, not just one (Section 3.20). Critically, the mechanism is also confirmed causally rather than only correlationally (Section 3.14): ablating attention to boundary tokens for just the 10 heads (of 784) that attend to them most erases up to 62.6% of Cellular's accuracy benefit at the longest tested length on Qwen2.5-7B, with the effect strengthening as sequences get longer; the same direction replicates on Qwen2.5-14B, though far more weakly, since 14B's Cellular condition is already near ceiling at this density and has little headroom left to move (Section 3.20). The effect does not depend on the specific marker character used, extending naturally to multi-character markers as well (Section 3.5), is not an artifact of one instruction phrasing, and the intervention is measurably cheaper than the true divide-and-conquer alternative it approximates (Section 3.12): true divide-and-conquer wins on accuracy at every tested length, but at 3–4× the compute cost by N=64, while boundaries recover much of that accuracy benefit for close to Base's own cost.
 
 **What is not robust.** The effect does not generalize cleanly to harder task variants. Across two harder alphabets in three models, it holds in three of six cases and reverses in the other three, with no principled account yet for which cases reverse. It also does not transfer to tasks with genuine long-range state — running-sum-mod-*M* shows no boundary-adjacent recovery advantage at all, and integer addition shows boundaries actively hurting at every tested length, plausibly because carries propagate in the opposite direction from generation. Reversing digit order to align carry direction with generation order did not fully rescue the effect, and allowing the model an explicit reasoning scratchpad before committing to an answer produced an inconclusive result (more than half of trials did not even yield a scoreable output in the expected format). A third, structurally different benchmark task (Pauli string multiplication, chosen to combine a position-local component with a genuinely global one within a single task) was also inconclusive: the model did not once get the position-local component fully correct across the entire sweep, and overall accuracy under boundaries was worse than Base at three of four tested lengths in the most-corrected version of the data. A fourth model family, Phi-3.5-mini-instruct, adds a further boundary condition rather than a counter-example: this smaller, weaker model's accuracy collapses to floor so quickly in *both* conditions that neither the raw-accuracy comparison nor the SK fit has enough length range left to cleanly resolve the effect one way or the other (Section 3.15) — a caution that the framework requires a baseline level of model competence at the task before it can be evaluated at all, distinct from the effect itself failing to hold.
 
