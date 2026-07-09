@@ -1,0 +1,5 @@
+Seq_Length,Pipe_at_interval4_TAR,TriToken_at_interval4_TAR_NOT_budget_matched,TriToken_at_interval12_TAR_budget_matched
+8,0.68125,0.8125,0.675
+16,0.759375,0.7125,0.590625
+32,0.6859375,0.6765625,0.5390625
+64,0.621875,0.65546875,0.453125
