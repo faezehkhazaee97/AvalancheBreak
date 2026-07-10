@@ -1,0 +1,9 @@
+Model,Method,Interval,Mean_Input_Tokens,Mean_Response_Tokens,N_trials
+Qwen2.5-7B,Base,0,27.6,22.7,20
+Qwen2.5-7B,Cellular_Bounds,2,63.0,26.3,20
+Qwen2.5-14B,Base,0,27.6,28.45,20
+Qwen2.5-14B,Cellular_Bounds,2,63.0,27.35,20
+Mistral-7B-v0.3,Base,0,35.15,34.35,20
+Mistral-7B-v0.3,Cellular_Bounds,2,63.0,33.45,20
+Qwen2.5-32B,Base,0,27.6,26.8,20
+Qwen2.5-32B,Cellular_Bounds,2,63.0,27.55,20
