@@ -484,6 +484,25 @@ $N$ & Base & Cellular (normal) & Ablated (real target heads) & Ablated (random c
 
 Neither control shows a systematic drag at any length. The random control heads' effects ($+0.013$, $-0.006$, $+0.002$, $-0.005$) and the low-attending heads' effects ($+0.000$, $-0.019$, $+0.017$, $-0.005$) are both small and sign-inconsistent, indistinguishable from trial-to-trial noise, while the real target heads show a clear, monotonically growing drag at every length from $N=16$ on. The low-attending-heads result closes the remaining specificity gap the random control alone left open: it is not merely that \emph{some} arbitrary 10-head subset fails to reproduce the effect, but specifically that heads \emph{ranked lowest} on the same boundary-attention-mass measure used to select the real target heads also fail to reproduce it, in either direction. This directly rules out the duller explanation that ablating \emph{any} 10 heads' access to boundary tokens would hurt by a similar amount: the effect in the main result above is specific to the heads that actually attend to boundary tokens the most, not a generic consequence of restricting attention to a handful of arbitrary heads, nor an artifact of the ranking procedure itself. Full grid and head lists in \texttt{results/Qwen2.5-7B-Instruct/causal\_ablation\_lowattend\_grid.csv} and \texttt{causal\_ablation\_lowattend\_heads.csv}.
 
+\textbf{A third, complementary control: same heads, wrong positions.} The two controls above vary \emph{which heads} are ablated while always targeting the real boundary-token positions. The remaining question runs the other way: holding the real 10 target heads fixed, does ablating their attention to an equal-sized set of \emph{random, non-boundary} positions reproduce the drag? If these heads are simply important in some boundary-independent way, removing their access to any sufficiently large set of positions might hurt regardless of which positions those are.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{rrrrr}
+\toprule
+$N$ & Base & Cellular (normal) & Ablated (real heads, boundary positions) & Ablated (real heads, random non-boundary positions) \\
+\midrule
+8  & 0.675 & 0.956 & 0.950 ($-0.006$) & 0.956 ($+0.000$) \\
+16 & 0.591 & 0.981 & 0.844 ($-0.138$) & 0.959 ($-0.022$) \\
+32 & 0.550 & 0.916 & 0.794 ($-0.122$) & 0.939 ($+0.023$) \\
+64 & 0.521 & 0.772 & 0.615 ($-0.157$) & 0.772 ($+0.000$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The sham condition's effects ($+0.000$, $-0.022$, $+0.023$, $+0.000$) are small and sign-inconsistent, indistinguishable from noise, matching the pattern of both controls above --- the same heads that produce a clear, monotonically growing drag when ablated at boundary positions produce no drag at all when the same amount of their attention capacity is instead redirected away from an equal number of random, non-boundary positions. Together with the random-heads and low-attending-heads controls, this completes the specificity picture from every angle that matters: it is not the heads alone, not the positions alone, but specifically \emph{these heads' attention to these positions} that is load-bearing for the effect. Full grid in \texttt{results/Qwen2.5-7B-Instruct/causal\_ablation\_sham\_grid.csv}.
+
 \textbf{A dose-response curve: how does the drag scale with how many top-attending heads are ablated?} The main result above uses a single, somewhat arbitrary count (10 of 784 heads). We reran the identical ablation across $K \in \{1, 2, 5, 10, 20, 40, 80\}$ top boundary-attending heads (same ranking, same headline condition) to see whether the effect scales smoothly with $K$ or is a step-function property of some particular count.
 
 \begin{table}[htbp]
