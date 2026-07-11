@@ -58,9 +58,18 @@ from tqdm import tqdm
 # these merged tokens, which a first attempt at this script confirmed
 # happens 15-55% of the time -- not the "literally impossible" guarantee
 # the experiment is supposed to provide.
+#
+# CAUGHT SECOND BUG: a blanket "contains '|'" filter also bans 14 of the
+# model's own special/control tokens (all_special_ids), including
+# <|im_end|> -- this model's actual EOS token -- and <|endoftext|>. With
+# EOS banned, the model could never terminate generation naturally,
+# forcing every trial to run to the max_new_tokens ceiling regardless of
+# the echoing question this experiment is actually about. Excluding
+# all_special_ids keeps the ban to the 99 genuine PRINTABLE '|'-merges
+# (e.g. '||', '|\n') while leaving EOS and every other control token free.
 vocab = tokenizer.get_vocab()
-BAR_TOKEN_IDS = [i for t, i in vocab.items() if "|" in t]
-print(f"Banned {len(BAR_TOKEN_IDS)} token ids whose surface form contains '|'")
+BAR_TOKEN_IDS = [i for t, i in vocab.items() if "|" in t and i not in set(tokenizer.all_special_ids)]
+print(f"Banned {len(BAR_TOKEN_IDS)} printable token ids whose surface form contains '|' (excluding {len(tokenizer.all_special_ids)} special/control tokens, notably preserving EOS)")
 
 
 class BanTokensLogitsProcessor(LogitsProcessor):
