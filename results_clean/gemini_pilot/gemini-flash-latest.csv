@@ -1,0 +1,241 @@
+Task,Method,Interval,Seq_Length,Axis_Val,Trial,Model,Timestamp_UTC,Input_Given,Ground_Truth,Prompt,Raw_Response,LLM_Output,TAR,SAR,First_Error_Pos,Prompt_Tokens,Candidates_Tokens,Total_Tokens,Error
+cyclic_shift,Base,0,16,4,0,gemini-flash-latest,2026-07-20T01:02:53.003626+00:00,BDAADBCDDDBBACCA,CABBACDAAACCBDDB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",CEBBECDAAACCBDDB,CEBBECDAAACCBDDB,0.875,0.0,1,100,8,108,
+cyclic_shift,Cellular_Bounds,4,16,4,0,gemini-flash-latest,2026-07-20T01:02:54.924847+00:00,CACD|BACA|BDBB|DCCD,DBDA|CBDB|CACC|ADDA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",DBDA|CBDB|CACC|ADDA,DBDACBDBCACCADDA,1.0,1.0,16,104,11,115,
+character_substitution,Base,0,16,4,0,gemini-flash-latest,2026-07-20T01:02:56.842101+00:00,BDAADBCDDDBBACCA,DBCCBDABBBDDCAAC,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",DBCBDBCAAAADDBAA,DBCBDBCAAAADDBAA,0.3125,0.0,3,116,9,125,
+character_substitution,Cellular_Bounds,4,16,4,0,gemini-flash-latest,2026-07-20T01:02:58.747747+00:00,CACD|BACA|BDBB|DCCD,ACAB|DCAC|DBDD|BAAB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",ACAB|DBAC|DADD|BAAB,ACABDBACDADDBAAB,0.875,0.0,5,120,11,131,
+random_permutation,Base,0,16,4,0,gemini-flash-latest,2026-07-20T01:03:00.714516+00:00,BDAADBCDDDBBACCA,CBDDBCABBBCCDAAD,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",CBDDCAABBBCCDBBD,CBDDCAABBBCCDBBD,0.75,0.0,4,116,8,124,
+random_permutation,Cellular_Bounds,4,16,4,0,gemini-flash-latest,2026-07-20T01:03:02.718407+00:00,CACD|BACA|BDBB|DCCD,ADAB|CDAD|CBCC|BAAB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",ADAB|CADA|CBCC|BAAA,ADABCADACBCCBAAA,0.75,0.0,5,120,11,131,
+conditional_shift,Base,0,16,4,0,gemini-flash-latest,2026-07-20T01:03:04.688173+00:00,BDAADBCDDDBBACCA,ACBBCADCCCAABDDB,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",ACBBCABCCCCAABBD,ACBBCABCCCCAABBD,0.625,0.0,6,172,7,179,
+conditional_shift,Cellular_Bounds,4,16,4,0,gemini-flash-latest,2026-07-20T01:03:06.619803+00:00,CACD|BACA|BDBB|DCCD,DBDC|ABDB|ACAA|CDDC,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",DBDC|ABCB|ACAA|CDCC,DBDCABCBACAACDCC,0.875,0.0,6,176,11,187,
+composed_permutation,Base,0,16,4,0,gemini-flash-latest,2026-07-20T01:03:09.139759+00:00,BDAADBCDDDBBACCA,DACCADBAAADDCBBC,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ","To find the final output, we first determine the composed mapping for each character:
+
+1. **A**: Step 1 (A $\rightarrow$ B) $\rightarrow$ Step 2 (B $\rightarrow$ C). So, **A $\rightarrow$ C**.
+2. **B**: Step 1 (B $\rightarrow$ A) $\rightarrow$ Step 2 (A $\rightarrow$ D). So, **B $\rightarrow$ D**.
+3. **C**: Step 1 (C $\rightarrow$ D) $\rightarrow$ Step 2 (D $\rightarrow$ B). So, **C $\rightarrow$ B**.
+4. **D**: Step 1 (D $\rightarrow$ C) $\rightarrow$ Step 2 (C $\rightarrow$ A). So, **D $\rightarrow$ A**.
+
+Summary of composed mapping:
+* A $\rightarrow$ C
+* B $\rightarrow$ D
+* C $\rightarrow$ B
+",Tofindthefinalou,0.0,0.0,0,166,196,362,
+composed_permutation,Cellular_Bounds,4,16,4,0,gemini-flash-latest,2026-07-20T01:03:11.682593+00:00,CACD|BACA|BDBB|DCCD,BCBA|DCBC|DADD|ABBA,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ","To find the final mapping for each character, we apply Step 1 and then Step 2:
+
+*   **A** $\rightarrow$ (Step 1) **B** $\rightarrow$ (Step 2) **C**
+*   **B** $\rightarrow$ (Step 1) **A** $\rightarrow$ (Step 2) **D**
+*   **C** $\rightarrow$ (Step 1) **D** $\rightarrow$ (Step 2) **B**
+*   **D** $\rightarrow$ (Step 1) **C** $\rightarrow$ (Step 2) **A**
+
+So the composite mapping is:
+*   A $\rightarrow$ C
+*   B $\rightarrow$ D
+*   C $\rightarrow$ B
+*   D $\rightarrow$ A
+
+Applying this to the input:
+*   **CACD** $\rightarrow$ BCBA
+*   **BACA",Tofindthefinalma,0.0,0.0,0,170,196,366,
+running_xor,Base,0,16,,0,gemini-flash-latest,2026-07-20T01:03:13.633484+00:00,0011011101101100,0010110011011010,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0011011101101100
+Output: ",0010110011011010,0010110011011010,1.0,1.0,16,190,16,206,
+running_xor,Cellular_Bounds,4,16,,0,gemini-flash-latest,2026-07-20T01:03:15.631262+00:00,0010|1010|1101|0101,0011|1111|1011|1111,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0010|1010|1101|0101
+Output: ",0011|1111|1011|0111,0011111110110111,0.9375,0.0,12,193,19,212,
+running_sum_local,Base,0,16,4,0,gemini-flash-latest,2026-07-20T01:03:17.644462+00:00,3101222131221000,3011300300303100,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window).
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 3101222131221000
+Output: ",3011300300303100,3011300300303100,1.0,1.0,16,161,16,177,
+running_sum_local,Cellular_Bounds,4,16,4,0,gemini-flash-latest,2026-07-20T01:03:19.636884+00:00,0110|2301|0033|2320,0121|2131|1032|1112,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window).
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0110|2301|0033|2320
+Output: ",0121|2131|0032|2112,0121213100322112,0.875,0.0,8,164,19,183,
+copy_previous,Base,0,16,,0,gemini-flash-latest,2026-07-20T01:03:21.568625+00:00,0011011101101100,0001101110110110,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+Example: Input 1011 -> Output 1101 (calculation: 1 (copied), then 1, 0, 1 -- each shifted from the position before)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0011011101101100
+Output: ",0001101110110110,0001101110110110,1.0,1.0,16,180,16,196,
+copy_previous,Cellular_Bounds,4,16,,0,gemini-flash-latest,2026-07-20T01:03:23.468895+00:00,0010|1010|1101|0101,0001|0101|0110|1010,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+Example: Input 1011 -> Output 1101 (calculation: 1 (copied), then 1, 0, 1 -- each shifted from the position before)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0010|1010|1101|0101
+Output: ",0001|1101|1110|0010,0001110111100010,0.8125,0.0,4,183,19,202,
+running_max,Base,0,16,4,0,gemini-flash-latest,2026-07-20T01:03:25.294672+00:00,3101222131221000,3333333333333333,"You are a deterministic sequence transformer.
+Task: Running maximum.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 3101222131221000
+Output: ",3333333333333333,3333333333333333,1.0,1.0,16,117,16,133,
+running_max,Cellular_Bounds,4,16,4,0,gemini-flash-latest,2026-07-20T01:03:27.180168+00:00,0110|2301|0033|2320,0111|2333|3333|3333,"You are a deterministic sequence transformer.
+Task: Running maximum.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0110|2301|0033|2320
+Output: ",0111|2333|3333|2333,0111233333332333,0.9375,0.0,12,120,19,139,

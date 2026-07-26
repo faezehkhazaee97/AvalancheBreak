@@ -1,0 +1,1135 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Modulus,Prompt,Raw_Model_Output
+Base,0,4,0,0010,0011,t,0.0,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0010
+Output: ","t
+0
+1
+1"
+Base,0,4,0,0321,0313,t111,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0321
+Output: ",t111
+Base,0,4,0,4132,4545,4535,0.75,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4132
+Output: ",4535
+Cellular_Bounds,1,4,0,1|1|1|1,1111,1111,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|1
+Output: ",1|1|1|1
+Cellular_Bounds,1,4,0,0|1|1|1,0111,t222,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|1
+Output: ",t|2|2|2
+Cellular_Bounds,1,4,0,4|2|0|1,4201,42f2,0.5,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4|2|0|1
+Output: ",4|2|f|2
+Cellular_Bounds,2,4,0,00|11,0010,t0,0.25,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|11
+Output: ",t|0
+Cellular_Bounds,2,4,0,23|03,2103,2310,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 23|03
+Output: ",23|10
+Cellular_Bounds,2,4,0,40|45,4441,44,0.5,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 40|45
+Output: ",4|4
+Cellular_Bounds,3,4,0,110|0,1010,1101,0.25,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 110|0
+Output: ",110|1
+Cellular_Bounds,3,4,0,212|1,2331,2121,0.5,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 212|1
+Output: ",212|1
+Cellular_Bounds,3,4,0,154|2,1612,17,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 154|2
+Output: ",17
+Base,0,8,0,11011000,10110100,11011s0p,0.375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11011000
+Output: ",11011s0p
+Base,0,8,0,10301123,11331231,1t1h1312,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10301123
+Output: ",1t1h131210
+Base,0,8,0,72514350,71765705,7072636,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 72514350
+Output: ",7072636
+Cellular_Bounds,1,8,0,0|0|1|1|0|1|0|1,00110101,p100p0p0,0.0,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|1|1|0|1|0|1
+Output: ",p|1|0|0|p|0|p|0
+Cellular_Bounds,1,8,0,0|0|3|3|2|2|2|2,00332222,t1001222,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|3|3|2|2|2|2
+Output: ",t|1|0|0|1|2|2|2
+Cellular_Bounds,1,8,0,0|7|3|6|4|1|5|4,07364154,t7364154,0.875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|7|3|6|4|1|5|4
+Output: ",t|7|3|6|4|1|5|4
+Cellular_Bounds,2,8,0,00|01|10|11,00011110,t010,0.125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|01|10|11
+Output: ",t|0|1|0
+Cellular_Bounds,2,8,0,11|13|21|33,12102332,11132133,0.5,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11|13|21|33
+Output: ",11|13|21|33
+Cellular_Bounds,2,8,0,53|66|76|16,50647517,53667617,0.625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 53|66|76|16
+Output: ",53|66|76|17
+Cellular_Bounds,3,8,0,011|000|01,01000001,t11t0pt1,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 011|000|01
+Output: ",t11|t0p|t1
+Cellular_Bounds,3,8,0,322|132|00,31010100,32211300,0.5,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 322|132|00
+Output: ",322|113|00
+Cellular_Bounds,3,8,0,565|635|33,53361036,56563533,0.375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 565|635|33
+Output: ",565|635|33
+Cellular_Bounds,4,8,0,0101|1100,01111010,t111100,0.625,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0101|1100
+Output: ",t111|100
+Cellular_Bounds,4,8,0,2122|0101,23300111,21221222,0.125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 2122|0101
+Output: ",2122|1222
+Cellular_Bounds,4,8,0,6663|4253,64414670,66634476,0.375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 6663|4253
+Output: ",6663|4476
+Base,0,16,0,1000000011100001,1100000010010001,1101001001,0.375,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1000000011100001
+Output: ",1101001001
+Base,0,16,0,3101222131221000,3011300300303100,3112303,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3101222131221000
+Output: ",3112303
+Base,0,16,0,5223457525275707,5745714477714477,50457265726676,0.3125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 5223457525275707
+Output: ",50457265726676
+Cellular_Bounds,1,16,0,1|1|1|1|0|0|1|0|0|0|1|1|1|1|1|0,1111001000111110,111111011111111,0.5625,0.0,4,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|1|0|0|1|0|0|0|1|1|1|1|1|0
+Output: ",1|1|1|1|1|1|0|1|1|1|1|1|1|1|1|
+Cellular_Bounds,1,16,0,1|2|2|3|2|2|2|2|1|1|2|1|1|0|2|3,1223222211211023,12231023,0.3125,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|2|2|3|2|2|2|2|1|1|2|1|1|0|2|3
+Output: ",1|2|2|3|1|0|2|3
+Cellular_Bounds,1,16,0,4|2|3|7|3|5|6|0|2|1|0|2|2|6|5|2,4237356021022652,4237356f21f22652,0.875,0.0,7,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4|2|3|7|3|5|6|0|2|1|0|2|2|6|5|2
+Output: ",4|2|3|7|3|5|6|f|2|1|f|2|2|6|5|2
+Cellular_Bounds,2,16,0,00|00|01|11|01|10|01|01,0000011001110101,ttttsttt,0.0,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|00|01|11|01|10|01|01
+Output: ",t|t|t|t|s|t|t|t
+Cellular_Bounds,2,16,0,00|12|03|32|20|23|02|30,0013033122210233,t3300123,0.0625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|12|03|32|20|23|02|30
+Output: ",t|3|3|0|0|1|2|3
+Cellular_Bounds,2,16,0,16|11|61|30|44|01|17|23,1712673340011025,1617717544513750,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 16|11|61|30|44|01|17|23
+Output: ",16|17|71|75|44|51|37|50
+Cellular_Bounds,3,16,0,101|001|001|011|110|1,1110010010101011,11111111110011s1,0.5,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 101|001|001|011|110|1
+Output: ",111|111|111|100|11s|1
+Cellular_Bounds,3,16,0,033|121|033|211|123|1,0321330322321311,t312t303122,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 033|121|033|211|123|1
+Output: ",t3|12|t3|03|12|2
+Cellular_Bounds,3,16,0,145|757|005|147|573|7,1517440051535427,162724f526512407,0.375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 145|757|005|147|573|7
+Output: ",162|724|f52|651|240|7
+Cellular_Bounds,4,16,0,0101|0001|1011|1000,0111000111101100,t111t01111111111,0.625,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0101|0001|1011|1000
+Output: ",t111|t011|1111|1111
+Cellular_Bounds,4,16,0,0110|2301|0033|2320,0121213100322112,t1212100t3002112,0.5625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0110|2301|0033|2320
+Output: ",t121|2100|t300|2112
+Cellular_Bounds,4,16,0,4302|5507|3470|0525,4732525737370577,475155623416,0.25,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4302|5507|3470|0525
+Output: ",4751|5562|3416|
+Cellular_Bounds,8,16,0,11010101|10000111,1011111111000100,1101110111000011,0.625,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11010101|10000111
+Output: ",11011101|110000111
+Cellular_Bounds,8,16,0,21311113|12011113,2300222013212220,2131111312a11113,0.1875,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 21311113|12011113
+Output: ",21311113|12a11113
+Cellular_Bounds,8,16,0,53146130|63201322,5045274361521454,531461363201322,0.0625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 53146130|63201322
+Output: ",5314613|63201322
+Base,0,32,0,00110011110101010101011011001011,00101010001111111111110110101110,t1011011111111111111111111111111,0.65625,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00110011110101010101011011001011
+Output: ",t|1|0|1|1|0|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+Base,0,32,0,13233321310102321322003210332212,10112213001112113010203131321033,1330322313112322123323221,0.1875,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 13233321310102321322003210332212
+Output: ",1330322313112322123323221
+Base,0,32,0,02724341543655625232574244032763,02116775617132307755743660435151,t2724341543655625232574244r32763,0.0625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 02724341543655625232574244032763
+Output: ",t2724341543655625232574244r32763
+Cellular_Bounds,1,32,0,0|1|1|1|1|1|0|0|0|0|0|1|0|0|0|0|0|0|1|0|0|1|0|0|0|1|1|1|0|0|0|1,01111100000100000010010001110001,t01011sssss1s01111101011111s01,0.3125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|1|1|1|0|0|0|0|0|1|0|0|0|0|0|0|1|0|0|1|0|0|0|1|1|1|0|0|0|1
+Output: ",t|0|1|0|1|1|s|s|s|s|s|1|s|0|1|1|1|1|1|0|1|0|1|1|1|1|1|s|0|1
+Cellular_Bounds,1,32,0,3|0|3|2|3|1|3|3|3|0|1|3|0|0|2|3|2|1|2|1|1|1|2|2|2|1|2|1|0|0|1|2,30323133301300232121112221210012,3p3032333p13pp2332131122213pp12,0.5,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3|0|3|2|3|1|3|3|3|0|1|3|0|0|2|3|2|1|2|1|1|1|2|2|2|1|2|1|0|0|1|2
+Output: ",3|p|3|0|3|2|3|3|3|p|1|3|p|p|2|3|3|2|1|3|1|1|2|2|2|1|3|p|p|1|2
+Cellular_Bounds,1,32,0,7|5|4|4|0|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|0|0|2|4|2|2|4,75440271331257612342263420024224,75447271331257612342263427724224,0.90625,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 7|5|4|4|0|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|0|0|2|4|2|2|4
+Output: ",7|5|4|4|7|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|7|7|2|4|2|2|4
+Cellular_Bounds,2,32,0,11|10|00|00|00|11|00|10|01|00|00|00|01|11|11|11,10110000001000110100000001101010,1111101s1p1s111s111111,0.21875,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11|10|00|00|00|11|00|10|01|00|00|00|01|11|11|11
+Output: ",11|11|10|1s|1p|1s|11|1s|11|11|11
+Cellular_Bounds,2,32,0,21|22|03|20|02|30|22|22|30|22|23|33|21|20|33|23,23200322023320203320213223223221,21221301122312122312153121233123,0.34375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 21|22|03|20|02|30|22|22|30|22|23|33|21|20|33|23
+Output: ",21|22|13|01|12|23|12|12|23|12|15|31|21|23|31|23
+Cellular_Bounds,2,32,0,52|41|77|26|43|63|43|21|34|17|77|76|41|37|02|23,57457620476147233710767545320225,52417726436343213417777641370223,0.53125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 52|41|77|26|43|63|43|21|34|17|77|76|41|37|02|23
+Output: ",52|41|77|26|43|63|43|21|34|17|77|76|41|37|02|23
+Cellular_Bounds,3,32,0,001|010|111|001|101|110|110|000|000|001|11,00101110000111110110100000000110,t11t11t0t11t11t11t11t11t11t11,0.25,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 001|010|111|001|101|110|110|000|000|001|11
+Output: ",t11|t11|t0|t11|t11|t11|t11|t11|t11|t11
+Cellular_Bounds,3,32,0,111|203|312|231|003|102|030|313|002|011|22,12222330321000311203330000201220,111223300233s03132s33313s0211122,0.5625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 111|203|312|231|003|102|030|313|002|011|22
+Output: ",111|223|300|233|s03|132|s33|313|s02|111|22
+Cellular_Bounds,3,32,0,516|626|535|075|577|146|727|364|222|055|37,56760050007454615271131224405232,516626535f75d77146727364222a5537,0.3125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 516|626|535|075|577|146|727|364|222|055|37
+Output: ",516|626|535|f75|d77|146|727|364|222|a55|37
+Cellular_Bounds,4,32,0,0000|0111|1010|0001|1000|0101|1101|1101,00000100111100011100011110111011,t1111t010t1010t1111t1101t0111t11,0.4375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0000|0111|1010|0001|1000|0101|1101|1101
+Output: ",t1111|t010|t1010|t1111|t1101|t0111|t1111|t1111
+Cellular_Bounds,4,32,0,3333|0232|1031|0233|0202|3200|2012|0223,32220211113002120222312022130201,3333p0221n02p022p0223n022n02p222,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3333|0232|1031|0233|0202|3200|2012|0223
+Output: ",3333|p022|1n02|p022|p022|3n02|2n02|p222
+Cellular_Bounds,4,32,0,4663|1263|3431|0637|6533|1713|5136|4335,42411301377406126306100456414760,466312633431f6376533171351364335,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4663|1263|3431|0637|6533|1713|5136|4335
+Output: ",4663|1263|3431|f637|6533|1713|5136|4335
+Cellular_Bounds,8,32,0,10011001|01101010|00111001|01111011,11010101010111110010010101000110,1101111101111111111111,0.46875,0.0,4,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10011001|01101010|00111001|01111011
+Output: ",1101111101111111111111
+Cellular_Bounds,8,32,0,33220033|13130221|12203010|21303032,32102032100032031302331123033331,33320033113212211123011022323232,0.3125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 33220033|13130221|12203010|21303032
+Output: ",33320033|11321221|11230110|22323232
+Cellular_Bounds,8,32,0,43557572|07764772|53274416|45714147,47024441076523615051305741405553,43557572f7d47725327441645714147,0.0625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 43557572|07764772|53274416|45714147
+Output: ",43557572|f7d4772|53274416|45714147
+Cellular_Bounds,16,32,0,1100100101001010|1000110101111101,10101101111011111100101111000011,11101111111,0.28125,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1100100101001010|1000110101111101
+Output: ",11101111111
+Cellular_Bounds,16,32,0,0322020230321101|1212002100322313,03102222133132111333202310310100,t33322233t333011t12220321t333313,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0322020230321101|1212002100322313
+Output: ",t33322233t333011t12220321t333313
+Cellular_Bounds,16,32,0,0513532543646535|0127371370034434,05640057171223000131220427037077,t6240621262426212736,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0513532543646535|0127371370034434
+Output: ",t6240621262426212736
+Base,0,64,0,1101010000001001110010011100011001100101000110001110001000010011,1011111000001101001011010010010101010111100101001001001100011010,1111111011111110111111101111111,0.21875,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1101010000001001110010011100011001100101000110001110001000010011
+Output: ",1111111011111110111111101111111
+Base,0,64,0,3233320222113033300110213133301230222303333323031133333123120021,3112212200320332230121230002231313200133222211330202222031032023,32333220002313332012312,0.140625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3233320222113033300110213133301230222303333323031133333123120021
+Output: ",32333220002313332012312
+Base,0,64,0,7204636774254614464104744440457361246520654366676213070674740155,7124211563671275022514330004414217362372631714455034377653334162,7226103374214254444121444444412361246526654366676213726155,0.125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 7204636774254614464104744440457361246520654366676213070674740155
+Output: ",7226103374214254444121444444412361246526654366676213726155
+Cellular_Bounds,1,64,0,0|0|0|0|0|0|1|1|1|0|0|1|1|0|1|0|0|1|0|0|0|1|1|0|1|0|1|0|0|1|0|1|0|0|1|1|0|0|0|1|0|0|1|1|1|1|1|1|0|1|0|1|1|1|1|0|1|1|0|0|0|0|1|1,0000001110011010010001101010010100110001001111110101111011000011,t11111000t100t11011011011011011011011011011011011011011011,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|0|0|0|0|1|1|1|0|0|1|1|0|1|0|0|1|0|0|0|1|1|0|1|0|1|0|0|1|0|1|0|0|1|1|0|0|0|1|0|0|1|1|1|1|1|1|0|1|0|1|1|1|1|0|1|1|0|0|0|0|1|1
+Output: ",t|1|1|1|1|1|0|0|0|t|1|0|0|t|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|0|1|1|
+Cellular_Bounds,1,64,0,1|3|3|0|0|2|1|2|1|2|0|0|2|1|0|0|0|3|1|2|3|3|1|1|3|1|3|3|3|3|3|1|0|0|0|0|1|2|3|2|3|1|3|0|2|2|3|0|3|0|0|2|3|3|1|2|2|2|3|2|2|0|1|1,1330021212002100031233113133333100001232313022303002331222322011,133ss21313ss21sss212331223331ssss1232313s223s2ss2331222221,0.28125,0.0,3,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|3|3|0|0|2|1|2|1|2|0|0|2|1|0|0|0|3|1|2|3|3|1|1|3|1|3|3|3|3|3|1|0|0|0|0|1|2|3|2|3|1|3|0|2|2|3|0|3|0|0|2|3|3|1|2|2|2|3|2|2|0|1|1
+Output: ",1|3|3|s|s|2|1|3|1|3|s|s|2|1|s|s|s|2|1|2|3|3|1|2|2|3|3|3|1|s|s|s|s|1|2|3|2|3|1|3|s|2|2|3|s|2|s|s|2|3|3|1|2|2|2|2|2|1|
+Cellular_Bounds,1,64,0,2|4|2|3|3|3|6|3|6|7|1|4|5|4|2|6|2|4|0|6|0|7|2|3|3|7|3|7|7|2|7|5|2|4|0|3|3|2|5|7|3|3|7|7|0|4|6|4|4|5|4|0|6|7|0|1|1|3|2|2|1|2|0|2,2423336367145426240607233737727524033257337704644540670113221202,2423336367145426242627377275242335733774644546711322122,0.34375,0.0,18,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 2|4|2|3|3|3|6|3|6|7|1|4|5|4|2|6|2|4|0|6|0|7|2|3|3|7|3|7|7|2|7|5|2|4|0|3|3|2|5|7|3|3|7|7|0|4|6|4|4|5|4|0|6|7|0|1|1|3|2|2|1|2|0|2
+Output: ",2|4|2|3|3|3|6|3|6|7|1|4|5|4|2|6|2|4|2|6|2|7|3|7|7|2|7|5|2|4|2|3|3|5|7|3|3|7|7|4|6|4|4|5|4|6|7|1|1|3|2|2|1|2|2
+Cellular_Bounds,2,64,0,11|00|10|10|00|01|11|01|01|00|01|00|10|00|00|00|01|10|11|10|11|11|10|11|00|00|01|01|10|11|10|10,1000111100011001010001001100000001111011101011100000010111101111,11pstpp11ppppp11ppp11111111111111pppp11111111,0.171875,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11|00|10|10|00|01|11|01|01|00|01|00|10|00|00|00|01|10|11|10|11|11|10|11|00|00|01|01|10|11|10|10
+Output: ",11|p|s|t|p|p|11|p|p|p|p|p|11|p|p|p|11|11|11|11|11|11|11|p|p|p|p|11|11|11|11
+Cellular_Bounds,2,64,0,02|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02,0222131303322333330023310113332022132131301022130133323010332302,t22a1212p33b213a3at02132p1123a222a12233231132a12p13a3331133a21t2,0.5,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 02|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02
+Output: ",t2|2a|12|12|p3|3b|21|3a|3a|t0|21|32|p1|12|3a|22|2a|12|23|32|31|13|2a|12|p1|3a|33|31|13|3a|21|t2
+Cellular_Bounds,2,64,0,46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00,4205332771742457751671711573130262070424352334624343753537141200,46f37575757575757575757575757575757575757575757575757575757,0.203125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00
+Output: ",46|f|3|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7|5|7
+Cellular_Bounds,3,64,0,101|111|001|111|011|001|011|111|000|001|001|010|101|010|111|010|001|100|100|000|011|0,1111000011000100010101000000010010111110111000110011101100000100,1t1111t1p111t11t1p111t1p10101t1p10111t1p10101t1p1010010010111t,0.328125,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 101|111|001|111|011|001|011|111|000|001|001|010|101|010|111|010|001|100|100|000|011|0
+Output: ",1t1|111|t1p|111|t11|t1p|111|t1p|10|101|t1p|10|111|t1p|10|101|t1p|10|100|100|10|111|t
+Cellular_Bounds,3,64,0,122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3,1301003212213303032310120130133311311231220010330110033230233203,1221313322123123122121121121123121221121112123121123123323213313,0.3125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3
+Output: ",122|131|332|212|312|312|212|112|112|112|312|122|112|111|212|312|112|312|332|321|331|3
+Cellular_Bounds,3,64,0,047|133|711|563|262|144|164|651|420|362|705|556|622|175|613|237|012|214|270|773|334|2,0431467025312001501726364623107755236041046742520132352177623672,415602241430751254337233134235503345317426,0.046875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 047|133|711|563|262|144|164|651|420|362|705|556|622|175|613|237|012|214|270|773|334|2
+Output: ",41|56|02|24|14|30|75|12|54|33|72|33|13|42|35|50|33|45|31|74|26|
+Cellular_Bounds,4,64,0,0001|1101|1011|1000|1011|0010|1110|1001|1001|0010|1111|1010|0101|0010|1110|0101,0001101111101100111000111001110111010011100011110111001110010111,t111111111111111111111111111111111111111111111111111111111111111,0.609375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0001|1101|1011|1000|1011|0010|1110|1001|1001|0010|1111|1010|0101|0010|1110|0101
+Output: ",t1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111
+Cellular_Bounds,4,64,0,3332|2301|2210|3303|2203|2020|0211|1101|2203|2130|3230|3113|1000|2303|3210|3121,3221213120313233202322220232121120232303311330201100213331313033,3332231133232222112222332231233322,0.15625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3332|2301|2210|3303|2203|2020|0211|1101|2203|2130|3230|3113|1000|2303|3210|3121
+Output: ",3332|23|11|33|23|22|22|11|22|22|33|22|31|23|33|22
+Cellular_Bounds,4,64,0,1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033,1162242353520667125276612074255325606363631545314142512422500036,1t7022355642o63411527775261623242336651365454134457054652255o066,0.390625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033
+Output: ",1t70|2235|5642|o634|1152|7775|2616|2324|2336|6513|6545|4134|4570|5465|2255|o066
+Cellular_Bounds,8,64,0,11100100|10101011|00000010|01001101|10101110|00101001|00111101|11011001,1001011011111110000000110110101111111001001111010010001110110101,1111001011010111110000001001001101101011110010100100111101111111,0.484375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11100100|10101011|00000010|01001101|10101110|00101001|00111101|11011001
+Output: ",111100101|101011111|00000010|01001101|10101111|00101001|00111101|11111101
+Cellular_Bounds,8,64,0,33231022|11210222|11010313|01110213|20103011|20220323|30211112|21200101,3211012012331200121113000122123022113312222023113323222323320111,3333112211111222111113131111121322111311222213233321111221221011,0.484375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 33231022|11210222|11010313|01110213|20103011|20220323|30211112|21200101
+Output: ",33331122|11111222|11111313|11111213|22111311|22221323|33211112|21221011
+Cellular_Bounds,8,64,0,67353003|13660626|53437451|51167430|04566444|60173340|63066304|35262322,6520030314146600507723165627537304134200661026746136413430700554,67721432258725234f4232674a63593744,0.046875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 67353003|13660626|53437451|51167430|04566444|60173340|63066304|35262322
+Output: ",6772|14322|5872|5234|f4232|674a|6359|3744
+Cellular_Bounds,16,64,0,1011000010110100|1111011000110001|0100100010000101|1011010010110111,1110100011101110100011010010100101101100110001111110111011101100,1111100001111011000011110101111011111011111011111111111111111111,0.609375,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-1 (digits)
+Modulus: 2
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 2.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 2
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1011000010110100|1111011000110001|0100100010000101|1011010010110111
+Output: ",11111000011110110000111101011110111110111110111111111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,16,64,0,0013313103031012|0112032330201013|1200013303001102|3131033332213113,0010200013330113012323112322111013200102333012123000132221030020,t11331313313112t111232333221113121013333001112313133333221113,0.234375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0013313103031012|0112032330201013|1200013303001102|3131033332213113
+Output: ",t11331313313112|t111232333221113|121013333001112|313133333221113
+Cellular_Bounds,16,64,0,6413574561343564|1021540070403762|2464020607071245|0557227275451501,6254043137477032112361407744325026224226677703610524141114116651,6413574561343564113216571434315424640206177713455572272716551601,0.265625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-7 (digits)
+Modulus: 8
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 8.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 8
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as ""previous""), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 6413574561343564|1021540070403762|2464020607071245|0557227275451501
+Output: ",6413574561343564|1132165714343154|2464020617771345|5572272716551601

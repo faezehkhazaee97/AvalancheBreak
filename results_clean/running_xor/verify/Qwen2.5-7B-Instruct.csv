@@ -1,0 +1,378 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Prompt,Raw_Model_Output
+Base,0,4,0,1001,1101,1110,0.5,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1001
+Output: ",1110
+Cellular_Bounds,1,4,0,1|1|1|0,1001,1101,0.75,0.0,1,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|0
+Output: ",1|1|0|1
+Cellular_Bounds,2,4,0,10|01,1101,1110,0.5,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 10|01
+Output: ",11|10
+Cellular_Bounds,3,4,0,000|0,0000,t1,0.0,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 000|0
+Output: ",t1
+Base,0,8,0,10010011,11011010,1111111,0.625,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 10010011
+Output: ",1111111
+Cellular_Bounds,1,8,0,0|0|0|1|1|0|0|1,00010101,t11s1t1,0.0,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|0|1|1|0|0|1
+Output: ",t|1|1|s|1|t|1
+Cellular_Bounds,2,8,0,11|01|11|01,10110011,11111010,0.625,0.0,1,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 11|01|11|01
+Output: ",11|11|10|10
+Cellular_Bounds,3,8,0,100|011|11,11001000,111100,0.375,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 100|011|11
+Output: ",111|10|0
+Cellular_Bounds,4,8,0,1001|1111,11010000,11101001,0.5,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1001|1111
+Output: ",1110|1001
+Base,0,16,0,0011011101101100,0010110011011010,1110111011111,0.5625,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0011011101101100
+Output: ",1110111011111
+Cellular_Bounds,1,16,0,0|0|0|0|1|0|1|0|0|1|0|0|1|1|0|0,0000111101101010,t11s11s11s11s11s,0.3125,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|0|0|1|0|1|0|0|1|0|0|1|1|0|0
+Output: ",t|1|1|s|1|1|s|1|1|s|1|1|s|1|1|s
+Cellular_Bounds,2,16,0,01|01|11|00|10|10|11|11,0111001011111000,1111011110011110,0.5625,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 01|01|11|00|10|10|11|11
+Output: ",11|11|01|11|10|01|11|10
+Cellular_Bounds,3,16,0,011|000|110|110|011|1,0101001011010100,111s11s1ss1s111,0.125,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 011|000|110|110|011|1
+Output: ",111|s11|s1s|s1s|111|
+Cellular_Bounds,4,16,0,0010|1010|1101|0101,0011111110111111,11111110111,0.4375,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0010|1010|1101|0101
+Output: ",111|111|10|111
+Cellular_Bounds,8,16,0,01001110|11000110,0110100110100101,1110111011001110,0.4375,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 01001110|11000110
+Output: ",11101110|11001110
+Base,0,32,0,10111000001100111100100011110100,11100100001010100010110010001110,111111111111111,0.21875,0.0,3,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 10111000001100111100100011110100
+Output: ",111111111111111
+Cellular_Bounds,1,32,0,1|1|0|1|0|0|1|1|1|0|0|1|0|1|1|1|0|1|1|0|0|1|0|1|0|0|1|1|1|1|1|1,10111010010111001101011110100000,11s1sss1sssssssssssssssssssssss,0.0625,0.0,1,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|0|1|0|0|1|1|1|0|0|1|0|1|1|1|0|1|1|0|0|1|0|1|0|0|1|1|1|1|1|1
+Output: ",1|1|s|1|s|s|s|1|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s
+Cellular_Bounds,2,32,0,01|11|10|00|11|00|00|11|11|00|11|01|01|10|00|11,01000100101000100010101111010010,11111s1n11111s1n11111s1n11111s1n,0.34375,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 01|11|10|00|11|00|00|11|11|00|11|01|01|10|00|11
+Output: ",11|11|1s|1n|11|11|1s|1n|11|11|1s|1n|11|11|1s|1n
+Cellular_Bounds,3,32,0,001|001|110|010|000|110|100|111|000|000|11,00110100101100010111010010000010,t1s0111s11111111111111111111,0.3125,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 001|001|110|010|000|110|100|111|000|000|11
+Output: ",t1|s0|111|s1|111|111|111|111|111|111|1
+Cellular_Bounds,4,32,0,1001|1011|0010|1011|0110|1111|1111|0111,11010110101111101101100000001100,11111111111111111111111111111111,0.53125,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1001|1011|0010|1011|0110|1111|1111|0111
+Output: ",1111|1111|1111|1111|1111|1111|1111|1111
+Cellular_Bounds,8,32,0,00011101|01111011|01101000|10000010,00010011110001101101110011000011,11111111111111111111111111111111,0.5,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00011101|01111011|01101000|10000010
+Output: ",11111111|11111111|11111111|11111111
+Cellular_Bounds,16,32,0,1111101011011010|1000010100000001,10000111101101111100011110000001,11111111111111111111111111111111,0.53125,0.0,1,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1111101011011010|1000010100000001
+Output: ",11111111111111111111111111111111111111111111111111111111111111111111
+Base,0,64,0,1001111100001110010111100100010100111111111100010001100100101000,1101000010001001011100010110011110100000000010011001010110111100,1110111111111111111111111111111111111111111111111111111111111111,0.421875,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1001111100001110010111100100010100111111111100010001100100101000
+Output: ",11101111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,1,64,0,0|1|1|0|1|1|0|1|0|1|1|0|0|0|0|1|0|1|0|0|1|0|1|1|0|0|1|0|1|0|0|0|1|0|1|0|1|1|1|1|1|0|0|0|1|0|1|0|0|0|1|1|0|0|0|0|0|0|1|1|1|1|1|1,0101101111010001111011101011110011111000010011110010100000100000,t10s10s1s10s11s1011111s101s1011010111111,0.296875,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|0|1|1|0|1|0|1|1|0|0|0|0|1|0|1|0|0|1|0|1|1|0|0|1|0|1|0|0|0|1|0|1|0|1|1|1|1|1|0|0|0|1|0|1|0|0|0|1|1|0|0|0|0|0|0|1|1|1|1|1|1
+Output: ",t|1|0|s|1|0|s|1|s|1|0|s|1|1|s|1|0|1|1|1|1|1|s|1|0|1|s|1|0|1|1|0|1|0|1|1|1|1|1|1
+Cellular_Bounds,2,64,0,01|00|10|11|10|01|11|01|11|11|00|00|10|00|00|10|11|01|00|10|01|11|11|11|01|01|11|11|10|00|00|10,0110111001010011000010001100001110111011010000001111000001000011,1ssss1ssssssssssssssssssssssssssssssssssssssssssssssssssss,0.015625,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 01|00|10|11|10|01|11|01|11|11|00|00|10|00|00|10|11|01|00|10|01|11|11|11|01|01|11|11|10|00|00|10
+Output: ",1|s|s|s|s|1|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|s|
+Cellular_Bounds,3,64,0,001|100|010|110|101|100|000|110|010|011|100|000|010|001|011|011|011|110|111|101|010|0,0010100111011110100001010110100100000110011101101100011000111110,t1111s011011111011s01t01111101111101t01t11101t111111010100,0.4375,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 001|100|010|110|101|100|000|110|010|011|100|000|010|001|011|011|011|110|111|101|010|0
+Output: ",t111|1s01|101|111|101|1s01|t01|111|101|111|101|t01|t11|101|t11|111|101|010|0
+Cellular_Bounds,4,64,0,1010|0011|1100|0011|1110|0101|0101|0101|1111|1011|0011|0101|1011|1111|0100|1010,1111001000100010000101111111111100000110101011110110000011101111,111111111111111111111111111111111111111111111111111111111111,0.5,0.0,4,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1010|0011|1100|0011|1110|0101|0101|0101|1111|1011|0011|0101|1011|1111|0100|1010
+Output: ",1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111
+Cellular_Bounds,8,64,0,10010011|00101110|11101110|10100110|11011100|00111111|00011100|01011000,1101101010111001100110011111010110110010001000001001001001110100,11111111111111111111111111111111111111111111111111111111,0.4375,0.0,2,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 10010011|00101110|11101110|10100110|11011100|00111111|00011100|01011000
+Output: ",11111111|11111111|11111111|11111111|11111111|11111111|11111111
+Cellular_Bounds,16,64,0,0001001001001110|0111111000011000|0101010010000011|0011100010101000,0001101101101001010000010001010001111110110000101010010011111100,t111011111111111111111111111111111111111111111111111111111111111,0.453125,0.0,0,"You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0001001001001110|0111111000011000|0101010010000011|0011100010101000
+Output: ",t1110111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111

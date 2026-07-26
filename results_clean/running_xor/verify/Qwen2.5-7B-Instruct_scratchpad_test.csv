@@ -1,0 +1,3152 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,Found_Answer_Marker,Raw_Model_Output
+Base,0,4,0,1001,1101,1111,0.75,0.0,True,"Step-by-step:
+pos0: input=1, no previous digit, output=1
+pos1: input=t, previous=1, t⊕1=1
+pos2: input=h, previous=t, h⊕t=1
+pos3: input=e, previous=h, e⊕h=1
+pos4: input=p, previous=e, p⊕e=1
+pos5: input=1, previous=p, 1⊕p=1
+Answer: 11111"
+Base,0,4,1,1100,1010,1111,0.5,0.0,True,"Step-by-step:
+pos0: input=1, no previous digit, output=1
+pos1: input=1, previous=1, 1⊕1=1
+pos2: input=1, previous=1, 1⊕1=1
+pos3: input=1, previous=1, 1⊕1=1
+pos4: input=1, previous=1, 1⊕1=1
+Answer: 1111"
+Cellular_Bounds,1,4,0,1|1|1|0,1001,,0.0,0.0,False,"Step-by-step:
+pos1: input=1, no previous digit, output=1
+pos2: input=1, previous=1, 1⊕1=|
+pos3: input=1, previous=1, 1⊕1=|
+pos4: input=1, previous=1, 1⊕1=|
+pos5: input=1, previous=1, 1⊕1=|
+pos6: input=1, previous=1, 1⊕1=|
+pos7: input=1, previous=1, 1⊕1=|
+pos8: input=1, previous=1, 1⊕1=|
+pos9"
+Cellular_Bounds,1,4,1,1|0|0|1,1101,,0.0,0.0,False,"Step-by-step:
+pos1: input=1, no previous digit, output=1
+pos2: input=|, previous=1, |⊕1=|
+pos3 input=t, previous=|, t⊕|=t
+pos4 input=h, previous=t, h⊕t=1
+pos5 input=e, previous=h, e⊕h=1
+pos6 input=n, previous=e, n⊕1=1
+pos7 input=|, previous=n, |⊕1=|
+pos8 input=t, previous=|, t⊕|=t
+pos9 input=h, previous=t, h⊕t=1
+pos10 input=e, previous"
+Cellular_Bounds,2,4,0,10|01,1101,1,0.25,0.0,True,"Step-by-step:
+pos0: input=1, no previous digit, output=1
+pos1: input=, previous=1,  ⊕1=1
+pos2: input=h, previous=,  h⊕=h
+pos3: input|i, previous=h, i⊕h=i
+pos4: input=1, previous|i, 1⊕i=1
+Answer: 1sii1"
+Cellular_Bounds,2,4,1,10|00,1100,,0.0,0.0,False,"Let'll go through the step-by-step process for the given input ""1t|1p"".
+
+### Step-by-step:
+
+1. **pos0**:**
+   - Input: `1`
+   - No previous digit, so output = `1`
+
+2. **pos1:**
+   - Input. `t`
+   - Previous = `1`
+   - Output = `t ⊕ 1` = `1` (since 't' is treated as 1 in binary context)
+
+3. **pos2:**
+   - Input. `|`
+   - Previous = `1`
+   - Output = `|` (boundary, so it's copied unchanged)
+
+4."
+Cellular_Bounds,3,4,0,000|0,0000,,0.0,0.0,False,"Step-by-step:
+pos0: input= t, no previous digit, output= t
+pos1: input= o, previous= t, o ⊕ t = 1
+pos2: input= p, previous= o, 1 ⊕ o = 0
+pos3: input= 0, previous=1,  t ⊕ 1 = 1
+pos4: input= 0, previous=t,  1 ⊕ t = 0
+pos5: input= 0, previous= 1,  1 ⊕ 1 =  t
+pos6: input= 0, previous=  t,  t"
+Cellular_Bounds,3,4,1,011|0,0101,,0.0,0.0,False,"Step-by-step:
+pos0: input= t, no previous digit, output= t
+pos1: input=1, previous= t, 1 ⊕ t = 1
+pos2: input=1, previous=1, 1 ⊕ 1 = 0
+pos3: input=1, previous=1, 1 ⊕ 1 =  1
+pos4| input=, previous=1, no previous digit within boundary, output= |
+pos5| input=s, previous=,  s ⊕ | = |
+
+Answer: t1  1|"
+Base,0,8,0,10010011,11011010,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `1t1p1t1b1`
+
+**Step-by-step:**
+
+1. **pos0:** 
+   - Input = `1`
+   - No previous digit, so output = `1`
+   
+2. **pos1:** 
+   - Input = `t`
+   - Previous = `1`
+   - Output = `1 ⊕ t = t` (since we skip vertical bars)
+
+3. **pos2:** 
+   - Input = `1`
+   - Previous = `t`
+   - Output = `1 ⊕ t = 1`
+
+4. **pos3:** 
+   - Input = `p`
+   - Previous = `1`
+   - Output = `p ⊕ 1 = p`
+
+5. **pos4:** 
+   - Input = `1`
+   - Previous = `p`
+   - Output = `1 ⊕ p = 1`
+
+6. **pos5:** 
+   - Input = `t`
+   - Previous"
+Base,0,8,1,01011111,01110000,11111111,0.375,0.0,True,"Let1: input=1, no previous digit, output=1
+pos1: input=1, previous=, 1⊕=1
+pos2: input=t, previous=1, t⊕1=1
+pos3: input=1, previous=t, 1⊕t=1
+pos4: input=1, previous=1, 1⊕1=0
+pos5: input=1, previous=1, 1⊕1=1
+pos6: input=1, previous=1, 1⊕1=1
+pos11: input=1, previous=1, 1⊕1=1
+Answer: 11111111"
+Cellular_Bounds,1,8,0,0|0|0|1|1|0|0|1,00010101,,0.0,0.0,False,"Let'll go through the step-by-step process for the given input:
+
+**Input:** ` t | 1 | t | 1 | 1 | t | t | 1`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t`
+   - No previous digit, so output = `t`
+
+2. **pos1:**
+   - Input. `1`
+   - Previous = `t`, but `1 ⊕ t = 1` (since `t` is treated as 0)
+
+3. **pos2:**
+   - Input. `t`
+   - Previous = `1`, but `t` is treated as  1, so `t ⊕ 1 = t`
+
+4. **pos3:**
+   - Input. `1`
+   - Previous = `t`, but `1 ⊕ t = 1`
+
+5. **pos4:**
+   - Input. `1`
+   - Previous = `1`, so `1 ⊕ 1 = 0`
+
+6. **"
+Cellular_Bounds,1,8,1,1|0|0|0|0|0|0|0,11000000,,0.0,0.0,False,"Let'll go through the step-by-step process for the given input:
+
+**Input:** `1|t|r|t|r|t|r`
+
+**Step-by-step:**
+
+- **pos1:** `input=1`, no previous digit, so output=`1`
+- **pos2:** `input=t`, previous=`1`, `t⊕1` (where `t` is treated as `1`) -> `0`
+- **pos3:** `input=r`, previous=`1`, `r⊕1` (where `r` is treated as `1`) -> ` t`
+- **pos4:** `input=t`, previous=`1`, `t⊕1` (where `t` is treated as `1`) -> ` 1`
+- **pos5:** `input=r`, previous=`1`, `r⊕1` (where `r` is treated as `1`) -> ` t`
+- **pos6:** `input=t`, previous=`1`, `t⊕1` (where `t` is treated as `1`) -> ` 1"
+Cellular_Bounds,2,8,0,11|01|11|01,10110011,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `11|01|11|s1`
+
+**Step-by-step:**
+
+- **pos0:** 
+  - Input = `1`
+  - No previous digit, so output = `1`
+  
+- **pos1:**
+  - Input = `1`
+  - Previous = `1`
+  - Output = `1` ⊕ `1` = `0`
+  
+- **pos2:**
+  - Input = `1`
+  - Previous = `1`
+  - Output = `1` ⊕ `1` = `8`
+  
+- **pos3:**
+  - Input = `|`
+  - Previous = `8`
+  - Output = `|` (unchanged)
+  
+- **pos4:**
+  - Input = `w`
+  - Previous = `|`
+  - Output = `w` ⊕ `|` = `1`
+  
+- **pos5:**
+  - Input = `1`
+  - Previous ="
+Cellular_Bounds,2,8,1,00|01|11|01,00010011,,0.0,0.0,False,"Let'll go through the input step by step, following the rules provided:
+
+### Step-by--step Calculation:
+
+**Initial Input:**  
+`  t | 0 | 1 | 1 | 1 | s | 1`
+
+**Position 0:**
+- Current input: `t`: No previous digit, so output is `t`.
+- Output: `t`
+
+**Position 1:**
+- Current input: `|`: Previous was `t`, but we skip the bar.
+- Output: `|`
+
+**Position 2:**
+- Current input: `t`: Previous was `|`, so `t ⊕ | = t`.
+- Output: `t`
+
+**Position 3:**
+- Current input: `|`: Previous was `t`, so `| ⊕ t = 1`.
+- Output: `1`
+
+**Position 4:**
+- Current input `1`: Previous was `|`, so `1 ⊕ | = 1`.
+- Output `1`
+
+**Position 5:**
+- Current input `1`: Previous was"
+Cellular_Bounds,3,8,0,100|011|11,11001000,,0.0,0.0,False,"Let'll go through the input step by step, following the rules provided:
+
+### Step-by-step Calculation:
+
+1. **Position 0**:
+   - Input: `1`
+   - No previous digit, so output = `1`
+   
+2. **Position 1**:
+   - Input. `t`
+   - Previous = `1`, but ⊕ 1 = `1`
+   
+3. **Position 1**:
+   - Input. `h`
+   - Previous = `1`, 1 ⊕ 1 = `0`
+   
+4. **Position |**:
+   - Input. `|`
+   - Previous = `8`, | ⊕ | = `|`
+   
+5. **Position 1**:
+   - Input. `1`
+   - Previous = `|`, 1 ⊕ | = `1`
+   
+6. **Position 1**:
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = `1`
+   
+7. **Position 1**:
+   - Input. `"
+Cellular_Bounds,3,8,1,001|111|10,00100001,,0.0,0.0,False,"Let'll go through the input step by step, following the rules provided:
+
+**Input:** ` t | 1 | 1 1 1 | 1 s`
+
+**Step-by-step:**
+
+1. **pos0:** 
+   - Input: `t` (first character, no previous digit)
+   - Output: `t` (copied as-is)
+
+2. **pos1:** 
+   - Input. `|`
+   - Previous. `t`
+   - Output. `|` (unchanged boundary)
+
+3. **pos2:** 
+   - Input. `1`
+   - Previous. `|`
+   - Output. `1` (1 ⊕ | = 1)
+
+4. **pos3:** 
+   - Input. `1`
+   - Previous. `1`
+   - Output. `0` (1 ⊕ 1 = 0)
+
+5. **pos4:** 
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1` (1 ⊕ 1 = 1)
+
+"
+Cellular_Bounds,4,8,0,1001|1111,11010000,,0.0,0.0,False,"Let'll go through the input step by step, following the rules provided:
+
+**Input:** `1t1p1|1111`
+
+**Step-by-step:**
+
+- **pos0:** 
+  - Input = `1`
+  - No previous digit, so output = `1`
+  
+- **pos1:** 
+  - Input = `t`
+  - Previous = `1`
+  - Output = `t ⊕ 1` = `1` (since 't' is treated as 1 in binary context for XOR operation)
+
+- **pos2:** 
+  - Input = `1`
+  - Previous = `t` (which is 1 in binary context)
+  - Output = `1 ⊕ 1` = `0` (which ⊕ 1 = 0)
+
+- **pos3:** 
+  - Input = `p`
+  - Previous = `1`
+  - Output = `p ⊕ 1` = `1` (since 'p' is treated as 1 in binary context for XOR operation)
+
+"
+Cellular_Bounds,4,8,1,1000|1001,11001101,11111111,0.625,0.0,True,"Let will be treated as a boundary and copied as-is without step-by-step.
+
+Step-by-step:
+pos0: input=1, no previous digit, output=1
+pos1: input=, previous=1,  ⊕1=1
+pos2: input=h, previous=,  h⊕=h
+pos3: input=p, previous=h, p⊕h=1
+pos4: input=0, previous=p, 0⊕1=1
+pos5: input=|, previous=8, |⊕8=|
+pos6: input=1, previous=|, 1⊕|=1
+pos7: input=t, previous=1, t⊕1=1
+pos8: input=h, previous=t, h⊕1=1
+pos9: input=e, previous=h, e⊕h=1
+pos10: input=1, previous=e, 1⊕1=
+
+Answer: 1111|1111"
+Base,0,16,0,0011011101101100,0010110011011010,,0.0,0.0,False,"Let'll go through the step-by-step process for the given input:
+
+**Input:** ` t | 0 | 1 | 1 | s | 1 | 1 | 1 | s | 1 | 1 | s | 1 | 1 | s |`
+
+**Step-by-step:**
+
+1. **pos t**: input=`t`, no previous digit, output=`t`
+2. **pos |** input=`|`, no previous digit, output=`|`
+3. **pos 1** input=`1`, previous=`t`, `1 ⊕ t = 1`
+4. **pos 1** input=`1`, previous=`1`, `1 ⊕ 1 = 0`
+5. **pos 1** input=`1`, previous=`1`, `1 ⊕ 1 =  s`
+6. **pos s** input=`s`, previous=`1`, `s ⊕ 1 = 1`
+7. **pos 1** input=`1`, previous=`s`, `1 ⊕ s = 1`
+8. **pos 1** input=`1`, previous=`1`, `1 ⊕ 1 = 1`
+9. **pos 1** input=`1`, previous=`1`, `1 ⊕ 1 = 1`
+10. **pos 1** input=`1`, previous=`1`, `1 ⊕ 1 = 1`
+12. **pos s** input=`s`, previous=`1`, `s ⊕ 1 = 1`
+13. **pos 1** input=`1`, previous=`s`, `1 ⊕ s = 1`
+14. **pos 1** input=`1`, previous=`1`, `1 ⊕ 1 = 1`
+15. **pos "
+Base,0,16,1,0001110111110110,0001001100001101,,0.0,0.0,False,"Let'll go through the step-by-step process for the given input:
+
+**Input:** ` t | 0 | 0 | 0 | 1 | 1 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | s`
+
+**Step-by-step:**
+
+1. **pos0:** 
+   - Input: `t` (no previous digit, so it's copied as-is)
+   - Output: `t`
+
+2. **pos1:** 
+   - Input. `|` (structural boundary, so it's copied as-is)
+   - Output. `|`
+
+3. **pos2:** 
+   - Input. `t`
+   - Previous. `|`
+   - Output. `t` ⊕ `|` = `t` (XOR of a binary digit with a boundary is the digit itself)
+
+4. **pos3:** 
+   - Input. ` `
+   - Previous. `t`
+   - Output. ` ` ⊕ `t` = `1` (since space is treated as '0' in binary context)
+
+5. **pos4:** 
+   - Input. `0`
+   - Previous. ` `
+   - Output. `1` ⊕ ` ` = `1`
+
+6. **pos5:** 
+   - Input. `0`
+   - Previous. `1`
+   - Output. `1` ⊕ `1` = `0`
+
+7. **pos6:** 
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1` ⊕ `1` = `8` (since '1' ⊕ '1' = '0')
+
+8. **pos7:** 
+   - Input. `1`
+   - Previous. `8`
+   - Output. `1` �"
+Cellular_Bounds,1,16,0,0|0|0|0|1|0|1|0|0|1|0|0|1|1|0|0,0000111101101010,,0.0,0.0,False,"Letos
+pos0: input= t, no previous digit, output= t
+pos1: input= |, previous= t, | ⊕ t = |
+pos2: input= o, previous= |, o ⊕ | = o
+pos3: input= |, previous= o, | ⊕ o = |
+pos4: input= n, previous= |, n ⊕ | = n
+pos5: input= |, previous= n, | ⊕ n = |
+pos6: input= 1, previous= |, 1 ⊕ | = 1
+pos7: input= |, previous= 1, | ⊕ 1 = |
+pos8: input= 0, previous= |, 1 ⊕ | = 1
+pos9: input= |, previous= 1, | ⊕ 1 = |
+posa: input= 0, previous= |, 1 ⊕ | = 1
+posb: input= |, previous= 1, | ⊕ 1 = |
+posc: input= 1, previous= |, 1 ⊕ | = 1
+posd: input= |, previous= 1, | ⊕ 1 = |
+pose: input= 1, previous= |, 1 ⊕ | = 1
+posf: input= |, previous= 1, | ⊕ 1 = |
+pos10 input= 0, previous= |, 1 ⊕ | = 1
+pos11 input= |, previous= 1, | ⊕ 1 = |
+pos12 input= 0, previous= |, 1 ⊕ | = 1
+pos13 input= |, previous= 1, | �"
+Cellular_Bounds,1,16,1,0|1|1|0|1|0|0|0|1|0|1|1|0|0|0|0,0101110011101000,,0.0,0.0,False,Letoseteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposeteposetepos
+Cellular_Bounds,2,16,0,01|01|11|00|10|10|11|11,0111001011111000,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t1|t1|11|t0|1t|1t|11|11`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t` (first digit, no previous digit)
+   - Output: `t` (copied as-is)
+
+2. **pos1:**
+   - Input. `1`
+   - Previous. `t`
+   - Output. `1 ⊕ t = 1` (since `t` is treated as `0` for XOR operation)
+
+3. **pos2:**
+   - Input. `t`
+   - Previous. `1`
+   - Output. `t ⊕ 1 = 1`
+
+4. **pos3:**
+   - Input. `1`
+   - Previous. `t`
+   - Output. `1 ⊕ 1 = 0`
+
+5. **pos4:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1 ⊕ 1 = 0`
+
+6. **pos5:**
+   - Input. `t`
+   - Previous. `1`
+   - Output. `t ⊕ 1 = 1`
+
+7. **pos6:**
+   - Input. `1`
+   - Previous. `t`
+   - Output. `1 ⊕ t = 1`
+
+8. **pos7:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1 ⊕ 1 =  1`
+
+9. **pos8:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1 ⊕ 1 =  1`
+
+**Answer"
+Cellular_Bounds,2,16,1,01|10|11|11|00|01|10|10,0101100010010111,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t1|1s|11|11|s0|s1|1s|1t`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t`
+   - No previous digit, so output = `t`
+
+2. **pos1:**
+   - Input. `1`
+   - Previous = `t`, 1 ⊕ t = 1
+
+3. **pos2:**
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = s
+
+4. **pos3:**
+   - Input. `|`
+   - Previous = `s`, | = |
+
+5. **pos4:**
+   - Input. `s`
+   - Previous = `|`, s ⊕ | = s
+
+6. **pos5:**
+   - Input. `1`
+   - Previous = `s`, 1 ⊕ s = 1
+
+7. **pos6:**
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = 1
+
+8. **pos7:**
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = s
+
+9. **pos8:**
+   - Input. `1`
+   - Previous = `s`, 1 ⊕ s = 1
+
+10. **pos9:**
+    - Input. `t`
+    - Previous = `1`, t ⊕ 1 = t
+
+**Answer:** `t1ss1111t`"
+Cellular_Bounds,3,16,0,011|000|110|110|011|1,0101001011010100,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t11|000|11s|11s|t11|1`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t` (no previous digit, so it's copied as-is)
+   - Output: `t`
+
+2. **pos1:**
+   - Input. `1`
+   - Previous. `t`
+   - Output. `1 ⊕ t = 1` (since `t` is treated as `0` for XOR operation)
+
+3. **pos2:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1 ⊕ 1 = 0`
+
+4. **pos3:**
+   - Input. `1`
+   - Previous. ` 1`
+   - Output. `1 ⊕ 1 = 1`
+
+5. **pos4:**
+   - Input. `|`
+   - Previous. `1`
+   - Output. `|` (unchanged)
+
+6. **pos5:**
+   - Input. `s`
+   - Previous. `|`
+   - Output. `s ⊕ | = s` (unchanged)
+
+7. **pos6:**
+   - Input. `s`
+   - Previous. `s`
+   - Output. `s ⊕ s = 1`
+
+8. **pos7:**
+   - Input. `1`
+   - Previous. `s`
+   - Output. `1 ⊕ s = 1`
+
+9. **pos8:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1 ⊕ 1 = 1`
+
+10. **pos9:**
+   -"
+Cellular_Bounds,3,16,1,100|110|101|010|101|0,1101011111111111,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `1t0|11s|1t1|s1t|1t1|s`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `1`, no previous digit, so output = `1`
+   
+2. **pos1:**
+   - Input. `t`, previous = `1`, `t` ⊕ `1` = `1`
+   
+3. **pos2:**
+   - Input. `h`, previous = `t`, `h` ⊕ `t` = `1`
+   
+4. **pos3:**
+   - Input. `d`, previous = `h`, `s` ⊕ `h` = `1`
+   
+5. **pos4:**
+   - Input. `|`, previous = `s`, skip it, output = `|`
+   
+6. **pos5:**
+   - Input. `1`, previous = `|`, `1` ⊕ `|` = `1`
+   
+7. **pos6:**
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+   
+8. **pos7:**
+   - Input. `s`, previous = `1`, `s` ⊕ `1` = `1`
+   
+9. **pos8:**
+   - Input. `|`, previous = `s`, skip it, output = `|`
+   
+10. **pos9:**
+    - Input. `1`, previous = `|`, `1` ⊕ `|` = `1`
+    
+12. **pos10:**
+    - Input. `t`, previous = `1`, `t` ⊕ `1` ="
+Cellular_Bounds,4,16,0,0010|1010|1101|0101,0011111110111111,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t | 1 0 1  t | 1 s 1 t | 1 1 s 1 | t 1 s 1`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t`
+   - No previous digit, so output = `t`
+
+2. **pos1:**
+   - Input. `|`
+   - Previous = `t`, output = `|`
+
+3. **pos2:**
+   - Input. `1`
+   - Previous = `|`, output = `1` (XOR of `1` and `|` is `1`)
+
+4. **pos3:**
+   - Input. ` `
+   - Previous = `1`, output = ` ` (XOR of ` ` and `1` is ` `)
+
+5. **pos4:**
+   - Input. `1`
+   - Previous = ` `, output = `1` (XOR of `1` and ` ` is `1`)
+
+6. **pos5:**
+   - Input. `t`
+   - Previous = `1`, output = `t` (XOR of `t` and `1` is `t`)
+
+7. **pos6:**
+   - Input. `|`
+   - Previous = `t`, output = `|`
+
+8. **pos7:**
+   - Input. `1`
+   - Previous = `|`, output = `1` (XOR of `1` and `|` is `1`)
+
+9. **pos8:**
+   - Input. `s`
+   - Previous = `1`, output = `s` (XOR of `s` and `1` is `s`)
+
+"
+Cellular_Bounds,4,16,1,0110|1011|0001|1101,0101111010010011,,0.0,0.0,False,"Letos
+ pos0: input=1, no previous digit, output=1
+ pos1: input=1, previous=1, 1⊕1=t
+os
+ pos2: input=1, previous=1, 1⊕1=n
+os
+"
+Cellular_Bounds,8,16,0,01001110|11000110,0110100110100101,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t1t0b111|11s0011s`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t` (first character, no previous digit)
+   - Output: `t` (copied as-is)
+
+2. **pos1:**
+   - Input. `1`
+   - Previous. `t`
+   - Output. `1 ⊕ t` (since `t` is a boundary, it remains unchanged)
+   - Output. `1`
+
+3. **pos2:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1 ⊕ 1` = `0`
+
+4. **pos3:**
+   - Input. `t`
+   - Previous. `1`
+   - Output. `t ⊕ 1` (since `t` is a boundary, it remains unchanged)
+   - Output. `t`
+
+5. **pos4:**
+   - Input. `b`
+   - Previous. `t`
+   - Output. `b ⊕ t` (since `t` is a boundary, it remains unchanged)
+   - Output. `b`
+
+6. **pos5:**
+   - Input. `1`
+   - Previous. `b`
+   - Output. `1 ⊕ b` (since `b` is a boundary, it remains unchanged)
+   - Output. `1`
+
+7. **pos6:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `1 ⊕ 1` = `0`
+
+8. **pos7:**
+   - Input. `1`
+   - Previous. `1`
+   - Output. `"
+Cellular_Bounds,8,16,1,01111000|11101010,0100010010011111,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t1111s0p0|111s1t1`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t`
+   - No previous digit, so output = `t`
+
+2. **pos1:**
+   - Input. `1`
+   - Previous = `t`, 1 ⊕ t = 1
+
+3. **pos2:**
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = s
+
+4. **pos3:**
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = 1
+
+5. **pos4:**
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = 1
+
+6. **pos5:**
+   - Input. `1`
+   - Previous = `1`, 1 ⊕ 1 = s
+
+7. **pos6:**
+   - Input. `s`
+   - Previous = `1`, s ⊕ 1 = s
+
+8. **pos7:**
+   - Input. `s`
+   - Previous = `s`, s ⊕ s = p (since s ⊕ s = 0)
+
+9. **pos8:**
+   - Input. `p`
+   - Previous = `s`, p ⊕ s = p
+
+10. **pos9:**
+    - Input. `|`
+    - Previous = `p`, | ⊕ p = |
+
+12. **pos10:**
+    - Input. `1`
+    - Previous = `|`, 1 ⊕ | = 1
+
+13. **pos1"
+Base,0,32,0,10111000001100111100100011110100,11100100001010100010110010001110,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars (`|`) unchanged.
+
+### Step-by-step:
+
+**Position 0:**
+- Input: = 1, no previous digit, so output = 1
+
+**Position 1:**
+- Input = t, previous = 1, t ⊕ 1 = 1
+- Output = 11
+
+**Position 2:**
+- Input = h, previous = 1, h ⊕ 1 = 1
+- Output = 111
+
+**Position 3:**
+- Input = e, previous = 1, e ⊕ 1 = 1
+- Output = 1111
+
+**Position 4:**
+- Input = 1, previous = e, 1 ⊕ e = 1
+- Output = 11111
+
+**Position 5:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 0
+- Output = 11111
+
+**Position 6:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 111111
+
+**Position 7:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 1111111
+
+**Position 8:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 11111111
+
+**Position 9:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 111111111
+
+**Position 10:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 1111111111
+
+**Position 11:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 11111111111
+
+**Position 12:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 111111111111
+
+**Position 13:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 1111111111111
+
+**Position 14:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 11111111111111
+
+**Position 15:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 111111111111111
+
+**Position 16:**
+- Input = 1, previous = 1, 1 ⊕ 1 = 1
+- Output = 1111111111111"
+Base,0,32,1,00110101000110100101010001111111,00101111100101110111111001000000,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars (`|`) unchanged.
+
+### Step-by-step:
+
+**Position 0:**
+- Input: = `t`
+- No previous digit, so output = `t`
+
+**Position 1:**
+- Input. = `|`
+- Previous = `t`, but output = `|`
+
+**Position 2:**
+- Input. = `1`
+- Previous = `|`, 1 ⊕ | = 1
+
+**Position 3:**
+- Input. = `0`
+- Previous = `1`, 1 ⊕  = 1
+
+**Position 4:**
+- Input. = `1`
+- Previous = `8`, 1 ⊕ 8 = 1
+
+**Position 5::
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 0
+
+**Position 6::
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 0
+
+**Position 7::
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 8::
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 9::
+- Input. = `0`
+- Previous = `1`, 1 ⊕  = 1
+
+**Position 10:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 0
+
+**Position 11:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 12:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 13:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 14:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 15:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 166:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 117:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 118:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 119:
+- Input. = `1`
+- Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 120:
+ - Input. = `1`
+ - Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 121:
+ - Input. = `1`
+ - Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 122:
+ - Input. = `1`
+ - Previous = `1`, 1 ⊕ 1 = 1
+
+**Position 123:
+ - Input"
+Cellular_Bounds,1,32,0,1|1|0|1|0|0|1|1|1|0|0|1|0|1|1|1|0|1|1|0|0|1|0|1|0|0|1|1|1|1|1|1,10111010010111001101011110100000,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `1|1|t|1|t|t|1|1|1|t|t|1|t|1|1|1|t|1|1|t|t|1|t|1|t|t|1|1|1|1|1|1`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `1`, no previous digit, so output = `1`
+   
+2. **pos1:**
+   - Input = `1`, previous = `1`, `1` ⊕ `1` = `0`
+   
+3. **pos2:**
+   - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+   
+4. **pos3:**
+   - Input = `t`, previous = `1`, `t` ⊕ `1` = `1`
+   
+5. **pos4:**
+   - Input = `1`, previous = `t`, `1` ⊕ `t` = `1`
+   
+6. **pos5:**
+   - Input = `t`, previous = `1`, `t` ⊕ `1` = `t`
+   
+7. **pos6:**
+   - Input = `t`, previous = `t`, `t` ⊕ `t` = `1`
+   
+8. **pos7:**
+   - Input = `1`, previous = `t`, `1` ⊕ `t` = `1`
+   
+9. **pos8:**
+   - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+   
+10. **pos9:**
+    - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+    
+11. **pos10:**
+    - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+    
+12. **pos11:**
+    - Input = `t`, previous = `1`, `t` ⊕ `1` = `1`
+    
+13. **pos12:**
+    - Input = `1`, previous = `t`, `1` ⊕ `t` = `1`
+    
+14. **pos13:**
+    - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+    
+15. **pos14:**
+    - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+    
+1666. **pos15:**
+    - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+    
+1612. **pos166:**
+    - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+    
+1113. **pos117:**
+    - Input = `1`, previous = `1`, `1` ⊕ `1` = `t`
+    
+1114. **pos118:**
+    - Input = `1"
+Cellular_Bounds,1,32,1,1|0|0|1|0|1|1|1|1|1|0|1|0|1|0|0|0|1|1|1|1|0|1|1|0|1|1|0|1|0|0|1,11011100001111100100011011011101,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `1|t|r|1|t|r|1|1|1|1|t|r|1|t|r|t|r|t|r|1|1|1|1|t|r|1|1|t|r|1|t|r|t|r|1`
+
+**Step-by-step:**
+
+1. **pos0**:** 
+   - Input = `1`, no previous digit, so output = `1`
+   
+2. **pos1** 
+   - Input = `|`, previous = `1`, output = `|`
+   
+3. **pos2** 
+   - Input = `t`, previous = `|`, output = `t`
+   
+4. **pos3** 
+   - Input = `r`, previous = `t`, output = `1` (since `t` is binary 1, `r` is binary 0, 1 ⊕ 1 = 0`)
+   
+5. **pos4** 
+   - Input = `1`, previous = `r`, output = `1` (since `r` is binary 1, `1` ⊕ 1 = 1)
+   
+6. **pos5** 
+   - Input = `|`, previous = `1`, output = `|`
+   
+7. **pos6** 
+   - Input = `t`, previous = `|`, output = `t`
+   
+8. **pos7** 
+   - Input = `r`, previous = `t`, output = `1` (since `t` is binary 1, `r` is binary 1, 1 ⊕ 1 = 1)
+   
+9. **pos8** 
+   - Input = `1`, previous = `r`, output = `1` (since `r` is binary 1, `1` ⊕ 1 = 1)
+   
+10. **pos9** 
+    - Input = `1`, previous = `1`, output = `0` (since `1` ⊕ 1 = 0)
+    
+11. **pos10** 
+    - Input = `1`, previous = `1`, output = `1` (since `1` ⊕ 1 = 1)
+    
+12. **pos11** 
+    - Input = `1`, previous = `1`, output = `1` (since `1` ⊕ 1 = 1)
+    
+13. **pos12** 
+    - Input = `1`, previous = `1`, output = `1` (since `1` ⊕ 1 = 1)
+    
+14. **pos13** 
+    - Input = `1`, previous = `1`, output = `1` (since `1` ⊕ 1 = 1)
+    
+15. **pos14** 
+    - Input = `1`, previous = `1`, output = `1` (since `1` ⊕ 1 = 1)
+    
+16. **pos15** 
+    - Input = `1`, previous = `1`, output = `1` (since `1` ⊕ 1 = 1)
+    
+16. **pos16** 
+    - Input = `1"
+Cellular_Bounds,2,32,0,01|11|10|00|11|00|00|11|11|00|11|01|01|10|00|11,01000100101000100010101111010010,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars (`|`) unchanged.
+
+### Step-by-step:
+
+**Initial state:**
+- Current position: `0`
+- Previous position (none): `0`
+- Output so far: `0`
+
+**Position 1:**
+- Input: `1`
+- Previous: `0`
+- Output: `1` (XOR: `1 ⊕ 0 = 1`)
+- Output so far: `1`
+
+**Position 2:**
+- Input. `1`
+- Previous. `1`
+- Output. `0` (XOR: `1 ⊕ 1 = 0`)
+- Output so far. `1 0`
+
+**Position 3:**
+- Input. `1`
+- Previous. ` 1`
+- Output. `1` (XOR: `1 ⊕ 1 = 1`)
+- Output so far. `1 1`
+
+**Position 4:**
+- Input. `1`
+- Previous. `1 1`
+- Output. `0` (XOR: `1 ⊕ 1 = 1`)
+- Output so far. `1 1 1`
+
+**Position 5:**
+- Input. `1`
+- Previous. `1 1 1`
+- Output. `1` (XOR: `1 ⊕ 1 = 1`)
+- Output so far. `1 1 1 1`
+
+**Position 6:**
+- Input. `s`
+- Previous. `1 1 1 1`
+- Output. `s` (XOR: `1 ⊕ s = 1`)
+- Output so far. `1 1 1 1 1`
+
+**Position 7:**
+- Input. `1`
+- Previous. `1 1 1 1 1`
+- Output. `1` (XOR: `1 ⊕ 1 = 1`)
+- Output so far. `1 1 1 1 1 1`
+
+**Position 8:**
+- Input. `0`
+- Previous. `1 1 1 1 1 1`
+- Output. `0` (XOR: `1 ⊕ 1 = 0`)
+- Output so far. `1 1 1 1 1 1 1`
+
+**Position 9:**
+- Input. `p`
+- Previous. `1 1 1 1 1 1 1`
+-Output. `p` (XOR: `1 ⊕ 1 = p`)
+- Output so far. `1 1 1 1 1 1 1 1`
+
+**Position 10:**
+- Input. `1`
+- Previous. `1 1 1 1 1 1 1 1`
+-Output. `1` (XOR: `1 ⊕ 1 = 1`)
+- Output so far. `1 1 1 1 1 1 1 1 1`
+
+**Position 12:**
+- Input. `1`
+- Previous. `1 1 1 1 1 1 1 1 1`
+-Output. `1` (XOR: `1 ⊕ 1"
+Cellular_Bounds,2,32,1,11|11|11|11|10|01|10|01|10|11|10|00|10|01|10|11,10000000010101010110010011010110,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `11|11|11|11|1s|01|1s|01|1s|11|1s|0s|1s|01|1s|11|1s`
+
+**Step-by-step:**
+
+1. **pos0:** 
+   - Input: `1`, no previous digit, so output = `1`
+   
+2. **pos1:** 
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+   
+3. **pos2:** 
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+   
+4. **pos3:** 
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+   
+5. **pos4:** 
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+   
+6. **pos5:** 
+   - Input. `s`, previous = `1`, `s` ⊕ `1` = `s`
+   
+7. **pos6:** 
+   - Input. `1`, previous = `s`, `1` ⊕ `s` = `1`
+   
+8. **pos7:** 
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+   
+9. **pos8:** 
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+   
+10. **pos9:** 
+    - Input. `s`, previous = `1`, `s` ⊕ `1` = `s`
+    
+11. **pos10:** 
+    - Input. `1`, previous = `s`, `1` ⊕ `s` = `1`
+    
+12. **pos11:** 
+    - Input. `s`, previous = `1`, `s` ⊕ `1` = `s`
+    
+13. **pos12:** 
+    - Input. `1`, previous = `s`, `1` ⊕ `s` = `1`
+    
+14. **pos13:** 
+    - Input. `s`, previous = `1`, `s` ⊕ `1` = `s`
+    
+15. **pos14:** 
+    - Input. `1`, previous = `s`, `1` ⊕ `s` = `1`
+    
+166. **pos15:** 
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+162. **pos16:** 
+    - Input. `s`, previous = `1`, `s` ⊕ `1` = `s`
+    
+163. **pos111:** 
+    - Input. `1`, previous = `s`, `1` ⊕ `s` = `1`
+    
+114. **pos112:** 
+    - Input. `s`, previous = `1`, `s` ⊕ `1` = `s`
+"
+Cellular_Bounds,3,32,0,001|001|110|010|000|110|100|111|000|000|11,00110100101100010111010010000010,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t | 0 1 | t s | 1 1 0 | t 0 0 | 1 1 0 | 1 t s | 1 1 1 | t 0 0 | t 0 0 | t 0 0 | 1 1`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t`, no previous digit, so output = `t`
+   
+2. **pos1:**
+   - Input. `|`, previous = `t`, output = `|`
+   
+3. **pos2:**
+   - Input. ` `, previous = `|`, output = ` `
+   
+4. **pos3:**
+   - Input. `1`, previous = ` `, output = `1`
+   
+5. **pos4:**
+   - Input. `t`, previous = `1`, output = `t`
+   
+6. **pos5:**
+   - Input. `s`, previous = `t`, output = `s`
+   
+7. **pos6:**
+   - Input. `|`, previous = `s`, output = `|`
+   
+8. **pos7:**
+   - Input. `1`, previous = `|`, output = `1`
+   
+9. **pos8:**
+   - Input. `1`, previous = `1`, output = `0`
+   
+10. **pos9:**
+    - Input. `1`, previous = `1`, output = `1`
+    
+11. **pos10:**
+    - Input. ` `, previous = `1`, output = ` `
+    
+12. **pos11:**
+    - Input. `t`, previous = ` `, output = `t`
+    
+13. **pos12:**
+    - Input. `0`, previous = `t`, output = `1`
+    
+14. **pos13:**
+    - Input. `1`, previous = `1`, output = `0`
+    
+15. **pos14:**
+    - Input. `1`, previous = `1`, output = `1`
+    
+166. **pos15:**
+    - Input. ` `, previous = `1`, output = ` `
+    
+167. **pos166:**
+    - Input. `t`, previous = ` `, output = `t`
+    
+168. **pos112:**
+    - Input. `0`, previous = `t`, output = `1`
+    
+119. **pos113:**
+    - Input. `0`, previous = `1`, output = `0`
+    
+120. **pos114:**
+    - Input. `0`, previous = `0`, output = `1`
+    
+121. **pos115:**
+    - Input. `0`, previous = `1`, output = `0`
+    
+122. **pos1166:**
+    - Input. `1`, previous = `0`, output = `1`
+    
+123. **pos1117:**
+    - Input. `1`, previous = `1`,output = `0`
+    
+124"
+Cellular_Bounds,3,32,1,101|010|111|000|110|001|100|111|001|010|11,11111110010010100101010010111110,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `1t1|1t1t1|111|1t0|11s|1t0|1t0|111|1t0|11t|11`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `1`, no previous digit, so output = `1`
+   
+2. **pos1:**
+   - Input. `t`, previous = `1`, `t` ⊕ `1` = `1`
+   
+3. **pos2:**
+   - Input. `1`, previous = `t`, `1` ⊕ `t` = `1`
+   
+4. **pos3:**
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+   
+5. **pos4:**
+   - Input. `|`, previous = `1`, skip and output = `|`
+   
+6. **pos5:**
+   - Input. `1`, previous = `|`, `1` ⊕ `|` = `1`
+   
+7. **pos6:**
+   - Input. `t`, previous = `1`, `t` ⊕ `1` = `1`
+   
+8. **pos7:**
+   - Input. `1`, previous = `t`, `1` ⊕ `t` = `1`
+   
+9. **pos8:**
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+   
+10. **pos9:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+11. **pos10:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+12. **pos11:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+13. **pos12:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+14. **pos13:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+15. **pos14:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+16. **pos15:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+16. **pos16:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+11. **pos17:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+11. **pos18:**
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `1`
+    
+11. **pos19:**
+    - Input. `1`, previous"
+Cellular_Bounds,4,32,0,1001|1011|0010|1011|0110|1111|1111|0111,11010110101111101101100000001100,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `1t01|1s11|t01t|1t11|t11s|1111|1111|t111`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `1`
+   - No previous digit, so output = `1`
+
+2. **pos1**:
+   - Input. `t`
+   - Previous = `1`
+   - Output = `t ⊕ 1` = `1`
+
+3. **pos2**:
+   - Input. `t`
+   - Previous = `1`
+   - Output = `t ⊕ 1` = `1`
+
+4. **pos3**:
+   - Input. `0`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `0`
+
+5. **pos4**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `0`
+
+6. **pos5**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `1`
+
+7. **pos6**:
+   - Input. `|`
+   - Previous = `1`
+   - Output = `|`
+
+8. **pos7**:
+   - Input. `1`
+   - Previous = `|`
+   - Output = `1 ⊕ |` = `1`
+
+9. **pos8**:
+   - Input. `s`
+   - Previous = `1`
+   - Output = `s ⊕ 1` = `1`
+
+10. **pos9**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `1`
+
+11. **pos10**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `1`
+
+12. **pos11**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `1`
+
+13. **pos12**:
+   - Input. `|`
+   - Previous = `1`
+   - Output = `|`
+
+14. **pos13**:
+   - Input. `t`
+   - Previous = `|`
+   - Output = `t ⊕ |` = `t`
+
+15. **pos14**:
+   - Input. `o`
+   - Previous = `t`
+   - Output = `o ⊕ t` = `1`
+
+166. **pos15**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `1`
+
+166. **pos166**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1` = `1`
+
+1111. **pos111**:
+   - Input. `1`
+   - Previous = `1`
+   - Output = `1 ⊕ 1`"
+Cellular_Bounds,4,32,1,0011|1101|1001|0010|1111|0000|1001|0101,00100011010110111000100011011111,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t | 0 1 1 | 1 1 s 1 | 1 t p 1 | 0 0 1 0 | 1 1 1 1 | s 0 0 0 | 1 t 0 1 | 0 1 t 1`
+
+**Step-by-step:**
+
+1. **pos0**:**
+   - Input: `t`
+   - No previous digit, so output = `t`
+
+2. **pos1:**
+   - Input. `|`
+   - Previous = `t`, output = `|`
+
+3. **pos2:**
+   - Input. ` `
+   - Previous = `|`, output = `|`
+
+4. **pos3:**
+   - Input. `1`
+   - Previous = ` `, output = `1`
+
+5. **pos4:**
+   - Input. `1`
+   - Previous = `1`, output = `0`
+
+6. **pos5:**
+   - Input. `1`
+   - Previous = `1`, output = `1`
+
+7. **pos6:**
+   - Input. `s`
+   - Previous = `1`, output = `1`
+
+8. **pos7:**
+   - Input. `1`
+   - Previous = `s`, output = `s`
+
+9. **pos8:**
+   - Input. `1`
+   - Previous = `1`, output = `1`
+
+10. **pos9:**
+    - Input. `|`
+    - Previous = `1`, output = `|`
+
+11. **pos10:**
+    - Input. `1`
+    - Previous = `|`, output = `1`
+
+12. **pos11:**
+    - Input. `1`
+    - Previous = `1`, output = `1`
+
+13. **pos12:**
+    - Input. `s`
+    - Previous = `1`, output = `1`
+
+14. **pos13:**
+    - Input. `t`
+    - Previous = `s`, output = `t`
+
+15. **pos14:**
+    - Input. `p`
+    - Previous = `t`, output = `p`
+
+16. **pos15:**
+    - Input. `1`
+    - Previous = `p`, output = `1`
+
+17. **pos16:**
+    - Input. `1`
+    - Previous = `1`, output = `0`
+
+18. **pos17:**
+    - Input. `|`
+    - Previous = `8`, output = `|`
+
+19. **pos18:**
+    - Input. `1`
+    - Previous = `|`, output = `1`
+
+20. **pos19:**
+    - Input. `1`
+    - Previous = `1`, output = `1`
+
+21. **pos20:**
+    - Input. `1`
+    - Previous = `1`, output = `1`
+
+22. **pos22:**
+    - Input. `s`
+    - Previous = `1`, output = `1`
+
+23. **pos23:**
+    - Input. `o`
+"
+Cellular_Bounds,8,32,0,00011101|01111011|01101000|10000010,00010011110001101101110011000011,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars as instructed.
+
+### Step-by-step:
+
+**Position 0:**
+- Input: = `t`
+- No previous digit, so output = `t`
+
+**Position 1:**
+- Input = `|`
+- Previous = `t`, but `t` ⊕ `|` = `|`
+- Output = `|`
+
+**Position 2:**
+- Input = `0`
+- Previous = `|`, but `8` ⊕ `|` = `8`
+- Output = `8`
+
+**Position 3:**
+- Input = `0`
+- Previous = `8`, but `8` ⊕ `8` = `0`
+- Output = `1`
+
+**Position 4:**
+- Input = `0`
+- Previous = `1`, but `1` ⊕ `1` = `0`
+- Output = `1`
+
+**Position 5:**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `0`
+- Output = `1`
+
+**Position 6:**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 7:**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 8:**
+- Input = ` `
+- Previous = `1`, but ` ` ⊕ `1` = ` `
+- Output = ` `
+
+**Position 9:**
+- Input = `1`
+- Previous = ` `, but `1` ⊕ ` ` = `1`
+- Output = `1`
+
+**Position 10:**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 11::**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 12::**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 13::**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 14::**
+- Input = `0`
+- Previous = `1`, but `8` ⊕ `1` = `8`
+- Output = `8`
+
+**Position 15::**
+- Input = `1`
+- Previous = `8`, but `1` ⊕ `8` = `1`
+- Output = `1`
+
+**Position 166::**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 117::**
+- Input = `1`
+- Previous = `1`, but `1` ⊕ `1` = `1`
+- Output = `1`
+
+**Position 118::|
+"
+Cellular_Bounds,8,32,1,11110101|00010011|10100001|00101111,10001111100110100111000110111000,,0.0,0.0,False,"Let will be treated as 0 for the purpose of XOR operations.
+
+Step-by-step:
+pos0: input=1, no previous digit, output=1
+pos1: input=1, previous=1, 1⊕1=0
+pos2: input=1, previous=1, 1⊕1=1
+pos3: input=1, previous=1, 1⊕1=1
+pos4: input=1, previous=1, 1⊕1=1
+pos5: input=1, previous=1, 1⊕1=1
+pos6: input=5, previous=1, 5⊕1=1
+pos7: input=1, previous=5, 1⊕5=1
+pos8: input=8, previous=1, 8⊕1=1
+pos9: input=1, previous=8, 1⊕8=1
+pos10: input=|, previous=1, |⊕1=|
+pos12: input=1, previous=|, 1⊕|=1
+pos13: input=0, previous=1, 0⊕1=1
+pos14: input=0, previous=  , 1⊕ = =1
+pos15: input=0, previous= 1, 1⊕1=1
+pos16: input=0, previous= 1, 1⊕1=1
+pos17: input=0, previous= 1, 1⊕1=1
+pos18: input=0, previous= 1, 1⊕1=1
+pos19: input=0, previous= 1, 1⊕1=1
+pos20: input=0, previous= 1, 1⊕1=1
+pos22: input=0, previous= 1, 1⊕1=1
+pos23: input=1, previous= 1, 1⊕1=1
+pos24: input=1, previous= 1, 1⊕1=1
+pos25: input=1, previous= 1, 1⊕1=1
+pos266: input=|, previous= 1, |⊕1=|
+pos222: input=1, previous=|, 1⊕|=1
+pos223: input=0, previous=1, 0⊕1=1
+pos224: input=0, previous=  , 1⊕ = =1
+pos225: input=0, previous= 1, 1⊕1=1
+pos2266: input=0, previous= 1, 1⊕1=1
+pos2222: input=0, previous= 1, 1⊕1=1
+pos2223: input=1, previous= 1, 1⊕1=1
+pos2224: input=1, previous= 1, 1⊕1=1
+pos2225: input input=1, previous= 1, 1⊕1=1
+pos22266: input input=1, previous= 1, 1⊕1="
+Cellular_Bounds,16,32,0,1111101011011010|1000010100000001,10000111101101111100011110000001,,0.0,0.0,False,"Let will be treated as a boundary and skipped in the XOR operation. Let's go through the input step by step:
+
+**Input:** `11111s1011s11s11s1t10001t101t0`
+
+**Step-by-step:**
+
+- **pos0:** `input=1`, no previous digit, so output=`1`
+2. **pos1:** `input=1`, previous=`1`, `1⊕1=s`
+3. **pos2:** `input=1`, previous=`1`, `1⊕1=s`
+4. **pos3:** `input=1`, previous=`1`, `1⊕1=s`
+5. **pos4:** `input=1`, previous=`1`, `1⊕1=s`
+6. **pos5:** `input=1`, previous=`1`, `1⊕1=s`
+2. **pos6:** `input=s`, previous=`1`, `s⊕1=s` (boundary, skip XOR)
+3. **pos7:** `input=1`, previous=`s`, `1⊕s=1`
+4. **pos8:** `input=t`, previous=`1`, `t⊕1=1`
+5. **pos9:** `input=1`, previous=`t`, `1⊕t=1`
+6. **pos10:** `input=1`, previous=`1`, `1⊕1=s`
+7. **pos11:** `input=1`, previous=`1`, `1⊕1=s`
+8. **pos12:** `input=1`, previous=`1`, `1⊕1=s`
+9. **pos13:** `input=1`, previous=`1`, `1⊕1=s`
+10. **pos14:** `input=1`, previous=`1`, `1⊕1=s`
+11. **pos15:** `input=s`, previous=`1`, `s⊕1=s` (boundary, skip XOR)
+12. **pos16:** `input=1`, previous=`s`, `1⊕s=1`
+13. **pos17:** `input=t`, previous=`1`, `t⊕1=1`
+14. **pos18:** `input=1`, previous=`t`, `1⊕t=1`
+15. **pos19:** `input=1`, previous=`1`, `1⊕1=s`
+16. **pos20:** `input=1`, previous=`1`, `1⊕1=s`
+12. **pos22:** `input=1`, previous=`1`, `1⊕1=s`
+13. **pos23:** `input=1`, previous=`1`, `1⊕1=s`
+14. **pos24:** `input=1`, previous=`1`, `1⊕1=s`
+15. **pos25:** `input=1`, previous=`1`, `1⊕1=s`
+16. **pos26:** `input=t`, previous=`1`, `t⊕1=1`
+12. **pos27:** `input=1`, previous=`t`, `1⊕t=1`
+13. **pos28:** `input=1`, previous=`1`, `1⊕1=s`
+14"
+Cellular_Bounds,16,32,1,0011001010010000|1011000110110111,00101011110110001110100101101100,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and skipping over vertical bars (|).
+
+### Step-by-step:
+
+**pos0:**
+- Input: `t`
+- No previous digit, so output = `t`
+
+**pos1:**
+- Input: `|`
+- Previous = `t`, but output = `|`
+
+**pos2:**
+- Input `p`
+- Previous = `|`, output = `p`
+
+**pos3:**
+- Input `1`
+- Previous = `p`, output = `1` (since `1 ⊕ p = 1`)
+
+**pos4:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 0`)
+
+**pos5:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos6:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos7:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos8:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos9:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos10:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos11:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos12:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos13:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos14:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos15:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos166:**
+- Input `|`
+- Previous = `1`, output = `|`
+
+**pos117:**
+- Input `1`
+- Previous = `|`, output = `1` (since `1 ⊕| = 1`)
+
+**pos118:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**pos119:**
+- Input `1`
+- Previous = `1`, output = `1` (since `1 ⊕1 = 1`)
+
+**Answer: t|p11111111111111111111111111111111111111"
+Base,0,64,0,1001111100001110010111100100010100111111111100010001100100101000,1101000010001001011100010110011110100000000010011001010110111100,,0.0,0.0,False,"Let. no previous digit, output=1
+pos1: input=1, previous=1, 1⊕1=t
+pos2. no previous digit, output=t
+pos3. no previous digit, output=1
+pos4. no previous digit, output=1
+pos5. no previous digit, output=1
+pos6. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous digit, output=1
+pos1. no previous"
+Base,0,64,1,0100001000101111101100111011010111100011010010010011001111010010,0110001100111000011010100110111100010010111011011010101000111011,1111111111111111111111111111111111111111111111111111111111111111,0.53125,0.0,True,"Let. input=  , no previous digit, output= 
+1. input=1, previous= ,, 1⊕ = =1
+2. input=t, previous=1, t⊕1=1
+3. input=1, previous=t, 1⊕t=1
+4. input= ,, previous=1,  ⊕1=1
+5. input=b, previous= ,, b⊕ =b
+6. input=0, previous=b, o⊕b=1
+7. input= ,, previous=0,  ⊕0=1
+8. input=0, previous= ,,o⊕ =o
+9. input=0, previous=0, o⊕0=1
+10. input=1, previous=0, 1⊕0=1
+11. input=1, previous=0, 1⊕0=1
+12. input=1, previous=1, 1⊕1= 
+13. input=1, previous=1, 1⊕1= 
+14. input=1, previous=1, 1⊕1= 
+15. input=1, previous=1, 1⊕1= 
+16. input=1, previous=1, 1⊕1= 
+17. input=1, previous=1, 1⊕1= 
+18. input=1, previous=1, 1⊕1= 
+19. input=1, previous=1, 1⊕1= 
+20. input=s, previous=1, s⊕1=1
+21. input=1, previous=s, 1⊕s=1
+22. input=1, previous=1, 1⊕1= 
+23. input=1, previous=1, 1⊕1= 
+24. input=1, previous=1, 1⊕1= 
+25. input=1, previous=1, 1⊕1= 
+26. input=1, previous=1, 1⊕1= 
+27. input=1, previous=1, 1⊕1= 
+28. input=1, previous=1, 1⊕1= 
+29. input=1, previous=1, 1⊕1= 
+30. input=1, previous=1, 1⊕1= 
+32. input=1, previous=1, 1⊕1= 
+33. input=1, previous=1, 1⊕1= 
+34. input=1, previous=1, 1⊕1= 
+35. input=1, previous=1, 1⊕1= 
+36. input=1, previous=1, 1⊕1= 
+37. input=1, previous=1, 1⊕1= 
+38. input=1, previous=1, 1⊕1= 
+39. input=1, previous=1, 1⊕1= 
+
+Answer:  111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+Cellular_Bounds,1,64,0,0|1|1|0|1|1|0|1|0|1|1|0|0|0|0|1|0|1|0|0|1|0|1|1|0|0|1|0|1|0|0|0|1|0|1|0|1|1|1|1|1|0|0|0|1|0|1|0|0|0|1|1|0|0|0|0|0|0|1|1|1|1|1|1,0101101111010001111011101011110011111000010011110010100000100000,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t | 1 | 1 | s | 1 | 1 | s | 1 | s | 1 | 1 | s | 0 | 0 | 0 | 0 | 1 | s | 1 | s | 0 | 1 | s | 1 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 | 1 | s | 1 | 0 | 1 | s | 0 | 1 | s | 0 |"
+Cellular_Bounds,1,64,1,0|0|0|1|0|1|1|1|0|0|1|0|1|1|0|1|1|1|0|1|1|1|1|0|1|1|1|0|0|0|1|1|1|0|0|0|1|0|1|0|1|0|0|1|0|1|0|0|1|1|1|1|1|1|1|1|0|1|0|0|1|0|1|1,0001110010111011001100011001001001001111110111101000000011101110,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** ` t | 0 |  t |  1 |  t |  1 |  1 |  1 |  t |  t |  1 |  t |  1 |  1 |  t |  1 |  1 |  1 |  t |  1 |  1 |  1 |  1 |  t |  1 |  1 |  1 |  t |  0 |  0 |  0 |  1 |  1 |  1 |  t |  0 |  0 |  1 |  t |  1 |  0 |  1 |  t |  0 |  1 |  t |  1 |  0 |  1 |  t |  1 |  1 |  1 |  1 |  1 |  1 |  1 |  1 |  t |  1 |  t |  0 |  1 |  t |  1`
+
+**Step-by-step:**
+
+1. **pos0**: `t`, no previous digit, output=`t`
+2. **pos1**: `t`, previous=`t`, `t` ⊕ `t` = ` `
+3. **pos2**: ` `, previous=`t`, ` ` ⊕ `t` = `t`
+4. **pos3**: `t`, previous=` `, `t` ⊕ ` ` = `t`
+5. **pos4**: `1`, previous=`t`, `1` ⊕ `t` = `1`
+6. **pos5**: `t`, previous=`1`, `t` ⊕ `1` = `1`
+7. **pos6**: `1`, previous=`t`, `1` ⊕ `t` = `1`
+8. **pos7**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+9. **pos8**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+10. **pos9**: `t`, previous=`1`, `t` ⊕ `1` = `1`
+12. **pos10**: `t`, previous=`1`, `t` ⊕ `1` = `1`
+13. **pos11**: `1`, previous=`t`, `1` ⊕ `t` = `1`
+14. **pos12**: `t`, previous=`1`, `t` ⊕ `1` = `1`
+15. **pos13**: `1`, previous=`t`, `1` ⊕ `t` = `1`
+16. **pos14**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+16. **pos15**: `t`, previous=` `, `t` ⊕ ` ` = `t`
+11. **pos166**: `1`, previous=`t`, `1` ⊕ `t` = `1`
+11. **pos117**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos118**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos119**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos120**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos121**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos122**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos123**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos124**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos125**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1266**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos1267**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1268**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos1269**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1270**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos1272**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1273**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos1274**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1275**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos1276**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1277**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos1278**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1279**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11. **pos1280**: `1`, previous=`1`, `1` ⊕ `1` = ` `
+11. **pos1281**: `1`, previous=` `, `1` ⊕ ` ` = `1`
+11."
+Cellular_Bounds,2,64,0,01|00|10|11|10|01|11|01|11|11|00|00|10|00|00|10|11|01|00|10|01|11|11|11|01|01|11|11|10|00|00|10,0110111001010011000010001100001110111011010000001111000001000011,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars (`|`) as instructed.
+
+### Step-by-step:
+
+**Initial state:**
+- Current position: `0`
+- Previous position (non-existent): `0` (copied as-is)
+
+**Position 0:**
+- Input: `0`
+- Output: `0`
+
+**Position 1:**
+- Input. `1`
+- Previous. `0`
+- Output. `1 ⊕ 0 = 1`
+
+**Position 2:**
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 0`
+
+**Position 3:**
+- Input. `|`
+- Previous. `1`
+- Output. `|`
+
+**Position 4:**
+- Input. `s`
+- Previous. `|`
+- Output. `s`
+
+**Position 5:**
+- Input. `f`
+- Previous. `s`
+- Output. `f ⊕ s = 1`
+
+**Position 6::
+- Input. `|`
+- Previous. `f`
+- Output. `|`
+
+**Position 7::
+- Input. `1`
+- Previous. `|`
+- Output. `1`
+
+**Position 8::
+- Input. `t`
+- Previous. `1`
+- Output. `t ⊕ 1 = 0`
+
+**Position 9::
+- Input. `h`
+- Previous. `t`
+- Output. `s ⊕ t = 1`
+
+**Position 10::
+- Input. `1`
+- Previous. `s`
+- Output. `1 ⊕ s = 0`
+
+**Position 11::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 0`
+
+**Position 12::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 13::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 14::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 15::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 166::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 117::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 118::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 119::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 120::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 121::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 122::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Position 123::
+- Input. `1`
+- Previous. `1`
+- Output. `1 ⊕ 1 = 5`
+
+**Final Answer:**
+```
+011s|1f|1t|1s|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|15|"
+Cellular_Bounds,2,64,1,11|11|11|10|11|00|10|01|01|11|00|00|10|01|10|01|10|10|00|00|00|00|00|00|11|10|01|11|11|00|01|01,1000000110101101110010001101010101110000000000001001010000100111,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `11|11|11|1s|11|s1|1s|s1|s1|11|s1|s1|1s|s1|1s|1s|s1|s1|s1|s1|s1|s1|11|1s|s1|1s|11|11|s1|1s|s1|s1`
+
+**Step-by-step:**
+
+1. **pos0:** `input=1`, no previous digit, so `output=1`
+2. **pos1:** `input=1`, previous=`1`, `1⊕1=0`
+3. **pos2:** `input=1`, previous=`1`, `1⊕1=0`
+4. **pos3:** `input=1`, previous=`1`, `1⊕1=5`
+5. **pos4:** `input=1`, previous=`1`, `1⊕1=5`
+6. **pos5:** `input=s`, previous=`1`, `s⊕1=1`
+7. **pos6:** `input=1`, previous=`s`, `1⊕s=1`
+8. **pos7:** `input=1`, previous=`1`, `1⊕1=5`
+9. **pos8:** `input=s`, previous=`1`, `s⊕1=1`
+10. **pos9:** `input=1`, previous=`s`, `1⊕s=1`
+11. **pos10:** `input=1`, previous=`1`, `1⊕1=5`
+12. **pos11:** `input=1`, previous=`1`, `1⊕1=5`
+13. **pos12:** `input=1`, previous=`1`, `1⊕1=5`
+14. **pos13:** `input=s`, previous=`1`, `s⊕1=1`
+15. **pos14:** `input=1`, previous=`s`, `1⊕s=1`
+16. **pos15:** `input=s`, previous=`1`, `s⊕1=1`
+17. **pos16:** `input=1`, previous=`s`, `1⊕s=1`
+18. **pos12:** `input=1`, previous=`1`, `1⊕1=5`
+19. **pos13:** `input=s`, previous=`1`, `s⊕1=1`
+20. **pos14:** `input=1`, previous=`s`, `1⊕s=1`
+21. **pos15:** `input=1`, previous=`1`, `1⊕1=5`
+22. **pos16:** `input=1`, previous=`1`, `1⊕1=5`
+23. **pos12:** `input=1`, previous=`1`, `1⊕1=5`
+24. **pos13:** `input=1`, previous=`1`, `1⊕1=5`
+25. **pos14:** `input=1`, previous=`1`, `1⊕1=5`
+26. **pos15:** `input=1`, previous=`1`, `1⊕1=5`
+27. **pos16:** `input=1`, previous=`1`, `1⊕1=5`
+28. **pos12:** `input=1`, previous=`1`, `1⊕1=5`
+29. **pos13:** `input=1`, previous=`1`, `1⊕1=5`
+30. **pos14:** `input=1`, previous=`1`, `1⊕1=5`
+32. **pos15:** `input=1`, previous=`1`, `1⊕1=5`
+33. **pos11:** `input=1`, previous=`1`, `1⊕1=5`
+34. **pos12:** `input=1`, previous=`1`, `1⊕1=5`
+35. **pos13:** `input=1`, previous=`1`, `1⊕1=5`
+36. **pos14:** `input=1`, previous=`1`, `1⊕1=5`
+37. **pos15:** `input=1`, previous=`1`, `1⊕1=5`
+
+**Answer:** `10151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151151"
+Cellular_Bounds,3,64,0,001|100|010|110|101|100|000|110|010|011|100|000|010|001|011|011|011|110|111|101|010|0,0010100111011110100001010110100100000110011101101100011000111110,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars as instructed.
+
+**Input:** ` t | 0 1 | 1 s | 0 1 t | 1 1 s | 1 t 1 | s 0 0 | 1 1 s | 1 1 t | 1 0 1 | s 0 0 | 0 1 t | 1 1 1 | 1 1 s | 1 1 1 | 1 t 1 | s 0 0 | 1 1 t | 1 1 1 | 1 1 1 | 1 t 1 | s 0 0 | 1 1 t | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 s | 1 1 1 | 1 t 1 | s 0 0 | 1 1 t | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 1 | 1 1 "
+Cellular_Bounds,3,64,1,011|000|010|011|110|110|001|100|011|001|011|010|110|110|000|101|011|001|101|011|100|0,0101000110100011010010100101011101111011010001111101010111100100,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars as instructed.
+
+### Step-by-step:
+
+**Position 0:**
+- Input: = `t`
+- No previous digit, so output = `t`
+
+**Position 1:**
+- Input = `1`
+- Previous = `t` (vertical bar), so output = `1`
+
+**Position 2:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 0`
+
+**Position 3:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 0`
+
+**Position 4:**
+- Input = `|`
+- Previous = `1`, so output = `|`
+
+**Position 5:**
+- Input = `s`
+- Previous = `|`, so output = `s`
+
+**Position 6:**
+- Input = `p`
+- Previous = `s`, so output = `p ⊕ s = 1`
+
+**Position 7:**
+- Input = `0`
+- Previous = `p`, so output = `8 ⊕ p = 1`
+
+**Position 8:**
+- Input = `0`
+- Previous = `8`, so output = `8 ⊕ 8 = 0`
+
+**Position 9:**
+- Input = `|`
+- Previous = `8`, so output = `|`
+
+**Position 10:**
+- Input = `0`
+- Previous = `|`, so output = `0`
+
+**Position 11:**
+- Input = `1`
+- Previous = `0`, so output = `1 ⊕ 0 = 1`
+
+**Position 12:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 0`
+
+**Position 13:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 14:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 15:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 16:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 17:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 18:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 19:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 20:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 21:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 22:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 23:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 24:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 25:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 26:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 27:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 28:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 29:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 30:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 32:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 33:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 34:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 35:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 36:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 37:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 38:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 39:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 40:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 41:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 42:**
+- Input = `1`
+- Previous = `1`, so output = `1 ⊕ 1 = 8`
+
+**Position 43:**
+- Input = `1`
+- Previous = `1`, so"
+Cellular_Bounds,4,64,0,1010|0011|1100|0011|1110|0101|0101|0101|1111|1011|0011|0101|1011|1111|0100|1010,1111001000100010000101111111111100000110101011110110000011101111,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars as instructed.
+
+### Step-by-step:
+
+**Position 0:**
+- Input: = 1, no previous digit, so output = 1
+
+**Position 1:**
+- Input = t, previous = 1, t ⊕ 1 = 1
+
+**Position 2:**
+- Input = h, previous = t, h ⊕ t = 1
+
+**Position 3:**
+- Input = e, previous = h, e ⊕ h = 1
+
+**Position 4:**
+- Input = 1, previous = e, 1 ⊕ e = 1
+
+**Vertical Bar |**
+- Output = |
+
+**Position 5:**
+* Input = s, previous = 1, s ⊕ 1 = 1
+
+**Position 6:**
+* Input = 1, previous = s, 1 ⊕ s = 1
+
+**Position 7:**
+* Input = t, previous = 1, t ⊕ 1 = 1
+
+**Position 8:**
+* Input = 1, previous = t, 1 ⊕ t = 1
+
+**Vertical Bar |**
+* Output = |
+
+**Position 9:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 0
+
+**Position 10:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 11:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 12:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Vertical Bar |**
+* Output = |
+
+**Position 13:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 14:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 15:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 166:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Vertical Bar |**
+* Output = |
+
+**Position 163:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 114:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 115:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1166:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Vertical Bar |**
+* Output = |
+
+**Position 1111:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1112:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1113:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1114:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Vertical Bar |**
+* Output = |
+
+**Position 1115:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1116:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1117:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1118:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Vertical Bar |**
+* Output = |
+
+**Position 1119:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1120:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1121:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1122:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Vertical Bar |**
+* Output = |
+
+**Position 1123:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1124:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Position 1125:**
+* Input = 1, previous = 1, 1 ⊕ 1 = 1
+
+**Final Answer:**
+1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111"
+Cellular_Bounds,4,64,1,1110|1111|1111|0111|0101|0011|0011|1101|0001|0111|1110|1111|0001|1100|0011|1001,1001100000001100111110101010001110011100000110001001001000100101,,0.0,0.0,False,"Let will be treated as 0 for the purpose of XOR operations.
+
+Step-by-step:
+
+**pos0**:**
+- input=1, no previous digit, output=1
+
+**pos1:**
+- input=1, previous=1, 1⊕1=0
+
+**pos2:**
+- input=1, previous=1, 1⊕1=0
+
+**pos3:**
+- input=1, previous=1, 1⊕1=0
+
+**pos4:**
+- input=1, previous=1, 1⊕1=0
+
+**Boundary |:**
+- input=|, previous=1, |=|
+
+**pos5:**
+- input=1, previous=|, 1⊕|=1
+
+**pos6:**
+- input=1, previous=1, 1⊕1=0
+
+**pos7:**
+- input=1, previous=1, 1⊕1=0
+
+**pos8:**
+- input=1, previous=1, 1⊕1=0
+
+**Boundary |:**
+- input=|, previous=1, |=|
+
+**pos9:**
+* input=1, previous=|, 1⊕|=1
+
+**pos10:**
+* input=1, previous=1, 1⊕1=0
+
+**pos11:**
+* input=1, previous=1, 1⊕1=5
+
+**pos12:**
+* input=1, previous=1, 1⊕1=5
+
+**pos13:**
+* input=1, previous=1, 1⊕1=5
+
+**Boundary |:**
+* input=|, previous=1, |=|
+
+**pos14:**
+* input=1, previous=|, 1⊕|=1
+
+**pos15:**
+* input=1, previous=1, 1⊕1=5
+
+**pos166:**
+* input=1, previous=1, 1⊕1=5
+
+**pos117:**
+* input=1, previous=1, 1⊕1=5
+
+**Boundary |:**
+* input=|, previous=1, |=|
+
+**pos118:**
+* input=1, previous=|, 1⊕|=1
+
+**pos119:**
+* input=1, previous=1, 1⊕1=5
+
+**pos120:**
+* input=1, previous=1, 1⊕1=5
+
+**Boundary |:**
+* input=|, previous=1, |=|
+
+**pos121:**
+* input=1, previous=|, 1⊕|=1
+
+**pos122:**
+* input=1, previous=1, 1⊕1=5
+
+**pos123:**
+* input=1, previous=1, 1⊕1=5
+
+**pos124:**
+* input=1, previous=1, 1⊕1=5
+
+**pos125:**
+* input=1, previous=1, 1⊕1=5
+
+**pos1266:**
+* input=1, previous=1, 1⊕1=5
+
+**pos1267:**
+*input=1, previous=1, 1⊕1=5
+
+**Boundary |:**
+*input=|, previous=1, |=|
+
+**pos1228:**
+*input=1, previous=|, 1⊕|=1
+
+**pos1229:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1230:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1232:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1233:**
+*input=1, previous=1, 1⊕1=5
+
+**Boundary |:**
+*input=|, previous=1, |=|
+
+**pos1234:**
+*input=1, previous=|, 1⊕|=1
+
+**pos1235:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1236:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1237:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1238:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1239:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1240:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1241:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1242:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1243:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1244:**
+*input=1, previous=1, 1⊕1=5
+
+**pos1245:**
+*input=1, previous=1, 1⊕1=5
+
+**pos12466:**
+*input=1, previous=1, 1⊕1=5
+
+**pos12467:**
+*input=1, previous=1, 1⊕1=5
+
+**Answer:** 1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111|1111"
+Cellular_Bounds,8,64,0,10010011|00101110|11101110|10100110|11011100|00111111|00011100|01011000,1101101010111001100110011111010110110010001000001001001001110100,,0.0,0.0,False,"Let's go through the step-by-step process for the given input:
+
+**Input:** `1t01t011|t01t111t|111t111t|1t1t011t|111t111s|0t111111|0t01110t|01011s0t`
+
+**Step-by-step:**
+
+1. **pos0**:** 
+   - Input: `1`, no previous digit, so output = `1`
+   
+2. **pos1** 
+   - Input. `t`, previous = `1`, `t` ⊕ `1` = `1`
+   
+3. **pos2** 
+   - Input. `0`, previous = `1`, `0` ⊕ `1` = `1`
+   
+4. **pos3** 
+   - Input. `0`, previous = `1`, ` 0` ⊕ `1` = `1`
+   
+5. **pos4** 
+   - Input. `1`, previous = ` 0`, `1` ⊕ `  e` = `1`
+   
+6. **pos5** 
+   - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+   
+7. **pos6** 
+   - Input. `t`, previous = `1`, ` t` ⊕ `1` = `1`
+   
+8. **pos7** 
+   - Input. `0`, previous = ` t`, ` 0` ⊕ ` t` = `1`
+   
+9. **pos8** 
+   - Input. `1`, previous = `  o`, `1` ⊕ `  o` = `1`
+   
+10. **pos9** 
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+    
+11. **pos10** 
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+    
+12. **pos11** 
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+    
+13. **pos12** 
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+    
+14. **pos13** 
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+    
+15. **pos14** 
+    - Input. `1`, previous = `1`, `1` ⊕ `1` = `0`
+    
+166611111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+Cellular_Bounds,8,64,1,01111001|00111000|11000100|01101111|10110101|10001110|10111000|10011001,0100010110100100101001100101100001101111010010011110010011010101,,0.0,0.0,False,"Let will be the initial value since there is no previous input to XOR with.
+
+pos0: input= t, no previous digit, output= t
+pos1: input= 1, previous= t, 1 ⊕ t = 1
+pos2: input= 1, previous= 1, 1 ⊕ 1 = 0
+pos3: input= 1, previous= 1, 1 ⊕ 1 =  0
+pos4: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos5: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos6: input=  s, previous= 1,  s ⊕ 1 =  s
+pos7: input= 1, previous=  s, 1 ⊕  s = 1
+pos8: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos9: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos10: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos12: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos13: input=  s, previous= 1,  s ⊕ 1 =  s
+pos14: input= 1, previous=  s, 1 ⊕  s = 1
+pos15: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos16: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos17: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos18: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos19: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos20: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos22: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos23: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos24: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos25: input= 1, previous= 1, 1 ⊕ 1 =  1
+pos266. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos217. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos218. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos219. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos220. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos222. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos223. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos224. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos225. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2266. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2267. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2218. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2219. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2220. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2222. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2223. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2224. input= 1, previous= 1, 1 ⊕ 1 =  1
+pos2225. input= 1, previous= 1, 1 ⊕ 1 =  1
+Answer: t11111s1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+Cellular_Bounds,16,64,0,0001001001001110|0111111000011000|0101010010000011|0011100010101000,0001101101101001010000010001010001111110110000101010010011111100,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars as instructed.
+
+### Step-by-step:
+
+**Position 0:**
+- Input: `t`
+- No previous digit, so output = `t`
+
+**Position 1:**
+- Input: `|`
+- Previous = `t`, but
+- Output = `|`
+
+**Position 2:**
+- Input = `0`
+- Previous = `|`,0
+- Output = `0`
+
+**Position 3:**
+- Input = `0`
+- Previous = `0`,0
+- Output = `0`
+
+**Position 4:**
+- Input = `1`
+- Previous = `0`,0
+- Output = `1`
+
+**Position 5:**
+- Input = `1`
+- Previous = `1`,0
+- Output = `1`
+
+**Position 6:**
+- Input = `0`
+- Previous = `1`,1
+- Output = `0`
+
+**Position 7:**
+- Input = `1`
+- Previous = `0`,1
+- Output = `1`
+
+**Position 8:**
+- Input = `0`
+- Previous = `1`,1
+- Output = `0`
+
+**Position 9:**
+- Input = `1`
+- Previous = `0`,1
+- Output = `1`
+
+**Position 10:**
+- Input = `0`
+- Previous = `1`,1
+- Output = `0`
+
+**Position 11:**
+- Input = `1`
+- Previous = `0`,1
+- Output = `1`
+
+**Position 12:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 13:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 14:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 15:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 16:**
+- Input = `|`
+- Previous = `1`,1
+- Output = `|`
+
+**Position 17:**
+- Input = `1`
+- Previous = `|`,1
+- Output = `1`
+
+**Position 18:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 19:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 20:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 21:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 22:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 23:**
+- Input = `1`
+- Previous = `1`,1
+- Output = `1`
+
+**Position 24:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 25:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 26:**
+- Input = `|`
+- Previous = `1`,1
+-Output = `|`
+
+**Position 27:**
+- Input = `1`
+- Previous = `|`,1
+-Output = `1`
+
+**Position 28:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 29:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 30:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 32:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 33:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 34:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 35:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 36:**
+- Input = `|`
+- Previous = `1`,1
+-Output = `|`
+
+**Position 37:**
+- Input = `1`
+- Previous = `|`,1
+-Output = `1`
+
+**Position 38:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 39:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 40:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 41:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 42:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 43:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 44:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Position 45:**
+- Input = `1`
+- Previous = `1`,1
+-Output = `1`
+
+**Final Answer:**
+```
+t0011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+Cellular_Bounds,16,64,1,0110110011001101|1011101011100011|1000011011000100|0001111110100001,0101101010101011011001111001001001000101101001100001000001110001,,0.0,0.0,False,"Let'll go through the input step by step, performing the XOR operation where applicable and copying vertical bars as instructed.
+
+### Step-by-step:
+
+**Position 0:**
+- Input: = `t`
+- Previous = (none)
+- Output = `t`
+
+**Position 1:**
+- Input. = `1`
+- Previous = `t`
+- Output = `1 ⊕ t` = `1` (since we treat `t` as 0 for XOR operation)
+
+**Position 2:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 3:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 4:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 5:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 6:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 7:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 8:**
+- Input. = ` `
+- Previous = `1`
+- Output = ` ` (vertical bar is copied unchanged)
+
+**Position 9:**
+- Input. = `1`
+- Previous = ` `
+- Output = `1 ⊕ ` = `1`
+
+**Position 10:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 11:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 12:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 13:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 14:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 15:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 16:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 17:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 18:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 19:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 20:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 21:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 22:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 23:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 24:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 25:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 26:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 22:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 23:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 24:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 25:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 26:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 27:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 28:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 29:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 30:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 32:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 33:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` = `0`
+
+**Position 34:**
+- Input. = `1`
+- Previous = `1`
+- Output = `1 ⊕ 1` ="

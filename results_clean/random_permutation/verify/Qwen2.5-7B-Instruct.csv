@@ -1,0 +1,958 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Alphabet_Size,Prompt,Raw_Model_Output
+Base,0,4,0,ABAB,BABA,BABA,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAB
+Output: ",BA BA
+Base,0,4,0,ADBC,DBCA,DBCA,1.0,1.0,4,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADBC
+Output: ",DBCA
+Base,0,4,0,CABB,BEAA,BBCF,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CABB
+Output: ",BBCF
+Cellular_Bounds,1,4,0,A|A|B|A,BBAB,BBAB,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|B|A
+Output: ",B|B|A|B
+Cellular_Bounds,1,4,0,A|D|A|A,DBDD,DCDD,0.75,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|D|A|A
+Output: ",D|C|D|D
+Cellular_Bounds,1,4,0,C|B|A|B,BAEA,BAEA,1.0,1.0,4,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B
+Output: ",B|A|E|A
+Cellular_Bounds,2,4,0,AB|BA,BAAB,BAAB,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|BA
+Output: ",BA|AB
+Cellular_Bounds,2,4,0,BB|BD,CCCB,CCCB,1.0,1.0,4,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|BD
+Output: ",CC|CB
+Cellular_Bounds,2,4,0,EA|CH,GEBD,GEBD,1.0,1.0,4,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EA|CH
+Output: ",GE|BD
+Cellular_Bounds,3,4,0,ABB|A,BAAB,BAAB,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|A
+Output: ",BAA|B
+Cellular_Bounds,3,4,0,DAA|A,BDDD,DAAA,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DAA|A
+Output: ",DAA|A
+Cellular_Bounds,3,4,0,ACB|A,EBAE,EBA,0.75,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACB|A
+Output: ",EB|A
+Base,0,8,0,BABBBBAB,ABAAAABA,BAABAAAB,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABBBBAB
+Output: ",BAABAAAB
+Base,0,8,0,DDCACAAC,BBADADDA,GGGGBBGB,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCACAAC
+Output: ",GGGGBBGB
+Base,0,8,0,HGBGHGEC,DCACDCGB,DCHDCGEB,0.375,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HGBGHGEC
+Output: ",DCHDCGEB
+Cellular_Bounds,1,8,0,A|A|A|A|B|A|B|B,BBBBABAA,BBBBABAA,1.0,1.0,8,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|A|A|B|A|B|B
+Output: ",B|B|B|B|A|B|A|A
+Cellular_Bounds,1,8,0,D|D|B|D|C|C|D|C,BBCBAABA,AACABBAB,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|D|B|D|C|C|D|C
+Output: ",A|A|C|A|B|B|A|B
+Cellular_Bounds,1,8,0,H|G|E|A|B|E|G|C,DCGEAGCB,DCGEAAHB,0.75,0.0,5,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|G|E|A|B|E|G|C
+Output: ",D|C|G|E|A|A|H|B
+Cellular_Bounds,2,8,0,BA|BB|BA|AA,ABAAABBB,ABBAABBB,0.875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BA|BB|BA|AA
+Output: ",AB|BA|AB|BB
+Cellular_Bounds,2,8,0,DD|AD|DD|BA,BBDBBBCD,GGDBGGAC,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DD|AD|DD|BA
+Output: ",GG|DB|GG|AC
+Cellular_Bounds,2,8,0,FB|DD|HG|AE,HAFFDCEG,HAFIDCEG,0.875,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FB|DD|HG|AE
+Output: ",HA|FI|DC|EG
+Cellular_Bounds,3,8,0,ABA|AAA|BA,BABBBBAB,BABAAAAB,0.625,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABA|AAA|BA
+Output: ",BABA|AAAB|AB
+Cellular_Bounds,3,8,0,BBC|DBA|AD,CCABCDDB,DDCCBADB,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBC|DBA|AD
+Output: ",DDC|CBA|DB
+Cellular_Bounds,3,8,0,CCB|GFB|DB,BBACHAFA,BBAHEAFH,0.625,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CCB|GFB|DB
+Output: ",BBA|HEA|FH
+Cellular_Bounds,4,8,0,BBAA|AAAB,AABBBBBA,AAABBBAA,0.75,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAA|AAAB
+Output: ",AAAB|BBAA
+Cellular_Bounds,4,8,0,DADB|DAAD,BDBCBDDB,BADCBCCA,0.375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DADB|DAAD
+Output: ",BADC|BCCA
+Cellular_Bounds,4,8,0,DDCB|FBCC,FFBAHABB,FHFGHEFG,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCB|FBCC
+Output: ",FHFG|HEFG
+Base,0,16,0,BBABBBAABAAABABB,AABAAABBABBBABAA,AAAABBBAAAAABBA,0.4375,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABBBAABAAABABB
+Output: ",AAAABBBAAAAABBA
+Base,0,16,0,BDAADBCDDDBBACCA,CBDDBCABBBCCDAAD,CDBCDACBBDBACAA,0.3125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",CDBCDACBBDBACAA
+Base,0,16,0,HHHBFEGDGBCGHCEA,DDDAHGCFCABCDBGE,DDDFHHGHEBBFDGCH,0.375,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HHHBFEGDGBCGHCEA
+Output: ",DDDFHHGHEBBFDGCHEA
+Cellular_Bounds,1,16,0,B|A|A|B|B|A|A|B|A|A|B|A|B|A|A|B,ABBAABBABBABABBA,ABBAABBABBABABBA,1.0,1.0,16,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|B|B|A|A|B|A|A|B|A|B|A|A|B
+Output: ",A|B|B|A|A|B|B|A|B|B|A|B|A|B|B|A
+Cellular_Bounds,1,16,0,C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C,AACAACABCBBDBBAA,AACAACABCBBDBBAA,1.0,1.0,16,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C
+Output: ",A|A|C|A|A|C|A|B|C|B|B|D|B|B|A|A
+Cellular_Bounds,1,16,0,C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G,BGACGADBHEHEADCC,BGACGADBHEHEADCC,1.0,1.0,16,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G
+Output: ",B|G|A|C|G|A|D|B|H|E|H|E|A|D|C|C
+Cellular_Bounds,2,16,0,BB|AA|AA|BA|AB|BB|AB|BB,AABBBBABBAAABAAA,AABBBBABBAAABAAA,1.0,1.0,16,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|AA|AA|BA|AB|BB|AB|BB
+Output: ",AA|BB|BB|AB|BA|AA|BA|AA
+Cellular_Bounds,2,16,0,DA|BA|CB|BA|DC|CC|DD|DB,BDCDACCDBAAABBBC,GDECACECGBAABBGA,0.4375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DA|BA|CB|BA|DC|CC|DD|DB
+Output: ",GD|EC|AC|EC|GB|AA|BB|GA
+Cellular_Bounds,2,16,0,FD|EA|DB|FG|CG|GA|FB|GA,HFGEFAHCBCCEHACE,HGJIFAIJHBIEHCIE,0.375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FD|EA|DB|FG|CG|GA|FB|GA
+Output: ",HG|JI|FA|IJ|HB|IE|HC|IE
+Cellular_Bounds,3,16,0,BAA|ABB|BAA|AAB|BBA|A,ABBBAAABBBBAAABB,AABABAAABBBBABAA,0.5,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAA|ABB|BAA|AAB|BBA|A
+Output: ",AAB|ABA|AAB|BBB|ABA|A
+Cellular_Bounds,3,16,0,DDB|BDA|AAB|BAA|ABD|C,BBCCBDDDCCDDDCBA,GGBGCADDDGDDGBGA,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDB|BDA|AAB|BAA|ABD|C
+Output: ",GGB|GCA|DDD|GDD|GBG|A
+Cellular_Bounds,3,16,0,GGC|GDA|EEA|FCB|DHB|E,CCBCFEGGEHBAFDAG,DCCHEFGGGHGACIBG,0.375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GGC|GDA|EEA|FCB|DHB|E
+Output: ",DCC|HEF|GGG|HGA|CIB|G
+Cellular_Bounds,4,16,0,BBAA|AABA|AAAA|BBAA,AABBBBABBBBBAABB,AAABBBABBBBBAAAB,0.875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAA|AABA|AAAA|BBAA
+Output: ",AAAB|BBAB|BBBB|AAAB
+Cellular_Bounds,4,16,0,CACD|BACA|BDBB|DCCD,ADABCDADCBCCBAAB,DACBCADBCBDBBDAA,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",DACB|CADB|CBDB|BDAA
+Cellular_Bounds,4,16,0,CGAC|ABDG|GBFE|CHGG,BCEBEAFCCAHGBDCC,BGEBHFHABCAGDHHC,0.3125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGAC|ABDG|GBFE|CHGG
+Output: ",BGEB|HFHA|BCAG|DHHC
+Cellular_Bounds,8,16,0,ABAAAABA|BABBAAAA,BABBBBABABAABBBB,BAABBBAAABAAABBB,0.8125,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAAAABA|BABBAAAA
+Output: ",BAABBBAA|ABAAABBB
+Cellular_Bounds,8,16,0,BDBADADA|ABDDCCAA,CBCDBDBDDCBBAADD,CDAACBDBDCBAACDD,0.4375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBADADA|ABDDCCAA
+Output: ",CDAACBDB|DCBAACDD
+Cellular_Bounds,8,16,0,CGEACHDG|HBABBFBH,BCGEBDFCDAEAAHAD,BGFHDGCHEAEEGGAE,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGEACHDG|HBABBFBH
+Output: ",BGFHDGCH|EAEEGGAE
+Base,0,32,0,BBABAAABAAAAABAABAABBBBBABAABBBA,AABABBBABBBBBABBABBAAAAABABBAAAB,AAABBBBBBBBBBBBBBBBBBBBBBBBBBBBB,0.5625,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABAAABAAAAABAABAABBBBBABAABBBA
+Output: ",AAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+Base,0,32,0,ACBDBABCCCACDDABBCCADAACBCDACDCD,DACBCDCAAADABBDCCAADBDDACABDABAB,DADCBDCACBAAABCCABDCDADBCDCBDDBC,0.3125,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACBDBABCCCACDDABBCCADAACBCDACDCD
+Output: ",DADCBDCACBAAABCCABDCDADBCDCBDDBCC
+Base,0,32,0,ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE,EFDDCGGEDAGHGAAACHDFBCBDCDADFAGG,EHDDCGGGHEABAAABBCGFCGBFGCFBAAGG,0.40625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE
+Output: ",EHDDCGGGHEABAAABBCGFCGBFGCFBAAGG
+Cellular_Bounds,1,32,0,B|A|A|A|A|B|B|B|B|B|A|B|B|B|B|B|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|A,ABBBBAAAAABAAAAABBBABBBBBABABBBB,ABAAAAAAAABAAAAABBBABBBBBABABBB,0.875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|A|A|B|B|B|B|B|A|B|B|B|B|B|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|A
+Output: ",A|B|A|A|A|A|A|A|A|A|B|A|A|A|A|A|B|B|B|A|B|B|B|B|B|A|B|A|B|B|B
+Cellular_Bounds,1,32,0,C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C,ACDCBACDBDCADCAACBDABACDAADBBCBA,ACDCABCDADCADCACDBDCACDADBACABB,0.46875,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C
+Output: ",A|C|D|C|A|B|C|D|A|D|C|A|D|C|A|C|D|B|D|C|A|C|D|A|D|B|A|C|A|B|B
+Cellular_Bounds,1,32,0,H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F,DBGBCCHDAEGHBFAGGHDAAACEAGAHDHGH,DBGBCCHDAEGHBAEGGHDAAACEAGAHEHGH,0.90625,0.0,13,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F
+Output: ",D|B|G|B|C|C|H|D|A|E|G|H|B|A|E|G|G|H|D|A|A|A|C|E|A|G|A|H|E|H|G|H
+Cellular_Bounds,2,32,0,AB|BB|AA|BA|AB|BA|BB|BA|AA|BA|AB|BB|BB|BA|BA|AA,BAAABBABBAABAAABBBABBAAAAAABABBB,BAAABBABBAABAAABBBABBAAABBABAABB,0.90625,0.0,24,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|BB|AA|BA|AB|BA|BB|BA|AA|BA|AB|BB|BB|BA|BA|AA
+Output: ",BA|AA|BB|AB|BA|AB|AA|AB|BB|AB|BA|AA|BB|AB|AA|BB
+Cellular_Bounds,2,32,0,CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA,ADBADADCACDACCDABBACBCACBBCDCCAD,DACBDADBBADAABDABDBADBBABDDBABDA,0.28125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA
+Output: ",DA|CB|DA|DB|BA|DA|AB|DA|BD|BA|DB|BA|BD|DB|AB|DA
+Cellular_Bounds,2,32,0,CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE,BDCHHGCFCDFDFDHBAEAEHFFFECAFEGDG,HGJCJIJCJIIHIHICAHAHIHDDEGBHEHED,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE
+Output: ",HG|JC|JI|JC|JI|IH|IH|IC|AH|AH|IH|DD|EG|BH|EH|ED|GE
+Cellular_Bounds,3,32,0,BAA|BBA|BBB|ABA|BBB|ABA|AAA|BAB|ABB|BAB|BB,ABBAABAAABABAAABABBBBABABAAABAAA,AABABABAABAABAABAABBBABAAABABAAA,0.71875,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAA|BBA|BBB|ABA|BBB|ABA|AAA|BAB|ABB|BAB|BB
+Output: ",AAB|ABA|BAA|BAA|BAA|BAA|BBB|ABA|AAB|ABA|AA
+Cellular_Bounds,3,32,0,AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB,DDBABDCCABCBCDCDDAAACABDDAACADAC,DDDDAACCCBBDDBDDDDAAACCADDDDCABB,0.3125,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB
+Output: ",DDD|DAA|CCC|BBD|DBD|DDD|AAA|CCA|DDD|DCA|BB
+Cellular_Bounds,3,32,0,EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG,GGBHFGGCGHHGADEDFGFDECGFGGFFAAGC,GGGHHIGHIIIIAEIHGIIAEGCIGGIHHFGG,0.28125,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG
+Output: ",GGG|HHI|GHI|III|AEI|HGI|IAE|GCI|GGI|HHF|GG
+Cellular_Bounds,4,32,0,ABAB|ABBB|AAAB|ABBA|AAAB|BABB|ABBA|BBBA,BABABAAABBBABAABBBBAABAABAABAAAB,BABBBAAABAABBAAAABABBAABAABB,0.46875,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAB|ABBB|AAAB|ABBA|AAAB|BABB|ABBA|BBBA
+Output: ",BA|BB|BAAA|BAAB|BAAA|ABAB|BAAB|AABB
+Cellular_Bounds,4,32,0,BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC,CCCCBCBADADDACDCDBCDAABCBBADDACA,CCCCCABBDAADBCCADACCBAAABADDDACC,0.53125,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC
+Output: ",CCCC|CABB|DAAD|BCCA|DACC|BAAA|BADD|DACC
+Cellular_Bounds,4,32,0,CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF,BFAGCFDADHGGADECFGAFFBAGHDEBABAH,BAGEHFGBICGHACHDFGFHGBCECIDHCBCH,0.28125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF
+Output: ",BAGE|HFGB|ICGH|ACHD|FGFH|GBCE|CIDH|CBCH
+Cellular_Bounds,8,32,0,BBABABAB|AABAAAAA|BABBBABA|BBAAAABA,AABABABABBABBBBBABAAABABAABBBBAB,AABABBAA,0.1875,0.0,5,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABABAB|AABAAAAA|BABBBABA|BBAAAABA
+Output: ",AA|BA|BB|AA
+Cellular_Bounds,8,32,0,BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD,CCCABACDBCBCACCAAABBBAAAADCCBBDB,CCCAABBBACACBBCCAAABBBAABBCCAAAD,0.46875,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD
+Output: ",CCCAABBB|ACACBBCC|AAABBBAA|BBCCAAAD
+Cellular_Bounds,8,32,0,EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG,GHCCBBGGGFHFABADBCBHBHDBFEBEFCGC,GHCHHBGBAHJAHJHDBGBJBJICFHFJAJIC,0.34375,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG
+Output: ",GHCHHBGB|AHJAHJHD|BGBJBJIC|FHFJAJIC
+Cellular_Bounds,16,32,0,ABAAAABBBABBBABB|ABAABAAABBAABBBA,BABBBBAAABAAABAABABBABBBAABBAAAB,BAAABBBAAAAABBBBAAABBBAAAAABBB,0.46875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAAAABBBABBBABB|ABAABAAABBAABBBA
+Output: ",BAAABBBAAAAABBB|BAAABBBAAAAABBB
+Cellular_Bounds,16,32,0,CACBDAABBDCAAABA|AACDCAADBACBCCDD,ADACBDDCCBADDDCDDDABADDBCDACAABB,DACBADBCDBCAACDCDDCBDDCBBDCACBAA,0.28125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACBDAABBDCAAABA|AACDCAADBACBCCDD
+Output: ",DACBADBCDBCAACDC|DDCBDDCBBDCACBAA
+Cellular_Bounds,16,32,0,FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH,HDBDEDDCAHCGHCFGCFCGBEFFGGEGGBDD,HIDIBIDICIDIBIDGIDIDCIDIDIDCIDI,0.09375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH
+Output: ",HIDIBIDICIDIBIDG|IDIDCIDIDIDCIDI
+Base,0,64,0,ABBBBBBBBBBBAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAAABAB,BAAAAAAAAAAABBBABBAABABBBABBBBBBBABABBBABBBABBBBAABABAABAABBBABA,BAAAAAAAAAAAAABBAABBBAABAABBBBBBBBBBBBBBABBAABBAABBAABBAABBABABB,0.640625,0.0,12,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABBBBBBBBBBBAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAAABAB
+Output: ",BAAAAAAAAAAAAABBAABBBAABAABBBBBBBBBBBBBBABBAABBAABBAABBAABBABABBAABBBA
+Base,0,64,0,BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC,CACCACDBACDCDACDAADBBCDBBBDBCDBCDCCCACAADCBCCAAAAADDCADACBBCDDAA,CCACACDCBAACBCCBAAABDCBBACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCC,0.375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC
+Output: ",CCACACDCBAACBCCBAAABDCBBACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCCCBCCACDCACDCACCCBCCBCCCBCCACDCACDCACCCB
+Base,0,64,0,EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE,GFGEDBHCADFBAHDDHCECBDDEDHEFHBDDEHBDFFACFAFCDGFFFGFDHHEEFFBBEGEG,GAGCGIGEBEGCIHIGHEGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBIC,0.09375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE
+Output: ",GAGCGIGEBEGCIHIGHEGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICGIGEBICBGCBICG
+Cellular_Bounds,1,64,0,B|A|A|A|B|B|A|B|B|B|B|A|A|A|B|B|B|A|B|A|A|A|B|A|A|B|B|A|A|A|A|A|B|A|B|A|A|B|A|A|A|B|A|A|A|A|B|B|B|A|A|B|A|A|A|A|B|B|A|B|A|B|B|A,ABBBAABAAAABBBAAABABBBABBAABBBBBABABBABBBABBBBAAABBABBBBAABABAAB,ABAABABAAAABAAAAABABAAABAAAABBBAAAAAABAABAAAAABAAAAAAAABAA,0.5,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|A|B|B|A|B|B|B|B|A|A|A|B|B|B|A|B|A|A|A|B|A|A|B|B|A|A|A|A|A|B|A|B|A|A|B|A|A|A|B|A|A|A|A|B|B|B|A|A|B|A|A|A|A|B|B|A|B|A|B|B|A
+Output: ",A|B|A|A|B|A|B|A|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|B|A|A|A|A|B|B|B|A|A|A|A|A|A|B|A|A|B|A|A|A|A|A|B|A|A|A|A|A|A|A|A|B|A|A|
+Cellular_Bounds,1,64,0,D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B,BAABCABDACCDACDBADADCCBDBDCBACBBDDDBCAABCADABBBCCABABABCDCCDCBBC,GAAGAAGDAAADAADGAAAAAAGDDAAGAAGGDDDGAAAGAAGGGAAAGAGGAAGGGA,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B
+Output: ",G|A|A|G|A|A|G|D|A|A|A|D|A|A|D|G|A|A|A|A|A|A|G|D|D|A|A|G|A|A|G|G|D|D|D|G|A|A|A|G|A|A|G|G|G|A|A|A|G|A|G|G|A|A|G|G|G|A|
+Cellular_Bounds,1,64,0,B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H,ABCHACAAFDBAHABCGCGGADAGFGFGCGDAECADDADGCHGAGFEHFBCHBEFCEGEAAHDD,EBCDACAAFGBAHABCGGGGAHAGDGDGCGHAECAHHAHGCHGAEABBHH,0.515625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H
+Output: ",E|B|C|D|A|C|A|A|F|G|B|A|H|A|B|C|G|G|G|G|A|H|A|G|D|G|D|G|C|G|H|A|E|C|A|H|H|A|H|G|C|H|G|A|E|A|B|B|H|H
+Cellular_Bounds,2,64,0,AA|BB|BA|AB|BA|AB|BA|AB|BB|AA|BB|BB|BA|BA|AA|BB|BA|BB|BB|AA|AA|AB|BA|AB|AA|BA|AA|BB|BA|BB|AB|AA,BBAAABBAABBAABBAAABBAAAAABABBBAAABAAAABBBBBAABBABBABBBAAABAABABB,BBAAABBAABBAABBAAABBAAAAABABBAABAAABAABAABBAABAABAAABBABAA,0.734375,0.0,29,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|BB|BA|AB|BA|AB|BA|AB|BB|AA|BB|BB|BA|BA|AA|BB|BA|BB|BB|AA|AA|AB|BA|AB|AA|BA|AA|BB|BA|BB|AB|AA
+Output: ",BB|AA|AB|BA|AB|BA|AB|BA|AA|BB|AA|AA|AB|AB|BA|AB|AA|AB|AA|BA|AB|BA|AB|AA|BA|AA|BB|AB|AA
+Cellular_Bounds,2,64,0,DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD,BACADABBDDCCADBBCDCCACDDACCCCBAABBACCCBDABBDBBAADDCAADABCACDCDBB,DBCADABBDDAACBBBABBBACAAACBBDBCABBACBBDBCDCBCDBABADD,0.328125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD
+Output: ",DB|CA|DA|BB|DD|AA|CB|BB|AB|BB|AC|AA|AC|BB|DB|CA|BB|AC|BB|DB|CD|CB|CD|BA|BA|DD
+Cellular_Bounds,2,64,0,CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF,BGEBHDGAGADBDBFHGHHBGHCAGAGHHGGBEHEGCFEDEBAHDDAGDCAHCFDBBHGBFFAH,GEBBHIEAEAGCGCJIEGDBEGICEAEGGECBEHGDAGACBGHHBEGIBGGDGCFBEECBCCBB,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF
+Output: ",GE|BB|HI|EA|EA|GC|GC|JI|EG|DB|EG|IC|EA|EG|GE|CB|EH|GD|AG|AC|BG|HH|BE|GI|BG|GD|GC|FB|EE|CB|CC|BB
+Cellular_Bounds,3,64,0,ABB|AAA|AAB|BAB|AAB|AAB|BBA|ABA|BAA|ABB|AAA|ABA|AAA|AAB|ABA|ABA|ABB|AAB|ABB|BAA|BAB|B,BAABBBBBAABABBABBAAABBABABBBAABBBBABBBBBBABABBABBAABBABAAABBABAA,BAABBBBBAABABBBBBAAABBBAABABBABBBBBABBBBBABBABAAAABBBAAABABAABAA,0.765625,0.0,14,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|AAA|AAB|BAB|AAB|AAB|BBA|ABA|BAA|ABB|AAA|ABA|AAA|AAB|ABA|ABA|ABB|AAB|ABB|BAA|BAB|B
+Output: ",BAA|BBB|BBA|ABA|BBB|BBA|AAB|BBA|ABA|BBA|BBB|BBA|BBB|BBA|BBA|BAA|AAB|BBA|AAB|ABA|ABA|A
+Cellular_Bounds,3,64,0,CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D,ACBBBACAABCADCDACBCCBABBDDBACDCABDCCABDBDADBAADBAADDBCAACDDCBCDB,DCBDCAACBACBDADDCBBDBACCDDBCABDCABBADBABCACBACACBDABBCAABDCAB,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D
+Output: ",DCB|DCA|ACB|ACB|DAD|DCB|BDB|ACC|DDB|CAB|DCA|BBA|DBA|BCA|CBA|CAC|BDA|BBC|AAB|DCA|B
+Cellular_Bounds,3,64,0,ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B,EBDAFDEBHAAGEBDDEDGBDDAEFFEHDDGGFDAFCBCEHDCGFDGGABFHGDCABEBEHCBA,EHDGAIEBIAAHEHDHIDEGIHAGHHDHHIGEDGCIAFHHIDGEECIDIEHGBCEDEHGCB,0.203125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B
+Output: ",EHD|GAI|EBI|AAH|EHD|HID|EGI|HAG|HHD|HHI|GED|GCI|AFH|HID|GEE|CID|IEH|GBC|EDE|HGC|B
+Cellular_Bounds,4,64,0,BBBB|AAAA|AAAB|BBAB|AABB|BBAA|BBBA|BAAB|BAAA|BBBB|ABAA|BABB|BAAA|BABA|AABA|BBAA,AAAABBBBBBBAAABABBAAAABBAAABABBAABBBAAAABABBABAAABBBABABBBABAABB,BBBBAAAAAAABBBABAABBBBAABBBABAABBAAABBBBABAABABBBAAABABAAABABBAA,0.0,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|AAAA|AAAB|BBAB|AABB|BBAA|BBBA|BAAB|BAAA|BBBB|ABAA|BABB|BAAA|BABA|AABA|BBAA
+Output: ",BBBB|AAAA|AAAB|BBAB|AABB|BBAA|BBBA|BAAB|BAAA|BBBB|ABAA|BABB|BAAA|BABA|AABA|BBAA
+Cellular_Bounds,4,64,0,BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC,CBCBBBDCDCAAAABDCCDCCDCABCDDDCACADCDABDCADAAADDDDAADCAACACDDACDA,CDBDDCAADCACBACACCBAACBCCBAABCABABACBDABABCCAAACCACCBCCAABAAABAC,0.234375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC
+Output: ",CDBD|DCAA|DCAC|BACA|CCBA|ACBC|CBAA|BCAB|ABAC|BDAB|ABCC|AAAC|CACC|BCCA|ABAA|ABAC
+Cellular_Bounds,4,64,0,AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD,EHGFAHACGAGHFHHHFGFCCHCDFFAFAHAADACBEHCCHDBBEFBHADGBFCHHGDBHHEAF,EIHJAGAIGIJIHHIJGEIHICJIHHIDAGAIDIJCEIHJHJCIEIGICHIAJIHHJIHCHIEG,0.21875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD
+Output: ",EIHJ|AGAI|GIJI|HHIJ|GEIH|ICJI|HHID|AGAI|DIJC|EIHJ|HJCI|EIGI|CHIA|JIHH|JIHC|HIEG
+Cellular_Bounds,8,64,0,BAABBAAA|AAABAAAA|BBBABBBB|AAABABBA|ABABABBA|BAABABAA|BABABAAA|BAAABBAA,ABBAABBBBBBABBBBAAABAAAABBBABAABBABABAABABBABABBABABABBBABBBAABB,ABAAABBBBBBBAAAAAABBBBBBBBAABBAABABAABAAABBAABBBABABABBBAABAAABB,0.671875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAABBAAA|AAABAAAA|BBBABBBB|AAABABBA|ABABABBA|BAABABAA|BABABAAA|BAAABBAA
+Output: ",ABAAABBB|BBBBAAAA|AABBBBBB|BBAABBAA|BABAABAA|ABBAABBB|ABABABBB|AABAAABB
+Cellular_Bounds,8,64,0,DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA,BBCACDCDCBABBBCDADDCACBABBBDBBBADBBDDBBAACBCAAABCCDAADABDCBCADAD,GGBAAAGGAACCCAAADGDGGDGGGGGGGGGGGGGGGGGGDGDGGDGGAACCCAAAGGBAAAGG,0.078125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA
+Output: ",GGBAAAGG|AACCCAAA|DGDGGDGG|GGGGGGGG|GGGGGGGG|DGDGGDGG|AACCCAAA|GGBAAAGG
+Cellular_Bounds,8,64,0,DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE,FGADEDHCEDEAGFGFHDAFDBFBGHHCEHFCBEDEBDFBBCEFABEFGCEFDFDABHABFADG,FHDEHIHGEADGIEBAHIFBGDEBHHIGIHEAGBDEGBEBGBFEADGAIHDEBDHBBGFEDBEA,0.1875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE
+Output: ",FHDEHIHG|EADGIEBA|HIFBGDEB|HHIGIHEA|GBDEGBEB|GBFEADGA|IHDEBDHB|BGFEDBEA
+Cellular_Bounds,16,64,0,AABAAABBAABABBBA|ABABBABBBAABAAAB|ABBBABBABBABABBB|ABAABBBBBAABABBA,BBABBBAABBABAAABBABAABAAABBABBBABAAABAABAABABAAABABBAAAAABBABAAB,BBAAABAAABBAABAABAABABBABBBAABAAABBBABBABBABAABBAABBBBBAABAABB,0.4375,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AABAAABBAABABBBA|ABABBABBBAABAAAB|ABBBABBABBABABBB|ABAABBBBBAABABBA
+Output: ",BBAAABAAABBAABAA|BAABABBABBBAABA|AABBBABBABBABAA|BBAABBBBBAABAABB
+Cellular_Bounds,16,64,0,CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC,ADAACAAADCCDAADCAAACBCCAADCDDDDDDBBAACBBDDBBDCCCDABAAABABDCBABCA,DACAAADDAABBAACDAAABDBAADABBAACDDBAAADBDDBBAABDADDDCDADBDDBAC,0.296875,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC
+Output: ",DACAAADDAABBAACD|AAABDBAADABBAAC|DDBAAADBDDBBAAB|DADDDCDADBDDBAC
+Cellular_Bounds,16,64,0,DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA,FDCDECHDFBCFAHABFBCHEHDBECDCBEGACFHAGGFCHGGEGEEFHBEBFHHHAHFBCDEE,HDHDEHCGCEHFGAECHEHFHCGCEHFGAECGCHFEEDGFEEAEAADFCACDFFFBFDCGHAA,0.15625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→A, C→B, D→F, E→G, F→H, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA
+Output: ",HDHDEHCGCEHFGAEC|HEHFHCGCEHFGAEC|GCHFEEDGFEEAEAAD|FCACDFFFBFDCGHAA

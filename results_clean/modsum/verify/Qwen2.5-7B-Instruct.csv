@@ -1,0 +1,1051 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Modulus,Prompt,Raw_Model_Output
+Base,0,4,0,0010,0011,010,0.25,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0010
+Output: ",010
+Base,0,4,0,0321,0312,3102,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0321
+Output: ",3102
+Base,0,4,0,4132,4502,5612,0.25,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 4132
+Output: ",5612
+Cellular_Bounds,1,4,0,1|1|1|1,1010,1010,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|1
+Output: ",1|0|1|0
+Cellular_Bounds,1,4,0,0|1|1|1,0123,1230,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|1
+Output: ",1|2|3|0
+Cellular_Bounds,1,4,0,4|2|0|1,4667,4605,0.5,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 4|2|0|1
+Output: ",4|6|0|5
+Cellular_Bounds,2,4,0,00|11,0010,00,0.5,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|11
+Output: ",0|0
+Cellular_Bounds,2,4,0,23|03,2110,31,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 23|03
+Output: ",3|1
+Cellular_Bounds,2,4,0,40|45,4405,0,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 40|45
+Output: ",0
+Cellular_Bounds,3,4,0,110|0,1000,1101,0.5,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 110|0
+Output: ",110|1
+Cellular_Bounds,3,4,0,212|1,2312,3121,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 212|1
+Output: ",312|1
+Cellular_Bounds,3,4,0,154|2,1624,74,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 154|2
+Output: ",74
+Base,0,8,0,11011000,10010000,11000,0.375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 11011000
+Output: ",11000
+Base,0,8,0,10301123,11001203,3120323,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 10301123
+Output: ",3120323
+Base,0,8,0,72514350,71673633,7251435,0.125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 72514350
+Output: ",7251435|
+Cellular_Bounds,1,8,0,0|0|1|1|0|1|0|1,00100110,01001001,0.25,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|1|1|0|1|0|1
+Output: ",0|1|0|0|1|0|0|1
+Cellular_Bounds,1,8,0,0|0|3|3|2|2|2|2,00320202,01032020,0.125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|3|3|2|2|2|2
+Output: ",0|1|0|3|2|0|2|0
+Cellular_Bounds,1,8,0,0|7|3|6|4|1|5|4,07204526,71426037,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|7|3|6|4|1|5|4
+Output: ",7|1|4|2|6|0|3|7
+Cellular_Bounds,2,8,0,00|01|10|11,00010010,0010,0.25,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|01|10|11
+Output: ",0|0|1|0
+Cellular_Bounds,2,8,0,11|13|21|33,12320103,30st,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 11|13|21|33
+Output: ",3|0|s|t
+Cellular_Bounds,2,8,0,53|66|76|16,50643120,24316,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 53|66|76|16
+Output: ",24316
+Cellular_Bounds,3,8,0,011|000|01,01000001,11100001,0.75,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 011|000|01
+Output: ",111|000|01
+Cellular_Bounds,3,8,0,322|132|00,31303111,30113030,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 322|132|00
+Output: ",301|130|30
+Cellular_Bounds,3,8,0,565|635|33,53061614,7312634,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 565|635|33
+Output: ",731|263|4
+Cellular_Bounds,4,8,0,0101|1100,01101000,00100110,0.5,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0101|1100
+Output: ",00100|1100
+Cellular_Bounds,4,8,0,2122|0101,23133001,3120,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 2122|0101
+Output: ",3120
+Cellular_Bounds,4,8,0,6663|4253,64251303,0,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 6663|4253
+Output: ","0
+6
+5
+0
+6
+7
+"
+Base,0,16,0,1000000011100001,1111111101000001,110000001,0.125,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1000000011100001
+Output: ",110000001
+Base,0,16,0,3101222131221000,3001313030201111,3101222131221000,0.375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 3101222131221000
+Output: ",3101222131221000
+Base,0,16,0,5223457525275707,5714054130216554,57246575252757,0.3125,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 5223457525275707
+Output: ",57246575252757
+Cellular_Bounds,1,16,0,1|1|1|1|0|0|1|0|0|0|1|1|1|1|1|0,1010001111010100,111111010010110,0.3125,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|1|0|0|1|0|0|0|1|1|1|1|1|0
+Output: ",1|1|1|1|1|1|0|1|0|0|1|0|1|1|0
+Cellular_Bounds,1,16,0,1|2|2|3|2|2|2|2|1|1|2|1|1|0|2|3,1310202012012203,3013013311311321,0.1875,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1|2|2|3|2|2|2|2|1|1|2|1|1|0|2|3
+Output: ",3|0|1|3|0|1|3|3|1|1|3|1|1|3|2|1
+Cellular_Bounds,1,16,0,4|2|3|7|3|5|6|0|2|1|0|2|2|6|5|2,4610306601135302,4617052734240613,0.1875,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 4|2|3|7|3|5|6|0|2|1|0|2|2|6|5|2
+Output: ",4|6|1|7|0|5|2|7|3|4|2|4|0|6|1|3
+Cellular_Bounds,2,16,0,00|00|01|11|01|10|01|01,0000010110111001,01001010,0.1875,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|00|01|11|01|10|01|01
+Output: ",0|1|0|0|1|0|1|0
+Cellular_Bounds,2,16,0,00|12|03|32|20|23|02|30,0013321311322033,03012321,0.0625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|12|03|32|20|23|02|30
+Output: ",0|3|0|1|2|3|2|1
+Cellular_Bounds,2,16,0,16|11|61|30|44|01|17|23,1701703373345461,1717651650,0.125,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 16|11|61|30|44|01|17|23
+Output: ",17|17|6|5|1|6|5|0
+Cellular_Bounds,3,16,0,101|001|001|011|110|1,1100011100101001,1110111110001001,0.75,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 101|001|001|011|110|1
+Output: ",111|011|111|000|100|1
+Cellular_Bounds,3,16,0,033|121|033|211|123|1,0323122102301323,0200331230,0.0625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 033|121|033|211|123|1
+Output: ",02|00|33|12|30|
+Cellular_Bounds,3,16,0,145|757|005|147|573|7,1521655523763254,162347,0.125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 145|757|005|147|573|7
+Output: ",162347
+Cellular_Bounds,4,16,0,0101|0001|1011|1000,0110000100101111,00111001,0.3125,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0101|0001|1011|1000
+Output: ",00|11|10|01
+Cellular_Bounds,4,16,0,0110|2301|0033|2320,0122033000320311,02302332,0.1875,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0110|2301|0033|2320
+Output: ",02|30|23|32
+Cellular_Bounds,4,16,0,4302|5507|3470|0525,4771633251000574,6512165026570654,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 4302|5507|3470|0525
+Output: ",6512|1650|2657|0654
+Cellular_Bounds,8,16,0,11010101|10000111,1001100100000101,110001101,0.125,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 11010101|10000111
+Output: ",110001101
+Cellular_Bounds,8,16,0,21311113|12011113,2323012120012303,31203330,0.0625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 21311113|12011113
+Output: ",31203330
+Cellular_Bounds,8,16,0,53146130|63201322,5015347750223602,5612345163201322,0.375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 53146130|63201322
+Output: ",56123451|63201322
+Base,0,32,0,00110011110101010101011011001011,00100010100110011001101101110010,01001100111010110111010110111010,0.4375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00110011110101010101011011001011
+Output: ",0100110011101011011101011011101011
+Base,0,32,0,13233321310102321322003210332212,10210312122331023202221300320231,01003210321232132123212321232123,0.15625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 13233321310102321322003210332212
+Output: ",01003210321232132123212321232123212321232123212321232123212321232123
+Base,0,32,0,02724341543655625232574244032763,02137267403163130257437151146536,0723051654325426425256424416,0.1875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 02724341543655625232574244032763
+Output: ",0723051654325426425256424416
+Cellular_Bounds,1,32,0,0|1|1|1|1|1|0|0|0|0|0|1|0|0|0|0|0|0|1|0|0|1|0|0|0|1|1|1|0|0|0|1,01010111111000000011100001011110,010010101010101010101010101010,0.46875,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|1|1|1|0|0|0|0|0|1|0|0|0|0|0|0|1|0|0|1|0|0|0|1|1|1|0|0|0|1
+Output: ",0|1|0|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|
+Cellular_Bounds,1,32,0,3|0|3|2|3|1|3|3|3|0|1|3|0|0|2|3|2|1|2|1|1|1|2|2|2|1|2|1|0|0|1|2,33203032112111320130120201300013,310301333123100321211122212110,0.3125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 3|0|3|2|3|1|3|3|3|0|1|3|0|0|2|3|2|1|2|1|1|1|2|2|2|1|2|1|0|0|1|2
+Output: ",3|1|0|3|0|1|3|3|3|1|2|3|1|0|0|3|2|1|2|1|1|1|2|2|2|1|2|1|1|0
+Cellular_Bounds,1,32,0,7|5|4|4|0|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|0|0|2|4|2|2|4,74044656145743124735750466604604,75447271331257612342263427792422,0.09375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 7|5|4|4|0|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|0|0|2|4|2|2|4
+Output: ",7|5|4|4|7|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|7|7|9|2|4|2|2|4
+Cellular_Bounds,2,32,0,11|10|00|00|00|11|00|10|01|00|00|00|01|11|11|11,10111111110111000111111110101010,1001101011110111,0.28125,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 11|10|00|00|00|11|00|10|01|00|00|00|01|11|11|11
+Output: ",1|0|0|1|1|0|1|0|1|1|1|1|0|1|1|1
+Cellular_Bounds,2,32,0,21|22|03|20|02|30|22|22|30|22|23|33|21|20|33|23,23133200021131310020210312003203,2032332232331233,0.125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 21|22|03|20|02|30|22|22|30|22|23|33|21|20|33|23
+Output: ",2|0|3|2|3|3|2|2|3|2|3|3|1|2|3|3
+Cellular_Bounds,2,32,0,52|41|77|26|43|63|43|21|34|17|77|76|41|37|02|23,57343242617261347343210623655714,74163132617526375,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 52|41|77|26|43|63|43|21|34|17|77|76|41|37|02|23
+Output: ",74163132617526375
+Cellular_Bounds,3,32,0,001|010|111|001|101|110|110|000|000|001|11,00110010111011010010000000000101,0100100110110000011011,0.25,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 001|010|111|001|101|110|110|000|000|001|11
+Output: ",01|00|10|01|10|11|00|00|01|10|11
+Cellular_Bounds,3,32,0,111|203|312|231|003|102|030|313|002|011|22,12311030203000300221101000223020,3032312303231,0.03125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 111|203|312|231|003|102|030|313|002|011|22
+Output: ",3|03|2|3|1|2|3|03|2|3|1
+Cellular_Bounds,3,32,0,516|626|535|075|577|146|727|364|222|055|37,56424272776307673102142602441610,571523416517,0.03125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 516|626|535|075|577|146|727|364|222|055|37
+Output: ",571523416517
+Cellular_Bounds,4,32,0,0000|0111|1010|0001|1000|0101|1101|1101,00000101001111101111100101101001,010000101010101000111111,0.40625,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0000|0111|1010|0001|1000|0101|1101|1101
+Output: ",010|000|101|010|101|000|111|111
+Cellular_Bounds,4,32,0,3333|0232|1031|0233|0202|3200|2012|0223,32100213003002100220311133022021,333302321t31p233p20232002012p223,0.28125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 3333|0232|1031|0233|0202|3200|2012|0223
+Output: ",3333|0232|1t31|p233|p202|3200|2012|p223
+Cellular_Bounds,4,32,0,4663|1263|3431|0637|6533|1713|5136|4335,42034647261220320503434745062505,46635226343176374533671311366335,0.21875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 4663|1263|3431|0637|6533|1713|5136|4335
+Output: ",4663|5226|3431|7637|4533|6713|1136|6335
+Cellular_Bounds,8,32,0,10011001|01101010|00111001|01111011,11101110010011000010111001010010,1001011100001001101110010111,0.4375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 10011001|01101010|00111001|01111011
+Output: ",10010|1110000|10011011|10010111
+Cellular_Bounds,8,32,0,33220033|13130221|12203010|21303032,32022210101002012022112201003320,33220033131302211220301021313032,0.3125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 33220033|13130221|12203010|21303032
+Output: ",33220033|13130221|12203010|21313032
+Cellular_Bounds,8,32,0,43557572|07764772|53274416|45714147,47410546654265463607370627673407,475216314625327441647521631,0.0625,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 43557572|07764772|53274416|45714147
+Output: ",475216314625327441647521631
+Cellular_Bounds,16,32,0,1100100101001010|1000110101111101,10001110011100110000100110101001,110010010110101111101,0.375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1100100101001010|1000110101111101
+Output: ",110010010110101111101
+Cellular_Bounds,16,32,0,0322020230321101|1212002100322313,03133113221301123120002333202121,01031100312323321,0.15625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0322020230321101|1212002100322313
+Output: ",01031100312323321
+Cellular_Bounds,16,32,0,0513532543646535|0127371370034434,05616130475174744576101433362615,56214523416465351472371374134434,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0513532543646535|0127371370034434
+Output: ",5621452341646535|1472371374134434
+Base,0,64,0,1101010000001001110010011100011001100101000110001110001000010011,1001100000001110100011101000010001000110000100001011110000011101,110010101100010101110001000010011,0.1875,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1101010000001001110010011100011001100101000110001110001000010011
+Output: ",110010101100010101110001000010011
+Base,0,64,0,3233320222113033300110213133301230222303333323031133333123120021,3103200202303321000122010103223100202110321021101210321203022201,301032123133321231231333333231,0.0625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 3233320222113033300110213133301230222303333323031133333123120021
+Output: ",301032123133321231231333333231
+Base,0,64,0,7204636774254614464104744440457361246520654366676213070674740155,7115364326051704062337626266276170264133162531764672211762155630,726041077425461446411474444154573612465206543666762137167474155,0.15625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 7204636774254614464104744440457361246520654366676213070674740155
+Output: ",726041077425461446411474444154573612465206543666762137167474155
+Cellular_Bounds,1,64,0,0|0|0|0|0|0|1|1|1|0|0|1|1|0|1|0|0|1|0|0|0|1|1|0|1|0|1|0|0|1|0|1|0|0|1|1|0|0|0|1|0|0|1|1|1|1|1|1|0|1|0|1|1|1|1|0|1|1|0|0|0|0|1|1,0000001011101100011110110011100111011110001010100110101101111101,1010101010101010101010110101011010101101010110101011010101,0.453125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|0|0|0|0|1|1|1|0|0|1|1|0|1|0|0|1|0|0|0|1|1|0|1|0|1|0|0|1|0|1|0|0|1|1|0|0|0|1|0|0|1|1|1|1|1|1|0|1|0|1|1|1|1|0|1|1|0|0|0|0|1|1
+Output: ",1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|0|1|1|0|1|0|1|0|1|1|0|1|0|1|0|1|1|0|1|0|1|0|1|1|0|1|0|1|0|1|1|0|1|0|1|0|1|
+Cellular_Bounds,1,64,0,1|3|3|0|0|2|1|2|1|2|0|0|2|1|0|0|0|3|1|2|3|3|1|1|3|1|3|3|3|3|3|1|0|0|0|0|1|2|3|2|3|1|3|0|2|2|3|0|3|0|0|2|3|3|1|2|2|2|3|2|2|0|1|1,1033312013331222212032303032103000001320303313221113212020313301,0331100031233113133333112231302230300233122232211,0.15625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1|3|3|0|0|2|1|2|1|2|0|0|2|1|0|0|0|3|1|2|3|3|1|1|3|1|3|3|3|3|3|1|0|0|0|0|1|2|3|2|3|1|3|0|2|2|3|0|3|0|0|2|3|3|1|2|2|2|3|2|2|0|1|1
+Output: ",0|3|3|1|1|0|0|0|3|1|2|3|3|1|1|3|1|3|3|3|3|3|1|1|2|2|3|1|3|0|2|2|3|0|3|0|0|2|3|3|1|2|2|2|3|2|2|1|1
+Cellular_Bounds,1,64,0,2|4|2|3|3|3|6|3|6|7|1|4|5|4|2|6|2|4|0|6|0|7|2|3|3|7|3|7|7|2|7|5|2|4|0|3|3|2|5|7|3|3|7|7|0|4|6|4|4|5|4|0|6|7|0|1|1|3|2|2|1|2|0|2,2603617207041575733110250721021604472410365440626377544561356002,2681407254594624624625257524624624624624624624624624624624,0.203125,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 2|4|2|3|3|3|6|3|6|7|1|4|5|4|2|6|2|4|0|6|0|7|2|3|3|7|3|7|7|2|7|5|2|4|0|3|3|2|5|7|3|3|7|7|0|4|6|4|4|5|4|0|6|7|0|1|1|3|2|2|1|2|0|2
+Output: ",2|6|8|1|4|0|7|2|5|4|5|9|4|6|2|4|6|2|4|6|2|5|2|5|7|5|2|4|6|2|4|6|2|4|6|2|4|6|2|4|6|2|4|6|2|4|6|2|4|6|2|4|6|2|4|6|2|4|
+Cellular_Bounds,2,64,0,11|00|10|10|00|01|11|01|01|00|01|00|10|00|00|00|01|10|11|10|11|11|10|11|00|00|01|01|10|11|10|10,1000110000010110011110001111111110110100101011011111100100101100,1010101001011000011011101001101,0.28125,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 11|00|10|10|00|01|11|01|01|00|01|00|10|00|00|00|01|10|11|10|11|11|10|11|00|00|01|01|10|11|10|10
+Output: ",1|0|1|0|1|0|1|0|0|1|0|1|1|0|0|0|0|1|1|0|1|1|1|0|1|0|0|1|1|0|1
+Cellular_Bounds,2,64,0,02|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02,0200130221031211000023200120331311202102123200133033210121002331,0220321212031333213s3s0s213211123s22123231132012013s3331133s2102,0.25,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 02|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02
+Output: ",02|20|32|12|12|03|13|33|21|3s|3s|0s|21|32|11|12|3s|22|12|32|31|13|20|12|01|3s|33|31|13|3s|21|02
+Cellular_Bounds,2,64,0,46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00,4227224102160271067435467326711315544024713470626510750251256777,46585235076354757167901457236345676767676767676767676767676,0.109375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00
+Output: ",46|5|8|5|2|3|5|0|7|6|3|5|4|7|5|7|1|6|7|9|0|1|4|5|7|2|3|6|3|4|5|6|7|6|7|6|7|6|7|6|7|6|7|6|7|6|7|6|7|6|7|6|7|6|7|6|7|6
+Cellular_Bounds,3,64,0,101|111|001|111|011|001|011|111|000|001|001|010|101|010|111|010|001|100|100|000|011|0,1101011101011011100101011111100011001100110100111101110000000100,1001001001001001001001001001001001001001001001001001001001001001,0.515625,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 101|111|001|111|011|001|011|111|000|001|001|010|101|010|111|010|001|100|100|000|011|0
+Output: ",100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|100|
+Cellular_Bounds,3,64,0,122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3,1312121020010003020111233022310012030130122233222333321000232121,3023103122301123013210,0.078125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3
+Output: ",3|0|2|3|1|0|3|1|2|2|3|0|1|1|2|3|0|1|3|2|1|0
+Cellular_Bounds,3,64,0,047|133|711|563|262|144|164|651|420|362|705|556|622|175|613|237|012|214|270|773|334|2,0434721230613134045375237114243305206023275613655602371007614735,456767245656723567457,0.03125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 047|133|711|563|262|144|164|651|420|362|705|556|622|175|613|237|012|214|270|773|334|2
+Output: ",4|5|6|7|6|7|2|4|5|6|5|6|7|2|3|5|6|7|4|5|7
+Cellular_Bounds,4,64,0,0001|1101|1011|1000|1011|0010|1110|1001|1001|0010|1111|1010|0101|0010|1110|0101,0001011011010000110111001011000100011100101011000110001101000110,010011100110111001101110011011,0.1875,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0001|1101|1011|1000|1011|0010|1110|1001|1001|0010|1111|1010|0101|0010|1110|0101
+Output: ",01|00|11|10|01|10|11|10|01|10|11|10|01|10|11|
+Cellular_Bounds,4,64,0,3332|2301|2210|3303|2203|2020|0211|1101|2203|2130|3230|3113|1000|2303|3210|3121,3213100131221003133200222012300131102322132212323333100320110130,3210202132132101,0.109375,0.0,3,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 3332|2301|2210|3303|2203|2020|0211|1101|2203|2130|3230|3113|1000|2303|3210|3121
+Output: ",3|2|1|0|2|0|2|1|3|2|1|3|2|1|0|1
+Cellular_Bounds,4,64,0,1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033,1173577275477554562076571703502350306346415623540547406466366614,172174361354303,0.015625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033
+Output: ",17|2|1|7|4|3|6|1|3|5|4|3|0|3
+Cellular_Bounds,8,64,0,11100100|10101011|00000010|01001101|10101110|00101001|00111101|11011001,1011100011001101111111000111011011001011110011100010100101101110,11100110010101111000001110101110001010010011110111111001,0.359375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 11100100|10101011|00000010|01001101|10101110|00101001|00111101|11011001
+Output: ",11100110|01010111|10000011|10101110|00101001|00111101|11111001
+Cellular_Bounds,8,64,0,33231022|11210222|11010313|01110213|20103011|20220323|30211112|21200101,3203002012011313011221211230023200110012002003103312301312000112,332312123230123232123232123232123232123232123232,0.1875,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 33231022|11210222|11010313|01110213|20103011|20220323|30211112|21200101
+Output: ",332312|123230|123232|123232|123232|123232|123232|123232
+Cellular_Bounds,8,64,0,67353003|13660626|53437451|51167430|04566444|60173340|63066304|35262322,6505000347533131615073016706514440531515334361553664255141313602,6532145153264256426542654265426542654265426542654265426542654265,0.109375,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 67353003|13660626|53437451|51167430|04566444|60173340|63066304|35262322
+Output: ",65321451532642564265426542654265426542654265426542654265426542654265426542654265426542654265426542654225422542254225
+Cellular_Bounds,16,64,0,1011000010110100|1111011000110001|0100100010000101|1011010010110111,1101111100100111010110111101111001110000111110010010011100100101,1010101011010101010101010101010101010101010101010101010101010101,0.515625,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Running sum modulo 2.
+Alphabet: 0-1
+Modulus: 2
+Rule: At each position, output the cumulative sum of all digits so far, modulo 2.
+Sum all digits from the start up to this position, divide by 2, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 1011000010110100|1111011000110001|0100100010000101|1011010010110111
+Output: ",10101010110101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+Cellular_Bounds,16,64,0,0013313103031012|0112032330201013|1200013303001102|3131033332213113,0010303003323302230221321133001013333032211123310101103213121232,013013030310111323322211131122021333330111131313333321311,0.296875,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running sum modulo 4.
+Alphabet: 0-3
+Modulus: 4
+Rule: At each position, output the cumulative sum of all digits so far, modulo 4.
+Sum all digits from the start up to this position, divide by 4, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 0013313103031012|0112032330201013|1200013303001102|3131033332213113
+Output: ",01301303031011|13233222111311|220213333301111|31313333321311
+Cellular_Bounds,16,64,0,6413574561343564|1021540070403762|2464020607071245|0557227275451501,6236326312514173446740007733653573155775544346277410243541523001,6413574561343564112116517414373424640206071712453557227275451501,0.09375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running sum modulo 8.
+Alphabet: 0-7
+Modulus: 8
+Rule: At each position, output the cumulative sum of all digits so far, modulo 8.
+Sum all digits from the start up to this position, divide by 8, output the remainder.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 6413574561343564|1021540070403762|2464020607071245|0557227275451501
+Output: ",6413574561343564|1121165174143734|2464020607171245|3557227275451501

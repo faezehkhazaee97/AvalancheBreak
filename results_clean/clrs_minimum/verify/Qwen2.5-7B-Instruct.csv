@@ -1,0 +1,321 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Prompt,Raw_Model_Output
+Base,0,4,0,"0.07, 0.832, 0.166, 0.39, 0.01","0, 0, 0, 4","0, 1, 2, 3",0.25,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 4, comma-separated): 0.07, 0.832, 0.166, 0.39, 0.01
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 4, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 4, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-4): ","|0,1,2,3|"
+Cellular_Bounds,1,4,0,"0.541, |, 0.309, |, 0.152, |, 0.175, |, 0.014","1, 2, 2, 4","1, 1, 2, 3",0.5,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 4, comma-separated): 0.541, |, 0.309, |, 0.152, |, 0.175, |, 0.014
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 4, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 4, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-4): ","1,|,1,|,2,|,3,|,3"
+Cellular_Bounds,2,4,0,"0.263, 0.352, |, 0.073, 0.256, |, 0.015","0, 2, 2, 4","1, 1, 3, 3",0.0,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 4, comma-separated): 0.263, 0.352, |, 0.073, 0.256, |, 0.015
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 4, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 4, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-4): ","1, 1, 3, 3, |"
+Cellular_Bounds,3,4,0,"0.254, 0.981, 0.832, |, 0.996, 0.11","0, 0, 0, 4","1, 1, 1, 1",0.0,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 4, comma-separated): 0.254, 0.981, 0.832, |, 0.996, 0.11
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 4, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 4, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-4): ","1,1,1,1,"
+Base,0,8,0,"0.642, 0.131, 0.718, 0.383, 0.39, 0.613, 0.315, 0.074, 0.577","1, 1, 1, 1, 1, 1, 7, 7","0, 1, 1, 1, 1, 1, 1, 2",0.625,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 8, comma-separated): 0.642, 0.131, 0.718, 0.383, 0.39, 0.613, 0.315, 0.074, 0.577
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 8, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 8, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-8): ","|0,1,1,1,1,1,1,2,2|"
+Cellular_Bounds,1,8,0,"0.349, |, 0.516, |, 0.7, |, 0.864, |, 0.395, |, 0.152, |, 0.294, |, 0.48, |, 0.919","0, 0, 0, 0, 5, 5, 5, 5","0, 1, 1, 1, 1, 1, 1, 1",0.125,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 8, comma-separated): 0.349, |, 0.516, |, 0.7, |, 0.864, |, 0.395, |, 0.152, |, 0.294, |, 0.48, |, 0.919
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 8, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 8, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-8): ","0,  1,  1,  1,  1,  1,  1,  1, |"
+Cellular_Bounds,2,8,0,"0.521, 0.609, |, 0.394, 0.809, |, 0.496, 0.907, |, 0.092, 0.176, |, 0.462","0, 2, 2, 2, 2, 6, 6, 6","0, 1, 1, 3, 3, 3, 3, 8",0.125,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 8, comma-separated): 0.521, 0.609, |, 0.394, 0.809, |, 0.496, 0.907, |, 0.092, 0.176, |, 0.462
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 8, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 8, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-8): ","0,1,1,3,3,3,3,8"
+Cellular_Bounds,3,8,0,"0.341, 0.856, 0.354, |, 0.915, 0.983, 0.13, |, 0.834, 0.932, 0.55","0, 0, 0, 0, 5, 5, 5, 5","1, 1, 1, 1, 1, 6, 6, 6",0.0,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 8, comma-separated): 0.341, 0.856, 0.354, |, 0.915, 0.983, 0.13, |, 0.834, 0.932, 0.55
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 8, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 8, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-8): ","1, 1, 1, |, 1, 1, 6, |, 6, 6"
+Cellular_Bounds,4,8,0,"0.929, 0.684, 0.061, 0.804, |, 0.86, 0.591, 0.722, 0.473, |, 0.58","1, 2, 2, 2, 2, 2, 2, 2","0, 1, 2, 2, 2, 6, 6, 6",0.375,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 8, comma-separated): 0.929, 0.684, 0.061, 0.804, |, 0.86, 0.591, 0.722, 0.473, |, 0.58
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 8, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 8, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-8): ","0,1,2,2,2,6,6,6,|,6"
+Base,0,16,0,"0.744, 0.315, 0.179, 0.876, 0.036, 0.158, 0.823, 0.223, 0.222, 0.769, 0.359, 0.344, 0.133, 0.558, 0.386, 0.455, 0.723","1, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4","0, 1, 2, 2, 5, 5, 5, 5, 5, 5, 10, 10, 13, 13, 13, 13",0.0625,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 16, comma-separated): 0.744, 0.315, 0.179, 0.876, 0.036, 0.158, 0.823, 0.223, 0.222, 0.769, 0.359, 0.344, 0.133, 0.558, 0.386, 0.455, 0.723
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 16, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 16, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-16): ","|0,1,2,2,5,5,5,5,5,5,10,10,13,13,13,13,13|"
+Cellular_Bounds,1,16,0,"0.802, |, 0.658, |, 0.004, |, 0.592, |, 0.83, |, 0.573, |, 0.843, |, 0.579, |, 0.152, |, 0.309, |, 0.785, |, 0.14, |, 0.981, |, 0.395, |, 0.159, |, 0.77, |, 0.342","1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2",Position 0 index: 0,0.0,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 16, comma-separated): 0.802, |, 0.658, |, 0.004, |, 0.592, |, 0.83, |, 0.573, |, 0.843, |, 0.579, |, 0.152, |, 0.309, |, 0.785, |, 0.14, |, 0.981, |, 0.395, |, 0.159, |, 0.77, |, 0.342
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 16, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 16, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-16): ","Position 0 index: 0
+Output (positions 1-16): 0,1,3,3,3,3,3,3,3,10,10,10,15,15,15,15,15"
+Cellular_Bounds,2,16,0,"0.517, 0.893, |, 0.677, 0.031, |, 0.67, 0.37, |, 0.106, 0.401, |, 0.514, 0.329, |, 0.426, 0.679, |, 0.057, 0.93, |, 0.674, 0.424, |, 0.572","0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3","0, 5, 5, 5, 5, 5, 7, 7, 7, 7, 7, 7, 16, 16",0.0625,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 16, comma-separated): 0.517, 0.893, |, 0.677, 0.031, |, 0.67, 0.37, |, 0.106, 0.401, |, 0.514, 0.329, |, 0.426, 0.679, |, 0.057, 0.93, |, 0.674, 0.424, |, 0.572
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 16, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 16, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-16): ","0, 5, 5, 5, 5, |, 5, 7, 7, 7, |, 7, 7, |, 7, 16, |, 16"
+Cellular_Bounds,3,16,0,"0.748, 0.413, 0.625, |, 0.729, 0.874, 0.538, |, 0.83, 0.665, 0.099, |, 0.342, 0.07, 0.935, |, 0.692, 0.217, 0.191, |, 0.797, 0.962","1, 1, 1, 1, 1, 1, 1, 8, 8, 10, 10, 10, 10, 10, 10, 10","0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3",0.375,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 16, comma-separated): 0.748, 0.413, 0.625, |, 0.729, 0.874, 0.538, |, 0.83, 0.665, 0.099, |, 0.342, 0.07, 0.935, |, 0.692, 0.217, 0.191, |, 0.797, 0.962
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 16, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 16, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-16): ","0,1,1,1,1,1,1,1,1,2,2,2,3,3,3,3,3"
+Cellular_Bounds,4,16,0,"0.055, 0.058, 0.6, 0.827, |, 0.511, 0.567, 0.231, 0.915, |, 0.184, 0.229, 0.01, 0.669, |, 0.659, 0.042, 0.672, 0.103, |, 0.896","0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 10","0, 1, 3, 3, 3, 3, 7, 7, 7, 7, 12, 12, 12, 18, 18, 18",0.0625,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 16, comma-separated): 0.055, 0.058, 0.6, 0.827, |, 0.511, 0.567, 0.231, 0.915, |, 0.184, 0.229, 0.01, 0.669, |, 0.659, 0.042, 0.672, 0.103, |, 0.896
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 16, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 16, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-16): ","0, 1, 3, 3, |, 3, 3, 7, 7, |, 7, 7, 12, 12, |, 12, 18, 18, |, 18"
+Cellular_Bounds,8,16,0,"0.417, 0.012, 0.622, 0.339, 0.542, 0.705, 0.271, 0.905, |, 0.565, 0.805, 0.393, 0.113, 0.074, 0.337, 0.019, 0.809, |, 0.311","1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1","0, 1, 1, 3, 3, 3, 6, 6, 6, 6, 11, 11, 11, 14, 14, 14",0.125,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 16, comma-separated): 0.417, 0.012, 0.622, 0.339, 0.542, 0.705, 0.271, 0.905, |, 0.565, 0.805, 0.393, 0.113, 0.074, 0.337, 0.019, 0.809, |, 0.311
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 16, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 16, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-16): ","0,  1,  1,  3,  3,  3,  6,  6,  6,  6,  11,  11,  11,  14,  14,  14,  14,  14, |,  14"
+Base,0,32,0,"0.891, 0.821, 0.526, 0.607, 0.526, 0.313, 0.722, 0.625, 0.886, 0.379, 0.465, 0.966, 0.186, 0.813, 0.139, 0.9, 0.604, 0.941, 0.552, 0.861, 0.444, 0.457, 0.76, 0.168, 0.296, 0.011, 0.665, 0.775, 0.883, 0.546, 0.987, 0.576, 0.919","1, 2, 2, 2, 5, 5, 5, 5, 5, 5, 5, 12, 12, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 25, 25, 25, 25, 25, 25, 25, 25","Position 0 index, 0, 0, 2, 3, 3, 3, 6, 6, 6, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14, 22, 22, 22, 25, 25, 25, 28, 28, 28, 28, 28, 28",0.3125,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 32, comma-separated): 0.891, 0.821, 0.526, 0.607, 0.526, 0.313, 0.722, 0.625, 0.886, 0.379, 0.465, 0.966, 0.186, 0.813, 0.139, 0.9, 0.604, 0.941, 0.552, 0.861, 0.444, 0.457, 0.76, 0.168, 0.296, 0.011, 0.665, 0.775, 0.883, 0.546, 0.987, 0.576, 0.919
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 32, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 32, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-32): ","Position 0 index, 0|0, 2, 3, 3, 3, 6, 6, 6, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14, 22, 22, 22, 25, 25, 25, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28"
+Cellular_Bounds,1,32,0,"0.671, |, 0.709, |, 0.022, |, 0.505, |, 0.682, |, 0.9, |, 0.588, |, 0.883, |, 0.806, |, 0.909, |, 0.8, |, 0.132, |, 0.938, |, 0.353, |, 0.649, |, 0.39, |, 0.023, |, 0.513, |, 0.665, |, 0.068, |, 0.365, |, 0.076, |, 0.639, |, 0.073, |, 0.971, |, 0.276, |, 0.418, |, 0.94, |, 0.178, |, 0.163, |, 0.802, |, 0.469, |, 0.935","0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2","0, 1, 3, 3, 3, 3, 3, 8, 8, 8, 8, 8, 8, 13, 13, 13, 13, 13, 13, 13, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20",0.03125,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 32, comma-separated): 0.671, |, 0.709, |, 0.022, |, 0.505, |, 0.682, |, 0.9, |, 0.588, |, 0.883, |, 0.806, |, 0.909, |, 0.8, |, 0.132, |, 0.938, |, 0.353, |, 0.649, |, 0.39, |, 0.023, |, 0.513, |, 0.665, |, 0.068, |, 0.365, |, 0.076, |, 0.639, |, 0.073, |, 0.971, |, 0.276, |, 0.418, |, 0.94, |, 0.178, |, 0.163, |, 0.802, |, 0.469, |, 0.935
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 32, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 32, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-32): ","0,1,3,3,3,3,3,8,8,8,8,8,8,13,13,13,13,13,13,13,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,29,29,29,29,29,29,29"
+Cellular_Bounds,2,32,0,"0.482, 0.245, |, 0.514, 0.169, |, 0.043, 0.703, |, 0.633, 0.747, |, 0.164, 0.906, |, 0.83, 0.51, |, 0.409, 0.202, |, 0.523, 0.449, |, 0.924, 0.445, |, 0.659, 0.19, |, 0.93, 0.844, |, 0.607, 0.85, |, 0.546, 0.526, |, 0.496, 0.356, |, 0.919, 0.719, |, 0.302, 0.694, |, 0.746","1, 1, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4","0, 1, 1, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4",0.84375,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 32, comma-separated): 0.482, 0.245, |, 0.514, 0.169, |, 0.043, 0.703, |, 0.633, 0.747, |, 0.164, 0.906, |, 0.83, 0.51, |, 0.409, 0.202, |, 0.523, 0.449, |, 0.924, 0.445, |, 0.659, 0.19, |, 0.93, 0.844, |, 0.607, 0.85, |, 0.546, 0.526, |, 0.496, 0.356, |, 0.919, 0.719, |, 0.302, 0.694, |, 0.746
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 32, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 32, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-32): ","0,1,1,3,3,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4"
+Cellular_Bounds,3,32,0,"0.744, 0.778, 0.487, |, 0.805, 0.441, 0.759, |, 0.924, 0.08, 0.012, |, 0.048, 0.605, 0.317, |, 0.888, 0.77, 0.725, |, 0.63, 0.404, 0.645, |, 0.481, 0.887, 0.963, |, 0.693, 0.859, 0.316, |, 0.349, 0.783, 0.5, |, 0.901, 0.825, 0.362, |, 0.555, 0.696, 0.986","0, 2, 2, 4, 4, 4, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8","0, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3",0.0625,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 32, comma-separated): 0.744, 0.778, 0.487, |, 0.805, 0.441, 0.759, |, 0.924, 0.08, 0.012, |, 0.048, 0.605, 0.317, |, 0.888, 0.77, 0.725, |, 0.63, 0.404, 0.645, |, 0.481, 0.887, 0.963, |, 0.693, 0.859, 0.316, |, 0.349, 0.783, 0.5, |, 0.901, 0.825, 0.362, |, 0.555, 0.696, 0.986
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 32, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 32, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-32): ","0, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, |"
+Cellular_Bounds,4,32,0,"0.091, 0.791, 0.901, 0.073, |, 0.55, 0.825, 0.497, 0.67, |, 0.116, 0.467, 0.607, 0.18, |, 0.154, 0.756, 0.955, 0.098, |, 0.704, 0.204, 0.434, 0.44, |, 0.004, 0.942, 0.361, 0.385, |, 0.82, 0.426, 0.569, 0.589, |, 0.827, 0.853, 0.909, 0.915, |, 0.638","0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20","0, 1, 1, 3, 3, 3, 7, 7, 7, 10, 10, 10, 13, 13, 13, 16, 16, 16, 20, 20, 20, 24, 24, 24, 27, 27, 27, 27, 27, 27, 27, 27",0.1875,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 32, comma-separated): 0.091, 0.791, 0.901, 0.073, |, 0.55, 0.825, 0.497, 0.67, |, 0.116, 0.467, 0.607, 0.18, |, 0.154, 0.756, 0.955, 0.098, |, 0.704, 0.204, 0.434, 0.44, |, 0.004, 0.942, 0.361, 0.385, |, 0.82, 0.426, 0.569, 0.589, |, 0.827, 0.853, 0.909, 0.915, |, 0.638
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 32, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 32, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-32): ","0, 1, 1, 3, 3, 3, 7, 7, 7, 10, 10, 10, 13, 13, 13, 16, 16, 16, 20, 20, 20, 24, 24, 24, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, |"
+Cellular_Bounds,8,32,0,"0.055, 0.727, 0.334, 0.641, 0.301, 0.221, 0.14, 0.403, |, 0.158, 0.37, 0.496, 0.229, 0.574, 0.271, 0.778, 0.025, |, 0.671, 0.811, 0.823, 0.674, 0.155, 0.763, 0.605, 0.103, |, 0.648, 0.611, 0.99, 0.825, 0.002, 0.514, 0.267, 0.745, |, 0.678","0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 28, 28, 28, 28, 28","0, 0, 2, 2, 2, 5, 5, 5, 10, 10, 10, 10, 10, 10, 10, 10, 18, 18, 18, 18, 18, 18, 18, 18, 26, 26, 26, 26, 26, 26, 26, 26",0.0625,0.0,2,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 32, comma-separated): 0.055, 0.727, 0.334, 0.641, 0.301, 0.221, 0.14, 0.403, |, 0.158, 0.37, 0.496, 0.229, 0.574, 0.271, 0.778, 0.025, |, 0.671, 0.811, 0.823, 0.674, 0.155, 0.763, 0.605, 0.103, |, 0.648, 0.611, 0.99, 0.825, 0.002, 0.514, 0.267, 0.745, |, 0.678
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 32, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 32, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-32): ","0, 0,  2,  2,  2,  5,  5,  5, |,  10, 10, 10, 10, 10, 10, 10, 10, |,  18, 18, 18, 18, 18, 18, 18, 18, |,  26, 26, 26, 26, 26, 26, 26, 26, |"
+Cellular_Bounds,16,32,0,"0.439, 0.243, 0.938, 0.501, 0.546, 0.2, 0.628, 0.09, 0.712, 0.629, 0.524, 0.374, 0.448, 0.453, 0.982, 0.117, |, 0.177, 0.054, 0.711, 0.625, 0.314, 0.071, 0.733, 0.322, 0.259, 0.953, 0.744, 0.496, 0.52, 0.328, 0.309, 0.913, |, 0.808","1, 1, 1, 1, 5, 5, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17","0, 1, 1, 1, 1, 1, 1, 7, 7, 7, 7, 7, 7, 7, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16",0.3125,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 32, comma-separated): 0.439, 0.243, 0.938, 0.501, 0.546, 0.2, 0.628, 0.09, 0.712, 0.629, 0.524, 0.374, 0.448, 0.453, 0.982, 0.117, |, 0.177, 0.054, 0.711, 0.625, 0.314, 0.071, 0.733, 0.322, 0.259, 0.953, 0.744, 0.496, 0.52, 0.328, 0.309, 0.913, |, 0.808
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 32, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 32, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-32): ","0, 1, 1, 1, 1, 1, 1, 7, 7, 7, 7, 7, 7, 7, 15, 15, |, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, |"
+Base,0,64,0,"0.296, 0.799, 0.62, 0.071, 0.229, 0.485, 0.622, 0.998, 0.07, 0.02, 0.906, 0.865, 0.054, 0.749, 0.549, 0.163, 0.215, 0.553, 0.556, 0.635, 0.528, 0.49, 0.297, 0.991, 0.514, 0.307, 0.528, 0.416, 0.665, 0.693, 0.576, 0.119, 0.335, 0.956, 0.531, 0.08, 0.985, 0.317, 0.233, 0.32, 0.7, 0.36, 0.537, 0.707, 0.914, 0.157, 0.582, 0.537, 0.498, 0.077, 0.089, 0.413, 0.511, 0.918, 0.41, 0.43, 0.085, 0.417, 0.19, 0.306, 0.857, 0.424, 0.72, 0.334, 0.378","0, 0, 3, 3, 3, 3, 3, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9","0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1",0.015625,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 64, comma-separated): 0.296, 0.799, 0.62, 0.071, 0.229, 0.485, 0.622, 0.998, 0.07, 0.02, 0.906, 0.865, 0.054, 0.749, 0.549, 0.163, 0.215, 0.553, 0.556, 0.635, 0.528, 0.49, 0.297, 0.991, 0.514, 0.307, 0.528, 0.416, 0.665, 0.693, 0.576, 0.119, 0.335, 0.956, 0.531, 0.08, 0.985, 0.317, 0.233, 0.32, 0.7, 0.36, 0.537, 0.707, 0.914, 0.157, 0.582, 0.537, 0.498, 0.077, 0.089, 0.413, 0.511, 0.918, 0.41, 0.43, 0.085, 0.417, 0.19, 0.306, 0.857, 0.424, 0.72, 0.334, 0.378
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 64, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 64, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-64): ","0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1"
+Cellular_Bounds,1,64,0,"0.362, |, 0.58, |, 0.317, |, 0.467, |, 0.11, |, 0.655, |, 0.233, |, 0.477, |, 0.992, |, 0.543, |, 0.576, |, 0.009, |, 0.531, |, 0.14, |, 0.844, |, 0.782, |, 0.769, |, 0.143, |, 0.799, |, 0.584, |, 0.845, |, 0.604, |, 0.736, |, 0.227, |, 0.187, |, 0.97, |, 0.635, |, 0.889, |, 0.105, |, 0.13, |, 0.884, |, 0.854, |, 0.945, |, 0.646, |, 0.535, |, 0.406, |, 0.565, |, 0.856, |, 0.179, |, 0.048, |, 0.907, |, 0.409, |, 0.849, |, 0.631, |, 0.571, |, 0.804, |, 0.506, |, 0.718, |, 0.93, |, 0.975, |, 0.102, |, 0.767, |, 0.826, |, 0.292, |, 0.528, |, 0.735, |, 0.974, |, 0.566, |, 0.357, |, 0.766, |, 0.7, |, 0.082, |, 0.717, |, 0.494, |, 0.964","0, 2, 2, 4, 4, 4, 4, 4, 4, 4, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11","0, 1, 3, 3, 3, 3, 3, 7, 7, 7, 10, 10, 10, 10, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14",0.015625,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 64, comma-separated): 0.362, |, 0.58, |, 0.317, |, 0.467, |, 0.11, |, 0.655, |, 0.233, |, 0.477, |, 0.992, |, 0.543, |, 0.576, |, 0.009, |, 0.531, |, 0.14, |, 0.844, |, 0.782, |, 0.769, |, 0.143, |, 0.799, |, 0.584, |, 0.845, |, 0.604, |, 0.736, |, 0.227, |, 0.187, |, 0.97, |, 0.635, |, 0.889, |, 0.105, |, 0.13, |, 0.884, |, 0.854, |, 0.945, |, 0.646, |, 0.535, |, 0.406, |, 0.565, |, 0.856, |, 0.179, |, 0.048, |, 0.907, |, 0.409, |, 0.849, |, 0.631, |, 0.571, |, 0.804, |, 0.506, |, 0.718, |, 0.93, |, 0.975, |, 0.102, |, 0.767, |, 0.826, |, 0.292, |, 0.528, |, 0.735, |, 0.974, |, 0.566, |, 0.357, |, 0.766, |, 0.7, |, 0.082, |, 0.717, |, 0.494, |, 0.964
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 64, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 64, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-64): ","0,1,3,3,3,3,3,7,7,7,10,10,10,10,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14,14"
+Cellular_Bounds,2,64,0,"0.897, 0.497, |, 0.236, 0.741, |, 0.446, 0.294, |, 0.759, 0.003, |, 0.463, 0.857, |, 0.661, 0.359, |, 0.016, 0.794, |, 0.976, 0.527, |, 0.171, 0.832, |, 0.009, 0.241, |, 0.333, 0.186, |, 0.41, 0.221, |, 0.177, 0.581, |, 0.895, 0.559, |, 0.412, 0.924, |, 0.029, 0.869, |, 0.754, 0.928, |, 0.889, 0.489, |, 0.09, 0.696, |, 0.596, 0.958, |, 0.27, 0.862, |, 0.013, 0.224, |, 0.68, 0.088, |, 0.241, 0.534, |, 0.215, 0.343, |, 0.634, 0.65, |, 0.32, 0.487, |, 0.797, 0.117, |, 0.739, 0.622, |, 0.632, 0.867, |, 0.43, 0.801, |, 0.865, 0.689, |, 0.559","1, 2, 2, 2, 2, 2, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7","0, 3, 3, 3, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10",0.0,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 64, comma-separated): 0.897, 0.497, |, 0.236, 0.741, |, 0.446, 0.294, |, 0.759, 0.003, |, 0.463, 0.857, |, 0.661, 0.359, |, 0.016, 0.794, |, 0.976, 0.527, |, 0.171, 0.832, |, 0.009, 0.241, |, 0.333, 0.186, |, 0.41, 0.221, |, 0.177, 0.581, |, 0.895, 0.559, |, 0.412, 0.924, |, 0.029, 0.869, |, 0.754, 0.928, |, 0.889, 0.489, |, 0.09, 0.696, |, 0.596, 0.958, |, 0.27, 0.862, |, 0.013, 0.224, |, 0.68, 0.088, |, 0.241, 0.534, |, 0.215, 0.343, |, 0.634, 0.65, |, 0.32, 0.487, |, 0.797, 0.117, |, 0.739, 0.622, |, 0.632, 0.867, |, 0.43, 0.801, |, 0.865, 0.689, |, 0.559
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 64, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 64, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-64): ","0, 3, 3, 3, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, "
+Cellular_Bounds,3,64,0,"0.294, 0.484, 0.386, |, 0.617, 0.092, 0.227, |, 0.241, 0.268, 0.247, |, 0.321, 0.407, 0.995, |, 0.622, 0.666, 0.008, |, 0.508, 0.919, 0.55, |, 0.841, 0.801, 0.982, |, 0.964, 0.964, 0.368, |, 0.544, 0.915, 0.788, |, 0.45, 0.304, 0.06, |, 0.981, 0.281, 0.326, |, 0.909, 0.69, 0.434, |, 0.108, 0.628, 0.986, |, 0.454, 0.901, 0.198, |, 0.359, 0.223, 0.652, |, 0.914, 0.008, 0.192, |, 0.01, 0.746, 0.769, |, 0.032, 0.02, 0.815, |, 0.213, 0.364, 0.128, |, 0.397, 0.073, 0.965, |, 0.744, 0.363, 0.369, |, 0.216, 0.048","0, 0, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14","0, 1, 1, 1, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 19, 19, 19, 19, 19, 19, 19, 19, 19, 28, 28, 28, 28, 28, 28, 28, 28, 28, 37, 37, 37, 37, 37, 37, 37, 37, 37, 46, 44, 44, 44, 44, 44, 44, 44, 44, 53, 53, 53, 53, 53, 53, 53, 53, 53, 60, 60",0.015625,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 64, comma-separated): 0.294, 0.484, 0.386, |, 0.617, 0.092, 0.227, |, 0.241, 0.268, 0.247, |, 0.321, 0.407, 0.995, |, 0.622, 0.666, 0.008, |, 0.508, 0.919, 0.55, |, 0.841, 0.801, 0.982, |, 0.964, 0.964, 0.368, |, 0.544, 0.915, 0.788, |, 0.45, 0.304, 0.06, |, 0.981, 0.281, 0.326, |, 0.909, 0.69, 0.434, |, 0.108, 0.628, 0.986, |, 0.454, 0.901, 0.198, |, 0.359, 0.223, 0.652, |, 0.914, 0.008, 0.192, |, 0.01, 0.746, 0.769, |, 0.032, 0.02, 0.815, |, 0.213, 0.364, 0.128, |, 0.397, 0.073, 0.965, |, 0.744, 0.363, 0.369, |, 0.216, 0.048
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 64, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 64, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-64): ","0, 1, 1, |, 1, 6, 6, |, 6, 6, 6, |, 6, 6, 6, |, 6, 6, 6, |, 6, 19, 19, |, 19, 19, 19, |, 19, 19, 19, |, 19, 28, 28, |, 28, 28, 28, |, 28, 28, 28, |, 28, 37, 37, |, 37, 37, 37, |, 37, 37, 37, |, 37, 46, 44, |, 44, 44, 44, |, 44, 44, 44, |, 44, 53, 53, |, 53, 53, 53, |, 53, 53, 53, |, 53, 60, 60, |"
+Cellular_Bounds,4,64,0,"0.075, 0.748, 0.418, 0.942, |, 0.469, 0.947, 0.069, 0.134, |, 0.778, 0.456, 0.813, 0.669, |, 0.473, 0.005, 0.684, 0.897, |, 0.408, 0.725, 0.218, 0.279, |, 0.391, 0.024, 0.201, 0.69, |, 0.065, 0.477, 0.124, 0.423, |, 0.283, 0.309, 0.431, 0.872, |, 0.672, 0.008, 0.182, 0.057, |, 0.519, 0.983, 0.406, 0.785, |, 0.64, 0.786, 0.295, 0.251, |, 0.682, 0.245, 0.176, 0.576, |, 0.987, 0.364, 0.926, 0.424, |, 0.005, 0.736, 0.061, 0.599, |, 0.18, 0.109, 0.098, 0.926, |, 0.987, 0.97, 0.74, 0.574, |, 0.878","0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13","0, 3, 3, 3, 3, 3, 3, 8, 8, 8, 8, 8, 8, 17, 17, 17, 8, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17",0.015625,0.0,1,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 64, comma-separated): 0.075, 0.748, 0.418, 0.942, |, 0.469, 0.947, 0.069, 0.134, |, 0.778, 0.456, 0.813, 0.669, |, 0.473, 0.005, 0.684, 0.897, |, 0.408, 0.725, 0.218, 0.279, |, 0.391, 0.024, 0.201, 0.69, |, 0.065, 0.477, 0.124, 0.423, |, 0.283, 0.309, 0.431, 0.872, |, 0.672, 0.008, 0.182, 0.057, |, 0.519, 0.983, 0.406, 0.785, |, 0.64, 0.786, 0.295, 0.251, |, 0.682, 0.245, 0.176, 0.576, |, 0.987, 0.364, 0.926, 0.424, |, 0.005, 0.736, 0.061, 0.599, |, 0.18, 0.109, 0.098, 0.926, |, 0.987, 0.97, 0.74, 0.574, |, 0.878
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 64, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 64, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-64): ","0, 3, 3, 3, |, 3, 3, 3, 8, |, 8, 8, 8, 8, |, 8, 17, 17, 17, |, 8, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17, 17, 17, |, 17, 17"
+Cellular_Bounds,8,64,0,"0.828, 0.425, 0.584, 0.438, 0.74, 0.03, 0.517, 0.368, |, 0.167, 0.804, 0.723, 0.82, 0.166, 0.001, 0.164, 0.869, |, 0.725, 0.907, 0.595, 0.352, 0.43, 0.89, 0.994, 0.379, |, 0.898, 0.845, 0.684, 0.963, 0.153, 0.171, 0.159, 0.869, |, 0.076, 0.977, 0.007, 0.269, 0.114, 0.172, 0.007, 0.207, |, 0.27, 0.136, 0.225, 0.029, 0.793, 0.465, 0.557, 0.693, |, 0.773, 0.681, 0.905, 0.992, 0.474, 0.444, 0.327, 0.335, |, 0.889, 0.008, 0.783, 0.037, 0.414, 0.123, 0.644, 0.7, |, 0.984","1, 1, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13","0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6",0.0,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 64, comma-separated): 0.828, 0.425, 0.584, 0.438, 0.74, 0.03, 0.517, 0.368, |, 0.167, 0.804, 0.723, 0.82, 0.166, 0.001, 0.164, 0.869, |, 0.725, 0.907, 0.595, 0.352, 0.43, 0.89, 0.994, 0.379, |, 0.898, 0.845, 0.684, 0.963, 0.153, 0.171, 0.159, 0.869, |, 0.076, 0.977, 0.007, 0.269, 0.114, 0.172, 0.007, 0.207, |, 0.27, 0.136, 0.225, 0.029, 0.793, 0.465, 0.557, 0.693, |, 0.773, 0.681, 0.905, 0.992, 0.474, 0.444, 0.327, 0.335, |, 0.889, 0.008, 0.783, 0.037, 0.414, 0.123, 0.644, 0.7, |, 0.984
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 64, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 64, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-64): ","0, 6, 6, 6, 6, 6, 6, 6, |, 6, 6, 6, 6, 6, 6, 6, 6, |, 6, 6, 6, 6, 6, 6, 6, 6, |, 6, 6, 6, 6, 6, 6, 6, 6, |, 6, 6, 6, 6, 6, 6, 6, 6, |, 6, 6, 6, 6, 6, 6, 6, 6, |, 6, 6, 6, 6, 6, 6, 6, 6, |"
+Cellular_Bounds,16,64,0,"0.104, 0.025, 0.072, 0.352, 0.258, 0.736, 0.884, 0.475, 0.901, 0.59, 0.735, 0.719, 0.866, 0.056, 0.363, 0.001, |, 0.678, 0.114, 0.387, 0.052, 0.68, 0.457, 0.285, 0.274, 0.935, 0.306, 0.59, 0.977, 0.097, 0.788, 0.047, 0.418, |, 0.035, 0.951, 0.884, 0.461, 0.452, 0.666, 0.289, 0.092, 0.942, 0.792, 0.503, 0.06, 0.093, 0.571, 0.721, 0.685, |, 0.53, 0.667, 0.446, 0.339, 0.251, 0.969, 0.954, 0.443, 0.857, 0.481, 0.948, 0.575, 0.471, 0.81, 0.435, 0.175, |, 0.492","1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15","0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 11, 11, 11, 15, 15, 15, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18",0.109375,0.0,0,"You are a deterministic sequence transformer, running the ""minimum"" algorithm from the CLRS-Text benchmark (a real array-scanning textbook algorithm).
+Task: track the index of the smallest value seen so far, scanning the array left to right.
+Array (positions 0 to 64, comma-separated): 0.104, 0.025, 0.072, 0.352, 0.258, 0.736, 0.884, 0.475, 0.901, 0.59, 0.735, 0.719, 0.866, 0.056, 0.363, 0.001, |, 0.678, 0.114, 0.387, 0.052, 0.68, 0.457, 0.285, 0.274, 0.935, 0.306, 0.59, 0.977, 0.097, 0.788, 0.047, 0.418, |, 0.035, 0.951, 0.884, 0.461, 0.452, 0.666, 0.289, 0.092, 0.942, 0.792, 0.503, 0.06, 0.093, 0.571, 0.721, 0.685, |, 0.53, 0.667, 0.446, 0.339, 0.251, 0.969, 0.954, 0.443, 0.857, 0.481, 0.948, 0.575, 0.471, 0.81, 0.435, 0.175, |, 0.492
+Position 0's running-minimum index is given: 0 (only one value seen, trivially itself).
+Rule: for each position i from 1 to 64, compare array[i] to the value at the current running-minimum index. If array[i] is smaller, the running-minimum index becomes i; otherwise it stays exactly the same as the previous position's answer.
+Output the running-minimum index at every position from 1 to 64, as a comma-separated list.
+IMPORTANT: The array and the expected output both contain vertical bars (|), structural boundaries. Copy them through unchanged, at the same relative position.
+No explanations, no extra text -- output ONLY the comma-separated list of indices (and boundary bars).
+
+Position 0 index: 0
+Output (positions 1-64): ","0, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 15, 15, 15, |, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 11, 11, 11, 15, 15, 15, |, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, |, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, |"

@@ -1,0 +1,1291 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Alphabet_Size,Prompt,Raw_Model_Output
+Base,0,4,0,ABAB,BABA,BABA,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAB
+Output: ",BA BA
+Base,0,4,0,ADBC,BACD,BDCA,0.5,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADBC
+Output: ",BDCA
+Base,0,4,0,CABB,DBCC,DCCC,0.75,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CABB
+Output: ",DCCC
+Cellular_Bounds,1,4,0,A|A|B|A,BBAB,BBAB,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|B|A
+Output: ",B|B|A|B
+Cellular_Bounds,1,4,0,A|D|A|A,BABB,BABB,1.0,1.0,4,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|D|A|A
+Output: ",B|A|B|B
+Cellular_Bounds,1,4,0,C|B|A|B,DCBC,DCBC,1.0,1.0,4,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B
+Output: ",D|C|B|C
+Cellular_Bounds,2,4,0,AB|BA,BAAB,BAAB,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|BA
+Output: ",BA|AB
+Cellular_Bounds,2,4,0,BB|BD,CCCA,CCBE,0.5,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|BD
+Output: ",CC|BE
+Cellular_Bounds,2,4,0,EA|CH,FBDA,FBDI,0.75,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EA|CH
+Output: ",FB|DI
+Cellular_Bounds,3,4,0,ABB|A,BAAB,BAAA,0.75,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|A
+Output: ",BAA|A
+Cellular_Bounds,3,4,0,DAA|A,ABBB,DABB,0.5,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DAA|A
+Output: ",DAB|B
+Cellular_Bounds,3,4,0,ACB|A,BDCB,BDB,0.5,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACB|A
+Output: ",BD|B
+Base,0,8,0,BABBBBAB,ABAAAABA,ABAABABA,0.875,0.0,4,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABBBBAB
+Output: ",ABAABABA
+Base,0,8,0,DDCACAAC,AADBDBBD,AAEBBEAD,0.5,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCACAAC
+Output: ",AAEBBEAD
+Base,0,8,0,HGBGHGEC,AHCHAHFD,AHHCAGHD,0.5,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HGBGHGEC
+Output: ",AHHCAGHD
+Cellular_Bounds,1,8,0,A|A|A|A|B|A|B|B,BBBBABAA,BBBBABAA,1.0,1.0,8,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|A|A|B|A|B|B
+Output: ",B|B|B|B|A|B|A|A
+Cellular_Bounds,1,8,0,D|D|B|D|C|C|D|C,AACADDAD,AACADDAD,1.0,1.0,8,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|D|B|D|C|C|D|C
+Output: ",A|A|C|A|D|D|A|D
+Cellular_Bounds,1,8,0,H|G|E|A|B|E|G|C,AHFBCFHD,AHFBCFHD,1.0,1.0,8,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|G|E|A|B|E|G|C
+Output: ",A|H|F|B|C|F|H|D
+Cellular_Bounds,2,8,0,BA|BB|BA|AA,ABAAABBB,ABAAABBB,1.0,1.0,8,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BA|BB|BA|AA
+Output: ",AB|AA|AB|BB
+Cellular_Bounds,2,8,0,DD|AD|DD|BA,AABAAACB,EEBEEECB,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DD|AD|DD|BA
+Output: ",EE|BE|EE|CB
+Cellular_Bounds,2,8,0,FB|DD|HG|AE,GCEEAHBF,GCEEAIBF,0.875,0.0,5,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FB|DD|HG|AE
+Output: ",GC|EE|AI|BF
+Cellular_Bounds,3,8,0,ABA|AAA|BA,BABBBBAB,BABABBBA,0.625,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABA|AAA|BA
+Output: ",BABA|BBB|AB
+Cellular_Bounds,3,8,0,BBC|DBA|AD,CCDACBBA,CCCEBABD,0.375,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBC|DBA|AD
+Output: ",CCC|EBA|BD
+Cellular_Bounds,3,8,0,CCB|GFB|DB,DDCHGCEC,DDCHECEC,0.875,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CCB|GFB|DB
+Output: ",DDC|HEC|EC
+Cellular_Bounds,4,8,0,BBAA|AAAB,AABBBBBA,AAABBBAA,0.75,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAA|AAAB
+Output: ",AAAB|BBAA
+Cellular_Bounds,4,8,0,DADB|DAAD,ABACABBA,AABCAABA,0.625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DADB|DAAD
+Output: ",AABC|AABA
+Cellular_Bounds,4,8,0,DDCB|FBCC,EEDCGCDD,EECDGCDD,0.75,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCB|FBCC
+Output: ",EECD|GCDD
+Base,0,16,0,BBABBBAABAAABABB,AABAAABBABBBABAA,AAAABBBBAAAAABBA,0.5625,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABBBAABAAABABB
+Output: ",AAAABBBBAAAAABBAA
+Base,0,16,0,BDAADBCDDDBBACCA,CABBACDAAACCBDDB,CDEBBECEAECCBDDB,0.5625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",CDEBBECEAECCBDDB
+Base,0,16,0,HHHBFEGDGBCGHCEA,AAACGFHEHCDHADFB,AAAACGFEHAIDCHDA,0.3125,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HHHBFEGDGBCGHCEA
+Output: ",AAAACGFEHAIDCHDA
+Cellular_Bounds,1,16,0,B|A|A|B|B|A|A|B|A|A|B|A|B|A|A|B,ABBAABBABBABABBA,ABBAABBABBABABBA,1.0,1.0,16,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|B|B|A|A|B|A|A|B|A|B|A|A|B
+Output: ",A|B|B|A|A|B|B|A|B|B|A|B|A|B|B|A
+Cellular_Bounds,1,16,0,C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C,DDCDDCDACAABAADD,DDCDDCDACEEBEEDD,0.75,0.0,9,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C
+Output: ",D|D|C|D|D|C|D|A|C|E|E|B|E|E|D|D
+Cellular_Bounds,1,16,0,C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G,DFCHFCADGBGBCAHH,DFCHFCADGBGBCIHH,0.9375,0.0,13,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G
+Output: ",D|F|C|H|F|C|A|D|G|B|G|B|C|I|H|H
+Cellular_Bounds,2,16,0,BB|AA|AA|BA|AB|BB|AB|BB,AABBBBABBAAABAAA,AABBBBABBAAABAAA,1.0,1.0,16,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|AA|AA|BA|AB|BB|AB|BB
+Output: ",AA|BB|BB|AB|BA|AA|BA|AA
+Cellular_Bounds,2,16,0,DA|BA|CB|BA|DC|CC|DD|DB,ABCBDCCBADDDAAAC,EBCACCDADECDEEEC,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DA|BA|CB|BA|DC|CC|DD|DB
+Output: ",EB|CA|CC|DA|DE|CD|EE|EC
+Cellular_Bounds,2,16,0,FD|EA|DB|FG|CG|GA|FB|GA,GEFBECGHDHHBGCHB,GEFBECGHDHHBGCHB,1.0,1.0,16,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FD|EA|DB|FG|CG|GA|FB|GA
+Output: ",GE|FB|EC|GH|DH|HB|GC|HB
+Cellular_Bounds,3,16,0,BAA|ABB|BAA|AAB|BBA|A,ABBBAAABBBBAAABB,AABABAAABBBAABBA,0.625,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAA|ABB|BAA|AAB|BBA|A
+Output: ",AAB|ABA|AAB|BBA|ABB|A
+Cellular_Bounds,3,16,0,DDB|BDA|AAB|BAA|ABD|C,AACCABBBCCBBBCAD,AECCEABBBCAABCED,0.5625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDB|BDA|AAB|BAA|ABD|C
+Output: ",AEC|CEA|BBB|CAA|BCE|D
+Cellular_Bounds,3,16,0,GGC|GDA|EEA|FCB|DHB|E,HHDHEBFFBGDCEACF,HGDHEBEFFGCAFICE,0.5,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GGC|GDA|EEA|FCB|DHB|E
+Output: ",HGD|HEB|EFF|GCA|FIC|E
+Cellular_Bounds,4,16,0,BBAA|AABA|AAAA|BBAA,AABBBBABBBBBAABB,AAABBBABBBBBAAAB,0.875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAA|AABA|AAAA|BBAA
+Output: ",AAAB|BBAB|BBBB|AAAB
+Cellular_Bounds,4,16,0,CACD|BACA|BDBB|DCCD,DBDACBDBCACCADDA,DBEBBCBBCEBC,0.3125,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",DBEB|BCBB|CEBC
+Cellular_Bounds,4,16,0,CGAC|ABDG|GBFE|CHGG,DHBDBCEHHCGFDAHH,DHBDBBEHHCFADIHH,0.75,0.0,5,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGAC|ABDG|GBFE|CHGG
+Output: ",DHBD|BBEH|HCFA|DIHH
+Cellular_Bounds,8,16,0,ABAAAABA|BABBAAAA,BABBBBABABAABBBB,BAABBBAAABAAABBB,0.8125,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAAAABA|BABBAAAA
+Output: ",BAABBBAA|ABAAABBB
+Cellular_Bounds,8,16,0,BDBADADA|ABDDCCAA,CACBABABBCAADDBB,CDEBEAEBBCDEDDCB,0.5,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBADADA|ABDDCCAA
+Output: ",CDEBEAEB|BCDEDDCB
+Cellular_Bounds,8,16,0,CGEACHDG|HBABBFBH,DHFBDAEHACBCCGCA,DHFBBDHGICCCCHIC,0.4375,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGEACHDG|HBABBFBH
+Output: ",DHFBBDHG|ICCCCHIC
+Base,0,32,0,BBABAAABAAAAABAABAABBBBBABAABBBA,AABABBBABBBBBABBABBAAAAABABBAAAB,AAABBBBBBBBBBBBBBBBBBBBBBBBBBBBB,0.5625,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABAAABAAAAABAABAABBBBBABAABBBA
+Output: ",AAABBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+Base,0,32,0,ACBDBABCCCACDDABBCCADAACBCDACDCD,BDCACBCDDDBDAABCCDDBABBDCDABDADA,BCDCEBCDDCDEBBCCDEBDDBEBDBCDEDED,0.21875,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACBDBABCCCACDDABBCCADAACBCDACDCD
+Output: ",BCDCEBCDDCDEBBCCDEBDDBEBDBCDEDEDE
+Base,0,32,0,ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE,BEAAHFFBACFGFCCCHGAEDHDAHACAECFF,aeIIHHEEBIFCGFCCEIHEDHFIEIHDHIEE,0.21875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE
+Output: ",aeIIHHEEBIFCGFCCEIHEDHFIEIHDHIEE
+Cellular_Bounds,1,32,0,B|A|A|A|A|B|B|B|B|B|A|B|B|B|B|B|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|A,ABBBBAAAAABAAAAABBBABBBBBABABBBB,ABBBBAAAAABAAAAABBABBBBBABABBBB,0.78125,0.0,18,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|A|A|B|B|B|B|B|A|B|B|B|B|B|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|A
+Output: ",A|B|B|B|B|A|A|A|A|A|B|A|A|A|A|A|B|B|A|B|B|B|B|B|A|B|A|B|B|B|B
+Cellular_Bounds,1,32,0,C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C,DCBCADCBABCDBCDDCABDADCBDDBAACAD,DCBCADCBEBCDBCDDCEBDECBDDBEDEC,0.625,0.0,8,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C
+Output: ",D|C|B|C|A|D|C|B|E|B|C|D|B|C|D|D|C|E|B|D|E|C|B|D|D|B|E|D|E|C
+Cellular_Bounds,1,32,0,H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F,ADFDHHGACBFGDECFFGACCCHBCFCGAGFG,ADFCHGGACBFGCECFHABAAGABFHGEF,0.4375,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F
+Output: ",A|D|F|C|H|G|G|A|C|B|F|G|C|E|C|F|H|A|B|A|A|G|A|B|F|H|G|E|F
+Cellular_Bounds,2,32,0,AB|BB|AA|BA|AB|BA|BB|BA|AA|BA|AB|BB|BB|BA|BA|AA,BAAABBABBAABAAABBBABBAAAAAABABBB,BAAABBABBAABAAABBBABBAAABBABAABB,0.90625,0.0,24,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|BB|AA|BA|AB|BA|BB|BA|AA|BA|AB|BB|BB|BA|BA|AA
+Output: ",BA|AA|BB|AB|BA|AB|AA|AB|BB|AB|BA|AA|BB|AB|AA|BB
+Cellular_Bounds,2,32,0,CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA,DBADBDBCDCBDCCBDAADCACDCAACBCCDB,DBEABDBCDCBDCCBDDEDCEBDCDEBCCCDB,0.6875,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA
+Output: ",DB|EA|BD|BC|DC|BD|CC|BD|DE|DC|EB|DC|DE|BC|CC|DB
+Cellular_Bounds,2,32,0,CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE,DAHGGFHEHAEAEAGDCBCBGEEEBHCEBFAF,IHHAFGGEAIEIEIFDBCBCFEDDBHBEAFHI,0.3125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE
+Output: ",IH|HA|FG|GE|AI|EI|EI|FD|BC|BC|FE|DD|BH|BE|AF|HI
+Cellular_Bounds,3,32,0,BAA|BBA|BBB|ABA|BBB|ABA|AAA|BAB|ABB|BAB|BB,ABBAABAAABABAAABABBBBABABAAABAAA,AABAABAABBAAAABBAAAAABAAABBBAAAA,0.53125,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAA|BBA|BBB|ABA|BBB|ABA|AAA|BAB|ABB|BAB|BB
+Output: ",AAB|AAB|AAB|BAA|AAB|BAA|AAA|BAA|ABB|BAA|AA
+Cellular_Bounds,3,32,0,AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB,BBADABCCDACACBCBBDDDCDABBDDCDBDC,BBBDEECCCEAEBBCABBDDDDEEBBBCBDCE,0.40625,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB
+Output: ",BBB|DEE|CCC|EAE|BBC|ABB|DDD|DEE|BBB|CBD|CE
+Cellular_Bounds,3,32,0,EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG,FFDGEFFHFGGFCABAEFEABHFEFFEECCFH,FDFGEFGFHGGFCHIAHIEHIHEFGFFECCFG,0.5,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG
+Output: ",FDF|GEF|GFH|GGF|CHI|AHI|EHI|HEF|GFF|ECC|FGE
+Cellular_Bounds,4,32,0,ABAB|ABBB|AAAB|ABBA|AAAB|BABB|ABBA|BBBA,BABABAAABBBABAABBBBAABAABAABAAAB,BAAABBBABBABBAAB,0.34375,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAB|ABBB|AAAB|ABBA|AAAB|BABB|ABBA|BBBA
+Output: ",BA|AA|BB|BA|BB|AB|BA|AB
+Cellular_Bounds,4,32,0,BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC,CCCCACADBDBBDCBCBACBDDACAADBBDCD,CCCCEAECBBEBDCBCDEBCDDEBAAEABCBD,0.5,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC
+Output: ",CCCC|EAEC|BBEB|DCBC|DEBC|DDEB|AAEA|BCBD
+Cellular_Bounds,4,32,0,CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF,DECFHEACAGFFCABHEFCEEDCFGABDCDCG,DCEFHEICHFGFCIHCEFCEDECFIGBDCCHG,0.53125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF
+Output: ",DCEF|HEIC|HFGF|CIHC|EFCE|DECF|IGBD|CCHG
+Cellular_Bounds,8,32,0,BBABABAB|AABAAAAA|BABBBABA|BBAAAABA,AABABABABBABBBBBABAAABABAABBBBAB,AABAABBB,0.15625,0.0,4,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABABAB|AABAAAAA|BABBBABA|BBAAAABA
+Output: ",AA|BA|AB|BB
+Cellular_Bounds,8,32,0,BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD,CCCDADCBACACDCCDDDAAADDDDBCCAABA,CCBCEBCCECDECBECDDDEEEDDDCCCEEDE,0.34375,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD
+Output: ",CCBCEBCC|ECDECBEC|DDDEEEDD|DCCCEEDE
+Cellular_Bounds,8,32,0,EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG,FGHHDDFFFEGECDCADHDGDGADEBDBEHFH,FHHHDDEAFECEceiaDhdgdeiddebbehhf,0.28125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG
+Output: ",FHHHDDEA|FECEceia|Dhdgdeid|debbehhf
+Cellular_Bounds,16,32,0,ABAAAABBBABBBABB|ABAABAAABBAABBBA,BABBBBAAABAAABAABABBABBBAABBAAAB,BAAAAAABBBAAAABBBBAAAAAABAAABBBA,0.3125,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAAAABBBABBBABB|ABAABAAABBAABBBA
+Output: ",BAAAAAABBBAAAABBB|BAAAAAABAAABBBAAA
+Cellular_Bounds,16,32,0,CACBDAABBDCAAABA|AACDCAADBACBCCDD,DBDCABBCCADBBBCBBBDADBBACBDCDDAA,DBCCEDBBEADEBBBAAADDEDEADBDDEEEA,0.40625,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACBDAABBDCAAABA|AACDCAADBACBCCDD
+Output: ",DBCCEDBBEADEBBBA|AADDEDEADBDDEEEA
+Cellular_Bounds,16,32,0,FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH,GADABAAHCGHFGHEFHEHFDBEEFFBFFDAA,IHBIJHBIAHIFHIJEDHAHDDBEDEEAEEAI,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH
+Output: ",IHBIJHBIAHIFHIJE|DHAHDDBEDEEAEEAI
+Base,0,64,0,ABBBBBBBBBBBAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAAABAB,BAAAAAAAAAAABBBABBAABABBBABBBBBBBABABBBABBBABBBBAABABAABAABBBABA,BAAAAAAAAAAAAABBBBBBBBBBBBBB,0.328125,0.0,12,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABBBBBBBBBBBAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAAABAB
+Output: ",BAAAAAAAAAAAAABBBBBBBBBBBBBB
+Base,0,64,0,BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC,CDCCDCBADCBCBDCBDDBAACBAAABACBACBCCCDCDDBCACCDDDDDBBCDBDCAACBBDD,CCDCCBECCDBBBCCECCDEEDEBEDEEBCCCEEDEEDEEDEEECCCEDEEDEEDEEDEEDEED,0.140625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC
+Output: ",CCDCCBECCDBBBCCECCDEEDEBEDEEBCCCEEDEEDEEDEEECCCEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDEEDE
+Base,0,64,0,EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE,FEFBADGHCAEDCGAAGHBHDAABAGBEGDAABGDAEECHECEHAFEEEFEAGGBBEEDDBFBF,FDFBAGDHEAGCFHIAIHDGBIAGDIIEECEBIBFIEBIEFEGFEFHEGEFFEEEEEDEEDEED,0.21875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE
+Output: ",FDFBAGDHEAGCFHIAIHDGBIAGDIIEECEBIBFIEBIEFEGFEFHEGEFFEEEEEDEEDEEDEE
+Cellular_Bounds,1,64,0,B|A|A|A|B|B|A|B|B|B|B|A|A|A|B|B|B|A|B|A|A|A|B|A|A|B|B|A|A|A|A|A|B|A|B|A|A|B|A|A|A|B|A|A|A|A|B|B|B|A|A|B|A|A|A|A|B|B|A|B|A|B|B|A,ABBBAABAAAABBBAAABABBBABBAABBBBBABABBABBBABBBBAAABBABBBBAABABAAB,ABAAABAAAAABAAAAABABAAABAABAAAAABBAAAAABABAAAAABAAAAAAABAB,0.40625,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|A|B|B|A|B|B|B|B|A|A|A|B|B|B|A|B|A|A|A|B|A|A|B|B|A|A|A|A|A|B|A|B|A|A|B|A|A|A|B|A|A|A|A|B|B|B|A|A|B|A|A|A|A|B|B|A|B|A|B|B|A
+Output: ",A|B|A|A|A|B|A|A|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|B|A|A|B|A|A|A|A|A|B|B|A|A|A|A|A|B|A|B|A|A|A|A|A|B|A|A|A|A|A|A|A|B|A|B|
+Cellular_Bounds,1,64,0,D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B,ADDACDABDCCBDCBADBDBCCABABCADCAABBBACDDACDBDAAACCDADADACBCCBCAAC,ADDACDABDCCBDCBDADBBEBDBDBEDDBBEAAAECCAECADEEAEECEAEEAEDEE,0.375,0.0,15,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B
+Output: ",A|D|D|A|C|D|A|B|D|C|C|B|D|C|B|D|A|D|B|B|E|B|D|B|D|B|E|D|D|B|B|E|A|A|A|E|C|C|A|E|C|A|D|E|E|A|E|E|C|E|A|E|E|A|E|D|E|E|
+Cellular_Bounds,1,64,0,B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H,CDHGCHCCEADCGCDHFHFFCACFEFEFHFACBHCAACAFHGFCFEBGEDHGDBEHBFBCCGAA,CDHGCHCCEADCGCDHFHFFCACFCDFACHABCHAACACAFACADBFCDBGFBDGBDF,0.4375,0.0,24,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H
+Output: ",C|D|H|G|C|H|C|C|E|A|D|C|G|C|D|H|F|H|F|F|C|A|C|F|C|D|F|A|C|H|A|B|C|H|A|A|C|A|C|A|F|A|C|A|D|B|F|C|D|B|G|F|B|D|G|B|D|F|
+Cellular_Bounds,2,64,0,AA|BB|BA|AB|BA|AB|BA|AB|BB|AA|BB|BB|BA|BA|AA|BB|BA|BB|BB|AA|AA|AB|BA|AB|AA|BA|AA|BB|BA|BB|AB|AA,BBAAABBAABBAABBAAABBAAAAABABBBAAABAAAABBBBBAABBABBABBBAAABAABABB,BBAAABBAABBAABBAAABBAAAAABABBAABBAAAAABAABABBAAABAAABBABAA,0.671875,0.0,29,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|BB|BA|AB|BA|AB|BA|AB|BB|AA|BB|BB|BA|BA|AA|BB|BA|BB|BB|AA|AA|AB|BA|AB|AA|BA|AA|BB|BA|BB|AB|AA
+Output: ",BB|AA|AB|BA|AB|BA|AB|BA|AA|BB|AA|AA|AB|AB|BA|AB|BA|AA|AA|BA|AB|AB|BA|AA|BA|AA|BB|AB|AA
+Cellular_Bounds,2,64,0,DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD,ADCDBDAABBCCDBAACBCCDCBBDCCCCADDAADCCCABDAABAADDBBCDDBDACDCBCBAA,ADCABDEEABCCDBEECBCCEBABEBCCBEDDEEEBCCEACEEAEEEEABECEAEE,0.34375,0.0,3,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD
+Output: ",AD|CA|BD|EE|AB|CC|DB|EE|CB|CC|EB|AB|EB|CC|BE|DD|EE|EB|CC|EA|CE|EA|EE|EE|AB|EC|EA|EE
+Cellular_Bounds,2,64,0,CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF,DFBDGAFCFCADADEGFGGDFGHCFCFGGFFDBGBFHEBABDCGAACFAHCGHEADDGFDEECG,DFADAIECECIDIDEGFGGDFGGCECFGGEEDBHBDGHBIADBGIIBHHIBGGHIDCEEDDE,0.46875,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF
+Output: ",DF|AD|AI|EC|EC|ID|ID|EG|FG|GD|FG|GC|EC|FG|GE|ED|BH|BD|GH|BI|AD|BG|II|BH|HI|BG|GH|ID|CE|ED|DE
+Cellular_Bounds,3,64,0,ABB|AAA|AAB|BAB|AAB|AAB|BBA|ABA|BAA|ABB|AAA|ABA|AAA|AAB|ABA|ABA|ABB|AAB|ABB|BAA|BAB|B,BAABBBBBAABABBABBAAABBABABBBAABBBBABBBBBBABABBABBAABBABAAABBABAA,BAABBBBBAABABBBBBAAABBBAABBBAABBBBBABBBBBABBAABABBAABBBBAABABBA,0.734375,0.0,14,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|AAA|AAB|BAB|AAB|AAB|BBA|ABA|BAA|ABB|AAA|ABA|AAA|AAB|ABA|ABA|ABB|AAB|ABB|BAA|BAB|B
+Output: ",BAA|BBB|BBA|ABA|BBB|BBA|AAB|BBA|ABB|BAA|BBB|BBA|BBB|BBA|BBA|ABA|BBA|ABB|BBA|ABA|BBA
+Cellular_Bounds,3,64,0,CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D,DCAAADCDDACDBCBDCACCADAABBADCBCDABCCDABABDBADDBADDBBACDDCBBCACBA,DCEDEEBCEDCBABCCDEBCECDEABDCBBBCEABBDBAAEBADECBDCBEAABDBBA,0.171875,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D
+Output: ",DCE|DEE|BCE|DCB|ABC|CDE|BCE|CDE|ABD|CBB|BCE|ABB|DBA|AEB|ADE|CBD|CBE|AAB|DBB|A
+Cellular_Bounds,3,64,0,ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B,BDACEABDGCCFBDAABAFDAACBEEBGAAFFEACEHDHBGAHFEAFFCDEGFAHCDBDBGHDC,BCHCEHBcfccEBchhabefhhcbeeagebfedhbehecbihgdehffbicgbfcbdghcbcbg,0.078125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B
+Output: ",BCH|CEH|Bcf|ccE|Bch|hab|efh|hcb|eea|geb|fed|hbe|hec|bih|gde|hff|bic|gbf|cbd|ghc|bcb|ghi|
+Cellular_Bounds,4,64,0,BBBB|AAAA|AAAB|BBAB|AABB|BBAA|BBBA|BAAB|BAAA|BBBB|ABAA|BABB|BAAA|BABA|AABA|BBAA,AAAABBBBBBBAAABABBAAAABBAAABABBAABBBAAAABABBABAAABBBABABBBABAABB,AAAABBBBABBABABABAABAABBBAAAABBAAAAAAAAABAAAABABAAAAABABAABBBAAA,0.671875,0.0,8,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|AAAA|AAAB|BBAB|AABB|BBAA|BBBA|BAAB|BAAA|BBBB|ABAA|BABB|BAAA|BABA|AABA|BBAA
+Output: ",AAAA|BBBB|ABBA|BABA|BAAB|AABB|BAAA|ABBA|AAAA|AAAA|BAAA|ABAB|AAAA|ABAB|AABB|BAAA
+Cellular_Bounds,4,64,0,BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC,CACAAABCBCDDDDABCCBCCBCDACBBBCDCDBCBDABCDBDDDBBBBDDBCDDCDCBBDCBD,CDECEEBABCDDDEBBCCBABCBACEAABCDBDABBDEBADACCDAAABDDBCAABCABC,0.40625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC
+Output: ",CDEC|EEBA|BCDD|DEBB|CCBA|BCBA|CEAA|BCDB|DABB|DEBA|DACC|DAAA|BDDB|CAAB|CABC
+Cellular_Bounds,4,64,0,AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD,BGFECGCHFCFGEGGGEFEHHGHAEECECGCCACHDBGHHGADDBEDGCAFDEHGGFADGGBCE,BFGHCBHCFCFGEEGGFEHHAHGACEECICDABHGDBIHHIGDDBEDECHFDHIGGIFDGGBCE,0.5,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD
+Output: ",BFGH|CBHC|FCFG|EEGG|FEHH|AHGA|CEEC|ICDA|BHGD|BIHH|IGDD|BEDE|CHFD|HIGG|IFDG|GBCE
+Cellular_Bounds,8,64,0,BAABBAAA|AAABAAAA|BBBABBBB|AAABABBA|ABABABBA|BAABABAA|BABABAAA|BAAABBAA,ABBAABBBBBBABBBBAAABAAAABBBABAABBABABAABABBABABBABABABBBABBBAABB,ABABAABAAABAAABAAABABAAABAABAABAABABABAAABAABAABAABAAABABAAA,0.375,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAABBAAA|AAABAAAA|BBBABBBB|AAABABBA|ABABABBA|BAABABAA|BABABAAA|BAAABBAA
+Output: ",ABABAA|BAAABA|AABAAABA|BAAABAAB|AABAABAB|ABAAABAA|BAABAABA|AABABAAA
+Cellular_Bounds,8,64,0,DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA,AACDCBCBCADAAACBDBBCDCADAAABAAADBAABBAADDCACDDDACCBDDBDABCACDBDB,AECDAEBCCEeeeaeedbbeedebeebeeeeabbeebeeedbbeeedeaaebbeebbceeebec,0.0625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA
+Output: ",AECDAEBC|CEeeeaee|dbbeedeb|eebeeeea|bbeebeee|dbbeeede|aaebbeeb|bceeebec
+Cellular_Bounds,8,64,0,DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE,EFCABAGHBABCFEFEGACEADEDFGGHBGEHDBABDAEDDHBECDBEFHBEAEACDGCDECAF,EFCHBIHGBIACFEEFGICEIEDEFGGHBEIHDBBIHDIEDBBEICBDFIHDIEAEDFCDIEBF,0.46875,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE
+Output: ",EFCHBIHG|BIACFEEF|GICEIEDE|FGGHBEIH|DBBIHDIE|DBBEICBD|FIHDIEAE|DFCDIEBF
+Cellular_Bounds,16,64,0,AABAAABBAABABBBA|ABABBABBBAABAAAB|ABBBABBABBABABBB|ABAABBBBBAABABBA,BBABBBAABBABAAABBABAABAAABBABBBABAAABAABAABABAAABABBAAAAABBABAAB,BBBAABBBAABBBBBAABBABBABBBAABBBA,0.21875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AABAAABBAABABBBA|ABABBABBBAABAAAB|ABBBABBABBABABBB|ABAABBBBBAABABBA
+Output: ",BBBAABBB|AABBBBBA|ABBABBAB|BBAABBBA
+Cellular_Bounds,16,64,0,CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC,DBDDCDDDBCCBDDBCDDDCACCDDBCBBBBBBAADDCAABBAABCCCBDADDDADABCADACD,DBDBCCDDBBDCCBDBDDCEDEBDDABBBBBDEDECCDEEDEEBEEBDEEEEEEBDEEDCDB,0.265625,0.0,3,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC
+Output: ",DBDBCCDDBBDCCBDB|DDCEDEBDDABBBBB|DEDECCDEEDEEBEE|BDEEEEEEBDEEDCDB
+Cellular_Bounds,16,64,0,DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA,EAHABHGAEDHECGCDEDHGBGADBHAHDBFCHEGCFFEHGFFBFBBEGDBDEGGGCGEDHABB,EIIEBHIEDEBGECCDEGBGIEIHDHHEBDDBGDECFDFGEFFBFDDCFCBDDEEGFEDEHJB,0.296875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA
+Output: ",EIIEBHIEDEBGECC|DEGBGIEIHDHHEBDDB|GDECFDFGEFFBFDDC|FCBDDEEGFEDEHJB
+Base,0,128,0,BABABABBBBBBBAAABBBBBAAABAABBBBBABAABBBAABBBABABBBAAABBAABABAABBBAAABABAAABBABAAABBBBAABBABABABBBABBBABBBABBAABBAAAAAABAAABABBAB,ABABABAAAAAAABBBAAAAABBBABBAAAAABABBAAABBAAABABAAABBBAABBABABBAAABBBABABBBAABABBBAAAABBAABABABAAABAAABAAABAABBAABBBBBBABBBABAABA,ABAABAAAABBBBBBBBBBAAABAABAABBBBBBABAABBBAABBBABAABBBBBABAABBBAABBBABAABBBBBABAABBBAABBAABAABBBABAABBBAABAABAABBBAABAABBABAABBBA,0.5,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABABABBBBBBBAAABBBBBAAABAABBBBBABAABBBAABBBABABBBAAABBAABABAABBBAAABABAAABBABAAABBBBAABBABABABBBABBBABBBABBAABBAAAAAABAAABABBAB
+Output: ",ABAABAAAABBBBBBBBBBAAABAABAABBBBBBABAABBBAABBBABAABBBBBABAABBBAABBBABAABBBBBABAABBBAABBAABAABBBABAABBBAABAABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABAABBBAABAABBABA
+Base,0,128,0,CCBBCCBCCABCADCCDBDBBBBBACCDADBABCCBCBBBBAACABCADCCACBABCBACCAADCCCDABBBDCBCDCBBCCBAACBABACBDACBBACBCDCCACCABDBDBAABBDABADCBCDCC,DDCCDDCDDBCDBADDACACCCCCBDDABACBCDDCDCCCCBBDBCDBADDBDCBCDCBDDBBADDDABCCCADCDADCCDDCBBDCBCBDCABDCCBDCDADDBDDBCACACBBCCABCBADCDADD,DDCCCDDDDBDDEDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDD,0.34375,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CCBBCCBCCABCADCCDBDBBBBBACCDADBABCCBCBBBBAACABCADCCACBABCBACCAADCCCDABBBDCBCDCBBCCBAACBABACBDACBBACBCDCCACCABDBDBAABBDABADCBCDCC
+Output: ",DDCCCDDDDBDDEDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDCDEDDDDDDDDDDDDC
+Base,0,128,0,ADCBGHCFEECBEECEEEBFGGCDFEAEHCDAGFCFGEEHFFEBAGAHGFFCFBFCGGBADBBEFBDDEEHGCEDDHAHCBEHAGACEFHABBECCFHBHEGFFHCGHDBHFGDAEBGGHFCACBGEE,BEDCHADGFFDCFFDFFFCGHHDEGFBFADEBHGDGHFFAGGFCBHBAHGGDGCGDHHCBECCFGCEEFFAHDFEEABADCFABHBDFGABCCFDDGACAFHGGADHAECAGHEBFCHHAGDBDCHFF,BDECHIAFDFEECDDEDDHIAHIBDFIEBIHDCHBIHFIDFGDEBFDEEIHGDDEDDIAHICDEHAIHDFIEHIFDEGHDDHAFBDEGGHIDBDCHIIEBDFIEDEEHGDDEDDHAHICDEHAIHDFI,0.140625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADCBGHCFEECBEECEEEBFGGCDFEAEHCDAGFCFGEEHFFEBAGAHGFFCFBFCGGBADBBEFBDDEEHGCEDDHAHCBEHAGACEFHABBECCFHBHEGFFHCGHDBHFGDAEBGGHFCACBGEE
+Output: ",BDECHIAFDFEECDDEDDHIAHIBDFIEBIHDCHBIHFIDFGDEBFDEEIHGDDEDDIAHICDEHAIHDFIEHIFDEGHDDHAFBDEGGHIDBDCHIIEBDFIEDEEHGDDEDDHAHICDEHAIHDFIEHIFDEGHDDHAFBDEGGHIDBDCHIIEBDFIEDEEHGDDEDDHAHICDEHAIHDFIEHIFDEGHDDHAFBDEGGHIDBDCHIIEBDFIEDEEHGDDEDDHAHICDEHAIHDFIEHIFDEGHDDHAFBDEGGHIDBDCHIIEBDFIEDEEHGDDEDDHAHICDEHAIHDFIEHIFDEGHDDHAFBDEGGHIDBDCHIIEBDFIEDEEHGDDEDDHAHICDEHAIHDFIEHIFDEGHDDHAF
+Cellular_Bounds,1,128,0,B|B|A|B|B|B|B|B|B|B|B|A|A|A|B|A|A|B|A|B|B|A|B|A|A|A|B|B|A|B|B|B|B|A|B|B|B|B|B|A|B|A|B|B|B|B|B|A|B|B|B|A|A|B|B|B|B|B|A|A|B|B|B|B|A|B|A|B|B|B|A|B|B|A|B|A|B|B|A|A|A|A|A|B|B|B|A|B|A|B|A|B|B|B|B|B|A|A|B|B|B|A|B|B|B|B|A|B|B|A|A|B|A|A|B|A|A|B|A|A|B|B|B|A|B|A|A|A,AABAAAAAAAABBBABBABAABABBBAABAAAABAAAAABABAAAAABAAABBAAAAABBAAAABABAAABAABABAABBBBBAAABABABAAAAABBAAABAAAABAABBABBABBABBAAABABBB,AABAAAAAAAABBBABBABAABABBAAAAABAAAAABABAAAAABAAABBAAAAABBAAAABABAAAAABAAABBBABBABAAAAABBBABBBBABABAAAAABBB,0.5234375,0.0,25,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|B|A|B|B|B|B|B|B|B|B|A|A|A|B|A|A|B|A|B|B|A|B|A|A|A|B|B|A|B|B|B|B|A|B|B|B|B|B|A|B|A|B|B|B|B|B|A|B|B|B|A|A|B|B|B|B|B|A|A|B|B|B|B|A|B|A|B|B|B|A|B|B|A|B|A|B|B|A|A|A|A|A|B|B|B|A|B|A|B|A|B|B|B|B|B|A|A|B|B|B|A|B|B|B|B|A|B|B|A|A|B|A|A|B|A|A|B|A|A|B|B|B|A|B|A|A|A
+Output: ",A|A|B|A|A|A|A|A|A|A|A|B|B|B|A|B|B|A|B|A|A|B|A|B|B|A|A|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|A|A|B|A|A|A|B|B|A|A|A|A|A|B|B|A|A|A|A|B|A|B|A|A|A|A|A|B|A|A|A|B|B|B|A|B|B|A|B|A|A|A|A|A|B|B|B|A|B|B|B|B|A|B|A|B|A|A|A|A|A|B|B|B|
+Cellular_Bounds,1,128,0,D|D|A|C|B|A|D|B|C|C|B|D|D|C|D|A|D|B|B|A|D|D|A|B|B|C|A|D|A|B|B|B|C|A|C|D|D|A|C|A|A|C|B|C|C|C|D|B|D|B|C|C|B|B|C|A|A|D|A|B|A|C|A|B|D|B|A|B|A|C|C|C|B|B|C|B|B|C|C|A|A|A|B|C|A|B|D|C|D|C|A|D|D|C|A|D|B|C|B|A|D|C|B|C|A|C|A|B|B|B|D|C|B|A|D|B|C|B|A|D|A|D|A|B|C|D|B|A,AABDCBACDDCAADABACCBAABCCDBABCCCDBDAABDBBDCDDDACACDDCCDBBABCBDBCACBCBDDDCCDCCDDBBBCDBCADADBAADBACDCBADCDBDBCCCADCBACDCBABABCDACB,AABDCBACDDCAADBDACCDBADCADBDCADACDABDACAADBDABADCDADCADBADCBADCABBCDABDACABDABDABACDABDCADDCADBCADADABDCAB,0.328125,0.0,14,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|D|A|C|B|A|D|B|C|C|B|D|D|C|D|A|D|B|B|A|D|D|A|B|B|C|A|D|A|B|B|B|C|A|C|D|D|A|C|A|A|C|B|C|C|C|D|B|D|B|C|C|B|B|C|A|A|D|A|B|A|C|A|B|D|B|A|B|A|C|C|C|B|B|C|B|B|C|C|A|A|A|B|C|A|B|D|C|D|C|A|D|D|C|A|D|B|C|B|A|D|C|B|C|A|C|A|B|B|B|D|C|B|A|D|B|C|B|A|D|A|D|A|B|C|D|B|A
+Output: ",A|A|B|D|C|B|A|C|D|D|C|A|A|D|B|D|A|C|C|D|B|A|D|C|A|D|B|D|C|A|D|A|C|D|A|B|D|A|C|A|A|D|B|D|A|B|A|D|C|D|A|D|C|A|D|B|A|D|C|B|A|D|C|A|B|B|C|D|A|B|D|A|C|A|B|D|A|B|D|A|B|A|C|D|A|B|D|C|A|D|D|C|A|D|B|C|A|D|A|D|A|B|D|C|A|B|
+Cellular_Bounds,1,128,0,H|F|A|B|C|F|E|H|H|A|H|E|D|C|A|A|F|F|E|B|G|A|D|A|C|E|H|A|A|F|E|C|A|G|A|G|B|H|H|D|B|A|E|C|C|A|E|F|F|C|H|B|A|E|H|F|F|A|E|H|H|H|G|H|A|E|G|D|B|E|E|D|E|C|C|G|H|A|G|C|G|F|H|G|B|H|B|E|D|A|G|B|A|A|F|D|G|H|B|B|C|F|A|F|H|F|B|F|A|E|D|B|C|H|G|B|F|G|E|B|F|B|E|D|D|H|H|E,AGBCDGFAABAFEDBBGGFCHBEBDFABBGFDBHBHCAAECBFDDBFGGDACBFAGGBFAAAHABFHECFFEFDDHABHDHGAHCACFEBHCBBGEHACCDGBGAGCGBFECDAHCGHFCGCFEEAAF,AGBCDGHAABAHFDBBGBHCDBDAFAHAAGAGCIAHICAHIDCIHIDCIGAHIAHIGDICIEIDICIHAICIGIHIBIEIDICIEIDIDAIHICICIEIDIHIBIE,0.1640625,0.0,6,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|F|A|B|C|F|E|H|H|A|H|E|D|C|A|A|F|F|E|B|G|A|D|A|C|E|H|A|A|F|E|C|A|G|A|G|B|H|H|D|B|A|E|C|C|A|E|F|F|C|H|B|A|E|H|F|F|A|E|H|H|H|G|H|A|E|G|D|B|E|E|D|E|C|C|G|H|A|G|C|G|F|H|G|B|H|B|E|D|A|G|B|A|A|F|D|G|H|B|B|C|F|A|F|H|F|B|F|A|E|D|B|C|H|G|B|F|G|E|B|F|B|E|D|D|H|H|E
+Output: ",A|G|B|C|D|G|H|A|A|B|A|H|F|D|B|B|G|B|H|C|D|B|D|A|F|A|H|A|A|G|A|G|C|I|A|H|I|C|A|H|I|D|C|I|H|I|D|C|I|G|A|H|I|A|H|I|G|D|I|C|I|E|I|D|I|C|I|H|A|I|C|I|G|I|H|I|B|I|E|I|D|I|C|I|E|I|D|I|D|A|I|H|I|C|I|C|I|E|I|D|I|H|I|B|I|E|
+Cellular_Bounds,2,128,0,AA|AB|BA|AB|BB|BB|AA|BA|AB|BA|AA|AB|BA|BB|AA|BA|AA|AB|AB|AB|AA|BA|AB|BB|BA|AA|BB|AA|BA|BA|BA|AB|AB|BA|BA|BB|BB|BA|BB|AB|BA|AA|BB|BB|AB|AB|BA|AA|BA|AB|BA|BA|AB|AA|AA|AA|AB|AA|BB|AA|AB|BA|AA|BB,BBBAABBAAAAABBABBAABBBBAABAABBABBBBABABABBABBAAAABBBAABBABABABBABAABABAAAAABAABAABBBAAAABABAABBBABBAABABBABBBBBBBABBAABBBAABBBAA,BBBAABBAAAAABBABBAABBBABBAABAAABBBAABAABBABBBAAABBBAAAABABABBBABABABAAABABBAABAABBAAABBBBABBABAABBBBABAAABBABBAAABBAAAAB,0.5625,0.0,22,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|AB|BA|AB|BB|BB|AA|BA|AB|BA|AA|AB|BA|BB|AA|BA|AA|AB|AB|AB|AA|BA|AB|BB|BA|AA|BB|AA|BA|BA|BA|AB|AB|BA|BA|BB|BB|BA|BB|AB|BA|AA|BB|BB|AB|AB|BA|AA|BA|AB|BA|BA|AB|AA|AA|AA|AB|AA|BB|AA|AB|BA|AA|BB
+Output: ",BB|BA|AB|BA|AA|AA|BB|AB|BA|AB|BB|AB|BA|AB|AA|AB|BB|AA|BA|AB|BA|BB|BA|AA|BB|BA|AA|AB|AB|AB|BB|AB|AB|AB|AA|AB|AB|BA|AB|AA|BB|AA|AB|BB|BA|BB|AB|AA|BB|BB|AB|AA|AB|BA|BB|AA|AB|BA|AA|AB
+Cellular_Bounds,2,128,0,DA|AC|BC|BC|DD|BD|CB|AD|BB|DB|CB|DD|BB|AC|CB|DB|DD|DD|DB|AB|BC|BC|CB|BD|DC|DD|DD|CB|CD|AB|BA|CB|DB|DC|DD|DD|CD|CC|AC|BD|DB|CA|AD|BD|AC|CC|CA|BB|CB|DB|AB|CB|BD|DB|AA|AC|DB|BB|DC|BD|CB|CA|BB|DC,ABBDCDCDAACADCBACCACDCAACCBDDCACAAAAACBCCDCDDCCAADAAAADCDABCCBDCACADAAAADADDBDCAACDBBACABDDDDBCCDCACBCDCCAACBBBDACCCADCADCDBCCAD,EBBDCDCDAECECBBECCECCBAECCDECBECAEEEECBECDCEAECDEEEECBDEAECEBEAEceDEEEEEDECCDEEBCEEBceEBAADEEBECCEEBCBAEECEBDECEEBABCEEBCEEBABCE,0.2421875,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DA|AC|BC|BC|DD|BD|CB|AD|BB|DB|CB|DD|BB|AC|CB|DB|DD|DD|DB|AB|BC|BC|CB|BD|DC|DD|DD|CB|CD|AB|BA|CB|DB|DC|DD|DD|CD|CC|AC|BD|DB|CA|AD|BD|AC|CC|CA|BB|CB|DB|AB|CB|BD|DB|AA|AC|DB|BB|DC|BD|CB|CA|BB|DC
+Output: ",EB|BD|CD|CD|AE|CE|CB|BE|CC|EC|CB|AE|CC|DE|CB|EC|AE|EE|EC|BE|CD|CE|AE|CD|EE|EE|CB|DE|AE|CE|BE|AE|ce|DE|EE|EE|DE|CC|DE|EB|CE|EB|ce|EB|AA|DE|EB|EC|CE|EB|CB|AE|EC|EB|DE|CE|EB|AB|CE|EB|CE|EB|AB|CE|EB|AB|DE|EB|CE|EB|DE|CE|EE|EE|DE|CC
+Cellular_Bounds,2,128,0,DE|EE|BH|AA|CA|EA|GC|EB|HH|DF|BB|AF|HD|GG|BG|AA|HF|GA|AC|HD|BG|HE|DF|HB|CF|CB|CD|EB|HH|GB|GA|GA|AH|HD|DA|EA|ED|CA|AG|CH|FC|BH|AC|HC|EE|CF|HH|AB|BD|CG|BB|GF|AD|GA|DC|DF|AH|DH|FC|AE|ED|AH|EF|CE,EFFFCABBDBFBHDFCAAEGCCBGAEHHCHBBAGHBBDAECHAFEGACDGDCDEFCAAHCHBHBBAAEEBFBFEDBBHDAGDCABDADFFDGAABCCEDHCCHGBEHBEDEGBAEAGDBFFEBAFGDF,EFFFBIABCBFBGDECIIEIEGBCBGIFIEGHCIBDIHGEBDCIIFEICHBFBEDEFCIIGABHDIGDECBIIDFFBABECHECIIIFABBDCHECIFIEEDBIIHFDEDCIIFEHFI,0.15625,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DE|EE|BH|AA|CA|EA|GC|EB|HH|DF|BB|AF|HD|GG|BG|AA|HF|GA|AC|HD|BG|HE|DF|HB|CF|CB|CD|EB|HH|GB|GA|GA|AH|HD|DA|EA|ED|CA|AG|CH|FC|BH|AC|HC|EE|CF|HH|AB|BD|CG|BB|GF|AD|GA|DC|DF|AH|DH|FC|AE|ED|AH|EF|CE
+Output: ",EF|FF|BI|AB|CB|FB|GD|EC|II|EI|EG|BC|BG|IF|IE|GH|CI|BD|IH|GE|BD|CI|IF|EI|CH|BF|BE|DE|FC|II|GA|BH|DI|GD|EC|BI|ID|FF|BA|BE|CH|EC|II|IF|AB|BD|CH|EC|IF|IE|ED|BI|IH|FD|ED|CI|IF|EH|FI
+Cellular_Bounds,3,128,0,BBB|ABB|AAB|ABB|AAA|AAA|BBB|BBA|AAB|ABA|BBB|ABA|BAB|BBB|AAA|ABA|BAA|BAB|BBA|BBB|ABA|ABA|ABB|BAA|BAA|ABB|BAB|AAB|AAA|ABA|AAA|BAA|BAA|ABA|BAA|BAA|BBB|BBA|ABA|AAA|AAA|ABA|BB,AAABAABBABAABBBBBBAAAAABBBABABAAABABABAAAABBBBABABBABAAABAAABABBABBAAABBABBBAAABABBABBBBABBBBABBABBBABABBABBAAAAABBABBBBBBBBABAA,AAAAABBAAAABBBBBBBAAAABAABABAABAAAAAAABABAAABAAABAABAAABABAABAAAABAABAABABAAAAABAAAABAABAAABABAABAAAAAABABBBBBBABAAAAABAAAA,0.46875,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBB|ABB|AAB|ABB|AAA|AAA|BBB|BBA|AAB|ABA|BBB|ABA|BAB|BBB|AAA|ABA|BAA|BAB|BBA|BBB|ABA|ABA|ABB|BAA|BAA|ABB|BAB|AAB|AAA|ABA|AAA|BAA|BAA|ABA|BAA|BAA|BBB|BBA|ABA|AAA|AAA|ABA|BB
+Output: ",AAA|AAB|BAA|AAB|BBB|BBB|AAA|ABA|ABA|BAA|BAA|AAA|AAB|ABA|AAB|AAA|BAA|BAA|ABA|BAA|BAA|AAB|AAB|AAB|ABA|AAA|ABA|AAA|BAA|BAA|ABA|BAA|BAA|AAA|ABA|BBB|BBB|ABA|AAA|ABA|AAA
+Cellular_Bounds,3,128,0,BCB|CDA|DDA|CBB|BAB|BCA|ADB|DCC|BAC|BBA|ACB|CCA|BBD|DAA|ABA|ADD|CAA|DCC|DCB|ADA|DAD|BAA|CDB|BAC|ACA|BCA|AAD|DDD|DCB|ABB|BCD|ACC|BAD|CCC|DAC|ACA|DBB|BCC|AAD|DAB|DBC|CDA|DC,CDCDABAABDCCCBCCDBBACADDCBDCCBBDCDDBCCAABBBCBBAADBBADDADCBABABACBBDACCBDBDBCDBBBAAAAADCBCCCDABDDCBADDDABDBDBACCCDDBBAABCACDDABAD,CCDDEBAAACBBBBCBCDEADAAACACBBAACCCBBBCEAAAABBADECBCAAADCBAADAADBBACDECACABCBCDAAAZZZDCBABBBDEACCBADCCCDACACADBBBCCAAADABDBCAEBDA,0.1953125,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCB|CDA|DDA|CBB|BAB|BCA|ADB|DCC|BAC|BBA|ACB|CCA|BBD|DAA|ABA|ADD|CAA|DCC|DCB|ADA|DAD|BAA|CDB|BAC|ACA|BCA|AAD|DDD|DCB|ABB|BCD|ACC|BAD|CCC|DAC|ACA|DBB|BCC|AAD|DAB|DBC|CDA|DC
+Output: ",CCD|DEB|AAA|CBB|BBC|BCD|EAD|AAA|CAC|BBA|ACC|CBB|BCE|AAA|ABB|ADE|CBC|AAA|DCB|AAD|AAD|BBA|CDE|CAC|ABC|BCD|AAA|ZZZ|DCB|ABB|BDE|ACC|BAD|CCC|DAC|ACA|DBB|BCC|AAA|DAB|DBC|AEB|DAE|DCB|
+Cellular_Bounds,3,128,0,HGA|HCG|FDD|FHA|DBH|BAF|CHH|AFG|AEH|AEC|BHG|HCE|GGE|ECB|GDA|GGE|HDG|FEA|EGC|ABE|CGC|EFC|HDA|DAA|FBH|DEC|HGB|AEA|BHH|BBD|EEG|EFF|GHG|GBE|HGD|FHH|AGE|CEA|FAD|AHF|BEH|GHC|HB,AHBADHGEEGABECACBGDAABGHBFABFDCAHADFHHFFDCHEBHHFAEHGFBFHDBCFDHDFGDAEBEBBGCAEFDAHCBFBCAACCEFFHFGGHAHHCFAHEGAABHFDFBGBEBAGCFAHADAC,AHBAHDGEEGHBEICBBGDIIBHFAFIAEBCHIAceFFFDBIHIFFFFAIHFIHCBFIGCFIEIDHHIBBBIHBGDIBHICAIFBIIBBGFGFFGGAHGGBFHIBAIFCHHAADEEHEFFHHGGBFHI,0.2421875,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HGA|HCG|FDD|FHA|DBH|BAF|CHH|AFG|AEH|AEC|BHG|HCE|GGE|ECB|GDA|GGE|HDG|FEA|EGC|ABE|CGC|EFC|HDA|DAA|FBH|DEC|HGB|AEA|BHH|BBD|EEG|EFF|GHG|GBE|HGD|FHH|AGE|CEA|FAD|AHF|BEH|GHC|HB
+Output: ",AHB|AHD|GEE|GHB|EIC|BBG|DII|BHF|AFI|AEB|CHI|Ace|FFF|DBI|HIF|FFF|AIH|FIH|CBF|IGC|FIE|IDH|HIB|BBI|HBG|DIB|HIC|AIF|BII|BBG|FGF|FGG|AHG|GBF|HIB|AIF|CHH|AAD|EEH|EFF|HHG|GBF|HIB|HHH|AGE|DEH|FAH|BHI|CEH|GHI|HB
+Cellular_Bounds,4,128,0,ABBA|BABB|BABA|BBBB|BABB|AAAB|ABAA|BABB|BBBA|BAAA|BBBA|BBAB|BBBA|BAAB|ABBB|BABA|BABA|BBBB|ABAA|BABA|BBBB|AAAA|BAAB|AABB|ABAA|AAAA|BBAA|AAAA|BAAA|ABAB|AABB|AABA,BAABABAAABABAAAAABAABBBABABBABAAAAABABBBAAABAABAAAABABBABAAAABABABABAAAABABBABABAAAABBBBABBABBAABABBBBBBAABBBBBBABBBBABABBAABBAB,BAABABAAABAAABBBABAABBAABABAABAAAABBAABBAABBAABBAABBBBAAAABBABAAABAAABBBBABAABAAABBBBBBBAABBBAABBAAAABAABBBBAAAABAABABBAAABBABAB,0.6015625,0.0,11,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABBA|BABB|BABA|BBBB|BABB|AAAB|ABAA|BABB|BBBA|BAAA|BBBA|BBAB|BBBA|BAAB|ABBB|BABA|BABA|BBBB|ABAA|BABA|BBBB|AAAA|BAAB|AABB|ABAA|AAAA|BBAA|AAAA|BAAA|ABAB|AABB|AABA
+Output: ",BAAB|ABAA|ABAA|ABBB|ABAA|BBAA|BABA|ABAA|AABB|AABB|AABB|AABB|AABB|BBAA|AABB|ABAA|ABAA|ABBB|BABA|ABAA|ABBB|BBBB|AABB|BAAB|BAAA|ABAA|BBBB|AAAA|BAAB|ABBA|AABB|ABAB
+Cellular_Bounds,4,128,0,CABC|ABAD|DDAB|CCAD|DBDD|CDCD|CCBB|DADD|BCDD|BCCA|BCCC|DCBB|DACB|DADC|BACA|ABAA|CAAB|CDCA|CDAB|DBAA|DCDD|ABBD|ACCD|DDAD|CDAC|BCBB|BBDB|BACB|ADDB|ABDA|ADAB|CABB,DBCDBCBAAABCDDBAACAADADADDCCABAACDAACDDBCDDDADCCABDCABADCBDBBCBBDBBCDADBDABCACBBADAABCCABDDAAABADABDCDCCCCACCBDCBAACBCABBABCDBCC,DBBDBBBEEEABDDBEECDDDEDECCBBDEEECDDDBCBEBBCBEEBADEEBAEEEBBBEEBEBDEEDDEEBEEEAEEDDBBEEAEEEDEEDBCEBBBEBBDEBDEEBBCEBBDEBAEBBDEEDBDEB,0.171875,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CABC|ABAD|DDAB|CCAD|DBDD|CDCD|CCBB|DADD|BCDD|BCCA|BCCC|DCBB|DACB|DADC|BACA|ABAA|CAAB|CDCA|CDAB|DBAA|DCDD|ABBD|ACCD|DDAD|CDAC|BCBB|BBDB|BACB|ADDB|ABDA|ADAB|CABB
+Output: ",DBBD|BBBE|EEAB|DDBE|ECDD|DEDE|CCBB|DEEE|CDDD|BCBE|BBCB|EEBA|DEEB|AEEE|BBBE|EBEB|DEED|DEEB|EEEA|EEDD|BBEE|AEEE|DEED|BCEB|BBEB|BDEB|DEEB|BCEB|BDEB|AEBB|DEED|BDEB|BDEB|CDEB
+Cellular_Bounds,4,128,0,FEAA|CDEG|BEFB|FFGD|FDGE|AGEA|EBAE|GGAB|FDFC|CABE|HDEF|HFAA|HGHA|AAGB|DBGA|GBAB|GHGC|FEEC|EDAA|EGAH|EGHF|EBFC|DBCG|FCBE|EGBH|GDFF|BHAD|HBAG|FHAA|ECEE|FDAE|HHAF,GFBBDEFHCFGCGGHEGEHFBHFBFCBFHHBCGEGDDBCFAEFGAGBBAHABBBHCECHBHCBCHAHDGFFDFEBBFHBAFHAGFCGDECDHGDCFFHCAHEGGCABEACBHGABBFDFFGEBFAABG,FGBBDEHBCFGCGGHEGEHFBHBHFBHCHHICGEGDBCFHAIHEAHIBBIAIBAHCECGBHCBIHIIDGFFDDCBHFIAGFIIGDCGIECBHHDCHGCHCIHBIGDAFICHGIAHDHBAIFEDEGDHB,0.4609375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FEAA|CDEG|BEFB|FFGD|FDGE|AGEA|EBAE|GGAB|FDFC|CABE|HDEF|HFAA|HGHA|AAGB|DBGA|GBAB|GHGC|FEEC|EDAA|EGAH|EGHF|EBFC|DBCG|FCBE|EGBH|GDFF|BHAD|HBAG|FHAA|ECEE|FDAE|HHAF
+Output: ",FGBB|DEHB|CFGC|GGHE|GEHF|BHBH|FBHC|HHIC|GEGD|BCFH|AIHE|AHIB|BIAI|BAHC|ECGB|HCBI|HIID|GFFD|DCBH|FIAG|FIIG|DCGI|ECBH|HDCH|GCHC|IHBI|GDAF|ICHG|IAHD|HBAI|FEDE|GDHB|IIAF
+Cellular_Bounds,8,128,0,AAABAAAA|BBAABBAB|BAAAABBA|AABBABBA|ABAAABBA|AAABAAAB|ABABABAA|AAABBBBB|ABBBABAA|BABABBBA|BBABABBB|BBBBAAAB|ABAAAABB|ABAABBBB|BABABAAA|BBBBBAAB,BBBABBBBAABBAABAABBBBAABBBAABAABBABBBAABBBBABBBABABABABBBBBAAAAABAAABABBABABAAABAABABAAAAAAABBBABABBBBAABABBAAAAABABABBBAAAAABBA,BBBBAABBAABAAABBAABBBBAABBAAABAABAAABAAABBBBAABBBAAABAAABBBBAAABAABBAABBABBAABAAAABABABBAAAABBBBBAAABAAABAAABBBBAABABAAAAABBBBAA,0.578125,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAABAAAA|BBAABBAB|BAAAABBA|AABBABBA|ABAAABBA|AAABAAAB|ABABABAA|AAABBBBB|ABBBABAA|BABABBBA|BBABABBB|BBBBAAAB|ABAAAABB|ABAABBBB|BABABAAA|BBBBBAAB
+Output: ",BBBBAABB|AABAAABB|AABBBBAA|BBAAABAA|BAAABAAA|BBBBAABB|BAAABAAA|BBBBAAAB|AABBAABB|ABBAABAA|AABABABB|AAAABBBB|BAAABAAA|BAAABBBB|AABABAAA|AABBBBAA
+Cellular_Bounds,8,128,0,ACDBDCAD|DDABABAB|CBDBDAAC|ABBCCACB|ACDCCDCC|CCABDAAB|DCACBAAD|CAABBCBD|DACBBABC|ACBCDACA|BCDDACBB|AACCBBDA|ACACDCCA|DACBBBBB|ADBCDCDC|CACBACAB,BDACADBAAABCBCBCDCACABBDBCCDDBDCBDADDADDDDBCABBCADBDCBBADBBCCDCAABDCCBCDBDCDABDBCDAABDCCBBDDCCABBDBDADDBABDCCCCCBACDADADDBDCBDBC,BCDEDEBEEEBCCECEDCCEDEBDBCCDDEDCBDEEDDEEDEBCECDAEBDDBCEABACCBDECEBDCCEECBCDEDEBECDEEDEEBBCCDDEDCBCDEDEBEEBDCCEECCBCDDDDDDBCEDEED,0.359375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACDBDCAD|DDABABAB|CBDBDAAC|ABBCCACB|ACDCCDCC|CCABDAAB|DCACBAAD|CAABBCBD|DACBBABC|ACBCDACA|BCDDACBB|AACCBBDA|ACACDCCA|DACBBBBB|ADBCDCDC|CACBACAB
+Output: ",BCDEDEBE|EEBCCECE|DCCEDEBD|BCCDDEDC|BDEEDDEE|DEBCECDA|EBDDBCEA|BACCBDEC|EBDCCEEC|BCDEDEBE|CDEEDEEB|BCCDDEDC|BCDEDEBE|EBDCCEEC|CBCDDDDD|DBCEDEED|BCDEDEBE
+Cellular_Bounds,8,128,0,DCAABCFF|EACCCEBA|FGDDHHHC|FFADBCGF|EAHDBAEH|CEAHAEBH|EFDBECFF|CACEEAGE|FHGCCCEA|FAHDBGBB|GFBAFDGB|AADAGEEA|CBHHFDFH|ABBHCHBC|BBCABFFB|FEAGCCGC,EDBBCDGGFBDDDFCBGHEEAAADGGBECDHGFBAECBFADFBABFCAFGECFDGGDBDFFBHFGAHDDDFBGBAECHCCHGCBGEHCBBEBHFFBDCAAGEGABCCADACDCCDBCGGCGFBHDDHD,EBCBDDEAFBDDEBDFGEEEIIHDFFBECEGIFBIECEBIDEBIBECIFGCEDEHIDBDEFFGDGHIDDEBFGAIEDEBBGBIEDEFGBBDEFFFECCDEGGFIBBCHDEICBCDEFFBGCDEFFFGD,0.359375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DCAABCFF|EACCCEBA|FGDDHHHC|FFADBCGF|EAHDBAEH|CEAHAEBH|EFDBECFF|CACEEAGE|FHGCCCEA|FAHDBGBB|GFBAFDGB|AADAGEEA|CBHHFDFH|ABBHCHBC|BBCABFFB|FEAGCCGC
+Output: ",EBCBDDEA|FBDDEBDF|GEEEIIHD|FFBECEGI|FBIECEBI|DEBIBECI|FGCEDEHI|DBDEFFGD|GHIDDEBF|GAIEDEBB|GBIEDEFG|BBDEFFFE|CCDEGGFI|BBCHDEIC|BCDEFFBG|CDEFFFGD|GFHDEGGC
+Cellular_Bounds,16,128,0,BAABBBBBBAAAAABA|BBBBBAAABBBBAAAA|AABBAAABAAAABBAA|BBBABAAAAABBAABB|BABABABBBABBBBAA|ABBBAABBBABAABAB|BAAAAAABBBABBBBA|AAABBBBABABBABBB,ABBAAAAAABBBBBABAAAAABBBAAAABBBBBBAABBBABBBBAABBAAABABBBBBAABBAAABABABAAABAAAABBBAAABBAAABABBABAABBBBBBAAABAAAABBBBAAAABABAABAAA,ABABBBBBBAABBBBBAABBBBAAABBBBBBBBBAABAAABBBBBBBAABBBAAAAABBBBBABABABBBBBABBBBBBABBBAABBBABABABAAAAAAABBBABBBBBAABBBBABABBABBB,0.4765625,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAABBBBBBAAAAABA|BBBBBAAABBBBAAAA|AABBAAABAAAABBAA|BBBABAAAAABBAABB|BABABABBBABBBBAA|ABBBAABBBABAABAB|BAAAAAABBBABBBBA|AAABBBBABABBABBB
+Output: ",ABABBBBBBAABBBBB|AABBBBAAABBBBBB|BBBAABAAABBBBBBB|AABBBAAAAABBBBB|ABABABBBBBABBBBB|BABBBAABBBABABAB|AAAAAAABBBABBBBB|AABBBBABABBABBB
+Cellular_Bounds,16,128,0,BCCDCCABCCCCBBDB|ADAADADBCCDBCBCA|BABADBBBABABCCCA|DABCCDCDDBDAACCC|CBDBCBCCCABBDADD|CABBBBACDACCABDB|AADDBBBADDBBDADC|CDBCBACACCABBAAA,CDDADDBCDDDDCCACBABBABACDDACDCDBCBCBACCCBCBCDDDBABCDDADAACABBDDDDCACDCDDDBCCABAADBCCCCBDABDDBCACBBAACCCBAACCABADDACDCBDBDDBCCBBB,CCDEEDCBDDDCCCEEBDEDEBECCDEDECACBCDEBEBEBCCDECCEBCDDDEDEEDEDEEDEDEDEDEDEDEDEABCDEDEDEDEDEDEBDEDEDEDEDEDEDEEDEDEDEDEDEDEDEA,0.21875,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCCDCCABCCCCBBDB|ADAADADBCCDBCBCA|BABADBBBABABCCCA|DABCCDCDDBDAACCC|CBDBCBCCCABBDADD|CABBBBACDACCABDB|AADDBBBADDBBDADC|CDBCBACACCABBAAA
+Output: ",CCDEEDCBDDDCCCE|EBDEDEBECCDEDECA|CBCDEBEBEBCCDECC|EBCDDDEDEEDEDEE|DEDEDEDEDEDEDEA|BCDEDEDEDEDEDEB|DEDEDEDEDEDEDEE|DEDEDEDEDEDEDEA
+Cellular_Bounds,16,128,0,HBDDDEGAFCHCDEHE|FFDEHGBFCAECFFBB|HCFDHCADGBECBEDE|EABDEEEBBCDBAFGE|AHEABEACGDDDEDBF|CDACEHBBHAHEHABG|CAHHGEHEGEGFBHFD|HAEGBFBEEHAGEGAB,ACEEEFHBGDADEFAFGGEFAHCGDBFDGGCCADGEADBEHCFDCFEFFBCEFFFCCDECBGHFBAFBCFBDHEEEFECGDEBDFACCABAFABCHDBAAHFAFHFHGCAGEABFHCGCFFABHFHBC,ICDEEEGFBIHDDEHEFGGDEIIHCBFBDGGEIDGFIECBDFCGCFEFFBCDEFFCCEDBBIHFBIIFBCBDDDEEEDGFDEBFICIAIHBIIBHJBIIHHEIHHEHFHIEFBHFBIIEEFHBIIFHB,0.3046875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HBDDDEGAFCHCDEHE|FFDEHGBFCAECFFBB|HCFDHCADGBECBEDE|EABDEEEBBCDBAFGE|AHEABEACGDDDEDBF|CDACEHBBHAHEHABG|CAHHGEHEGEGFBHFD|HAEGBFBEEHAGEGAB
+Output: ",ICDEEEGFBIHDDEHEF|GGDEIIHCBFBDGGE|IDGFIECBDFCGCFEF|FBCDEFFCCEDBBIHF|BIIFBCBDDDEEEDGF|DEBFICIAIHBIIBHJ|BIIHHEIHHEHFHIEF|BHFBIIEEFHBIIFHB
+Base,0,256,0,BBABBAABAAABBBABBAABBABAAAAABBBBABABBBBBABBAAAAAABBABBAABBBBAAABBAABBABABABABABBABBAABABBBBABAABBABBAAAABAABABBABBBABBBBAABAABABABAABBAABAAABBABAAABBBBBBABABBABABBABBAABAABBBBAAABBAABBBABBBAABBBAAABABABAABABBABAABBAAAABAAAAAAABBBABABAAAABAABBAABBBBABBABBBA,AABAABBABBBAAABAABBAABABBBBBAAAABABAAAAABAABBBBBBAABAABBAAAABBBAABBAABABABABABAABAABBABAAAABABBAABAABBBBABBABAABAAABAAAABBABBABABABBAABBABBBAABABBBAAAAAABABAABABAABAABBABBAAAABBBAABBAAABAAABBAAABBBABABABBABAABABBAABBBBABBBBBBBAAABABABBBBABBAABBAAAABAABAAAB,AAABBAABAAABBBABBAABBABAAAAABBBBABABBBBBAAABAAAAABBBABABAAAABAABBAABBBBABBABBBA,0.07421875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABBAABAAABBBABBAABBABAAAAABBBBABABBBBBABBAAAAAABBABBAABBBBAAABBAABBABABABABABBABBAABABBBBABAABBABBAAAABAABABBABBBABBBBAABAABABABAABBAABAAABBABAAABBBBBBABABBABABBABBAABAABBBBAAABBAABBBABBBAABBBAAABABABAABABBABAABBAAAABAAAAAAABBBABABAAAABAABBAABBBBABBABBBA
+Output: ",AAABBAABAAABBBABBAABBABAAAAABBBBABABBBBBAAABAAAAABBBABABAAAABAABBAABBBBABBABBBA
+Base,0,256,0,DBCDDAABBCBBCABBABDABDDAABCCACCBDCCBABBCDDACADBADDBDDAACBAAAADDDADDBACBAACDBCDCCBBACAADCBBBCABCCDDDACADADDDBDABCADBDABACBACADBCCCDACADDACABDDDBDBCCBDABDADACCBCBACBCDBACADDDABDADCBDCDABDDBADCCCCDCDBABCCCCDDDAAACBCDCDCBACBADCBDDABDBBBDCDDBDDCBDDCCDBADAADBABB,ACDAABBCCDCCDBCCBCABCAABBCDDBDDCADDCBCCDAABDBACBAACAABBDCBBBBAAABAACBDCBBDACDADDCCBDBBADCCCDBCDDAAABDBABAAACABCDBACABCBDCBDBACDDDABDBAABDBCAAACACDDCABCABABDDCDCBDCDACBDBAAABCABADCADABCAACBADDDDADACBCDDDDAAABBBDCDADADCBDCBADCAABCACCCADAACAADCAADDACBABBACBCC,ECDDEBBBCCEECBBCBCDEBCEDEEBCCDECBCBDEDEBCEDEEDDEEBCEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDE,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DBCDDAABBCBBCABBABDABDDAABCCACCBDCCBABBCDDACADBADDBDDAACBAAAADDDADDBACBAACDBCDCCBBACAADCBBBCABCCDDDACADADDDBDABCADBDABACBACADBCCCDACADDACABDDDBDBCCBDABDADACCBCBACBCDBACADDDABDADCBDCDABDDBADCCCCDCDBABCCCCDDDAAACBCDCDCBACBADCBDDABDBBBDCDDBDDCBDDCCDBADAADBABB
+Output: ",ECDDEBBBCCEECBBCBCDEBCEDEEBCCDECBCBDEDEBCEDEEDDEEBCEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDEDE
+Base,0,256,0,CDGDGHBGHCAEHDHDHFAAECGCDFHHDGFAHDCACDEDAGBHCHHFGGFEAAHDFDAFBAHCCDGDBHFAAAHHFDACCBBHFDDGABECCHAGCDBAHGEBAHFDECHFBBCGFBBAGGADHFGADCAFEFDHCCGAEBDAFFBDDDHCAECGCHHAEBDDGBEGAAHCFDCGEHHCCFCFBBGAFDEDAFCCBFBHBGCCABFHGFHEFFEBBDBHFAHCBHAAFCFHGHBDHAGCGDBCBDHBGDCHEHBG,DEHEHACHADBFAEAEAGBBFDHDEGAAEHGBAEDBDEFEBHCADAAGHHGFBBAEGEBGCBADDEHECAGBBBAAGEBDDCCAGEEHBCFDDABHDECBAHFCBAGEFDAGCCDHGCCBHHBEAGHBEDBGFGEADDHBFCEBGGCEEEADBFDHDAABFCEEHCFHBBADGEDHFAADDGDGCCHBGEFEBGDDCGCACHDDBCGAHGAFGGFCCECAGBADCABBGDGAHACEABHDHECDCEACHEDAFACH,deHEHEICIEBFAIEIIEIBBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIE,0.12109375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDGDGHBGHCAEHDHDHFAAECGCDFHHDGFAHDCACDEDAGBHCHHFGGFEAAHDFDAFBAHCCDGDBHFAAAHHFDACCBBHFDDGABECCHAGCDBAHGEBAHFDECHFBBCGFBBAGGADHFGADCAFEFDHCCGAEBDAFFBDDDHCAECGCHHAEBDDGBEGAAHCFDCGEHHCCFCFBBGAFDEDAFCCBFBHBGCCABFHGFHEFFEBBDBHFAHCBHAAFCFHGHBDHAGCGDBCBDHBGDCHEHBG
+Output: ",deHEHEICIEBFAIEIIEIBBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEBIEIEIEBIEB
+Cellular_Bounds,1,256,0,B|A|A|B|A|B|A|A|A|B|A|A|A|A|A|B|B|B|B|B|A|A|B|A|A|A|B|B|B|B|B|A|A|A|A|A|A|B|A|A|A|A|A|A|B|A|B|A|A|B|B|A|B|B|B|A|B|B|B|B|A|B|B|A|B|A|B|B|B|A|B|B|B|A|B|A|B|A|A|B|A|B|B|B|A|B|A|A|A|B|B|B|A|A|A|A|A|A|A|A|A|A|B|A|A|A|A|A|B|A|B|B|B|A|A|A|A|A|B|B|B|A|B|B|A|A|A|B|A|A|B|A|A|A|A|B|B|A|B|B|B|A|A|B|A|B|B|B|A|B|B|B|B|B|A|B|A|A|B|B|A|B|A|A|B|B|A|A|A|A|B|B|A|A|A|B|B|B|B|B|B|A|A|B|A|B|B|A|A|B|A|B|B|B|B|A|A|B|A|B|A|B|B|A|A|B|A|A|A|A|A|B|B|A|A|A|B|A|A|B|B|B|B|A|A|B|B|B|B|B|A|A|B|A|A|A|B|A|A|A|B|B|A|A|B|A|A|A|B|B|B|B|A|B|A|A,ABBABABBBABBBBBAAAAABBABBBAAAAABBBBBBABBBBBBABABBAABAAABAAAABAABABAAABAAABABABBABAAABABBBAAABBBBBBBBBBABBBBBABAAABBBBBAAABAABBBABBABBBBAABAAABBABAAABAAAAABABBAABABBAABBBBAABBBAAAAAABBABAABBABAAAABBABABAABBABBBBBAABBBABBAAAABBAAAAABBABBBABBBAABBABBBAAAABABB,ABBABABBBABBBBBAAAAABBABBBAAAAAAAAAABBBBBABBABBBBBABBABBABBAAAAABBAAABBBBBAABABBAABBBBAABABABBAABAAAAABBAAABAABBBBAABBBBBAABAAABAAABBAABAAABBBBABBBAABABBBABBBBBABBAABABBAABABBBBAABAAABAAABBAABAAABBBBABB,0.421875,0.0,31,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|B|A|B|A|A|A|B|A|A|A|A|A|B|B|B|B|B|A|A|B|A|A|A|B|B|B|B|B|A|A|A|A|A|A|B|A|A|A|A|A|A|B|A|B|A|A|B|B|A|B|B|B|A|B|B|B|B|A|B|B|A|B|A|B|B|B|A|B|B|B|A|B|A|B|A|A|B|A|B|B|B|A|B|A|A|A|B|B|B|A|A|A|A|A|A|A|A|A|A|B|A|A|A|A|A|B|A|B|B|B|A|A|A|A|A|B|B|B|A|B|B|A|A|A|B|A|A|B|A|A|A|A|B|B|A|B|B|B|A|A|B|A|B|B|B|A|B|B|B|B|B|A|B|A|A|B|B|A|B|A|A|B|B|A|A|A|A|B|B|A|A|A|B|B|B|B|B|B|A|A|B|A|B|B|A|A|B|A|B|B|B|B|A|A|B|A|B|A|B|B|A|A|B|A|A|A|A|A|B|B|A|A|A|B|A|A|B|B|B|B|A|A|B|B|B|B|B|A|A|B|A|A|A|B|A|A|A|B|B|A|A|B|A|A|A|B|B|B|B|A|B|A|A
+Output: ",A|B|B|A|B|A|B|B|B|A|B|B|B|B|B|A|A|A|A|A|B|B|A|B|B|B|A|A|A|A|A|A|A|A|A|A|B|B|B|B|B|A|B|B|A|B|B|B|B|B|A|B|B|A|B|B|A|B|B|A|A|A|A|A|B|B|A|A|A|B|B|B|B|B|A|A|B|A|B|B|A|A|B|B|B|B|A|A|B|A|B|A|B|B|A|A|B|A|A|A|A|A|B|B|A|A|A|B|A|A|B|B|B|B|A|A|B|B|B|B|B|A|A|B|A|A|A|B|A|A|A|B|B|A|A|B|A|A|A|B|B|B|B|A|B|B|B|A|A|B|A|B|B|B|A|B|B|B|B|B|A|B|B|A|A|B|A|B|B|A|A|B|A|B|B|B|B|A|A|B|A|A|A|B|A|A|A|B|B|A|A|B|A|A|A|B|B|B|B|A|B|B|
+Cellular_Bounds,1,256,0,B|D|A|C|A|C|D|B|A|C|A|A|A|A|B|A|C|D|D|D|A|B|A|C|A|D|A|D|C|D|A|A|B|C|C|A|C|B|D|C|C|D|A|D|D|D|A|A|B|A|C|D|A|C|C|D|C|C|D|B|D|A|D|C|A|C|C|B|A|D|A|A|B|A|A|B|D|D|A|A|B|C|B|C|C|A|D|A|C|A|B|A|D|D|A|A|D|B|B|B|A|A|A|B|C|C|D|B|A|C|D|D|A|B|A|A|D|A|D|D|D|A|D|C|C|A|D|D|D|A|C|D|B|C|B|C|B|D|C|D|D|B|D|A|A|D|C|B|A|D|C|C|B|B|C|D|C|D|A|B|B|D|B|C|B|D|B|C|B|B|C|A|C|B|A|C|C|C|B|D|B|D|A|C|A|D|B|D|C|C|B|A|C|A|C|D|D|B|D|C|C|B|D|B|D|C|C|B|C|D|C|D|B|A|D|B|A|B|C|A|C|B|B|D|D|D|B|D|A|D|A|D|A|D|D|B|A|A|D|D|D|B|D|C|C|C|B|B|B|C|A|D|A|B|B|D,CABDBDACBDBBBBCBDAAABCBDBABADABBCDDBDCADDABAAABBCBDABDDADDACABADBDDCBABBCBBCAABBCDCDDBABDBCBAABBACCCBBBCDDACBDAABCBBABAAABADDBAAABDACDCDCADAACABBADCBADDCCDADABCCACDCACDCCDBDCBDDDCACABDBACADDCBDBDAACADDCACADDCDADACBACBCDBDCCAAACABABABAACBBAAACADDDCCCDBABCCA,CEBDBDECBDBBBBCBDEEEBCBDBEBDECEBCEEEBCEECEBEECEEBCEEEBECEEBEECEEBEEEBECEEBEEEBEEEBEECEEBEEEBEEEBEEEBEECEEBEEEBEEEBEEEBEECEEBEEEBEEEBEEEBEECEEBEEEBEEEBEEEBEECEEBEEEBEEEBEEEBEECEEBEEEBEEEBEEEBEECEEBEEEBEE,0.12890625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|D|A|C|A|C|D|B|A|C|A|A|A|A|B|A|C|D|D|D|A|B|A|C|A|D|A|D|C|D|A|A|B|C|C|A|C|B|D|C|C|D|A|D|D|D|A|A|B|A|C|D|A|C|C|D|C|C|D|B|D|A|D|C|A|C|C|B|A|D|A|A|B|A|A|B|D|D|A|A|B|C|B|C|C|A|D|A|C|A|B|A|D|D|A|A|D|B|B|B|A|A|A|B|C|C|D|B|A|C|D|D|A|B|A|A|D|A|D|D|D|A|D|C|C|A|D|D|D|A|C|D|B|C|B|C|B|D|C|D|D|B|D|A|A|D|C|B|A|D|C|C|B|B|C|D|C|D|A|B|B|D|B|C|B|D|B|C|B|B|C|A|C|B|A|C|C|C|B|D|B|D|A|C|A|D|B|D|C|C|B|A|C|A|C|D|D|B|D|C|C|B|D|B|D|C|C|B|C|D|C|D|B|A|D|B|A|B|C|A|C|B|B|D|D|D|B|D|A|D|A|D|A|D|D|B|A|A|D|D|D|B|D|C|C|C|B|B|B|C|A|D|A|B|B|D
+Output: ",C|E|B|D|B|D|E|C|B|D|B|B|B|B|C|B|D|E|E|E|B|C|B|D|B|E|B|D|E|C|E|B|C|E|E|E|B|C|E|E|C|E|B|E|E|C|E|E|B|C|E|E|E|B|E|C|E|E|B|E|E|C|E|E|B|E|E|E|B|E|C|E|E|B|E|E|E|B|E|E|E|B|E|E|C|E|E|B|E|E|E|B|E|E|E|B|E|E|E|B|E|E|C|E|E|B|E|E|E|B|E|E|E|B|E|E|E|B|E|E|C|E|E|B|E|E|E|B|E|E|E|B|E|E|E|B|E|E|C|E|E|B|E|E|E|B|E|E|E|B|E|E|E|B|E|E|C|E|E|B|E|E|E|B|E|E|E|B|E|E|E|B|E|E|C|E|E|B|E|E|E|B|E|E|E|B|E|E|E|B|E|E|C|E|E|B|E|E|E|B|E|E|
+Cellular_Bounds,1,256,0,A|H|C|B|F|C|G|C|D|C|A|F|H|B|F|H|E|H|G|H|F|C|B|B|G|D|G|A|D|A|D|E|B|E|D|D|A|H|A|A|H|C|B|H|H|G|C|A|E|F|C|F|A|D|A|D|C|E|G|A|E|E|D|A|B|A|H|B|E|G|B|C|G|A|F|D|C|D|H|C|G|H|G|C|C|B|B|G|F|A|E|G|A|E|F|B|C|H|F|E|F|B|A|B|H|A|H|C|C|D|C|D|B|G|A|H|H|F|E|D|C|B|H|B|B|C|C|F|E|G|F|E|F|B|C|E|F|F|D|A|D|B|D|C|F|E|A|E|D|F|A|E|B|G|A|H|G|A|E|B|A|B|A|A|C|H|H|D|G|D|D|H|F|E|E|H|D|E|C|C|F|A|C|D|G|H|G|H|H|B|G|A|F|F|E|G|G|D|F|E|C|C|F|E|E|G|F|F|H|F|A|A|H|H|H|B|B|F|H|F|A|A|C|C|G|G|D|B|F|B|E|C|H|F|H|H|H|H|A|A|A|H|D|A|B|A|E|D|A|D|A|A|E|A|B|C,BADCGDHDEDBGACGAFAHAGDCCHEHBEBEFCFEEBABBADCAAHDBFGDGBEBEDFHBFFEBCBACFHCDHBGEDEADHAHDDCCHGBFHBFGCDAGFGCBCABADDEDECHBAAGFEDCACCDDGFHGFGCDFGGEBECEDGFBFEGBFCHBAHBFCBCBBDAAEHEEAGFFAEFDDGBDEHAHAACHBGGFHHEGFDDGFFHGGAGBBAAACCGAGBBDDHHECGCFDAGAAAABBBAEBCBFEBEBBFBCD,BADCGDIDEDBGACGDIFDIGDGDIDDEIDDEEIDAIDADFEDIAEDDIDBIDDEDDEIDBIIDDEDCIDEIDEIDDIDGIDEIDBIDBIDCIDFIDEIDCIDFIDAIDBIDAIDCIDEIDGIDGIDCICIDBIDGIDFIDEIDFIDBIDAIDHIDAIDHIDCIDBIDHIDHIDHIDBIDGIDFIDEIDEIDFIDBIDCIDE,0.140625,0.0,6,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|H|C|B|F|C|G|C|D|C|A|F|H|B|F|H|E|H|G|H|F|C|B|B|G|D|G|A|D|A|D|E|B|E|D|D|A|H|A|A|H|C|B|H|H|G|C|A|E|F|C|F|A|D|A|D|C|E|G|A|E|E|D|A|B|A|H|B|E|G|B|C|G|A|F|D|C|D|H|C|G|H|G|C|C|B|B|G|F|A|E|G|A|E|F|B|C|H|F|E|F|B|A|B|H|A|H|C|C|D|C|D|B|G|A|H|H|F|E|D|C|B|H|B|B|C|C|F|E|G|F|E|F|B|C|E|F|F|D|A|D|B|D|C|F|E|A|E|D|F|A|E|B|G|A|H|G|A|E|B|A|B|A|A|C|H|H|D|G|D|D|H|F|E|E|H|D|E|C|C|F|A|C|D|G|H|G|H|H|B|G|A|F|F|E|G|G|D|F|E|C|C|F|E|E|G|F|F|H|F|A|A|H|H|H|B|B|F|H|F|A|A|C|C|G|G|D|B|F|B|E|C|H|F|H|H|H|H|A|A|A|H|D|A|B|A|E|D|A|D|A|A|E|A|B|C
+Output: ",B|A|D|C|G|D|I|D|E|D|B|G|A|C|G|D|I|F|D|I|G|D|G|D|I|D|D|E|I|D|D|E|E|I|D|A|I|D|A|D|F|E|D|I|A|E|D|D|I|D|B|I|D|D|E|D|D|E|I|D|B|I|I|D|D|E|D|C|I|D|E|I|D|E|I|D|D|I|D|G|I|D|E|I|D|B|I|D|B|I|D|C|I|D|F|I|D|E|I|D|C|I|D|F|I|D|A|I|D|B|I|D|A|I|D|C|I|D|E|I|D|G|I|D|G|I|D|C|I|C|I|D|B|I|D|G|I|D|F|I|D|E|I|D|F|I|D|B|I|D|A|I|D|H|I|D|A|I|D|H|I|D|C|I|D|B|I|D|H|I|D|H|I|D|H|I|D|B|I|D|G|I|D|F|I|D|E|I|D|E|I|D|F|I|D|B|I|D|C|I|D|E|
+Cellular_Bounds,2,256,0,BA|BB|BB|AA|AB|AA|BA|AA|BB|BB|AA|BA|BA|AA|BB|BA|BA|BA|AB|AB|BB|BB|BB|AB|BA|AA|BA|BA|BB|AA|BB|AB|BA|BA|BA|AB|BA|AB|BA|BB|BB|AB|AA|BA|BA|AA|BB|BA|AB|BA|AA|BB|BA|BB|BB|AA|BA|BB|AA|AB|AA|AB|BA|AA|AB|AA|BA|AB|AA|AB|AB|BA|AB|AB|BA|AA|AA|AB|BB|BB|AA|BA|AA|BA|BA|AB|BB|AB|AB|BB|BA|BB|BB|AB|BB|BB|BA|AA|BA|BA|BA|AB|BB|BB|AB|BB|BB|AB|AA|AB|BB|AA|BB|AA|BA|BB|BA|BB|BB|BA|BA|BA|BA|BA|BA|AB|AA|BB,ABAAAABBBABBABBBAAAABBABABBBAAABABABBABAAAAAAABAABBBABABAABBAABAABABABBAABBAABAAAABABBABABBBAAABBAABBBAAABAAAABBABAABBBABBBAABBBBABBABBABBBABAABBABAABBBBBBAAAAABBABBBABABBAAABABAAAABAAAABAAAAAABBBABABABBAAAAABAAAAABABBBAAABBAABBABAAABAAAAABABABABABABBABBAA,ABAAAABBBABBABBBAAAABBABABBBABABABBABAAAABABAABBABBAABABAABBABBAABABABBAABABABAAAABAAAAAAABBAAAAABAAAAAABAABABAAAAAABAABABAAAAAABABABABABABAABBBAAAAABBBABBABABAAABBBABBBBABBABBABBBBBABAABABABABABABAABBB,0.5078125,0.0,29,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BA|BB|BB|AA|AB|AA|BA|AA|BB|BB|AA|BA|BA|AA|BB|BA|BA|BA|AB|AB|BB|BB|BB|AB|BA|AA|BA|BA|BB|AA|BB|AB|BA|BA|BA|AB|BA|AB|BA|BB|BB|AB|AA|BA|BA|AA|BB|BA|AB|BA|AA|BB|BA|BB|BB|AA|BA|BB|AA|AB|AA|AB|BA|AA|AB|AA|BA|AB|AA|AB|AB|BA|AB|AB|BA|AA|AA|AB|BB|BB|AA|BA|AA|BA|BA|AB|BB|AB|AB|BB|BA|BB|BB|AB|BB|BB|BA|AA|BA|BA|BA|AB|BB|BB|AB|BB|BB|AB|AA|AB|BB|AA|BB|AA|BA|BB|BA|BB|BB|BA|BA|BA|BA|BA|BA|AB|AA|BB
+Output: ",AB|AA|AA|BB|BA|BB|AB|BB|AA|AA|BB|AB|AB|BB|AB|AB|AB|BA|BA|AA|AB|AB|AA|BB|AB|BA|AB|AB|AA|BB|AB|BA|AB|AB|AB|BA|AB|AB|AB|AA|AA|BA|AA|AA|AA|BB|AA|AA|AB|AA|AA|AA|BA|AB|AB|AA|AA|AA|BA|AB|AB|AA|AA|AA|BA|BA|BA|BA|BA|BA|AB|BB|AA|AA|AB|BB|AB|BA|BA|BA|AA|BB|BA|BB|BB|AB|BA|BB|AB|BB|BB|AB|AA|BA|BA|BA|BA|BA|BA|AB|BB
+Cellular_Bounds,2,256,0,CD|DD|AD|CB|CD|AA|BB|DD|CD|BD|BC|AC|AA|CB|BB|BB|DC|CD|DD|BB|CC|BA|BB|BB|DA|AA|AA|DC|DB|DD|AD|AC|AD|CB|DB|DA|BD|AB|AD|BB|BC|CC|CB|CA|DD|BA|CB|AA|CB|BA|DC|AD|CD|DD|BC|AB|DD|AA|AC|DA|CC|CD|CB|CB|BA|AB|BC|DD|AC|BB|BD|AB|AC|CD|DA|DD|AC|DB|DB|DA|CA|AB|CB|DC|CA|BC|AD|AB|DC|CD|AA|DA|BD|DA|CC|BA|BC|DA|BD|BD|BA|AC|DD|DB|BB|AA|BC|BA|BA|CC|AA|BC|AC|AB|BA|AB|BD|DD|AD|DB|AC|AD|BC|DA|BA|DC|DA|DB,DAAABADCDABBCCAADACACDBDBBDCCCCCADDAAACCDDCBCCCCABBBBBADACAABABDBADCACABCABCBACCCDDDDCDBAACBDCBBDCCBADBADAAACDBCAABBBDABDDDADCDCCBBCCDAABDCCCABCBDDAABAABDACACABDBBCDCADDBCDBABCADDABBABCAABDDCBCDABCACACBBDAAACCCBBCDCBCBDDBBCDBDBCCBBCCAAABAACBDBACDABCBADABAC,deEEBECBDEBBCCEEDECEBCAEBBCBCCCCECDEEECCCCCABBBBEABBBBEBBBBBECDBEEBEAEBECBDBBEceABBEBBBCCCCBCCCCBBABCCEEBBBCBBBBECBACBBBCBBAECBEDEEEBCABEEBBBBEABBBBEBBBBBEABBBBECDBEEBBBBECDBDBEABBBCEABEBCDEBBDEEEBBBCBBBBECDBEEBBBBECDBDBEABBBCEABEBCDEBBDEEEBBBCBBBBECDBEEBB,0.21484375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CD|DD|AD|CB|CD|AA|BB|DD|CD|BD|BC|AC|AA|CB|BB|BB|DC|CD|DD|BB|CC|BA|BB|BB|DA|AA|AA|DC|DB|DD|AD|AC|AD|CB|DB|DA|BD|AB|AD|BB|BC|CC|CB|CA|DD|BA|CB|AA|CB|BA|DC|AD|CD|DD|BC|AB|DD|AA|AC|DA|CC|CD|CB|CB|BA|AB|BC|DD|AC|BB|BD|AB|AC|CD|DA|DD|AC|DB|DB|DA|CA|AB|CB|DC|CA|BC|AD|AB|DC|CD|AA|DA|BD|DA|CC|BA|BC|DA|BD|BD|BA|AC|DD|DB|BB|AA|BC|BA|BA|CC|AA|BC|AC|AB|BA|AB|BD|DD|AD|DB|AC|AD|BC|DA|BA|DC|DA|DB
+Output: ",de|EE|BE|CB|DE|BB|CC|EE|DE|CE|BC|AE|BB|CB|CC|CC|EC|DE|EE|CC|CC|CA|BB|BB|EA|BB|BB|EB|BB|BB|EC|DB|EE|BE|AE|BE|CB|DB|BE|ce|AB|BE|BB|BC|CC|CB|CC|CC|BB|AB|CC|EE|BB|BC|BB|BB|EC|BA|CB|BB|CB|BA|EC|BE|DE|EE|BC|AB|EE|BB|BB|EA|BB|BB|EB|BB|BB|EA|BB|BB|EC|DB|EE|BB|BB|EC|DB|DB|EA|BB|BC|EA|BE|BC|DE|BB|DE|EE|BB|BC|BB|BB|EC|DB|EE|BB|BB|EC|DB|DB|EA|BB|BC|EA|BE|BC|DE|BB|DE|EE|BB|BC|BB|BB|EC|DB|EE|BB|BB|EC|DB|DB
+Cellular_Bounds,2,256,0,HA|HD|CG|HA|AB|AF|CE|DA|GC|CA|HD|CF|AC|FF|FB|CF|EA|CB|CC|GG|HF|EB|BF|GF|FD|EE|CG|DE|BA|HG|HH|BH|EG|HG|EA|HH|GH|CB|AE|CE|HB|CD|HH|GA|FF|HD|BD|BB|CH|EG|AB|EH|BE|FE|HH|AF|GB|HC|DA|AD|BC|CF|HA|DD|BA|CF|GF|FE|CA|GC|DF|DD|EH|FB|GA|EF|CD|AD|BE|EE|FA|AA|HF|HB|CD|EG|HF|HE|CD|CB|FH|HF|CB|BD|EA|CD|FE|HG|CB|AB|BD|FD|EF|CG|HC|GG|AF|CG|EH|FD|CA|CC|EF|BC|FA|CB|AC|BA|AH|AF|FD|AD|CC|EH|GH|FB|AE|FH,ABAEDHABBCBGDFEBHDDBAEDGBDGGGCDGFBDCDDHHAGFCCGHGGEFFDHEFCBAHAACAFHAHFBAAHADCBFDFACDEAAHBGGAECECCDAFHBCFACFGFAABGHCADEBBECDDGABEECBDGHGGFDBHDEGEEFAGCHBFGDEBECFFFGBBBAGACDEFHAGAFDEDCGAAGDCCEFBDEGFAHDCBCCEGEFGDHADHHBGDHFAGEDBDDFGCDGBDCBDCBBABGGEBEDDFAHAGCBFGA,IBIECHIBBCAGCeDBGDDBIDCIBDGEFGFBGIEDDIBHIHIIBIIHIHCIIGCBBECIIBIDGICBBCEIIHAIIDIHBIIGCIIFDIIGDBICDGIDBGIHBEFEIHAGGBICDAADBCGIIBDEBICIGFFECIGCDFDEIHFBGAEFCDADBEEFFAAAIHIBCDEGIHHECDCBFIIHCBBDEDCDFEIHCBBCBDEDCIGDGGAGCGEHGDCACCEFBCFACBACBAAIAGFDADCCEHGHFBAEFI,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HA|HD|CG|HA|AB|AF|CE|DA|GC|CA|HD|CF|AC|FF|FB|CF|EA|CB|CC|GG|HF|EB|BF|GF|FD|EE|CG|DE|BA|HG|HH|BH|EG|HG|EA|HH|GH|CB|AE|CE|HB|CD|HH|GA|FF|HD|BD|BB|CH|EG|AB|EH|BE|FE|HH|AF|GB|HC|DA|AD|BC|CF|HA|DD|BA|CF|GF|FE|CA|GC|DF|DD|EH|FB|GA|EF|CD|AD|BE|EE|FA|AA|HF|HB|CD|EG|HF|HE|CD|CB|FH|HF|CB|BD|EA|CD|FE|HG|CB|AB|BD|FD|EF|CG|HC|GG|AF|CG|EH|FD|CA|CC|EF|BC|FA|CB|AC|BA|AH|AF|FD|AD|CC|EH|GH|FB|AE|FH
+Output: ",IB|IE|CH|IB|BC|AG|Ce|DB|GD|DB|ID|CI|BD|GE|FG|FB|GI|ED|DI|BH|IH|II|BI|IH|IH|CI|IG|CB|BE|CI|IB|ID|GI|CB|BC|EI|IH|AI|ID|IH|BI|IG|CI|IF|DI|IG|DB|IC|DG|ID|BG|IH|BE|FE|IH|AG|GB|IC|DA|AD|BC|GI|IB|DE|BI|CI|GF|FE|CI|GC|DF|DE|IH|FB|GA|EF|CD|AD|BE|EF|FA|AA|IH|IB|CD|EG|IH|HE|CD|CB|FI|IH|CB|BD|ED|CD|FE|IH|CB|BC|BD|ED|CI|GD|GG|AG|CG|EH|GD|CA|CC|EF|BC|FA|CB|AC|BA|AI|AG|FD|AD|CC|EH|GH|FB|AE|FI
+Cellular_Bounds,3,256,0,AAA|BBA|AAB|BAB|BBA|BAB|ABB|BBB|ABA|BBA|BBA|AAA|ABB|AAA|BBB|AAA|ABA|ABB|BAB|BBB|AAA|BAA|BBB|ABA|ABB|ABA|BAA|AAB|BAA|ABA|BAA|BAA|BBA|ABA|BAA|AAA|ABB|BBA|BAB|ABA|ABB|ABB|ABB|BAA|BAB|AAA|ABA|ABB|BBB|ABB|BAA|BAB|ABA|AAB|BBB|BAB|ABB|ABB|BAA|ABB|AAB|AAB|AAB|BAA|AAB|ABB|AAB|AAA|BAB|BBB|ABA|BAA|AAB|BAA|BAA|BAB|BAA|BBB|ABB|BAA|ABA|ABA|AAA|AAA|AAB|A,BBBAABBBAABAAABABABAAAAABABAABAABBBBBAABBBAAABBBBABBAAABAAAABBBABBAAABABBAABABABBBBAABBBABABBABBAABBABABBBBBBAAAABABABABBAABAABAAABBABABBBBABBAAAAABAAABBABABABBBAAAAABABAABAAABBBAABBABBABBAABBBBABAABBABBBABAAAABABABBBBAABBABBABAABBAAABAAABBBABBABBBBBBBBBAB,BBBAAAABABAAAAABAAAABAAAABABAABAAAAAAABAAAAAAAAAABAAABBAAAAAAAABAAABABBBABABAAABABAAABAABABAABAAAAAAABAAABAAAAAABAAABBAAABABAABAAAAABAAAABBAAAAAAABAAAAABAABAABBAAAABAABAABBAAABABAAAAAABBABABAABAAABBBAAABBAABAAAABABBBABBBAABAAABAABBABBABBBAABAAAAAABAABBAAAA,0.46484375,0.0,5,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAA|BBA|AAB|BAB|BBA|BAB|ABB|BBB|ABA|BBA|BBA|AAA|ABB|AAA|BBB|AAA|ABA|ABB|BAB|BBB|AAA|BAA|BBB|ABA|ABB|ABA|BAA|AAB|BAA|ABA|BAA|BAA|BBA|ABA|BAA|AAA|ABB|BBA|BAB|ABA|ABB|ABB|ABB|BAA|BAB|AAA|ABA|ABB|BBB|ABB|BAA|BAB|ABA|AAB|BBB|BAB|ABB|ABB|BAA|ABB|AAB|AAB|AAB|BAA|AAB|ABB|AAB|AAA|BAB|BBB|ABA|BAA|AAB|BAA|BAA|BAB|BAA|BBB|ABB|BAA|ABA|ABA|AAA|AAA|AAB|A
+Output: ",BBB|AAA|ABA|BAA|AAA|BAA|AAB|AAA|ABA|BAA|BAA|AAA|AAB|AAA|AAA|AAA|ABA|AAB|BAA|AAA|AAA|BAA|ABA|BBB|ABA|BAA|ABA|BAA|ABA|ABA|BAA|BAA|AAA|AAB|AAA|BAA|AAA|ABA|AAB|BAA|ABA|BAA|BAA|AAA|BAA|AAB|BAA|AAA|AAB|AAA|AAB|AAB|AAB|BAA|AAB|AAB|AAB|BAA|ABA|BAA|AAA|ABB|ABA|BAA|BAA|ABB|BAA|ABB|AAB|AAA|ABA|BBB|ABB|BAA|BAA|ABA|ABB|ABB|ABB|BAA|BAA|AAA|ABA|ABB|AAA|ABB|BAA|ABA|AAB|BBB|BAA|ABB|ABB|BAA|ABB|AAB|AAB|AAB|BAA|AAB|AAB|AAB|AAA|AAA|ABA|A
+Cellular_Bounds,3,256,0,ACB|DDC|AAB|CCD|CDD|ABA|DDA|BBA|CDC|DCB|BCB|BBB|ADD|DBB|DBD|BBA|BAC|ACA|ABC|BCC|ABC|ACB|BCB|AAD|CAD|CAD|CDD|DBD|ABA|AAD|DAC|CBC|DCB|BCC|ABD|AAB|DCB|DBC|CAA|BAC|DBC|ACD|BCD|DCC|ACA|CDC|CAA|ACA|ABC|DCA|BAC|ABD|CAD|CBB|AAD|BAD|BCC|BAC|ADD|DBC|BAB|CCC|DCA|ABB|CCA|CBC|AAA|BAD|BDD|ADC|ADD|DDC|CBB|CCD|AAC|BAC|ABA|CCB|ACB|DDB|ABD|CDC|CDA|BBC|DDD|B,BDCAADBBCDDADAABCBAABCCBDADADCCDCCCCBAAACCACACCBCBDBDBBCDCDDBCDBDCCDCBBADBADBADAAACABCBBBAABDDCDADCCDDBCABBCADCACDDBBCBDACDBDACDAADDBDBDADDBBBDBBCDADBCBDBCADBADCCBBACBACDDCBDBAAACDCBCDDDADBBCCDDBDCDBBBCBACAABADBAAAADDCCDDABBDCBDBCBDDCBDCAACBCADADDABCCDAAAC,BDEDEBBCDDDDEEBBBDDDCCBDCEDECCCBBBBBEEEBBEBDCCBBACACCABCDCCABCACBBCBAADCBDCBDDEEEBDBBBAADDBCCBCDCBCCBABDAABDCBDBCCAABACDBCACDBCDDCCACADCECAAACAABCDCABACABDCBDAADBADBCCBACADDDBCBABCCCDCAABBCCACBCAAABADBDDADCADDDDDCBBCCDABBBACABBCCBACBADDABDCDCCDABBCDDDB,0.21875,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACB|DDC|AAB|CCD|CDD|ABA|DDA|BBA|CDC|DCB|BCB|BBB|ADD|DBB|DBD|BBA|BAC|ACA|ABC|BCC|ABC|ACB|BCB|AAD|CAD|CAD|CDD|DBD|ABA|AAD|DAC|CBC|DCB|BCC|ABD|AAB|DCB|DBC|CAA|BAC|DBC|ACD|BCD|DCC|ACA|CDC|CAA|ACA|ABC|DCA|BAC|ABD|CAD|CBB|AAD|BAD|BCC|BAC|ADD|DBC|BAB|CCC|DCA|ABB|CCA|CBC|AAA|BAD|BDD|ADC|ADD|DDC|CBB|CCD|AAC|BAC|ABA|CCB|ACB|DDB|ABD|CDC|CDA|BBC|DDD|B
+Output: ",BD|EDE|BBC|DDD|DEE|BBB|DDD|CCB|DCE|DEC|CCB|BBB|BEE|EBB|EBD|CCB|BAC|ACC|ABC|DCC|ABC|ACB|BCB|AAD|CBD|CBD|DEE|EBD|BBB|AAD|DBC|CBC|DCB|CCB|ABD|AAB|DCB|DBC|CAA|BAC|DBC|ACD|BCD|DCC|ACA|DCE|CAA|ACA|ABC|DCA|BAC|ABD|CBD|AAD|BAD|BCC|BAC|ADD|DBC|BAB|CCC|DCA|ABB|CCA|CBC|AAA|BAD|BDD|ADC|ADD|DDD|CBB|CCD|ABB|BAC|ABB|CCB|ACB|ADD|ABD|CDC|CDA|BBC|DDD|B
+Cellular_Bounds,3,256,0,CHC|BFF|BGH|HHD|HFF|DCD|FBG|GDH|GGG|CGB|DDH|DHC|HBC|CCB|EGB|BHG|HEH|FFH|FHF|DAH|BFE|BED|EAG|DDC|ACD|EBC|CHD|ABF|EBC|DBB|HDH|DEA|CGD|DGB|DHH|BHF|GCD|FGG|DHH|CED|BDC|HEF|ACC|AGC|HEB|CAH|HHF|AFG|DGF|HDA|CDD|CGG|FBE|HEA|DDH|FFB|AGB|AHG|EDE|GFG|BFC|FBG|FGG|EBA|HCC|CCC|EGF|GFE|EHC|ECE|HCC|CFD|AEE|DEH|HCC|GAG|DCB|GGF|EGH|EAA|HHH|CBD|FAG|DAC|DBF|D,DADCGGCHAAAEAGGEDEGCHHEAHHHDHCEEAEADACDDDCFHCCAHAFAGGAGAGEBACGFCFEFBHEEDBDEFCDDAEBCGFCDECCAEAEFBDHEEHCEAACAGHDEGHHEAADFECEDAFGBDDBHDAFCDBAAAGBGHEHGAEBDEEDHHGCFAFBEEAGGCBHCBAHFEFHGHCGDGCHGHHFCBADDDDDFHGHGFFADFDFADDDGEBFFEFAADDHBHEDCHHGFHAFBBAAADCEGBHEBDECGE,CICIGBIIAIIAFECIBHAGGGCBIDIHIBCHHBAIIFFIEBBFBEEAIDADEBCIIDIHHBCCEBEBDBIADECGIDABEBIDBBIHDECGDHBHFGDHCEBDHFCCEFFGEBHCCCEGGFEBHCHCAEDGHFDCFBFGEBHAIDFFAGAHEDGFBDFDDHDHCEHCCFAEDEHCGADCGHEAHHCBFADADBE,0.06640625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CHC|BFF|BGH|HHD|HFF|DCD|FBG|GDH|GGG|CGB|DDH|DHC|HBC|CCB|EGB|BHG|HEH|FFH|FHF|DAH|BFE|BED|EAG|DDC|ACD|EBC|CHD|ABF|EBC|DBB|HDH|DEA|CGD|DGB|DHH|BHF|GCD|FGG|DHH|CED|BDC|HEF|ACC|AGC|HEB|CAH|HHF|AFG|DGF|HDA|CDD|CGG|FBE|HEA|DDH|FFB|AGB|AHG|EDE|GFG|BFC|FBG|FGG|EBA|HCC|CCC|EGF|GFE|EHC|ECE|HCC|CFD|AEE|DEH|HCC|GAG|DCB|GGF|EGH|EAA|HHH|CBD|FAG|DAC|DBF|D
+Output: ",CI|CIG|BI|IAI|IAF|EC|IB|HA|GGG|CB|ID|IH|IB|CH|HB|AI|IF|FI|EB|BF|BE|EA|ID|AD|EB|CI|ID|IH|HB|CC|EB|EB|DB|IA|DE|CG|ID|AB|EB|ID|BB|IH|DE|CG|DH|BH|FG|DH|CE|BD|HF|CC|EF|FG|EB|HC|CC|EG|GF|EB|HC|HC|AE|DG|HF|DC|FB|FG|EB|HA|ID|FF|AG|AH|ED|GF|BD|FD|DH|DH|CE|HC|CF|AE|DE|HC|GA|DC|GH|EA|HH|CB|FA|DA|DB|E
+Cellular_Bounds,4,256,0,BBBB|ABAB|AAAA|BBAB|BAAB|BBAA|AAAA|BBBB|BAAA|AABB|AAAA|ABBA|BAAA|BBAB|ABBB|AAAA|AAAA|BABB|AABB|BABA|BABB|BBBB|AABA|ABAB|BBBB|AAAA|ABAA|BAAB|BBBB|ABAB|BAAA|AAAA|AABA|BAAB|AAAA|AABB|ABAA|ABBB|BBAB|AABB|BBBB|BBAA|BBBA|BBAB|ABBB|AABA|BABB|BAAB|BBAA|BABB|AABB|BBBA|BBAB|ABAB|BBAA|AAAB|AABA|BBBA|AAAB|AABA|BBBB|AAAB|BBAB|ABAB,AAAABABABBBBAABAABBAAABBBBBBAAAAABBBBBAABBBBBAABABBBAABABAAABBBBBBBBABAABBAAABABABAAAAAABBABBABAAAAABBBBBABBABBAAAAABABAABBBBBBBBBABABBABBBBBBAABABBBAAAAABABBAAAAAAAABBAAABAABABAAABBABABAAABBAAABBABAABBAAAAABAABABABAAABBBBBABBABAAABBBBABBABAAAABBBAAABABABA,AAAABAABBBBBBABAAABAABAABBBBBAABAAABBBABAAAABABBAAABBABAABAAABBBBBBBAAAAAAAABABBBAABAABABABBBBBBBAABABABBABABBBBAAABBAABBBBBBAABABABAAAAAAABBABAABABBBBBAABABAABBBBBBAABAAABBABAAAAAAAABAABAABBBBABAABABAABABABBBAABBAAAABABBBAAAAAAAABABAABAAAAAABBABAAABBBBBAB,0.5546875,0.0,6,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|ABAB|AAAA|BBAB|BAAB|BBAA|AAAA|BBBB|BAAA|AABB|AAAA|ABBA|BAAA|BBAB|ABBB|AAAA|AAAA|BABB|AABB|BABA|BABB|BBBB|AABA|ABAB|BBBB|AAAA|ABAA|BAAB|BBBB|ABAB|BAAA|AAAA|AABA|BAAB|AAAA|AABB|ABAA|ABBB|BBAB|AABB|BBBB|BBAA|BBBA|BBAB|ABBB|AABA|BABB|BAAB|BBAA|BABB|AABB|BBBA|BBAB|ABAB|BBAA|AAAB|AABA|BBBA|AAAB|AABA|BBBB|AAAB|BBAB|ABAB
+Output: ",AAAA|BAAB|BBBB|BABA|AABA|ABAA|BBBB|BAAB|AAAB|BBAB|AAAA|BABB|AAAB|BABA|ABAA|ABBB|BBBB|AAAA|AAAA|BABB|BAAB|AABA|BABB|BBBB|BAAB|ABAB|BABA|BBBB|AAAB|BAAB|BBBB|BAAB|ABAB|AAAA|AAAB|BABA|ABAB|BBBB|AABA|BAAB|BBBB|BAAB|AAAB|BABA|AAAA|AAAB|AABA|ABBB|BABA|ABAB|AABA|BABB|BAAB|BAAA|ABAB|BBAA|AAAA|AABA|BAAB|AAAA|AABB|ABAA|ABBB|BBAB|AABB|BBBB|BBAA|BBBA|BBAB|ABBB|AABA|BABB|BAAB|BBAA|BABB|AABB|BBBA|BBAB|ABAB|BBAA|AAAB|AABA|BBBA|AAAB|AABA|BBBB|AAAB|BBAB|ABAB
+Cellular_Bounds,4,256,0,ADDD|CCAB|DADC|BBAD|CDBD|BCDA|DABC|ACAD|CCAA|BCBC|ADAB|ADBC|CADD|BCBD|CBBD|CBAC|CBDB|BBBA|ADCC|BDDA|DBDB|ACBA|AADA|DDDA|ABCD|DCCC|BDDD|CBDD|BDCD|CBAC|CBDA|ADCD|BADD|DCDA|DBCB|DCAA|ABDA|AABC|CDBD|DDDB|DCCA|CDCA|DBCD|CADB|CDDD|BBBD|ADBD|ADDA|DDAB|DDCD|ABBB|BABB|ADBD|DBAB|DAAC|AAAD|BDBA|BDAB|ABCC|AAAB|DBBD|ACDA|BDCC|DAAD,BAAADDBCABADCCBADACACDABABCDBDBADDBBCDCDBABCBACDDBAACDCADCCADCBDDCACCCCBBADDCAABACACBDCBBBABAAABBCDAADDDCAAADCAACADADCBDDCABBADACBAAADABACDCADBBBCABBBCDDACAAAACADDBDADBACDADBACDAAACCCABACABAABAABCAADABCCCCBCCBACAACBCABBDBBBACACBCABCBCDDBBBCACCABDABCADDABBA,BBBBDDBCDADECCBCDEDEBDBEEBEABDBDAAEACBCBBDBDBDBDEEEDBDBDBDBDBDBDBDBDEBEBEBEBEBEBBDBAEBEBEEEEBDBDEBEBBDBDBDBDBDBDBDBDEBEBBDBDEBEBBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBDBD,0.2109375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADDD|CCAB|DADC|BBAD|CDBD|BCDA|DABC|ACAD|CCAA|BCBC|ADAB|ADBC|CADD|BCBD|CBBD|CBAC|CBDB|BBBA|ADCC|BDDA|DBDB|ACBA|AADA|DDDA|ABCD|DCCC|BDDD|CBDD|BDCD|CBAC|CBDA|ADCD|BADD|DCDA|DBCB|DCAA|ABDA|AABC|CDBD|DDDB|DCCA|CDCA|DBCD|CADB|CDDD|BBBD|ADBD|ADDA|DDAB|DDCD|ABBB|BABB|ADBD|DBAB|DAAC|AAAD|BDBA|BDAB|ABCC|AAAB|DBBD|ACDA|BDCC|DAAD
+Output: ",BBBB|DDBC|DADE|CCBC|DEDE|BDBE|EBEA|BDBD|AAEA|CBCB|BDBD|BDBD|EEED|BDBD|BDBD|BDBD|BDBD|EBEB|EBEB|EBEB|BDBA|EBEB|EEEE|BDBD|EBEB|BDBD|BDBD|BDBD|BDBD|EBEB|BDBD|EBEB|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD|BDBD
+Cellular_Bounds,4,256,0,EGHG|EHEA|GHCA|DGDF|EABF|BFAF|EFGB|DCEC|BHAC|HGDF|BBDF|ADFF|DCFG|DFHF|DDED|GDHD|HEFD|HDFE|CFFF|EFEG|HHEC|BFDD|EDDF|FEBA|HCDC|DAGB|AAEF|FGGA|BGGG|FAAA|ADBD|GBEE|GACE|BDGB|FHBD|FEGG|HBCA|EDDA|HFDA|HHDG|BADA|GGEB|DEEC|HBFH|EBBH|BFEF|CFAB|AEAE|DDAC|BAEF|ABDD|AADC|EGBG|GFAC|GDGH|AGBF|DAEE|EHHG|CCGD|BDGD|FFHA|BHFA|FCCA|CDDB,FHAHFAFBHADBEHEGFBCGCGBGFGHCEDFDCABDAHEGCCEGBEGGEDGHEGAGEEFEHEAEAFGEAEGFDGGGFGFHAAFDCGEEFEEGGFCBADEDEBHCBBFGGHHBCHHHGBBBBECEHCFFHBDFCEHCGACEGFHHACDBFEEBAGEBAAEHCBEBHHFCEFFDACGAFCCACGFGDGBCBFBFEEBDCBFGBCEEBBEDFHCHHGBDHEHABHCGEBFFFAAHDDHECEHEGGABCAGBGDDBDEEC,FHIHFHIHHIDADHGEFBGCCGGBFGHCDECBICBDAIHGCCGEBEFGEHIDHGEIGEDGHEGIIFHEDGGFEFGBIHICCGGDIEGFFJHBIEHCBAFGAHFBJFGHHCEDIEGDEHHIBCHGBBFGGDBBBCHGJFGEHBCAIEGDJHFDJHHDCADBHHFBJFEEGDBAHBFHJEBBJFEFCBGAAEAFDHICBAAFAADBAADBFHBGGFBIGDHIBGAFDAEFIHHICDGHBDGHGGIABHFHFCGACDGH,0.203125,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EGHG|EHEA|GHCA|DGDF|EABF|BFAF|EFGB|DCEC|BHAC|HGDF|BBDF|ADFF|DCFG|DFHF|DDED|GDHD|HEFD|HDFE|CFFF|EFEG|HHEC|BFDD|EDDF|FEBA|HCDC|DAGB|AAEF|FGGA|BGGG|FAAA|ADBD|GBEE|GACE|BDGB|FHBD|FEGG|HBCA|EDDA|HFDA|HHDG|BADA|GGEB|DEEC|HBFH|EBBH|BFEF|CFAB|AEAE|DDAC|BAEF|ABDD|AADC|EGBG|GFAC|GDGH|AGBF|DAEE|EHHG|CCGD|BDGD|FFHA|BHFA|FCCA|CDDB
+Output: ",FHIH|FHIH|HIDA|DHGE|FBGC|CGGB|FGHC|DECB|ICBD|AIHG|CCGE|BEFG|EHID|HGEI|GEDG|HEGI|IFHE|DGGF|EFGB|IHIC|CGGD|IEGF|FJHB|IEHC|BAFG|AHFB|JFGH|HCED|IEGD|EHHI|BCHG|BBFG|GDBB|BCHG|JFGE|HBCA|IEGD|JHFD|JHHD|CADB|HHFB|JFEE|GDBA|HBFH|JEBB|JFEF|CBGA|AEAF|DHIC|BAAF|AADB|AADB|FHBG|GFBI|GDHI|BGAF|DAEF|IHHI|CDGH|BDGH|GGIA|BHFH|FCGA|CDGH|BGAB|FHBD|FEGG|HBCA|IEDD|JHFD|JIHD|BADA|HHGB|DEEC|HBFH|JEBC|BFEF|CBGA|AEAE|DDAC|BAEF|ABDD|AADC|FHBG|GFAC|GDGH|BGAF|DAEE|IHHI|CEGD|BDGD|GGIA|BHFH|FCGA|CDGH|BGAB
+Cellular_Bounds,8,256,0,BAAABBAB|ABBBABAA|BABAAABB|BABBBABA|BABBBBAB|AAABAABA|AABBBAAB|AABABABA|BBAAABAB|BAABBBBA|ABBABBAB|AAAAABBB|BABABABA|BBBABBAB|AAABABBB|BABBBAAB|ABBBBABB|ABAABBBB|BAABBBAA|ABAAABBB|AAAAAAAA|BABABAAA|AAABAAAA|BBAAAABB|ABBAABAB|ABABBABB|BAAABABB|AABABBAA|AAABBABB|ABBAABBB|AAAAAABB|ABBBABBB,ABBBAABABAAABABBABABBBAAABAAABABABAAAABABBBABBABBBAAABBABBABABABAABBBABAABBAAAABBAABAABABBBBBAAAABABABABAAABAABABBBABAAAABAAABBABAAAABAABABBAAAAABBAAABBBABBBAAABBBBBBBBABABABBBBBBABBBBAABBBBAABAABBABABABAABAAABBBABAABBABAABBBBBAABAABAABBAAABBBBBBAABAAABAAA,AABBAAAABBBABAAABAAABBAABBBABAAABBBBABAAABAAABAAABBAABAAABABAABAAABABABAABAAABABBABABBBBBBABBBBABAABABBBBABAABAAABABBBBABBAAABBBBBBAABABAAABBBBAABAABBABAAABBBAAAAAAAABABAABAAAAABAAAABBAAAABBABBAABABABABBABBBAAABABBAABABBAAAAABBABBABBAABBBAAAAAABBABBBABBB,0.53515625,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAAABBAB|ABBBABAA|BABAAABB|BABBBABA|BABBBBAB|AAABAABA|AABBBAAB|AABABABA|BBAAABAB|BAABBBBA|ABBABBAB|AAAAABBB|BABABABA|BBBABBAB|AAABABBB|BABBBAAB|ABBBBABB|ABAABBBB|BAABBBAA|ABAAABBB|AAAAAAAA|BABABAAA|AAABAAAA|BBAAAABB|ABBAABAB|ABABBABB|BAAABABB|AABABBAA|AAABBABB|ABBAABBB|AAAAAABB|ABBBABBB
+Output: ",AABBAA|AABBBABA|AABAAABB|AABBBABA|AABBBBAB|AAABAAAB|AAABBAAB|AAABABAA|BAAABABA|BAABAAAB|ABBABABB|BBBBABBB|BABAABAB|BBBABAAB|AAABABBB|BABBAAAB|BBBBBAAB|ABAAABBB|BAABAABB|ABAAABBB|AAAAAAAA|BABAABAA|AAABAAAA|BBAAAABB|ABBAABAB|ABABBABB|BAAABABB|AABABBAA|AAABBABB|ABBAABBB|AAAAAABB|ABBBABBB
+Cellular_Bounds,8,256,0,BDCBDDCD|DAABDBAB|CABDBDDA|CCAABDCB|BACBBCDC|ADBDBBBC|BACBCDCA|ACCDDDCC|AAABABCD|DCAACDDD|BABBDBAC|ACADDBAB|AACBADBC|BDACCADC|DDDBBCDA|ADCADBAC|BCBDACAB|DCCCCBDC|DADBDBBD|AAAADDBB|CACCADCB|DAABABAD|CABDDCCA|CABADAAB|ADDABDBA|DDADBCBD|BCBAABBC|ADDDACDA|DACDAADB|DBCACBBC|ABDCBDBB|ADDABADB,CADCAADAABBCACBCDBCACAABDDBBCADCCBDCCDADBACACCCDCBDCDADBBDDAAADDBBBCBCDAADBBDAAACBCCACBDBDBAACBCBBDCBACDCABDDBADAAACCDABBADBACBDCDCABDBCADDDDCADABACACCABBBBAACCDBDDBADCABBCBCBADBCAADDBDBCBABBCBAABCACBAABACDCACDCBBCCDBAAABDABABDABBACACDBDCCDBCADCACCBAABCBAC,CDECEEEDEEBCCEEEBDECEEEECEEDEBCEEBCECEEECEEDEEEEEECECEEECEEEDDEEEEEAAABABCEEDEEEDDECBBECCEAECEDEECECECECEAECDEECEEDEEDEEEEDEDEDEEDEBCEDEECEEDEDEEDEEDEDEEDEEDEDEEDECDEECEEDEDEDEEDEEDEDEEDEEDEDEEDECDEECEEDEDEDEEDEEDEDEEDEEDEDEEDECDEECEEDEDEDEEDEEDEDEEDEEDEDE,0.0859375,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDCBDDCD|DAABDBAB|CABDBDDA|CCAABDCB|BACBBCDC|ADBDBBBC|BACBCDCA|ACCDDDCC|AAABABCD|DCAACDDD|BABBDBAC|ACADDBAB|AACBADBC|BDACCADC|DDDBBCDA|ADCADBAC|BCBDACAB|DCCCCBDC|DADBDBBD|AAAADDBB|CACCADCB|DAABABAD|CABDDCCA|CABADAAB|ADDABDBA|DDADBCBD|BCBAABBC|ADDDACDA|DACDAADB|DBCACBBC|ABDCBDBB|ADDABADB
+Output: ",CDECEEEDE|EBCCEEEB|DECEEEECE|EDEBCEEB|CECEEECE|EDEEEEEE|CECEEECE|EEDDEEEE|EAAABABCE|EDEEEDDE|CBBECCEA|ECEDEECE|CECECEAE|CDEECEED|EEDEEEED|EDEDEEDE|BCEDEECE|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEECEED|EDEDEEDE|EDEDEEDE|EDEDEEDE|CDEE
+Cellular_Bounds,8,256,0,FADGBGBG|BFABFBFH|AAAAAGAA|EDHBCDAD|FCGCABAA|AGGFGABD|CCDDDEGE|HGGBDDED|EEABHBDF|GHBDHCFD|CDGDFGGF|CEDAGHCA|DADFGGBF|FGADDGHC|HAFEGHEC|BEDDGBCE|FEEADHHB|FBCBFEGC|CCDFDHBA|ADFGEHEG|CCFGECCG|HFDHEEGB|GHAGFGAF|EEDHGEGE|FEGAHBFB|AGAHFEEA|HHFGAGCB|FDGBBEBF|CFFCFDHG|BDHAGEED|BABHGGEE|CHCECBFE,GBEHCHCHCGBCGCGABBBBBHBBFEACDEBEGDHDBCBBBHHGHBCEDDEEEFHFAHHCEEFEFFBCACEGHACEADGEDEHEGHHGDFEBHADBEBEGHHCGGHBEEHADABGFHAFDCFEEHCDFGFFBEAACGCDCGFHDDDEGEACBBEGHFAFHDDGHFDDHAGEAFFHCHABHGHBGFFEAHFHFGFHBACGCBHBAGFFBAAGHBHDCGEHCCFCGDGGDGEAHCEABHFFECBCAHHFFDADFDCGF,GBEHCCHCCGBBGCIABBBBHBABFEIGCDCEGDGDHBABBHIIHCBGDDDEEFHFAIIDCEFIDDIBICDFDEIHIFGIDEHIIFHHDEIHICAIBDBIICHFGIEEIHICCDEEICBIGFFIEIIIDDGFIEHBDDGDFHICDDGDFHIAGDFHIEGBGHIFGIAFDDEHIGIEBIHICFAAIIHFGICABDIEBCHFBCCFICDHCDHAGEEBABHGGEEECHCHICBE,0.2109375,0.0,5,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FADGBGBG|BFABFBFH|AAAAAGAA|EDHBCDAD|FCGCABAA|AGGFGABD|CCDDDEGE|HGGBDDED|EEABHBDF|GHBDHCFD|CDGDFGGF|CEDAGHCA|DADFGGBF|FGADDGHC|HAFEGHEC|BEDDGBCE|FEEADHHB|FBCBFEGC|CCDFDHBA|ADFGEHEG|CCFGECCG|HFDHEEGB|GHAGFGAF|EEDHGEGE|FEGAHBFB|AGAHFEEA|HHFGAGCB|FDGBBEBF|CFFCFDHG|BDHAGEED|BABHGGEE|CHCECBFE
+Output: ",GBEHCCHC|CGBBGCIA|BBBBHBAB|FEIGCDCE|GDGDHBAB|BHIIHCBG|DDDEEFHF|AIIDCEFI|DDIBICDF|DEIHIFGI|DEHIIFHH|DEIHICAI|BDBIICHF|GIEEIHIC|CDEEICBI|GFFIEIII|DDGFIEHB|DDGDFHIC|DDGDFHIA|GDFHIEGB|GHIFGIAF|DDEHIGIE|BIHICFAA|IIHFGICA|BDIEBCHF|BCCFICDH|CDHAGEEB|ABHGGEEE|CHCHICBE
+Cellular_Bounds,16,256,0,BBABABBBBBABBBBA|BABBBAAAAABAABAB|ABBBBAABABABBABA|AABAAABBBBBAABBB|BAAAAABBAAABAAAA|ABBBBAAAAABBBBBA|ABBAAAAABBABAAAA|BABAABBABBAAABBB|ABAAAAAABBABABAA|BBBAAAAABABBBABB|BAABBAAABBAAAABA|BBBBAAABAAAABBAB|BABAABBBBBBABABB|BAAABBBABAAABABB|AAAABABABABAAABB|BAAAABBBAABBABBB,AABABAAAAABAAAABABAAABBBBBABBABABAAAABBABABAABABBBABBBAAAAABBAAAABBBBBAABBBABBBBBAAAABBBBBAAAAABBAABBBBBAABABBBBABABBAABAABBBAAABABBBBBBAABABABBAAABBBBBABAAABAAABBAABBBAABBBBABAAAABBBABBBBAABAABABBAAAAAABABAAABBBAAABABBBABAABBBBABABABABBBAAABBBBAAABBAABAAA,AAABAAABBBBBAAAABAABBBAAAAAAABAAAAABBBAAAAABABAAAAABAAABBBBBAAAABAAAABAAAAAAABAAABBBBBAAAAAAABBBBABBAAAAAABABAAAAAABAABBBBBAAAABBBAABAAAAAAAABABAABBBAAAAAABABBBAAAAABBBAAABAAAABAABBBBAAABAAAABAAAAABAABBBBBBABAAAAABBBABAAABAAAABAAAABABABABAAAABBAAAABBBAABBA,0.48046875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABABBBBBABBBBA|BABBBAAAAABAABAB|ABBBBAABABABBABA|AABAAABBBBBAABBB|BAAAAABBAAABAAAA|ABBBBAAAAABBBBBA|ABBAAAAABBABAAAA|BABAABBABBAAABBB|ABAAAAAABBABABAA|BBBAAAAABABBBABB|BAABBAAABBAAAABA|BBBBAAABAAAABBAB|BABAABBBBBBABABB|BAAABBBABAAABABB|AAAABABABABAAABB|BAAAABBBAABBABBB
+Output: ",AAABAAABBBBBAAAAB|AABBBAAAAAAABAAA|AABBBAAAAABABAA|AAABAAABBBBBAAAAB|AAAABAAAAAAABAAA|BBBBBAAAAAAABBBB|ABBAAAAAABABAAAA|AABAABBBBBAAAABBB|AABAAAAAAAABABAA|BBBAAAAAABABBBAAA|AABBBAAABAAAABAA|BBBBAAABAAAABAAA|AABAABBBBBBABAAA|AABBBABAAABAAAAB|AAAABABABABAAAAB|BAAAABBBAABBAAAA
+Cellular_Bounds,16,256,0,AADBBBDBDCCBCACC|DACDCABBBAAACADD|AADAABCBBBCABDAA|DBBBDDDBACCCABBD|ADCCBDADCADABDCB|CBBAADCCCDBCDDCD|BDAAAADCCBDBBABC|ABBDCCBCDDCBDBAC|CCBDBBBBCDBBCDCD|DBBDAABDBDACDABA|DCADCABABDCABADD|ABAADAACDDAACDAC|ADCCDADADCDCDCDD|CCACABBCCACDCCAC|ABCDDAABDACBDCDB|DDABBDCBDCBABDCA,BBACCCACADDCDBDDABDADBCCCBBBDBAABBABBCDCCCDBCABBACCCAAACBDDDBCCABADDCABADBABCADCDCCBBADDDACDAADACABBBBADDCACCBCDBCCADDCDAADCACBDDDCACCCCDACCDADAACCABBCACABDABCBADBADBCBCADBCBAABCBBABBDAABBDABDBADDABABADADADAADDBDBCCDDBDADDBDBCDAABBCABDCADACAABCCADCADCBCADB,BBECCCCECECCECEEDECEBCCCCCEEEBBBEBBCCCEBCEBEEECCCEEEECBECEBEEEDECEBCEDEECEBEECCBBAEECCCEEDDEECEBBBEECCCEBEEECEBCECECEEECECEBCCCECECECECECEDBBCEBAAEBCEDAEAEEDECEBABEBEDEEDEBBBEBAAEAAEDEEDEEDECEBCEDEECEBEECCACBBCCACDECCACABCDEAABDECBDEEDEEABBDEBDEBDECA,0.13671875,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AADBBBDBDCCBCACC|DACDCABBBAAACADD|AADAABCBBBCABDAA|DBBBDDDBACCCABBD|ADCCBDADCADABDCB|CBBAADCCCDBCDDCD|BDAAAADCCBDBBABC|ABBDCCBCDDCBDBAC|CCBDBBBBCDBBCDCD|DBBDAABDBDACDABA|DCADCABABDCABADD|ABAADAACDDAACDAC|ADCCDADADCDCDCDD|CCACABBCCACDCCAC|ABCDDAABDACBDCDB|DDABBDCBDCBABDCA
+Output: ",BBECCCCECECCECE|EDECEBCCCCCEEE|BBBEBBCCCEBCEBEE|ECCCEEEECBECEBEE|EDECEBCEDEECEBEE|CCBBAEECCCEEDDEE|CEBBBEECCCEBEEEC|EBCECECEEECECEB|CCCECECECECECED|BBCEBAAEBCEDAEAE|EDECEBABEBEDEEDE|BBBEBAAEAAEDEEDE|EDECEBCEDEECEBEE|CCACBBCCACDECCAC|ABCDEAABDECBDEED|EEABBDEBDEBDECA
+Cellular_Bounds,16,256,0,EFADDHBBFGFBGDFD|HDHAHEFBCGFEHGDE|CCAEDFAHCEDCHHEH|FFFBECDBAAFHBADC|DBBCHCFGECCBCDAH|AACFDHCCCAEDAFCD|HEEDGGAHGFCCHEAH|FCEFBFFFFDGHGHGD|CHHFHHDCBEFHFFFF|EDHBBCDDAEECADFE|BEFDBAFDCGDGEAFG|DEHAGCDGACEHFBFG|DEEHHEFFHCAAGEEF|BDAHEGDCEAGACBEE|DDEBCBABHGCAFHCH|EDDEGBGDDEAAEGBA,FGBEEACCGHGCHEGEAEABAFGCDHGFAHEFDDBFEGBADFEDAAFAGGGCFDECBBGACBEDECCDADGHFDDCDEBABBDGEADDDBFEBGDEAFFEHHBAHGDDAFBAGDFGCGGGGEHAHAHEDAAGAAEDCFGAGGGGFEACCDEEBFFDBEGFCFGECBGEDHEHFBGHEFABHDEHBDFAGCGHEFFAAFGGADBBHFFGCEBAFHEDFBHBDCFFEEFCDCBCAHDBGADAFEEFHCHEEFBBFHCB,FGBEDEIHCCEIEFIEIBIFCGCIIEFGDBFEDEGBICDEIHJGGGECBEGCBAIGBIECCHDEGFECBBCIHBBEGDEHCCBDEBGEIFFEHHAHGFCCHEIGDCFEGGGFFDHGHGCHHIIECBEFHHHHIFGEBDEEDEEIEFICEFEBEGDCDGGEIFEFGHBIDEGACEHFGEFEHHEGFGHCAAEFCDAHEGDCEAGACBIDEBCBABHGCAFHCIEDEGBGDDEAAEGBA,0.11328125,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EFADDHBBFGFBGDFD|HDHAHEFBCGFEHGDE|CCAEDFAHCEDCHHEH|FFFBECDBAAFHBADC|DBBCHCFGECCBCDAH|AACFDHCCCAEDAFCD|HEEDGGAHGFCCHEAH|FCEFBFFFFDGHGHGD|CHHFHHDCBEFHFFFF|EDHBBCDDAEECADFE|BEFDBAFDCGDGEAFG|DEHAGCDGACEHFBFG|DEEHHEFFHCAAGEEF|BDAHEGDCEAGACBEE|DDEBCBABHGCAFHCH|EDDEGBGDDEAAEGBA
+Output: ",FGBEDEIHCCEIEF|IEIBIFCGCIIEFG|DBFEDEGBICDEIHJ|GGGECBEGCBAIGBI|ECCHDEGFECBBCIH|BBEGDEHCCBDEBGE|IFFEHHAHGFCCHEI|GDCFEGGGFFDHGHG|CHHIIECBEFHHHHI|FGEBDEEDEEIEFI|CEFEBEGDCDGGEIF|EFGHBIDEGACEHFG|EFEHHEGFGHCAAEF|CDAHEGDCEAGACBI|DEBCBABHGCAFHCI|EDEGBGDDEAAEGBA

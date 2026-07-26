@@ -1,0 +1,958 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Alphabet_Size,Prompt,Raw_Model_Output
+Base,0,4,0,0010,0011,11,0.0,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0010
+Output: ",11
+Base,0,4,0,0321,0333,3333,0.75,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0321
+Output: ",3333
+Base,0,4,0,4132,4444,4444,1.0,1.0,4,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4132
+Output: ",4444
+Cellular_Bounds,1,4,0,1|1|1|1,1111,1111,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|1
+Output: ",1|1|1|1
+Cellular_Bounds,1,4,0,0|1|1|1,0111,1111,0.75,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|1
+Output: ",1|1|1|1
+Cellular_Bounds,1,4,0,4|2|0|1,4201,42f1,0.75,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4|2|0|1
+Output: ",4|2|f|1
+Cellular_Bounds,2,4,0,00|11,0011,11,0.0,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|11
+Output: ",1|1
+Cellular_Bounds,2,4,0,23|03,2303,33,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 23|03
+Output: ",3|3
+Cellular_Bounds,2,4,0,40|45,4445,45,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 40|45
+Output: ",4|5
+Cellular_Bounds,3,4,0,110|0,1110,1111,0.75,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 110|0
+Output: ",111|1
+Cellular_Bounds,3,4,0,212|1,2221,211,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 212|1
+Output: ",211|
+Cellular_Bounds,3,4,0,154|2,1552,1542,0.75,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 154|2
+Output: ",154|2
+Base,0,8,0,11011000,11111111,11111111,1.0,1.0,8,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11011000
+Output: ",11111111
+Base,0,8,0,10301123,11333333,133333,0.625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10301123
+Output: ",133333
+Base,0,8,0,72514350,77777777,77774555,0.5,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 72514350
+Output: ",77774555
+Cellular_Bounds,1,8,0,0|0|1|1|0|1|0|1,00110101,tt11s1s1,0.5,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|1|1|0|1|0|1
+Output: ",t|t|1|1|s|1|s|1
+Cellular_Bounds,1,8,0,0|0|3|3|2|2|2|2,00332222,tt333333,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|3|3|2|2|2|2
+Output: ",t|t|3|3|3|3|3|3
+Cellular_Bounds,1,8,0,0|7|3|6|4|1|5|4,07364154,77666655,0.375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|7|3|6|4|1|5|4
+Output: ",7|7|6|6|6|6|5|5
+Cellular_Bounds,2,8,0,00|01|10|11,00011111,t111,0.125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|01|10|11
+Output: ",t|1|1|1
+Cellular_Bounds,2,8,0,11|13|21|33,11132233,11132133,0.875,0.0,5,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11|13|21|33
+Output: ",11|13|21|33
+Cellular_Bounds,2,8,0,53|66|76|16,55667716,7776,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 53|66|76|16
+Output: ",7|7|7|6
+Cellular_Bounds,3,8,0,011|000|01,01100001,1101,0.125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 011|000|01
+Output: ",11|01
+Cellular_Bounds,3,8,0,322|132|00,33313300,32233233,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 322|132|00
+Output: ",322|332|33
+Cellular_Bounds,3,8,0,565|635|33,56666633,56566533,0.75,0.0,2,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 565|635|33
+Output: ",565|665|33
+Cellular_Bounds,4,8,0,0101|1100,01111111,1111,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0101|1100
+Output: ",11|11
+Cellular_Bounds,4,8,0,2122|0101,22220111,21223131,0.625,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 2122|0101
+Output: ",2122|3131
+Cellular_Bounds,4,8,0,6663|4253,66664455,66634553,0.625,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 6663|4253
+Output: ",6663|4553
+Base,0,16,0,1000000011100001,1111111111111111,1111111111111111,1.0,1.0,16,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1000000011100001
+Output: ",11111111111111111111111111111111111111111111
+Base,0,16,0,3101222131221000,3333333333333333,3333333333333111,0.8125,0.0,13,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3101222131221000
+Output: ",33333333333331111
+Base,0,16,0,5223457525275707,5555557777777777,7777777777777777,0.625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 5223457525275707
+Output: ",7777777777777777
+Cellular_Bounds,1,16,0,1|1|1|1|0|0|1|0|0|0|1|1|1|1|1|0,1111001000111110,1111ss1sss11111s,0.625,0.0,4,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|1|0|0|1|0|0|0|1|1|1|1|1|0
+Output: ",1|1|1|1|s|s|1|s|s|s|1|1|1|1|1|s
+Cellular_Bounds,1,16,0,1|2|2|3|2|2|2|2|1|1|2|1|1|0|2|3,1223222211211023,122322221122223,0.6875,0.0,11,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|2|2|3|2|2|2|2|1|1|2|1|1|0|2|3
+Output: ",1|2|2|3|2|2|2|2|1|1|2|2|2|2|3
+Cellular_Bounds,1,16,0,4|2|3|7|3|5|6|0|2|1|0|2|2|6|5|2,4237356021022652,4737566f22f22662,0.5625,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4|2|3|7|3|5|6|0|2|1|0|2|2|6|5|2
+Output: ",4|7|3|7|5|6|6|f|2|2|f|2|2|6|6|2
+Cellular_Bounds,2,16,0,00|00|01|11|01|10|01|01,0000011101110101,111111111111,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|00|01|11|01|10|01|01
+Output: ",1||1|11|11|11|11|11
+Cellular_Bounds,2,16,0,00|12|03|32|20|23|02|30,0012033322230233,12333233,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|12|03|32|20|23|02|30
+Output: ",1|2|3|3|3|2|3|3
+Cellular_Bounds,2,16,0,16|11|61|30|44|01|17|23,1611663344011723,6166441723,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 16|11|61|30|44|01|17|23
+Output: ",6|1|6|6|4|4|17|23
+Cellular_Bounds,3,16,0,101|001|001|011|110|1,1110010010111111,1111111111111111,0.6875,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 101|001|001|011|110|1
+Output: ",111|111|111|111|111|1
+Cellular_Bounds,3,16,0,033|121|033|211|123|1,0331220332221231,313231,0.0625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 033|121|033|211|123|1
+Output: ",3|1|3|2|3|1
+Cellular_Bounds,3,16,0,145|757|005|147|573|7,1457770051475777,777777,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 145|757|005|147|573|7
+Output: ",7|7|7|7|7|7
+Cellular_Bounds,4,16,0,0101|0001|1011|1000,0111000111111111,1111111111,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0101|0001|1011|1000
+Output: ",11|11|1111|11
+Cellular_Bounds,4,16,0,0110|2301|0033|2320,0111233300332333,1123n3n33233,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0110|2301|0033|2320
+Output: ",11|23n3|n33|233
+Cellular_Bounds,4,16,0,4302|5507|3470|0525,4444555734770555,437557377575,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4302|5507|3470|0525
+Output: ",437|557|377|575
+Cellular_Bounds,8,16,0,11010101|10000111,1111111111111111,1111111111111111,1.0,1.0,16,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11010101|10000111
+Output: ",11111111|11111111
+Cellular_Bounds,8,16,0,21311113|12011113,2233333312222223,3333333333333333,0.4375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 21311113|12011113
+Output: ",33333333|33333333
+Cellular_Bounds,8,16,0,53146130|63201322,5555666666666666,56666136633322,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 53146130|63201322
+Output: ",5666613|6633322
+Base,0,32,0,00110011110101010101011011001011,00111111111111111111111111111111,111111111111111111111111,0.6875,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00110011110101010101011011001011
+Output: ",|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+Base,0,32,0,13233321310102321322003210332212,13333333333333333333333333333333,33333333331233332333233322333233,0.75,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 13233321310102321322003210332212
+Output: ",33333333331233332333233322333233322
+Base,0,32,0,02724341543655625232574244032763,02777777777777777777777777777777,77777777777777777777777777777777,0.9375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 02724341543655625232574244032763
+Output: ",77777777777777777777777777777777777777777777777777777777777777777777
+Cellular_Bounds,1,32,0,0|1|1|1|1|1|0|0|0|0|0|1|0|0|0|0|0|0|1|0|0|1|0|0|0|1|1|1|0|0|0|1,01111100000100000010010001110001,11111155555155555155155555555,0.1875,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|1|1|1|0|0|0|0|0|1|0|0|0|0|0|0|1|0|0|1|0|0|0|1|1|1|0|0|0|1
+Output: ",|1|1|1|1|1|1|5|5|5|5|5|1|5|5|5|5|5|1|5|5|1|5|5|5|5|5|5|5|5|
+Cellular_Bounds,1,32,0,3|0|3|2|3|1|3|3|3|0|1|3|0|0|2|3|2|1|2|1|1|1|2|2|2|1|2|1|0|0|1|2,30323133301300232121112221210012,33333333313333333333333333333333,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3|0|3|2|3|1|3|3|3|0|1|3|0|0|2|3|2|1|2|1|1|1|2|2|2|1|2|1|0|0|1|2
+Output: ",3|3|3|3|3|3|3|3|3|1|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3
+Cellular_Bounds,1,32,0,7|5|4|4|0|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|0|0|2|4|2|2|4,75440271331257612342263420024224,77447777777577777776664447777,0.21875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 7|5|4|4|0|2|7|1|3|3|1|2|5|7|6|1|2|3|4|2|2|6|3|4|2|0|0|2|4|2|2|4
+Output: ",7|7|4|4|7|7|7|7|7|7|7|5|7|7|7|7|7|7|7|6|6|6|4|4|4|7|7|7|7
+Cellular_Bounds,2,32,0,11|10|00|00|00|11|00|10|01|00|00|00|01|11|11|11,11110000001100110100000001111111,11111111111111111111111111111111,0.5,0.0,4,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11|10|00|00|00|11|00|10|01|00|00|00|01|11|11|11
+Output: ",11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11
+Cellular_Bounds,2,32,0,21|22|03|20|02|30|22|22|30|22|23|33|21|20|33|23,22220322023322223322233322223323,2222333333332222333333332223,0.59375,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 21|22|03|20|02|30|22|22|30|22|23|33|21|20|33|23
+Output: ",22|22|33|33|33|33|22|22|33|33|33|33|22|23
+Cellular_Bounds,2,32,0,52|41|77|26|43|63|43|21|34|17|77|76|41|37|02|23,55447726446644223417777744370223,52777777777777777777777777377777,0.3125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 52|41|77|26|43|63|43|21|34|17|77|76|41|37|02|23
+Output: ",52|77|77|77|77|77|77|77|77|77|77|77|77|37|77|77
+Cellular_Bounds,3,32,0,001|010|111|001|101|110|110|000|000|001|11,00101111100111111111100000000111,11111111111,0.1875,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 001|010|111|001|101|110|110|000|000|001|11
+Output: ",1|1|1|1|1|1|1|1|1|1|1
+Cellular_Bounds,3,32,0,111|203|312|231|003|102|030|313|002|011|22,11122333323300311203333300201122,11123333223333313333333333222,0.5625,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 111|203|312|231|003|102|030|313|002|011|22
+Output: ",111|233|332|233|333|133|333|333|332|22
+Cellular_Bounds,3,32,0,516|626|535|075|577|146|727|364|222|055|37,55666655507757714677736622205537,56665677777777772225577,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 516|626|535|075|577|146|727|364|222|055|37
+Output: ",56|66|56|77|77|77|77|77|222|55|77
+Cellular_Bounds,4,32,0,0000|0111|1010|0001|1000|0101|1101|1101,00000111111100011111011111111111,1111111111111111111111,0.40625,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0000|0111|1010|0001|1000|0101|1101|1101
+Output: ",1|111|111|111|111|111|111|111
+Cellular_Bounds,4,32,0,3333|0232|1031|0233|0202|3200|2012|0223,33330233113302330222333322220223,333332323n3332333222322322122223,0.6875,0.0,4,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3333|0232|1031|0233|0202|3200|2012|0223
+Output: ",3333|3232|3n33|3233|3222|3223|2212|2223
+Cellular_Bounds,4,32,0,4663|1263|3431|0637|6533|1713|5136|4335,46661266344406676666177755564445,66633333343176376633771366365535,0.34375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 4663|1263|3431|0637|6533|1713|5136|4335
+Output: ",6663|3333|3431|7637|6633|7713|6636|5535
+Cellular_Bounds,8,32,0,10011001|01101010|00111001|01111011,11111111011111110011111101111111,11111111111111111111111111111111,0.875,0.0,8,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10011001|01101010|00111001|01111011
+Output: ",11111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,8,32,0,33220033|13130221|12203010|21303032,33333333133333331222333322333333,33333333133332221233333323333333,0.8125,0.0,13,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 33220033|13130221|12203010|21303032
+Output: ",33333333|13333222|12333333|23333333
+Cellular_Bounds,8,32,0,43557572|07764772|53274416|45714147,44557777077777775557777745777777,77777772777777727777777277777777,0.59375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 43557572|07764772|53274416|45714147
+Output: ",77777772|77777772|77777772|77777777
+Cellular_Bounds,16,32,0,1100100101001010|1000110101111101,11111111111111111111111111111111,11111111111111111111111111111111,1.0,1.0,32,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1100100101001010|1000110101111101
+Output: ",11111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,16,32,0,0322020230321101|1212002100322313,03333333333333331222222222333333,33333312223333331222333333,0.46875,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0322020230321101|1212002100322313
+Output: ",33333312223333331222333333
+Cellular_Bounds,16,32,0,0513532543646535|0127371370034434,05555555556666660127777777777777,55555555555555555777777777,0.5,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0513532543646535|0127371370034434
+Output: ",55555555555555555|777777777
+Base,0,64,0,1101010000001001110010011100011001100101000110001110001000010011,1111111111111111111111111111111111111111111111111111111111111111,1111111111111111111111111111111111111111111111111111111111111111,1.0,1.0,64,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1101010000001001110010011100011001100101000110001110001000010011
+Output: ",11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+Base,0,64,0,3233320222113033300110213133301230222303333323031133333123120021,3333333333333333333333333333333333333333333333333333333333333333,3333333333333333333333333333333333333333333333333333333333,0.90625,0.0,58,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3233320222113033300110213133301230222303333323031133333123120021
+Output: ",3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|
+Base,0,64,0,7204636774254614464104744440457361246520654366676213070674740155,7777777777777777777777777777777777777777777777777777777777777777,7777777777777777777777777777777777777777777777777777777777777777,1.0,1.0,64,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 7204636774254614464104744440457361246520654366676213070674740155
+Output: ",77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
+Cellular_Bounds,1,64,0,0|0|0|0|0|0|1|1|1|0|0|1|1|0|1|0|0|1|0|0|0|1|1|0|1|0|1|0|0|1|0|1|0|0|1|1|0|0|0|1|0|0|1|1|1|1|1|1|0|1|0|1|1|1|1|0|1|1|0|0|0|0|1|1,0000001110011010010001101010010100110001001111110101111011000011,tttttt111ss11s1ss1ssssss11s1111111111111111111111111111111,0.40625,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|0|0|0|0|1|1|1|0|0|1|1|0|1|0|0|1|0|0|0|1|1|0|1|0|1|0|0|1|0|1|0|0|1|1|0|0|0|1|0|0|1|1|1|1|1|1|0|1|0|1|1|1|1|0|1|1|0|0|0|0|1|1
+Output: ",t|t|t|t|t|t|1|1|1|s|s|1|1|s|1|s|s|1|s|s|s|s|s|s|1|1|s|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|
+Cellular_Bounds,1,64,0,1|3|3|0|0|2|1|2|1|2|0|0|2|1|0|0|0|3|1|2|3|3|1|1|3|1|3|3|3|3|3|1|0|0|0|0|1|2|3|2|3|1|3|0|2|2|3|0|3|0|0|2|3|3|1|2|2|2|3|2|2|0|1|1,1330021212002100031233113133333100001232313022303002331222322011,1333322222222233333333333333333333333333333333333333333333,0.359375,0.0,3,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|3|3|0|0|2|1|2|1|2|0|0|2|1|0|0|0|3|1|2|3|3|1|1|3|1|3|3|3|3|3|1|0|0|0|0|1|2|3|2|3|1|3|0|2|2|3|0|3|0|0|2|3|3|1|2|2|2|3|2|2|0|1|1
+Output: ",1|3|3|3|3|2|2|2|2|2|2|2|2|2|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|3|
+Cellular_Bounds,1,64,0,2|4|2|3|3|3|6|3|6|7|1|4|5|4|2|6|2|4|0|6|0|7|2|3|3|7|3|7|7|2|7|5|2|4|0|3|3|2|5|7|3|3|7|7|0|4|6|4|4|5|4|0|6|7|0|1|1|3|2|2|1|2|0|2,2423336367145426240607233737727524033257337704644540670113221202,4723336367145466246772772752467747467746771322122,0.265625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 2|4|2|3|3|3|6|3|6|7|1|4|5|4|2|6|2|4|0|6|0|7|2|3|3|7|3|7|7|2|7|5|2|4|0|3|3|2|5|7|3|3|7|7|0|4|6|4|4|5|4|0|6|7|0|1|1|3|2|2|1|2|0|2
+Output: ",4|7|2|3|3|3|6|3|6|7|1|4|5|4|6|6|2|4|6|7|7|2|7|7|2|7|5|2|4|6|7|7|4|7|4|6|7|7|4|6|7|7|1|3|2|2|1|2|2
+Cellular_Bounds,2,64,0,11|00|10|10|00|01|11|01|01|00|01|00|10|00|00|00|01|10|11|10|11|11|10|11|00|00|01|01|10|11|10|10,1100111100011101010001001100000001111111111111110000010111111111,11111111111111111111111111111111111111111111111111111111,0.484375,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11|00|10|10|00|01|11|01|01|00|01|00|10|00|00|00|01|10|11|10|11|11|10|11|00|00|01|01|10|11|10|10
+Output: ",11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11
+Cellular_Bounds,2,64,0,02|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02,0222121203332233330022330112332222122333331322120133333313332202,2222333333333332221221333332212211211333221,0.265625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 02|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02
+Output: ",2|2|2|2|3|3|3|3|3|3|3|3|3|3|3|2|2|2|1|2|2|1|3|3|3|3|3|2|2|1|2|2|1|1|2|1|1|3|3|3|2|2|1
+Cellular_Bounds,2,64,0,46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00,4605332577772255771577771477120266070422332233664747773334131100,67377757777777777777777777777777,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00
+Output: ",6|7|3|7|7|7|5|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7|7
+Cellular_Bounds,3,64,0,101|111|001|111|011|001|011|111|000|001|001|010|101|010|111|010|001|100|100|000|011|0,1111110011110110010111110000010010111110111110110011111110000110,111111111111111111111111111111111111111111111,0.46875,0.0,6,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 101|111|001|111|011|001|011|111|000|001|001|010|101|010|111|010|001|100|100|000|011|0
+Output: ",111|111|111|111|111|111|111|111|111|111|111|111|111|111|111
+Cellular_Bounds,3,64,0,122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3,1221333332223333332220110120123331231121110010330110033330223333,122131333333333333333333333333333123113113113333333333333333333,0.515625,0.0,5,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3
+Output: ",122|131|333|333|333|333|333|333|333|333|333|123|113|113|113|333|333|333|333|333|333
+Cellular_Bounds,3,64,0,047|133|711|563|262|144|164|651|420|362|705|556|622|175|613|237|012|214|270|773|334|2,0471337775662661441666664443667775566661776662370122242777773342,777666666777777772277,0.015625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 047|133|711|563|262|144|164|651|420|362|705|556|622|175|613|237|012|214|270|773|334|2
+Output: ",7|7|7|6|6|6|6|6|6|7|7|7|7|7|7|7|7|2|2|7|7
+Cellular_Bounds,4,64,0,0001|1101|1011|1000|1011|0010|1110|1001|1001|0010|1111|1010|0101|0010|1110|0101,0001111111111111111100111111111111110011111111110111001111110111,1111111111111111,0.203125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0001|1101|1011|1000|1011|0010|1110|1001|1001|0010|1111|1010|0101|0010|1110|0101
+Output: ",1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1
+Cellular_Bounds,4,64,0,3332|2301|2210|3303|2203|2020|0211|1101|2203|2130|3230|3113|1000|2303|3210|3121,3333233322223333222322220222111122232233333333331111233333333333,3333233322233333222322232223111322232223333333333333333333333333,0.828125,0.0,11,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 3332|2301|2210|3303|2203|2020|0211|1101|2203|2130|3230|3113|1000|2303|3210|3121
+Output: ",3333|2333|2223|3333|2223|2223|2223|1113|2223|2223|3333|3333|3333|3333|3333|3333
+Cellular_Bounds,4,64,0,1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033,1166222356770667114677772666233323356666666644474577556622550033,172757676777777777676777776737,0.125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033
+Output: ",17|27|57|67|67|77|77|77|77|67|67|77|77|67|37
+Cellular_Bounds,8,64,0,11100100|10101011|00000010|01001101|10101110|00101001|00111101|11011001,1111111111111111000000110111111111111111001111110011111111111111,1111111111111111111111111111111111111111111111111111111111111111,0.828125,0.0,16,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11100100|10101011|00000010|01001101|10101110|00101001|00111101|11011001
+Output: ",11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,8,64,0,33231022|11210222|11010313|01110213|20103011|20220323|30211112|21200101,3333333311222222111113330111122322223333222223333333333322222222,3333333311111222111113131111121322222311222223233331111222201111,0.6875,0.0,10,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 33231022|11210222|11010313|01110213|20103011|20220323|30211112|21200101
+Output: ",33333333|11111222|11111313|11111213|22222311|22222323|33311112|22201111
+Cellular_Bounds,8,64,0,67353003|13660626|53437451|51167430|04566444|60173340|63066304|35262322,6777777713666666555577775556777704566666666777776666666635566666,7777777766666666777777777777777744444444777777777777777733333333,0.4375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 67353003|13660626|53437451|51167430|04566444|60173340|63066304|35262322
+Output: ",77777777|66666666|77777777|77777777|44444444|77777777|77777777|33333333
+Cellular_Bounds,16,64,0,1011000010110100|1111011000110001|0100100010000101|1011010010110111,1111111111111111111111111111111101111111111111111111111111111111,1111111111111111111111111111111111111111111111111111111111111111,0.984375,0.0,32,2,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-1
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1011000010110100|1111011000110001|0100100010000101|1011010010110111
+Output: ",11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,16,64,0,0013313103031012|0112032330201013|1200013303001102|3131033332213113,0013333333333333011223333333333312222233333333333333333333333333,3333333333333333333333333333333333333333333333333333333333333333,0.78125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0013313103031012|0112032330201013|1200013303001102|3131033332213113
+Output: ",33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+Cellular_Bounds,16,64,0,6413574561343564|1021540070403762|2464020607071245|0557227275451501,6666677777777777112255557777777724666666677777770557777777777777,7777777777771717777777777777777777777777777777777777777777777777,0.578125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-7
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 6413574561343564|1021540070403762|2464020607071245|0557227275451501
+Output: ",77777777777717177777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777

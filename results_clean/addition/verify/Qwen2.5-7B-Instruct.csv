@@ -1,0 +1,465 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Digit_Max,Prompt,Raw_Model_Output
+Base,0,4,0,1302+2002,3310,0033,0.0,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1302+2002
+Output: ",00330
+Base,0,4,0,4132+1133,5265,5265,1.0,1.0,4,8,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 4132+1133
+Output: ",5265
+Cellular_Bounds,1,4,0,1|0|0|1+1|2|0|1,2202,3032,0.25,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1|0|0|1+1|2|0|1
+Output: ",3032
+Cellular_Bounds,1,4,0,4|2|0|1+3|4|2|7,7630,5634,0.5,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 4|2|0|1+3|4|2|7
+Output: ",5634
+Cellular_Bounds,2,4,0,10|12+11|31,2203,300,0.25,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 10|12+11|31
+Output: ",300
+Cellular_Bounds,2,4,0,10|66+53|75,6463,1722,0.0,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 10|66+53|75
+Output: ",1722
+Cellular_Bounds,3,4,0,201|1+122|0,3231,3033,0.5,0.0,1,4,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 201|1+122|0
+Output: ",3033
+Cellular_Bounds,3,4,0,154|2+111|6,2660,3702,0.0,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 4-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 4-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 154|2+111|6
+Output: ",3702
+Base,0,8,0,10301123+13022302,23330031,10311101,0.25,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 10301123+13022302
+Output: ",10311101
+Base,0,8,0,34166332+23742551,60131103,60101013,0.625,0.0,3,8,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 34166332+23742551
+Output: ",60101013
+Cellular_Bounds,1,8,0,1|3|3|0|3|0|2|3+1|0|2|0|1|3|2|1,30111010,133232,0.0,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1|3|3|0|3|0|2|3+1|0|2|0|1|3|2|1
+Output: ",133232
+Cellular_Bounds,1,8,0,1|7|3|6|4|1|5|4+1|6|6|4|4|5|7|2,36230746,17022176,0.125,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1|7|3|6|4|1|5|4+1|6|6|4|4|5|7|2
+Output: ",17022176
+Cellular_Bounds,2,8,0,11|13|21|33+10|10|03|12,21233111,301322,0.125,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 11|13|21|33+10|10|03|12
+Output: ",301322
+Cellular_Bounds,2,8,0,33|03|05|35+27|50|32|10,62533745,60574775,0.5,0.0,1,8,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 33|03|05|35+27|50|32|10
+Output: ",60574775
+Cellular_Bounds,3,8,0,222|232|31+103|121|13,33202010,00023032,0.125,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 222|232|31+103|121|13
+Output: ",000230321
+Cellular_Bounds,3,8,0,312|722|42+225|657|03,54060145,3377552,0.0,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 312|722|42+225|657|03
+Output: ",3377552
+Cellular_Bounds,4,8,0,1023|0113+1123|1120,22121233,03010,0.0,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1023|0113+1123|1120
+Output: ",03010
+Cellular_Bounds,4,8,0,1155|7156+3630|6625,50066003,12414,0.0,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 8-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 8-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1155|7156+3630|6625
+Output: ",12414
+Base,0,16,0,1221210132122121+1233112213210232,3120323011333013,0000023030023032,0.375,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1221210132122121+1233112213210232
+Output: ",0000023030023032
+Base,0,16,0,4106362062341255+2022275670003264,6130657752344541,4141589739341581,0.375,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 4106362062341255+2022275670003264
+Output: ",4141589739341581
+Cellular_Bounds,1,16,0,1|3|0|1|3|1|3|2|2|1|3|0|0|3|2|1+1|2|3|0|2|3|1|3|2|3|3|0|2|2|1|1,3132211211203132,1323231323233211,0.25,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1|3|0|1|3|1|3|2|2|1|3|0|0|3|2|1+1|2|3|0|2|3|1|3|2|3|3|0|2|2|1|1
+Output: ",1323231323233211
+Cellular_Bounds,1,16,0,4|0|5|7|3|2|6|1|3|5|6|6|0|7|4|5+3|5|0|5|2|4|1|3|4|5|0|6|0|3|3|0,7564567502741275,42766745,0.0625,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 4|0|5|7|3|2|6|1|3|5|6|6|0|7|4|5+3|5|0|5|2|4|1|3|4|5|0|6|0|3|3|0
+Output: ",42766745
+Cellular_Bounds,2,16,0,20|12|03|32|20|23|02|30+10|20|32|33|11|33|20|10,3033023132222300,3032323333,0.375,0.0,3,4,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 20|12|03|32|20|23|02|30+10|20|32|33|11|33|20|10
+Output: ",3032323333
+Cellular_Bounds,2,16,0,16|11|61|30|44|01|17|23+30|33|52|02|52|72|26|43,4645333316734566,1547526475264752,0.125,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 16|11|61|30|44|01|17|23+30|33|52|02|52|72|26|43
+Output: ",1547526475264752
+Cellular_Bounds,3,16,0,133|331|132|222|202|1+121|330|212|023|303|1,3213220103121112,0222333123222222,0.3125,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 133|331|132|222|202|1+121|330|212|023|303|1
+Output: ",022233312322222222
+Cellular_Bounds,3,16,0,145|757|005|147|573|7+311|100|130|630|253|1,4570571360000470,1457657531475737,0.0,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 145|757|005|147|573|7+311|100|130|630|253|1
+Output: ",1457657531475737
+Cellular_Bounds,4,16,0,2110|2301|0033|2320+1220|0113|2012|2001,3330302021120321,33310322332032,0.25,0.0,3,4,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 2110|2301|0033|2320+1220|0113|2012|2001
+Output: ",33310322332032
+Cellular_Bounds,4,16,0,2303|0171|6620|4057+4465|4156|7644|7354,6770435064653433,231727467354,0.0,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 2303|0171|6620|4057+4465|4156|7644|7354
+Output: ",231727467354
+Cellular_Bounds,8,16,0,13200332|31012011+10121123|33011010,2332212230023021,100001100,0.0625,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 13200332|31012011+10121123|33011010
+Output: ",100001100
+Cellular_Bounds,8,16,0,12360234|14366345+64755402|34526050,7733563651114415,123667776,0.0625,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 16-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 16-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 12360234|14366345+64755402|34526050
+Output: ",123667776
+Base,0,32,0,13233321310102321322003210332212+12333202231200133322130022200303,32233130201303121310133233133121,00000000000000000000000000000000,0.125,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 13233321310102321322003210332212+12333202231200133322130022200303
+Output: ",0000000000000000000000000000000000000000000000000000
+Base,0,32,0,12724341543655625232574244032763+26315101764507244054466034263223,41241443530365071307262300316206,41039463308213869686940878,0.125,0.0,2,8,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 12724341543655625232574244032763+26315101764507244054466034263223
+Output: ",41039463308213869686940878
+Cellular_Bounds,1,32,0,2|0|1|3|3|3|0|3|2|2|1|1|3|3|3|1|0|3|3|2|2|2|3|1|0|1|3|2|0|1|2|1+1|0|2|2|1|0|1|3|1|2|2|3|3|0|2|0|3|3|2|2|3|2|1|2|1|1|3|1|1|1|0|1,31020323010130120321210313231222,33333333333333333333333333333333,0.25,0.0,1,4,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 2|0|1|3|3|3|0|3|2|2|1|1|3|3|3|1|0|3|3|2|2|2|3|1|0|1|3|2|0|1|2|1+1|0|2|2|1|0|1|3|1|2|2|3|3|0|2|0|3|3|2|2|3|2|1|2|1|1|3|1|1|1|0|1
+Output: ",33333333333333333333333333333333
+Cellular_Bounds,1,32,0,4|2|0|2|3|1|4|6|6|0|0|5|7|5|2|4|0|3|3|6|4|0|4|6|1|4|2|0|4|4|4|5+1|2|3|4|4|2|3|5|6|3|0|7|6|2|6|7|0|1|6|5|1|0|6|6|5|7|1|0|0|7|2|1,54367404431560130523513473305366,57216657107626716516444523442356,0.15625,0.0,1,8,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 4|2|0|2|3|1|4|6|6|0|0|5|7|5|2|4|0|3|3|6|4|0|4|6|1|4|2|0|4|4|4|5+1|2|3|4|4|2|3|5|6|3|0|7|6|2|6|7|0|1|6|5|1|0|6|6|5|7|1|0|0|7|2|1
+Output: ",572166571076267165164445234423563
+Cellular_Bounds,2,32,0,11|33|00|32|22|20|21|03|11|01|33|30|33|00|13|01+21|01|02|03|01|13|11|02|11|30|02|02|03|30|11|31,33000301233332112232013302303032,30323130323130323130323130323130,0.25,0.0,1,4,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 11|33|00|32|22|20|21|03|11|01|33|30|33|00|13|01+21|01|02|03|01|13|11|02|11|30|02|02|03|30|11|31
+Output: ",3032313032313032313032313032313032313032313032313032
+Cellular_Bounds,2,32,0,21|30|77|62|13|30|07|36|67|06|44|03|20|57|60|23+54|16|44|41|52|01|20|54|42|47|45|54|21|04|04|66,75474423653130133156115741636511,21377621336764420576235444415201,0.1875,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 21|30|77|62|13|30|07|36|67|06|44|03|20|57|60|23+54|16|44|41|52|01|20|54|42|47|45|54|21|04|04|66
+Output: ",2137762133676442057623544441520125442474554210466
+Cellular_Bounds,3,32,0,111|203|312|231|003|102|030|313|002|011|22+113|121|132|321|020|200|013|321|301|313|20,23033111121202330211030030333102,33333333333333333333333333333333,0.3125,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 111|203|312|231|003|102|030|313|002|011|22+113|121|132|321|020|200|013|321|301|313|20
+Output: ",33333333333333333333333333333333
+Cellular_Bounds,3,32,0,233|776|073|374|312|351|275|331|060|545|71+201|005|167|440|731|563|377|172|605|503|00,43500326303524413467452366625071,23377627533156360551724407311671,0.15625,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 233|776|073|374|312|351|275|331|060|545|71+201|005|167|440|731|563|377|172|605|503|00
+Output: ",2337762753315636055172440731167100571201351377545710
+Cellular_Bounds,4,32,0,1102|1130|3211|0020|1310|2311|3030|3331+1133|1222|2233|0210|0120|3222|1231|3333,23013013211002302031220003223330,33333222332233103222313333,0.125,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1102|1130|3211|0020|1310|2311|3030|3331+1133|1222|2233|0210|0120|3222|1231|3333
+Output: ",33333222332233103222313333
+Cellular_Bounds,4,32,0,4663|1263|3431|0637|6533|1713|5136|4335+2170|7504|4326|1133|3577|5173|0567|3776,70540767775717732332710657260333,7040754075407540754075407540754,0.125,0.0,2,8,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 4663|1263|3431|0637|6533|1713|5136|4335+2170|7504|4326|1133|3577|5173|0567|3776
+Output: ",7040754075407540754075407540754
+Cellular_Bounds,8,32,0,10231323|12332231|01132122|33012222+23010112|21330103|03132002|00300000,33302102003230001033013033312222,30223230000000000000000000,0.28125,0.0,1,4,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 10231323|12332231|01132122|33012222+23010112|21330103|03132002|00300000
+Output: ",30223230000000000000000000
+Cellular_Bounds,8,32,0,43557572|07764772|53274416|45714147+23406434|55600752|37120145|54624406,67166226655657451241456422540555,71024006,0.03125,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 43557572|07764772|53274416|45714147+23406434|55600752|37120145|54624406
+Output: ",71024006
+Cellular_Bounds,16,32,0,1002300330031002|1131031333332000+1110331210202102|1221311202111213,21132322002331103013003202103213,3213223123033321,0.15625,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1002300330031002|1131031333332000+1110331210202102|1221311202111213
+Output: ",3213223123033321
+Cellular_Bounds,16,32,0,2513532543646535|0127371370034434+2036413404345317|6220117527613631,45521461502140546347511117650265,25135325436465357127371370034434,0.09375,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 32-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 32-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 2513532543646535|0127371370034434+2036413404345317|6220117527613631
+Output: ",2513532543646535712737137003443420364134043453176220
+Base,0,64,0,1033311001112213202123200032031112312020111311103301120023110102+1010231210131323130032212311312103321213301232000322230220233113,2110202211310202332222013010003222233300013203110230010310003221,3000333333333333333333333333333333333333333333333333333333333333,0.21875,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1033311001112213202123200032031112312020111311103301120023110102+1010231210131323130032212311312103321213301232000322230220233113
+Output: ",300033333333333333333333333333333333333333333333333333333333333333333333333333333333
+Base,0,64,0,1312000052710145740433632255262356424277714172226326422214737066+1036230503145024510103411320113125403737630665123563532151312323,2350230556055172450537243575375504030237545057352112154366251411,2346432606056139255147735783990774955555555555555555555555555555,0.25,0.0,2,8,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1312000052710145740433632255262356424277714172226326422214737066+1036230503145024510103411320113125403737630665123563532151312323
+Output: ",234643260605613925514773578399077495555555555555555555555555555555555555555555555555
+Cellular_Bounds,1,64,0,1|0|0|0|0|2|1|2|0|1|0|0|2|0|0|1|3|3|1|3|0|2|2|2|1|0|0|0|1|0|2|1|3|2|1|1|2|0|3|0|3|3|1|0|2|3|2|1|0|2|1|1|1|2|2|3|1|1|0|1|3|3|3|0+1|3|0|2|0|3|1|3|2|3|3|0|3|0|0|1|1|0|0|2|2|0|3|1|1|1|3|3|1|1|2|3|1|2|3|1|1|2|3|3|0|0|1|2|2|1|1|3|2|0|0|0|3|1|1|0|3|2|1|0|3|3|2|2,2302113130311003032123132133221111023323332311002212100003123312,3033313233323132333133323132333133323331333233313332333133323331,0.3125,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1|0|0|0|0|2|1|2|0|1|0|0|2|0|0|1|3|3|1|3|0|2|2|2|1|0|0|0|1|0|2|1|3|2|1|1|2|0|3|0|3|3|1|0|2|3|2|1|0|2|1|1|1|2|2|3|1|1|0|1|3|3|3|0+1|3|0|2|0|3|1|3|2|3|3|0|3|0|0|1|1|0|0|2|2|0|3|1|1|1|3|3|1|1|2|3|1|2|3|1|1|2|3|3|0|0|1|2|2|1|1|3|2|0|0|0|3|1|1|0|3|2|1|0|3|3|2|2
+Output: ",303331323332313233313332313233313332333133323331333233313332333133323331333233313332
+Cellular_Bounds,1,64,0,2|2|4|5|4|4|2|3|7|2|3|6|0|1|6|7|2|3|2|0|0|5|1|2|6|6|5|5|5|3|7|1|0|3|6|2|3|7|6|0|4|3|6|1|2|2|7|3|2|4|2|1|7|3|5|1|0|2|4|7|2|7|1|2+4|7|6|7|0|2|5|2|7|2|4|3|2|3|5|3|3|4|5|2|3|3|5|3|6|0|2|2|6|6|6|5|6|6|0|2|3|2|5|5|6|1|3|7|4|4|5|6|2|1|3|2|1|6|0|6|5|3|2|0|0|4|6|1,7234467665012542577240664700425671647236252067514554115755673373,42367655371362376436273242173512472712632556137445213211665320,0.140625,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 2|2|4|5|4|4|2|3|7|2|3|6|0|1|6|7|2|3|2|0|0|5|1|2|6|6|5|5|5|3|7|1|0|3|6|2|3|7|6|0|4|3|6|1|2|2|7|3|2|4|2|1|7|3|5|1|0|2|4|7|2|7|1|2+4|7|6|7|0|2|5|2|7|2|4|3|2|3|5|3|3|4|5|2|3|3|5|3|6|0|2|2|6|6|6|5|6|6|0|2|3|2|5|5|6|1|3|7|4|4|5|6|2|1|3|2|1|6|0|6|5|3|2|0|0|4|6|1
+Output: ",42367655371362376436273242173512472712632556137445213211665320
+Cellular_Bounds,2,64,0,22|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02+10|32|01|23|31|20|13|13|32|31|02|33|11|02|31|30|10|10|13|20|31|03|12|22|11|20|02|02|22|21|00|00,3312200201200110223130311221221230230313222233001311020002112102,3232313332323232333333333333333333333333333333333333333333333333,0.1875,0.0,1,4,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 22|20|12|12|03|33|21|30|30|00|21|32|01|12|30|22|20|12|23|32|31|13|20|12|01|30|33|31|13|30|21|02+10|32|01|23|31|20|13|13|32|31|02|33|11|02|31|30|10|10|13|20|31|03|12|22|11|20|02|02|22|21|00|00
+Output: ",323231333232323233333333333333333333333333333333333333333333333333333333333333333333
+Cellular_Bounds,2,64,0,46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00+26|16|13|00|72|53|22|05|17|53|26|60|34|20|47|56|71|71|42|32|60|70|21|05|30|13|46|30|65|23|00|03,7423432665504460157121525114616156004655131152717763446321361103,4675362572752252761572721474126647742232614756714232634210530466,0.109375,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 46|05|30|25|72|75|22|52|76|15|72|72|14|74|12|02|64|07|04|22|32|21|31|64|47|47|76|32|34|13|11|00+26|16|13|00|72|53|22|05|17|53|26|60|34|20|47|56|71|71|42|32|60|70|21|05|30|13|46|30|65|23|00|03
+Output: ",467536257275225276157272147412664774223261475671423263421053046652303
+Cellular_Bounds,3,64,0,122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3+111|031|131|133|302|323|320|300|332|212|312|010|323|003|112|212|102|101|110|220|001|0,2332231300012033021303120102312132001011201133021121111003013323,1223333333333333333333333333333333333333333333333333333333333333,0.21875,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 122|131|332|201|300|312|210|011|012|012|301|123|112|111|001|030|010|003|330|021|331|3+111|031|131|133|302|323|320|300|332|212|312|010|323|003|112|212|102|101|110|220|001|0
+Output: ",122333333333333333333333333333333333333333333333333333333333333333333333333333333333
+Cellular_Bounds,3,64,0,435|131|664|612|730|711|271|155|735|767|402|145|301|046|336|773|576|330|173|056|222|2+134|443|133|415|434|571|721|326|152|217|563|664|435|543|026|456|116|260|333|166|541|2,5715750202303655032125041102071660317366113654517146105262447634,5727577777777777777777777777777777777777777777777777777777777777,0.09375,0.0,2,8,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 435|131|664|612|730|711|271|155|735|767|402|145|301|046|336|773|576|330|173|056|222|2+134|443|133|415|434|571|721|326|152|217|563|664|435|543|026|456|116|260|333|166|541|2
+Output: ",572757777777777777777777777777777777777777777777777777777777777777777777777777777777
+Cellular_Bounds,4,64,0,1011|0330|2012|0213|1201|0301|1030|1032|1230|2000|0123|1233|3013|1133|1302|2233+2201|2023|3022|3130|2230|1323|2020|2100|3213|2032|3112|2323|2002|1032|3131|0231,3212302011010010003122303110313311100032330202231021223210333130,3320003322323322232323223323232323232333232332333233323332333233,0.234375,0.0,1,4,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1011|0330|2012|0213|1201|0301|1030|1032|1230|2000|0123|1233|3013|1133|1302|2233+2201|2023|3022|3130|2230|1323|2020|2100|3213|2032|3112|2323|2002|1032|3131|0231
+Output: ",332000332232332223232322332323232323233323233233323332333233323332333233323332333233
+Cellular_Bounds,4,64,0,1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033+3651|7453|0014|2157|7435|7060|6475|2664|7025|0346|4067|0262|6226|7050|4651|1075,4736165657072767060470531310520613627061263044123022453667241130,1130277777777777777777777777777777777777777777777777777777777777,0.125,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1064|2203|5673|0607|1146|7772|2613|2321|2335|6512|6541|4127|4573|5466|2053|0033+3651|7453|0014|2157|7435|7060|6475|2664|7025|0346|4067|0262|6226|7050|4651|1075
+Output: ",113027777777777777777777777777777777777777777777777777777777777777777777777777777777
+Cellular_Bounds,8,64,0,20020200|23112000|20323233|22211133|11033220|22102001|00033132|13211023+12300011|23030203|00201300|20031330|20220121|01133032|21212101|11122221,3232021212202203211312000230312331320001233010332131123330333310,301222110303222232,0.09375,0.0,1,4,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 20020200|23112000|20323233|22211133|11033220|22102001|00033132|13211023+12300011|23030203|00201300|20031330|20220121|01133032|21212101|11122221
+Output: ",301222110303222232
+Cellular_Bounds,8,64,0,10101660|53072201|71342077|56756425|46554252|16175130|45530031|53570535+44754255|10135475|00434365|54033063|36546712|36267710|37165312|30336652,5505613563227676717764653301151105323164544650410471534404127407,101110111011111111,0.015625,0.0,0,8,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 10101660|53072201|71342077|56756425|46554252|16175130|45530031|53570535+44754255|10135475|00434365|54033063|36546712|36267710|37165312|30336652
+Output: ",101110111011111111
+Cellular_Bounds,16,64,0,1033022013112030|2030323033103200|2031101110103001|2102133020212100+1131100020330132|2130123023122101|0230300322130012|1112032221130321,2230122100102223022111212223130123220020322330133220231302003021,3023220131113232,0.0625,0.0,0,4,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 4.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 1033022013112030|2030323033103200|2031101110103001|2102133020212100+1131100020330132|2130123023122101|0230300322130012|1112032221130321
+Output: ",3023220131113232
+Cellular_Bounds,16,64,0,4625262535743436|4336201122773634|3131421453443105|4174115604245705+2255323416540133|4530167262326212|0474644664323375|4045402752130702,7102606154503572106637040532204636262663377665030241520556376607,7120586052283561,0.09375,0.0,2,8,"You are a deterministic arithmetic calculator.
+Task: Add two 64-digit numbers in base 8.
+Constraint: The input may contain vertical bars (|) as structural boundaries.
+Ignore them when computing. The + symbol is the operator, ignored when summing.
+Output ONLY the 64-digit sum, zero-padded. No spaces, no explanations.
+
+Input: 4625262535743436|4336201122773634|3131421453443105|4174115604245705+2255323416540133|4530167262326212|0474644664323375|4045402752130702
+Output: ",7120586052283561

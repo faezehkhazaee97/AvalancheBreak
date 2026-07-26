@@ -1,0 +1,3 @@
+Task,Base_Diag,Cell_Diag,Delta_Diag,Base_Entropy,Cell_Entropy,Delta_Entropy,Cell_Boundary_Attn
+cyclic_shift (boundaries HELP),0.08354331,0.07485351,-0.008689798,1.0177948,1.4574684,0.43967354,0.13961461
+running_xor (boundaries HURT),0.06443049,0.06575927,0.0013287812,1.3539147,1.6280154,0.27410066,0.11178165

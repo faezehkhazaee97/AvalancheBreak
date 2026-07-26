@@ -1,0 +1,755 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Alphabet_Size,Prompt,Raw_Model_Output
+Base,0,4,0,ADBC,CADB,DBCD,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADBC
+Output: ",DBCD
+Base,0,4,0,CABB,FGCC,GGHH,0.25,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CABB
+Output: ",GGHH
+Cellular_Bounds,1,4,0,A|D|A|A,CACC,BCBD,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|D|A|A
+Output: ",B|C|B|D
+Cellular_Bounds,1,4,0,C|B|A|B,FCGC,GACA,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B
+Output: ",G|A|C|A
+Cellular_Bounds,2,4,0,BB|BD,DDDA,AACC,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|BD
+Output: ",AA|CC
+Cellular_Bounds,2,4,0,EA|CH,HGFD,EBHF,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EA|CH
+Output: ",EB|HF
+Cellular_Bounds,3,4,0,DAA|A,ACCC,BCCA,0.5,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DAA|A
+Output: ",BCC|A
+Cellular_Bounds,3,4,0,ACB|A,GFCG,CEGC,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACB|A
+Output: ",CEG|C
+Base,0,8,0,DDCACAAC,AABCBCCB,BBAAABCD,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCACAAC
+Output: ",BBAAABCD
+Base,0,8,0,HGBGHGEC,DACADAHF,AFEGFECE,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HGBGHGEC
+Output: ",AFEGFECE
+Cellular_Bounds,1,8,0,D|D|B|D|C|C|D|C,AADABBAB,BBCBAABA,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|D|B|D|C|C|D|C
+Output: ",B|B|C|B|A|A|B|A
+Cellular_Bounds,1,8,0,H|G|E|A|B|E|G|C,DAHGCHAF,AHBCFBCD,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|G|E|A|B|E|G|C
+Output: ",A|H|B|C|F|B|C|D
+Cellular_Bounds,2,8,0,DD|AD|DD|BA,AACAAADC,BBCDBBCA,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DD|AD|DD|BA
+Output: ",BB|CD|BB|CA
+Cellular_Bounds,2,8,0,FB|DD|HG|AE,ECBBDAGH,CBHFFACG,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FB|DD|HG|AE
+Output: ",CB|HF|FA|CG
+Cellular_Bounds,3,8,0,BBC|DBA|AD,DDBADCCA,CCBAADDB,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBC|DBA|AD
+Output: ",CCB|AAD|DB
+Cellular_Bounds,3,8,0,CCB|GFB|DB,FFCAECBC,GGGHHHEE,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CCB|GFB|DB
+Output: ",GGG|HHH|EE
+Cellular_Bounds,4,8,0,DADB|DAAD,ACADACCA,CBDBCBBC,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DADB|DAAD
+Output: ",CBDB|CBBC
+Cellular_Bounds,4,8,0,DDCB|FBCC,BBFCECFF,EEHHHDFE,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCB|FBCC
+Output: ",EEHH|HDFE
+Base,0,16,0,BDAADBCDDDBBACCA,DACCADBAAADDCBBC,ADBDBDCDDCBACCA,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",ADBDBDCDDCBACCA
+Base,0,16,0,HHHBFEGDGBCGHCEA,DDDCEHABACFADFHG,FAHCGEBHFEDG,0.0625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HHHBFEGDGBCGHCEA
+Output: ",FAHCGEBHFEDG
+Cellular_Bounds,1,16,0,C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C,BBDBBDBADAACAABB,DDADDADCACCDCCAD,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C
+Output: ",D|D|A|D|D|A|D|C|A|C|C|D|C|C|A|D
+Cellular_Bounds,1,16,0,C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G,FHCAHCDFEGEGCDAA,GCAFHACEDCDCACGH,0.0625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G
+Output: ",G|C|A|F|H|A|C|E|D|C|D|C|A|C|G|H
+Cellular_Bounds,2,16,0,DA|BA|CB|BA|DC|CC|DD|DB,ACDCBDDCABBBAAAD,DBACBDACCBDACDCB,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DA|BA|CB|BA|DC|CC|DD|DB
+Output: ",DB|AC|BD|AC|CB|DA|CD|CB
+Cellular_Bounds,2,16,0,FD|EA|DB|FG|CG|GA|FB|GA,EBHGBCEAFAAGECAG,ECHBGHCFEDFADBED,0.125,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FD|EA|DB|FG|CG|GA|FB|GA
+Output: ",EC|HB|GH|CF|ED|FA|DB|ED
+Cellular_Bounds,3,16,0,DDB|BDA|AAB|BAA|ABD|C,AADDACCCDDCCCDAB,CCBCDADDDDCCDBCB,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDB|BDA|AAB|BAA|ABD|C
+Output: ",CCB|CDA|DDD|DCC|DBC|B
+Cellular_Bounds,3,16,0,GGC|GDA|EEA|FCB|DHB|E,AAFABGHHGEFCBDCH,HHFCEBBAAHFDG,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GGC|GDA|EEA|FCB|DHB|E
+Output: ",HHF|CEB|BAA|HFD|G
+Cellular_Bounds,4,16,0,CACD|BACA|BDBB|DCCD,BCBADCBCDADDABBA,DDAADCCACADBBAAA,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",DDAA|DCCA|CADB|BAAA
+Cellular_Bounds,4,16,0,CGAC|ABDG|GBFE|CHGG,FAGFGCBAACEHFDAA,HGCEGFBIDFGHAFHH,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGAC|ABDG|GBFE|CHGG
+Output: ",HGCE|GFBI|DFGH|AFHH
+Cellular_Bounds,8,16,0,BDBADADA|ABDDCCAA,DADCACACCDAABBCC,ADBDBDCADCBBAAAD,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBADADA|ABDDCCAA
+Output: ",ADBDBDCA|DCBBAAAD
+Cellular_Bounds,8,16,0,CGEACHDG|HBABBFBH,FAHGFDBADCGCCECD,HGEBDFGHFCGGGBFC,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGEACHDG|HBABBFBH
+Output: ",HGEBDFGH|FCGGGBFC
+Base,0,32,0,ACBDBABCCCACDDABBCCADAACBCDACDCD,CBDADCDBBBCBAACDDBBCACCBDBACBABA,DDACBACDADBDCCADCBDBDDCADBCDCDCB,0.15625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACBDBABCCCACDDABBCCADAACBCDACDCD
+Output: ",DDACBACDADBDCCADCBDBDDCADBCDCDCBC
+Base,0,32,0,ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE,GBDDAHHGDCHEHCCCAEDBFAFDADCDBCHH,bdHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE
+Output: ",bdHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE
+Cellular_Bounds,1,32,0,C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C,BDCDABDCACDBCDBBDACBABDCBBCAADAB,DABCABCABDACABCCADDBADABACABCAC,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C
+Output: ",D|A|B|C|A|B|C|A|B|D|A|C|A|B|C|C|A|D|D|B|A|D|A|B|A|C|A|B|C|A|C
+Cellular_Bounds,1,32,0,H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F,DFHFAAEDCGHEFBCHHEDCCCAGCHCEDEHE,AGBGCCDACABCCHGCCDACCCFBCBCDACCC,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F
+Output: ",A|G|B|G|C|C|D|A|C|A|B|C|C|H|G|C|C|D|A|C|C|C|F|B|C|B|C|D|A|C|C|C
+Cellular_Bounds,2,32,0,CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA,BCABCBCDBDCBDDCBAABDADBDAADCDDBC,DACBDADBBDDACBDACBBDDACBBDCDCBDA,0.15625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA
+Output: ",DA|CB|DA|DB|BD|DA|CB|DA|CB|BD|DA|CB|BD|CD|CB|DA
+Cellular_Bounds,2,32,0,CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE,FDAEEHABADBDBDEFCGCGEBBBGACBGHDH,HGCFDEHFHAGBGBDFCBCBFEDDGABDEBHE,0.15625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE
+Output: ",HG|CF|DE|HF|HA|GB|GB|DF|CB|CB|FE|DD|GA|BD|EB|HE
+Cellular_Bounds,3,32,0,AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB,CCABACDDBADADCDCCBBBDBACCBBDBCBD,BBBGGGCCCFFFDDDEEEAAAGGGAAADDDGG,0.09375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB
+Output: ",BBB|GGG|CCC|FFF|DDD|EEE|AAA|GGG|AAA|DDD|GG
+Cellular_Bounds,3,32,0,EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG,HHFEBHHAHEEHCDGDBHBDGAHBHHBBCCHA,DHCGFBEBEDFCCHAAFDHFAFGEEEDDHBEF,0.0625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG
+Output: ",DHC|GFB|EBE|DFC|CHA|AFD|HFA|FGE|EED|DHB|EFG
+Cellular_Bounds,4,32,0,BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC,DDDDADABCBCCBDCDCADCBBADAABCCBDB,BBBBDBDCACAACBABADBACCDBDDCAACBC,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC
+Output: ",BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC
+Cellular_Bounds,4,32,0,CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF,FBCHABDCDEHHCDGABHCBBFCHEDGFCFCE,GHECHFEDDFBGAFHCGHECGHEBBDFCEGBF,0.09375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF
+Output: ",GHEC|HFED|DFBG|AFHC|GHEC|GHEB|BDFC|EGBF
+Cellular_Bounds,8,32,0,BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD,DDDBABDCADADBDDBBBAAABBBBCDDAACA,AAADDDDACCACBBBDDDAAAACCDDBBAAAB,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD
+Output: ",AAADDDDA|CCACBBBD|DDAAAACC|DDBBAAAB
+Cellular_Bounds,8,32,0,EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG,HEAAFFHHHBEBCFCDFAFEFEDFBGFGBAHA,DHEHEGGEGHDFHFHBCEBEDEHBFGBCHIFB,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG
+Output: ",DHEHEGGE|GHDFHFHB|CEBEDEHB|FGBCHIFB
+Cellular_Bounds,16,32,0,CACBDAABBDCAAABA|AACDCAADBACBCCDD,BCBDACCDDABCCCDCCCBABCCADCBDBBAA,DDCBAAABBDCCADADAADBBCCADBCADDDB,0.21875,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACBDAABBDCAAABA|AACDCAADBACBCCDD
+Output: ",DDCBAAABBDCCADAD|AADBBCCADBCADDDB
+Cellular_Bounds,16,32,0,FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH,EDFDGDDACEAHEABHABAHFGBBHHGHHFDD,GHAGDCEBGAEBDFHGDGECADDEEAEECHH,0.0,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH
+Output: ",GHAGDCEBGAEBDFH|GDGECADDEEAEECHH
+Base,0,64,0,BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC,DBDDBDCABDCDCBDCBBCAADCAAACADCADCDDDBDBBCDADDBBBBBCCDBCBDAADCCBB,ACACDACDCBDCACDCDACBDCDACBDCDACDCDACBDCDACBDCDACDCDACBDCDACBDCDA,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC
+Output: ",ACACDACDCBDCACDCDACBDCDACBDCDACDCDACBDCDACBDCDACDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACBDCDACB
+Base,0,64,0,EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE,HBHGDFEACDBFCEDDEAGAFDDGDEGBEFDDGEFDBBCABCBADHBBBHBDEEGGBBFFGHGH,HCBHEHDDHBFHBDHFDHDFHBDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHF,0.046875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE
+Output: ",HCBHEHDDHBFHBDHFDHDFHBDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDHFDH
+Cellular_Bounds,1,64,0,D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B,ABBADBACBDDCBDCABCBCDDACACDABDAACCCADBBADBCBAAADDBABABADCDDCDAAD,DDADCADDCAADAABDDDADBBADDDBADABDADDDDDBADABDDDDDABAADDDDDA,0.15625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B
+Output: ",D|D|A|D|C|A|D|D|C|A|A|D|A|A|B|D|D|D|A|D|B|B|A|D|D|D|B|A|D|A|B|D|A|D|D|D|D|D|B|A|D|A|B|D|D|D|D|D|A|B|A|A|D|D|D|D|D|A|
+Cellular_Bounds,1,64,0,B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H,CFAECACCBDFCECFAHAHHCDCHBHBHAHDCGACDDCDHAEHCHBGEBFAEFGBAGHGCCEDD,AGHCCFAAGCEADAEHCFCCAGACGCCHACGGAGCECAADCCAGACBCCAACGCACAA,0.078125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H
+Output: ",A|G|H|C|C|F|A|A|G|C|E|A|D|A|E|H|C|F|C|C|A|G|A|C|G|C|C|H|A|C|G|G|A|G|C|E|C|A|A|D|C|C|A|G|A|C|B|C|C|A|A|C|G|C|A|C|A|A|
+Cellular_Bounds,2,64,0,DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD,ABDBCBAACCDDBCAADCDDBDCCBDDDDABBAABDDDACBAACAABBCCDBBCBADBDCDCAA,DCBCACDDAABBCADDBABBCBAACBBBBDCCDDCBBBDACDDADDCCAABCCACDBCBABADD,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD
+Output: ",DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD
+Cellular_Bounds,2,64,0,CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF,FHGFEDHCHCDFDFBEHEEFHEACHCHEEHHFGEGHABGDGFCEDDCHDACEABDFFEHFBBCE,EGCEHFGBGBIFIFDEGFCDGFDAGBGFEDCECIIHAGCECIBFHHBGHIBFIHIFIFDEDDBF,0.109375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF
+Output: ",EG|CE|HF|GB|GB|IF|IF|DE|GF|CD|GF|DA|GB|GF|ED|CE|CI|IH|AG|CE|CI|BF|HH|BG|HI|BF|IH|IF|IF|DE|DD|BF
+Cellular_Bounds,3,64,0,CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D,BDAAABDBBADBCDCBDADDABAACCABDCDBACDDBACACBCABBCABBCCADBBDCCDADCA,DBADDBACCDCADADDBADADBDBDCCCBADCADADCBACDBBACCBACDABDABCCDABC,0.203125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D
+Output: ",DBA|DDB|ACC|DCA|DAD|DBA|DAD|BDB|DCC|CBA|DCA|DAD|CBA|CDB|BAC|CBA|CDA|BDA|BCC|DAB|C
+Cellular_Bounds,3,64,0,ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B,GFDCBDGFECCHGFDDGDHFDDCGBBGEDDHHBDCBAFAGEDAHBDHHCFBEHDACFGFGEAFC,BHFGDACEGHCFBHFAHBEFGHAGDDEHIFGDAHGFCEGCHGGEBHCFGDADFHCEGHIFCEg,0.0625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B
+Output: ",BHF|GDA|CEG|HCF|BHF|AHB|EFG|HAG|DDE|HIF|GDA|HGF|CEG|CHG|GEB|HCF|GDA|DFH|CEG|HIF|CEg
+Cellular_Bounds,4,64,0,BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC,DADAAACDCDBBBBACDDCDDCDBADCCCDBDBCDCBACDBCBBBCCCCBBCDBBDBDCCBDCB,ADBBDBDCBBDBDDBBCBDAABCBACABDBCACAAADCCBBADAADBC,0.09375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC
+Output: ",ADB|BDB|DCB|BDB|DDB|BCB|DAA|BCB|ACA|BDB|CAC|AAA|DCC|BBA|DAA|DBC
+Cellular_Bounds,4,64,0,AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD,GEHBCECAHCHEBEEEBHBAAEADBBCBCECCDCAFGEAAEDFFGBFECDHFBAEEHDFEEGCB,BCGHHFBCGBCEHFDDHCFBDFBHHFBDGFBDFDEABCGHDFCCBEGFHFECDFGHHCFEDFBA,0.0625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD
+Output: ",BCGH|HFBC|GBCE|HFDD|HCFB|DFBH|HFBD|GFBD|FDEA|BCGH|DFCC|BEGF|HFEC|DFGH|HCFE|DFBA
+Cellular_Bounds,8,64,0,DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA,AADBDCDCDABAAADCBCCDBDABAAACAAABCAACCAABBDADBBBADDCBBCBACDADBCBC,BCCADBCADBCCCDBAADCBADDABDCCBDDABDCBCCDBDACDBADBC,0.140625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA
+Output: ",BCCADB|CADBCC|CDBAADC|BADDAB|DCCBDD|ABDCBC|CDBDAC|DBADBC
+Cellular_Bounds,8,64,0,DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE,BHCDGDEAGDGCHBHBEDCBDFBFHEEAGEBAFGDGFDBFFAGBCFGBHAGBDBDCFECFBCDH,EHDEBEHGCEGBDFHAHGFEDCBAGDFHGEFAEGBDFHCAEGBDFHCAGDFHGEFACBDFHAGE,0.171875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE
+Output: ",EHDEBEHG|CEGBDFHA|HGFEDCBA|GDFHGEFA|EGBDFHCA|EGBDFHCA|GDFHGEFA|CBDFHAGE
+Cellular_Bounds,16,64,0,CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC,BCBBDBBBCDDCBBCDBBBDADDBBCDCCCCCCAABBDAACCAACDDDCBABBBABACDABADB,DDCCDDCDDCDDCDDCDDCCDDCDDCDDCDDCDDCCDDCDDCDDCDDCDDCCDDCDDCDDCDDC,0.234375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC
+Output: ",DDCCDDCDDCDDCDDC|DDCCDDCDDCDDCDDC|DDCCDDCDDCDDCDDC|DDCCDDCDDCDDCDDC
+Cellular_Bounds,16,64,0,DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA,BDADGAEDBFABCECFBFAEGEDFGADAFGHCABECHHBAEHHGHGGBEFGFBEEECEBFADGG,EHFEHEHFEHFEHFEHEHFHEHFHEHFHEHFEHFHEHFHEHFHEHHFHEHFHEHFHEHFE,0.0625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D, E, F, G, H
+Step 1 mapping: A→B, B→A, C→G, D→E, E→D, F→C, G→H, H→F
+Step 2 mapping: A→C, B→G, C→E, D→H, E→B, F→D, G→F, H→A
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA
+Output: ",EHFEHEHFEHFEHFE|HEHFHEHFHEHFHEH|FEHFHEHFHEHFHEH|HFHEHFHEHFHEHFE
