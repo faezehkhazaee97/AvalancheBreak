@@ -1,0 +1,49 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,FULL_PROMPT,RAW_MODEL_OUTPUT
+Base,0,4,0,HQQJ,SFFU,SVRU,0.5,0.0,1,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HQQJ
+Output: ","SVRU
+
+(Raw model output before cleaning)"
+Base,0,4,1,VOHG,KNSR,SRQS,0.0,0.0,0,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: VOHG
+Output: ","SRQS
+
+(Raw model output before cleaning)"
+Cellular_Bounds,1,4,0,O|U|K|Z,N|J|V|C,N|T|V|X,0.7143,0.0,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: O|U|K|Z
+Output: ","N|T|V|X
+
+(Raw model output before cleaning)"
+Cellular_Bounds,1,4,1,L|R|Q|K,M|G|F|V,M|N|F|V,0.8571,0.0,2,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: L|R|Q|K
+Output: ","M|N|F|V
+
+(Raw model output before cleaning)"

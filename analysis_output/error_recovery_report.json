@@ -1,0 +1,69 @@
+{
+  "task_structure": {
+    "Character Substitution": {
+      "tier": "Tier 1",
+      "dependency": "Position-local",
+      "cascading": "False",
+      "description": "Deterministic mapping A\u2194X, B\u2194Y, etc. Error at position i does not affect position j (i\u2260j).",
+      "recovery_potential": "High - errors are isolated"
+    },
+    "Running XOR": {
+      "tier": "Tier 2",
+      "dependency": "Single-previous",
+      "cascading": "False",
+      "description": "output[i] = input[i] \u2295 input[i-1]. Error at i affects i+1 through XOR. BUT: error at i+1 can be self-corrected by checking parity with i+2.",
+      "recovery_potential": "High - self-correcting structure"
+    },
+    "Running Sum Local": {
+      "tier": "Tier 2",
+      "dependency": "Single-previous",
+      "cascading": "True",
+      "description": "output[i] = (input[i] + input[i-1]) mod M. Carry propagates forward.",
+      "recovery_potential": "Medium - carry chain propagates"
+    },
+    "Modsum": {
+      "tier": "Tier 3",
+      "dependency": "Global state",
+      "cascading": "True",
+      "description": "output[i] = cumsum(input[0..i]) mod M. Error at position i affects all downstream cumulative sums.",
+      "recovery_potential": "Low - global state corrupted"
+    },
+    "Integer Addition": {
+      "tier": "Tier 3",
+      "dependency": "Global state",
+      "cascading": "True",
+      "description": "Standard addition with carry propagation. Error in carry affects all higher digits.",
+      "recovery_potential": "Low - carry propagates through all positions"
+    }
+  },
+  "findings": [
+    {
+      "title": "1. Non-cascading tasks enable higher sequence accuracy",
+      "detail": "\nCharacter Substitution (non-cascading) achieves:\n  - 7B: 15.1% SAR (sequence accuracy)\n  - 32B: 27.2% SAR (2x improvement)\n\nvs. Cascading tasks (Modsum, Addition) with SAR < 5%.\nThe absence of error propagation allows both models to achieve end-to-end correctness more often.\n            "
+    },
+    {
+      "title": "2. Running XOR: The anomaly that proves the rule",
+      "detail": "\nRunning XOR is TECHNICALLY cascading (output[i] depends on input[i] and input[i-1]),\nbut shows MAXIMAL improvement (+47% TAR, 18.9% SAR for 32B).\n\nWhy? The XOR operation is self-correcting at the structural level:\n  - If there's an error at position i, position i+1 can be computed correctly\n    using the ERRONEOUS value at i as input.\n  - The error is \"consumed\" by the next XOR operation, not propagated.\n  - 32B's superior arithmetic makes this property tractable.\n\nThis suggests: Task structure matters MORE than whether dependencies exist.\n            "
+    },
+    {
+      "title": "3. Carry propagation is the bottleneck",
+      "detail": "\nModsum and Integer Addition show the SMALLEST improvements:\n  - Modsum: +9.1% TAR (0.49% \u2192 4.41% SAR)\n  - Addition: +11.5% TAR (0.81% \u2192 6.69% SAR)\n\nBoth have TRUE cascading errors: carry from position i corrupts all positions i+1, i+2, ...\nOnce carry is wrong, the model must reconstruct the entire global state.\n32B does better here, but the task structure is the hard limit.\n\nImplication: Raw model scaling has diminishing returns on cascading tasks.\n            "
+    },
+    {
+      "title": "4. Boundary tokens help clarity, not recovery",
+      "detail": "\nBoundaries (\"|\") partition sequences into chunks. They help models:\n  \u2713 Reduce position ambiguity (clearer local context)\n  \u2713 Structure input for cleaner attention patterns\n  \u2717 Do NOT prevent error propagation\n  \u2717 Do NOT make cascading tasks non-cascading\n\nThis explains why position-local tasks (Char Sub) show smaller improvements\nthan single-previous tasks (Running Sum, XOR)\u2014boundaries are most helpful\nwhen the model struggles with compressed state, which they already solve for position-local tasks.\n            "
+    },
+    {
+      "title": "5. SAR-TAR gap signals error clustering, not just random errors",
+      "detail": "\nTypical gap (Running XOR):\n  - TAR: 82.7% (32B)\n  - SAR: 19.0% (32B)\n\nThis ~4x gap means errors are NOT uniformly distributed.\nMany sequences contain MULTIPLE consecutive errors.\n\nIf errors were independent: SAR \u2248 TAR^L (where L = sequence length)\nActual SAR >> TAR^L, indicating errors cluster.\n\nThis implies: Model errors are correlated across positions (once it goes wrong,\nit stays wrong until the task structure forces self-correction).\n            "
+    }
+  ],
+  "recommendations": [
+    "1. Design tasks with self-correcting structure (like XOR) to maximize scaling benefit.",
+    "2. For unavoidable cascading tasks, explore:\n   - Hierarchical decoding (compute partial sums, then combine)\n   - Residual/correction passes (model corrects its own errors)\n   - Explicit state tracking (separate model head for cumulative state)",
+    "3. Investigate why 32B's SAR (19% XOR) remains so low despite 82.7% TAR.\n   Hypothesis: Error clustering from cascading position-level mistakes.",
+    "4. Test whether constrained decoding (forcing carry values to be valid) helps cascading tasks.",
+    "5. Analyze attention patterns: Do 32B models attend differently to boundaries than 7B?\n   This could explain asymmetric improvement across models."
+  ],
+  "analysis_date": "2026-07-11"
+}

@@ -1,5 +1,6 @@
 # Model weights, HF cache, and environments -- large, machine-specific, never commit
 hf_cache/
+.hf_cache/
 .conda/
 .cache/
 __pycache__/

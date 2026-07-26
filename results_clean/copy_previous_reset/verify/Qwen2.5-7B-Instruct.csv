@@ -1,0 +1,378 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Prompt,Raw_Model_Output
+Base,0,4,0,1001,1100,1100,1.0,1.0,4,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1001
+Output: ",1100
+Cellular_Bounds,1,4,0,1|1|1|0,1110,1111,0.75,0.0,3,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|1|0
+Output: ",1111|1|1|
+Cellular_Bounds,2,4,0,10|01,1100,1101,0.75,0.0,3,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10|01
+Output: ",11|01
+Cellular_Bounds,3,4,0,000|0,0000,t000,0.75,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 000|0
+Output: ",t00|0
+Base,0,8,0,10010011,11001001,11001001,1.0,1.0,8,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10010011
+Output: ",11001001
+Cellular_Bounds,1,8,0,0|0|0|1|1|0|0|1,00011001,t0t01t01,0.5,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|0|1|1|0|0|1
+Output: ",t|0|t|0|1|t|0|1
+Cellular_Bounds,2,8,0,11|01|11|01,11001100,11111111,0.5,0.0,2,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 11|01|11|01
+Output: ",11|11|11|11
+Cellular_Bounds,3,8,0,100|011|11,11000111,11001111,0.875,0.0,4,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 100|011|11
+Output: ",110|011|11
+Cellular_Bounds,4,8,0,1001|1111,11001111,11001111,1.0,1.0,8,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1001|1111
+Output: ",1100|1111
+Base,0,16,0,0011011101101100,0001101110110110,t011s111s111s111,0.5,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0011011101101100
+Output: ",t011s111s111s111
+Cellular_Bounds,1,16,0,0|0|0|0|1|0|1|0|0|1|0|0|1|1|0|0,0000101001001100,t0t01t1t01t011t0,0.625,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|0|0|0|1|0|1|0|0|1|0|0|1|1|0|0
+Output: ",t|0|t|0|1|t|1|t|0|1|t|0|1|1|t|0
+Cellular_Bounds,2,16,0,01|01|11|00|10|10|11|11,0000110011111111,t11111s1101s1111,0.5,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 01|01|11|00|10|10|11|11
+Output: ",t1|11|11|s1|10|1s|11|11
+Cellular_Bounds,3,16,0,011|000|110|110|011|1,0010001111110011,t111p01111111111,0.625,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 011|000|110|110|011|1
+Output: ",t11|1p0|111|111|111|1
+Cellular_Bounds,4,16,0,0010|1010|1101|0101,0001110111100010,t011110111110101,0.625,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0010|1010|1101|0101
+Output: ",t011|1101|1111|0101
+Cellular_Bounds,8,16,0,01001110|11000110,0010011111100011,t110011111110001,0.75,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 01001110|11000110
+Output: ",t1100111|1111000111
+Base,0,32,0,10111000001100111100100011110100,11011100000110011110010001111010,11111111111111111111111111111111,0.53125,0.0,2,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10111000001100111100100011110100
+Output: ",11111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,1,32,0,1|1|0|1|0|0|1|1|1|0|0|1|0|1|1|1|0|1|1|0|0|1|0|1|0|0|1|1|1|1|1|1,11010011100101110110010100111111,1111010111010111011010111111,0.59375,0.0,2,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1|1|0|1|0|0|1|1|1|0|0|1|0|1|1|1|0|1|1|0|0|1|0|1|0|0|1|1|1|1|1|1
+Output: ",1|1|1|1|0|1|0|1|1|1|0|1|0|1|1|1|0|1|1|0|1|0|1|1|1|1|1|1
+Cellular_Bounds,2,32,0,01|11|10|00|11|00|00|11|11|00|11|01|01|10|00|11,00111100110000111100110000110011,t111111s0p111s0p11111s0p1111100s,0.34375,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 01|11|10|00|11|00|00|11|11|00|11|01|01|10|00|11
+Output: ",t1|11|11|1s|0p|11|1s|0p|11|11|1s|0p|11|11|10|0s|11
+Cellular_Bounds,3,32,0,001|001|110|010|000|110|100|111|000|000|11,00000011100100011111011100000011,t011p11181101p01181011111p01p011,0.4375,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 001|001|110|010|000|110|100|111|000|000|11
+Output: ",t01|1p1|118|110|1p0|118|101|111|1p0|1p0|11
+Cellular_Bounds,4,32,0,1001|1011|0010|1011|0110|1111|1111|0111,11001101000111010011111111110011,110011111011111101111111111111,0.71875,0.0,6,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1001|1011|0010|1011|0110|1111|1111|0111
+Output: ",1100|1111|101|1111|101|1111|1111|1111
+Cellular_Bounds,8,32,0,00011101|01111011|01101000|10000010,00001110001111010011010011000001,t0001110111111011111110110100000,0.6875,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00011101|01111011|01101000|10000010
+Output: ",t00011101|11111011|11111011|01000001
+Cellular_Bounds,16,32,0,1111101011011010|1000010100000001,11111101011011011100001010000000,1111s11111111111101011111111111,0.46875,0.0,4,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1111101011011010|1000010100000001
+Output: ",1111s1111111111|1101011111111111
+Base,0,64,0,1001111100001110010111100100010100111111111100010001100100101000,1100111110000111001011110010001010011111111110001000110010010100,1101111110111011111111111111111111111111111111111111111111111111,0.546875,0.0,3,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1001111100001110010111100100010100111111111100010001100100101000
+Output: ",11011111101110111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+Cellular_Bounds,1,64,0,0|1|1|0|1|1|0|1|0|1|1|0|0|0|0|1|0|1|0|0|1|0|1|1|0|0|1|0|1|0|0|0|1|0|1|0|1|1|1|1|1|0|0|0|1|0|1|0|0|0|1|1|0|0|0|0|0|0|1|1|1|1|1|1,0110110101100001010010110010100010101111100010100011000000111111,t11t11t1t11t1t11t1t11t1t11t1t11t1t11t1t11t1t11t1t11t1t11t1,0.28125,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0|1|1|0|1|1|0|1|0|1|1|0|0|0|0|1|0|1|0|0|1|0|1|1|0|0|1|0|1|0|0|0|1|0|1|0|1|1|1|1|1|0|0|0|1|0|1|0|0|0|1|1|0|0|0|0|0|0|1|1|1|1|1|1
+Output: ",t|1|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|t|1|1|t|1|
+Cellular_Bounds,2,64,0,01|00|10|11|10|01|11|01|11|11|00|00|10|00|00|10|11|01|00|10|01|11|11|11|01|01|11|11|10|00|00|10,0000111111001100111100001100001111000011001111110000111111000011,t11t10111tt111t111111tt110t1t0t111t1t111111tt111111t11t1111tt110,0.421875,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 01|00|10|11|10|01|11|01|11|11|00|00|10|00|00|10|11|01|00|10|01|11|11|11|01|01|11|11|10|00|00|10
+Output: ",t1|1t|10|11|1t|t1|11|t1|11|11|1t|t1|10|t1|t0|t1|11|t1|t1|11|11|1t|t1|11|11|1t|11|t1|11|1t|t1|10|t1|t0|t1
+Cellular_Bounds,3,64,0,001|100|010|110|101|100|000|110|010|011|100|000|010|001|011|011|011|110|111|101|010|0,0001100011111101100001110010011100000010000010010011111111100010,t010111000111011111001111010110000100010110110111111111000100,0.5625,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 001|100|010|110|101|100|000|110|010|011|100|000|010|001|011|011|011|110|111|101|010|0
+Output: ",t01|011|100|011|101|111|100|111|101|011|000|010|001|011|011|011|111|111|100|010|0
+Cellular_Bounds,4,64,0,1010|0011|1100|0011|1110|0101|0101|0101|1111|1011|0011|0101|1011|1111|0100|1010,1101000111100001111100100010001011111101000100101101111100101101,111100111111001111110101111101011111111100111111111101001111,0.546875,0.0,2,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 1010|0011|1100|0011|1110|0101|0101|0101|1111|1011|0011|0101|1011|1111|0100|1010
+Output: ",1111|0011|1111|0011|1111|0101|1111|0101|1111|1111|0011|1111|1111|0100|1111
+Cellular_Bounds,8,64,0,10010011|00101110|11101110|10100110|11011100|00111111|00011100|01011000,1100100100010111111101111101001111101110000111110000111000101100,11010011001110111100110011101111001100110101,0.34375,0.0,3,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 10010011|00101110|11101110|10100110|11011100|00111111|00011100|01011000
+Output: ",1101|0011|0011|101|111|0011|0011|101|111|0011|0011|0101
+Cellular_Bounds,16,64,0,0001001001001110|0111111000011000|0101010010000011|0011100010101000,0000100100100111001111110000110000101010010000010001110001010100,t001001001001110111111t000110t0101010010000011001110t0010101000,0.453125,0.0,0,"You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as ""previous""), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 0001001001001110|0111111000011000|0101010010000011|0011100010101000
+Output: ",t00100100100111|0111111t000110t0101010010000011|001110t0010101000

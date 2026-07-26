@@ -1,0 +1,1045 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Alphabet_Size,Prompt,Raw_Model_Output
+Base,0,4,0,ABAB,BABA,BABA,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAB
+Output: ",BA BA
+Base,0,4,0,ADBC,BCAD,BADC,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADBC
+Output: ",BADC
+Base,0,4,0,CABB,DBAA,BDAA,0.5,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CABB
+Output: ",BDAA
+Cellular_Bounds,1,4,0,A|A|B|A,BBAB,BBAB,1.0,1.0,4,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|B|A
+Output: ",B|B|A|B
+Cellular_Bounds,1,4,0,A|D|A|A,BCBB,BEBB,0.75,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|D|A|A
+Output: ",B|E|B|B
+Cellular_Bounds,1,4,0,C|B|A|B,DABA,DABA,1.0,1.0,4,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B
+Output: ",D|A|B|A
+Cellular_Bounds,2,4,0,AB|BA,BAAB,BCAB,0.75,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|BA
+Output: ",BC|AB
+Cellular_Bounds,2,4,0,BB|BD,AAAC,AACE,0.5,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|BD
+Output: ",AA|CE
+Cellular_Bounds,2,4,0,EA|CH,FBDG,DBFD,0.25,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EA|CH
+Output: ",DB|FD
+Cellular_Bounds,3,4,0,ABB|A,BAAB,BAAA,0.75,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|A
+Output: ",BAA|A
+Cellular_Bounds,3,4,0,DAA|A,CBBB,EBAA,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DAA|A
+Output: ",EBA|A
+Cellular_Bounds,3,4,0,ACB|A,BDAB,BDA,0.75,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACB|A
+Output: ",BD|A
+Base,0,8,0,BABBBBAB,ABAAAABA,AABAAABA,0.75,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABBBBAB
+Output: ",AABAAABA
+Base,0,8,0,DDCACAAC,CCDBDBBD,EEBBZBZD,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCACAAC
+Output: ",EEBBZBZD
+Base,0,8,0,HGBGHGEC,GHAHGHFD,IGHFIHGD,0.25,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HGBGHGEC
+Output: ",IGHFIHGDF
+Cellular_Bounds,1,8,0,A|A|A|A|B|A|B|B,BBBBABAA,BBBBABAA,1.0,1.0,8,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|A|A|B|A|B|B
+Output: ",B|B|B|B|A|B|A|A
+Cellular_Bounds,1,8,0,D|D|B|D|C|C|D|C,CCACDDCD,EEAEBBEB,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|D|B|D|C|C|D|C
+Output: ",E|E|A|E|B|B|E|B
+Cellular_Bounds,1,8,0,H|G|E|A|B|E|G|C,GHFBAFHD,IFDZCDHB,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|G|E|A|B|E|G|C
+Output: ",I|F|D|Z|C|D|H|B
+Cellular_Bounds,2,8,0,BA|BB|BA|AA,ABAAABBB,ABBAABBB,0.875,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BA|BB|BA|AA
+Output: ",AB|BA|AB|BB
+Cellular_Bounds,2,8,0,DD|AD|DD|BA,CCBCCCAB,EEBCEEAB,0.5,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DD|AD|DD|BA
+Output: ",EE|BC|EE|AB
+Cellular_Bounds,2,8,0,FB|DD|HG|AE,EACCGHBF,EBDCGFAD,0.375,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FB|DD|HG|AE
+Output: ",EB|DC|GF|AD
+Cellular_Bounds,3,8,0,ABA|AAA|BA,BABBBBAB,BAAAABAB,0.625,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABA|AAA|BA
+Output: ",BAA|AAB|AB
+Cellular_Bounds,3,8,0,BBC|DBA|AD,AADCABBC,CCBCABDC,0.5,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBC|DBA|AD
+Output: ",CCB|CAB|DC
+Cellular_Bounds,3,8,0,CCB|GFB|DB,DDAHEACA,BBCFEBEC,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CCB|GFB|DB
+Output: ",BBC|FEB|EC
+Cellular_Bounds,4,8,0,BBAA|AAAB,AABBBBBA,CCBBAABA,0.5,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAA|AAAB
+Output: ",CCBB|AABA
+Cellular_Bounds,4,8,0,DADB|DAAD,CBCACBBC,EBCBEZZC,0.375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DADB|DAAD
+Output: ",EBCB|EZZC
+Cellular_Bounds,4,8,0,DDCB|FBCC,CCDAEADD,EECAGDBB,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDCB|FBCC
+Output: ",EECA|GDBB
+Base,0,16,0,BBABBBAABAAABABB,AABAAABBABBBABAA,CCAAACCBCBBCCACB,0.3125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABBBAABAAABABB
+Output: ",CCAAACCBCBBCCACB
+Base,0,16,0,BDAADBCDDDBBACCA,ACBBCADCCCAABDDB,CDBZBCCEDEECAAZA,0.0625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDAADBCDDDBBACCA
+Output: ",CDBZBCCEDEECAAZAZ
+Base,0,16,0,HHHBFEGDGBCGHCEA,GGGAEFHCHADHGDFB,IIIGEFDGDFBFGDhe,0.25,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HHHBFEGDGBCGHCEA
+Output: ",IIIGEFDGDFBFGDheedB
+Cellular_Bounds,1,16,0,B|A|A|B|B|A|A|B|A|A|B|A|B|A|A|B,ABBAABBABBABABBA,CBBCCBBCBBCBCBBC,0.5625,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|B|B|A|A|B|A|A|B|A|B|A|A|B
+Output: ",C|B|B|C|C|B|B|C|B|B|C|B|C|B|B|C
+Cellular_Bounds,1,16,0,C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C,DDADDADCACCBCCDD,BBABBABCACCBCCBB,0.5625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|C|B|C|C|B|C|D|B|D|D|A|D|D|C|C
+Output: ",B|B|A|B|B|A|B|C|A|C|C|B|C|C|B|B
+Cellular_Bounds,1,16,0,C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G,DFAHFAGDEBEBAGHH,DFAHDAIDEBEBGIFH,0.6875,0.0,4,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|E|B|G|E|B|H|C|F|A|F|A|B|H|G|G
+Output: ",D|F|A|H|D|A|I|D|E|B|E|B|G|I|F|H
+Cellular_Bounds,2,16,0,BB|AA|AA|BA|AB|BB|AB|BB,AABBBBABBAAABAAA,CCZZZZBBZACCBCCC,0.1875,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|AA|AA|BA|AB|BB|AB|BB
+Output: ",CC|ZZ|ZZ|BB|ZA|CC|BC|CC
+Cellular_Bounds,2,16,0,DA|BA|CB|BA|DC|CC|DD|DB,CBABDAABCDDDCCCA,DBAACBBADDCCEEDA,0.25,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DA|BA|CB|BA|DC|CC|DD|DB
+Output: ",DB|AA|CB|BA|DD|CC|EE|DA
+Cellular_Bounds,2,16,0,FD|EA|DB|FG|CG|GA|FB|GA,ECFBCAEHDHHBEAHB,GEDBECFHCHHBGCHB,0.4375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FD|EA|DB|FG|CG|GA|FB|GA
+Output: ",GE|DB|EC|FH|CH|HB|GC|HB
+Cellular_Bounds,3,16,0,BAA|ABB|BAA|AAB|BBA|A,ABBBAAABBBBAAABB,CBBABACAABABABBA,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAA|ABB|BAA|AAB|BBA|A
+Output: ",CBB|ABA|CAA|BAB|ABB|A
+Cellular_Bounds,3,16,0,DDB|BDA|AAB|BAA|ABD|C,CCAACBBBAABBBACD,EDECEzaazazbecD,0.0,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDB|BDA|AAB|BAA|ABD|C
+Output: ",EDE|CE|zaa|zaz|bec|D
+Cellular_Bounds,3,16,0,GGC|GDA|EEA|FCB|DHB|E,HHDHCBFFBEDACGAF,HGFFDBDDAGCAFHAE,0.25,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GGC|GDA|EEA|FCB|DHB|E
+Output: ",HGF|FDB|DDA|GCA|FHA|E
+Cellular_Bounds,4,16,0,BBAA|AABA|AAAA|BBAA,AABBBBABBBBBAABB,CCBBBABBAAAACCBB,0.375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAA|AABA|AAAA|BBAA
+Output: ",CCBB|BABB|AAAA|CCBB
+Cellular_Bounds,4,16,0,CACD|BACA|BDBB|DCCD,DBDCABDBACAACDDC,BABAAABBADBADCDE,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACD|BACA|BDBB|DCCD
+Output: ",BABA|AABB|ADBA|DCDE
+Cellular_Bounds,4,16,0,CGAC|ABDG|GBFE|CHGG,DHBDBACHHAEFDGHH,DHBFABDEGBDFCHGF,0.25,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGAC|ABDG|GBFE|CHGG
+Output: ",DHBF|ABDE|GBDF|CHGF
+Cellular_Bounds,8,16,0,ABAAAABA|BABBAAAA,BABBBBABABAABBBB,BAABAAABBAAAABAA,0.5,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAAAABA|BABBAAAA
+Output: ",BAABAAAB|BAAAABAA
+Cellular_Bounds,8,16,0,BDBADADA|ABDDCCAA,ACABCBCBBACCDDBB,CCEAZDZBAACCBBZD,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBADADA|ABDDCCAA
+Output: ",CCEAZDZB|AACCBBZD
+Cellular_Bounds,8,16,0,CGEACHDG|HBABBFBH,DHFBDGCHGABAAEAG,DHFDGCFDHBABBFBH,0.1875,0.0,3,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGEACHDG|HBABBFBH
+Output: ",DHFDGCFD|HBABBFBH
+Base,0,32,0,BBABAAABAAAAABAABAABBBBBABAABBBA,AABABBBABBBBBABBABBAAAAABABBAAAB,CCBAABAAABAAAAABAAABBBBBBAAABBBA,0.3125,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABAAABAAAAABAABAABBBBBABAABBBA
+Output: ",CCBAABAAABAAAAABAAABBBBBBAAABBBA
+Base,0,32,0,ACBDBABCCCACDDABBCCADAACBCDACDCD,BDACABADDDBDCCBAADDBCBBDADCBDCDC,BACAACBBCCCBBDCAAABCDCDCCBDBCCDC,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACBDBABCCCACDDABBCCADAACBCDACDCD
+Output: ",BACAACBBCCCBBDCAAABCDCDCCBDBCCDCA
+Base,0,32,0,ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE,BCGGHFFBGAFEFAAAHEGCDHDGHGAGCAFF,aeGGFFAGBDADEEEDDGEHCEGCGIHCHEEE,0.09375,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADHHGEEAHBEFEBBBGFHDCGCHGHBHDBEE
+Output: ",aeGGFFAGBDADEEEDDGEHCEGCGIHCHEEEDD
+Cellular_Bounds,1,32,0,B|A|A|A|A|B|B|B|B|B|A|B|B|B|B|B|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|A,ABBBBAAAAABAAAAABBBABBBBBABABBBB,ABAABCBACBCACBACABCAABACBCAABAA,0.375,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|A|A|B|B|B|B|B|A|B|B|B|B|B|A|A|A|B|A|A|A|A|A|B|A|B|A|A|A|A
+Output: ",A|B|A|A|B|C|B|A|C|B|C|A|C|B|A|C|A|B|C|A|A|B|A|C|B|C|A|A|B|A|A
+Cellular_Bounds,1,32,0,C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C,DABACDABCBADBADDACBDCDABDDBCCACD,BABADCABDABCBACCADBCDABCCBDBC,0.3125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|B|D|C|B|A|D|A|B|C|A|B|C|C|B|D|A|C|D|C|B|A|C|C|A|D|D|B|D|C
+Output: ",B|A|B|A|D|C|A|B|D|A|B|C|B|A|C|C|A|D|B|C|D|A|B|C|C|B|D|B|C
+Cellular_Bounds,1,32,0,H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F,GDFDHHEGABFEDCAFFEGAAAHBAFAEGEFE,IBDCFHEICBDEDCCDGIIIJBCDDGIGGJGG,0.21875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: H|C|E|C|G|G|F|H|B|A|E|F|C|D|B|E|E|F|H|B|B|B|G|A|B|E|B|F|H|F|E|F
+Output: ",I|B|D|C|F|H|E|I|C|B|D|E|D|C|C|D|G|I|I|I|J|B|C|D|D|G|I|G|G|J|G|G
+Cellular_Bounds,2,32,0,AB|BB|AA|BA|AB|BA|BB|BA|AA|BA|AB|BB|BB|BA|BA|AA,BAAABBABBAABAAABBBABBAAAAAABABBB,BCBCABBBBCCBACABABBBBCBCACABAB,0.5,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|BB|AA|BA|AB|BA|BB|BA|AA|BA|AB|BB|BB|BA|BA|AA
+Output: ",BC|BC|AB|BB|BC|CB|AC|AB|AB|BB|BC|BC|AC|AB|AB
+Cellular_Bounds,2,32,0,CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA,DBCDBDBADABDAABDCCDACADACCABAADB,BADBCBBCBACBAACBCCBADACBCCABAACA,0.4375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|DC|AC|AB|CB|AC|BB|AC|DD|CB|DB|CB|DD|BA|BB|CA
+Output: ",BA|DB|CB|BC|BA|CB|AA|CB|CC|BA|DA|CB|CC|AB|AA|CA
+Cellular_Bounds,2,32,0,CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE,DGHEEFHCHGCGCGEDABABECCCBHACBFGF,CIGFFEGEGIDHDHFCBAABFDDCAHBDADHE,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CH|GF|FE|GD|GH|DH|DH|FC|BA|BA|FD|DD|AG|BD|AE|HE
+Output: ",CI|GF|FE|GE|GI|DH|DH|FC|BA|AB|FD|DC|AH|BD|AD|HE
+Cellular_Bounds,3,32,0,BAA|BBA|BBB|ABA|BBB|ABA|AAA|BAB|ABB|BAB|BB,ABBAABAAABABAAABABBBBABABAAABAAA,CABCBACBBBTACBBBTAZAABACABBBACBB,0.09375,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAA|BBA|BBB|ABA|BBB|ABA|AAA|BAB|ABB|BAB|BB
+Output: ",CAB|CBA|CBB|BTA|CBB|BTA|ZAA|BAC|ABB|BAC|BB
+Cellular_Bounds,3,32,0,AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB,BBCDCBAADCACABABBDDDADCBBDDADBDA,BBBCDBABADBCABAABBCCCCDBACCBCB,0.34375,0.0,2,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAD|CDA|BBC|DBD|BAB|AAC|CCB|CDA|ACC|BCA|CB
+Output: ",BBB|CDB|ABA|DBC|ABA|ABB|CCC|CDB|ACC|BCB
+Cellular_Bounds,3,32,0,EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG,FFDECFFHFEEFAGBGCFCGBHFCFFCCAAFH,DDCFDCDFEGFDCGHGDCCFDFDECDCDAADF,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EEC|FDE|EGE|FFE|BHA|HDE|DHA|GED|EED|DBB|EG
+Output: ",DDC|FDC|DFE|GFD|CGH|GDC|CFD|FDE|CDC|DAA|DF
+Cellular_Bounds,4,32,0,ABAB|ABBB|AAAB|ABBA|AAAB|BABB|ABBA|BBBA,BABABAAABBBABAABBBBAABAABAABAAAB,BCBCBAAABBAABCBCBBAAABBCBCBCAABB,0.59375,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAB|ABBB|AAAB|ABBA|AAAB|BABB|ABBA|BBBA
+Output: ",BCBC|BAAA|BBAA|BCBC|BBAA|ABBC|BCBC|AABB
+Cellular_Bounds,4,32,0,BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC,AAAACACDBDBBDABABCABDDCACCDBBDAD,CCCCDCDDAZAZBDADBDBACDDDDDBCBABC,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|DBDC|ACAA|CBAB|ADBA|CCDB|DDCA|ACBC
+Output: ",CCCC|DCDD|AZAZ|BDAD|BDBA|CDDD|DDBC|BABC
+Cellular_Bounds,4,32,0,CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF,DCAFHCGAGEFFAGBHCFACCDAFEGBDADAE,BDCAFEGBGEDDGCHAECADCBDGCHBDACDF,0.25,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDBE|GDHB|HFEE|BHAG|DEBD|DCBE|FHAC|BCBF
+Output: ",BDCA|FEGB|GEDD|GCHA|ECAD|CBDG|CHBD|ACDF
+Cellular_Bounds,8,32,0,BBABABAB|AABAAAAA|BABBBABA|BBAAAABA,AABABABABBABBBBBABAAABABAABBBBAB,CCBAACBCBBAZAAZACABBCCBCCCZZAAZA,0.1875,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBABABAB|AABAAAAA|BABBBABA|BBAAAABA
+Output: ",CCBAACBC|BBAZAAZA|CABBCCBC|CCZZAAZA
+Cellular_Bounds,8,32,0,BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD,AAADCDABCACADAADDDCCCDDDDBAACCBC,CCBBCEBBECDECBACBCCDEBBCBABBCEED,0.15625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBCDCBA|DBDBCBBC|CCDDDCCC|CABBDDAD
+Output: ",CCBBCEBB|ECDECBAC|BCCDEBBC|BABBCEED
+Cellular_Bounds,8,32,0,EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG,FEHHDDFFFCECADAGDHDEDEGDCBDBCHFH,DEFFCBCEDECACBBCBDCBECEGDBCBDHEG,0.125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EFGGCCEE|EDFDBCBH|CGCFCFHC|DACADGEG
+Output: ",DEFFCBCE|DECACBBC|BDCBECEG|DBCBDHEG
+Cellular_Bounds,16,32,0,ABAAAABBBABBBABB|ABAABAAABBAABBBA,BABBBBAAABAAABAABABBABBBAABBAAAB,BCAABACBCBCBACBCAABACBCBCBAC,0.25,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAAAABBBABBBABB|ABAABAAABBAABBBA
+Output: ",BCAABACBCBCBAC|BCAABACBCBCBAC
+Cellular_Bounds,16,32,0,CACBDAABBDCAAABA|AACDCAADBACBCCDD,DBDACBBAACDBBBABBBDCDBBCABDADDCC,BZAZCBBCDCBBZAZAAADBCDBACBBCDECC,0.34375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACBDAABBDCAAABA|AACDCAADBACBCCDD
+Output: ",BZAZCBBCDCBBZAZA|AADBCDBACBBCDECC
+Cellular_Bounds,16,32,0,FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH,EGDGBGGHAEHFEHCFHCHFDBCCFFBFFDGG,GIHDGBGHAHDFGEFGDEGDGECADDEEAEEC,0.15625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FHCHAHHGBFGEFGDE|GDGECADDEEAEECHH
+Output: ",GIHDGBGHAHDFGEFGDE|GDGECADDEEAEECHH
+Base,0,64,0,ABBBBBBBBBBBAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAAABAB,BAAAAAAAAAAABBBABBAABABBBABBBBBBBABABBBABBBABBBBAABABAABAABBBABA,BAAAAAAABBBBBAABAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAA,0.4375,0.0,8,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABBBBBBBBBBBAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAAABAB
+Output: ",BAAAAAAABBBBBAABAAABAABBABAAABAAAAAAABABAAABAAABAAAABBABABBABBAAABAB
+Base,0,64,0,BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC,ADAADABCDABABDABDDBCCABCCCBCABCABAAADADDBACAADDDDDBBADBDACCABBDD,ACBAACDCAACBAAACDDEBDCDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCD,0.25,0.0,1,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCBBCBADCBABACBACCADDBADDDADBADBABBBCBCCABDBBCCCCCAABCACBDDBAACC
+Output: ",ACBAACDCAACBAAACDDEBDCDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDCDEBDCAAACDCCDDEDDC
+Base,0,64,0,EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE,FCFBGDEHAGCDAEGGEHBHDGGBGEBCEDGGBEDGCCAHCACHGFCCCFCGEEBBCCDDBFBF,DFCDGCBFAHDCBFHHFGAFCHHAHGADFCHHAFCHDCBGDCGHECCEDEBCCAEAE,0.078125,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EDEAHCFGBHDCBFHHFGAGCHHAHFADFCHHAFCHDDBGDBDGHEDDDEDHFFAADDCCAEAE
+Output: ",DFCDGCBFAHDCBFHHFGAFCHHAHGADFCHHAFCHDCBGDCGHECCEDEBCCAEAE
+Cellular_Bounds,1,64,0,B|A|A|A|B|B|A|B|B|B|B|A|A|A|B|B|B|A|B|A|A|A|B|A|A|B|B|A|A|A|A|A|B|A|B|A|A|B|A|A|A|B|A|A|A|A|B|B|B|A|A|B|A|A|A|A|B|B|A|B|A|B|B|A,ABBBAABAAAABBBAAABABBBABBAABBBBBABABBABBBABBBBAAABBABBBBAABABAAB,ABAACBBCBBBBCAACBCABAACAACBAAAAAABACAACAAACAAAACBACAAAACBA,0.234375,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|A|A|B|B|A|B|B|B|B|A|A|A|B|B|B|A|B|A|A|A|B|A|A|B|B|A|A|A|A|A|B|A|B|A|A|B|A|A|A|B|A|A|A|A|B|B|B|A|A|B|A|A|A|A|B|B|A|B|A|B|B|A
+Output: ",A|B|A|A|C|B|B|C|B|B|B|B|C|A|A|C|B|C|A|B|A|A|C|A|A|C|B|A|A|A|A|A|A|B|A|C|A|A|C|A|A|A|C|A|A|A|A|C|B|A|C|A|A|A|A|C|B|A|
+Cellular_Bounds,1,64,0,D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B,CDDCADCBDAABDABCDBDBAACBCBACDACCBBBCADDCADBDCCCAADCDCDCABAABACCA,EBBECBEBBACBBABECBBBCBEBEBCECBEEBBBECBBECBBECEECBBECEECBAB,0.234375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|C|C|D|B|C|D|A|C|B|B|A|C|B|A|D|C|A|C|A|B|B|D|A|D|A|B|D|C|B|D|D|A|A|A|D|B|C|C|D|B|C|A|C|D|D|D|B|B|C|D|C|D|C|D|B|A|B|B|A|B|D|D|B
+Output: ",E|B|B|E|C|B|E|B|B|A|C|B|B|A|B|E|C|B|B|B|C|B|E|B|E|B|C|E|C|B|E|E|B|B|B|E|C|B|B|E|C|B|B|E|C|E|E|C|B|B|E|C|E|E|C|B|A|B|
+Cellular_Bounds,1,64,0,B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H,ADHEAHAACGDAEADHFHFFAGAFCFCFHFGABHAGGAGFHEFAFCBECDHEDBCHBFBAAEGG,CDFECFCCEIDCGCDFDCFFCICDFFDFIDICHCIHIICJCIHIGCHDCCDBHIDBCF,0.171875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|C|G|F|B|G|B|B|D|H|C|B|F|B|C|G|E|G|E|E|B|H|B|E|D|E|D|E|G|E|H|B|A|G|B|H|H|B|H|E|G|F|E|B|E|D|A|F|D|C|G|F|C|A|D|G|A|E|A|B|B|F|H|H
+Output: ",C|D|F|E|C|F|C|C|E|I|D|C|G|C|D|F|D|C|F|F|C|I|C|D|F|F|D|F|I|D|I|C|H|C|I|H|I|I|C|J|C|I|H|I|G|C|H|D|C|C|D|B|H|I|D|B|C|F|
+Cellular_Bounds,2,64,0,AA|BB|BA|AB|BA|AB|BA|AB|BB|AA|BB|BB|BA|BA|AA|BB|BA|BB|BB|AA|AA|AB|BA|AB|AA|BA|AA|BB|BA|BB|AB|AA,BBAAABBAABBAABBAAABBAAAAABABBBAAABAAAABBBBBAABBABBABBBAAABAABABB,BBCCAABBAABCABBCBCBBABCCABABBAACABCBCCABBBBCABBBABBCABCCABCBBC,0.5,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|BB|BA|AB|BA|AB|BA|AB|BB|AA|BB|BB|BA|BA|AA|BB|BA|BB|BB|AA|AA|AB|BA|AB|AA|BA|AA|BB|BA|BB|AB|AA
+Output: ",BB|CC|AA|BB|AA|BC|AB|BC|BC|BB|AB|CC|AB|AB|BA|AC|AB|CB|CC|AB|BB|BC|AB|BB|AB|BC|AB|CC|AB|CB|BC
+Cellular_Bounds,2,64,0,DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD,CDADBDCCBBAADBCCABAADABBDAAAACDDCCDAAACBDCCBCCDDBBADDBDCADABABCC,EBADABEEZBABDBEEZAABABEBZBABBDDCEEZBABZAECDADEDCZBABCAECDEACBABA,0.265625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DC|BC|AC|DD|AA|BB|CA|DD|BA|BB|CB|AA|CB|BB|BD|CC|DD|CB|BB|DA|CD|DA|DD|CC|AA|BC|CA|CD|BC|BA|BA|DD
+Output: ",EB|AD|AB|EE|ZB|AB|DB|EE|ZA|AB|AB|EB|ZB|AB|BD|DC|EE|ZB|AB|ZA|EC|DA|DE|DC|ZB|AB|CA|EC|DE|AC|BA|BA
+Cellular_Bounds,2,64,0,CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF,DFBDEGFAFAGDGDCEFEEDFEHAFAFEEFFDBEBFHCBGBDAEGGAFGHAEHCGDDEFDCCAE,CDABGIEDEDHDHDDEEFFBEFGAEDEFFEEBAFADGEAGACBGIIBDGHBGGEHDCEEBDF,0.140625,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CE|AC|FH|EB|EB|HC|HC|DF|EF|FC|EF|GB|EB|EF|FE|EC|AF|AE|GD|AH|AC|BF|HH|BE|HG|BF|GD|HC|CF|EC|DD|BF
+Output: ",CD|AB|GI|ED|ED|HD|HD|DE|EF|FB|EF|GA|ED|EF|FE|EB|AF|AD|GE|AG|AC|BG|II|BD|GH|BG|GE|HD|CE|EB|DF
+Cellular_Bounds,3,64,0,ABB|AAA|AAB|BAB|AAB|AAB|BBA|ABA|BAA|ABB|AAA|ABA|AAA|AAB|ABA|ABA|ABB|AAB|ABB|BAA|BAB|B,BAABBBBBAABABBABBAAABBABABBBAABBBBABBBBBBABABBABBAABBABAAABBABAA,BCCBBBBBABCBBBABBACBBBBCCABBCCBBBBBCBBBBBABBCBBCCBBBBACBBCABBCBB,0.515625,0.0,1,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|AAA|AAB|BAB|AAB|AAB|BBA|ABA|BAA|ABB|AAA|ABA|AAA|AAB|ABA|ABA|ABB|AAB|ABB|BAA|BAB|B
+Output: ",BCC|BBB|BBA|BCB|BBA|BBA|CBB|BBC|CAB|BCC|BBB|BBC|BBB|BBA|BBC|BBC|CBB|BBA|CBB|CAB|BCB|B
+Cellular_Bounds,3,64,0,CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D,DACCCDADDCADBABDACAACDCCBBCDABADCBAADCBCBDBCDDBCDDBBCADDABBACABC,BACDDBAACDBCZABCBEAADCCEZAACBABCDABBCDADACADCCADCCAADBCCBAABDBAD,0.125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CBD|DDC|BCC|DBC|ABA|CBD|BBD|CDD|AAD|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D
+Output: ",BAC|DDB|AAC|DBC|ZAB|CBE|AAD|CCE|ZAA|CBA|BCD|ABB|CDA|DAC|ADC|CAD|CCA|ADB|CCB|AAB|DBA|D
+Cellular_Bounds,3,64,0,ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B,BDGACGBDEAAFBDGGBGFDGGABCCBEGGFFCGACHDHBEGHFCGFFADCEFGHADBDBEHDA,BCHBEHBCEBBDBCHHAIECGHACDEAFIIDEDHCCDCHGFDFEDEECCDEFEGCADFGDC,0.1875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACH|BDH|ACF|BBE|ACH|HAH|ECH|HBA|DDA|FHH|EED|HBD|GCG|AFH|GED|HEE|BCD|FEH|GBC|ACA|FGC|B
+Output: ",BCH|BEH|BCE|BBD|BCH|HAI|ECG|HAC|DEA|FII|DED|HCC|DCH|GFD|FED|EEC|CDE|FEG|CAD|FGD|C
+Cellular_Bounds,4,64,0,BBBB|AAAA|AAAB|BBAB|AABB|BBAA|BBBA|BAAB|BAAA|BBBB|ABAA|BABB|BAAA|BABA|AABA|BBAA,AAAABBBBBBBAAABABBAAAABBAAABABBAABBBAAAABABBABAAABBBABABBBABAABB,CCCCZZZZZAAABBACZBBBCCAACCBBCAACZZZZBABACBBBZZZZZBBAZAAACCBBZZAA,0.171875,0.0,0,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBB|AAAA|AAAB|BBAB|AABB|BBAA|BBBA|BAAB|BAAA|BBBB|ABAA|BABB|BAAA|BABA|AABA|BBAA
+Output: ",CCCC|ZZZZ|ZAAA|BBAC|ZBBB|CCAA|CCBB|CAAC|ZZZZ|BABA|CBBB|ZZZZ|ZBBA|ZAAA|CCBB|ZZAA
+Cellular_Bounds,4,64,0,BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC,ACACCCBABADDDDCBAABAABADCABBBADADBABDCBADBDDDBBBBDDBADDADABBDABD,CACAEEBDZBBCBBZDAACBZBBCACAAZBBCBZABBCADBZBCZZZZZBBCZBBCAZBCZBBC,0.140625,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBD|DDAB|ABCC|CCDA|BBAB|BABC|DBAA|ABCB|CABA|CDAB|CACC|CAAA|ACCA|BCCB|CBAA|CBAC
+Output: ",CACA|EEBD|ZBBC|BBZD|AACB|ZBBC|ACAA|ZBBC|BZAB|BCAD|BZBC|ZZZZ|ZBBC|ZBBC|AZBC|ZBBC|ZBBC
+Cellular_Bounds,4,64,0,AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD,BEFCAEAHFAFECEEECFCHHEHGCCACAEAAGAHDBEHHEGDDBCDEAGFDCHEEFGDEEBAC,BGDCACGADADECEEECEFHHFHICDCBCGAAICGDBHHIIGBDBEGFCHIDHGEFIGHFGBEC,0.421875,0.0,1,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AFED|BFBG|EBEF|DFFF|DEDG|GFGH|DDBD|BFBB|HBGC|AFGG|FHCC|ADCF|BHEC|DGFF|EHCF|FABD
+Output: ",BGDC|ACGA|DADE|CEEE|CEFH|HFHI|CDCB|CGAA|ICGD|BHHI|IGBD|BEGF|CHID|HGEF|IGHF|GBEC
+Cellular_Bounds,8,64,0,BAABBAAA|AAABAAAA|BBBABBBB|AAABABBA|ABABABBA|BAABABAA|BABABAAA|BAAABBAA,ABBAABBBBBBABBBBAAABAAAABBBABAABBABABAABABBABABBABABABBBABBBAABB,ABAAABAAAABAABAAABBABABBAABAABBAAABAABBAABAABABAAABAABAABAAABBAA,0.375,0.0,2,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAABBAAA|AAABAAAA|BBBABBBB|AAABABBA|ABABABBA|BAABABAA|BABABAAA|BAAABBAA
+Output: ",ABAAABAA|AABAABAA|ABBABABB|AABAABBA|AABAABBA|ABAABABA|AABAABAA|BAAABBAA
+Cellular_Bounds,8,64,0,DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA,CCADABABACDCCCABDBBADACDCCCBCCCDBCCBBCCDDACADDDCAABDDBDCBACADBDB,EEDDCABBCEDDEEDBBDCAAACBEEEADEEDBEAAADDBCDCBCCDEAADCCACDBCDBDACA,0.234375,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DDBCBABA|BDCDDDBA|CAABCBDC|DDDADDDC|ADDAADDC|CBDBCCCD|BBACCACD|ABDBCACA
+Output: ",EEDDCABB|CEDDEEDB|BDCAAACB|EEEADEED|BEAAADDB|CDCBCCDE|AADCCACD|BCDBDACA
+Cellular_Bounds,8,64,0,DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE,CFAGBGEHBGBAFCFCEGACGDCDFEEHBECHDBGBDGCDDHBCADBCFHBCGCGADEADCAGF,DFGCAGGZAAFDCEFICBGCDEFEFFBEDEDBGBZBDCDEBFACAEDFAEIDHCCEACDBHF,0.1875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DEBHAHFG|AHABEDED|FHBDHCDC|EFFGAFDG|CAHACHDC|CGADBCAD|EGADHDHB|CFBCDBHE
+Output: ",DFGCAG|GZAAFDCE|FICBGCDE|FEFFBEDE|DBGBZBDC|DEBFACAE|DFAEIDHC|CEACDBHF
+Cellular_Bounds,16,64,0,AABAAABBAABABBBA|ABABBABBBAABAAAB|ABBBABBABBABABBB|ABAABBBBBAABABBA,BBABBBAABBABAAABBABAABAAABBABBBABAAABAABAABABAAABABBAAAAABBABAAB,BBAABAAABBAABABBBABABBABBBAABAABABBABBABBABBABABBBAABBBBBAABABBA,0.4375,0.0,3,2,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AABAAABBAABABBBA|ABABBABBBAABAAAB|ABBBABBABBABABBB|ABAABBBBBAABABBA
+Output: ",BBAABAAABBAABABB|BABABBABBBAABAAB|ABBABBABBABBABAB|BBAABBBBBAABABBA
+Cellular_Bounds,16,64,0,CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC,DBDDADDDBAABDDBADDDACAADDBABBBBBBCCDDACCBBCCBAAABDCDDDCDCBACDCAD,BBAACBBCCABAAABBBCCCBABBCCABAAABBDCCBDDDAAADBBBBCDCCCDCDABDCDBC,0.28125,0.0,0,4,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACCBCCCABBACCAB|CCCBDBBCCABAAAAA|ADDCCBDDAADDABBB|ACDCCCDCDABDCDBC
+Output: ",BBAACBBCCABAAAB|BBCCCBABBCCABAAA|BBDCCBDDDAAADBBB|BCDCCCDCDABDCDBC
+Cellular_Bounds,16,64,0,DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA,CGHGBHEGCDHCAEADCDHEBEGDBHGHDBFAHCEAFFCHEFFBFBBCEDBDCEEEAECDHGBB,EIHIBJFIDEBFACEDEHJBHEDEDDDDCDEGDCEFDGDFDDDDCCDFEBDCEEFEBDFGHB,0.171875,0.0,0,8,"You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D, E, F, G, H (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DHGHAGFHDCGDBFBC|DCGFAFHCAGHGCAEB|GDFBEEDGFEEAEAAD|FCACDFFFBFDCGHAA
+Output: ",EIHIBJFIDEBFACE||DEHJBHEDEDDDDCDE||GDCEFDGDFDDDDCCD||FEBDCEEFEBDFGHB
