@@ -91,7 +91,7 @@ Output: """
 
 ALPHABET_SIZE = 2
 INTERVAL = 2
-SEQUENCE_LENGTHS = [8, 16, 32, 64]
+SEQUENCE_LENGTHS = [8, 16, 32, 64, 128]
 TRIALS_T = 20
 TOP_K_HEADS = 10  # how many of the strongest boundary-attending heads to ablate
 

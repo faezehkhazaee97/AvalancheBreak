@@ -1,0 +1,3 @@
+Task,Variant,Delta,Sigma,P_Value,Sig_Uncorrected_2sigma,Sig_Uncorrected_3sigma,Sig_BH_q0.05,Sig_BH_q0.1
+clrs_minimum,n/a,0.019514802631578954,1.0577816617842286,0.29015499513306553,False,False,False,False
+clrs_kadane,n/a,-0.008153782894736852,-0.7168102535597518,0.4734911840778828,False,False,False,False

@@ -117,7 +117,7 @@ Output: """
 
 
 DC_ALPHABET_SIZE = 2          # matches the boundary-ablation grid
-DC_SEQUENCE_LENGTHS = [8, 16, 32, 64]   # matches the boundary-ablation grid
+DC_SEQUENCE_LENGTHS = [8, 16, 32, 64, 128]   # extended to N=128 to match the main-paper Qwen-32B story
 DC_CHUNK_SIZE = 4              # matches the boundary-ablation grid's interval=4
 DC_TRIALS = 20                  # matches the boundary-ablation grid
 
