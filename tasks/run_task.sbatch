@@ -19,15 +19,16 @@ TASK_NAME="$1"
 MODEL_ID="$2"
 MODE="$3"
 TRIALS="${4:-}"
+TRIAL_START="${5:-}"
 
 echo "=================================================="
 echo "Node:  $(hostname)"
 echo "Time:  $(date)"
-echo "Task:  $TASK_NAME | Model: $MODEL_ID | Mode: $MODE"
+echo "Task:  $TASK_NAME | Model: $MODEL_ID | Mode: $MODE | Trials: ${TRIALS:-default} | TrialStart: ${TRIAL_START:-0}"
 echo "=================================================="
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
 
-"$ENV/bin/python" -m tasks.run_task "$TASK_NAME" "$MODEL_ID" "$MODE" $TRIALS
+"$ENV/bin/python" -m tasks.run_task "$TASK_NAME" "$MODEL_ID" "$MODE" $TRIALS $TRIAL_START
 
 echo "=================================================="
 echo "Done: $(date)"

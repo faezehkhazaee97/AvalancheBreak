@@ -59,7 +59,7 @@ def reconstruct_prompt(engine, N, k, axis_val, t):
     return prompt
 
 
-def _build_grid(engine, trials_per_cell):
+def _build_grid(engine, trials_per_cell, trial_start=0):
     axis_values = engine.AXIS_VALUES or [None]
     lengths = getattr(engine, "LENGTHS", STANDARD_LENGTHS)
     intervals = getattr(engine, "INTERVALS", STANDARD_INTERVALS)
@@ -67,16 +67,20 @@ def _build_grid(engine, trials_per_cell):
     for N in lengths:
         for k in valid_intervals(N, intervals):
             for axis_val in axis_values:
-                for t in range(trials_per_cell):
+                for t in range(trial_start, trial_start + trials_per_cell):
                     tasks.append((N, k, axis_val, t))
     return tasks
 
 
-def run(engine, model_id, mode, output_csv, trials_per_cell=None):
+def run(engine, model_id, mode, output_csv, trials_per_cell=None, trial_start=0):
     """mode: 'verify' (1 trial/cell, for a quick pre-run sanity check) or
     'grid' (trials_per_cell trials/cell, production). Both now write the
     same columns, including Raw_Model_Output -- 'verify' vs 'grid' only
-    differs in trials_per_cell."""
+    differs in trials_per_cell. trial_start: first trial index (0 for a
+    first batch; 40 for a second, independent, non-overlapping batch at
+    the study's usual 40-trials-per-batch convention -- same local-seed
+    formula, so trial_start=40 with trials_per_cell=40 reuses no seeds
+    from a trial_start=0 run)."""
     assert mode in ("verify", "grid")
     if trials_per_cell is None:
         trials_per_cell = 1 if mode == "verify" else 20
@@ -90,7 +94,7 @@ def run(engine, model_id, mode, output_csv, trials_per_cell=None):
     )
     model.eval()
 
-    grid = _build_grid(engine, trials_per_cell)
+    grid = _build_grid(engine, trials_per_cell, trial_start=trial_start)
     print(f"Grid size: {len(grid)} evaluations")
 
     rows = []

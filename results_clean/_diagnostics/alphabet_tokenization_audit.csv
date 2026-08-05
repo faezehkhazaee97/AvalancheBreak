@@ -1,0 +1,181 @@
+Model,Alphabet,K,Bare_Seq_Len,Bare_Tokens,Bare_Bijective,Bounded_Seq_Len,Bounded_Tokens,Bounded_Bijective
+Qwen2.5-7B-Instruct,letters_A-H (size 8),1,48,19,False,95,94,False
+Qwen2.5-7B-Instruct,letters_A-H (size 8),2,48,19,False,71,46,False
+Qwen2.5-7B-Instruct,letters_A-H (size 8),3,48,19,False,63,44,False
+Qwen2.5-7B-Instruct,letters_A-H (size 8),4,48,19,False,59,37,False
+Qwen2.5-7B-Instruct,letters_A-H (size 8),8,48,19,False,53,24,False
+Qwen2.5-7B-Instruct,letters_A-H (size 8),16,48,19,False,50,21,False
+Qwen2.5-7B-Instruct,letters_A-D (size 4),1,36,17,False,71,70,False
+Qwen2.5-7B-Instruct,letters_A-D (size 4),2,36,17,False,53,34,False
+Qwen2.5-7B-Instruct,letters_A-D (size 4),3,36,17,False,47,31,False
+Qwen2.5-7B-Instruct,letters_A-D (size 4),4,36,17,False,44,25,False
+Qwen2.5-7B-Instruct,letters_A-D (size 4),8,36,17,False,40,21,False
+Qwen2.5-7B-Instruct,letters_A-D (size 4),16,36,17,False,38,19,False
+Qwen2.5-7B-Instruct,letters_A-B (size 2),1,24,8,False,47,46,False
+Qwen2.5-7B-Instruct,letters_A-B (size 2),2,24,8,False,35,22,False
+Qwen2.5-7B-Instruct,letters_A-B (size 2),3,24,8,False,31,18,False
+Qwen2.5-7B-Instruct,letters_A-B (size 2),4,24,8,False,29,16,False
+Qwen2.5-7B-Instruct,letters_A-B (size 2),8,24,8,False,26,10,False
+Qwen2.5-7B-Instruct,letters_A-B (size 2),16,24,8,False,25,9,False
+Qwen2.5-7B-Instruct,digits_0-7 (size 8),1,60,60,True,119,119,True
+Qwen2.5-7B-Instruct,digits_0-7 (size 8),2,60,60,True,89,89,True
+Qwen2.5-7B-Instruct,digits_0-7 (size 8),3,60,60,True,79,79,True
+Qwen2.5-7B-Instruct,digits_0-7 (size 8),4,60,60,True,74,74,True
+Qwen2.5-7B-Instruct,digits_0-7 (size 8),8,60,60,True,67,67,True
+Qwen2.5-7B-Instruct,digits_0-7 (size 8),16,60,60,True,63,63,True
+Qwen2.5-7B-Instruct,digits_0-3 (size 4),1,42,42,True,83,83,True
+Qwen2.5-7B-Instruct,digits_0-3 (size 4),2,42,42,True,62,62,True
+Qwen2.5-7B-Instruct,digits_0-3 (size 4),3,42,42,True,55,55,True
+Qwen2.5-7B-Instruct,digits_0-3 (size 4),4,42,42,True,52,52,True
+Qwen2.5-7B-Instruct,digits_0-3 (size 4),8,42,42,True,47,47,True
+Qwen2.5-7B-Instruct,digits_0-3 (size 4),16,42,42,True,44,44,True
+Qwen2.5-7B-Instruct,digits_0-1 (binary),1,39,39,True,77,77,True
+Qwen2.5-7B-Instruct,digits_0-1 (binary),2,39,39,True,58,58,True
+Qwen2.5-7B-Instruct,digits_0-1 (binary),3,39,39,True,51,51,True
+Qwen2.5-7B-Instruct,digits_0-1 (binary),4,39,39,True,48,48,True
+Qwen2.5-7B-Instruct,digits_0-1 (binary),8,39,39,True,43,43,True
+Qwen2.5-7B-Instruct,digits_0-1 (binary),16,39,39,True,41,41,True
+Qwen2.5-14B-Instruct,letters_A-H (size 8),1,48,19,False,95,94,False
+Qwen2.5-14B-Instruct,letters_A-H (size 8),2,48,19,False,71,46,False
+Qwen2.5-14B-Instruct,letters_A-H (size 8),3,48,19,False,63,44,False
+Qwen2.5-14B-Instruct,letters_A-H (size 8),4,48,19,False,59,37,False
+Qwen2.5-14B-Instruct,letters_A-H (size 8),8,48,19,False,53,24,False
+Qwen2.5-14B-Instruct,letters_A-H (size 8),16,48,19,False,50,21,False
+Qwen2.5-14B-Instruct,letters_A-D (size 4),1,36,17,False,71,70,False
+Qwen2.5-14B-Instruct,letters_A-D (size 4),2,36,17,False,53,34,False
+Qwen2.5-14B-Instruct,letters_A-D (size 4),3,36,17,False,47,31,False
+Qwen2.5-14B-Instruct,letters_A-D (size 4),4,36,17,False,44,25,False
+Qwen2.5-14B-Instruct,letters_A-D (size 4),8,36,17,False,40,21,False
+Qwen2.5-14B-Instruct,letters_A-D (size 4),16,36,17,False,38,19,False
+Qwen2.5-14B-Instruct,letters_A-B (size 2),1,24,8,False,47,46,False
+Qwen2.5-14B-Instruct,letters_A-B (size 2),2,24,8,False,35,22,False
+Qwen2.5-14B-Instruct,letters_A-B (size 2),3,24,8,False,31,18,False
+Qwen2.5-14B-Instruct,letters_A-B (size 2),4,24,8,False,29,16,False
+Qwen2.5-14B-Instruct,letters_A-B (size 2),8,24,8,False,26,10,False
+Qwen2.5-14B-Instruct,letters_A-B (size 2),16,24,8,False,25,9,False
+Qwen2.5-14B-Instruct,digits_0-7 (size 8),1,60,60,True,119,119,True
+Qwen2.5-14B-Instruct,digits_0-7 (size 8),2,60,60,True,89,89,True
+Qwen2.5-14B-Instruct,digits_0-7 (size 8),3,60,60,True,79,79,True
+Qwen2.5-14B-Instruct,digits_0-7 (size 8),4,60,60,True,74,74,True
+Qwen2.5-14B-Instruct,digits_0-7 (size 8),8,60,60,True,67,67,True
+Qwen2.5-14B-Instruct,digits_0-7 (size 8),16,60,60,True,63,63,True
+Qwen2.5-14B-Instruct,digits_0-3 (size 4),1,42,42,True,83,83,True
+Qwen2.5-14B-Instruct,digits_0-3 (size 4),2,42,42,True,62,62,True
+Qwen2.5-14B-Instruct,digits_0-3 (size 4),3,42,42,True,55,55,True
+Qwen2.5-14B-Instruct,digits_0-3 (size 4),4,42,42,True,52,52,True
+Qwen2.5-14B-Instruct,digits_0-3 (size 4),8,42,42,True,47,47,True
+Qwen2.5-14B-Instruct,digits_0-3 (size 4),16,42,42,True,44,44,True
+Qwen2.5-14B-Instruct,digits_0-1 (binary),1,39,39,True,77,77,True
+Qwen2.5-14B-Instruct,digits_0-1 (binary),2,39,39,True,58,58,True
+Qwen2.5-14B-Instruct,digits_0-1 (binary),3,39,39,True,51,51,True
+Qwen2.5-14B-Instruct,digits_0-1 (binary),4,39,39,True,48,48,True
+Qwen2.5-14B-Instruct,digits_0-1 (binary),8,39,39,True,43,43,True
+Qwen2.5-14B-Instruct,digits_0-1 (binary),16,39,39,True,41,41,True
+Qwen2.5-32B-Instruct,letters_A-H (size 8),1,48,19,False,95,94,False
+Qwen2.5-32B-Instruct,letters_A-H (size 8),2,48,19,False,71,46,False
+Qwen2.5-32B-Instruct,letters_A-H (size 8),3,48,19,False,63,44,False
+Qwen2.5-32B-Instruct,letters_A-H (size 8),4,48,19,False,59,37,False
+Qwen2.5-32B-Instruct,letters_A-H (size 8),8,48,19,False,53,24,False
+Qwen2.5-32B-Instruct,letters_A-H (size 8),16,48,19,False,50,21,False
+Qwen2.5-32B-Instruct,letters_A-D (size 4),1,36,17,False,71,70,False
+Qwen2.5-32B-Instruct,letters_A-D (size 4),2,36,17,False,53,34,False
+Qwen2.5-32B-Instruct,letters_A-D (size 4),3,36,17,False,47,31,False
+Qwen2.5-32B-Instruct,letters_A-D (size 4),4,36,17,False,44,25,False
+Qwen2.5-32B-Instruct,letters_A-D (size 4),8,36,17,False,40,21,False
+Qwen2.5-32B-Instruct,letters_A-D (size 4),16,36,17,False,38,19,False
+Qwen2.5-32B-Instruct,letters_A-B (size 2),1,24,8,False,47,46,False
+Qwen2.5-32B-Instruct,letters_A-B (size 2),2,24,8,False,35,22,False
+Qwen2.5-32B-Instruct,letters_A-B (size 2),3,24,8,False,31,18,False
+Qwen2.5-32B-Instruct,letters_A-B (size 2),4,24,8,False,29,16,False
+Qwen2.5-32B-Instruct,letters_A-B (size 2),8,24,8,False,26,10,False
+Qwen2.5-32B-Instruct,letters_A-B (size 2),16,24,8,False,25,9,False
+Qwen2.5-32B-Instruct,digits_0-7 (size 8),1,60,60,True,119,119,True
+Qwen2.5-32B-Instruct,digits_0-7 (size 8),2,60,60,True,89,89,True
+Qwen2.5-32B-Instruct,digits_0-7 (size 8),3,60,60,True,79,79,True
+Qwen2.5-32B-Instruct,digits_0-7 (size 8),4,60,60,True,74,74,True
+Qwen2.5-32B-Instruct,digits_0-7 (size 8),8,60,60,True,67,67,True
+Qwen2.5-32B-Instruct,digits_0-7 (size 8),16,60,60,True,63,63,True
+Qwen2.5-32B-Instruct,digits_0-3 (size 4),1,42,42,True,83,83,True
+Qwen2.5-32B-Instruct,digits_0-3 (size 4),2,42,42,True,62,62,True
+Qwen2.5-32B-Instruct,digits_0-3 (size 4),3,42,42,True,55,55,True
+Qwen2.5-32B-Instruct,digits_0-3 (size 4),4,42,42,True,52,52,True
+Qwen2.5-32B-Instruct,digits_0-3 (size 4),8,42,42,True,47,47,True
+Qwen2.5-32B-Instruct,digits_0-3 (size 4),16,42,42,True,44,44,True
+Qwen2.5-32B-Instruct,digits_0-1 (binary),1,39,39,True,77,77,True
+Qwen2.5-32B-Instruct,digits_0-1 (binary),2,39,39,True,58,58,True
+Qwen2.5-32B-Instruct,digits_0-1 (binary),3,39,39,True,51,51,True
+Qwen2.5-32B-Instruct,digits_0-1 (binary),4,39,39,True,48,48,True
+Qwen2.5-32B-Instruct,digits_0-1 (binary),8,39,39,True,43,43,True
+Qwen2.5-32B-Instruct,digits_0-1 (binary),16,39,39,True,41,41,True
+Mistral-7B-Instruct-v0.3,letters_A-H (size 8),1,48,28,False,95,94,False
+Mistral-7B-Instruct-v0.3,letters_A-H (size 8),2,48,28,False,71,52,False
+Mistral-7B-Instruct-v0.3,letters_A-H (size 8),3,48,28,False,63,45,False
+Mistral-7B-Instruct-v0.3,letters_A-H (size 8),4,48,28,False,59,40,False
+Mistral-7B-Instruct-v0.3,letters_A-H (size 8),8,48,28,False,53,33,False
+Mistral-7B-Instruct-v0.3,letters_A-H (size 8),16,48,28,False,50,30,False
+Mistral-7B-Instruct-v0.3,letters_A-D (size 4),1,36,17,False,71,70,False
+Mistral-7B-Instruct-v0.3,letters_A-D (size 4),2,36,17,False,53,34,False
+Mistral-7B-Instruct-v0.3,letters_A-D (size 4),3,36,17,False,47,33,False
+Mistral-7B-Instruct-v0.3,letters_A-D (size 4),4,36,17,False,44,25,False
+Mistral-7B-Instruct-v0.3,letters_A-D (size 4),8,36,17,False,40,21,False
+Mistral-7B-Instruct-v0.3,letters_A-D (size 4),16,36,17,False,38,19,False
+Mistral-7B-Instruct-v0.3,letters_A-B (size 2),1,24,14,False,47,46,False
+Mistral-7B-Instruct-v0.3,letters_A-B (size 2),2,24,14,False,35,22,False
+Mistral-7B-Instruct-v0.3,letters_A-B (size 2),3,24,14,False,31,22,False
+Mistral-7B-Instruct-v0.3,letters_A-B (size 2),4,24,14,False,29,19,False
+Mistral-7B-Instruct-v0.3,letters_A-B (size 2),8,24,14,False,26,16,False
+Mistral-7B-Instruct-v0.3,letters_A-B (size 2),16,24,14,False,25,15,False
+Mistral-7B-Instruct-v0.3,digits_0-7 (size 8),1,60,60,True,119,119,True
+Mistral-7B-Instruct-v0.3,digits_0-7 (size 8),2,60,60,True,89,89,True
+Mistral-7B-Instruct-v0.3,digits_0-7 (size 8),3,60,60,True,79,79,True
+Mistral-7B-Instruct-v0.3,digits_0-7 (size 8),4,60,60,True,74,74,True
+Mistral-7B-Instruct-v0.3,digits_0-7 (size 8),8,60,60,True,67,67,True
+Mistral-7B-Instruct-v0.3,digits_0-7 (size 8),16,60,60,True,63,63,True
+Mistral-7B-Instruct-v0.3,digits_0-3 (size 4),1,42,42,True,83,83,True
+Mistral-7B-Instruct-v0.3,digits_0-3 (size 4),2,42,42,True,62,62,True
+Mistral-7B-Instruct-v0.3,digits_0-3 (size 4),3,42,42,True,55,55,True
+Mistral-7B-Instruct-v0.3,digits_0-3 (size 4),4,42,42,True,52,52,True
+Mistral-7B-Instruct-v0.3,digits_0-3 (size 4),8,42,42,True,47,47,True
+Mistral-7B-Instruct-v0.3,digits_0-3 (size 4),16,42,42,True,44,44,True
+Mistral-7B-Instruct-v0.3,digits_0-1 (binary),1,39,39,True,77,77,True
+Mistral-7B-Instruct-v0.3,digits_0-1 (binary),2,39,39,True,58,58,True
+Mistral-7B-Instruct-v0.3,digits_0-1 (binary),3,39,39,True,51,51,True
+Mistral-7B-Instruct-v0.3,digits_0-1 (binary),4,39,39,True,48,48,True
+Mistral-7B-Instruct-v0.3,digits_0-1 (binary),8,39,39,True,43,43,True
+Mistral-7B-Instruct-v0.3,digits_0-1 (binary),16,39,39,True,41,41,True
+Phi-3.5-mini-instruct,letters_A-H (size 8),1,48,26,False,95,94,False
+Phi-3.5-mini-instruct,letters_A-H (size 8),2,48,26,False,71,52,False
+Phi-3.5-mini-instruct,letters_A-H (size 8),3,48,26,False,63,47,False
+Phi-3.5-mini-instruct,letters_A-H (size 8),4,48,26,False,59,40,False
+Phi-3.5-mini-instruct,letters_A-H (size 8),8,48,26,False,53,31,False
+Phi-3.5-mini-instruct,letters_A-H (size 8),16,48,26,False,50,28,False
+Phi-3.5-mini-instruct,letters_A-D (size 4),1,36,17,False,71,70,False
+Phi-3.5-mini-instruct,letters_A-D (size 4),2,36,17,False,53,34,False
+Phi-3.5-mini-instruct,letters_A-D (size 4),3,36,17,False,47,31,False
+Phi-3.5-mini-instruct,letters_A-D (size 4),4,36,17,False,44,25,False
+Phi-3.5-mini-instruct,letters_A-D (size 4),8,36,17,False,40,21,False
+Phi-3.5-mini-instruct,letters_A-D (size 4),16,36,17,False,38,19,False
+Phi-3.5-mini-instruct,letters_A-B (size 2),1,24,14,False,47,46,False
+Phi-3.5-mini-instruct,letters_A-B (size 2),2,24,14,False,35,22,False
+Phi-3.5-mini-instruct,letters_A-B (size 2),3,24,14,False,31,22,False
+Phi-3.5-mini-instruct,letters_A-B (size 2),4,24,14,False,29,19,False
+Phi-3.5-mini-instruct,letters_A-B (size 2),8,24,14,False,26,16,False
+Phi-3.5-mini-instruct,letters_A-B (size 2),16,24,14,False,25,15,False
+Phi-3.5-mini-instruct,digits_0-7 (size 8),1,60,60,True,119,119,True
+Phi-3.5-mini-instruct,digits_0-7 (size 8),2,60,60,True,89,89,True
+Phi-3.5-mini-instruct,digits_0-7 (size 8),3,60,60,True,79,79,True
+Phi-3.5-mini-instruct,digits_0-7 (size 8),4,60,60,True,74,74,True
+Phi-3.5-mini-instruct,digits_0-7 (size 8),8,60,60,True,67,67,True
+Phi-3.5-mini-instruct,digits_0-7 (size 8),16,60,60,True,63,63,True
+Phi-3.5-mini-instruct,digits_0-3 (size 4),1,42,42,True,83,83,True
+Phi-3.5-mini-instruct,digits_0-3 (size 4),2,42,42,True,62,62,True
+Phi-3.5-mini-instruct,digits_0-3 (size 4),3,42,42,True,55,55,True
+Phi-3.5-mini-instruct,digits_0-3 (size 4),4,42,42,True,52,52,True
+Phi-3.5-mini-instruct,digits_0-3 (size 4),8,42,42,True,47,47,True
+Phi-3.5-mini-instruct,digits_0-3 (size 4),16,42,42,True,44,44,True
+Phi-3.5-mini-instruct,digits_0-1 (binary),1,39,39,True,77,77,True
+Phi-3.5-mini-instruct,digits_0-1 (binary),2,39,39,True,58,58,True
+Phi-3.5-mini-instruct,digits_0-1 (binary),3,39,39,True,51,51,True
+Phi-3.5-mini-instruct,digits_0-1 (binary),4,39,39,True,48,48,True
+Phi-3.5-mini-instruct,digits_0-1 (binary),8,39,39,True,43,43,True
+Phi-3.5-mini-instruct,digits_0-1 (binary),16,39,39,True,41,41,True

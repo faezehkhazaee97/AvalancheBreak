@@ -34,8 +34,20 @@ CLEAN_TASKS = [
 ]
 PARTIAL_TASKS = []
 
+# The exact 5 models documented in overleaf/main.tex (Methods / Sec 4.9 / Appendix
+# G). results_clean/<task>/grid/ also holds two leftover, never-written-up runs --
+# OLMo-2-1124-7B-Instruct (a complete 9-task grid, just never added to the paper)
+# and Qwen2.5-72B-Instruct (2 of 9 tasks only, filenamed _PRELIMINARY) -- that
+# select_canonical_files() would otherwise silently glob into every aggregate
+# built on top of it. Filtered out by default here so a fix only has to happen
+# once, at the source, instead of per downstream script.
+DOCUMENTED_MODELS = {
+    "Qwen2.5-7B-Instruct", "Qwen2.5-14B-Instruct", "Qwen2.5-32B-Instruct",
+    "Mistral-7B-Instruct-v0.3", "Phi-3.5-mini-instruct",
+}
 
-def select_canonical_files(task):
+
+def select_canonical_files(task, documented_only=True):
     """Group all non-aggregated (LLM_Output-preserving) grid CSVs by model.
     "_POOLED_40trials" files are aggregate-only (Method/Interval/Seq_Length/
     TAR/SAR, no LLM_Output) and are always skipped here -- the raw fragments
@@ -57,6 +69,8 @@ def select_canonical_files(task):
             if model.endswith(suffix):
                 model = model[: -len(suffix)]
                 break
+        if documented_only and model not in DOCUMENTED_MODELS:
+            continue
         by_model.setdefault(model, []).append(f)
     return by_model
 

@@ -1,0 +1,1808 @@
+Task,Method,Interval,Seq_Length,Axis_Val,Trial,Model_Requested,Model_Resolved,Timestamp_UTC,Input_Given,Ground_Truth,Prompt,Raw_Response,LLM_Output,TAR,SAR,First_Error_Pos,Prompt_Tokens,Candidates_Tokens,Total_Tokens,Error
+cyclic_shift,Base,0,4,2,3,gemini-flash-latest,,2026-07-26T10:35:24.908545+00:00,BBBA,AAAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,4,4,3,gemini-flash-latest,,2026-07-26T10:35:25.530410+00:00,DBAD,ACBA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DBAD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,4,8,3,gemini-flash-latest,,2026-07-26T10:35:26.149841+00:00,CHDH,DAEA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CHDH
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,4,2,3,gemini-flash-latest,,2026-07-26T10:35:26.794183+00:00,A|A|B|B,B|B|A|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|B|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,4,4,3,gemini-flash-latest,,2026-07-26T10:35:27.407751+00:00,B|A|D|D,C|B|A|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|D|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,4,8,3,gemini-flash-latest,,2026-07-26T10:35:28.026731+00:00,D|C|A|G,E|D|B|H,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|C|A|G
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,4,2,3,gemini-flash-latest,,2026-07-26T10:35:28.646593+00:00,AA|BA,BB|AB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|BA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,4,4,3,gemini-flash-latest,,2026-07-26T10:35:29.265587+00:00,BC|AC,CD|BD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BC|AC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,4,8,3,gemini-flash-latest,,2026-07-26T10:35:29.894585+00:00,AD|EC,BE|FD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AD|EC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,4,2,3,gemini-flash-latest,,2026-07-26T10:35:30.507116+00:00,ABB|B,BAA|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,4,4,3,gemini-flash-latest,,2026-07-26T10:35:31.120804+00:00,BCA|D,CDB|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCA|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,4,8,3,gemini-flash-latest,,2026-07-26T10:35:31.732188+00:00,BED|A,CFE|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BED|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,8,2,3,gemini-flash-latest,,2026-07-26T10:35:32.345871+00:00,AAABBBBB,BBBAAAAA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAABBBBB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,8,4,3,gemini-flash-latest,,2026-07-26T10:35:32.955614+00:00,CADCACDC,DBADBDAD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CADCACDC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,8,8,3,gemini-flash-latest,,2026-07-26T10:35:33.590117+00:00,HCHBFAED,ADACGBFE,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HCHBFAED
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,8,2,3,gemini-flash-latest,,2026-07-26T10:35:34.202565+00:00,A|B|A|B|A|B|A|A,B|A|B|A|B|A|B|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|B|A|B|A|B|A|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,8,4,3,gemini-flash-latest,,2026-07-26T10:35:34.822297+00:00,A|D|C|D|D|A|B|B,B|A|D|A|A|B|C|C,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|D|C|D|D|A|B|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,8,8,3,gemini-flash-latest,,2026-07-26T10:35:35.447191+00:00,G|E|B|D|E|A|C|D,H|F|C|E|F|B|D|E,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: G|E|B|D|E|A|C|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,8,2,3,gemini-flash-latest,,2026-07-26T10:35:36.073652+00:00,AA|AB|AA|AA,BB|BA|BB|BB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|AB|AA|AA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,8,4,3,gemini-flash-latest,,2026-07-26T10:35:36.709440+00:00,AD|BA|BB|BC,BA|CB|CC|CD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AD|BA|BB|BC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,8,8,3,gemini-flash-latest,,2026-07-26T10:35:37.332223+00:00,GG|GB|AF|BE,HH|HC|BG|CF,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GG|GB|AF|BE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,8,2,3,gemini-flash-latest,,2026-07-26T10:35:37.954524+00:00,AAB|BBA|BB,BBA|AAB|AA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAB|BBA|BB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,8,4,3,gemini-flash-latest,,2026-07-26T10:35:38.569076+00:00,ADC|CAD|CD,BAD|DBA|DA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADC|CAD|CD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,8,8,3,gemini-flash-latest,,2026-07-26T10:35:39.190601+00:00,GBC|GGF|CE,HCD|HHG|DF,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GBC|GGF|CE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,8,2,3,gemini-flash-latest,,2026-07-26T10:35:39.794435+00:00,BBBA|AAAA,AAAB|BBBB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBA|AAAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,8,4,3,gemini-flash-latest,,2026-07-26T10:35:40.408130+00:00,AABA|BCBA,BBCB|CDCB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AABA|BCBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,8,8,3,gemini-flash-latest,,2026-07-26T10:35:41.009659+00:00,HCAH|BFAE,ADBA|CGBF,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HCAH|BFAE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,16,2,3,gemini-flash-latest,,2026-07-26T10:35:41.617894+00:00,BBBBBAABABAAABBA,AAAAABBABABBBAAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBBBAABABAAABBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,16,4,3,gemini-flash-latest,,2026-07-26T10:35:42.243767+00:00,BDBADCCDBDCBDDDC,CACBADDACADCAAAD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBADCCDBDCBDDDC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,16,8,3,gemini-flash-latest,,2026-07-26T10:35:42.851130+00:00,EHECFDCDAFCBHDGG,FAFDGEDEBGDCAEHH,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EHECFDCDAFCBHDGG
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,16,2,3,gemini-flash-latest,,2026-07-26T10:35:43.469746+00:00,B|B|A|A|A|B|B|A|B|B|B|A|B|A|A|A,A|A|B|B|B|A|A|B|A|A|A|B|A|B|B|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|B|A|A|A|B|B|A|B|B|B|A|B|A|A|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,16,4,3,gemini-flash-latest,,2026-07-26T10:35:44.118918+00:00,C|B|A|A|B|C|D|A|B|B|B|B|D|C|C|D,D|C|B|B|C|D|A|B|C|C|C|C|A|D|D|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|A|B|C|D|A|B|B|B|B|D|C|C|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,16,8,3,gemini-flash-latest,,2026-07-26T10:35:44.721582+00:00,C|C|D|C|F|B|E|G|F|G|H|B|A|E|C|D,D|D|E|D|G|C|F|H|G|H|A|C|B|F|D|E,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|C|D|C|F|B|E|G|F|G|H|B|A|E|C|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,16,2,3,gemini-flash-latest,,2026-07-26T10:35:45.327691+00:00,BB|BA|AA|BA|AA|BA|BB|AB,AA|AB|BB|AB|BB|AB|AA|BA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|BA|AA|BA|AA|BA|BB|AB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,16,4,3,gemini-flash-latest,,2026-07-26T10:35:45.943057+00:00,DA|BC|AA|AD|CB|AC|BC|AC,AB|CD|BB|BA|DC|BD|CD|BD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DA|BC|AA|AD|CB|AC|BC|AC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,16,8,3,gemini-flash-latest,,2026-07-26T10:35:46.547895+00:00,HA|GB|BD|DH|BA|HF|FH|CD,AB|HC|CE|EA|CB|AG|GA|DE,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HA|GB|BD|DH|BA|HF|FH|CD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,16,2,3,gemini-flash-latest,,2026-07-26T10:35:47.151489+00:00,BAB|AAB|BAA|ABA|AAA|A,ABA|BBA|ABB|BAB|BBB|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAB|AAB|BAA|ABA|AAA|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,16,4,3,gemini-flash-latest,,2026-07-26T10:35:47.762853+00:00,ACD|DCA|CCA|DDD|CDA|B,BDA|ADB|DDB|AAA|DAB|C,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACD|DCA|CCA|DDD|CDA|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,16,8,3,gemini-flash-latest,,2026-07-26T10:35:48.374317+00:00,FDA|EFH|AHD|AEH|ABH|C,GEB|FGA|BAE|BFA|BCA|D,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FDA|EFH|AHD|AEH|ABH|C
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,16,2,3,gemini-flash-latest,,2026-07-26T10:35:48.996828+00:00,ABAA|AABA|AAAA|AABB,BABB|BBAB|BBBB|BBAA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAA|AABA|AAAA|AABB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,16,4,3,gemini-flash-latest,,2026-07-26T10:35:49.604598+00:00,CAAA|DBCA|BDAC|CDBC,DBBB|ACDB|CABD|DACD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CAAA|DBCA|BDAC|CDBC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,16,8,3,gemini-flash-latest,,2026-07-26T10:35:50.213391+00:00,DHHA|CHFB|EADC|ECFC,EAAB|DAGC|FBED|FDGD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DHHA|CHFB|EADC|ECFC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,16,2,3,gemini-flash-latest,,2026-07-26T10:35:50.827603+00:00,BBAABBBA|ABBAAABB,AABBAAAB|BAABBBAA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAABBBA|ABBAAABB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,16,4,3,gemini-flash-latest,,2026-07-26T10:35:51.443859+00:00,BDDBDCDD|BADCBAAB,CAACADAA|CBADCBBC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDDBDCDD|BADCBAAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,16,8,3,gemini-flash-latest,,2026-07-26T10:35:52.048467+00:00,HFGGCEGD|ACECBCAH,AGHHDFHE|BDFDCDBA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HFGGCEGD|ACECBCAH
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,32,2,3,gemini-flash-latest,,2026-07-26T10:35:52.659023+00:00,AAABBBABBAAAAABABABABABAABABBBBA,BBBAAABAABBBBBABABABABABBABAAAAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAABBBABBAAAAABABABABABAABABBBBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,32,4,3,gemini-flash-latest,,2026-07-26T10:35:53.266777+00:00,CACDCDDDCDCCBADBBDBBDABDCBBDCADB,DBDADAAADADDCBACCACCABCADCCADBAC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACDCDDDCDCCBADBBDBBDABDCBBDCADB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,32,8,3,gemini-flash-latest,,2026-07-26T10:35:53.880142+00:00,HFEAACFCFCAFCFBAEAADDDFHCHHGGBAG,AGFBBDGDGDBGDGCBFBBEEEGADAAHHCBH,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HFEAACFCFCAFCFBAEAADDDFHCHHGGBAG
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,32,2,3,gemini-flash-latest,,2026-07-26T10:35:54.493563+00:00,A|B|A|A|A|A|A|B|A|B|A|B|A|A|B|B|B|B|B|A|B|A|A|A|A|B|A|B|B|B|B|B,B|A|B|B|B|B|B|A|B|A|B|A|B|B|A|A|A|A|A|B|A|B|B|B|B|A|B|A|A|A|A|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|B|A|A|A|A|A|B|A|B|A|B|A|A|B|B|B|B|B|A|B|A|A|A|A|B|A|B|B|B|B|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,32,4,3,gemini-flash-latest,,2026-07-26T10:35:55.111892+00:00,D|A|C|C|C|D|B|C|C|D|A|D|A|D|A|C|C|C|C|A|D|B|C|C|A|A|C|A|D|B|D|A,A|B|D|D|D|A|C|D|D|A|B|A|B|A|B|D|D|D|D|B|A|C|D|D|B|B|D|B|A|C|A|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|A|C|C|C|D|B|C|C|D|A|D|A|D|A|C|C|C|C|A|D|B|C|C|A|A|C|A|D|B|D|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,32,8,3,gemini-flash-latest,,2026-07-26T10:35:55.727706+00:00,G|E|G|B|F|E|F|G|B|D|C|C|A|C|D|C|D|E|D|D|B|H|C|D|B|F|A|A|E|E|D|G,H|F|H|C|G|F|G|H|C|E|D|D|B|D|E|D|E|F|E|E|C|A|D|E|C|G|B|B|F|F|E|H,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: G|E|G|B|F|E|F|G|B|D|C|C|A|C|D|C|D|E|D|D|B|H|C|D|B|F|A|A|E|E|D|G
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,32,2,3,gemini-flash-latest,,2026-07-26T10:35:56.345177+00:00,BB|BA|AB|BA|BB|AA|AB|AA|BB|AB|BA|AA|AB|BA|BB|AA,AA|AB|BA|AB|AA|BB|BA|BB|AA|BA|AB|BB|BA|AB|AA|BB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|BA|AB|BA|BB|AA|AB|AA|BB|AB|BA|AA|AB|BA|BB|AA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,32,4,3,gemini-flash-latest,,2026-07-26T10:35:56.952018+00:00,BC|DB|AB|BD|CC|CD|CC|BD|AC|AC|BD|BC|AC|AC|AD|CC,CD|AC|BC|CA|DD|DA|DD|CA|BD|BD|CA|CD|BD|BD|BA|DD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BC|DB|AB|BD|CC|CD|CC|BD|AC|AC|BD|BC|AC|AC|AD|CC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,32,8,3,gemini-flash-latest,,2026-07-26T10:35:57.564603+00:00,BD|HC|HG|DG|AE|AD|AA|AE|FA|GC|BE|DF|EA|GA|DG|GC,CE|AD|AH|EH|BF|BE|BB|BF|GB|HD|CF|EG|FB|HB|EH|HD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BD|HC|HG|DG|AE|AD|AA|AE|FA|GC|BE|DF|EA|GA|DG|GC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,32,2,3,gemini-flash-latest,,2026-07-26T10:35:58.182327+00:00,BAB|ABB|AAA|AAA|BBB|BAA|AAB|BAA|AAA|AAA|AA,ABA|BAA|BBB|BBB|AAA|ABB|BBA|ABB|BBB|BBB|BB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAB|ABB|AAA|AAA|BBB|BAA|AAB|BAA|AAA|AAA|AA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,32,4,3,gemini-flash-latest,,2026-07-26T10:35:58.793049+00:00,CDC|DBA|ABB|CAB|BBC|CDD|CDB|BBB|AAD|CBC|AC,DAD|ACB|BCC|DBC|CCD|DAA|DAC|CCC|BBA|DCD|BD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDC|DBA|ABB|CAB|BBC|CDD|CDB|BBB|AAD|CBC|AC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,32,8,3,gemini-flash-latest,,2026-07-26T10:35:59.395216+00:00,CEA|EFF|CFD|DEH|GDF|GGC|BEE|FEE|DHA|ECA|EG,DFB|FGG|DGE|EFA|HEG|HHD|CFF|GFF|EAB|FDB|FH,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CEA|EFF|CFD|DEH|GDF|GGC|BEE|FEE|DHA|ECA|EG
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,32,2,3,gemini-flash-latest,,2026-07-26T10:35:59.997352+00:00,ABAA|BAAB|AAAA|BAAB|BBAA|BBBA|BAAA|BBBA,BABB|ABBA|BBBB|ABBA|AABB|AAAB|ABBB|AAAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAA|BAAB|AAAA|BAAB|BBAA|BBBA|BAAA|BBBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,32,4,3,gemini-flash-latest,,2026-07-26T10:36:00.625986+00:00,BBAD|DCDA|BBCA|AAAC|ADAD|ADDD|ACCD|DDAA,CCBA|ADAB|CCDB|BBBD|BABA|BAAA|BDDA|AABB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAD|DCDA|BBCA|AAAC|ADAD|ADDD|ACCD|DDAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,32,8,3,gemini-flash-latest,,2026-07-26T10:36:01.240530+00:00,CGGC|DDFE|FBCD|CFCA|EDHA|HBGH|FCFF|BAAB,DHHD|EEGF|GCDE|DGDB|FEAB|ACHA|GDGG|CBBC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGGC|DDFE|FBCD|CFCA|EDHA|HBGH|FCFF|BAAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,32,2,3,gemini-flash-latest,,2026-07-26T10:36:01.856559+00:00,AABAABBA|AABBAAAB|BAAAABAA|BABAABBA,BBABBAAB|BBAABBBA|ABBBBABB|ABABBAAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AABAABBA|AABBAAAB|BAAAABAA|BABAABBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,32,4,3,gemini-flash-latest,,2026-07-26T10:36:02.492460+00:00,DAABBDCA|ACCBCCBA|ABDACDDC|CBCBCBAB,ABBCCADB|BDDCDDCB|BCABDAAD|DCDCDCBC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DAABBDCA|ACCBCCBA|ABDACDDC|CBCBCBAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,32,8,3,gemini-flash-latest,,2026-07-26T10:36:03.094635+00:00,EFAGBHHG|BGHAECCA|AGBGDBDD|FGHFGECB,FGBHCAAH|CHABFDDB|BHCHECEE|GHAGHFDC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EFAGBHHG|BGHAECCA|AGBGDBDD|FGHFGECB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,32,2,3,gemini-flash-latest,,2026-07-26T10:36:03.702906+00:00,ABABABBBABAABAAB|ABAABBAABBAABAAB,BABABAAABABBABBA|BABBAABBAABBABBA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABABABBBABAABAAB|ABAABBAABBAABAAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,32,4,3,gemini-flash-latest,,2026-07-26T10:36:04.310631+00:00,ADCADDAAABCABACA|ABDABBCDADBADBCD,BADBAABBBCDBCBDB|BCABCCDABACBACDA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADCADDAAABCABACA|ABDABBCDADBADBCD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,32,8,3,gemini-flash-latest,,2026-07-26T10:36:04.934620+00:00,CGCFFBGHHABDCAFE|EHAGBDABCHGDBACG,DHDGGCHAABCEDBGF|FABHCEBCDAHECBDH,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CGCFFBGHHABDCAFE|EHAGBDABCHGDBACG
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,64,2,3,gemini-flash-latest,,2026-07-26T10:36:05.556846+00:00,BABBBABBABBAABABAAAABBABBBBABBABBAAAAABBBBABBAAAAAABBABABAAAAABB,ABAAABAABAABBABABBBBAABAAAABAABAABBBBBAAAABAABBBBBBAABABABBBBBAA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABBBABBABBAABABAAAABBABBBBABBABBAAAAABBBBABBAAAAAABBABABAAAAABB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,64,4,3,gemini-flash-latest,,2026-07-26T10:36:06.172058+00:00,CDDCAADBCDDDBAACADBCBADCDDDDCBBCBACCBACCBDDDBCDBDBCABBABDBABBDAD,DAADBBACDAAACBBDBACDCBADAAAADCCDCBDDCBDDCAAACDACACDBCCBCACBCCABA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDDCAADBCDDDBAACADBCBADCDDDDCBBCBACCBACCBDDDBCDBDBCABBABDBABBDAD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,64,8,3,gemini-flash-latest,,2026-07-26T10:36:06.792565+00:00,CFAACGDHDCBCHEGDGFDFGHEEBHBEHHCECGBDHAEAHGGHCHFAAHEFGCCGDCBCGADH,DGBBDHEAEDCDAFHEHGEGHAFFCACFAADFDHCEABFBAHHADAGBBAFGHDDHEDCDHBEA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CFAACGDHDCBCHEGDGFDFGHEEBHBEHHCECGBDHAEAHGGHCHFAAHEFGCCGDCBCGADH
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,64,2,3,gemini-flash-latest,,2026-07-26T10:36:07.403488+00:00,B|B|B|B|A|A|A|A|B|B|B|A|A|A|A|B|B|A|A|A|A|A|B|B|B|B|A|A|B|B|B|A|B|B|B|A|A|B|A|B|A|B|B|B|A|B|B|B|B|A|B|B|B|B|A|A|B|A|A|B|B|A|A|B,A|A|A|A|B|B|B|B|A|A|A|B|B|B|B|A|A|B|B|B|B|B|A|A|A|A|B|B|A|A|A|B|A|A|A|B|B|A|B|A|B|A|A|A|B|A|A|A|A|B|A|A|A|A|B|B|A|B|B|A|A|B|B|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|B|B|B|A|A|A|A|B|B|B|A|A|A|A|B|B|A|A|A|A|A|B|B|B|B|A|A|B|B|B|A|B|B|B|A|A|B|A|B|A|B|B|B|A|B|B|B|B|A|B|B|B|B|A|A|B|A|A|B|B|A|A|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,64,4,3,gemini-flash-latest,,2026-07-26T10:36:08.006653+00:00,A|D|B|A|A|A|B|A|C|C|C|C|A|D|A|A|C|B|B|A|C|B|B|A|A|A|C|D|C|B|D|A|D|B|C|C|A|C|D|A|A|C|D|B|D|C|C|A|C|C|A|B|D|B|D|D|B|C|D|A|C|A|A|C,B|A|C|B|B|B|C|B|D|D|D|D|B|A|B|B|D|C|C|B|D|C|C|B|B|B|D|A|D|C|A|B|A|C|D|D|B|D|A|B|B|D|A|C|A|D|D|B|D|D|B|C|A|C|A|A|C|D|A|B|D|B|B|D,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|D|B|A|A|A|B|A|C|C|C|C|A|D|A|A|C|B|B|A|C|B|B|A|A|A|C|D|C|B|D|A|D|B|C|C|A|C|D|A|A|C|D|B|D|C|C|A|C|C|A|B|D|B|D|D|B|C|D|A|C|A|A|C
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,64,8,3,gemini-flash-latest,,2026-07-26T10:36:08.601097+00:00,A|G|E|E|E|D|B|B|H|B|D|C|H|A|C|E|G|H|G|C|A|E|D|F|D|B|B|D|F|E|A|B|E|D|E|G|E|D|B|E|G|B|G|H|B|G|B|C|H|B|G|D|B|A|B|G|G|E|A|D|H|F|C|C,B|H|F|F|F|E|C|C|A|C|E|D|A|B|D|F|H|A|H|D|B|F|E|G|E|C|C|E|G|F|B|C|F|E|F|H|F|E|C|F|H|C|H|A|C|H|C|D|A|C|H|E|C|B|C|H|H|F|B|E|A|G|D|D,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|G|E|E|E|D|B|B|H|B|D|C|H|A|C|E|G|H|G|C|A|E|D|F|D|B|B|D|F|E|A|B|E|D|E|G|E|D|B|E|G|B|G|H|B|G|B|C|H|B|G|D|B|A|B|G|G|E|A|D|H|F|C|C
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,64,2,3,gemini-flash-latest,,2026-07-26T10:36:09.199103+00:00,BA|BA|BB|BB|AA|BB|BA|BB|AA|BA|AB|BA|AA|AB|BB|AA|BA|BA|AA|BB|BA|AB|BB|AB|AB|AA|BA|AB|BB|AB|BB|AA,AB|AB|AA|AA|BB|AA|AB|AA|BB|AB|BA|AB|BB|BA|AA|BB|AB|AB|BB|AA|AB|BA|AA|BA|BA|BB|AB|BA|AA|BA|AA|BB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BA|BA|BB|BB|AA|BB|BA|BB|AA|BA|AB|BA|AA|AB|BB|AA|BA|BA|AA|BB|BA|AB|BB|AB|AB|AA|BA|AB|BB|AB|BB|AA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,64,4,3,gemini-flash-latest,,2026-07-26T10:36:09.823046+00:00,AB|AB|AA|CC|DA|AA|AA|DB|DC|AD|CC|BA|BB|CB|CC|DA|BB|CA|CD|BD|AC|CA|AC|AB|CC|CB|CC|BB|DC|BD|BB|AC,BC|BC|BB|DD|AB|BB|BB|AC|AD|BA|DD|CB|CC|DC|DD|AB|CC|DB|DA|CA|BD|DB|BD|BC|DD|DC|DD|CC|AD|CA|CC|BD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|AB|AA|CC|DA|AA|AA|DB|DC|AD|CC|BA|BB|CB|CC|DA|BB|CA|CD|BD|AC|CA|AC|AB|CC|CB|CC|BB|DC|BD|BB|AC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,64,8,3,gemini-flash-latest,,2026-07-26T10:36:10.427451+00:00,BC|EC|DD|EH|EG|AH|FF|FA|GC|FH|CG|DF|BC|BG|BF|GE|AF|GF|HE|CG|GB|EC|FC|CE|GE|HD|FD|FA|GE|BE|EA|FB,CD|FD|EE|FA|FH|BA|GG|GB|HD|GA|DH|EG|CD|CH|CG|HF|BG|HG|AF|DH|HC|FD|GD|DF|HF|AE|GE|GB|HF|CF|FB|GC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BC|EC|DD|EH|EG|AH|FF|FA|GC|FH|CG|DF|BC|BG|BF|GE|AF|GF|HE|CG|GB|EC|FC|CE|GE|HD|FD|FA|GE|BE|EA|FB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,64,2,3,gemini-flash-latest,,2026-07-26T10:36:11.037924+00:00,BAA|ABB|AAB|ABA|BBB|BBB|BAA|AAB|AAB|AAB|ABB|AAA|ABB|BAB|ABB|BBB|BAA|ABA|ABB|BBA|BAA|B,ABB|BAA|BBA|BAB|AAA|AAA|ABB|BBA|BBA|BBA|BAA|BBB|BAA|ABA|BAA|AAA|ABB|BAB|BAA|AAB|ABB|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAA|ABB|AAB|ABA|BBB|BBB|BAA|AAB|AAB|AAB|ABB|AAA|ABB|BAB|ABB|BBB|BAA|ABA|ABB|BBA|BAA|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,64,4,3,gemini-flash-latest,,2026-07-26T10:36:11.648945+00:00,CDC|BAA|BDD|CAD|DBC|BDB|DCD|CDD|ADD|ACD|DCA|DBB|DBD|BCD|DAB|ADA|DAD|DBD|CAC|ACA|CDD|B,DAD|CBB|CAA|DBA|ACD|CAC|ADA|DAA|BAA|BDA|ADB|ACC|ACA|CDA|ABC|BAB|ABA|ACA|DBD|BDB|DAA|C,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDC|BAA|BDD|CAD|DBC|BDB|DCD|CDD|ADD|ACD|DCA|DBB|DBD|BCD|DAB|ADA|DAD|DBD|CAC|ACA|CDD|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,64,8,3,gemini-flash-latest,,2026-07-26T10:36:12.251716+00:00,BBF|HCE|ADF|FCA|GEH|FFH|DEH|BCB|EHC|DFH|FHF|ABF|DFF|DAH|ACE|DBE|BCA|AHF|GEA|DFB|ACA|B,CCG|ADF|BEG|GDB|HFA|GGA|EFA|CDC|FAD|EGA|GAG|BCG|EGG|EBA|BDF|ECF|CDB|BAG|HFB|EGC|BDB|C,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBF|HCE|ADF|FCA|GEH|FFH|DEH|BCB|EHC|DFH|FHF|ABF|DFF|DAH|ACE|DBE|BCA|AHF|GEA|DFB|ACA|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,64,2,3,gemini-flash-latest,,2026-07-26T10:36:12.865913+00:00,ABBB|AABA|BBAA|BBBA|AAAA|AABB|BABB|AABA|ABBB|BABA|AABB|BBBB|BBBA|BBBB|AABB|BBBB,BAAA|BBAB|AABB|AAAB|BBBB|BBAA|ABAA|BBAB|BAAA|ABAB|BBAA|AAAA|AAAB|AAAA|BBAA|AAAA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABBB|AABA|BBAA|BBBA|AAAA|AABB|BABB|AABA|ABBB|BABA|AABB|BBBB|BBBA|BBBB|AABB|BBBB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,64,4,3,gemini-flash-latest,,2026-07-26T10:36:13.474781+00:00,DCDA|BAAC|CCBC|ACBD|BABC|BCBA|DCDD|DAAD|DDAB|BADC|DABB|CABA|CDDC|BCBD|CCBD|BACB,ADAB|CBBD|DDCD|BDCA|CBCD|CDCB|ADAA|ABBA|AABC|CBAD|ABCC|DBCB|DAAD|CDCA|DDCA|CBDC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DCDA|BAAC|CCBC|ACBD|BABC|BCBA|DCDD|DAAD|DDAB|BADC|DABB|CABA|CDDC|BCBD|CCBD|BACB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,64,8,3,gemini-flash-latest,,2026-07-26T10:36:14.061677+00:00,DCCE|HGBH|BFHC|ACAC|BCGC|DFGB|CAHD|DHBE|CFFD|DDBG|EBHD|GDCG|HFBB|AAGA|BCGB|ABCF,EDDF|AHCA|CGAD|BDBD|CDHD|EGHC|DBAE|EACF|DGGE|EECH|FCAE|HEDH|AGCC|BBHB|CDHC|BCDG,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DCCE|HGBH|BFHC|ACAC|BCGC|DFGB|CAHD|DHBE|CFFD|DDBG|EBHD|GDCG|HFBB|AAGA|BCGB|ABCF
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,64,2,3,gemini-flash-latest,,2026-07-26T10:36:14.650264+00:00,BABBBAAA|BAAABBBB|ABAABAAB|BBABABBA|ABBBAABA|ABBBAABB|ABBABBBA|BAAABBAA,ABAAABBB|ABBBAAAA|BABBABBA|AABABAAB|BAAABBAB|BAAABBAA|BAABAAAB|ABBBAABB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABBBAAA|BAAABBBB|ABAABAAB|BBABABBA|ABBBAABA|ABBBAABB|ABBABBBA|BAAABBAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,64,4,3,gemini-flash-latest,,2026-07-26T10:36:15.235303+00:00,DBABDDCA|DCCBCDBB|CBDBABDD|CADDCCDA|DDBCACCD|CCDCADBB|CDBDDCCA|CCDDDCBA,ACBCAADB|ADDCDACC|DCACBCAA|DBAADDAB|AACDBDDA|DDADBACC|DACAADDB|DDAAADCB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DBABDDCA|DCCBCDBB|CBDBABDD|CADDCCDA|DDBCACCD|CCDCADBB|CDBDDCCA|CCDDDCBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,64,8,3,gemini-flash-latest,,2026-07-26T10:36:15.834076+00:00,EHFGDECE|HFFEFABG|CGEHBBAC|DHAAAEHF|FCGDHHCF|EHDHGADB|AAFFDEHC|FFEEBCBA,FAGHEFDF|AGGFGBCH|DHFACCBD|EABBBFAG|GDHEAADG|FAEAHBEC|BBGGEFAD|GGFFCDCB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EHFGDECE|HFFEFABG|CGEHBBAC|DHAAAEHF|FCGDHHCF|EHDHGADB|AAFFDEHC|FFEEBCBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,64,2,3,gemini-flash-latest,,2026-07-26T10:36:16.417050+00:00,AABBBAAABBABBBAB|BBBAABBAAAABAABB|ABBBABBBAABBABBA|BBAAAAABBBBBBABA,BBAAABBBAABAAABA|AAABBAABBBBABBAA|BAAABAAABBAABAAB|AABBBBBAAAAAABAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AABBBAAABBABBBAB|BBBAABBAAAABAABB|ABBBABBBAABBABBA|BBAAAAABBBBBBABA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,64,4,3,gemini-flash-latest,,2026-07-26T10:36:17.003416+00:00,CADCAAACDBADBDCA|DADBADCDABACDCBC|ACCBAADAABDCACBD|ADDBCABAACACAADB,DBADBBBDACBACADB|ABACBADABCBDADCD|BDDCBBABBCADBDCA|BAACDBCBBDBDBBAC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CADCAAACDBADBDCA|DADBADCDABACDCBC|ACCBAADAABDCACBD|ADDBCABAACACAADB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,64,8,3,gemini-flash-latest,,2026-07-26T10:36:17.590973+00:00,BCBAFDFFCGFGBCCH|EFEGCGHGCCDFGDHA|BAFADGCAGEDBHAAD|HCEAGCDCDECHCFAB,CDCBGEGGDHGHCDDA|FGFHDHAHDDEGHEAB|CBGBEHDBHFECABBE|ADFBHDEDEFDADGBC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCBAFDFFCGFGBCCH|EFEGCGHGCCDFGDHA|BAFADGCAGEDBHAAD|HCEAGCDCDECHCFAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,128,2,3,gemini-flash-latest,,2026-07-26T10:36:18.179318+00:00,BABBBBAAAAABBABBBBBBBBBBABBBBBAAAABBABABABABBBBABBBABBBABBBAAAABABABAABBABBAABBABAABABBABABAAAABABBABABBABBAAAABAAABBAAAAABABBBA,ABAAAABBBBBAABAAAAAAAAAABAAAAABBBBAABABABABAAAABAAABAAABAAABBBBABABABBAABAABBAABABBABAABABABBBBABAABABAABAABBBBABBBAABBBBBABAAAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABBBBAAAAABBABBBBBBBBBBABBBBBAAAABBABABABABBBBABBBABBBABBBAAAABABABAABBABBAABBABAABABBABABAAAABABBABABBABBAAAABAAABBAAAAABABBBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,128,4,3,gemini-flash-latest,,2026-07-26T10:36:18.781598+00:00,CDCDDBDACDCACBABCCBBADCBBABBBDADCADBDADDAABABDCCBADBCCCCBABCCBCDAAAACCABDBACCBADBACCDDDDCBAADDDCCABCCCDABACBAACADCDDDACDBABACCDA,DADAACABDADBDCBCDDCCBADCCBCCCABADBACABAABBCBCADDCBACDDDDCBCDDCDABBBBDDBCACBDDCBACBDDAAAADCBBAAADDBCDDDABCBDCBBDBADAAABDACBCBDDAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDCDDBDACDCACBABCCBBADCBBABBBDADCADBDADDAABABDCCBADBCCCCBABCCBCDAAAACCABDBACCBADBACCDDDDCBAADDDCCABCCCDABACBAACADCDDDACDBABACCDA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,128,8,3,gemini-flash-latest,,2026-07-26T10:36:19.367023+00:00,AHBDGGCAGFCADDHFECDHBABGGCEBFEGACGCFDFGDDDHDCHGHCFHDFHGDHGGHDHDCDEGFDGFBACDCGBFHDBHDFGAHHDBBCHHBDFCGFFACCEHBDCFFDEAEADHAHAACCFCD,BACEHHDBHGDBEEAGFDEACBCHHDFCGFHBDHDGEGHEEEAEDAHADGAEGAHEAHHAEAEDEFHGEHGCBDEDHCGAECAEGHBAAECCDAACEGDHGGBDDFACEDGGEFBFBEABABBDDGDE,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AHBDGGCAGFCADDHFECDHBABGGCEBFEGACGCFDFGDDDHDCHGHCFHDFHGDHGGHDHDCDEGFDGFBACDCGBFHDBHDFGAHHDBBCHHBDFCGFFACCEHBDCFFDEAEADHAHAACCFCD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,128,2,3,gemini-flash-latest,,2026-07-26T10:36:19.948391+00:00,A|B|B|A|B|B|B|B|A|A|B|A|A|A|B|B|A|B|B|B|B|A|A|A|A|A|B|B|B|B|A|B|B|A|A|A|B|A|B|B|B|A|B|B|A|B|A|B|B|B|A|A|A|B|B|B|A|A|A|B|A|A|A|B|A|B|A|B|A|B|B|A|A|B|B|A|B|B|B|A|B|B|B|A|A|A|A|B|B|B|A|B|B|A|A|A|A|B|B|A|A|A|B|A|A|B|B|B|B|A|B|B|B|A|A|B|B|B|B|B|A|B|B|B|B|A|B|A,B|A|A|B|A|A|A|A|B|B|A|B|B|B|A|A|B|A|A|A|A|B|B|B|B|B|A|A|A|A|B|A|A|B|B|B|A|B|A|A|A|B|A|A|B|A|B|A|A|A|B|B|B|A|A|A|B|B|B|A|B|B|B|A|B|A|B|A|B|A|A|B|B|A|A|B|A|A|A|B|A|A|A|B|B|B|B|A|A|A|B|A|A|B|B|B|B|A|A|B|B|B|A|B|B|A|A|A|A|B|A|A|A|B|B|A|A|A|A|A|B|A|A|A|A|B|A|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|B|B|A|B|B|B|B|A|A|B|A|A|A|B|B|A|B|B|B|B|A|A|A|A|A|B|B|B|B|A|B|B|A|A|A|B|A|B|B|B|A|B|B|A|B|A|B|B|B|A|A|A|B|B|B|A|A|A|B|A|A|A|B|A|B|A|B|A|B|B|A|A|B|B|A|B|B|B|A|B|B|B|A|A|A|A|B|B|B|A|B|B|A|A|A|A|B|B|A|A|A|B|A|A|B|B|B|B|A|B|B|B|A|A|B|B|B|B|B|A|B|B|B|B|A|B|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,128,4,3,gemini-flash-latest,,2026-07-26T10:36:20.537018+00:00,C|B|B|B|A|D|D|D|B|D|C|A|D|C|B|A|D|A|D|A|A|D|D|A|B|B|C|D|D|A|C|B|C|A|C|B|A|A|D|A|A|A|A|C|D|B|B|B|B|D|A|B|B|D|C|A|D|C|A|C|D|C|D|C|C|B|D|B|C|D|C|B|D|B|A|B|A|A|A|D|C|D|A|D|B|B|A|D|C|D|C|C|B|A|B|D|D|C|D|D|D|D|D|A|D|D|D|D|B|A|D|D|B|D|C|C|C|A|C|C|C|D|B|D|D|B|B|C,D|C|C|C|B|A|A|A|C|A|D|B|A|D|C|B|A|B|A|B|B|A|A|B|C|C|D|A|A|B|D|C|D|B|D|C|B|B|A|B|B|B|B|D|A|C|C|C|C|A|B|C|C|A|D|B|A|D|B|D|A|D|A|D|D|C|A|C|D|A|D|C|A|C|B|C|B|B|B|A|D|A|B|A|C|C|B|A|D|A|D|D|C|B|C|A|A|D|A|A|A|A|A|B|A|A|A|A|C|B|A|A|C|A|D|D|D|B|D|D|D|A|C|A|A|C|C|D,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|B|B|A|D|D|D|B|D|C|A|D|C|B|A|D|A|D|A|A|D|D|A|B|B|C|D|D|A|C|B|C|A|C|B|A|A|D|A|A|A|A|C|D|B|B|B|B|D|A|B|B|D|C|A|D|C|A|C|D|C|D|C|C|B|D|B|C|D|C|B|D|B|A|B|A|A|A|D|C|D|A|D|B|B|A|D|C|D|C|C|B|A|B|D|D|C|D|D|D|D|D|A|D|D|D|D|B|A|D|D|B|D|C|C|C|A|C|C|C|D|B|D|D|B|B|C
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,128,8,3,gemini-flash-latest,,2026-07-26T10:36:21.143105+00:00,E|F|G|C|A|G|G|H|B|D|F|A|B|F|C|C|F|F|G|A|G|B|G|E|B|H|E|F|D|A|G|F|D|B|A|F|A|F|H|H|F|G|C|A|F|F|D|F|B|H|C|C|B|D|F|E|C|C|D|F|C|B|A|G|D|A|A|D|H|E|B|D|H|F|F|G|E|H|E|D|G|A|F|H|H|E|D|G|G|C|H|F|C|C|C|C|A|G|A|G|F|E|C|D|A|A|G|B|G|F|C|C|D|B|C|B|E|F|C|G|D|G|A|D|A|E|D|G,F|G|H|D|B|H|H|A|C|E|G|B|C|G|D|D|G|G|H|B|H|C|H|F|C|A|F|G|E|B|H|G|E|C|B|G|B|G|A|A|G|H|D|B|G|G|E|G|C|A|D|D|C|E|G|F|D|D|E|G|D|C|B|H|E|B|B|E|A|F|C|E|A|G|G|H|F|A|F|E|H|B|G|A|A|F|E|H|H|D|A|G|D|D|D|D|B|H|B|H|G|F|D|E|B|B|H|C|H|G|D|D|E|C|D|C|F|G|D|H|E|H|B|E|B|F|E|H,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: E|F|G|C|A|G|G|H|B|D|F|A|B|F|C|C|F|F|G|A|G|B|G|E|B|H|E|F|D|A|G|F|D|B|A|F|A|F|H|H|F|G|C|A|F|F|D|F|B|H|C|C|B|D|F|E|C|C|D|F|C|B|A|G|D|A|A|D|H|E|B|D|H|F|F|G|E|H|E|D|G|A|F|H|H|E|D|G|G|C|H|F|C|C|C|C|A|G|A|G|F|E|C|D|A|A|G|B|G|F|C|C|D|B|C|B|E|F|C|G|D|G|A|D|A|E|D|G
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,128,2,3,gemini-flash-latest,,2026-07-26T10:36:21.726149+00:00,BA|AA|AA|AB|AA|AB|BA|BA|AB|BA|AA|AA|AA|BA|BA|AA|BB|BB|AA|BA|AB|AA|BA|BA|BA|AA|AB|BA|BA|BA|AB|BA|AA|BB|BB|BB|AB|BB|BA|BB|BA|BB|BA|AB|AA|AB|AB|AB|BA|AA|BB|AA|BB|BA|AA|AB|BA|BA|BA|BB|AA|AB|AA|AB,AB|BB|BB|BA|BB|BA|AB|AB|BA|AB|BB|BB|BB|AB|AB|BB|AA|AA|BB|AB|BA|BB|AB|AB|AB|BB|BA|AB|AB|AB|BA|AB|BB|AA|AA|AA|BA|AA|AB|AA|AB|AA|AB|BA|BB|BA|BA|BA|AB|BB|AA|BB|AA|AB|BB|BA|AB|AB|AB|AA|BB|BA|BB|BA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BA|AA|AA|AB|AA|AB|BA|BA|AB|BA|AA|AA|AA|BA|BA|AA|BB|BB|AA|BA|AB|AA|BA|BA|BA|AA|AB|BA|BA|BA|AB|BA|AA|BB|BB|BB|AB|BB|BA|BB|BA|BB|BA|AB|AA|AB|AB|AB|BA|AA|BB|AA|BB|BA|AA|AB|BA|BA|BA|BB|AA|AB|AA|AB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,128,4,3,gemini-flash-latest,,2026-07-26T10:36:22.327235+00:00,BC|CA|AB|AB|DA|AB|DD|DC|DC|DA|DD|CB|CC|AC|AA|DA|DD|DB|BB|CB|BA|AA|BC|CC|AA|CB|BA|DB|BD|BC|DC|BB|DC|AC|BD|CC|CD|AD|DB|AC|DC|CC|CB|BB|BA|AA|BD|DD|DD|BD|CA|AC|AD|CD|CD|DB|AD|CB|DB|AB|DB|CA|DA|CC,CD|DB|BC|BC|AB|BC|AA|AD|AD|AB|AA|DC|DD|BD|BB|AB|AA|AC|CC|DC|CB|BB|CD|DD|BB|DC|CB|AC|CA|CD|AD|CC|AD|BD|CA|DD|DA|BA|AC|BD|AD|DD|DC|CC|CB|BB|CA|AA|AA|CA|DB|BD|BA|DA|DA|AC|BA|DC|AC|BC|AC|DB|AB|DD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BC|CA|AB|AB|DA|AB|DD|DC|DC|DA|DD|CB|CC|AC|AA|DA|DD|DB|BB|CB|BA|AA|BC|CC|AA|CB|BA|DB|BD|BC|DC|BB|DC|AC|BD|CC|CD|AD|DB|AC|DC|CC|CB|BB|BA|AA|BD|DD|DD|BD|CA|AC|AD|CD|CD|DB|AD|CB|DB|AB|DB|CA|DA|CC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,128,8,3,gemini-flash-latest,,2026-07-26T10:36:22.908370+00:00,CA|CC|HF|HH|DC|HC|DG|ED|DB|BD|FA|DB|EH|BA|FA|AA|EA|HC|HA|GD|FA|GD|BA|EC|DD|GF|DA|BG|GD|BD|CG|EB|AD|BC|FE|HF|HG|FG|HG|CG|HH|BH|FH|FA|FH|GB|BF|HB|CD|CD|HB|CE|HH|EE|GE|BE|HH|BG|FB|BH|BC|HG|GG|HH,DB|DD|AG|AA|ED|AD|EH|FE|EC|CE|GB|EC|FA|CB|GB|BB|FB|AD|AB|HE|GB|HE|CB|FD|EE|HG|EB|CH|HE|CE|DH|FC|BE|CD|GF|AG|AH|GH|AH|DH|AA|CA|GA|GB|GA|HC|CG|AC|DE|DE|AC|DF|AA|FF|HF|CF|AA|CH|GC|CA|CD|AH|HH|AA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|CC|HF|HH|DC|HC|DG|ED|DB|BD|FA|DB|EH|BA|FA|AA|EA|HC|HA|GD|FA|GD|BA|EC|DD|GF|DA|BG|GD|BD|CG|EB|AD|BC|FE|HF|HG|FG|HG|CG|HH|BH|FH|FA|FH|GB|BF|HB|CD|CD|HB|CE|HH|EE|GE|BE|HH|BG|FB|BH|BC|HG|GG|HH
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,128,2,3,gemini-flash-latest,,2026-07-26T10:36:23.499372+00:00,BBB|BAA|ABB|BBB|BAA|BBB|BBA|AAB|ABB|AAA|AAB|AAA|BBB|BBB|ABA|BAA|AAB|ABA|AAA|AAA|BAB|ABA|ABB|BBB|AAA|BAA|BBA|BBA|AAA|BBA|AAA|BAA|AAB|BAA|ABA|BAA|BBA|BAB|ABA|BAA|AAA|ABA|AB,AAA|ABB|BAA|AAA|ABB|AAA|AAB|BBA|BAA|BBB|BBA|BBB|AAA|AAA|BAB|ABB|BBA|BAB|BBB|BBB|ABA|BAB|BAA|AAA|BBB|ABB|AAB|AAB|BBB|AAB|BBB|ABB|BBA|ABB|BAB|ABB|AAB|ABA|BAB|ABB|BBB|BAB|BA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBB|BAA|ABB|BBB|BAA|BBB|BBA|AAB|ABB|AAA|AAB|AAA|BBB|BBB|ABA|BAA|AAB|ABA|AAA|AAA|BAB|ABA|ABB|BBB|AAA|BAA|BBA|BBA|AAA|BBA|AAA|BAA|AAB|BAA|ABA|BAA|BBA|BAB|ABA|BAA|AAA|ABA|AB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,128,4,3,gemini-flash-latest,,2026-07-26T10:36:24.122558+00:00,BBD|CAC|BAB|ABD|BDC|BDC|ADB|BBB|ACB|BBD|DAC|BAB|BCC|DAC|DAA|DDA|DBB|DBA|ACD|BDA|ACB|BCB|CBB|DBA|ACA|AAD|CCD|CCB|ACC|CAC|BDC|CBC|DBA|BCA|CBD|DBA|ABB|ACC|DDC|CDC|BDB|BAB|AD,CCA|DBD|CBC|BCA|CAD|CAD|BAC|CCC|BDC|CCA|ABD|CBC|CDD|ABD|ABB|AAB|ACC|ACB|BDA|CAB|BDC|CDC|DCC|ACB|BDB|BBA|DDA|DDC|BDD|DBD|CAD|DCD|ACB|CDB|DCA|ACB|BCC|BDD|AAD|DAD|CAC|CBC|BA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBD|CAC|BAB|ABD|BDC|BDC|ADB|BBB|ACB|BBD|DAC|BAB|BCC|DAC|DAA|DDA|DBB|DBA|ACD|BDA|ACB|BCB|CBB|DBA|ACA|AAD|CCD|CCB|ACC|CAC|BDC|CBC|DBA|BCA|CBD|DBA|ABB|ACC|DDC|CDC|BDB|BAB|AD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,128,8,3,gemini-flash-latest,,2026-07-26T10:36:24.716919+00:00,AFA|GAH|AAB|HAH|ECG|FBG|DDD|DFG|HAC|BBC|AGD|FFH|AGH|HEG|GCG|AED|GCB|AGF|FBE|BHC|EDD|CDC|BDG|GDD|AEE|EFC|DAA|ADF|AEC|GAF|GEF|AAH|HFB|DHF|BAC|BED|BHG|FBC|EBD|HDD|ABE|HCA|HG,BGB|HBA|BBC|ABA|FDH|GCH|EEE|EGH|ABD|CCD|BHE|GGA|BHA|AFH|HDH|BFE|HDC|BHG|GCF|CAD|FEE|DED|CEH|HEE|BFF|FGD|EBB|BEG|BFD|HBG|HFG|BBA|AGC|EAG|CBD|CFE|CAH|GCD|FCE|AEE|BCF|ADB|AH,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AFA|GAH|AAB|HAH|ECG|FBG|DDD|DFG|HAC|BBC|AGD|FFH|AGH|HEG|GCG|AED|GCB|AGF|FBE|BHC|EDD|CDC|BDG|GDD|AEE|EFC|DAA|ADF|AEC|GAF|GEF|AAH|HFB|DHF|BAC|BED|BHG|FBC|EBD|HDD|ABE|HCA|HG
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,128,2,3,gemini-flash-latest,,2026-07-26T10:36:25.319775+00:00,BABB|BAAA|BABA|AAAB|BABA|AABA|BABA|ABAA|AAAA|AABA|ABAA|AABA|BABA|BABB|BBAB|AAAA|AAAA|AAAA|BBAB|BABB|BBAB|AAAB|BABB|BBBB|BBBA|BBBB|BBAB|BABA|ABBB|ABAA|ABBA|AABB,ABAA|ABBB|ABAB|BBBA|ABAB|BBAB|ABAB|BABB|BBBB|BBAB|BABB|BBAB|ABAB|ABAA|AABA|BBBB|BBBB|BBBB|AABA|ABAA|AABA|BBBA|ABAA|AAAA|AAAB|AAAA|AABA|ABAB|BAAA|BABB|BAAB|BBAA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABB|BAAA|BABA|AAAB|BABA|AABA|BABA|ABAA|AAAA|AABA|ABAA|AABA|BABA|BABB|BBAB|AAAA|AAAA|AAAA|BBAB|BABB|BBAB|AAAB|BABB|BBBB|BBBA|BBBB|BBAB|BABA|ABBB|ABAA|ABBA|AABB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,128,4,3,gemini-flash-latest,,2026-07-26T10:36:25.918719+00:00,BBCC|BDCD|CBDA|CCAB|ACDC|BAAC|DDBB|DBCA|DCAD|AADB|CCBA|DAAA|ABCA|DDAC|DDAD|DBCA|CBCC|BBBD|DCBD|BCAD|CADD|BDCB|CBDC|BBAB|BCDC|DDCA|BBCD|ACDC|AACA|CBBC|ADAA|DDDC,CCDD|CADA|DCAB|DDBC|BDAD|CBBD|AACC|ACDB|ADBA|BBAC|DDCB|ABBB|BCDB|AABD|AABA|ACDB|DCDD|CCCA|ADCA|CDBA|DBAA|CADC|DCAD|CCBC|CDAD|AADB|CCDA|BDAD|BBDB|DCCD|BABB|AAAD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBCC|BDCD|CBDA|CCAB|ACDC|BAAC|DDBB|DBCA|DCAD|AADB|CCBA|DAAA|ABCA|DDAC|DDAD|DBCA|CBCC|BBBD|DCBD|BCAD|CADD|BDCB|CBDC|BBAB|BCDC|DDCA|BBCD|ACDC|AACA|CBBC|ADAA|DDDC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,128,8,3,gemini-flash-latest,,2026-07-26T10:36:26.516250+00:00,HDAD|GFBA|BEFB|EBHC|CDGF|HFBH|GAAD|CFAH|CBEF|BBFH|HEEH|HGCF|CDCH|GDCC|GAHH|CECB|FDEB|DGBH|HBHA|GCEE|GDGD|GEBC|GCED|EACG|AGAE|HGFC|DHEB|HHAE|CCBB|HCHC|GFDE|ABAC,AEBE|HGCB|CFGC|FCAD|DEHG|AGCA|HBBE|DGBA|DCFG|CCGA|AFFA|AHDG|DEDA|HEDD|HBAA|DFDC|GEFC|EHCA|ACAB|HDFF|HEHE|HFCD|HDFE|FBDH|BHBF|AHGD|EAFC|AABF|DDCC|ADAD|HGEF|BCBD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HDAD|GFBA|BEFB|EBHC|CDGF|HFBH|GAAD|CFAH|CBEF|BBFH|HEEH|HGCF|CDCH|GDCC|GAHH|CECB|FDEB|DGBH|HBHA|GCEE|GDGD|GEBC|GCED|EACG|AGAE|HGFC|DHEB|HHAE|CCBB|HCHC|GFDE|ABAC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,128,2,3,gemini-flash-latest,,2026-07-26T10:36:27.153533+00:00,BAABABAB|AAAABAAA|BAAABAAB|BBBABBBB|ABBBBAAA|AAABBABA|AABABABB|ABAAABAA|BABABBBA|BBAAAAAA|AAABAABB|BABABBBA|BAAAABAA|BAAAAAAB|AABBBAAB|BABAABAA,ABBABABA|BBBBABBB|ABBBABBA|AAABAAAA|BAAAABBB|BBBAABAB|BBABABAA|BABBBABB|ABABAAAB|AABBBBBB|BBBABBAA|ABABAAAB|ABBBBABB|ABBBBBBA|BBAAABBA|ABABBABB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAABABAB|AAAABAAA|BAAABAAB|BBBABBBB|ABBBBAAA|AAABBABA|AABABABB|ABAAABAA|BABABBBA|BBAAAAAA|AAABAABB|BABABBBA|BAAAABAA|BAAAAAAB|AABBBAAB|BABAABAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,128,4,3,gemini-flash-latest,,2026-07-26T10:36:27.765310+00:00,DBCBCABD|DCABDACD|CABDAACB|DDACCABD|BCDCDAAC|BDACBBBD|ACAADDBB|BBBCBBAC|BDDCBAAC|BCACABCA|ACBACCBA|ACBCCDCB|DBCBAABB|DBDDABCA|ABBCBABB|DDCBCDAC,ACDCDBCA|ADBCABDA|DBCABBDC|AABDDBCA|CDADABBD|CABDCCCA|BDBBAACC|CCCDCCBD|CAADCBBD|CDBDBCDB|BDCBDDCB|BDCDDADC|ACDCBBCC|ACAABCDB|BCCDCBCC|AADCDABD,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DBCBCABD|DCABDACD|CABDAACB|DDACCABD|BCDCDAAC|BDACBBBD|ACAADDBB|BBBCBBAC|BDDCBAAC|BCACABCA|ACBACCBA|ACBCCDCB|DBCBAABB|DBDDABCA|ABBCBABB|DDCBCDAC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,128,8,3,gemini-flash-latest,,2026-07-26T10:36:28.721925+00:00,CDACBBHH|FCHHBEHH|HAHEGHDA|FEFCEEHB|CHCEGHEF|EGBGHEAE|GBFEADGA|BECDBHEG|AHGCFBFF|FHCGCGHB|AHEFACHC|FEBAHBFE|HGFAGBBC|FABBFADE|EGBHCAAA|GCEGFHCE,DEBDCCAA|GDAACFAA|ABAFHAEB|GFGDFFAC|DADFHAFG|FHCHAFBF|HCGFBEHB|CFDECAFH|BAHDGCGG|GADHDHAC|BAFGBDAD|GFCBACGF|AHGBHCCD|GBCCGBEF|FHCADBBB|HDFHGADF,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDACBBHH|FCHHBEHH|HAHEGHDA|FEFCEEHB|CHCEGHEF|EGBGHEAE|GBFEADGA|BECDBHEG|AHGCFBFF|FHCGCGHB|AHEFACHC|FEBAHBFE|HGFAGBBC|FABBFADE|EGBHCAAA|GCEGFHCE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,128,2,3,gemini-flash-latest,,2026-07-26T10:36:29.313780+00:00,BABAAAAAAABABBBB|BBBAABBBBAABBBAB|BABBBAABBABABBBA|BBBAAAAAABBABAAB|BAABBABABAABBAAB|ABABBABBABAABAAA|AABABAAABBABAABA|ABBBBBABBABABAAB,ABABBBBBBBABAAAA|AAABBAAAABBAAABA|ABAAABBAABABAAAB|AAABBBBBBAABABBA|ABBAABABABBAABBA|BABAABAABABBABBB|BBABABBBAABABBAB|BAAAAABAABABABBA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABAAAAAAABABBBB|BBBAABBBBAABBBAB|BABBBAABBABABBBA|BBBAAAAAABBABAAB|BAABBABABAABBAAB|ABABBABBABAABAAA|AABABAAABBABAABA|ABBBBBABBABABAAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,128,4,3,gemini-flash-latest,,2026-07-26T10:36:29.972410+00:00,CADBCAABCADABABA|DDBABDBABCCAACCC|BCDDADDADBACACDD|DAADABACABCDADDA|CABCBABABCCADBAB|BDADBBBDADCCDDBD|CADDAAAAACCBADCD|ABADCBADABCCBCCD,DBACDBBCDBABCBCB|AACBCACBCDDBBDDD|CDAABAABACBDBDAA|ABBABCBDBCDABAAB|DBCDCBCBCDDBACBC|CABACCCABADDAACA|DBAABBBBBDDCBADA|BCBADCBABCDDCDDA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CADBCAABCADABABA|DDBABDBABCCAACCC|BCDDADDADBACACDD|DAADABACABCDADDA|CABCBABABCCADBAB|BDADBBBDADCCDDBD|CADDAAAAACCBADCD|ABADCBADABCCBCCD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,128,8,3,gemini-flash-latest,,2026-07-26T10:36:30.555879+00:00,CHAGHBGAACDEAADH|EBEBFHEHGEHBADGE|ECDHHBEHBFCBFEDF|DFFGFHDHDEAHDHED|BFAFHFHGEBHCHHAB|CGBDFFHHBDHDFCBF|FHADCBFDDCHCGGGD|GDEGBEFDADFFGFHE,DABHACHBBDEFBBEA|FCFCGAFAHFACBEHF|FDEAACFACGDCGFEG|EGGHGAEAEFBAEAFE|CGBGAGAHFCADAABC|DHCEGGAACEAEGDCG|GABEDCGEEDADHHHE|HEFHCFGEBEGGHGAF,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CHAGHBGAACDEAADH|EBEBFHEHGEHBADGE|ECDHHBEHBFCBFEDF|DFFGFHDHDEAHDHED|BFAFHFHGEBHCHHAB|CGBDFFHHBDHDFCBF|FHADCBFDDCHCGGGD|GDEGBEFDADFFGFHE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,256,2,3,gemini-flash-latest,,2026-07-26T10:36:31.146570+00:00,ABAAABABABBABABABBBBAAAABABAAAABBBAAABBBABAAAAAABAABABAABAABABBBBBABAABAAABBABABBABBBABBBBABBABAABAABABBABBBBBBABBBABABBAAAABBAAAABAAAAAAABABABABAAAABABBABABAAABAABBAAABAABABBBBABAAABBBABBBAABBBAAABAABBBABAABAAABAABABAABABBAABAAAAABABBBBBBABAAABBBABBAABAAA,BABBBABABAABABABAAAABBBBABABBBBAAABBBAAABABBBBBBABBABABBABBABAAAAABABBABBBAABABAABAAABAAAABAABABBABBABAABAAAAAABAAABABAABBBBAABBBBABBBBBBBABABABABBBBABAABABABBBABBAABBBABBABAAAABABBBAAABAAABBAAABBBABBAAABABBABBBABBABABBABAABBABBBBBABAAAAAABABBBAAABAABBABBB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAAABABABBABABABBBBAAAABABAAAABBBAAABBBABAAAAAABAABABAABAABABBBBBABAABAAABBABABBABBBABBBBABBABAABAABABBABBBBBBABBBABABBAAAABBAAAABAAAAAAABABABABAAAABABBABABAAABAABBAAABAABABBBBABAAABBBABBBAABBBAAABAABBBABAABAAABAABABAABABBAABAAAAABABBBBBBABAAABBBABBAABAAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,256,4,3,gemini-flash-latest,,2026-07-26T10:36:31.737631+00:00,BBBABDBBDBCABABCCDABDBBBBCCCCDCBDCDDAADCBACDDBBDACCBBDADCBDBDADABDABCCABBCCBACBDDDCAAAABBBDDDBCCDDCBBBCDBACADCDAADBDCBCCBCCCBDBDCDBACDADDADABDBBAABDBDDCCDDBAADAADBDDABDBADBCAAAABDDCCABDAADBBAAADCBAAACDBABCACDDBCBCCCDBBAABADABDAAADADDAABDDBBCACABACCCCCCACDA,CCCBCACCACDBCBCDDABCACCCCDDDDADCADAABBADCBDAACCABDDCCABADCACABABCABCDDBCCDDCBDCAAADBBBBCCCAAACDDAADCCCDACBDBADABBACADCDDCDDDCACADACBDABAABABCACCBBCACAADDAACBBABBACAABCACBACDBBBBCAADDBCABBACCBBBADCBBBDACBCDBDAACDCDDDACCBBCBABCABBBABAABBCAACCDBDBCBDDDDDDBDAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBABDBBDBCABABCCDABDBBBBCCCCDCBDCDDAADCBACDDBBDACCBBDADCBDBDADABDABCCABBCCBACBDDDCAAAABBBDDDBCCDDCBBBCDBACADCDAADBDCBCCBCCCBDBDCDBACDADDADABDBBAABDBDDCCDDBAADAADBDDABDBADBCAAAABDDCCABDAADBBAAADCBAAACDBABCACDDBCBCCCDBBAABADABDAAADADDAABDDBBCACABACCCCCCACDA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Base,0,256,8,3,gemini-flash-latest,,2026-07-26T10:36:32.335801+00:00,BCHFDDAFGFDGBBABHGCGHDDBEDHDCABECBCDDAAEFAGDHDEACCBAHBBFFHCHEDBCFEAADCECEAGBAGHDACDDAFDGAAFHHFCBCFADBDCBCFEBAHDDBHAEEADEECDCDDDFFDACCDBGDCHFHCAHACHCAEAGDHAHEAGACDBHCCDCHECBCBHDFBBDHDCDACAFHHEFFHGEHHDDBEGBHHFBGACBHEEAEGEHBEAGCBGEFGHEHCBFCBFAFDCHAGCBGCGEAEEF,CDAGEEBGHGEHCCBCAHDHAEECFEAEDBCFDCDEEBBFGBHEAEFBDDCBACCGGADAFECDGFBBEDFDFBHCBHAEBDEEBGEHBBGAAGDCDGBECEDCDGFCBAEECABFFBEFFDEDEEEGGEBDDECHEDAGADBABDADBFBHEABAFBHBDECADDEDAFDCDCAEGCCEAEDEBDBGAAFGGAHFAAEECFHCAAGCHBDCAFFBFHFACFBHDCHFGHAFADCGDCGBGEDABHDCHDHFBFFG,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCHFDDAFGFDGBBABHGCGHDDBEDHDCABECBCDDAAEFAGDHDEACCBAHBBFFHCHEDBCFEAADCECEAGBAGHDACDDAFDGAAFHHFCBCFADBDCBCFEBAHDDBHAEEADEECDCDDDFFDACCDBGDCHFHCAHACHCAEAGDHAHEAGACDBHCCDCHECBCBHDFBBDHDCDACAFHHEFFHGEHHDDBEGBHHFBGACBHEEAEGEHBEAGCBGEFGHEHCBFCBFAFDCHAGCBGCGEAEEF
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,256,2,3,gemini-flash-latest,,2026-07-26T10:36:32.925293+00:00,A|A|B|A|A|B|B|A|B|B|A|A|A|A|B|B|B|A|B|A|A|B|B|A|B|A|A|A|B|B|A|B|A|A|B|A|B|B|A|B|B|A|B|A|A|B|B|B|A|A|A|B|B|A|B|B|B|A|B|B|A|A|B|B|B|A|A|A|B|A|B|B|B|B|A|B|B|B|A|B|A|A|A|B|A|A|A|B|B|B|B|A|B|B|B|B|B|B|A|B|B|B|B|B|B|A|A|A|A|A|A|A|B|A|A|B|B|A|B|B|A|A|B|B|B|B|A|A|A|B|B|B|B|A|A|B|B|A|B|B|A|A|B|A|A|B|B|B|B|A|A|A|B|B|B|A|A|B|B|B|B|A|B|A|B|A|A|A|A|B|B|A|A|B|A|A|B|A|A|A|B|B|B|A|B|A|A|A|A|B|A|A|A|B|B|B|A|B|A|B|A|B|B|A|A|B|B|A|B|A|A|B|A|A|A|A|B|B|A|B|B|A|B|B|A|B|B|B|B|B|B|B|B|B|A|A|A|A|B|B|B|A|A|B|A|B|B|B|B|B|A|B|B|B|B|B,B|B|A|B|B|A|A|B|A|A|B|B|B|B|A|A|A|B|A|B|B|A|A|B|A|B|B|B|A|A|B|A|B|B|A|B|A|A|B|A|A|B|A|B|B|A|A|A|B|B|B|A|A|B|A|A|A|B|A|A|B|B|A|A|A|B|B|B|A|B|A|A|A|A|B|A|A|A|B|A|B|B|B|A|B|B|B|A|A|A|A|B|A|A|A|A|A|A|B|A|A|A|A|A|A|B|B|B|B|B|B|B|A|B|B|A|A|B|A|A|B|B|A|A|A|A|B|B|B|A|A|A|A|B|B|A|A|B|A|A|B|B|A|B|B|A|A|A|A|B|B|B|A|A|A|B|B|A|A|A|A|B|A|B|A|B|B|B|B|A|A|B|B|A|B|B|A|B|B|B|A|A|A|B|A|B|B|B|B|A|B|B|B|A|A|A|B|A|B|A|B|A|A|B|B|A|A|B|A|B|B|A|B|B|B|B|A|A|B|A|A|B|A|A|B|A|A|A|A|A|A|A|A|A|B|B|B|B|A|A|A|B|B|A|B|A|A|A|A|A|B|A|A|A|A|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|B|A|A|B|B|A|B|B|A|A|A|A|B|B|B|A|B|A|A|B|B|A|B|A|A|A|B|B|A|B|A|A|B|A|B|B|A|B|B|A|B|A|A|B|B|B|A|A|A|B|B|A|B|B|B|A|B|B|A|A|B|B|B|A|A|A|B|A|B|B|B|B|A|B|B|B|A|B|A|A|A|B|A|A|A|B|B|B|B|A|B|B|B|B|B|B|A|B|B|B|B|B|B|A|A|A|A|A|A|A|B|A|A|B|B|A|B|B|A|A|B|B|B|B|A|A|A|B|B|B|B|A|A|B|B|A|B|B|A|A|B|A|A|B|B|B|B|A|A|A|B|B|B|A|A|B|B|B|B|A|B|A|B|A|A|A|A|B|B|A|A|B|A|A|B|A|A|A|B|B|B|A|B|A|A|A|A|B|A|A|A|B|B|B|A|B|A|B|A|B|B|A|A|B|B|A|B|A|A|B|A|A|A|A|B|B|A|B|B|A|B|B|A|B|B|B|B|B|B|B|B|B|A|A|A|A|B|B|B|A|A|B|A|B|B|B|B|B|A|B|B|B|B|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,256,4,3,gemini-flash-latest,,2026-07-26T10:36:33.510363+00:00,C|C|D|C|C|B|B|D|B|D|A|C|A|B|A|A|A|D|D|D|C|D|A|D|B|D|B|A|B|D|B|D|C|D|C|B|B|C|C|A|C|C|C|D|D|A|B|A|D|C|D|A|A|C|A|B|B|C|C|D|B|C|D|A|A|B|B|A|A|C|C|B|D|C|D|A|A|A|D|D|A|A|D|A|A|A|A|D|D|A|D|C|D|B|C|B|C|C|B|A|C|C|C|C|B|A|B|D|A|A|B|D|A|A|B|D|D|D|C|D|D|D|A|B|C|A|B|A|C|D|B|C|C|D|D|B|B|C|D|B|B|C|A|A|D|B|D|A|C|D|C|C|B|D|A|C|A|B|D|D|B|C|A|D|D|A|A|B|C|C|A|C|A|D|A|C|C|D|B|B|B|D|B|B|A|C|A|B|A|C|C|D|A|B|C|C|B|D|B|A|C|C|C|A|A|B|B|C|A|A|C|C|B|A|D|B|C|C|B|C|A|B|D|B|B|A|C|C|B|D|A|C|D|B|B|D|A|A|B|A|A|D|C|D|C|D|B|C|B|D|D|A|A|D|D|D,D|D|A|D|D|C|C|A|C|A|B|D|B|C|B|B|B|A|A|A|D|A|B|A|C|A|C|B|C|A|C|A|D|A|D|C|C|D|D|B|D|D|D|A|A|B|C|B|A|D|A|B|B|D|B|C|C|D|D|A|C|D|A|B|B|C|C|B|B|D|D|C|A|D|A|B|B|B|A|A|B|B|A|B|B|B|B|A|A|B|A|D|A|C|D|C|D|D|C|B|D|D|D|D|C|B|C|A|B|B|C|A|B|B|C|A|A|A|D|A|A|A|B|C|D|B|C|B|D|A|C|D|D|A|A|C|C|D|A|C|C|D|B|B|A|C|A|B|D|A|D|D|C|A|B|D|B|C|A|A|C|D|B|A|A|B|B|C|D|D|B|D|B|A|B|D|D|A|C|C|C|A|C|C|B|D|B|C|B|D|D|A|B|C|D|D|C|A|C|B|D|D|D|B|B|C|C|D|B|B|D|D|C|B|A|C|D|D|C|D|B|C|A|C|C|B|D|D|C|A|B|D|A|C|C|A|B|B|C|B|B|A|D|A|D|A|C|D|C|A|A|B|B|A|A|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|C|D|C|C|B|B|D|B|D|A|C|A|B|A|A|A|D|D|D|C|D|A|D|B|D|B|A|B|D|B|D|C|D|C|B|B|C|C|A|C|C|C|D|D|A|B|A|D|C|D|A|A|C|A|B|B|C|C|D|B|C|D|A|A|B|B|A|A|C|C|B|D|C|D|A|A|A|D|D|A|A|D|A|A|A|A|D|D|A|D|C|D|B|C|B|C|C|B|A|C|C|C|C|B|A|B|D|A|A|B|D|A|A|B|D|D|D|C|D|D|D|A|B|C|A|B|A|C|D|B|C|C|D|D|B|B|C|D|B|B|C|A|A|D|B|D|A|C|D|C|C|B|D|A|C|A|B|D|D|B|C|A|D|D|A|A|B|C|C|A|C|A|D|A|C|C|D|B|B|B|D|B|B|A|C|A|B|A|C|C|D|A|B|C|C|B|D|B|A|C|C|C|A|A|B|B|C|A|A|C|C|B|A|D|B|C|C|B|C|A|B|D|B|B|A|C|C|B|D|A|C|D|B|B|D|A|A|B|A|A|D|C|D|C|D|B|C|B|D|D|A|A|D|D|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,1,256,8,3,gemini-flash-latest,,2026-07-26T10:36:34.096880+00:00,C|B|B|A|D|A|A|H|C|D|G|F|A|E|D|E|H|A|B|B|G|A|H|G|F|H|E|E|F|G|F|G|F|A|D|A|F|E|G|D|A|G|F|H|H|H|F|F|D|G|F|E|E|C|C|C|H|G|E|B|H|H|B|D|D|H|C|B|C|B|E|B|A|F|F|A|E|D|G|G|G|G|B|D|H|C|A|E|B|H|B|F|D|G|C|C|H|B|B|H|C|A|E|G|H|C|E|E|H|G|G|H|A|B|F|G|B|C|D|A|A|F|F|A|B|A|D|H|E|F|A|G|H|C|E|H|B|E|C|F|D|E|G|E|E|G|F|F|D|A|B|B|H|G|H|C|A|H|G|F|A|B|A|C|A|H|C|D|B|E|H|B|B|H|G|B|D|H|H|E|C|H|C|G|F|D|H|E|B|F|A|G|D|B|E|H|A|B|E|G|B|E|H|E|D|F|G|G|F|B|B|G|D|B|F|D|F|H|E|B|C|H|B|A|H|C|D|C|B|G|A|G|C|B|F|E|D|E|F|B|C|G|A|B|E|C|A|B|A|G|B|D|H|B|B|B,D|C|C|B|E|B|B|A|D|E|H|G|B|F|E|F|A|B|C|C|H|B|A|H|G|A|F|F|G|H|G|H|G|B|E|B|G|F|H|E|B|H|G|A|A|A|G|G|E|H|G|F|F|D|D|D|A|H|F|C|A|A|C|E|E|A|D|C|D|C|F|C|B|G|G|B|F|E|H|H|H|H|C|E|A|D|B|F|C|A|C|G|E|H|D|D|A|C|C|A|D|B|F|H|A|D|F|F|A|H|H|A|B|C|G|H|C|D|E|B|B|G|G|B|C|B|E|A|F|G|B|H|A|D|F|A|C|F|D|G|E|F|H|F|F|H|G|G|E|B|C|C|A|H|A|D|B|A|H|G|B|C|B|D|B|A|D|E|C|F|A|C|C|A|H|C|E|A|A|F|D|A|D|H|G|E|A|F|C|G|B|H|E|C|F|A|B|C|F|H|C|F|A|F|E|G|H|H|G|C|C|H|E|C|G|E|G|A|F|C|D|A|C|B|A|D|E|D|C|H|B|H|D|C|G|F|E|F|G|C|D|H|B|C|F|D|B|C|B|H|C|E|A|C|C|C,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|B|A|D|A|A|H|C|D|G|F|A|E|D|E|H|A|B|B|G|A|H|G|F|H|E|E|F|G|F|G|F|A|D|A|F|E|G|D|A|G|F|H|H|H|F|F|D|G|F|E|E|C|C|C|H|G|E|B|H|H|B|D|D|H|C|B|C|B|E|B|A|F|F|A|E|D|G|G|G|G|B|D|H|C|A|E|B|H|B|F|D|G|C|C|H|B|B|H|C|A|E|G|H|C|E|E|H|G|G|H|A|B|F|G|B|C|D|A|A|F|F|A|B|A|D|H|E|F|A|G|H|C|E|H|B|E|C|F|D|E|G|E|E|G|F|F|D|A|B|B|H|G|H|C|A|H|G|F|A|B|A|C|A|H|C|D|B|E|H|B|B|H|G|B|D|H|H|E|C|H|C|G|F|D|H|E|B|F|A|G|D|B|E|H|A|B|E|G|B|E|H|E|D|F|G|G|F|B|B|G|D|B|F|D|F|H|E|B|C|H|B|A|H|C|D|C|B|G|A|G|C|B|F|E|D|E|F|B|C|G|A|B|E|C|A|B|A|G|B|D|H|B|B|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,256,2,3,gemini-flash-latest,,2026-07-26T10:36:34.685278+00:00,AB|AA|AB|AA|BB|BA|BA|BB|AA|BA|BB|BA|BB|AB|BB|AB|AA|BA|AA|AA|BB|BA|BA|BB|AB|AA|BA|BA|AB|BA|BA|BA|BA|AB|BB|AB|AA|AA|AB|BB|BA|BB|AB|AA|AB|AB|BA|AA|BB|BA|AB|BB|BA|AA|BA|BB|BB|AA|AA|AB|BA|BA|AB|BB|AA|BA|AB|BB|BA|AA|BB|AB|AA|BA|BB|AB|BB|BB|BA|AB|BB|AA|BA|AB|BA|AA|AA|AB|AB|BA|BA|BA|AB|BA|BB|BB|BB|AA|AB|AB|AA|BB|BA|AA|AA|BA|BA|AB|AB|AA|AB|BB|AB|BB|BA|AB|AB|AB|BA|BA|AB|BA|BA|BB|AB|BB|AA|AB,BA|BB|BA|BB|AA|AB|AB|AA|BB|AB|AA|AB|AA|BA|AA|BA|BB|AB|BB|BB|AA|AB|AB|AA|BA|BB|AB|AB|BA|AB|AB|AB|AB|BA|AA|BA|BB|BB|BA|AA|AB|AA|BA|BB|BA|BA|AB|BB|AA|AB|BA|AA|AB|BB|AB|AA|AA|BB|BB|BA|AB|AB|BA|AA|BB|AB|BA|AA|AB|BB|AA|BA|BB|AB|AA|BA|AA|AA|AB|BA|AA|BB|AB|BA|AB|BB|BB|BA|BA|AB|AB|AB|BA|AB|AA|AA|AA|BB|BA|BA|BB|AA|AB|BB|BB|AB|AB|BA|BA|BB|BA|AA|BA|AA|AB|BA|BA|BA|AB|AB|BA|AB|AB|AA|BA|AA|BB|BA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AB|AA|AB|AA|BB|BA|BA|BB|AA|BA|BB|BA|BB|AB|BB|AB|AA|BA|AA|AA|BB|BA|BA|BB|AB|AA|BA|BA|AB|BA|BA|BA|BA|AB|BB|AB|AA|AA|AB|BB|BA|BB|AB|AA|AB|AB|BA|AA|BB|BA|AB|BB|BA|AA|BA|BB|BB|AA|AA|AB|BA|BA|AB|BB|AA|BA|AB|BB|BA|AA|BB|AB|AA|BA|BB|AB|BB|BB|BA|AB|BB|AA|BA|AB|BA|AA|AA|AB|AB|BA|BA|BA|AB|BA|BB|BB|BB|AA|AB|AB|AA|BB|BA|AA|AA|BA|BA|AB|AB|AA|AB|BB|AB|BB|BA|AB|AB|AB|BA|BA|AB|BA|BA|BB|AB|BB|AA|AB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,256,4,3,gemini-flash-latest,,2026-07-26T10:36:35.267483+00:00,CC|AB|BC|CA|AB|DD|AB|CB|BC|BD|AA|AC|DD|DA|CB|BA|BC|BD|BC|BD|DB|BC|CD|BD|CC|DC|AA|BA|DB|DD|DC|DA|CB|BA|AC|DC|DB|AD|AB|AC|AC|AB|CB|DC|CC|DB|AC|BC|DB|DA|CA|AB|BC|DA|CC|AD|CB|CB|DD|BC|BC|CA|CD|DB|BC|BB|BC|CD|CB|CB|DC|BA|AC|DC|DC|BA|BC|DA|CD|BB|DA|DB|DB|CB|CC|CC|AA|BD|CA|CD|AB|DC|CD|DA|BC|CB|DA|AA|BD|DD|AD|CA|DD|AA|CD|DB|DD|BC|AB|CA|DA|AD|DD|DC|DC|AD|CA|BB|AB|BA|BB|CB|AA|DD|BD|BB|CA|AA,DD|BC|CD|DB|BC|AA|BC|DC|CD|CA|BB|BD|AA|AB|DC|CB|CD|CA|CD|CA|AC|CD|DA|CA|DD|AD|BB|CB|AC|AA|AD|AB|DC|CB|BD|AD|AC|BA|BC|BD|BD|BC|DC|AD|DD|AC|BD|CD|AC|AB|DB|BC|CD|AB|DD|BA|DC|DC|AA|CD|CD|DB|DA|AC|CD|CC|CD|DA|DC|DC|AD|CB|BD|AD|AD|CB|CD|AB|DA|CC|AB|AC|AC|DC|DD|DD|BB|CA|DB|DA|BC|AD|DA|AB|CD|DC|AB|BB|CA|AA|BA|DB|AA|BB|DA|AC|AA|CD|BC|DB|AB|BA|AA|AD|AD|BA|DB|CC|BC|CB|CC|DC|BB|AA|CA|CC|DB|BB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CC|AB|BC|CA|AB|DD|AB|CB|BC|BD|AA|AC|DD|DA|CB|BA|BC|BD|BC|BD|DB|BC|CD|BD|CC|DC|AA|BA|DB|DD|DC|DA|CB|BA|AC|DC|DB|AD|AB|AC|AC|AB|CB|DC|CC|DB|AC|BC|DB|DA|CA|AB|BC|DA|CC|AD|CB|CB|DD|BC|BC|CA|CD|DB|BC|BB|BC|CD|CB|CB|DC|BA|AC|DC|DC|BA|BC|DA|CD|BB|DA|DB|DB|CB|CC|CC|AA|BD|CA|CD|AB|DC|CD|DA|BC|CB|DA|AA|BD|DD|AD|CA|DD|AA|CD|DB|DD|BC|AB|CA|DA|AD|DD|DC|DC|AD|CA|BB|AB|BA|BB|CB|AA|DD|BD|BB|CA|AA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,2,256,8,3,gemini-flash-latest,,2026-07-26T10:36:35.857634+00:00,CC|FG|AA|EE|BC|FF|CG|AD|DG|EA|HF|FC|GC|GH|FE|HF|CG|EC|GG|EB|FF|AH|FD|HB|AH|EH|DA|HC|GC|DE|EB|EH|GG|CA|HD|DF|GH|DC|GG|GA|EB|GB|DA|GE|EG|BE|CF|AE|AF|FD|CF|FD|EG|HE|GD|CE|GE|HH|DD|BD|HB|DC|HH|CG|HH|FF|DF|FG|HE|BC|AB|HC|HD|AD|BE|CB|AD|HC|BG|CB|HC|HE|EB|GC|GB|BH|HF|AB|FC|HD|HD|AG|HF|CC|GB|GH|CH|DF|HB|GG|HD|AH|BE|FC|EC|HD|EB|DF|FD|EB|AG|CC|FE|GG|GG|HD|FG|ED|BE|HD|AB|HF|DH|EG|CD|FC|CB|CF,DD|GH|BB|FF|CD|GG|DH|BE|EH|FB|AG|GD|HD|HA|GF|AG|DH|FD|HH|FC|GG|BA|GE|AC|BA|FA|EB|AD|HD|EF|FC|FA|HH|DB|AE|EG|HA|ED|HH|HB|FC|HC|EB|HF|FH|CF|DG|BF|BG|GE|DG|GE|FH|AF|HE|DF|HF|AA|EE|CE|AC|ED|AA|DH|AA|GG|EG|GH|AF|CD|BC|AD|AE|BE|CF|DC|BE|AD|CH|DC|AD|AF|FC|HD|HC|CA|AG|BC|GD|AE|AE|BH|AG|DD|HC|HA|DA|EG|AC|HH|AE|BA|CF|GD|FD|AE|FC|EG|GE|FC|BH|DD|GF|HH|HH|AE|GH|FE|CF|AE|BC|AG|EA|FH|DE|GD|DC|DG,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CC|FG|AA|EE|BC|FF|CG|AD|DG|EA|HF|FC|GC|GH|FE|HF|CG|EC|GG|EB|FF|AH|FD|HB|AH|EH|DA|HC|GC|DE|EB|EH|GG|CA|HD|DF|GH|DC|GG|GA|EB|GB|DA|GE|EG|BE|CF|AE|AF|FD|CF|FD|EG|HE|GD|CE|GE|HH|DD|BD|HB|DC|HH|CG|HH|FF|DF|FG|HE|BC|AB|HC|HD|AD|BE|CB|AD|HC|BG|CB|HC|HE|EB|GC|GB|BH|HF|AB|FC|HD|HD|AG|HF|CC|GB|GH|CH|DF|HB|GG|HD|AH|BE|FC|EC|HD|EB|DF|FD|EB|AG|CC|FE|GG|GG|HD|FG|ED|BE|HD|AB|HF|DH|EG|CD|FC|CB|CF
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,256,2,3,gemini-flash-latest,,2026-07-26T10:36:36.451598+00:00,ABB|BBA|AAA|BBA|BBA|BBA|AAA|AAB|BAA|BBB|BBB|BAB|ABA|AAB|BBB|AAB|AAA|BBA|AAA|BBB|AAB|AAA|BAA|BBB|AAA|BAB|AAA|BAA|BAA|BAA|BBB|BAB|BAB|AAB|BBB|BAB|BAB|BAA|BBB|AAA|BAA|BAA|BBA|BBA|ABB|BAB|ABB|BBB|BBA|AAB|ABA|ABB|BAA|BBA|AAA|AAA|ABA|ABA|AAA|ABA|BBA|BBA|BAB|BAA|ABB|ABB|BBB|ABA|BAB|AAA|AAA|ABB|ABB|BBB|BAA|BAA|AAB|BBB|BAB|BBA|BBA|ABA|BAB|BAA|BAB|B,BAA|AAB|BBB|AAB|AAB|AAB|BBB|BBA|ABB|AAA|AAA|ABA|BAB|BBA|AAA|BBA|BBB|AAB|BBB|AAA|BBA|BBB|ABB|AAA|BBB|ABA|BBB|ABB|ABB|ABB|AAA|ABA|ABA|BBA|AAA|ABA|ABA|ABB|AAA|BBB|ABB|ABB|AAB|AAB|BAA|ABA|BAA|AAA|AAB|BBA|BAB|BAA|ABB|AAB|BBB|BBB|BAB|BAB|BBB|BAB|AAB|AAB|ABA|ABB|BAA|BAA|AAA|BAB|ABA|BBB|BBB|BAA|BAA|AAA|ABB|ABB|BBA|AAA|ABA|AAB|AAB|BAB|ABA|ABB|ABA|A,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|BBA|AAA|BBA|BBA|BBA|AAA|AAB|BAA|BBB|BBB|BAB|ABA|AAB|BBB|AAB|AAA|BBA|AAA|BBB|AAB|AAA|BAA|BBB|AAA|BAB|AAA|BAA|BAA|BAA|BBB|BAB|BAB|AAB|BBB|BAB|BAB|BAA|BBB|AAA|BAA|BAA|BBA|BBA|ABB|BAB|ABB|BBB|BBA|AAB|ABA|ABB|BAA|BBA|AAA|AAA|ABA|ABA|AAA|ABA|BBA|BBA|BAB|BAA|ABB|ABB|BBB|ABA|BAB|AAA|AAA|ABB|ABB|BBB|BAA|BAA|AAB|BBB|BAB|BBA|BBA|ABA|BAB|BAA|BAB|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,256,4,3,gemini-flash-latest,,2026-07-26T10:36:37.067461+00:00,BDD|ADC|CCB|DAB|DBC|CBC|BCA|BAC|CBC|BCC|CDB|BDA|ACC|AAC|BCD|CCD|ADA|BCD|CCC|ACB|BBD|AAB|AAC|BBD|CBC|BBB|BCB|BAC|CAC|ADA|BBA|ACC|DDB|CDA|DAA|BBC|DAC|ADB|CBC|ADC|DAC|BAC|BDC|ABD|BAD|CBA|DCA|ACC|CBB|BAB|BDB|ADA|DBB|DBA|CBA|CDD|DDC|DBA|DBB|BAD|CDD|AAB|CBD|CBC|CAC|AAB|AAA|BDC|AAD|CCC|DDC|ADA|BAA|DAA|DCC|ADD|CAC|DBB|BDC|CCB|BCC|DCC|BBA|ABD|BDD|A,CAA|BAD|DDC|ABC|ACD|DCD|CDB|CBD|DCD|CDD|DAC|CAB|BDD|BBD|CDA|DDA|BAB|CDA|DDD|BDC|CCA|BBC|BBD|CCA|DCD|CCC|CDC|CBD|DBD|BAB|CCB|BDD|AAC|DAB|ABB|CCD|ABD|BAC|DCD|BAD|ABD|CBD|CAD|BCA|CBA|DCB|ADB|BDD|DCC|CBC|CAC|BAB|ACC|ACB|DCB|DAA|AAD|ACB|ACC|CBA|DAA|BBC|DCA|DCD|DBD|BBC|BBB|CAD|BBA|DDD|AAD|BAB|CBB|ABB|ADD|BAA|DBD|ACC|CAD|DDC|CDD|ADD|CCB|BCA|CAA|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDD|ADC|CCB|DAB|DBC|CBC|BCA|BAC|CBC|BCC|CDB|BDA|ACC|AAC|BCD|CCD|ADA|BCD|CCC|ACB|BBD|AAB|AAC|BBD|CBC|BBB|BCB|BAC|CAC|ADA|BBA|ACC|DDB|CDA|DAA|BBC|DAC|ADB|CBC|ADC|DAC|BAC|BDC|ABD|BAD|CBA|DCA|ACC|CBB|BAB|BDB|ADA|DBB|DBA|CBA|CDD|DDC|DBA|DBB|BAD|CDD|AAB|CBD|CBC|CAC|AAB|AAA|BDC|AAD|CCC|DDC|ADA|BAA|DAA|DCC|ADD|CAC|DBB|BDC|CCB|BCC|DCC|BBA|ABD|BDD|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,3,256,8,3,gemini-flash-latest,,2026-07-26T10:36:37.654267+00:00,ADB|HGC|HFA|BCF|CBF|AHH|DBA|AEH|BHA|GDF|EDF|GFC|AHB|BBC|BDD|GHF|EAA|CCA|ACF|CGB|HAH|DGC|GCF|BCE|FGG|FGF|FHC|GEG|DDF|ACH|BCC|BBB|EGC|DGA|DFH|GAA|CBH|GFG|BDF|AHE|CDB|CHE|CGE|GHF|AAH|CDD|BBH|DAA|BAG|CDH|EBG|DAG|HHB|EDC|HDB|FFF|BCE|GFG|HFH|BGF|EEH|DEF|EEA|DGF|HCC|EED|BHH|HGB|CGG|ECE|HAH|GFG|GBF|CAH|DAC|HCH|FBF|AGC|ADA|DCA|EBC|BCG|GAA|GBE|DDC|A,BEC|AHD|AGB|CDG|DCG|BAA|ECB|BFA|CAB|HEG|FEG|HGD|BAC|CCD|CEE|HAG|FBB|DDB|BDG|DHC|ABA|EHD|HDG|CDF|GHH|GHG|GAD|HFH|EEG|BDA|CDD|CCC|FHD|EHB|EGA|HBB|DCA|HGH|CEG|BAF|DEC|DAF|DHF|HAG|BBA|DEE|CCA|EBB|CBH|DEA|FCH|EBH|AAC|FED|AEC|GGG|CDF|HGH|AGA|CHG|FFA|EFG|FFB|EHG|ADD|FFE|CAA|AHC|DHH|FDF|ABA|HGH|HCG|DBA|EBD|ADA|GCG|BHD|BEB|EDB|FCD|CDH|HBB|HCF|EED|B,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADB|HGC|HFA|BCF|CBF|AHH|DBA|AEH|BHA|GDF|EDF|GFC|AHB|BBC|BDD|GHF|EAA|CCA|ACF|CGB|HAH|DGC|GCF|BCE|FGG|FGF|FHC|GEG|DDF|ACH|BCC|BBB|EGC|DGA|DFH|GAA|CBH|GFG|BDF|AHE|CDB|CHE|CGE|GHF|AAH|CDD|BBH|DAA|BAG|CDH|EBG|DAG|HHB|EDC|HDB|FFF|BCE|GFG|HFH|BGF|EEH|DEF|EEA|DGF|HCC|EED|BHH|HGB|CGG|ECE|HAH|GFG|GBF|CAH|DAC|HCH|FBF|AGC|ADA|DCA|EBC|BCG|GAA|GBE|DDC|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,256,2,3,gemini-flash-latest,,2026-07-26T10:36:38.257212+00:00,ABAA|BABB|AAAB|AAAB|AABA|ABAB|BABB|BABA|BABB|ABAB|BBBB|BBBA|BBBB|BBAA|BABA|AAAB|BBAA|ABBB|BAAB|ABAB|ABAA|BAAA|AABA|BAAB|ABBA|ABAB|BABB|ABBA|AABB|AABA|BBBA|AAAB|AAAA|AABB|AABA|BABB|AAAB|BBAA|BAAB|BAAB|BBBA|ABBB|AABB|AAAA|BBBA|BAAA|AABB|AABB|ABBB|BBBB|BABB|BAAB|BAAB|BBBA|BBAB|BABB|AABB|BBBB|AAAB|ABAA|ABBA|ABAB|BAAB|BAAA,BABB|ABAA|BBBA|BBBA|BBAB|BABA|ABAA|ABAB|ABAA|BABA|AAAA|AAAB|AAAA|AABB|ABAB|BBBA|AABB|BAAA|ABBA|BABA|BABB|ABBB|BBAB|ABBA|BAAB|BABA|ABAA|BAAB|BBAA|BBAB|AAAB|BBBA|BBBB|BBAA|BBAB|ABAA|BBBA|AABB|ABBA|ABBA|AAAB|BAAA|BBAA|BBBB|AAAB|ABBB|BBAA|BBAA|BAAA|AAAA|ABAA|ABBA|ABBA|AAAB|AABA|ABAA|BBAA|AAAA|BBBA|BABB|BAAB|BABA|ABBA|ABBB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAA|BABB|AAAB|AAAB|AABA|ABAB|BABB|BABA|BABB|ABAB|BBBB|BBBA|BBBB|BBAA|BABA|AAAB|BBAA|ABBB|BAAB|ABAB|ABAA|BAAA|AABA|BAAB|ABBA|ABAB|BABB|ABBA|AABB|AABA|BBBA|AAAB|AAAA|AABB|AABA|BABB|AAAB|BBAA|BAAB|BAAB|BBBA|ABBB|AABB|AAAA|BBBA|BAAA|AABB|AABB|ABBB|BBBB|BABB|BAAB|BAAB|BBBA|BBAB|BABB|AABB|BBBB|AAAB|ABAA|ABBA|ABAB|BAAB|BAAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,256,4,3,gemini-flash-latest,,2026-07-26T10:36:38.873788+00:00,CDAA|CCAA|DADA|DBBA|CADA|DBCA|CCBA|CCBA|CDBB|CDCD|ADDB|ADDD|BBBD|CBDA|ADCC|BDAC|BADD|BABC|ABBB|DABB|CDCD|BDBB|CDCD|BDAC|ADDD|CACA|DCCD|CDCA|CBDC|DDBA|DACC|DBBD|DCAA|BCAA|DAAC|CDAB|AABC|DDAC|AAAC|CACA|DAAD|DACC|CACD|ADAB|BCCA|CAAC|CDCA|ADAA|CDBB|BDAA|BDAC|CCCC|CBBA|CABD|ABCC|DABA|DBCB|DBBB|BABA|ABCC|BDCD|BDDD|ABAC|ADBD,DABB|DDBB|ABAB|ACCB|DBAB|ACDB|DDCB|DDCB|DACC|DADA|BAAC|BAAA|CCCA|DCAB|BADD|CABD|CBAA|CBCD|BCCC|ABCC|DADA|CACC|DADA|CABD|BAAA|DBDB|ADDA|DADB|DCAD|AACB|ABDD|ACCA|ADBB|CDBB|ABBD|DABC|BBCD|AABD|BBBD|DBDB|ABBA|ABDD|DBDA|BABC|CDDB|DBBD|DADB|BABB|DACC|CABB|CABD|DDDD|DCCB|DBCA|BCDD|ABCB|ACDC|ACCC|CBCB|BCDD|CADA|CAAA|BCBD|BACA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CDAA|CCAA|DADA|DBBA|CADA|DBCA|CCBA|CCBA|CDBB|CDCD|ADDB|ADDD|BBBD|CBDA|ADCC|BDAC|BADD|BABC|ABBB|DABB|CDCD|BDBB|CDCD|BDAC|ADDD|CACA|DCCD|CDCA|CBDC|DDBA|DACC|DBBD|DCAA|BCAA|DAAC|CDAB|AABC|DDAC|AAAC|CACA|DAAD|DACC|CACD|ADAB|BCCA|CAAC|CDCA|ADAA|CDBB|BDAA|BDAC|CCCC|CBBA|CABD|ABCC|DABA|DBCB|DBBB|BABA|ABCC|BDCD|BDDD|ABAC|ADBD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,4,256,8,3,gemini-flash-latest,,2026-07-26T10:36:39.468062+00:00,FFBG|HHHD|AGFE|CGGH|GHAD|CCEG|CCFD|BABF|HFBA|FDFG|CDEH|HABE|DACF|GBCH|DDEC|DGGH|GEDF|DACG|CDFE|CDGG|EHBC|EFHA|CGHB|ECCF|EGCC|HCDF|AGCG|GGAH|GDGC|ABGA|BBEF|GACH|CFFH|DAGD|BCHH|FCEE|GDGB|AHHA|FEED|AFGF|BBHD|FHBE|DBAE|AFFD|CEDB|DFAF|ADCC|HBEF|FACB|BECA|ADAE|EBDF|FADC|BHAD|BFBD|DBFC|ACHB|BDDD|HHBE|GDDA|BECE|CGCA|CDCC|BBHD,GGCH|AAAE|BHGF|DHHA|HABE|DDFH|DDGE|CBCG|AGCB|GEGH|DEFA|ABCF|EBDG|HCDA|EEFD|EHHA|HFEG|EBDH|DEGF|DEHH|FACD|FGAB|DHAC|FDDG|FHDD|ADEG|BHDH|HHBA|HEHD|BCHB|CCFG|HBDA|DGGA|EBHE|CDAA|GDFF|HEHC|BAAB|GFFE|BGHG|CCAE|GACF|ECBF|BGGE|DFEC|EGBG|BEDD|ACFG|GBDC|CFDB|BEBF|FCEG|GBED|CABE|CGCE|ECGD|BDAC|CEEE|AACF|HEEB|CFDF|DHDB|DEDD|CCAE,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FFBG|HHHD|AGFE|CGGH|GHAD|CCEG|CCFD|BABF|HFBA|FDFG|CDEH|HABE|DACF|GBCH|DDEC|DGGH|GEDF|DACG|CDFE|CDGG|EHBC|EFHA|CGHB|ECCF|EGCC|HCDF|AGCG|GGAH|GDGC|ABGA|BBEF|GACH|CFFH|DAGD|BCHH|FCEE|GDGB|AHHA|FEED|AFGF|BBHD|FHBE|DBAE|AFFD|CEDB|DFAF|ADCC|HBEF|FACB|BECA|ADAE|EBDF|FADC|BHAD|BFBD|DBFC|ACHB|BDDD|HHBE|GDDA|BECE|CGCA|CDCC|BBHD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,256,2,3,gemini-flash-latest,,2026-07-26T10:36:40.132927+00:00,BABAAAAB|BAABBBAB|AABABAAB|BBAAABAB|BBAAABBB|BBBBAABB|AAAABBBA|ABAAABBB|ABBABBAB|BBBBBABA|ABABABAA|BABABAAB|ABABBBBA|ABBBBBAA|BBABBAAA|BAABAAAA|BABABAAA|BAABAABB|BBBABAAB|ABABABAA|BAABABAB|AABAAABA|BBBBABAA|BBBBABAB|BBBABBAB|BBBAABAB|BABBBAAB|BBAAAABA|AAAAABAA|BABBBBAA|ABBABBBB|AABBABAA,ABABBBBA|ABBAAABA|BBABABBA|AABBBABA|AABBBAAA|AAAABBAA|BBBBAAAB|BABBBAAA|BAABAABA|AAAAABAB|BABABABB|ABABABBA|BABAAAAB|BAAAAABB|AABAABBB|ABBABBBB|ABABABBB|ABBABBAA|AAABABBA|BABABABB|ABBABABA|BBABBBAB|AAAABABB|AAAABABA|AAABAABA|AAABBABA|ABAAABBA|AABBBBAB|BBBBBABB|ABAAAABB|BAABAAAA|BBAABABB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABAAAAB|BAABBBAB|AABABAAB|BBAAABAB|BBAAABBB|BBBBAABB|AAAABBBA|ABAAABBB|ABBABBAB|BBBBBABA|ABABABAA|BABABAAB|ABABBBBA|ABBBBBAA|BBABBAAA|BAABAAAA|BABABAAA|BAABAABB|BBBABAAB|ABABABAA|BAABABAB|AABAAABA|BBBBABAA|BBBBABAB|BBBABBAB|BBBAABAB|BABBBAAB|BBAAAABA|AAAAABAA|BABBBBAA|ABBABBBB|AABBABAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,256,4,3,gemini-flash-latest,,2026-07-26T10:36:40.746433+00:00,ACCCDBDB|ABAADBCD|CCABDBBD|DDDBDDDD|BBABADAA|DBCACBDB|BBCCBBDA|DDCBDBDD|ABCDCAAA|DAACABDA|ADACABBC|BDCDBABD|DCDCDBCD|DACCBABD|BDDACACD|BCCBCAAB|CCBBBAAD|DCDACDBA|CDCADBAD|CBDADDAA|DCBBCCAA|BDBDBCBD|DADBDCDA|CDCBADCD|DBABDBAA|DABCABBA|ADCBABBD|CDACADAB|BDADDCCB|CCDACDBC|CCBDCCBC|BDDDCAAB,BDDDACAC|BCBBACDA|DDBCACCA|AAACAAAA|CCBCBABB|ACDBDCAC|CCDDCCAB|AADCACAA|BCDADBBB|ABBDBCAB|BABDBCCD|CADACBCA|ADADACDA|ABDDCBCA|CAABDBDA|CDDCDBBC|DDCCCBBA|ADABDACB|DADBACBA|DCABAABB|ADCCDDBB|CACACDCA|ABACADAB|DADCBADA|ACBCACBB|ABCDBCCB|BADCBCCA|DABDBABC|CABAADDC|DDABDACD|DDCADDCD|CAAADBBC,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACCCDBDB|ABAADBCD|CCABDBBD|DDDBDDDD|BBABADAA|DBCACBDB|BBCCBBDA|DDCBDBDD|ABCDCAAA|DAACABDA|ADACABBC|BDCDBABD|DCDCDBCD|DACCBABD|BDDACACD|BCCBCAAB|CCBBBAAD|DCDACDBA|CDCADBAD|CBDADDAA|DCBBCCAA|BDBDBCBD|DADBDCDA|CDCBADCD|DBABDBAA|DABCABBA|ADCBABBD|CDACADAB|BDADDCCB|CCDACDBC|CCBDCCBC|BDDDCAAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,8,256,8,3,gemini-flash-latest,,2026-07-26T10:36:41.436222+00:00,CFGFABGD|AGADCBBG|BHBDEHFA|HAADAHDH|HGGBEEDC|HBCCBCDE|HGGCGBFG|FDEGFHCH|EBDEFCFF|BAEHFEHB|ADABCGHH|GCDCFAEC|DFACFAFE|DBFCFACH|DHGCDAEG|AAFFFCFD|GBHFACHC|BCEDGACF|DDFBCFGC|DAEBDGGG|GACHBCBG|BCHGABED|AGGFEECH|FGGHHBHA|FCHBCADH|HGCABHAD|BEFAFAHC|FHCDEAEF|BHDGAGFE|ABECFHCE|GHDCGFDB|EFCBHEAF,DGHGBCHE|BHBEDCCH|CACEFAGB|ABBEBAEA|AHHCFFED|ACDDCDEF|AHHDHCGH|GEFHGADA|FCEFGDGG|CBFAGFAC|BEBCDHAA|HDEDGBFD|EGBDGBGF|ECGDGBDA|EAHDEBFH|BBGGGDGE|HCAGBDAD|CDFEHBDG|EEGCDGHD|EBFCEHHH|HBDACDCH|CDAHBCFE|BHHGFFDA|GHHAACAB|GDACDBEA|AHDBCABE|CFGBGBAD|GADEFBFG|CAEHBHGF|BCFDGADF|HAEDHGEC|FGDCAFBG,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CFGFABGD|AGADCBBG|BHBDEHFA|HAADAHDH|HGGBEEDC|HBCCBCDE|HGGCGBFG|FDEGFHCH|EBDEFCFF|BAEHFEHB|ADABCGHH|GCDCFAEC|DFACFAFE|DBFCFACH|DHGCDAEG|AAFFFCFD|GBHFACHC|BCEDGACF|DDFBCFGC|DAEBDGGG|GACHBCBG|BCHGABED|AGGFEECH|FGGHHBHA|FCHBCADH|HGCABHAD|BEFAFAHC|FHCDEAEF|BHDGAGFE|ABECFHCE|GHDCGFDB|EFCBHEAF
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,256,2,3,gemini-flash-latest,,2026-07-26T10:36:42.223384+00:00,BABBAAABABABBABB|AABBAAAABBBBBABB|ABABBBBABBABABBA|BAAAABBABBABBABA|ABBAABBBAABAABAB|BAAAABABAAAAAAAA|ABAABABBABBBBAAB|BABAABBAAABBABBA|ABBBBBABBABBABBA|BBABBBAABBBAAABA|BABBAAAAAABABBBA|AAAAAABBABABABAA|AAAAAABBBBABAABA|BBBBABABAAABAAAB|BBBBAABABBBBABAA|BABBABAAABBBBBBA,ABAABBBABABAABAA|BBAABBBBAAAAABAA|BABAAAABAABABAAB|ABBBBAABAABAABAB|BAABBAAABBABBABA|ABBBBABABBBBBBBB|BABBABAABAAAABBA|ABABBAABBBAABAAB|BAAAAABAABAABAAB|AABAAABBAAABBBAB|ABAABBBBBBABAAAB|BBBBBBAABABABABB|BBBBBBAAAABABBAB|AAAABABABBBABBBA|AAAABBABAAAABABB|ABAABABBBAAAAAAB,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B
+Rule: Replace every character with the next one in the alphabet.
+Mapping: B -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BABBAAABABABBABB|AABBAAAABBBBBABB|ABABBBBABBABABBA|BAAAABBABBABBABA|ABBAABBBAABAABAB|BAAAABABAAAAAAAA|ABAABABBABBBBAAB|BABAABBAAABBABBA|ABBBBBABBABBABBA|BBABBBAABBBAAABA|BABBAAAAAABABBBA|AAAAAABBABABABAA|AAAAAABBBBABAABA|BBBBABABAAABAAAB|BBBBAABABBBBABAA|BABBABAAABBBBBBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,256,4,3,gemini-flash-latest,,2026-07-26T10:36:42.860351+00:00,DBACAADCBACDAAAD|ABDBCCCDBBBBDABD|CCDDCBBCBCCDCBBA|DBCDDDDADBCACAAA|BBDDBABDDBBABBCC|DDBABDCBCBBCCACA|BCCDDADBCABDADAB|AADDBCBBDCBCCDDC|CDADDACDBCAABABC|ADDBACDBBCCCAADB|DAACCCAADBBADABC|BBCBBCCBBDCBDBBC|ACADBABCABBCAADC|DCBCBBBBACCBCACA|BCDADAABDDACCABA|CBBBCDBBCBDBDDBD,ACBDBBADCBDABBBA|BCACDDDACCCCABCA|DDAADCCDCDDADCCB|ACDAAAABACDBDBBB|CCAACBCAACCBCCDD|AACBCADCDCCDDBDB|CDDAABACDBCABABC|BBAACDCCADCDDAAD|DABAABDACDBBCBCD|BAACBDACCDDDBBAC|ABBDDDBBACCBABCD|CCDCCDDCCADCACCD|BDBACBCDBCCDBBAD|ADCDCCCCBDDCDBDB|CDABABBCAABDDBCB|DCCCDACCDCACAACA,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D
+Rule: Replace every character with the next one in the alphabet.
+Mapping: D -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DBACAADCBACDAAAD|ABDBCCCDBBBBDABD|CCDDCBBCBCCDCBBA|DBCDDDDADBCACAAA|BBDDBABDDBBABBCC|DDBABDCBCBBCCACA|BCCDDADBCABDADAB|AADDBCBBDCBCCDDC|CDADDACDBCAABABC|ADDBACDBBCCCAADB|DAACCCAADBBADABC|BBCBBCCBBDCBDBBC|ACADBABCABBCAADC|DCBCBBBBACCBCACA|BCDADAABDDACCABA|CBBBCDBBCBDBDDBD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+cyclic_shift,Cellular_Bounds,16,256,8,3,gemini-flash-latest,,2026-07-26T10:36:43.534517+00:00,BGCAEFGACCGBAAGC|GFFDDCDHGHAAHAGF|GHFEGBBHDCHGHDDA|GEAEGHEGABGDBFEG|FADBFEABDBHDDFGG|DHEGCAHDGGCAFDCH|BGHAHECFAEGCFGHE|FEGDGACABDEDBAEA|EFDHDBGBEABEDHEB|DGBACEAAECDDBBGD|ADDAECHGFAGACHHH|ABBGFDCBGAFGCFHG|FHECBFFAHCDAGGDH|BHBGAAGAFCEEBBFB|HABCHFBCDGABADFF|GGGFHHFECGBEBCEF,CHDBFGHBDDHCBBHD|HGGEEDEAHABBABHG|HAGFHCCAEDAHAEEB|HFBFHAFHBCHECGFH|GBECGFBCECAEEGHH|EAFHDBAEHHDBGEDA|CHABAFDGBFHDGHAF|GFHEHBDBCEFECBFB|FGEAECHCFBCFEAFC|EHCBDFBBFDEECCHE|BEEBFDAHGBHBDAAA|BCCHGEDCHBGHDGAH|GAFDCGGBADEBHHEA|CACHBBHBGDFFCCGC|ABCDAGCDEHBCBEGG|HHHGAAGFDHCFCDFG,"You are a deterministic sequence transformer.
+Task: Cyclic character shift.
+Alphabet: A, B, C, D, E, F, G, H
+Rule: Replace every character with the next one in the alphabet.
+Mapping: H -> A, and A -> B.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BGCAEFGACCGBAAGC|GFFDDCDHGHAAHAGF|GHFEGBBHDCHGHDDA|GEAEGHEGABGDBFEG|FADBFEABDBHDDFGG|DHEGCAHDGGCAFDCH|BGHAHECFAEGCFGHE|FEGDGACABDEDBAEA|EFDHDBGBEABEDHEB|DGBACEAAECDDBBGD|ADDAECHGFAGACHHH|ABBGFDCBGAFGCFHG|FHECBFFAHCDAGGDH|BHBGAAGAFCEEBBFB|HABCHFBCDGABADFF|GGGFHHFECGBEBCEF
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,4,2,3,gemini-flash-latest,,2026-07-26T10:36:44.135691+00:00,BBBA,AAAB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,4,4,3,gemini-flash-latest,,2026-07-26T10:36:44.789673+00:00,DBAD,BDCB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DBAD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,4,8,3,gemini-flash-latest,,2026-07-26T10:36:45.511470+00:00,CHDH,GDHD,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CHDH
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,4,2,3,gemini-flash-latest,,2026-07-26T10:36:46.156376+00:00,A|A|B|B,B|B|A|A,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|A|B|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,4,4,3,gemini-flash-latest,,2026-07-26T10:36:46.797983+00:00,B|A|D|D,D|C|B|B,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|A|D|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,4,8,3,gemini-flash-latest,,2026-07-26T10:36:47.471965+00:00,D|C|A|G,H|G|E|C,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: D|C|A|G
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,4,2,3,gemini-flash-latest,,2026-07-26T10:36:48.117104+00:00,AA|BA,BB|AB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|BA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,4,4,3,gemini-flash-latest,,2026-07-26T10:36:48.785748+00:00,BC|AC,DA|CA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BC|AC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,4,8,3,gemini-flash-latest,,2026-07-26T10:36:49.375197+00:00,AD|EC,EH|AG,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AD|EC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,4,2,3,gemini-flash-latest,,2026-07-26T10:36:49.970067+00:00,ABB|B,BAA|A,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABB|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,4,4,3,gemini-flash-latest,,2026-07-26T10:36:50.560092+00:00,BCA|D,DAC|B,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BCA|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,4,8,3,gemini-flash-latest,,2026-07-26T10:36:51.144267+00:00,BED|A,FAH|E,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BED|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,8,2,3,gemini-flash-latest,,2026-07-26T10:36:51.738578+00:00,AAABBBBB,BBBAAAAA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAABBBBB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,8,4,3,gemini-flash-latest,,2026-07-26T10:36:52.330553+00:00,CADCACDC,ACBACABA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CADCACDC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,8,8,3,gemini-flash-latest,,2026-07-26T10:36:52.919790+00:00,HCHBFAED,DGDFBEAH,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HCHBFAED
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,8,2,3,gemini-flash-latest,,2026-07-26T10:36:53.518275+00:00,A|B|A|B|A|B|A|A,B|A|B|A|B|A|B|B,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|B|A|B|A|B|A|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,8,4,3,gemini-flash-latest,,2026-07-26T10:36:54.111091+00:00,A|D|C|D|D|A|B|B,C|B|A|B|B|C|D|D,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: A|D|C|D|D|A|B|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,8,8,3,gemini-flash-latest,,2026-07-26T10:36:54.710046+00:00,G|E|B|D|E|A|C|D,C|A|F|H|A|E|G|H,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: G|E|B|D|E|A|C|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,8,2,3,gemini-flash-latest,,2026-07-26T10:36:55.301079+00:00,AA|AB|AA|AA,BB|BA|BB|BB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AA|AB|AA|AA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,8,4,3,gemini-flash-latest,,2026-07-26T10:36:55.890109+00:00,AD|BA|BB|BC,CB|DC|DD|DA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AD|BA|BB|BC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,8,8,3,gemini-flash-latest,,2026-07-26T10:36:56.485871+00:00,GG|GB|AF|BE,CC|CF|EB|FA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GG|GB|AF|BE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,8,2,3,gemini-flash-latest,,2026-07-26T10:36:57.075206+00:00,AAB|BBA|BB,BBA|AAB|AA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAB|BBA|BB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,8,4,3,gemini-flash-latest,,2026-07-26T10:36:57.666675+00:00,ADC|CAD|CD,CBA|ACB|AB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ADC|CAD|CD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,8,8,3,gemini-flash-latest,,2026-07-26T10:36:58.267834+00:00,GBC|GGF|CE,CFG|CCB|GA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: GBC|GGF|CE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,4,8,2,3,gemini-flash-latest,,2026-07-26T10:36:58.870594+00:00,BBBA|AAAA,AAAB|BBBB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBA|AAAA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,4,8,4,3,gemini-flash-latest,,2026-07-26T10:36:59.463579+00:00,AABA|BCBA,CCDC|DADC,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AABA|BCBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,4,8,8,3,gemini-flash-latest,,2026-07-26T10:37:00.065255+00:00,HCAH|BFAE,DGED|FBEA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HCAH|BFAE
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,16,2,3,gemini-flash-latest,,2026-07-26T10:37:00.680666+00:00,BBBBBAABABAAABBA,AAAAABBABABBBAAB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBBBBAABABAAABBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,16,4,3,gemini-flash-latest,,2026-07-26T10:37:01.269839+00:00,BDBADCCDBDCBDDDC,DBDCBAABDBADBBBA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDBADCCDBDCBDDDC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,16,8,3,gemini-flash-latest,,2026-07-26T10:37:01.867386+00:00,EHECFDCDAFCBHDGG,ADAGBHGHEBGFDHCC,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: EHECFDCDAFCBHDGG
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,16,2,3,gemini-flash-latest,,2026-07-26T10:37:02.464133+00:00,B|B|A|A|A|B|B|A|B|B|B|A|B|A|A|A,A|A|B|B|B|A|A|B|A|A|A|B|A|B|B|B,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: B|B|A|A|A|B|B|A|B|B|B|A|B|A|A|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,16,4,3,gemini-flash-latest,,2026-07-26T10:37:03.061717+00:00,C|B|A|A|B|C|D|A|B|B|B|B|D|C|C|D,A|D|C|C|D|A|B|C|D|D|D|D|B|A|A|B,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|B|A|A|B|C|D|A|B|B|B|B|D|C|C|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,1,16,8,3,gemini-flash-latest,,2026-07-26T10:37:03.661188+00:00,C|C|D|C|F|B|E|G|F|G|H|B|A|E|C|D,G|G|H|G|B|F|A|C|B|C|D|F|E|A|G|H,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: C|C|D|C|F|B|E|G|F|G|H|B|A|E|C|D
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,16,2,3,gemini-flash-latest,,2026-07-26T10:37:04.272091+00:00,BB|BA|AA|BA|AA|BA|BB|AB,AA|AB|BB|AB|BB|AB|AA|BA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BB|BA|AA|BA|AA|BA|BB|AB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,16,4,3,gemini-flash-latest,,2026-07-26T10:37:04.936278+00:00,DA|BC|AA|AD|CB|AC|BC|AC,BC|DA|CC|CB|AD|CA|DA|CA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DA|BC|AA|AD|CB|AC|BC|AC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,2,16,8,3,gemini-flash-latest,,2026-07-26T10:37:05.606286+00:00,HA|GB|BD|DH|BA|HF|FH|CD,DE|CF|FH|HD|FE|DB|BD|GH,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HA|GB|BD|DH|BA|HF|FH|CD
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,16,2,3,gemini-flash-latest,,2026-07-26T10:37:06.230960+00:00,BAB|AAB|BAA|ABA|AAA|A,ABA|BBA|ABB|BAB|BBB|B,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BAB|AAB|BAA|ABA|AAA|A
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,16,4,3,gemini-flash-latest,,2026-07-26T10:37:06.975336+00:00,ACD|DCA|CCA|DDD|CDA|B,CAB|BAC|AAC|BBB|ABC|D,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ACD|DCA|CCA|DDD|CDA|B
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,3,16,8,3,gemini-flash-latest,,2026-07-26T10:37:07.613592+00:00,FDA|EFH|AHD|AEH|ABH|C,BHE|ABD|EDH|EAD|EFD|G,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: FDA|EFH|AHD|AEH|ABH|C
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,4,16,2,3,gemini-flash-latest,,2026-07-26T10:37:08.224497+00:00,ABAA|AABA|AAAA|AABB,BABB|BBAB|BBBB|BBAA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: ABAA|AABA|AAAA|AABB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,4,16,4,3,gemini-flash-latest,,2026-07-26T10:37:08.856557+00:00,CAAA|DBCA|BDAC|CDBC,ACCC|BDAC|DBCA|ABDA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CAAA|DBCA|BDAC|CDBC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,4,16,8,3,gemini-flash-latest,,2026-07-26T10:37:09.527351+00:00,DHHA|CHFB|EADC|ECFC,HDDE|GDBF|AEHG|AGBG,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: DHHA|CHFB|EADC|ECFC
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,8,16,2,3,gemini-flash-latest,,2026-07-26T10:37:10.147265+00:00,BBAABBBA|ABBAAABB,AABBAAAB|BAABBBAA,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BBAABBBA|ABBAAABB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,8,16,4,3,gemini-flash-latest,,2026-07-26T10:37:10.790139+00:00,BDDBDCDD|BADCBAAB,DBBDBABB|DCBADCCD,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: BDDBDCDD|BADCBAAB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Cellular_Bounds,8,16,8,3,gemini-flash-latest,,2026-07-26T10:37:11.418062+00:00,HFGGCEGD|ACECBCAH,DBCCGACH|EGAGFGED,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D, E, F, G, H
+Mapping: A→E, B→F, C→G, D→H, E→A, F→B, G→C, H→D
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: HFGGCEGD|ACECBCAH
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,32,2,3,gemini-flash-latest,,2026-07-26T10:37:12.048288+00:00,AAABBBABBAAAAABABABABABAABABBBBA,BBBAAABAABBBBBABABABABABBABAAAAB,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B
+Mapping: A→B, B→A
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: AAABBBABBAAAAABABABABABAABABBBBA
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"
+character_substitution,Base,0,32,4,3,gemini-flash-latest,,2026-07-26T10:37:12.692510+00:00,CACDCDDDCDCCBADBBDBBDABDCBBDCADB,ACABABBBABAADCBDDBDDBCDBADDBACBD,"You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CACDCDDDCDCCBADBBDBBDABDCBBDCADB
+Output: ",,,,,,,,,"400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}"

@@ -1,0 +1,285 @@
+======================================================================
+TASK: character_substitution  (N=8, k=2, axis=4)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→C, B→D, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|BA|CC|DA
+Output: 
+
+======================================================================
+TASK: random_permutation  (N=8, k=2, axis=4)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Character substitution mapping.
+Alphabet: A, B, C, D
+Mapping: A→D, B→C, C→A, D→B
+Rule: Replace each character with its mapped character. This is a fixed one-to-one substitution cipher.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|BA|CC|DA
+Output: 
+
+======================================================================
+TASK: conditional_shift  (N=8, k=2, axis=4)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Branching character shift.
+Alphabet: A, B, C, D (positions numbered 0, 1, 2, ... in this order)
+Rule: For each character, look at its position number in the alphabet.
+- If the position is EVEN, replace the character with the NEXT character in the alphabet (e.g. A -> B).
+- If the position is ODD, replace the character with the PREVIOUS character in the alphabet (e.g. B -> A).
+Wrap around the alphabet if needed.
+Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT shift them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|BA|CC|DA
+Output: 
+
+======================================================================
+TASK: composed_permutation  (N=8, k=2, axis=4)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Composed character substitution (apply two fixed mappings in sequence).
+Alphabet: A, B, C, D
+Step 1 mapping: A→B, B→A, C→D, D→C
+Step 2 mapping: A→D, B→C, C→A, D→B
+Rule: For each character, first apply the Step 1 mapping, then apply the Step 2 mapping to that result.
+This gives the final output character. Apply this to every character independently.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CA|BA|CC|DA
+Output: 
+
+======================================================================
+TASK: running_xor  (N=8, k=2)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+
+======================================================================
+TASK: running_sum_local  (N=8, k=2, axis=4)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window).
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|21|11|00
+Output: 
+
+======================================================================
+TASK: copy_previous  (N=8, k=2)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Copy the previous input digit.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+Example: Input 1011 -> Output 1101 (calculation: 1 (copied), then 1, 0, 1 -- each shifted from the position before)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+
+======================================================================
+TASK: running_max  (N=8, k=2, axis=4)
+======================================================================
+You are a deterministic sequence transformer.
+Task: Running maximum.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|21|11|00
+Output: 
+
+======================================================================
+running_xor vs running_xor_reset  (N=8, k=2)  same-input check: True
+======================================================================
+--- ORIGINAL ---
+You are a deterministic sequence transformer.
+Task: Running XOR with previous input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+Example: Input 1011 → Output 1110 (calculation: 1, 0⊕1=1, 1⊕0=1, 1⊕1=0)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+--- RESET ---
+You are a deterministic sequence transformer.
+Task: Running XOR with previous input, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the previous input digit.
+The first digit is copied as-is (no previous input to XOR with).
+Each subsequent digit: output[i] = input[i] XOR input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as "previous"), then resume the XOR rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1110|0011 (first block: 1 copied, 0⊕1=1, 1⊕0=1, 1⊕1=0; second block restarts: 0 copied, 0⊕0=0, 1⊕0=1, 0⊕1=1)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+
+======================================================================
+copy_previous vs copy_previous_reset  (N=8, k=2)  same-input check: True
+======================================================================
+--- ORIGINAL ---
+You are a deterministic sequence transformer.
+Task: Copy the previous input digit.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+Example: Input 1011 -> Output 1101 (calculation: 1 (copied), then 1, 0, 1 -- each shifted from the position before)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+--- RESET ---
+You are a deterministic sequence transformer.
+Task: Copy the previous input digit, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy IT as-is (nothing before a boundary counts as "previous"), then resume the shift-by-one rule from there until the next boundary.
+Example: Input 1011|0010 → Output 1101|0001 (first block: 1 copied, then 1,0,1 shifted from the position before; second block restarts: 0 copied, then 0,0,1 shifted from the position before, within that block only)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+
+======================================================================
+running_sum_local vs running_sum_local_reset  (N=8, k=2)  same-input check: True
+======================================================================
+--- ORIGINAL ---
+You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window).
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|21|11|00
+Output: 
+--- RESET ---
+You are a deterministic sequence transformer.
+Task: Running sum with previous input (local window), reset at boundaries.
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after each boundary, treat that position exactly like the first digit of the whole input -- copy it as-is (nothing before a boundary counts as "previous"), then resume the running-sum rule from there until the next boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|21|11|00
+Output: 
+
+======================================================================
+reverse_xor vs reverse_xor_reset  (N=8, k=2)  same-input check: True
+======================================================================
+--- ORIGINAL ---
+You are a deterministic sequence transformer.
+Task: Running XOR with next input.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the NEXT input digit.
+The last digit is copied as-is (no next input to XOR with).
+Each other digit: output[i] = input[i] XOR input[i+1]
+Example: Input 1011 → Output 1101 (calculation: 1⊕0=1, 0⊕1=1, 1⊕1=0, 1)
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+--- RESET ---
+You are a deterministic sequence transformer.
+Task: Running XOR with next input, reset at boundaries.
+Alphabet: 0, 1 (binary digits)
+Rule: At each position, output the XOR of the current input digit with the NEXT input digit.
+The last digit is copied as-is (no next input to XOR with).
+Each other digit: output[i] = input[i] XOR input[i+1]
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately BEFORE each boundary, treat that position exactly like the last digit of the whole input -- copy it as-is (nothing after a boundary counts as "next" for it), then the rule resumes normally on the other side of the boundary.
+Example: Input 1011|0010 → Output 1101|0110 (first block: 1⊕0=1, 0⊕1=1, 1⊕1=0, 1 copied since it's right before the boundary; second block: 0⊕0=0, 0⊕1=1, 1⊕0=1, 0 copied since it's the last digit)
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|10|00|00
+Output: 
+
+======================================================================
+running_max vs running_max_reset  (N=8, k=2)  same-input check: True
+======================================================================
+--- ORIGINAL ---
+You are a deterministic sequence transformer.
+Task: Running maximum.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases.
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: 00|21|11|00
+Output: 
+--- RESET ---
+You are a deterministic sequence transformer.
+Task: Running maximum, reset at boundaries.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit seen so far, including the current position.
+Scan left to right; once a digit is output, it never decreases -- within the current block.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Each boundary starts a brand new block: the running maximum RESETS to nothing at that point and starts counting fresh from the first digit of the new block, ignoring everything before the boundary.
+Copy the boundary characters themselves exactly to the output.
+No spaces, no explanations.
+
+Input: 00|21|11|00
+Output: 
+
