@@ -45,8 +45,8 @@ npz = np.load(RESULTS_DIR / "attention_run_0_32b_realletters.npz", allow_pickle=
 attn_cell = npz["attn_cell"]
 tokens_cell = [str(t) for t in npz["tokens_cell"]]
 
-fig = plt.figure(figsize=(MULTI_COL_WIDTH, 3.2))
-gs = fig.add_gridspec(1, 3, width_ratios=[1.2, 1.0, 1])
+fig = plt.figure(figsize=(MULTI_COL_WIDTH * 1.5, 3.6))
+gs = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.5, 1.0])
 
 # Panel (a): boundary attention mass vs density, faceted by length, alphabet=2
 ax_a = fig.add_subplot(gs[0])

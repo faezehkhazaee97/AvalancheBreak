@@ -41,18 +41,18 @@ def load_task(task, axis_val_col, axis_val, n128_path=None):
     return df
 
 
-COMMON_N = [8, 32, 64, 128]
+COMMON_N = [4, 8, 16, 32, 64, 128]
 TASKS = [
     ("cyclic_shift", "Alphabet_Size", 8, COMMON_N),
     ("copy_previous", None, None, COMMON_N),
     ("sliding_window_max", "Alphabet_Size", 8, COMMON_N),  # matches cyclic_shift's alphabet=8; copy_previous is binary-only, no match possible
 ]
 
-fig, axes = plt.subplots(3, 4, figsize=(MULTI_COL_WIDTH, 6.0))
+fig, axes = plt.subplots(3, 6, figsize=(MULTI_COL_WIDTH * 1.4, 6.0))
 
 for row, (task, axis_col, axis_val, lengths) in enumerate(TASKS):
     df = load_task(task, axis_col, axis_val)
-    for col in range(4):
+    for col in range(6):
         ax = axes[row, col]
         if col >= len(lengths):
             ax.axis("off")
