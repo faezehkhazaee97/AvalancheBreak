@@ -53,7 +53,6 @@ ax_a.set_ylim(0, 0.65)
 tasks_deltas = {
     "running_xor": (0.015, 0.126),
     "running_sum_local": (0.011, 0.110),
-    "reverse_xor": (-0.061, 0.038),
     "sliding_window_max": (0.043, 0.112),
     "copy_previous": (-0.043, -0.107),
 }
