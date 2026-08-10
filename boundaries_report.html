@@ -1097,36 +1097,11 @@ Output: <span class="expected">1011|1000</span></pre>
 
   <section>
     <h2 id="alignment-probes">Dependency-window alignment: does WHERE a boundary lands matter, not just whether one exists?</h2>
-    <p class="lede">Three further probe tasks (Qwen2.5-7B, 20 trials/condition) test boundary placement relative to a dependency window directly, rather than only whether a dependency exists at all.</p>
+    <p class="lede">Every dependency task elsewhere in this report (running_xor, running_sum_local, copy_previous) has a dependency window of exactly one position &mdash; each output needs only the single input right before it. That means density and alignment are the same knob for them: however you space out boundaries, every interior one lands right on that one-position link. <code>local_block_reversal</code> (Qwen2.5-7B, 20 trials/condition) uses a <i>wider</i> dependency instead &mdash; reversing every non-overlapping 4-character block, so each output position depends on up to 3 neighboring positions &mdash; which makes alignment a real, separate choice for the first time: a boundary can land right on a block edge (touching nothing inside the dependency) or in the middle of a block (cutting straight through it).</p>
 
-    <p class="section-sub"><b>digit_complement</b> (<code>output[i] = 9 &minus; input[i]</code>; position-local, a new domain from the main study's tasks) replicates the Tier-1 pattern with a density sweet spot: k=2 beats Base at every length, while k=1 and k=4 trade places by length &mdash; k=1 wins at N=8, k=4 wins by N=64.</p>
     <div class="tbl-wrap">
     <table class="data-table">
-      <tr><th>Method</th><th>N=8</th><th>N=16</th><th>N=32</th><th>N=64</th></tr>
-      <tr><td>Base</td><td>0.775</td><td>0.759</td><td>0.622</td><td>0.389</td></tr>
-      <tr><td>Cellular_Bounds, k=1</td><td>0.875</td><td>0.744</td><td>0.497</td><td>0.249</td></tr>
-      <tr><td>Cellular_Bounds, k=2</td><td>0.850</td><td>0.769</td><td>0.658</td><td>0.400</td></tr>
-      <tr><td>Cellular_Bounds, k=4</td><td>0.469</td><td>0.722</td><td>0.738</td><td>0.686</td></tr>
-      <caption>TAR. k=2 is the only density that beats Base at every length; k=1 and k=4 trade first/last place as N grows.</caption>
-    </table>
-    </div>
-
-    <p class="section-sub"><b>Vigen&egrave;re cipher</b> (repeating 3-element key; a local rule, but position-<i>dependent</i> on which key element applies) is much harder overall than the digit tasks (Base TAR 0.27 at N=8), yet most tested densities beat Base at every length &mdash; and critically, k=3 (matching the cipher key's own period) shows no special advantage over k=6: alignment with a task's periodic <i>rule</i> does not matter the way alignment with a genuine dependency <i>window</i> does (below).</p>
-    <div class="tbl-wrap">
-    <table class="data-table">
-      <tr><th>Method</th><th>N=8</th><th>N=16</th><th>N=32</th><th>N=64</th></tr>
-      <tr><td>Base</td><td>0.269</td><td>0.194</td><td>0.133</td><td>0.123</td></tr>
-      <tr><td>Cellular_Bounds, k=1</td><td>0.375</td><td>0.316</td><td>0.284</td><td>0.210</td></tr>
-      <tr><td>Cellular_Bounds, k=3 (key period)</td><td>0.250</td><td>0.222</td><td>0.198</td><td>0.179</td></tr>
-      <tr><td>Cellular_Bounds, k=6</td><td>0.225</td><td>0.219</td><td>0.231</td><td>0.205</td></tr>
-      <caption>TAR. k=1 beats Base at every length; k=3 and k=6 both trail Base at N=8 only (by 0.02&ndash;0.04) and beat it from N=16 on &mdash; k=3's alignment with the cipher's own 3-key period gives it no edge over k=6.</caption>
-    </table>
-    </div>
-
-    <p class="section-sub"><b>local_block_reversal</b> (reverse every non-overlapping 4-character block &mdash; a genuine, fixed 4-position dependency window) is the first task where boundary placement relative to a real dependency window can be tested directly, and it's the cleanest result in this set: boundaries <b>aligned</b> to the block edges roughly double accuracy; boundaries landing <b>mid-window</b> never beat Base.</p>
-    <div class="tbl-wrap">
-    <table class="data-table">
-      <tr><th>N</th><th>Base</th><th>Aligned (k=4, window edges)</th><th>Misaligned (k=2, mid-window)</th></tr>
+      <tr><th>N</th><th>Base</th><th>Aligned (k=4, boundaries on block edges)</th><th>Misaligned (k=2, boundaries mid-block)</th></tr>
       <tr><td>8</td><td>0.225</td><td>0.469</td><td>0.156</td></tr>
       <tr><td>16</td><td>0.297</td><td>0.534</td><td>0.297</td></tr>
       <tr><td>32</td><td>0.336</td><td>0.564</td><td>0.227</td></tr>
@@ -1134,10 +1109,10 @@ Output: <span class="expected">1011|1000</span></pre>
       <caption>TAR, local block reversal (window=4). Aligned boundaries roughly double accuracy at every length; misaligned boundaries never beat Base and underperform it at 3 of 4 lengths.</caption>
     </table>
     </div>
-    <p class="findings">What matters is alignment with a genuine dependency <i>window</i>, not with periodic structure per se (Vigen&egrave;re's key period gets no special credit; block reversal's dependency window does). This is exactly why the one-step Tier-2 tasks (running_xor, running_sum_local, copy_previous) have no alignment "free lunch": with a dependency window of exactly one position, every interior boundary sits directly on a dependency edge regardless of where it's placed &mdash; for a window-1 dependency, density <i>is</i> alignment, and the two collapse into the same knob. block_reversal's wider 4-character window is the first task where alignment is a real, separate choice with two different outcomes.</p>
+    <p class="findings">Placement matters, not just density: the aligned and misaligned conditions insert boundaries at different densities (k=4 vs. k=2) but the aligned one still wins by a wide margin, because it never cuts through a dependency the misaligned one cuts through repeatedly. This is the placement-side counterpart to the causal-ablation section's task-side finding: severing a one-step dependency (there) and landing a boundary outside a wider dependency's window (here) both remove the harm, for the same underlying reason &mdash; the boundary just isn't touching anything the model still needs.</p>
 
     <h3 style="margin-top:1.6rem;">State-carrying checkpoints: a real value beats a content-free marker in proportion to how much state there is to lose</h3>
-    <p class="section-sub">The content-free <code>|</code> marker carries no information about what came before it. Replacing it with a genuine state-carrying checkpoint &mdash; the true running value written out at each boundary (e.g. <code>[3]</code>) &mdash; tests whether a boundary that actually helps reconstruct the severed state does better than one that doesn't.</p>
+    <p class="section-sub">Every boundary elsewhere in this report is the same plain <code>|</code> &mdash; it marks a checkpoint but carries no information about what came before it. This tests a different kind of boundary: instead of <code>|</code>, write the actual running value at that point, e.g. <code>[3]</code> for "the running sum so far is 3" (global running-sum-mod-M) or the true carry bit for addition. If dense boundaries hurt because they cut the model off from state it needs, a boundary that hands that state right back should hurt less &mdash; that's what this tests, on the two tasks elsewhere in this report where boundaries visibly damage a value the model has to carry across the whole sequence.</p>
     <div class="tbl-wrap">
     <table class="data-table">
       <tr><th>Modulus</th><th>N</th><th>Base</th><th>Content-free marker</th><th>State-carrying checkpoint</th></tr>
