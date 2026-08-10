@@ -46,7 +46,7 @@ attn_cell = npz["attn_cell"]
 tokens_cell = [str(t) for t in npz["tokens_cell"]]
 
 fig = plt.figure(figsize=(MULTI_COL_WIDTH, 3.2))
-gs = fig.add_gridspec(1, 3, width_ratios=[1.25, 0.85, 1])
+gs = fig.add_gridspec(1, 3, width_ratios=[1.2, 1.0, 1])
 
 # Panel (a): boundary attention mass vs density, faceted by length, alphabet=2
 ax_a = fig.add_subplot(gs[0])
@@ -77,13 +77,15 @@ ax_b = fig.add_subplot(gs[1])
 m = attn_cell[l, h]
 im = ax_b.imshow(m, cmap="viridis", vmin=0, vmax=np.percentile(m, 99), aspect="auto")
 ax_b.set_xticks(range(len(tokens_cell)))
-ax_b.set_xticklabels(tokens_cell, rotation=90, fontsize=5)
+ax_b.set_xticklabels(tokens_cell, rotation=90, fontsize=8)
 ax_b.set_yticks(range(len(tokens_cell)))
-ax_b.set_yticklabels(tokens_cell, fontsize=5)
+ax_b.set_yticklabels(tokens_cell, fontsize=8)
+ax_b.tick_params(axis="x", pad=2)
 ax_b.set_xlabel("Key token (attended TO)", fontsize=7)
 ax_b.set_ylabel("Query token (attending FROM)", fontsize=7)
 for i in boundary_idx:
     ax_b.axvline(i, color=CAT_ORANGE, alpha=0.5, linewidth=0.8)
+    ax_b.axhline(i, color=CAT_ORANGE, alpha=0.5, linewidth=0.8)
 ax_b.set_title(f"(b) Attention heatmap, L{l}/H{h}\n(orange lines = boundary tokens)", fontsize=8.5)
 fig.colorbar(im, ax=ax_b, fraction=0.046, pad=0.04)
 
