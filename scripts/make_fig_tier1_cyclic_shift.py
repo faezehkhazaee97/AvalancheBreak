@@ -25,7 +25,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from tasks.common.compute_diagnostics import select_canonical_files
 from tasks.common.figure_style import (
     set_rc, savefig, AXIS_COLORS, BASE_STYLE, BOUNDS_STYLE,
-    MODEL_ORDER, MODEL_LABELS, MULTI_COL_WIDTH,
+    MODEL_ORDER, MODEL_LABELS, MULTI_COL_WIDTH, set_power_of_2_xticks,
 )
 
 set_rc()
@@ -91,9 +91,7 @@ for i, model in enumerate(MODEL_ORDER):
         ax.fill_between(bnd.index, bnd["mean"] - bnd["sem"], bnd["mean"] + bnd["sem"],
                          color=color, alpha=0.15)
 
-    ax.set_xscale("log", base=2)
-    ax.set_xticks([4, 8, 16, 32, 64, 128])
-    ax.set_xticklabels(["4", "8", "16", "32", "64", "128"], fontsize=6)
+    set_power_of_2_xticks(ax, [4, 8, 16, 32, 64, 128], fontsize=6)
     ax.set_title(MODEL_LABELS[model])
     ax.set_xlabel("Sequence length N")
     if i % 3 == 0:

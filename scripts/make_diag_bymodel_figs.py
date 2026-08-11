@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, MODEL_ORDER, MODEL_LABELS
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, MODEL_ORDER, MODEL_LABELS, set_power_of_2_xticks
 
 set_rc()
 
@@ -47,6 +47,7 @@ TASKS = [
 def make_task_fig(task, axis_col, axis_val, note):
     fig, axes = plt.subplots(2, 2, figsize=(MULTI_COL_WIDTH * 0.62, 4.6), sharex=True)
     any_model_plotted = False
+    all_N = set()
 
     for model in MODEL_ORDER:
         row_path = DIAG_DIR / f"{task}__{model}__rows.csv"
@@ -75,6 +76,7 @@ def make_task_fig(task, axis_col, axis_val, note):
             g_tarwf = wf_only.groupby("Seq_Length")["TAR"].mean()
             axes[1, col_idx].plot(g_tarwf.index, g_tarwf.values, color=color, marker=marker,
                                    markersize=4, linewidth=1.4, label=label)
+            all_N.update(g_wfr.index)
 
     if not any_model_plotted:
         plt.close(fig)
@@ -92,7 +94,7 @@ def make_task_fig(task, axis_col, axis_val, note):
         ax.set_xlabel("Sequence length N", fontsize=7.5)
     for ax in axes.flat:
         ax.set_ylim(0, 1.05)
-        ax.set_xscale("log", base=2)
+        set_power_of_2_xticks(ax, all_N, fontsize=6.5)
     axes[0, 0].legend(loc="lower left", frameon=False, fontsize=6)
 
     fig.suptitle(f"{task} -- failure-mode diagnostics by model\nN on x-axis (not pooled), {note}", fontsize=8.5, y=1.06)

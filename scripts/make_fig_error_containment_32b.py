@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_power_of_2_xticks
 
 set_rc()
 
@@ -92,7 +92,7 @@ for ax, events_df, label in [(axes[0], thermo_events, "cyclic_shift"),
         if len(sub):
             ax.plot(sub.Seq_Length, sub.Recovered, color=color, marker=marker, markersize=4,
                      linewidth=1.5, label=lbl)
-    ax.set_xscale("log", base=2)
+    set_power_of_2_xticks(ax, per_N.Seq_Length.unique(), fontsize=6.5)
     ax.set_xlabel("Sequence length N")
     ax.set_ylabel("P(next correct | previous wrong)")
     ax.set_title(label)
