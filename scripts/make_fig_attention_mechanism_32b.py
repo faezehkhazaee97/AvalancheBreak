@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_power_of_2_xticks
 
 set_rc()
 
@@ -38,12 +38,14 @@ fig, axes = plt.subplots(2, 2, figsize=(MULTI_COL_WIDTH, 6.0))
 
 # (a) boundary-attention mass vs density, faceted by length
 ax = axes[0, 0]
-for N, sub in sweep.groupby("Seq_Length"):
+sweep_a = sweep[sweep.Interval != 3]  # k=3 excluded per this study's own pooled-analysis convention
+for N, sub in sweep_a.groupby("Seq_Length"):
     agg = sub.groupby("Inv_K")["Cell_Boundary_Attn"].mean()
     ax.plot(agg.index, agg.values, marker="o", markersize=3, linewidth=1.2, label=f"N={N}")
 ax.set_xlabel("density (1/k)")
 ax.set_ylabel("boundary-token attention mass")
 ax.set_title("(a) Boundary attention vs. density")
+set_power_of_2_xticks(ax, sweep_a.Inv_K.unique(), fontsize=6)
 ax.legend(loc="upper left", frameon=False, fontsize=5.5, ncol=2)
 
 # (b) entropy by layer, Base vs Cellular (representative example)

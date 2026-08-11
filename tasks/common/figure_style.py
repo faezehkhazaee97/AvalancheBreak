@@ -40,3 +40,33 @@ def set_rc():
 def savefig(fig, path):
     fig.savefig(path, format="pdf", bbox_inches="tight")
     print(f"Wrote {path}")
+
+
+_SUPERSCRIPT_DIGITS = str.maketrans("0123456789-", "⁰¹²³⁴⁵⁶⁷⁸⁹⁻")
+
+
+def power_of_2_label(value):
+    """Format a value as '2^n' with a unicode superscript exponent, e.g.
+    0.125 -> '2⁻³', 1.0 -> '2⁰'. Assumes value is (very close to) an exact
+    power of 2; raises if it isn't, so a non-power-of-2 point (most often
+    a stray k=3 density -- this study's own convention excludes k=3 from
+    pooled analyses precisely because it doesn't fit the power-of-2 grid)
+    surfaces as an error instead of a silently wrong label.
+    """
+    import math
+    n = round(math.log2(value))
+    if not math.isclose(value, 2 ** n, rel_tol=1e-6):
+        raise ValueError(f"{value} is not a power of 2 -- exclude it before labeling, don't mislabel it")
+    return f"2{str(n).translate(_SUPERSCRIPT_DIGITS)}"
+
+
+def set_power_of_2_xticks(ax, values, fontsize=6.5, rotation=0):
+    """Set explicit x-ticks at exactly the given (power-of-2) values, log2
+    scale, labeled as 2^n. Use in place of matplotlib's default locator,
+    which neither restricts itself to real data points nor formats them
+    as powers of 2."""
+    values = sorted(set(values))
+    ax.set_xscale("log", base=2)
+    ax.set_xticks(values)
+    ax.set_xticklabels([power_of_2_label(v) for v in values], fontsize=fontsize, rotation=rotation)
+    ax.minorticks_off()
