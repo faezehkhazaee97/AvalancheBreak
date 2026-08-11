@@ -60,6 +60,11 @@ for color, N in zip(SEQ_BLUE_ORDINAL, lengths):
 ax_a.set_xlabel("Boundary density (1/k)")
 ax_a.set_ylabel("Attention mass on boundary tokens")
 ax_a.set_title("(a) Boundary tokens absorb attention,\nscaling with density (alphabet=2)", fontsize=8.5)
+ax_a.set_xscale("log", base=2)
+inv_k_values = sorted(sweep_a2.Inv_K.unique())
+ax_a.set_xticks(inv_k_values)
+ax_a.set_xticklabels([f"{d:.2g}" for d in inv_k_values], fontsize=6.5, rotation=45)
+ax_a.minorticks_off()
 ax_a.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), frameon=False, fontsize=6.5, ncol=1)
 
 # Panel (b): representative heatmap, most boundary-attending head
