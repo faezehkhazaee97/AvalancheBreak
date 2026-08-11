@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_power_of_2_xticks
 
 set_rc()
 
@@ -71,11 +71,8 @@ for row, (task, axis_col, axis_val, lengths) in enumerate(TASKS):
             best_idx = bnd["mean"].values[order].argmax()
             ax.scatter([density[order][best_idx]], [bnd["mean"].values[order][best_idx]],
                       marker="*", s=140, color=CAT_BLUE, zorder=5, edgecolor="black", linewidth=0.5)
-            ax.set_xscale("log", base=2)
+            set_power_of_2_xticks(ax, density[order], fontsize=6)
             ax.set_xlim(0.045, 1.3)
-            ax.set_xticks(density[order])
-            ax.set_xticklabels([f"{d:.2g}" for d in density[order]], fontsize=6)
-            ax.minorticks_off()
         ax.set_ylim(0, 1.05)
         ax.set_title(f"N={N}", fontsize=8)
         if row == 2:

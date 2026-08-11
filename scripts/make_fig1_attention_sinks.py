@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_power_of_2_xticks
 
 set_rc()
 
@@ -51,6 +51,7 @@ gs = fig.add_gridspec(1, 3, width_ratios=[1.0, 1.5, 1.0])
 # Panel (a): boundary attention mass vs density, faceted by length, alphabet=2
 ax_a = fig.add_subplot(gs[0])
 sweep_a2 = sweep[sweep.Alphabet_Size == 2] if "Alphabet_Size" in sweep.columns else sweep
+sweep_a2 = sweep_a2[sweep_a2.Interval != 3]  # k=3 excluded per this study's own pooled-analysis convention
 lengths = sorted(sweep_a2.Seq_Length.unique())
 for color, N in zip(SEQ_BLUE_ORDINAL, lengths):
     sub = sweep_a2[sweep_a2.Seq_Length == N]
@@ -60,11 +61,7 @@ for color, N in zip(SEQ_BLUE_ORDINAL, lengths):
 ax_a.set_xlabel("Boundary density (1/k)")
 ax_a.set_ylabel("Attention mass on boundary tokens")
 ax_a.set_title("(a) Boundary tokens absorb attention,\nscaling with density (alphabet=2)", fontsize=8.5)
-ax_a.set_xscale("log", base=2)
-inv_k_values = sorted(sweep_a2.Inv_K.unique())
-ax_a.set_xticks(inv_k_values)
-ax_a.set_xticklabels([f"{d:.2g}" for d in inv_k_values], fontsize=6.5, rotation=45)
-ax_a.minorticks_off()
+set_power_of_2_xticks(ax_a, sweep_a2.Inv_K.unique(), fontsize=6.5)
 ax_a.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), frameon=False, fontsize=6.5, ncol=1)
 
 # Panel (b): representative heatmap, most boundary-attending head

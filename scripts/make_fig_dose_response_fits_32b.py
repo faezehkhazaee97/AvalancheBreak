@@ -21,7 +21,7 @@ from tasks.common.compute_diagnostics import select_canonical_files
 from tasks.common.compute_dose_response_robustness import (
     build_curve, fit_and_score, quadratic, vertex_of_quadratic, bootstrap_vertex_ci,
 )
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, power_of_2_label
 
 set_rc()
 
@@ -72,6 +72,9 @@ for i, N in enumerate(lengths):
 
     ax.set_title(f"N={N}", fontsize=8)
     ax.set_xlabel("density (1/k)")
+    xtick_vals = sorted(x_raw)
+    ax.set_xticks(xtick_vals)
+    ax.set_xticklabels(["0" if v == 0 else power_of_2_label(v) for v in xtick_vals], fontsize=6, rotation=45)
     if i % 4 == 0:
         ax.set_ylabel("TAR")
     ax.set_ylim(0, 1.05)
