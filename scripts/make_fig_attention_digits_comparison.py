@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, power_of_2_label
 
 set_rc()
 
@@ -58,7 +58,7 @@ x = np.arange(len(lengths))
 ax_a.bar(x - 0.18, letter_slopes, width=0.36, color="#7570b3", label="letters (space-sep.)")
 ax_a.bar(x + 0.18, digit_slopes, width=0.36, color="#1b9e77", label="digits (no workaround)")
 ax_a.set_xticks(x)
-ax_a.set_xticklabels([str(n) for n in lengths], fontsize=6)
+ax_a.set_xticklabels([power_of_2_label(n) for n in lengths], fontsize=6)
 ax_a.set_xlabel("Sequence length N")
 ax_a.set_ylabel("boundary-attn vs. density slope")
 ax_a.set_title("(a) Sink strength: letters vs. digits")

@@ -18,7 +18,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 from tasks.common.figure_style import (
     set_rc, savefig, AXIS_COLORS, BASE_STYLE, BOUNDS_STYLE,
-    MODEL_ORDER, MODEL_LABELS, MULTI_COL_WIDTH,
+    MODEL_ORDER, MODEL_LABELS, MULTI_COL_WIDTH, set_power_of_2_xticks,
 )
 
 set_rc()
@@ -45,7 +45,7 @@ for col, model in enumerate(MODEL_ORDER):
         ax.plot(bnd.index, bnd["mean"], color=color, **BOUNDS_STYLE, label=f"A={int(axis_val)}" if col == 0 else None)
         ax.fill_between(bnd.index, bnd["mean"] - bnd["sem"], bnd["mean"] + bnd["sem"], color=color, alpha=0.15)
 
-    ax.set_xscale("log", base=2)
+    set_power_of_2_xticks(ax, df.Seq_Length.unique(), fontsize=6)
     ax.set_title(MODEL_LABELS[model], fontsize=8)
     ax.set_xlabel("Sequence length N")
     if col == 0:

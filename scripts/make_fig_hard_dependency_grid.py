@@ -20,7 +20,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from tasks.common.compute_diagnostics import select_canonical_files
 from tasks.common.figure_style import (
     set_rc, savefig, AXIS_COLORS, BASE_STYLE, BOUNDS_STYLE,
-    MODEL_ORDER, MODEL_LABELS, MULTI_COL_WIDTH,
+    MODEL_ORDER, MODEL_LABELS, MULTI_COL_WIDTH, set_power_of_2_xticks,
 )
 
 set_rc()
@@ -71,10 +71,7 @@ for row, task in enumerate(TASKS):
             ax.fill_between(bnd.index, bnd["mean"] - bnd["sem"], bnd["mean"] + bnd["sem"],
                              color=color, alpha=0.15)
 
-        ax.set_xscale("log", base=2)
-        xticks = sorted(df.Seq_Length.unique())
-        ax.set_xticks(xticks)
-        ax.set_xticklabels([str(int(x)) for x in xticks], fontsize=6)
+        set_power_of_2_xticks(ax, df.Seq_Length.unique(), fontsize=6)
         if row == 0:
             ax.set_title(MODEL_LABELS[model])
         if col == 0:

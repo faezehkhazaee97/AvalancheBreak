@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_power_of_2_xticks, power_of_2_label
 
 set_rc()
 
@@ -49,7 +49,7 @@ ax1.plot(df7.Seq_Length, df7.Cellular_Normal_TAR, color="#1b9e77", linestyle="-"
 ax1.plot(df7.Seq_Length, df7.Cellular_Ablated_TAR, color="#d95f02", linestyle="-", marker="^", markersize=4, label="Cellular_Bounds (ablated)")
 ax1.set_xlabel("Sequence length N")
 ax1.set_ylabel("TAR")
-ax1.set_xscale("log", base=2)
+set_power_of_2_xticks(ax1, df7.Seq_Length.unique(), fontsize=6.5)
 ax1.set_ylim(0, 1.05)
 ax1.legend(loc="lower left", frameon=False, fontsize=6.5)
 ax1.set_title("Accuracy (Qwen2.5-7B)")
@@ -75,7 +75,7 @@ for xi, y in zip(x + width / 2, vals32):
     ax2.text(xi, y + 1.5, f"{y:.0f}%", ha="center", fontsize=6)
 
 ax2.set_xticks(list(x) + [gap_x])
-ax2.set_xticklabels([str(n) for n in shared_N] + [""])
+ax2.set_xticklabels([power_of_2_label(n) for n in shared_N] + [""])
 ax2.set_xlabel("Sequence length N")
 ax2.set_ylabel("% of Cellular benefit erased")
 ax2.set_title("Ablation effect: 7B vs. 32B")
