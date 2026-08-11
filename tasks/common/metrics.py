@@ -36,7 +36,7 @@ LETTER_TASKS = {
 }
 BINARY_TASKS = {"running_xor", "copy_previous"}
 MODULUS_TASKS = {"running_sum_local"}
-ALPHABET_SIZE_DIGIT_TASKS = {"running_max"}
+ALPHABET_SIZE_DIGIT_TASKS = {"running_max", "sliding_window_max"}
 
 
 def valid_alphabet(task_name, row):

@@ -108,15 +108,15 @@ axes[5].axis("off")
 color_handles = [Line2D([0], [0], color=AXIS_COLORS[a], linewidth=2, label=f"A={int(a)}")
                   for a in sorted(AXIS_COLORS.keys())]
 style_handles = [
-    Line2D([0], [0], color="gray", linestyle=BASE_STYLE["linestyle"], marker=BASE_STYLE.get("marker", "o"),
+    Line2D([0], [0], color="black", linestyle=BASE_STYLE["linestyle"], marker=BASE_STYLE.get("marker", "o"),
            markersize=4, label="Base"),
-    Line2D([0], [0], color="gray", linestyle=BOUNDS_STYLE["linestyle"], marker=BOUNDS_STYLE.get("marker", "s"),
+    Line2D([0], [0], color="black", linestyle=BOUNDS_STYLE["linestyle"], marker=BOUNDS_STYLE.get("marker", "s"),
            markersize=4, label="Cellular_Bounds"),
 ]
 fig.legend(handles=color_handles + style_handles, loc="upper center",
            bbox_to_anchor=(0.5, 1.0), ncol=5, frameon=False, fontsize=7.5)
 
-fig.suptitle("cyclic_shift: Base (black dashed) vs. Cellular_Bounds (colored solid), by alphabet size", y=1.06)
+fig.suptitle("cyclic_shift: Base (dashed) vs. Cellular_Bounds (solid), colored by alphabet size", y=1.06)
 fig.tight_layout()
 
 OUT = REPO_ROOT / "figs" / "tier1_cyclic_shift.pdf"
