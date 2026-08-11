@@ -52,6 +52,7 @@ fig, axes = plt.subplots(3, 6, figsize=(MULTI_COL_WIDTH * 1.4, 6.0))
 
 for row, (task, axis_col, axis_val, lengths) in enumerate(TASKS):
     df = load_task(task, axis_col, axis_val)
+    chance = 1.0 / axis_val if axis_val else 0.5  # copy_previous is binary, no Alphabet_Size axis
     for col in range(6):
         ax = axes[row, col]
         if col >= len(lengths):
@@ -61,6 +62,8 @@ for row, (task, axis_col, axis_val, lengths) in enumerate(TASKS):
         sub = df[df.Seq_Length == N]
         base = sub[sub.Method == "Base"]["TAR"]
         bnd = sub[sub.Method == "Cellular_Bounds"].groupby("Interval")["TAR"].agg(["mean", "sem"])
+        ax.axhline(chance, color="#999999", linestyle=":", linewidth=1, alpha=0.8,
+                   label="Random chance" if (row == 0 and col == 0) else None)
         if len(base):
             ax.axhline(base.mean(), color="black", linestyle="--", linewidth=1, alpha=0.6, label="Base" if (row == 0 and col == 0) else None)
         if len(bnd):
