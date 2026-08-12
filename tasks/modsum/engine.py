@@ -17,6 +17,7 @@ TASK_NAME = "modsum"
 AXIS_NAME = "Modulus"
 AXIS_VALUES = [2, 4, 8]
 OUTPUT_HAS_BOUNDARIES = True
+LENGTHS = [4, 8, 16, 32, 64, 128]
 
 
 def _compute_cumulative_sum_mod(digit_str, modulus):

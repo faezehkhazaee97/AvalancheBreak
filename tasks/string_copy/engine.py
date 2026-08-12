@@ -14,6 +14,7 @@ other Tier-1 tasks.
 from tasks.common.boundary import insert_boundaries
 
 TASK_NAME = "string_copy"
+LENGTHS = [4, 8, 16, 32, 64, 128]
 AXIS_NAME = "Alphabet_Size"
 AXIS_VALUES = [2, 4, 8]
 OUTPUT_HAS_BOUNDARIES = True

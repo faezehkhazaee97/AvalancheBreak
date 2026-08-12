@@ -1,14 +1,26 @@
 #!/usr/bin/env python3
 """Figure 3: Tier-2/3 anchor grids (figs/anchors_grid.pdf). copy_previous
-and sliding_window_max, one panel per model, all alphabet sizes, TAR vs.
-sequence length, Base (black dashed) vs. Cellular_Bounds (colored solid,
-pooled across densities k=1/2/4/8/16, k=3 excluded). Replaces old Figures
-8-9. running_max (originally the second anchor here) was retired: its
-cumulative-max statistic saturates at the alphabet ceiling, making TAR
-spuriously RISE with N instead of showing the real difficulty curve --
-not a valid boundary-effect comparison point. sliding_window_max (a
-bounded 3-step lookback that can't saturate the same way) is its
-replacement Tier-3 anchor.
+and sliding_window_max, one panel per model, TAR vs. sequence length, Base
+vs. Cellular_Bounds (pooled across densities k=1/2/4/8/16, k=3 excluded).
+Replaces old Figures 8-9. running_max (originally the second anchor here)
+was retired: its cumulative-max statistic saturates at the alphabet
+ceiling, making TAR spuriously RISE with N instead of showing the real
+difficulty curve -- not a valid boundary-effect comparison point.
+sliding_window_max (a bounded 3-step lookback that can't saturate the same
+way) is its replacement Tier-3 anchor.
+
+copy_previous has NO Alphabet_Size axis at all -- it's fixed-alphabet
+binary (0/1), not a sweep with one value missing. sliding_window_max
+sweeps Alphabet_Size in {4, 8} only; alphabet=2 is a deliberate exclusion,
+not missing data (see sliding_window_max/engine.py: screened weak at
+alphabet=2, model exploits the skewed output distribution via lazy
+constant-guessing 65% of the time instead of genuine window-tracking).
+Base is now colored to match its own series instead of plain black
+regardless of alphabet -- previously sliding_window_max's two Base lines
+(A=4, A=8) were both drawn in identical black, visually collapsing into
+what looked like one line when it was really two overlapping ones. Random-
+chance lines (1/alphabet size; 1/2 for copy_previous's fixed binary) added,
+same convention as Figure 2/A1.
 
 Both tasks' canonical files are already fragment-complete (a
 _trials20-39.csv fragment exists standalone for Qwen2.5-7B, unlike
@@ -21,6 +33,7 @@ from pathlib import Path
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
@@ -34,6 +47,11 @@ from tasks.common.figure_style import (
 set_rc()
 
 TASKS = ["copy_previous", "sliding_window_max"]
+# copy_previous has no Alphabet_Size axis -- fixed binary, deliberately NOT
+# drawn from AXIS_COLORS (which codes actual alphabet-size values) so it
+# can never be mistaken for "A=<something>".
+BINARY_COLOR = "black"
+base_style_no_color = {k: v for k, v in BASE_STYLE.items() if k != "color"}
 
 fig, axes = plt.subplots(2, 5, figsize=(MULTI_COL_WIDTH, 4.6), sharey=True)
 
@@ -62,17 +80,20 @@ for row, task in enumerate(TASKS):
             sub = df[df.Alphabet_Size == axis_val] if axis_val is not None else df
             base = sub[sub.Method == "Base"].groupby("Seq_Length")["TAR"].agg(["mean", "sem"])
             bnd = sub[sub.Method == "Cellular_Bounds"].groupby("Seq_Length")["TAR"].agg(["mean", "sem"])
-            color = AXIS_COLORS.get(axis_val, "#333333") if axis_val is not None else "#d95f02"
-            label_suffix = f"A={int(axis_val)}" if axis_val is not None else ""
+            color = AXIS_COLORS.get(axis_val, BINARY_COLOR) if axis_val is not None else BINARY_COLOR
 
-            ax.plot(base.index, base["mean"], **BASE_STYLE,
-                     label="Base" if (axis_val in (2, None) and row == 0 and col == 0) else None)
+            ax.plot(base.index, base["mean"], color=color, **base_style_no_color)
             ax.fill_between(base.index, base["mean"] - base["sem"], base["mean"] + base["sem"],
-                             color="black", alpha=0.08)
-            ax.plot(bnd.index, bnd["mean"], color=color, **BOUNDS_STYLE,
-                     label=label_suffix if (row == 1 and col == 0) else None)
+                             color=color, alpha=0.08)
+            ax.plot(bnd.index, bnd["mean"], color=color, **BOUNDS_STYLE)
             ax.fill_between(bnd.index, bnd["mean"] - bnd["sem"], bnd["mean"] + bnd["sem"],
                              color=color, alpha=0.15)
+
+            # Random chance = 1/alphabet size (1/2 for copy_previous's fixed
+            # binary alphabet), color-matched to its own series like Base/
+            # Bounds above.
+            chance = 1.0 / axis_val if axis_val is not None else 0.5
+            ax.axhline(chance, color=color, linestyle=":", linewidth=1, alpha=0.7)
 
         set_power_of_2_xticks(ax, [4, 8, 16, 32, 64], fontsize=6)
         if row == 0:
@@ -83,18 +104,24 @@ for row, task in enumerate(TASKS):
             ax.set_xlabel("Sequence length N")
         ax.set_ylim(0, 1.05)
 
-# One shared legend for the whole figure (was sitting only in the
-# top-left panel, but applies to every panel) -- moved outside the axes.
-h0, l0 = axes[0, 0].get_legend_handles_labels()
-h1, l1 = axes[1, 0].get_legend_handles_labels()
-all_handles, all_labels = [], []
-for h, l in zip(h0 + h1, l0 + l1):
-    if l not in all_labels:
-        all_handles.append(h)
-        all_labels.append(l)
-fig.legend(all_handles, all_labels, loc="upper center", bbox_to_anchor=(0.5, 1.0),
-           ncol=len(all_labels), frameon=False, fontsize=7)
-fig.suptitle("Tier-2/3 anchors: Base (black dashed) vs. Cellular_Bounds (colored solid)", y=1.07)
+# Two-part legend, same split as Figure 1/A1: color = series identity
+# (copy_previous is fixed-binary, never an alphabet value -- labeled by
+# name, not folded into the A=X code), linestyle/marker = Base vs.
+# Cellular_Bounds vs. random chance, shared across both rows.
+color_handles = [Line2D([0], [0], color=BINARY_COLOR, linewidth=2, label="copy_previous (binary)")] + [
+    Line2D([0], [0], color=AXIS_COLORS[a], linewidth=2, label=f"sliding_window_max A={int(a)}")
+    for a in sorted(AXIS_COLORS.keys()) if a in (4, 8)
+]
+style_handles = [
+    Line2D([0], [0], color="#555555", linestyle=BASE_STYLE["linestyle"], marker=BASE_STYLE.get("marker", "o"),
+           markersize=4, label="Base"),
+    Line2D([0], [0], color="#555555", linestyle=BOUNDS_STYLE["linestyle"], marker=BOUNDS_STYLE.get("marker", "s"),
+           markersize=4, label="Cellular_Bounds"),
+    Line2D([0], [0], color="#999999", linestyle=":", linewidth=1.5, label="Random chance (1/A)"),
+]
+fig.legend(handles=color_handles + style_handles, loc="upper center", bbox_to_anchor=(0.5, 1.0),
+           ncol=3, frameon=False, fontsize=7)
+fig.suptitle("Tier-2/3 anchors: Base (dashed) vs. Cellular_Bounds (solid), colored by series", y=1.14)
 fig.tight_layout()
 
 OUT = REPO_ROOT / "figs" / "anchors_grid.pdf"

@@ -43,7 +43,7 @@ TASK_NAME = "procbench_substitute"
 AXIS_NAME = None
 AXIS_VALUES = None
 OUTPUT_HAS_BOUNDARIES = True
-LENGTHS = [4, 8, 16, 32, 64]
+LENGTHS = [4, 8, 16, 32, 64, 128]
 
 
 def build_prompt(N, k, rng, axis_val=None):

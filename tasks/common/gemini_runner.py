@@ -81,10 +81,13 @@ def build_pilot_examples():
     return examples
 
 
+_THINKING_DISABLED_SUPPORTED = {}  # model_name -> bool, cached after first probe per model
+
+
 def call_gemini(prompt, model_name, client, max_output_tokens=200):
     """Returns (raw_text, usage_dict, error_str_or_None).
 
-    Explicitly disables "thinking" (thinking_budget=0) and sets
+    Tries to explicitly disable "thinking" (thinking_budget=0) and sets
     temperature=0 -- these tasks are simple deterministic transformations
     with no need for extended reasoning, thinking tokens are billed as
     output tokens but invisible in resp.text (would silently inflate cost
@@ -92,15 +95,50 @@ def call_gemini(prompt, model_name, client, max_output_tokens=200):
     temperature=0 matches the greedy decoding (do_sample=False) used for
     every other model in this study, for methodological consistency.
     max_output_tokens caps worst-case cost per call if something goes wrong.
+
+    Newer model generations (discovered when the "gemini-flash-latest"
+    alias drifted from gemini-3.5-flash, used for this study's original
+    9-task grid, to gemini-3.6-flash) reject thinking_budget=0 outright
+    (400 INVALID_ARGUMENT) -- thinking is mandatory on those models, with
+    an observed floor of roughly 45-70 thought tokens even at
+    thinking_budget=1. Silently NOT catching this would be worse than an
+    error: omitting thinking_config entirely still "succeeds", but with a
+    small max_output_tokens the thinking tokens alone exhaust the budget
+    and resp.text comes back None -- every row would silently score as an
+    empty/wrong prediction instead of failing loudly. So: probe once per
+    model_name, remember whether budget=0 is accepted, and if not, drop
+    thinking_config entirely (dynamic thinking) for every subsequent call
+    to that model rather than re-erroring every time.
     """
     from google.genai import types
-    config = types.GenerateContentConfig(
-        temperature=0,
-        max_output_tokens=max_output_tokens,
-        thinking_config=types.ThinkingConfig(thinking_budget=0),
-    )
+    from google.genai import errors as genai_errors
+
+    disabled_ok = _THINKING_DISABLED_SUPPORTED.get(model_name)
+    if disabled_ok is not False:
+        config = types.GenerateContentConfig(
+            temperature=0,
+            max_output_tokens=max_output_tokens,
+            thinking_config=types.ThinkingConfig(thinking_budget=0),
+        )
+        try:
+            resp = client.models.generate_content(model=model_name, contents=prompt, config=config)
+            _THINKING_DISABLED_SUPPORTED[model_name] = True
+        except genai_errors.ClientError as e:
+            if "INVALID_ARGUMENT" not in str(e):
+                return "", {}, None, str(e)
+            _THINKING_DISABLED_SUPPORTED[model_name] = False
+            disabled_ok = False
+        except Exception as e:
+            return "", {}, None, str(e)
+
+    if disabled_ok is False:
+        config = types.GenerateContentConfig(temperature=0, max_output_tokens=max_output_tokens)
+        try:
+            resp = client.models.generate_content(model=model_name, contents=prompt, config=config)
+        except Exception as e:
+            return "", {}, None, str(e)
+
     try:
-        resp = client.models.generate_content(model=model_name, contents=prompt, config=config)
         raw_text = resp.text if resp.text is not None else ""
         usage = {}
         if getattr(resp, "usage_metadata", None) is not None:
