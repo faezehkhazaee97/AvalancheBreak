@@ -91,6 +91,12 @@ for i, model in enumerate(MODEL_ORDER):
         ax.fill_between(bnd.index, bnd["mean"] - bnd["sem"], bnd["mean"] + bnd["sem"],
                          color=color, alpha=0.15)
 
+        # Random chance = 1/alphabet_size (uniform guess over the alphabet),
+        # color-matched to its own alphabet series like Base/Bounds above --
+        # three different chance levels overlaid per panel, not one shared
+        # line, since each alphabet size has its own chance floor.
+        ax.axhline(1.0 / axis_val, color=color, linestyle=":", linewidth=1, alpha=0.7)
+
     set_power_of_2_xticks(ax, [4, 8, 16, 32, 64, 128], fontsize=6)
     ax.set_title(MODEL_LABELS[model])
     ax.set_xlabel("Sequence length N")
@@ -110,6 +116,7 @@ style_handles = [
            markersize=4, label="Base"),
     Line2D([0], [0], color="black", linestyle=BOUNDS_STYLE["linestyle"], marker=BOUNDS_STYLE.get("marker", "s"),
            markersize=4, label="Cellular_Bounds"),
+    Line2D([0], [0], color="#999999", linestyle=":", linewidth=1.5, label="Random chance (1/A)"),
 ]
 fig.legend(handles=color_handles + style_handles, loc="upper center",
            bbox_to_anchor=(0.5, 1.0), ncol=5, frameon=False, fontsize=7.5)

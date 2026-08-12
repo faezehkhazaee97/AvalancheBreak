@@ -35,10 +35,39 @@ from tasks.common.gemini_runner import call_gemini  # noqa: E402
 TASKS = ["cyclic_shift", "character_substitution", "random_permutation", "conditional_shift",
          "composed_permutation", "running_xor", "running_sum_local", "copy_previous", "running_max"]
 
+# External-benchmark tasks (CLRS-Text minimum/kadane, and modsum as the
+# parity@modulus=2 check) -- kept as a separate list rather than folded into
+# TASKS so a bare re-run of this script (no --tasks) reproduces exactly the
+# original 9-task grid; pass --tasks clrs_minimum,clrs_kadane,modsum to run
+# just these.
+EXTERNAL_TASKS = ["clrs_minimum", "clrs_kadane", "modsum"]
 
-def build_full_grid_examples(trial):
+
+def _max_output_tokens_for(engine, N):
+    """Mirrors tasks.common.runner._run_one's max_new_tokens fallback chain,
+    plus a small safety margin. Deliberately NOT padded for "thinking"
+    tokens: the "gemini-flash-latest" alias resolves (as of this run) to
+    gemini-3.6-flash, which cannot fully disable thinking -- confirmed by
+    direct testing (thinking_budget=0 is rejected outright; explicit 1/100/
+    500/-1 all still landed at 1,900-3,700+ actual thought tokens on the
+    hardest real cell in this grid, clrs_kadane N=128, well past any
+    reasonable fixed buffer and enough to truncate the real answer even at
+    max_output_tokens=8000). The fix is not a bigger buffer, it's pinning
+    the model: "gemini-3.5-flash" (this study's original 9-task grid) is
+    still directly callable (not deprecated) and honors thinking_budget=0
+    cleanly -- verified against the same N=128 cells with zero thought-token
+    overhead and complete, untruncated answers using exactly this estimate,
+    no padding. See DEFAULT_MODEL below."""
+    if hasattr(engine, "estimate_max_new_tokens"):
+        base = engine.estimate_max_new_tokens(N)
+    else:
+        base = int(N * 1.5) + 20 if engine.OUTPUT_HAS_BOUNDARIES else N + 20
+    return base + 50
+
+
+def build_full_grid_examples(trial, task_list=None):
     examples = []
-    for task_name in TASKS:
+    for task_name in (task_list or TASKS):
         engine = importlib.import_module(f"tasks.{task_name}.engine")
         axis_values = engine.AXIS_VALUES or [None]
         lengths = getattr(engine, "LENGTHS", STANDARD_LENGTHS)
@@ -59,6 +88,7 @@ def build_full_grid_examples(trial):
                         "Input_Given": input_str, "Ground_Truth": truth, "Prompt": prompt,
                         "Scoring_Mode": getattr(engine, "SCORING_MODE", "char"),
                         "Token_Regex": getattr(engine, "TOKEN_REGEX", None),
+                        "Max_Output_Tokens": _max_output_tokens_for(engine, N),
                     })
     return examples
 
@@ -66,15 +96,19 @@ def build_full_grid_examples(trial):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--dry-run", action="store_true")
-    parser.add_argument("--model", default="gemini-flash-latest")
+    parser.add_argument("--model", default="gemini-3.5-flash", help="Pinned, not the \"-latest\" alias: the alias silently drifted from gemini-3.5-flash (this study's original grid) to gemini-3.6-flash mid-project, and the newer model can't fully disable thinking (see _max_output_tokens_for's docstring). gemini-3.5-flash is still directly callable and matches the original methodology exactly.")
     parser.add_argument("--output", default=None)
     parser.add_argument("--trial", type=int, default=0, help="Trial index -- matches tasks.common.runner's local seed formula, so Trial=1/2 are genuinely independent samples from Trial=0, poolable into a 3-trial-per-cell dataset.")
+    parser.add_argument("--tasks", default=None, help="Comma-separated task names to override the default 9-task TASKS list, e.g. clrs_minimum,clrs_kadane,modsum.")
     args = parser.parse_args()
 
-    examples = build_full_grid_examples(args.trial)
+    task_list = args.tasks.split(",") if args.tasks else None
+    examples = build_full_grid_examples(args.trial, task_list=task_list)
 
     if args.dry_run:
-        print(f"Constructed {len(examples)} examples across {len(TASKS)} tasks. Zero API calls made.")
+        print(f"Constructed {len(examples)} examples across {len(task_list or TASKS)} tasks. Zero API calls made.")
+        for ex in examples[:3] + examples[-3:]:
+            print(f"  {ex['Task']} N={ex['Seq_Length']} k={ex['Interval']} axis={ex['Axis_Val']} trial={ex['Trial']} max_out={ex['Max_Output_Tokens']}")
         return
 
     api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
@@ -102,7 +136,7 @@ def main():
             eta = (len(examples) - i - 1) / rate if rate > 0 else 0
             print(f"[{i+1}/{len(examples)}] {ex['Task']} N={ex['Seq_Length']} k={ex['Interval']} ... (elapsed {elapsed:.0f}s, ETA {eta:.0f}s)")
 
-        raw_text, usage, resolved_model, error = call_gemini(ex["Prompt"], args.model, client)
+        raw_text, usage, resolved_model, error = call_gemini(ex["Prompt"], args.model, client, max_output_tokens=ex["Max_Output_Tokens"])
 
         if error:
             result = {"clean_pred": "", "TAR": None, "SAR": None, "First_Error_Pos": None}

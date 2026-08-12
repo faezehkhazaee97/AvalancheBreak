@@ -51,7 +51,7 @@ AXIS_NAME = None
 AXIS_VALUES = None
 OUTPUT_HAS_BOUNDARIES = True
 SCORING_MODE = "token"
-LENGTHS = [4, 8, 16, 32, 64]
+LENGTHS = [4, 8, 16, 32, 64, 128]
 
 
 def estimate_max_new_tokens(N):

@@ -1,10 +1,31 @@
 #!/usr/bin/env python3
 """Figure 4: Hard-dependency tasks (figs/hard_dependency_grid.pdf).
-running_xor, running_sum_local (all three moduli), and sliding_window_max
-(all alphabet sizes) -- one panel per model per task, TAR vs. sequence
-length, Base (black dashed) vs. Cellular_Bounds (colored solid, pooled
-across densities, k=3 excluded). Replaces old Figures 6-7. Legend moved
-outside the axes (was sitting on top of data in the bottom-left panel).
+running_xor and running_sum_local (all three moduli) -- one panel per
+model per task, TAR vs. sequence length, Base vs. Cellular_Bounds (colored
+solid, pooled across densities, k=3 excluded). Replaces old Figures 6-7.
+Legend moved outside the axes (was sitting on top of data in the
+bottom-left panel).
+
+sliding_window_max (originally a third row here) was removed: it was
+plotted in BOTH this figure and Figure A2 with identical data, and it
+isn't actually arithmetic the way running_xor (XOR chain) and
+running_sum_local (modular running sum) are -- it's a comparison/max
+operation, so it fit this figure's "arithmetic-bearing dependency" theme
+worse than it fit A2's "anchor task" theme. Kept only in A2 now; no
+information lost, just de-duplicated.
+
+running_xor has no Alphabet_Size/Modulus axis at all (fixed binary) --
+previously fell through to a hardcoded "#d95f02" fallback color that
+happens to be IDENTICAL to M=4's color (a coincidental collision, not by
+design; unlike different tasks legitimately sharing a color for the same
+axis VALUE elsewhere in this report, which figure_style.py's own
+docstring documents as intentional: "one color per axis value, consistent
+across figures"). running_xor's single series now gets its own distinct
+BINARY_COLOR, matching Figure A2's copy_previous fix, and its legend
+label (previously an empty string -- present in the legend as a blank,
+unlabeled swatch) is now spelled out. Random-chance lines (1/axis value;
+1/2 for running_xor's fixed binary) added, same convention as Figures
+2/A1/A2.
 """
 
 import sys
@@ -25,9 +46,11 @@ from tasks.common.figure_style import (
 
 set_rc()
 
-TASKS = ["running_xor", "running_sum_local", "sliding_window_max"]
+TASKS = ["running_xor", "running_sum_local"]
+TASK_LABELS = {"running_xor": "running_xor (binary)", "running_sum_local": "running_sum_local"}
+BINARY_COLOR = "black"  # running_xor has no axis at all -- distinct from any AXIS_COLORS numeral, not a coincidental reuse
 
-fig, axes = plt.subplots(3, 5, figsize=(MULTI_COL_WIDTH, 6.6), sharey=True)
+fig, axes = plt.subplots(2, 5, figsize=(MULTI_COL_WIDTH, 4.6), sharey=True)
 
 print("Provenance -- canonical files used for Figure 4:")
 for row, task in enumerate(TASKS):
@@ -57,8 +80,8 @@ for row, task in enumerate(TASKS):
             sub = df[df[axis_col] == axis_val] if axis_val is not None else df
             base = sub[sub.Method == "Base"].groupby("Seq_Length")["TAR"].agg(["mean", "sem"])
             bnd = sub[sub.Method == "Cellular_Bounds"].groupby("Seq_Length")["TAR"].agg(["mean", "sem"])
-            color = AXIS_COLORS.get(axis_val, "#333333") if axis_val is not None else "#d95f02"
-            label_suffix = f"{label_prefix}={int(axis_val)}" if axis_val is not None else ""
+            color = AXIS_COLORS.get(axis_val, BINARY_COLOR) if axis_val is not None else BINARY_COLOR
+            label_suffix = f"{TASK_LABELS[task]} {label_prefix}={int(axis_val)}" if axis_val is not None else TASK_LABELS[task]
 
             # Base colored to match its own axis value (modulus/alphabet),
             # not plain black for every line in the panel -- otherwise
@@ -71,12 +94,17 @@ for row, task in enumerate(TASKS):
             ax.fill_between(bnd.index, bnd["mean"] - bnd["sem"], bnd["mean"] + bnd["sem"],
                              color=color, alpha=0.15)
 
+            # Random chance = 1/axis value (1/2 for running_xor's fixed
+            # binary alphabet), color-matched to its own series.
+            chance = 1.0 / axis_val if axis_val is not None else 0.5
+            ax.axhline(chance, color=color, linestyle=":", linewidth=1, alpha=0.7)
+
         set_power_of_2_xticks(ax, df.Seq_Length.unique(), fontsize=6)
         if row == 0:
             ax.set_title(MODEL_LABELS[model])
         if col == 0:
             ax.set_ylabel(f"{task}\nTAR")
-        if row == 2:
+        if row == 1:
             ax.set_xlabel("Sequence length N")
         ax.set_ylim(0, 1.05)
 
@@ -96,10 +124,11 @@ style_handles = [
            markersize=4, label="Base"),
     Line2D([0], [0], color="gray", linestyle=BOUNDS_STYLE["linestyle"], marker=BOUNDS_STYLE.get("marker", "s"),
            markersize=4, label="Cellular_Bounds"),
+    Line2D([0], [0], color="#999999", linestyle=":", linewidth=1.5, label="Random chance (1/axis value)"),
 ]
 fig.legend(style_handles + color_handles, [h.get_label() for h in style_handles] + color_labels,
-           loc="upper center", bbox_to_anchor=(0.5, 1.0), ncol=8, frameon=False, fontsize=6.5)
-fig.suptitle("Hard-dependency tasks: Base (black dashed) vs. Cellular_Bounds (colored solid)", y=1.04)
+           loc="upper center", bbox_to_anchor=(0.5, 1.0), ncol=5, frameon=False, fontsize=6.5)
+fig.suptitle("Hard-dependency tasks: Base (dashed) vs. Cellular_Bounds (solid), colored by series", y=1.09)
 fig.tight_layout()
 
 OUT = REPO_ROOT / "figs" / "hard_dependency_grid.pdf"
