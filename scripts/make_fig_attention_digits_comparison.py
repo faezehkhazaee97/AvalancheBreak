@@ -62,7 +62,7 @@ ax_a.set_xticklabels([power_of_2_label(n) for n in lengths], fontsize=6)
 ax_a.set_xlabel("Sequence length N")
 ax_a.set_ylabel("boundary-attn vs. density slope")
 ax_a.set_title("(a) Sink strength: letters vs. digits")
-ax_a.legend(loc="lower right", frameon=False, fontsize=6)
+ax_a.legend(loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=2, frameon=False, fontsize=6.5)
 
 # (b) entropy by layer, digit alphabet
 ax_b = fig.add_subplot(gs[0, 1])
@@ -75,7 +75,7 @@ ax_b.plot(layers, ent_cell, color="#1b9e77", linestyle="-", marker="s", markersi
 ax_b.set_xlabel("layer")
 ax_b.set_ylabel("mean attention entropy (bits)")
 ax_b.set_title("(b) Entropy by layer (digits)")
-ax_b.legend(loc="best", frameon=False, fontsize=6)
+ax_b.legend(loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=2, frameon=False, fontsize=6.5)
 
 # (c)-(d) head heatmaps, digit alphabet, persistent 3-head core (compact: show just 1 head as a spot-check)
 HEADS = [(1, 24), (15, 5)]
@@ -102,3 +102,4 @@ fig.tight_layout()
 
 OUT = REPO_ROOT / "figs" / "attention_digits_comparison.pdf"
 savefig(fig, OUT)
+fig.savefig(str(OUT).replace("figs/", "figs/png/").replace(".pdf", ".png"), dpi=150, bbox_inches="tight")
