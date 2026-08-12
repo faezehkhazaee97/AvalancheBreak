@@ -54,9 +54,9 @@ ax1.set_ylim(0, 1.05)
 ax1.legend(loc="lower left", frameon=False, fontsize=6.5)
 ax1.set_title("Accuracy (Qwen2.5-7B)")
 
-# Right panel: grouped bars, 7B vs 32B, at the shared lengths (8/16/32/64),
-# plus a lone 32B bar at N=128 (7B has no data there).
-shared_N = [8, 16, 32, 64]
+# Right panel: grouped bars, 7B vs 32B, at every shared length (8/16/32/64/128
+# -- 7B was extended to N=128 to match 32B, so no more lone/hatched bar).
+shared_N = [8, 16, 32, 64, 128]
 x = np.arange(len(shared_N))
 width = 0.35
 vals7 = [df7.set_index("Seq_Length").loc[n, "Pct_of_Cellular_Benefit_Erased"] for n in shared_N]
@@ -64,18 +64,14 @@ vals32 = [pct32.loc[n] for n in shared_N]
 
 b1 = ax2.bar(x - width / 2, vals7, width, color="#d95f02", label="Qwen2.5-7B")
 b2 = ax2.bar(x + width / 2, vals32, width, color="#2a78d6", label="Qwen2.5-32B")
-# N=128, 32B only -- placed as an extra bar to the right with a visible gap
-gap_x = len(shared_N) + 0.3
-ax2.bar([gap_x], [pct32.loc[128]], width, color="#2a78d6", hatch="//", edgecolor="white")
-ax2.text(gap_x, pct32.loc[128] + 1.5, "N=128\n(32B only)", ha="center", fontsize=5.5)
 
 for xi, y in zip(x - width / 2, vals7):
     ax2.text(xi, y + 1.5, f"{y:.0f}%", ha="center", fontsize=6)
 for xi, y in zip(x + width / 2, vals32):
     ax2.text(xi, y + 1.5, f"{y:.0f}%", ha="center", fontsize=6)
 
-ax2.set_xticks(list(x) + [gap_x])
-ax2.set_xticklabels([power_of_2_label(n) for n in shared_N] + [""])
+ax2.set_xticks(list(x))
+ax2.set_xticklabels([power_of_2_label(n) for n in shared_N])
 ax2.set_xlabel("Sequence length N")
 ax2.set_ylabel("% of Cellular benefit erased")
 ax2.set_title("Ablation effect: 7B vs. 32B")
