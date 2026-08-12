@@ -12,6 +12,18 @@ make_fig_error_containment_32b.py (32B-only, replaced the 7B version
 outright rather than showing both) -- this version keeps both scales in
 one figure so the reader can see whether the pattern holds, strengthens,
 or changes with scale, instead of only ever seeing one model at a time.
+
+REPRESENTATIVE_AXIS_VAL = 2 (alphabet=2 for cyclic_shift, modulus=2 for
+modsum), not pooled across the full {2,4,8} sweep like the previous
+version. Checked directly: modulus=4/8 sit on a much lower absolute scale
+than modulus=2 (harder task, larger answer space -> lower baseline
+recovery rate for everyone), so averaging all three together compresses
+the modsum panel into a narrow, muddy band that doesn't clearly show
+either line -- pooling across different difficulty levels, not a fair
+average. alphabet=2 / modulus=2 matches the "simplest representative
+condition" convention already used by every other mechanism figure in
+this report (Figure 1, the causal-ablation figure, etc.), rather than
+introducing a new convention just for this one.
 """
 
 import sys
@@ -54,9 +66,11 @@ def error_recovery_events(df, axis_col):
     return pd.DataFrame(events)
 
 
+REPRESENTATIVE_AXIS_VAL = 2
+
 MODELS = ["Qwen2.5-7B-Instruct", "Qwen2.5-32B-Instruct"]
-TASKS = [("cyclic_shift", "thermodynamics_grid_templated_v2.csv", "Alphabet_Size"),
-         ("modsum (global full-prefix dependency)", "running_modsum_grid_templated_v2.csv", "Modulus")]
+TASKS = [("cyclic_shift (alphabet=2)", "thermodynamics_grid_templated_v2.csv", "Alphabet_Size"),
+         ("modsum (global full-prefix dependency, modulus=2)", "running_modsum_grid_templated_v2.csv", "Modulus")]
 
 fig, axes = plt.subplots(2, 2, figsize=(MULTI_COL_WIDTH, 6.0))
 
@@ -65,6 +79,7 @@ for row, model in enumerate(MODELS):
     for col, (label, fname, axis_col) in enumerate(TASKS):
         ax = axes[row, col]
         df = pd.read_csv(results_dir / fname)
+        df = df[df[axis_col] == REPRESENTATIVE_AXIS_VAL]  # only Cellular_Bounds is plotted below anyway, but restrict Base too for a clean single-condition source
         events = error_recovery_events(df, axis_col)
         cell_events = events[events.Method == "Cellular_Bounds"]
         per_N = cell_events.groupby(["Seq_Length", "Boundary_Adjacent"])["Recovered"].mean().reset_index()
