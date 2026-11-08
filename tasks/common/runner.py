@@ -27,7 +27,7 @@ import numpy as np
 import pandas as pd
 import torch
 from tqdm import tqdm
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForImageTextToText, AutoTokenizer
 
 from . import scoring as scoring_mod
 from .boundary import STANDARD_LENGTHS, STANDARD_INTERVALS, valid_intervals
@@ -57,6 +57,19 @@ def reconstruct_prompt(engine, N, k, axis_val, t):
     else:
         _, _, prompt = engine.build_prompt(N, k, rng)
     return prompt
+
+
+def load_model(model_id):
+    """Text-only models (Qwen2.5, Mistral, Phi) load exactly as before.
+    Vision-language checkpoints (e.g. Qwen3.8 / Gemma 4, which carry a
+    vision_config) load with their own class: AutoModelForCausalLM can resolve
+    them to a text-only class whose weight names don't match the checkpoint.
+    Generation here is text-only either way."""
+    cfg = AutoConfig.from_pretrained(model_id)
+    cls = AutoModelForImageTextToText if getattr(cfg, "vision_config", None) is not None else AutoModelForCausalLM
+    return cls.from_pretrained(
+        model_id, device_map="auto", dtype=torch.bfloat16, attn_implementation="eager",
+    )
 
 
 def _build_grid(engine, trials_per_cell, trial_start=0):
@@ -89,9 +102,7 @@ def run(engine, model_id, mode, output_csv, trials_per_cell=None, trial_start=0)
     _seed_everything()
 
     tokenizer = AutoTokenizer.from_pretrained(model_id)
-    model = AutoModelForCausalLM.from_pretrained(
-        model_id, device_map="auto", dtype=torch.bfloat16, attn_implementation="eager",
-    )
+    model = load_model(model_id)
     model.eval()
 
     grid = _build_grid(engine, trials_per_cell, trial_start=trial_start)
@@ -124,9 +135,13 @@ def _run_one(engine, tokenizer, model, N, k, axis_val, t):
     else:
         input_str, truth, prompt = engine.build_prompt(N, k, rng)
 
+    # enable_thinking=False: hybrid-reasoning models (Qwen3.x, Gemma 4) would
+    # otherwise emit a reasoning block before the answer. Templates that don't
+    # use the variable ignore it (Qwen2.5's rendered prompt is byte-identical).
     enc = tokenizer.apply_chat_template(
         [{"role": "user", "content": prompt}],
         tokenize=True, add_generation_prompt=True, return_tensors="pt", return_dict=True,
+        enable_thinking=False,
     )
     inputs = {kk: vv.to(model.device) for kk, vv in enc.items()}
 
