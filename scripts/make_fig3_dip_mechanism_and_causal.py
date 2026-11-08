@@ -69,10 +69,11 @@ ax_b.set_xticks(x)
 ax_b.set_xticklabels(labels, rotation=30, ha="right", fontsize=6.5)
 ax_b.set_ylabel("Accuracy change from adding boundaries\n(TAR delta: positive = helps, negative = hurts)", fontsize=7.5)
 ax_b.set_title("(b) Severing the dependency shrinks or reverses\nthe harm -- except copy_previous\n(rule-switching side effect, see text)", fontsize=8.5)
-ax_b.legend(loc="upper right", frameon=False, fontsize=6.5)
+ax_b.legend(loc="upper center", bbox_to_anchor=(0.5, -0.55), ncol=2, frameon=False, fontsize=6.5)
 
 fig.suptitle("Two lines of evidence for the same mechanism (Qwen2.5-32B-Instruct)", fontsize=9, y=1.03)
 fig.tight_layout()
+fig.subplots_adjust(bottom=0.34)
 
 OUT = REPO_ROOT / "figs" / "fig3_dip_mechanism_and_causal.pdf"
 savefig(fig, OUT)

@@ -286,6 +286,10 @@ comparison = pd.DataFrame({
     "Base_TAR": ref_base, "Cellular_Normal_TAR": ref_cellular, "Cellular_Ablated_TAR": summary["TAR"],
 })
 comparison["Ablation_Effect"] = comparison["Cellular_Ablated_TAR"] - comparison["Cellular_Normal_TAR"]
+comparison["Pct_of_Cellular_Benefit_Erased"] = (
+    (comparison["Cellular_Normal_TAR"] - comparison["Cellular_Ablated_TAR"])
+    / (comparison["Cellular_Normal_TAR"] - comparison["Base_TAR"]) * 100
+)
 print("\n--- DOES ABLATING TOP BOUNDARY-ATTENDING HEADS DRAG PERFORMANCE TOWARD BASE? ---")
 print(comparison.round(4).to_string())
 comparison.to_csv(os.path.join(RESULTS_DIR, "causal_ablation_comparison.csv"))

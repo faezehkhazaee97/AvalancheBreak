@@ -43,14 +43,14 @@ def load_task(task, axis_val_col, axis_val, n128_path=None):
 
 COMMON_N = [4, 8, 16, 32, 64, 128]
 TASKS = [
-    ("cyclic_shift", "Alphabet_Size", 8, COMMON_N),
-    ("copy_previous", None, None, COMMON_N),
-    ("sliding_window_max", "Alphabet_Size", 8, COMMON_N),  # matches cyclic_shift's alphabet=8; copy_previous is binary-only, no match possible
+    ("cyclic_shift", "Alphabet_Size", 8, COMMON_N, "(a) cyclic_shift"),
+    ("copy_previous", None, None, COMMON_N, "(b) copy_previous"),
+    ("sliding_window_max", "Alphabet_Size", 8, COMMON_N, "(c) sliding_window_max"),  # matches cyclic_shift's alphabet=8; copy_previous is binary-only, no match possible
 ]
 
 fig, axes = plt.subplots(3, 6, figsize=(MULTI_COL_WIDTH * 1.4, 6.0))
 
-for row, (task, axis_col, axis_val, lengths) in enumerate(TASKS):
+for row, (task, axis_col, axis_val, lengths, panel_label) in enumerate(TASKS):
     df = load_task(task, axis_col, axis_val)
     chance = 1.0 / axis_val if axis_val else 0.5  # copy_previous is binary, no Alphabet_Size axis
     for col in range(6):
@@ -81,12 +81,16 @@ for row, (task, axis_col, axis_val, lengths) in enumerate(TASKS):
         if row == 2:
             ax.set_xlabel("Boundary density (1/k)")
         if col == 0:
-            ax.set_ylabel(f"{task}\nTAR", fontsize=7.5)
+            ax.set_ylabel("TAR", fontsize=7.5)
+    # Row-level panel label, placed left of the row rather than folded into
+    # the y-axis text -- ICLR convention for a multi-panel figure where each
+    # row is a genuinely distinct analysis (task), not just a parameter sweep.
+    axes[row, 0].annotate(panel_label, xy=(-0.62, 0.5), xycoords="axes fraction",
+                           fontsize=8.5, fontweight="bold", ha="center", va="center", rotation=90)
 
-axes[0, 0].legend(loc="lower left", frameon=False, fontsize=6)
-fig.suptitle("The optimal boundary density shifts from dense to moderate/sparse as sequences get longer\n"
-             "(Qwen2.5-32B-Instruct; stars mark the empirically best density at each length)", fontsize=9, y=1.02)
-fig.tight_layout()
+handles, labels = axes[0, 0].get_legend_handles_labels()
+fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.5, 1.0), ncol=2, frameon=False, fontsize=7.5)
+fig.tight_layout(rect=[0.02, 0, 1, 0.95])
 
 OUT = REPO_ROOT / "figs" / "fig2_vertex_migration.pdf"
 savefig(fig, OUT)

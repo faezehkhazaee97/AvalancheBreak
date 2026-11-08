@@ -85,7 +85,7 @@ print("\n" + "=" * 60)
 print("(A) Marker identity + random placement")
 print("=" * 60)
 
-ABLATION_SEQUENCE_LENGTHS = [8, 16, 32, 64]
+ABLATION_SEQUENCE_LENGTHS = [8, 16, 32, 64, 128]
 ABLATION_TRIALS = 15
 
 
@@ -462,7 +462,7 @@ Give only the resulting string, with no spaces and no explanation of your reason
 
 
 PROMPT_TEMPLATES = {"original": prompt_template_original, "paraphrase_1": prompt_template_paraphrase_1, "paraphrase_2": prompt_template_paraphrase_2}
-ROBUST_SEQUENCE_LENGTHS = [8, 16, 32]
+ROBUST_SEQUENCE_LENGTHS = [8, 16, 32, 64, 128]
 ROBUST_INTERVAL = 4
 ROBUST_TRIALS = 15
 

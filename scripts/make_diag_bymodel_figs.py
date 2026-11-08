@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT))
 
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, MODEL_ORDER, MODEL_LABELS, set_power_of_2_xticks
+from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, MODEL_ORDER, MODEL_LABELS, set_power_of_2_xticks, power_of_2_label
 
 set_rc()
 
@@ -45,7 +45,7 @@ TASKS = [
 
 
 def make_task_fig(task, axis_col, axis_val, note):
-    fig, axes = plt.subplots(2, 2, figsize=(MULTI_COL_WIDTH * 0.62, 4.6), sharex=True)
+    fig, axes = plt.subplots(2, 2, figsize=(MULTI_COL_WIDTH * 0.62, 4.8), sharex=True)
     any_model_plotted = False
     all_N = set()
 
@@ -82,23 +82,36 @@ def make_task_fig(task, axis_col, axis_val, note):
         plt.close(fig)
         return None
 
-    axes[0, 0].set_title("WFR -- Base (no boundaries)", fontsize=8)
-    axes[0, 1].set_title("WFR -- Cellular_Bounds (with boundaries)", fontsize=8)
-    axes[1, 0].set_title("TAR | Well-Formed -- Base (no boundaries)", fontsize=8)
-    axes[1, 1].set_title("TAR | Well-Formed -- Cellular_Bounds (with boundaries)", fontsize=8)
+    axes[0, 0].set_title("Base (no boundaries)", fontsize=8)
+    axes[0, 1].set_title("Cellular_Bounds (with boundaries)", fontsize=8)
+    axes[1, 0].set_title("Base (no boundaries)", fontsize=8)
+    axes[1, 1].set_title("Cellular_Bounds (with boundaries)", fontsize=8)
     for ax in axes[0]:
         ax.set_ylabel("WFR", fontsize=7.5)
     for ax in axes[1]:
         ax.set_ylabel("TAR | Well-Formed", fontsize=7.5)
     for ax in axes[1]:
         ax.set_xlabel("Sequence length N", fontsize=7.5)
+    # sharex=True already links tick positions/scale across rows; only the bottom
+    # row should carry visible tick LABELS. set_power_of_2_xticks calls
+    # set_xticklabels explicitly, which defeats sharex's automatic label-hiding on
+    # the top row -- so apply it to the bottom row only, and give the top row the
+    # same positions/scale without label text.
+    sorted_N = sorted(set(all_N))
     for ax in axes.flat:
         ax.set_ylim(0, 1.05)
-        set_power_of_2_xticks(ax, all_N, fontsize=6.5)
+        ax.set_xscale("log", base=2)
+        ax.set_xticks(sorted_N)
+        ax.minorticks_off()
+    for ax in axes[0]:
+        ax.set_xticklabels([])
+    for ax in axes[1]:
+        ax.set_xticklabels([power_of_2_label(v) for v in sorted_N], fontsize=6.5)
     axes[0, 0].legend(loc="lower left", frameon=False, fontsize=6)
 
     fig.suptitle(f"{task} -- failure-mode diagnostics by model\nN on x-axis (not pooled), {note}", fontsize=8.5, y=1.06)
     fig.tight_layout(rect=[0, 0, 1, 0.94])
+    fig.subplots_adjust(hspace=0.5)
     return fig
 
 
