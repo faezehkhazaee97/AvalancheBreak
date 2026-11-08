@@ -32,9 +32,9 @@ So at 32B, only copy_previous is actually hurt. A reviewer will see this in Tabl
 
 The robust quantity is **how much of the benefit a cut dependency cancels**, not the sign of the effect:
 
-1. **Markers help position-local computation.** Large, significant gains at every model (Fig. 4a, A1–A3), on Gemini
-   (cyclic_shift +0.19 at 5.0σ, random_permutation +0.24 at 5.5σ), and on a third-party task (ProcBench-Substitute: +0.054 at 7B,
-   +0.157 at 32B, 5.9σ). A ceiling task (string copying) is a clean null.
+1. **Markers help position-local computation.** Gains at every model, but sized very differently (averaged over the three
+   tasks, N ≤ 64): Qwen2.5-7B/14B/32B +0.09 / +0.17 / +0.19, Gemini +0.15, **Mistral +0.04, Phi +0.03** (small).
+   Third-party task: ProcBench-Substitute +0.054 at 7B, +0.157 at 32B (5.9σ). A ceiling task (string copying) is a clean null.
 2. **Cutting a dependency cancels that benefit.** At 32B the gain drops to roughly zero; at smaller models and on Gemini it
    turns into harm (sliding_window_max 7B −4.6σ, 14B −5.4σ; Gemini running_sum_local −0.133 at 5.6σ; CLRS-Text minimum
    −0.25 at 32B, −0.34 on Gemini).
@@ -52,9 +52,12 @@ The robust quantity is **how much of the benefit a cut dependency cancels**, not
 
 ### Draft title and abstract
 
+**The current title and abstract live in `paper_tmlr/main.tex`** (TMLR draft, 2026-11-07). The block below is the first
+version, kept for reference; the paper's version corrects the Mistral/Phi wording and the "cancels" quantification.
+
 **Title:** *Boundary Markers Help Until They Cut a Dependency: Structural Tokens as Attention Sinks in Sequence Transformation*
 
-**Abstract (draft, ~220 words):**
+**Abstract (first version):**
 
 > Language models lose accuracy quickly as deterministic sequence transformations grow longer. We study a cheap,
 > single-call intervention: inserting a content-free marker token at a fixed interval and asking the model to copy it
@@ -116,13 +119,15 @@ The current main figures lead with density (Fig. 1). The headline is the helps/c
 
 **Before submitting anywhere**
 
-1. **A current-generation open model.** All open models are from 2024. Run the core grid plus reset variants
-   (cyclic_shift, random_permutation, copy_previous, sliding_window_max, running_sum_local, + `_reset`) on a current Qwen
-   release and one other family. *Needs a decision: which models.*
-2. **Second seed batch for 32B single-batch results.** Ready to go: `bash scripts/launch_32b_second_batch.sh`
-   (4 A100 jobs, new trial indices, can't overwrite batch 1). Held back because the Promoter2Gene r3 jobs were using the
-   same `quonbiogrp` A100 allocation on 2026-11-07. After it finishes, regenerate the figures that glob
-   `Qwen2.5-32B-Instruct*.csv` and update the report numbers.
+1. **Current-generation open models: QUEUED 2026-11-07.** Qwen3.8-27B (newest dense Qwen, Aug 2026) and
+   Gemma-4-31B-it (Mar 2026), both ungated. `scripts/launch_new_models.sh`: per model a smoke job (download + validation)
+   gating an 11-task array (3 position-local, 4 dependency, 4 reset), one task at a time per model.
+   Jobs: smoke 40543558 → grid 40543559 (Qwen3.8); smoke 40543560 → grid 40543561 (Gemma 4).
+   If a smoke job fails, its grid array is cancelled automatically; check `slurm_logs/smoke-*.log`.
+2. **Second seed batch for 32B single-batch results: QUEUED 2026-11-07.** Jobs 40543549–40543552
+   (`scripts/launch_32b_second_batch.sh`). Optional follow-up: the 32B reset variants are also single-batch (20/cell).
+   After any of these finish: `python scripts/make_fig_split_heatmap.py`, `bash paper_tmlr/sync_figures.sh`, update numbers.
+   All of these share the group's 4-A100 cap with the Promoter2Gene r3 jobs.
 3. ~~Vowel-tagging significance~~ **Done 2026-11-07** from per-trial data: 7B −0.083 (2.33σ, harm), 32B +0.012 (0.48σ, n.s.).
    The naturalistic check does **not** show the Tier-1 benefit; report it as a limitation, not support.
 
@@ -152,8 +157,10 @@ The current main figures lead with density (Fig. 1). The headline is the helps/c
 
 ## 5. Venue
 
+- **Decision (2026-11-07): TMLR.** Draft in `paper_tmlr/` (official style; see its README). No fees; no length limit,
+  though unusually long papers review more slowly; double-blind via OpenReview.
 - **ICLR 2027:** missed (full-paper deadline was 2026-09-25).
-- **Recommended: TMLR** (journal, rolling submissions). Reviewers judge whether claims are supported by the evidence
+- **Why TMLR** (journal, rolling submissions). Reviewers judge whether claims are supported by the evidence
   rather than novelty, which suits a careful, heavily caveated empirical paper; no strict page limit, so the appendix fits.
 - **Conference alternative: COLM 2027** (deadline not yet announced; past years were late March). Best topical fit, and
   leaves time for the new-model runs. ACL's January ARR cycle and ICML 2027 (both ~January, unconfirmed) are likely too soon.

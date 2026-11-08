@@ -1,0 +1,49 @@
+block,task,model,base,bounds,delta,z,n_base,n_bounds
+Position-local,cyclic_shift,Qwen2.5 7B,0.4921,0.6286,0.1365,8.3256,300,1140
+Position-local,cyclic_shift,Qwen2.5 14B,0.5289,0.7365,0.2076,13.1274,300,1140
+Position-local,cyclic_shift,Qwen2.5 32B,0.6105,0.8082,0.1977,13.0916,300,1140
+Position-local,cyclic_shift,Mistral 7B,0.4008,0.4468,0.0461,4.1323,600,2280
+Position-local,cyclic_shift,Phi-3.5 mini,0.3662,0.4147,0.0485,3.1279,300,1140
+Position-local,cyclic_shift,Gemini 3.5 Flash,0.7951,0.9306,0.1354,4.0648,45,171
+Position-local,random_permutation,Qwen2.5 7B,0.417,0.5279,0.1109,9.1805,600,2280
+Position-local,random_permutation,Qwen2.5 14B,0.4449,0.6243,0.1794,15.1029,600,2280
+Position-local,random_permutation,Qwen2.5 32B,0.4991,0.7201,0.221,18.9741,600,2280
+Position-local,random_permutation,Mistral 7B,0.3792,0.4231,0.0439,3.8989,600,2280
+Position-local,random_permutation,Phi-3.5 mini,0.3244,0.3418,0.0174,1.0589,300,1140
+Position-local,random_permutation,Gemini 3.5 Flash,0.6056,0.8457,0.2401,5.4845,45,171
+Position-local,conditional_shift,Qwen2.5 7B,0.3623,0.3839,0.0216,1.8941,600,2280
+Position-local,conditional_shift,Qwen2.5 14B,0.4264,0.5459,0.1195,7.6911,300,1140
+Position-local,conditional_shift,Qwen2.5 32B,0.5138,0.6706,0.1568,10.2813,300,1140
+Position-local,conditional_shift,Mistral 7B,0.3603,0.3937,0.0334,3.2244,600,2280
+Position-local,conditional_shift,Phi-3.5 mini,0.3473,0.3658,0.0185,1.2909,300,1140
+Position-local,conditional_shift,Gemini 3.5 Flash,0.5438,0.628,0.0843,1.2339,45,171
+"Dependency, as is",copy_previous,Qwen2.5 7B,0.529,0.417,-0.112,-7.38,200,760
+"Dependency, as is",copy_previous,Qwen2.5 14B,0.8612,0.74,-0.1212,-8.1297,200,760
+"Dependency, as is",copy_previous,Qwen2.5 32B,0.8595,0.8167,-0.0427,-3.1186,200,760
+"Dependency, as is",copy_previous,Mistral 7B,0.5702,0.5534,-0.0168,-1.2366,200,760
+"Dependency, as is",copy_previous,Phi-3.5 mini,0.5773,0.5661,-0.0113,-0.7745,200,760
+"Dependency, as is",copy_previous,Gemini 3.5 Flash,0.9875,0.9238,-0.0637,-3.3726,15,57
+"Dependency, as is",running_xor,Qwen2.5 7B,0.4105,0.4014,-0.0092,-0.6512,200,760
+"Dependency, as is",running_xor,Qwen2.5 14B,0.7483,0.7156,-0.0326,-2.5486,200,760
+"Dependency, as is",running_xor,Qwen2.5 32B,0.781,0.7956,0.0146,1.2129,200,760
+"Dependency, as is",running_xor,Mistral 7B,0.4313,0.465,0.0337,3.0554,200,760
+"Dependency, as is",running_xor,Phi-3.5 mini,0.5736,0.5895,0.0159,0.8773,100,380
+"Dependency, as is",running_xor,Gemini 3.5 Flash,0.9,0.9131,0.0131,0.1924,15,57
+"Dependency, as is",running_sum_local,Qwen2.5 7B,0.3092,0.279,-0.0302,-3.7863,600,2280
+"Dependency, as is",running_sum_local,Qwen2.5 14B,0.5477,0.5487,0.001,0.0895,600,2280
+"Dependency, as is",running_sum_local,Qwen2.5 32B,0.5902,0.6012,0.011,1.0216,600,2280
+"Dependency, as is",running_sum_local,Mistral 7B,0.3211,0.2983,-0.0229,-2.6767,600,2280
+"Dependency, as is",running_sum_local,Phi-3.5 mini,0.3806,0.3674,-0.0132,-0.9149,300,1140
+"Dependency, as is",running_sum_local,Gemini 3.5 Flash,0.9358,0.8029,-0.1329,-5.6239,45,171
+"Dependency, as is",sliding_window_max,Qwen2.5 7B,0.5967,0.5045,-0.0922,-4.6139,200,760
+"Dependency, as is",sliding_window_max,Qwen2.5 14B,0.7381,0.652,-0.0861,-5.4048,200,760
+"Dependency, as is",sliding_window_max,Qwen2.5 32B,0.6839,0.7269,0.043,3.2841,200,760
+"Dependency, as is",sliding_window_max,Mistral 7B,0.4649,0.4337,-0.0312,-1.8186,200,760
+"Dependency, as is",sliding_window_max,Phi-3.5 mini,0.4973,0.4747,-0.0226,-1.2062,200,760
+Dependency severed (reset variant),copy_previous_reset,Qwen2.5 7B,0.587,0.5514,-0.0356,-3.279,400,1520
+Dependency severed (reset variant),copy_previous_reset,Qwen2.5 32B,0.8967,0.7892,-0.1075,-6.1935,100,380
+Dependency severed (reset variant),running_xor_reset,Qwen2.5 7B,0.4649,0.4803,0.0155,1.5384,400,1520
+Dependency severed (reset variant),running_xor_reset,Qwen2.5 32B,0.7491,0.8751,0.1261,6.9255,100,380
+Dependency severed (reset variant),running_sum_local_reset,Qwen2.5 7B,0.2899,0.3471,0.0573,9.4352,1200,4560
+Dependency severed (reset variant),running_sum_local_reset,Qwen2.5 32B,0.549,0.6587,0.1097,7.441,300,1140
+Dependency severed (reset variant),sliding_window_max_reset,Qwen2.5 32B,0.7027,0.8143,0.1117,7.5909,200,760

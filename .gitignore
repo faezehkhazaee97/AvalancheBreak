@@ -14,3 +14,4 @@ slurm_logs/
 # Editor/OS cruft
 .ipynb_checkpoints/
 .DS_Store
+paper_tmlr_overleaf.zip
