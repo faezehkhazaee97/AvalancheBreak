@@ -1,3 +1,5 @@
+> **Superseded (2026-11-07):** this July plan is out of date. See `PAPER_PLAN.md`.
+
 # Reviewer Feedback Response Plan
 
 ## Status: Two of Three Priority Items Already Exist ✅

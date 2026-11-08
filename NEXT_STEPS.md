@@ -1,3 +1,5 @@
+> **Superseded (2026-11-07):** this July plan is out of date. See `PAPER_PLAN.md`.
+
 # Next Steps to Strengthen Paper for Reviewers
 
 ## 📋 Summary: What We've Prepared
