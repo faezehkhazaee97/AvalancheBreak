@@ -24,7 +24,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from . import scoring as scoring_mod
 from .boundary import STANDARD_LENGTHS, STANDARD_INTERVALS, valid_intervals
-from .runner import GLOBAL_SEED, _seed_everything, _local_seed
+from .runner import GLOBAL_SEED, _seed_everything, _local_seed, max_new_tokens
 
 
 def _load_done_keys(output_csv, key_cols):
@@ -77,10 +77,7 @@ def _generate_row(engine, tokenizer, model, N, k, axis_val, t):
     )
     inputs = {kk: vv.to(model.device) for kk, vv in enc.items()}
 
-    if hasattr(engine, "estimate_max_new_tokens"):
-        max_new = engine.estimate_max_new_tokens(N)
-    else:
-        max_new = int(N * 1.5) + 20 if engine.OUTPUT_HAS_BOUNDARIES else N + 20
+    max_new = max_new_tokens(engine, N, k)
     with torch.no_grad():
         outputs = model.generate(
             **inputs, max_new_tokens=max_new, do_sample=False,

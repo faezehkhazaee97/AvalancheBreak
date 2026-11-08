@@ -59,6 +59,23 @@ def reconstruct_prompt(engine, N, k, axis_val, t):
     return prompt
 
 
+def max_new_tokens(engine, N, k):
+    """Generation budget for one cell.
+
+    int(1.5N)+20 covers a marked output at k >= 2 (N + N/2 tokens at most).
+    At k = 1 (a marker after every character) the correct output is 2N-1
+    tokens for tokenizers that split letters and markers, which exceeds
+    int(1.5N)+20 once N > 42: every k=1 output at N >= 64 used to be cut off
+    (58 of 64 characters at N = 64). k = 1 therefore gets 2N+20. Decoding is
+    greedy, so a larger budget only extends outputs that were cut off; cells
+    that never hit the old budget are unchanged."""
+    if hasattr(engine, "estimate_max_new_tokens"):
+        return engine.estimate_max_new_tokens(N)
+    if not engine.OUTPUT_HAS_BOUNDARIES:
+        return N + 20
+    return 2 * N + 20 if k == 1 else int(N * 1.5) + 20
+
+
 def load_model(model_id):
     """Text-only models (Qwen2.5, Mistral, Phi) load exactly as before.
     Vision-language checkpoints (e.g. Qwen3.8 / Gemma 4, which carry a
@@ -145,10 +162,7 @@ def _run_one(engine, tokenizer, model, N, k, axis_val, t):
     )
     inputs = {kk: vv.to(model.device) for kk, vv in enc.items()}
 
-    if hasattr(engine, "estimate_max_new_tokens"):
-        max_new = engine.estimate_max_new_tokens(N)
-    else:
-        max_new = int(N * 1.5) + 20 if engine.OUTPUT_HAS_BOUNDARIES else N + 20
+    max_new = max_new_tokens(engine, N, k)
     with torch.no_grad():
         outputs = model.generate(
             **inputs, max_new_tokens=max_new, do_sample=False,

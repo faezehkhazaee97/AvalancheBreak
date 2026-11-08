@@ -26,7 +26,7 @@ if REPO_ROOT not in sys.path:
 
 from tasks.common import scoring as scoring_mod
 from tasks.common.boundary import valid_intervals, STANDARD_LENGTHS, STANDARD_INTERVALS
-from tasks.common.runner import _local_seed, _seed_everything
+from tasks.common.runner import _local_seed, _seed_everything, max_new_tokens
 
 
 def is_degenerate(s):
@@ -74,7 +74,7 @@ def main():
             tokenize=True, add_generation_prompt=True, return_tensors="pt", return_dict=True,
         )
         inputs = {kk: vv.to(model.device) for kk, vv in enc.items()}
-        max_new = int(N * 1.5) + 20 if engine.OUTPUT_HAS_BOUNDARIES else N + 20
+        max_new = max_new_tokens(engine, N, k)
 
         with torch.no_grad():
             outputs = model.generate(

@@ -141,6 +141,16 @@ The current main figures lead with density (Fig. 1). The headline is the helps/c
    (`scripts/launch_32b_second_batch.sh`). Optional follow-up: the 32B reset variants are also single-batch (20/cell).
    After any of these finish: `python scripts/make_fig_split_heatmap.py`, `bash paper_tmlr/sync_figures.sh`, update numbers.
    All of these share the group's 4-A100 cap with the Promoter2Gene r3 jobs.
+2b. **Token-budget fix: RUNNING (queued 2026-11-08).** The old budget int(1.5N)+20 is smaller than a correct
+   k=1 answer (2N−1 tokens) once N > 42, so every k=1 output at N ≥ 64 was cut off (58 of 64 letters at N=64),
+   for every local model and also ProcBench-Substitute and string copy. Gemini is unaffected (+50 margin).
+   `runner.max_new_tokens` now gives k=1 a budget of 2N+20 (greedy decoding: other cells unchanged).
+   `tasks/rerun_capped_k1.py` regenerates exactly those 5,886 rows (89 files) into `results_clean/_k1_rerun/`,
+   checking each input rebuilds and each new answer starts with the old cut-off one (first rows: 100% match).
+   Jobs 40550170–40550176 (`scripts/launch_k1_rerun.sh`, one per model). When done:
+   `scripts/merge_k1_rerun.py --dry-run`, then without `--dry-run`, then regenerate Figure 1 and update the paper:
+   significance counts (4 borderline cells), budget sentence in Setup, k=1 wall-clock claim (capped at N ≥ 64),
+   density figure, and copy_previous's best density at N=32 (k=8 with both batches, not k=1).
 3. ~~Vowel-tagging significance~~ **Done 2026-11-07** from per-trial data: 7B −0.083 (2.33σ, harm), 32B +0.012 (0.48σ, n.s.).
    The naturalistic check does **not** show the Tier-1 benefit; report it as a limitation, not support.
 
