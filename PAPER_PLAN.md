@@ -21,11 +21,15 @@ but **not at Qwen2.5-32B, the paper's primary model** (Table 6, pooled TAR chang
 | 32B, pooled | Original Δ | Reset Δ (dependency severed) |
 |---|---|---|
 | running_xor | +0.015 (1.2σ, n.s.) | +0.126 (6.9σ) |
-| running_sum_local | +0.011 (1.0σ, n.s.) | +0.110 (7.4σ) |
-| sliding_window_max | +0.043 (3.3σ) | +0.112 (7.6σ) |
-| copy_previous | −0.043 (3.1σ) | −0.107 (6.2σ), reset-rule confound |
+| running_sum_local | +0.009 (1.1σ, n.s.) | +0.110 (7.4σ) |
+| sliding_window_max | +0.046 (4.9σ) | +0.112 (7.6σ) |
+| copy_previous | −0.044 (4.6σ) | −0.107 (6.2σ), reset-rule confound |
 
-Position-local tasks at 32B gain **+0.16 to +0.22** (cyclic_shift +0.19, random_permutation +0.22, conditional_shift +0.16; Table 7).
+(Original column updated 2026-11-07 with both 32B seed batches; the report's Table 6 still shows first-batch values,
+which were −0.043/+0.011/+0.043. Values from `results_clean/_summary/split_heatmap_values.csv`.)
+
+Position-local tasks at 32B gain **+0.17 to +0.22** (Figure 1 pooling, both batches: cyclic_shift +0.20,
+random_permutation +0.22, conditional_shift +0.17).
 So at 32B, only copy_previous is actually hurt. A reviewer will see this in Table 6 and Figure A7.
 
 ### The framing that holds at every scale
@@ -33,7 +37,7 @@ So at 32B, only copy_previous is actually hurt. A reviewer will see this in Tabl
 The robust quantity is **how much of the benefit a cut dependency cancels**, not the sign of the effect:
 
 1. **Markers help position-local computation.** Gains at every model, but sized very differently (averaged over the three
-   tasks, N ≤ 64): Qwen2.5-7B/14B/32B +0.09 / +0.17 / +0.19, Gemini +0.15, **Mistral +0.04, Phi +0.03** (small).
+   tasks, N ≤ 64): Qwen2.5-7B/14B/32B +0.09 / +0.17 / +0.20, Gemini +0.15, **Mistral +0.04, Phi +0.03** (small).
    Third-party task: ProcBench-Substitute +0.054 at 7B, +0.157 at 32B (5.9σ). A ceiling task (string copying) is a clean null.
 2. **Cutting a dependency cancels that benefit.** At 32B the gain drops to roughly zero; at smaller models and on Gemini it
    turns into harm (sliding_window_max 7B −4.6σ, 14B −5.4σ; Gemini running_sum_local −0.133 at 5.6σ; CLRS-Text minimum
@@ -131,8 +135,9 @@ The current main figures lead with density (Fig. 1). The headline is the helps/c
    **Qwen3.8-27B is a hybrid**: 48 of 64 layers are Gated DeltaNet linear attention, 16 softmax. Its linear-attention
    kernels (`flash-linear-attention`) are not installed, so it runs on the slower PyTorch fallback (correct, just slow).
    The paper now says this (Setup + Limitations); it bears on the attention-sink mechanism claim.
-2. **Second seed batch for 32B single-batch results: 3 of 4 DONE 2026-11-07** (copy_previous, conditional_shift,
-   sliding_window_max; running_sum_local 40543551 still running). Jobs 40543549–40543552
+2. **Second seed batch for 32B single-batch results: DONE 2026-11-07** (all four; jobs 40543549–40543552).
+   Nothing changed qualitatively (all counts in Section 3 of the paper hold; z-scores rose). Figure 1 regenerated and the
+   paper's numbers updated. Appendix per-model figures from the report still show first-batch curves. Jobs 40543549–40543552
    (`scripts/launch_32b_second_batch.sh`). Optional follow-up: the 32B reset variants are also single-batch (20/cell).
    After any of these finish: `python scripts/make_fig_split_heatmap.py`, `bash paper_tmlr/sync_figures.sh`, update numbers.
    All of these share the group's 4-A100 cap with the Promoter2Gene r3 jobs.
@@ -150,7 +155,7 @@ The current main figures lead with density (Fig. 1). The headline is the helps/c
 ## 4. Limitations to state up front
 
 - Open models are 2024-era and instruction-tuned only (until item 1 is run).
-- Several 32B cells are single-batch; sliding_window_max is 20 trials/point; Gemini is 3 trials/cell.
+- The 32B reset variants are single-batch (20 trials/cell); Gemini is 3 trials/cell.
 - The naturalistic vowel-tagging task shows no benefit (7B significantly hurt, 32B null): the Tier-1 benefit is shown for
   in-context rules, not yet for applying pretrained knowledge position by position.
 - Dose-response: the quadratic shape passes held-out CV for only about half of Tier-1 curves and never for Tier-2/3.

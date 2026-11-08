@@ -36,7 +36,7 @@ Structural Tokens as Attention Sinks in Sequence Transformation}
 \maketitle
 
 \begin{abstract}
-Language models lose accuracy quickly as deterministic sequence transformations grow longer. We study a cheap, single-call intervention: inserting a content-free marker token at a fixed interval and asking the model to copy it through. Across seven synthetic tasks organized by cross-position dependency, five open instruction-tuned models (Qwen2.5-7B/14B/32B, Mistral-7B, Phi-3.5-mini), a closed model (Gemini 3.5 Flash), and third-party tasks from ProcBench and CLRS-Text, the effect of a marker depends on what it lands on. On position-local tasks, markers raise token accuracy substantially in the Qwen family and on Gemini (+0.15 to +0.19 averaged over tasks for the larger models), and modestly on Mistral and Phi. When each output depends on earlier inputs, that benefit is cancelled at Qwen2.5-32B and becomes harm at smaller Qwen models and on Gemini. A causal test isolates the cause: rewriting each dependency task so its recurrence restarts at every marker restores the benefit in three of four tasks (+0.11 to +0.13 at 32B). Mechanistically, markers act as attention sinks held by positional rather than induction heads; blocking ten such heads from the markers removes up to 74\% of the benefit at 7B and 32\% at 32B, while matched controls at 7B have negligible effect, and at a misaligned density, attention to the token the model needs falls from 0.54 to 0.10. The best density decreases with sequence length, and sparse markers run faster than no markers. Markers are scaffolding for position-local computation and a hazard wherever they cut a dependency the task still needs.
+Language models lose accuracy quickly as deterministic sequence transformations grow longer. We study a cheap, single-call intervention: inserting a content-free marker token at a fixed interval and asking the model to copy it through. Across seven synthetic tasks organized by cross-position dependency, five open instruction-tuned models (Qwen2.5-7B/14B/32B, Mistral-7B, Phi-3.5-mini), a closed model (Gemini 3.5 Flash), and third-party tasks from ProcBench and CLRS-Text, the effect of a marker depends on what it lands on. On position-local tasks, markers raise token accuracy substantially in the Qwen family and on Gemini (+0.15 to +0.20 averaged over tasks for the larger models), and modestly on Mistral and Phi. When each output depends on earlier inputs, that benefit is cancelled at Qwen2.5-32B and becomes harm at smaller Qwen models and on Gemini. A causal test isolates the cause: rewriting each dependency task so its recurrence restarts at every marker restores the benefit in three of four tasks (+0.11 to +0.13 at 32B). Mechanistically, markers act as attention sinks held by positional rather than induction heads; blocking ten such heads from the markers removes up to 74\% of the benefit at 7B and 32\% at 32B, while matched controls at 7B have negligible effect, and at a misaligned density, attention to the token the model needs falls from 0.54 to 0.10. The best density decreases with sequence length, and sparse markers run faster than no markers. Markers are scaffolding for position-local computation and a hazard wherever they cut a dependency the task still needs.
 \end{abstract}
 
 % =====================================================================
@@ -50,7 +50,7 @@ We study the cheapest possible intervention. A content-free marker character (\t
 The answer depends on what the marker lands on. We organize seven tasks by whether each output position depends on other positions, and run them across five open instruction-tuned models, a closed model, and third-party tasks. Our findings:
 
 \begin{enumerate}
-\item \textbf{Markers help position-local tasks} (Section~\ref{sec:split}). When each output depends only on the input at the same position, markers raise token accuracy at every model we test, by +0.09 to +0.19 on average in the Qwen2.5 family and +0.15 on Gemini, and by a smaller +0.03 to +0.04 on Mistral-7B and Phi-3.5-mini (Figure~\ref{fig:split}).
+\item \textbf{Markers help position-local tasks} (Section~\ref{sec:split}). When each output depends only on the input at the same position, markers raise token accuracy at every model we test, by +0.09 to +0.20 on average in the Qwen2.5 family and +0.15 on Gemini, and by a smaller +0.03 to +0.04 on Mistral-7B and Phi-3.5-mini (Figure~\ref{fig:split}).
 \item \textbf{Cutting a dependency cancels that benefit} (Section~\ref{sec:split}). On tasks where outputs depend on earlier inputs, the same markers produce no net gain at Qwen2.5-32B and net harm at Qwen2.5-7B/14B and Gemini. A marker that lands between a position and the input it needs offsets most of the gain it would otherwise bring.
 \item \textbf{Severing the dependency restores the benefit} (Section~\ref{sec:reset}). Rewriting each dependency task so its recurrence restarts at every marker turns the near-zero effect at 32B into a gain of +0.11 to +0.13 in three of four tasks.
 \item \textbf{Markers are attention sinks held by positional heads} (Section~\ref{sec:mechanism}). Attention to markers rises with density; the heads that attend to them most are positional, not induction heads; blocking those heads from the markers removes a growing share of the benefit as sequences lengthen, while matched controls do not; and at a density that misaligns markers with the dependency, attention to the token the model needs collapses.
@@ -129,11 +129,11 @@ Token accuracy (TAR) is the fraction of output positions that match the ground t
 \label{fig:split}
 \end{figure}
 
-Figure~\ref{fig:split} shows the central result; per-model curves by length are in Appendix Figures~\ref{fig:tier1bymodel}--\ref{fig:harddep}. On position-local tasks (top block), all 18 cells are positive and 14 are significant. Averaged over the three tasks, the gain is +0.09 at Qwen2.5-7B, +0.17 at 14B, +0.19 at 32B, and +0.15 on Gemini. The gain is much smaller on Mistral-7B (+0.04) and Phi-3.5-mini (+0.03); for Mistral it also shrinks with length, reaching zero by $N = 64$ to $256$ in all three tasks (Appendix~\ref{app:models}).
+Figure~\ref{fig:split} shows the central result; per-model curves by length are in Appendix Figures~\ref{fig:tier1bymodel}--\ref{fig:harddep}. On position-local tasks (top block), all 18 cells are positive and 14 are significant. Averaged over the three tasks, the gain is +0.09 at Qwen2.5-7B, +0.17 at 14B, +0.20 at 32B, and +0.15 on Gemini. The gain is much smaller on Mistral-7B (+0.04) and Phi-3.5-mini (+0.03); for Mistral it also shrinks with length, reaching zero by $N = 64$ to $256$ in all three tasks (Appendix~\ref{app:models}).
 
 On dependency tasks (middle block), the same markers give no comparable gain anywhere: none of the 23 cells exceeds +0.05, and 10 are significantly negative. Averaged over tasks, the effect is $-0.06$ at Qwen2.5-7B, 14B, and Gemini, and between $-0.01$ and $+0.01$ at Qwen2.5-32B, Mistral, and Phi. \task{copy\_previous}, which needs no computation, is hurt at every model, significantly at four of six, including where base accuracy is far above chance (Qwen2.5-14B: Base TAR 0.75 to 0.94).
 
-The sign of the dependency effect varies with scale, but the gap between tiers does not. At Qwen2.5-32B, markers do not hurt three of four dependency tasks (\task{sliding\_window\_max} even gains +0.04), yet those tasks gain 0.15 to 0.18 less than the position-local average at the same model. We therefore frame the result as cancellation rather than harm: cutting a dependency offsets most of the benefit markers would otherwise bring (Section~\ref{sec:reset} measures this directly). Whether the net effect is positive or negative then depends on how large that benefit is for a given model.
+The sign of the dependency effect varies with scale, but the gap between tiers does not. At Qwen2.5-32B, markers do not hurt three of four dependency tasks (\task{sliding\_window\_max} even gains +0.05), yet those tasks gain 0.15 to 0.19 less than the position-local average at the same model. We therefore frame the result as cancellation rather than harm: cutting a dependency offsets most of the benefit markers would otherwise bring (Section~\ref{sec:reset} measures this directly). Whether the net effect is positive or negative then depends on how large that benefit is for a given model.
 
 \paragraph{External tasks.} The split holds on tasks we did not design (Appendix Tables~\ref{tab:external} and~\ref{tab:gemini}, Figures~\ref{fig:external} and~\ref{fig:geminifig}). On ProcBench's per-character substitution task \citep{fujisawa2024procbench}, markers help at both scales tested ($+0.054$, $z = 2.4$ at 7B; $+0.157$, $z = 5.9$ at 32B). On string copying \citep{jelassi2024repeat}, where base accuracy is already above 0.97, the effect is null, as expected with nothing to scaffold. On CLRS-Text's running-minimum algorithm \citep{markeeva2024clrstext}, a full-prefix dependency, markers hurt substantially wherever the model can do the task: $-0.25$ ($z = 5.1$) at Qwen2.5-32B and $-0.34$ ($z = 7.3$) on Gemini. Our one naturalistic position-local task is an exception: tagging each letter as vowel or consonant uses knowledge from pretraining rather than an in-context rule, and markers do not help it (7B: $-0.083$, $z = 2.3$; 32B: $+0.012$, $z = 0.5$).
 
@@ -164,15 +164,15 @@ Task & Model & Base$\rightarrow$Bounds & $\Delta$ ($|z|$) & Base$\rightarrow$Bou
 \multirow{2}{*}{\task{running\_xor}} & 7B & 0.410$\rightarrow$0.401 & $-$0.009 (0.7) & 0.465$\rightarrow$0.480 & +0.015 (1.5) \\
  & 32B & 0.781$\rightarrow$0.796 & +0.015 (1.2) & 0.749$\rightarrow$0.875 & +0.126 (6.9) \\
 \multirow{2}{*}{\task{running\_sum\_local}} & 7B & 0.309$\rightarrow$0.279 & $-$0.030 (3.8) & 0.290$\rightarrow$0.347 & +0.057 (9.4) \\
- & 32B & 0.590$\rightarrow$0.601 & +0.011 (1.0) & 0.549$\rightarrow$0.659 & +0.110 (7.4) \\
-\task{sliding\_window\_max} & 32B & 0.684$\rightarrow$0.727 & +0.043 (3.3) & 0.703$\rightarrow$0.814 & +0.112 (7.6) \\
+ & 32B & 0.593$\rightarrow$0.602 & +0.009 (1.1) & 0.549$\rightarrow$0.659 & +0.110 (7.4) \\
+\task{sliding\_window\_max} & 32B & 0.685$\rightarrow$0.731 & +0.046 (4.9) & 0.703$\rightarrow$0.814 & +0.112 (7.6) \\
 \multirow{2}{*}{\task{copy\_previous}} & 7B & 0.529$\rightarrow$0.417 & $-$0.112 (7.4) & 0.587$\rightarrow$0.551 & $-$0.036 (3.3) \\
- & 32B & 0.860$\rightarrow$0.817 & $-$0.043 (3.1) & 0.897$\rightarrow$0.789 & $-$0.107 (6.2) \\
+ & 32B & 0.858$\rightarrow$0.814 & $-$0.044 (4.6) & 0.897$\rightarrow$0.789 & $-$0.107 (6.2) \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Figure~\ref{fig:reset} and Table~\ref{tab:reset} show the result. At Qwen2.5-32B, \task{running\_xor}, \task{running\_sum\_local}, and \task{sliding\_window\_max} move from $+0.01$ to $+0.04$ with the dependency intact to $+0.11$ to $+0.13$ once it is severed, about two-thirds of the position-local gain at the same model. Cutting the dependency had offset 60\% to 90\% of that restored gain. At 7B, \task{running\_sum\_local} reverses from a significant loss ($-0.030$) to a significant gain ($+0.057$), and \task{copy\_previous}'s loss shrinks by two-thirds. Six of seven task--model pairs move toward benefit.
+Figure~\ref{fig:reset} and Table~\ref{tab:reset} show the result. At Qwen2.5-32B, \task{running\_xor}, \task{running\_sum\_local}, and \task{sliding\_window\_max} move from $+0.01$ to $+0.05$ with the dependency intact to $+0.11$ to $+0.13$ once it is severed, 56\% to 64\% of the position-local gain at the same model. Cutting the dependency had offset 59\% to 92\% of that restored gain. At 7B, \task{running\_sum\_local} reverses from a significant loss ($-0.030$) to a significant gain ($+0.057$), and \task{copy\_previous}'s loss shrinks by two-thirds. Six of seven task--model pairs move toward benefit.
 
 \task{copy\_previous} at 32B is the exception, and the reset design explains it. Its reset rule alternates between ``copy the previous digit'' and ``copy this digit'' right after each marker, adding a rule switch at every marker. Errors in the reset condition concentrate on those switch positions. Because base accuracy is already high (0.86 to 0.90), there is little to gain and much to lose from that added complexity. The other three reset variants add no rule switch: restarting a sum, XOR, or window at a marker uses the same rule as the sequence start.
 
@@ -231,7 +231,7 @@ We analyze Qwen2.5-32B on \task{cyclic\_shift}, using the real letter tokenizati
 
 \begin{itemize}
 \item \textbf{Models.} \pending{The open models are 2024-era and instruction-tuned; Qwen3.8-27B and Gemma-4-31B-it runs are in progress.} We do not test base (non-instruct) models.
-\item \textbf{Sample size.} Several Qwen2.5-32B cells are single-batch (\task{conditional\_shift}, \task{running\_sum\_local}, \task{copy\_previous}, \task{sliding\_window\_max}, and all reset variants; \pending{second batches running}). Gemini uses 3 trials per cell.
+\item \textbf{Sample size.} The Qwen2.5-32B reset variants are single-batch (20 trials per cell). Gemini uses 3 trials per cell.
 \item \textbf{Naturalistic tasks.} The one naturalistic position-local task (vowel tagging) shows no benefit. The position-local benefit is established for in-context rules, not yet for applying pretrained knowledge position by position.
 \item \textbf{Reset design.} \task{copy\_previous}'s reset rule adds a rule switch, so it does not cleanly test severing that dependency.
 \item \textbf{Dose--response shape.} The shift of the best density with length is descriptive; parametric fits do not generalize to held-out densities for dependency tasks.
@@ -280,7 +280,7 @@ Output:                 (expected: DBCB|DDAB)
 \section{Trials per cell}
 \label{app:trials}
 
-Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, density, and alphabet or modulus value) for the data pooled in Figure~\ref{fig:split}. Gemini uses 3. \pending{Update after the 32B second batches and new-model runs finish.}
+Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, density, and alphabet or modulus value) for the data pooled in Figure~\ref{fig:split}. Gemini uses 3. \pending{Add Qwen3.8-27B and Gemma-4-31B-it columns after their runs finish.}
 
 \begin{table}[h]
 \centering
@@ -293,11 +293,11 @@ Task & Qwen2.5-7B & Qwen2.5-14B & Qwen2.5-32B & Mistral-7B & Phi-3.5-mini \\
 \midrule
 \task{cyclic\_shift} & 20 & 20 & 20 & 40 & 20 \\
 \task{random\_permutation} & 40 & 40 & 40 & 40 & 20 \\
-\task{conditional\_shift} & 40 & 20 & 20 & 40 & 20 \\
-\task{copy\_previous} & 40 & 40 & 40 & 40 & 40 \\
+\task{conditional\_shift} & 40 & 20 & 40 & 40 & 20 \\
+\task{copy\_previous} & 40 & 40 & 80 & 40 & 40 \\
 \task{running\_xor} & 40 & 40 & 40 & 40 & 20 \\
-\task{running\_sum\_local} & 40 & 40 & 40 & 40 & 20 \\
-\task{sliding\_window\_max} & 20 & 20 & 20 & 20 & 20 \\
+\task{running\_sum\_local} & 40 & 40 & 80 & 40 & 20 \\
+\task{sliding\_window\_max} & 20 & 20 & 40 & 20 & 20 \\
 Reset variants & 80 & -- & 20 & -- & -- \\
 \bottomrule
 \end{tabular}
@@ -316,7 +316,7 @@ Reset variants & 80 & -- & 20 & -- & -- \\
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{figures/anchors_grid.pdf}
-\caption{\task{copy\_previous} and \task{sliding\_window\_max} by model. \task{copy\_previous} is hurt at most models; \task{sliding\_window\_max} is hurt at Qwen2.5-7B ($z = 4.6$), 14B ($z = 5.4$), Mistral, and Phi, and helped at Qwen2.5-32B ($z = 3.3$).}
+\caption{\task{copy\_previous} and \task{sliding\_window\_max} by model. \task{copy\_previous} is hurt at most models; \task{sliding\_window\_max} is hurt at Qwen2.5-7B ($z = 4.6$), 14B ($z = 5.4$), Mistral, and Phi, and helped at Qwen2.5-32B ($z = 4.9$ with both seed batches; the curves shown are the first batch).}
 \label{fig:anchors}
 \end{figure}
 
