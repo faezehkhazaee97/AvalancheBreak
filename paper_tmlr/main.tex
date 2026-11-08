@@ -112,7 +112,7 @@ Markers interrupt a dependency only visually: the model still needs $x_{i-1}$ wh
 
 \subsection{Models and decoding}
 
-Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-Instruct-v0.3 \citep{jiang2023mistral}, and Phi-3.5-mini-instruct \citep{abdin2024phi3}, run locally in bfloat16 with each model's chat template and greedy decoding, with a generation budget of up to $1.5N + 20$ new tokens. \pending{Qwen3.8-27B \citep{qwen2026qwen38} and Gemma-4-31B-it \citep{gemma2026gemma4} are running; both use their chat templates with thinking disabled.} The closed model is Gemini 3.5 Flash \citep{gemini35flash}, queried through its API with the same prompts and seeds (the request for \texttt{gemini-2.5-flash} resolved to \texttt{gemini-3.5-flash}). Qwen2.5-32B is our primary model for mechanism experiments.
+Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-Instruct-v0.3 \citep{jiang2023mistral}, and Phi-3.5-mini-instruct \citep{abdin2024phi3}, run locally in bfloat16 with each model's chat template and greedy decoding, with a generation budget of up to $1.5N + 20$ new tokens. \pending{Qwen3.8-27B \citep{qwen2026qwen38} and Gemma-4-31B-it \citep{gemma2026gemma4} are running; both use their chat templates with thinking disabled.} Qwen3.8-27B is a hybrid architecture: 48 of its 64 layers use Gated DeltaNet linear attention \citep{yang2025gated} and only 16 use softmax attention. Gemma-4-31B-it uses softmax attention in every layer (50 sliding-window layers and 10 global layers). The closed model is Gemini 3.5 Flash \citep{gemini35flash}, queried through its API with the same prompts and seeds (the request for \texttt{gemini-2.5-flash} resolved to \texttt{gemini-3.5-flash}). Qwen2.5-32B is our primary model for mechanism experiments.
 
 \subsection{Metrics and statistics}
 
@@ -236,7 +236,7 @@ We analyze Qwen2.5-32B on \task{cyclic\_shift}, using the real letter tokenizati
 \item \textbf{Reset design.} \task{copy\_previous}'s reset rule adds a rule switch, so it does not cleanly test severing that dependency.
 \item \textbf{Dose--response shape.} The shift of the best density with length is descriptive; parametric fits do not generalize to held-out densities for dependency tasks.
 \item \textbf{Prompt and marker sensitivity.} One prompt phrasing reverses the effect at 32B, and reserved special tokens do not work as markers.
-\item \textbf{Mechanism scope.} Attention analyses are on Qwen2.5-7B and 32B only, and attention is tokenizer-dependent.
+\item \textbf{Mechanism scope.} Attention analyses are on Qwen2.5-7B and 32B only, and attention is tokenizer-dependent. Three of every four Qwen3.8-27B layers have no softmax attention, so the attention-sink account can apply only to its remaining 16 layers.
 \end{itemize}
 
 % =====================================================================

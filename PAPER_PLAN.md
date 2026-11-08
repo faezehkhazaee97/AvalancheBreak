@@ -123,8 +123,16 @@ The current main figures lead with density (Fig. 1). The headline is the helps/c
    Gemma-4-31B-it (Mar 2026), both ungated. `scripts/launch_new_models.sh`: per model a smoke job (download + validation)
    gating an 11-task array (3 position-local, 4 dependency, 4 reset), one task at a time per model.
    Jobs: smoke 40543558 → grid 40543559 (Qwen3.8); smoke 40543560 → grid 40543561 (Gemma 4).
-   If a smoke job fails, its grid array is cancelled automatically; check `slurm_logs/smoke-*.log`.
-2. **Second seed batch for 32B single-batch results: QUEUED 2026-11-07.** Jobs 40543549–40543552
+   **Both smoke tests PASSED** (no thinking tags; completion 0.78–0.86). One trial per cell, so direction only:
+   cyclic_shift Base→Bounds 0.51→0.80 (Qwen3.8), 0.55→0.79 (Gemma); copy_previous 0.91→0.69, 0.99→0.83.
+   cyclic_shift (the only task that runs to N=256) was moved out of the 8 h arrays into 16 h jobs
+   **40544929** (Qwen3.8) and **40544949** (Gemma): Qwen3.8 runs at the 72B run's speed (433 min), too close to 8 h.
+   Array tasks 1–10 (N ≤ 64, ~2–3.5 h each) continue in 40543559 / 40543561.
+   **Qwen3.8-27B is a hybrid**: 48 of 64 layers are Gated DeltaNet linear attention, 16 softmax. Its linear-attention
+   kernels (`flash-linear-attention`) are not installed, so it runs on the slower PyTorch fallback (correct, just slow).
+   The paper now says this (Setup + Limitations); it bears on the attention-sink mechanism claim.
+2. **Second seed batch for 32B single-batch results: 3 of 4 DONE 2026-11-07** (copy_previous, conditional_shift,
+   sliding_window_max; running_sum_local 40543551 still running). Jobs 40543549–40543552
    (`scripts/launch_32b_second_batch.sh`). Optional follow-up: the 32B reset variants are also single-batch (20/cell).
    After any of these finish: `python scripts/make_fig_split_heatmap.py`, `bash paper_tmlr/sync_figures.sh`, update numbers.
    All of these share the group's 4-A100 cap with the Promoter2Gene r3 jobs.
