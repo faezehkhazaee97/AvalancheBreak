@@ -29,6 +29,8 @@ Qwen2.5-32B second batches). Search for `\pending` and resolve each before submi
   `.conda/envs/qwen-focus/bin/python scripts/make_anonymous_release.py` (builds `release/anon/` and fails if
   any identifying string remains), push `release/anon/` to a new GitHub repository created without your
   name in it, mirror it at https://anonymous.4open.science, and cite that link.
-- `refs.bib` was generated from arXiv metadata; venues are filled in only where certain. Check
-  whether the 2025–2026 preprints have since been published.
+- `refs.bib`: publication status checked 2026-11-08 against conference/journal records. Nine
+  former preprints now cite their published versions (two with changed titles: MEMENTO, Hou et al.).
+  Workshop-only papers (Nye et al., Nogueira et al., Wang et al.) stay as arXiv citations. Recheck
+  the remaining preprints just before submitting (LEAD is under review at ICLR 2027).
 - For arXiv, switch to `\usepackage[preprint]{tmlr}` and add real author names.
