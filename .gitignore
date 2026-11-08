@@ -15,3 +15,6 @@ slurm_logs/
 .ipynb_checkpoints/
 .DS_Store
 paper_tmlr_overleaf.zip
+
+# anonymized code release, built by scripts/make_anonymous_release.py
+release/

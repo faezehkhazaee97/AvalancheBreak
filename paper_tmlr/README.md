@@ -18,14 +18,17 @@ Qwen2.5-32B second batches). Search for `\pending` and resolve each before submi
 ## When new results land
 
 1. `.conda/envs/qwen-focus/bin/python scripts/make_fig_split_heatmap.py` (Figure 1 picks up new
-   models and batches automatically; numbers go to `results_clean/_summary/split_heatmap_values.csv`).
+   models and batches automatically; numbers go to `results_clean/_summary/split_heatmap_values.csv`),
+   then `scripts/make_fig3_causal_only.py` (the reset figure reads that CSV).
 2. `bash paper_tmlr/sync_figures.sh`
 3. Update the numbers quoted in Sections 4–5 and Tables `tab:reset` / `tab:trials` from that CSV.
 
 ## Before submitting
 
-- Remove the built-in titles from `fig3_causal_only` and `fig2_mechanism_merged` (the captions say it).
-- Add the anonymized code link (Reproducibility paragraph).
+- Code link (Reproducibility paragraph): after the k=1 rerun is merged and committed, run
+  `.conda/envs/qwen-focus/bin/python scripts/make_anonymous_release.py` (builds `release/anon/` and fails if
+  any identifying string remains), push `release/anon/` to a new GitHub repository created without your
+  name in it, mirror it at https://anonymous.4open.science, and cite that link.
 - `refs.bib` was generated from arXiv metadata; venues are filled in only where certain. Check
   whether the 2025–2026 preprints have since been published.
 - For arXiv, switch to `\usepackage[preprint]{tmlr}` and add real author names.

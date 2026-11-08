@@ -121,8 +121,7 @@ ax_d.set_ylabel("Mean attention to correct target\n(top-10 heads)")
 ax_d.set_title("(d) Attention to the needed token collapses\nat the misaligned density\n(copy_previous, N=32)", fontsize=8.5)
 ax_d.set_ylim(0, 0.65)
 
-fig.suptitle("Boundary markers act as attention sinks: mechanism and evidence (Qwen2.5-32B-Instruct)",
-             fontsize=9.5, y=1.06)
+# No suptitle: the paper's caption carries the message.
 fig.tight_layout()
 
 OUT = REPO_ROOT / "figs" / "fig2_mechanism_merged.pdf"
