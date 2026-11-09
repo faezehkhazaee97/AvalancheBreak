@@ -1,29 +1,29 @@
 block,task,model,base,bounds,delta,z,n_base,n_bounds
-Position-local,cyclic_shift,Qwen2.5 7B,0.4921,0.6286,0.1365,8.3256,300,1140
-Position-local,cyclic_shift,Qwen2.5 14B,0.5289,0.7365,0.2076,13.1274,300,1140
-Position-local,cyclic_shift,Qwen2.5 32B,0.6105,0.8082,0.1977,13.0916,300,1140
-Position-local,cyclic_shift,Mistral 7B,0.4008,0.4475,0.0467,4.188,600,2280
+Position-local,cyclic_shift,Qwen2.5 7B,0.4939,0.6383,0.1444,8.841,300,1140
+Position-local,cyclic_shift,Qwen2.5 14B,0.5434,0.7446,0.2013,13.0246,300,1140
+Position-local,cyclic_shift,Qwen2.5 32B,0.6028,0.8099,0.2071,13.4028,300,1140
+Position-local,cyclic_shift,Mistral 7B,0.4008,0.4481,0.0473,4.2452,600,2280
 Position-local,cyclic_shift,Phi-3.5 mini,0.3662,0.4154,0.0492,3.1745,300,1140
 Position-local,cyclic_shift,Qwen3.8 27B,0.6422,0.8447,0.2025,13.7612,300,1140
 Position-local,cyclic_shift,Gemma 4 31B,0.659,0.8561,0.1971,12.1882,300,1140
 Position-local,cyclic_shift,Gemini 3.5 Flash,0.7951,0.9306,0.1354,4.0648,45,171
-Position-local,random_permutation,Qwen2.5 7B,0.417,0.5286,0.1116,9.2419,600,2280
-Position-local,random_permutation,Qwen2.5 14B,0.4449,0.6252,0.1802,15.1693,600,2280
-Position-local,random_permutation,Qwen2.5 32B,0.4991,0.7212,0.2221,19.056,600,2280
-Position-local,random_permutation,Mistral 7B,0.3792,0.4234,0.0441,3.9212,600,2280
+Position-local,random_permutation,Qwen2.5 7B,0.417,0.5288,0.1118,9.2562,600,2280
+Position-local,random_permutation,Qwen2.5 14B,0.4449,0.6261,0.1811,15.2394,600,2280
+Position-local,random_permutation,Qwen2.5 32B,0.4991,0.7222,0.2231,19.1357,600,2280
+Position-local,random_permutation,Mistral 7B,0.3792,0.424,0.0448,3.9773,600,2280
 Position-local,random_permutation,Phi-3.5 mini,0.3244,0.3427,0.0183,1.1132,300,1140
 Position-local,random_permutation,Qwen3.8 27B,0.5134,0.7732,0.2597,15.402,300,1140
 Position-local,random_permutation,Gemma 4 31B,0.611,0.8248,0.2138,12.5606,300,1140
 Position-local,random_permutation,Gemini 3.5 Flash,0.6056,0.8457,0.2401,5.4845,45,171
-Position-local,conditional_shift,Qwen2.5 7B,0.3623,0.3846,0.0223,1.9562,600,2280
+Position-local,conditional_shift,Qwen2.5 7B,0.3623,0.385,0.0227,1.9907,600,2280
 Position-local,conditional_shift,Qwen2.5 14B,0.4264,0.548,0.1216,7.8108,300,1140
 Position-local,conditional_shift,Qwen2.5 32B,0.5007,0.6769,0.1762,16.851,600,2280
-Position-local,conditional_shift,Mistral 7B,0.3603,0.3947,0.0344,3.3153,600,2280
+Position-local,conditional_shift,Mistral 7B,0.3603,0.3952,0.0348,3.3625,600,2280
 Position-local,conditional_shift,Phi-3.5 mini,0.3473,0.3655,0.0182,1.2695,300,1140
 Position-local,conditional_shift,Qwen3.8 27B,0.4795,0.6871,0.2077,12.6152,300,1140
 Position-local,conditional_shift,Gemma 4 31B,0.5585,0.6923,0.1338,7.7354,300,1140
 Position-local,conditional_shift,Gemini 3.5 Flash,0.5438,0.628,0.0843,1.2339,45,171
-"Dependency, as is",copy_previous,Qwen2.5 7B,0.529,0.4175,-0.1115,-7.3466,200,760
+"Dependency, as is",copy_previous,Qwen2.5 7B,0.529,0.4182,-0.1108,-7.304,200,760
 "Dependency, as is",copy_previous,Qwen2.5 14B,0.8612,0.7426,-0.1186,-7.9622,200,760
 "Dependency, as is",copy_previous,Qwen2.5 32B,0.8584,0.8177,-0.0408,-4.2355,400,1520
 "Dependency, as is",copy_previous,Mistral 7B,0.5702,0.5557,-0.0145,-1.0645,200,760

@@ -46,11 +46,10 @@ model_files = select_canonical_files(TASK)
 # this override is local to this figure script, NOT a change to
 # select_canonical_files() itself (which stays fragment-preferring for
 # every other, LLM_Output-dependent consumer in this repo).
-grid_dir = REPO_ROOT / "results_clean" / TASK / "grid"
-for model in list(model_files.keys()):
-    pooled = grid_dir / f"{model}_POOLED_40trials.csv"
-    if pooled.exists():
-        model_files[model] = [pooled]
+# 2026-11-08: the POOLED override that used to sit here is removed. Its drop_duplicates
+# kept only the first ("legacy") batch per key, so the figure showed 20 legacy trials,
+# not 40, and those rows predate the k=1 budget fix. The raw fragments are the
+# budget-corrected batch whose prompts can be rebuilt.
 
 print("Provenance -- canonical files used for Figure 1:")
 for m, paths in model_files.items():
