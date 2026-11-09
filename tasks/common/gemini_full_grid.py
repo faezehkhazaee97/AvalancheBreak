@@ -65,12 +65,14 @@ def _max_output_tokens_for(engine, N):
     return base + 50
 
 
-def build_full_grid_examples(trial, task_list=None):
+def build_full_grid_examples(trial, task_list=None, max_n=None):
     examples = []
     for task_name in (task_list or TASKS):
         engine = importlib.import_module(f"tasks.{task_name}.engine")
         axis_values = engine.AXIS_VALUES or [None]
         lengths = getattr(engine, "LENGTHS", STANDARD_LENGTHS)
+        if max_n is not None:
+            lengths = [n for n in lengths if n <= max_n]
         intervals = getattr(engine, "INTERVALS", STANDARD_INTERVALS)
         for N in lengths:
             for k in valid_intervals(N, intervals):
@@ -99,11 +101,12 @@ def main():
     parser.add_argument("--model", default="gemini-3.5-flash", help="Pinned, not the \"-latest\" alias: the alias silently drifted from gemini-3.5-flash (this study's original grid) to gemini-3.6-flash mid-project, and the newer model can't fully disable thinking (see _max_output_tokens_for's docstring). gemini-3.5-flash is still directly callable and matches the original methodology exactly.")
     parser.add_argument("--output", default=None)
     parser.add_argument("--trial", type=int, default=0, help="Trial index -- matches tasks.common.runner's local seed formula, so Trial=1/2 are genuinely independent samples from Trial=0, poolable into a 3-trial-per-cell dataset.")
+    parser.add_argument("--max-n", type=int, default=None, help="Only lengths N <= this (e.g. 64 to match the local digit-control runs).")
     parser.add_argument("--tasks", default=None, help="Comma-separated task names to override the default 9-task TASKS list, e.g. clrs_minimum,clrs_kadane,modsum.")
     args = parser.parse_args()
 
     task_list = args.tasks.split(",") if args.tasks else None
-    examples = build_full_grid_examples(args.trial, task_list=task_list)
+    examples = build_full_grid_examples(args.trial, task_list=task_list, max_n=args.max_n)
 
     if args.dry_run:
         print(f"Constructed {len(examples)} examples across {len(task_list or TASKS)} tasks. Zero API calls made.")

@@ -8,8 +8,9 @@
 #SBATCH --array=0-2%1                 # the three digit tasks, one at a time per model
 #SBATCH --output=/group/gquongrp/workspaces/baran/AvalancheBreak/slurm_logs/%x-%A_%a.log
 
-# Digit-alphabet versions of the three position-local tasks (tokenization control).
-#   sbatch --job-name=digits-<tag> scripts/run_digit_controls.sbatch <hf_model_id>
+# Tokenization controls for the three position-local tasks: digit-alphabet (FAMILY=digits,
+# default) or spaced-letter (FAMILY=spaced) versions.
+#   sbatch --job-name=<family>-<tag> scripts/run_digit_controls.sbatch <hf_model_id> [digits|spaced]
 
 set -euo pipefail
 ENV=/group/gquongrp/workspaces/baran/AvalancheBreak/.conda/envs/qwen-focus
@@ -19,7 +20,8 @@ export PYTHONUNBUFFERED=1
 cd /group/gquongrp/workspaces/baran/AvalancheBreak
 
 MODEL_ID="$1"
-TASKS=(cyclic_shift_digits random_permutation_digits conditional_shift_digits)
+FAMILY="${2:-digits}"
+TASKS=(cyclic_shift_$FAMILY random_permutation_$FAMILY conditional_shift_$FAMILY)
 TASK="${TASKS[$SLURM_ARRAY_TASK_ID]}"
 echo "Node: $(hostname) | Model: $MODEL_ID | Task: $TASK | $(date)"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader

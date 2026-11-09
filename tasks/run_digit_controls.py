@@ -1,7 +1,8 @@
-"""Run one digit-alphabet control task for one model, at N in {4, 8, 16, 32, 64}.
+"""Run one tokenization-control task for one model, at N in {4, 8, 16, 32, 64}.
 
-The digit tasks (cyclic_shift_digits, random_permutation_digits, conditional_shift_digits)
-are exact relabelings of the letter position-local tasks; see their engine docstrings.
+Digit tasks (*_digits) are exact relabelings of the letter position-local tasks; spaced
+tasks (*_spaced) are the same letter tasks with characters separated by spaces (one token
+per letter); see their engine docstrings and tasks/common/spaced.py.
 Lengths stop at 64, the range pooled in Figure 1 and in the per-position analysis.
 
 Usage:
@@ -20,7 +21,8 @@ if REPO_ROOT not in sys.path:
 from tasks.common import runner  # noqa: E402
 from tasks.common.boundary import STANDARD_LENGTHS  # noqa: E402
 
-DIGIT_TASKS = ("cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits")
+DIGIT_TASKS = ("cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits",
+               "cyclic_shift_spaced", "random_permutation_spaced", "conditional_shift_spaced")
 
 
 def main():
