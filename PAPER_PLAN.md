@@ -1,5 +1,13 @@
 # Paper plan — boundary markers (status as of 2026-11-07)
 
+> **Status 2026-11-08 night: REFRAMED (commit ec2b08e).** The draft now leads with per-position accuracy (new Figure 1 =
+> `scripts/make_fig_per_position.py`; numbers from `scripts/analyze_per_position.py`). Running: digit-alphabet controls for
+> all seven local models (jobs 40556464-70, `scripts/launch_digit_and_procbench.sh`) and the ProcBench regrid (40556471-72).
+> When they finish: `analyze_per_position.py`, `make_fig_per_position.py`, `make_tables_per_position.py`,
+> `make_fig_split_heatmap.py`, `make_fig_external_tier1_checks.py`, `sync_figures.sh`; then fill the `\pending` text in
+> Section 5 (tokenization), abstract, intro item 4, Limitations, ProcBench sentence, and add digit rows to the trials table.
+> Then rebuild the anonymous release. Open user decision: code license.
+
 > **2026-11-08: an independent review (`paper_tmlr/REVIEW_2026-11-08.md`) found that the framing below rests on two
 > claims the data does not support as stated ("cancellation", "severing restores the benefit") and on a tokenization
 > confound (position-local tasks use letters, dependency tasks digits; at 7B two-thirds of the letter gain vanishes
