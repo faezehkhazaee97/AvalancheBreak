@@ -1,5 +1,12 @@
 # Paper plan — boundary markers (status as of 2026-11-07)
 
+> **2026-11-08: an independent review (`paper_tmlr/REVIEW_2026-11-08.md`) found that the framing below rests on two
+> claims the data does not support as stated ("cancellation", "severing restores the benefit") and on a tokenization
+> confound (position-local tasks use letters, dependency tasks digits; at 7B two-thirds of the letter gain vanishes
+> with digits). Both headline findings were re-derived independently and hold. Recommended path: run digit-alphabet
+> position-local tasks at 32B/Qwen3.8/Gemma, then reframe around per-position accuracy (the token after a marker is
+> anchored unless it needs the token before the marker). Sections 1 and 2 below are the pre-review framing.**
+
 This replaces `NEXT_STEPS.md` and `REVIEWER_RESPONSE_PLAN.md` (July, out of date).
 
 **Source of truth for results:** `boundaries_report_iclr.html` (curated figures and tables, Qwen2.5-32B primary).
