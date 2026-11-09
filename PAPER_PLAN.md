@@ -1,5 +1,12 @@
 # Paper plan — boundary markers (status as of 2026-11-07)
 
+> **Status 2026-11-09: digit controls + ProcBench regrid DONE (commit ace5906).** Digits: strong models near ceiling
+> without markers; pooled gains ~1/3 of letters; post-marker anchor mostly gone (10/21); but markers remove 58-83% of
+> remaining digit errors at 32B/Qwen3.8/Gemma, concentrated at N >= 32 and nearly independent of k (letters: densest best).
+> Running (approved 2026-11-09): spaced-letter controls 40564264-70; head ablation v2 40564287 (32B) / 40564288 (7B);
+> Gemini digits (783 calls, ~$0.60) waits for the user's API key (file ~/.config/gemini/api_key). Draft revision waits
+> for the spaced results: headline becomes "markers re-tokenize letters AND segment sequences".
+
 > **Status 2026-11-08 night: REFRAMED (commit ec2b08e).** The draft now leads with per-position accuracy (new Figure 1 =
 > `scripts/make_fig_per_position.py`; numbers from `scripts/analyze_per_position.py`). Running: digit-alphabet controls for
 > all seven local models (jobs 40556464-70, `scripts/launch_digit_and_procbench.sh`) and the ProcBench regrid (40556471-72).
