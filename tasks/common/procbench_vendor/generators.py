@@ -446,7 +446,9 @@ class GeneratorSubstitute(BaseGenerator):
 
     def generate_random_string_and_table(self):
         _string = generate_string(self.length, use_digits=True, random_state=self.random_state)
-        available_chars = list(set(_string))
+        # Local change (2026-11-08): sorted() instead of list(set(...)). Set order for strings
+        # depends on the per-process hash seed, so the table was not reproducible across runs.
+        available_chars = sorted(set(_string))
         
         char_pool = string.ascii_lowercase + string.digits
 
