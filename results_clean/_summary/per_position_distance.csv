@@ -575,6 +575,510 @@ block,task,model,k,d,acc
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,13,0.1528
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,14,0.2639
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,15,0.2917
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,0,0.3606
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,1,0.4562
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,2,0.4479
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,3,0.4174
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,4,0.4222
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,5,0.3986
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,6,0.4104
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,7,0.3812
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,0,0.3194
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,1,0.3875
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,2,0.4021
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,3,0.3354
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,4,0.3688
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,5,0.3458
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,6,0.3562
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,7,0.3146
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,8,0.3312
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,9,0.2604
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,10,0.3042
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,11,0.2896
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,12,0.2854
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,13,0.225
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,14,0.2083
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,16,15,0.2354
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,0,0.9585
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,1,0.9674
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,2,0.9632
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,3,0.9576
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,4,0.9667
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,5,0.9549
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,6,0.9521
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,8,7,0.9653
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,0,0.9444
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,1,0.9438
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,2,0.9479
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,3,0.9438
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,4,0.9333
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,5,0.9438
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,6,0.9104
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,7,0.9188
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,8,0.925
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,9,0.9104
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,10,0.8917
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,11,0.8542
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,12,0.8771
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,13,0.8583
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,14,0.9
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,16,15,0.8604
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,0,0.9992
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,1,0.9993
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,2,0.9972
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,3,0.9979
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,4,1.0
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,5,0.9986
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,6,0.9951
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,8,7,0.9993
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,0,0.9861
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,1,0.9896
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,2,0.9854
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,3,0.9875
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,4,0.9792
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,5,0.9875
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,6,0.9854
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,7,0.9792
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,8,0.9812
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,9,0.9812
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,10,0.9771
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,11,0.9667
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,12,0.9604
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,13,0.9562
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,14,0.9562
+"Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,16,15,0.9646
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,0,0.2024
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,1,0.2569
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,2,0.2424
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,3,0.2646
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,4,0.2431
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,5,0.2389
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,6,0.1583
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,8,7,0.2458
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,0,0.2389
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,1,0.2771
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,2,0.2979
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,3,0.3271
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,4,0.2771
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,5,0.2771
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,6,0.1979
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,7,0.2125
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,8,0.1583
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,9,0.1792
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,10,0.1625
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,11,0.1625
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,12,0.15
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,13,0.1521
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,14,0.1396
+"Position-local, digits",cyclic_shift_digits,Mistral 7B,16,15,0.1812
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,0,0.6354
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,1,0.6597
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,2,0.6903
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,3,0.6257
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,4,0.6007
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,5,0.4847
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,6,0.4646
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,8,7,0.4701
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,0,0.3444
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,1,0.575
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,2,0.6292
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,3,0.5604
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,4,0.5458
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,5,0.5062
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,6,0.475
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,7,0.4271
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,8,0.4021
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,9,0.4083
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,10,0.4354
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,11,0.3875
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,12,0.375
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,13,0.3604
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,14,0.35
+"Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,16,15,0.2854
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,0,0.9603
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,1,0.9271
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,2,0.9472
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,3,0.9382
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,4,0.9451
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,5,0.9424
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,6,0.95
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,8,7,0.9625
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,0,0.9556
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,1,0.9188
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,2,0.9312
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,3,0.9375
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,4,0.9479
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,5,0.9521
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,6,0.9167
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,7,0.9312
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,8,0.9375
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,9,0.9375
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,10,0.9208
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,11,0.8979
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,12,0.9292
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,13,0.925
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,14,0.9042
+"Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,16,15,0.9208
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,0,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,1,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,2,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,3,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,4,0.9993
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,5,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,6,0.9993
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,8,7,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,0,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,1,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,2,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,3,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,4,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,5,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,6,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,7,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,8,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,9,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,10,0.9958
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,11,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,12,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,13,0.9979
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,14,1.0
+"Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,15,1.0
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,0,0.387
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,1,0.3993
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,2,0.391
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,3,0.3021
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,4,0.3285
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,5,0.2694
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,6,0.2576
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,7,0.2528
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,0,0.3111
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,1,0.4062
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,2,0.325
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,3,0.2896
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,4,0.2708
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,5,0.25
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,6,0.2958
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,7,0.2917
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,8,0.2375
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,9,0.3583
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,10,0.2562
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,11,0.2729
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,12,0.2229
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,13,0.1917
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,14,0.225
+"Position-local, digits",random_permutation_digits,Qwen2.5 7B,16,15,0.1896
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,0,0.928
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,1,0.9014
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,2,0.909
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,3,0.8694
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,4,0.8438
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,5,0.8257
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,6,0.8312
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,8,7,0.7646
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,0,0.7806
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,1,0.8271
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,2,0.8562
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,3,0.8125
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,4,0.7542
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,5,0.775
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,6,0.7771
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,7,0.7521
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,8,0.7312
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,9,0.7688
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,10,0.7021
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,11,0.6521
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,12,0.6229
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,13,0.6208
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,14,0.625
+"Position-local, digits",random_permutation_digits,Qwen2.5 14B,16,15,0.6375
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,0,0.9862
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,1,0.9896
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,2,0.9931
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,3,0.9833
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,4,0.9854
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,5,0.9743
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,6,0.9722
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,8,7,0.9812
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,0,0.9028
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,1,0.9479
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,2,0.975
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,3,0.9562
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,4,0.9562
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,5,0.9688
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,6,0.9521
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,7,0.9583
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,8,0.9521
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,9,0.9271
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,10,0.9167
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,11,0.9042
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,12,0.9125
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,13,0.9
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,14,0.8875
+"Position-local, digits",random_permutation_digits,Qwen2.5 32B,16,15,0.8604
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,0,0.4323
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,1,0.4431
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,2,0.3757
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,3,0.3549
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,4,0.3653
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,5,0.3215
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,6,0.2979
+"Position-local, digits",random_permutation_digits,Mistral 7B,8,7,0.2917
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,0,0.3333
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,1,0.4458
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,2,0.3542
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,3,0.3729
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,4,0.3271
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,5,0.3396
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,6,0.3542
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,7,0.2958
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,8,0.3042
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,9,0.3
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,10,0.275
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,11,0.3083
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,12,0.2979
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,13,0.3125
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,14,0.3083
+"Position-local, digits",random_permutation_digits,Mistral 7B,16,15,0.2562
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,0,0.5524
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,1,0.5118
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,2,0.4833
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,3,0.4528
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,4,0.4347
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,5,0.4069
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,6,0.4139
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,8,7,0.3542
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,0,0.4444
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,1,0.5146
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,2,0.4729
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,3,0.4271
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,4,0.4229
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,5,0.4375
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,6,0.3833
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,7,0.3771
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,8,0.3729
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,9,0.3396
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,10,0.3479
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,11,0.375
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,12,0.3625
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,13,0.3458
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,14,0.3083
+"Position-local, digits",random_permutation_digits,Phi-3.5 mini,16,15,0.2875
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,0,0.9503
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,1,0.9486
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,2,0.9507
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,3,0.9618
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,4,0.9451
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,5,0.9458
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,6,0.9465
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,8,7,0.9528
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,0,0.9333
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,1,0.9167
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,2,0.9458
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,3,0.9271
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,4,0.9458
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,5,0.9375
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,6,0.9333
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,7,0.9562
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,8,0.9354
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,9,0.9354
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,10,0.9021
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,11,0.9208
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,12,0.9104
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,13,0.9104
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,14,0.9104
+"Position-local, digits",random_permutation_digits,Qwen3.8 27B,16,15,0.8938
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,0,0.9944
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,1,0.9986
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,2,1.0
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,3,0.9965
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,4,0.9993
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,5,0.9979
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,6,0.9993
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,8,7,0.9972
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,0,0.95
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,1,0.9833
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,2,0.9771
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,3,0.9875
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,4,0.9792
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,5,0.9896
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,6,0.9854
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,7,0.9896
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,8,0.9812
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,9,0.9833
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,10,0.9833
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,11,0.9771
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,12,0.9938
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,13,0.9792
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,14,0.9729
+"Position-local, digits",random_permutation_digits,Gemma 4 31B,16,15,0.9708
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,0,0.2225
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,1,0.2924
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,2,0.2667
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,3,0.2243
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,4,0.2354
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,5,0.2785
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,6,0.2438
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,7,0.2417
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,0,0.2083
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,1,0.3458
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,2,0.3146
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,3,0.2708
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,4,0.2979
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,5,0.2542
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,6,0.2292
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,7,0.2708
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,8,0.2438
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,9,0.2875
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,10,0.2562
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,11,0.2375
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,12,0.2542
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,13,0.2271
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,14,0.1792
+"Position-local, digits",conditional_shift_digits,Qwen2.5 7B,16,15,0.2042
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,0,0.727
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,1,0.7604
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,2,0.7979
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,3,0.7556
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,4,0.7708
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,5,0.7389
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,6,0.7674
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,8,7,0.7611
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,0,0.7639
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,1,0.7917
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,2,0.7875
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,3,0.8
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,4,0.7646
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,5,0.7333
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,6,0.7854
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,7,0.725
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,8,0.7208
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,9,0.7458
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,10,0.7271
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,11,0.6938
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,12,0.6625
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,13,0.7146
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,14,0.6854
+"Position-local, digits",conditional_shift_digits,Qwen2.5 14B,16,15,0.7396
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,0,0.8024
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,1,0.8688
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,2,0.8715
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,3,0.8569
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,4,0.8812
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,5,0.8208
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,6,0.8361
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,8,7,0.8278
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,0,0.8083
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,1,0.8583
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,2,0.85
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,3,0.8792
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,4,0.8479
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,5,0.85
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,6,0.8521
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,7,0.8562
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,8,0.8312
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,9,0.8688
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,10,0.8167
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,11,0.8312
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,12,0.8146
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,13,0.8333
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,14,0.8208
+"Position-local, digits",conditional_shift_digits,Qwen2.5 32B,16,15,0.8208
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,0,0.3516
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,1,0.4438
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,2,0.391
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,3,0.4958
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,4,0.3743
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,5,0.4431
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,6,0.2958
+"Position-local, digits",conditional_shift_digits,Mistral 7B,8,7,0.366
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,0,0.3639
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,1,0.4146
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,2,0.4354
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,3,0.3812
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,4,0.3833
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,5,0.3979
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,6,0.3312
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,7,0.3458
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,8,0.3604
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,9,0.3854
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,10,0.3292
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,11,0.3229
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,12,0.3208
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,13,0.3083
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,14,0.325
+"Position-local, digits",conditional_shift_digits,Mistral 7B,16,15,0.3375
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,0,0.5608
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,1,0.6076
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,2,0.6389
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,3,0.5951
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,4,0.5569
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,5,0.4847
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,6,0.4903
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,8,7,0.4938
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,0,0.3389
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,1,0.5125
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,2,0.525
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,3,0.5042
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,4,0.5354
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,5,0.4479
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,6,0.4479
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,7,0.4625
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,8,0.4375
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,9,0.4062
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,10,0.3938
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,11,0.3583
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,12,0.4167
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,13,0.3458
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,14,0.3646
+"Position-local, digits",conditional_shift_digits,Phi-3.5 mini,16,15,0.3729
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,0,0.8884
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,1,0.8667
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,2,0.9076
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,3,0.8993
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,4,0.9076
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,5,0.8924
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,6,0.9243
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,8,7,0.9181
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,0,0.8139
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,1,0.8479
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,2,0.8104
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,3,0.8792
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,4,0.8479
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,5,0.8521
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,6,0.8667
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,7,0.825
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,8,0.8479
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,9,0.8458
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,10,0.8562
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,11,0.8792
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,12,0.8458
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,13,0.8604
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,14,0.8354
+"Position-local, digits",conditional_shift_digits,Qwen3.8 27B,16,15,0.875
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,0,0.9394
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,1,0.9597
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,2,0.9771
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,3,0.9722
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,4,0.9806
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,5,0.9653
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,6,0.9736
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,8,7,0.9646
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,0,0.875
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,1,0.9438
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,2,0.9812
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,3,0.9917
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,4,0.9729
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,5,0.9625
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,6,0.9604
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,7,0.9562
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,8,0.9771
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,9,0.9792
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,10,0.9562
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,11,0.9646
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,12,0.9542
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,13,0.9646
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,14,0.9604
+"Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,15,0.9479
 "Dependency, as is",copy_previous,Qwen2.5 7B,8,0,0.4111
 "Dependency, as is",copy_previous,Qwen2.5 7B,8,1,0.4531
 "Dependency, as is",copy_previous,Qwen2.5 7B,8,2,0.4844
