@@ -148,7 +148,12 @@ The current main figures lead with density (Fig. 1). The headline is the helps/c
    (`scripts/launch_32b_second_batch.sh`). Optional follow-up: the 32B reset variants are also single-batch (20/cell).
    After any of these finish: `python scripts/make_fig_split_heatmap.py`, `bash paper_tmlr/sync_figures.sh`, update numbers.
    All of these share the group's 4-A100 cap with the Promoter2Gene r3 jobs.
-2b. **Token-budget fix: RUNNING (queued 2026-11-08).** The old budget int(1.5N)+20 is smaller than a correct
+2b. **Token-budget fix: DONE and MERGED 2026-11-08** (87 files, 5,820 rows; pooled cells move ≤0.0035, no
+   significance changes; Figure 1 and the paper's numbers updated). Two caveats recorded in the paper's Setup:
+   7B/Mistral/Phi on random_permutation and conditional_shift were originally run on `gpuh` (Titan) GPUs, so the
+   A100 reruns diverge after a shared prefix (same accuracy over it); ProcBench was NOT merged because the vendored
+   generator's substitution table was non-reproducible (fixed in generators.py; needs a full regrid with
+   `scripts/regrid_procbench.sbatch`, awaiting user OK; old files stay until then). Original note: The old budget int(1.5N)+20 is smaller than a correct
    k=1 answer (2N−1 tokens) once N > 42, so every k=1 output at N ≥ 64 was cut off (58 of 64 letters at N=64),
    for every local model and also ProcBench-Substitute and string copy. Gemini is unaffected (+50 margin).
    `runner.max_new_tokens` now gives k=1 a budget of 2N+20 (greedy decoding: other cells unchanged).
