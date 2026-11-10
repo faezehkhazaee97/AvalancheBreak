@@ -33,6 +33,7 @@ LENGTHS = [4, 8, 16, 32, 64]
 KS = [2, 4, 8, 16]
 BLOCKS = [
     ("Position-local, letters", ["cyclic_shift", "random_permutation", "conditional_shift"]),
+    ("Position-local, spaced letters", ["cyclic_shift_spaced", "random_permutation_spaced", "conditional_shift_spaced"]),
     ("Position-local, digits", ["cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits"]),
     ("Dependency, as is", ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]),
     ("Dependency severed (reset)", ["copy_previous_reset", "running_xor_reset",

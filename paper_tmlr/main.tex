@@ -20,8 +20,8 @@
 % Draft-only marker for numbers that change when pending runs finish. Remove before submission.
 \newcommand{\pending}[1]{\textcolor{red}{[#1]}}
 
-\title{The Position After the Marker: Where Content-Free\\
-Boundary Markers Help and Hurt Sequence Transformation}
+\title{Re-Tokenization, Segmentation, and a Blind Spot:\\
+What Content-Free Boundary Markers Do in Sequence Transformation}
 
 % Authors must not appear in the submitted version.
 \author{\name Anonymous Authors \email anonymous@example.com \\
@@ -36,7 +36,7 @@ Boundary Markers Help and Hurt Sequence Transformation}
 \maketitle
 
 \begin{abstract}
-Language models lose accuracy quickly as deterministic, character-by-character transformations grow longer. We study a cheap, single-call intervention: inserting a content-free marker (\texttt{|}) into the input every $k$ characters and asking the model to copy it through. Across seven tasks, seven open instruction-tuned models (Qwen2.5-7B/14B/32B, Mistral-7B, Phi-3.5-mini, Qwen3.8-27B, Gemma-4-31B) and Gemini 3.5 Flash, a marker's effect is best read position by position. When an output depends only on its own input, the position right after a marker is the most accurate in the sequence: it beats the no-marker run at the same positions in all 24 task--model cells, by $+0.07$ to $+0.34$, and accuracy decays with distance from the marker. When that position instead needs the input before the marker, it falls below the no-marker run in all 31 cells, to near chance at the stronger models, while positions further inside the segment still gain. Task-level effects, including their changes of sign with length and model, follow from mixing these two per-position effects. Rewriting each dependency task so that the position after a marker needs nothing before it raises that position to 0.92--1.00 at the larger models and changes other positions by less than 0.09. Part of the benefit on letter tasks is tokenization: without markers, letters merge into multi-character tokens. \pending{Digit-alphabet controls quantify that share: summary pending.} In Qwen2.5, local heads attend from each position to the adjacent marker, and masking that attention removes up to a third of the gain at 32B and three quarters at 7B. Markers also help models stop at the right length, so sparse markers cost less than none. The practical rule is to place markers where no position's dependency crosses one.
+Inserting a content-free marker (\texttt{|}) into the input every $k$ characters of a character-level transformation, and asking the model to copy it through, is a cheap single-call intervention. We study what it does across seven tasks, seven open instruction-tuned models (Qwen2.5-7B/14B/32B, Mistral-7B, Phi-3.5-mini, Qwen3.8-27B, Gemma-4-31B) and Gemini 3.5 Flash, using two tokenization controls: the same letter tasks with a space between letters, and exact relabelings with digits, both one token per character with or without markers. We find three separate effects. First, on letter strings, which tokenizers merge into multi-letter tokens, markers act mainly as re-tokenization: spacing the letters, with no markers at all, improves accuracy more ($+0.06$ to $+0.31$) than markers do ($+0.03$ to $+0.22$), and the large advantage of the position right after a marker disappears once letters are spaced. Second, independent of tokenization, markers help the stronger models on long sequences: with spaced letters or digits they remove 28\% to 83\% of the remaining errors at Qwen2.5-14B and 32B, Qwen3.8-27B, and Gemma-4-31B, almost regardless of spacing, and nothing at the three smallest models. Blocking the ten most marker-attending heads removes almost none of this gain. Third, the position right after a marker fails whenever it needs the input before the marker: on four dependency tasks it falls below the no-marker run in all 31 task--model cells, to near chance at the stronger models, while the next position recovers. In practice: separate characters before adding markers, use sparse markers on long sequences, and never let a marker cut a dependency.
 \end{abstract}
 
 % =====================================================================
@@ -45,33 +45,31 @@ Language models lose accuracy quickly as deterministic, character-by-character t
 
 Ask a language model to apply a simple, fully specified rule to every character of a string (shift each letter forward, substitute through a lookup table, output the XOR of each digit with the one before) and accuracy does not fade gracefully with length. It holds near ceiling on short inputs and then collapses well before any obvious capacity limit \citep{hou2025focus}. Standard remedies change the computation itself: splitting the input across several calls \citep{zhou2023leasttomost}, asking for intermediate steps \citep{nye2021scratchpad, chen2023pot}, or adding memory to the architecture \citep{dai2019transformerxl, bulatov2022rmt, mohtashami2023landmark}. Each costs extra calls, extra tokens, or training.
 
-We study the cheapest possible intervention. A content-free marker character (\texttt{|}) is inserted into the input every $k$ characters, and the model is told to copy it through to the output unchanged. The marker carries no task information, needs no extra call, and requires no training. Our question is when this helps, when it hurts, and why.
+We study a cheaper intervention. A content-free marker character (\texttt{|}) is inserted into the input every $k$ characters, and the model is told to copy it through to the output unchanged. The marker carries no task information, needs no extra call, and requires no training. On letter tasks it raises accuracy substantially, by up to $+0.22$ on average at the stronger models we test. Our question is why, and when it hurts.
 
-Averaged over a whole output, the answer looks inconsistent: markers help some tasks and hurt others, and the sign of the effect changes with sequence length and with the model. Read position by position, it is simple. Our findings:
+A marker does more than mark a boundary. Tokenizers merge runs of letters into multi-letter tokens, and a marker after every few letters splits those runs, so on letter strings a marker is also a tokenization intervention. We separate the two with two controls that keep one token per character whether or not markers are present: the same letter tasks with a space between letters, and exact relabelings of them with digits. We find three effects:
 
 \begin{enumerate}
-\item \textbf{A marker anchors the position after it} (Section~\ref{sec:position}). On tasks where each output depends only on its own input, the position right after a marker is the most accurately transformed position in the sequence, at every model we test. It beats the no-marker run at the same positions in all 24 task--model cells, by $+0.34$ on average at Qwen2.5-32B and Qwen3.8-27B and by $+0.07$ even at Phi-3.5-mini. Accuracy decays with distance from the marker, and positions inside a segment gain only in the stronger models.
-\item \textbf{The same position fails when it needs the input before the marker} (Section~\ref{sec:position}). On tasks where each output also depends on the previous input, the position right after a marker falls below the no-marker run in all 31 task--model cells, to near chance at the stronger models, even where the model is otherwise near ceiling. The next position recovers immediately.
-\item \textbf{Task-level effects are a mixture of the two} (Section~\ref{sec:pooled}). The pooled effect of markers on a task is set by how many positions sit right after a marker (about $1/k$) and by how much the remaining positions gain. This accounts for the consistent gains on position-local tasks, the losses on dependency tasks at dense spacing, and the gains on the same tasks at sparse spacing and long lengths.
-\item \textbf{Part of the letter-task benefit is tokenization} (Section~\ref{sec:tokenization}). Without markers, letters merge into multi-character tokens; markers split them. \pending{Digit-alphabet versions of the position-local tasks, which tokenize one character per token with or without markers, measure the share: results pending.}
-\item \textbf{Redefining the post-marker position confirms the account} (Section~\ref{sec:reset}). Rewriting each dependency task so that the position after a marker needs nothing before it raises that position from near chance to 0.92--1.00 at the larger models, while other positions change by less than 0.09.
-\item \textbf{In Qwen2.5, local heads carry part of the anchoring} (Section~\ref{sec:mechanism}). Heads attend from each position to the adjacent marker; masking their attention to markers removes up to a third of the gain at 32B and three quarters at 7B.
-\item \textbf{Practical guidance} (Section~\ref{sec:practical}). Markers also help models stop at the right length, so sparse markers cost less than no markers at all; the best density falls as sequences grow; regular placement and a printable marker matter.
+\item \textbf{On letter strings, markers mostly re-tokenize} (Section~\ref{sec:tokenization}). Spacing the letters, with no markers at all, beats markers on unspaced letters at every model ($+0.06$ to $+0.31$ from spacing alone). The striking accuracy of the position right after a marker on letter tasks ($+0.07$ to $+0.34$ over the no-marker run at the same positions, in all 24 task--model cells) is a token boundary effect: with spaced letters or digits that position is no better than the rest of its segment.
+\item \textbf{Independent of tokenization, markers help strong models on long sequences} (Section~\ref{sec:segmentation}). With spaced letters or digits, markers remove 28\% to 83\% of the remaining errors at Qwen2.5-14B and 32B, Qwen3.8-27B, and Gemma-4-31B, and the two controls agree closely. The gain is absent at short lengths, where these models are near ceiling, appears at $N = 32$, and reaches $+0.22$ to $+0.27$ at $N = 64$, with any spacing from every character to every 16. The three smallest models show no such gain.
+\item \textbf{The position after a marker is blind to the input before it} (Section~\ref{sec:blindspot}). On tasks where each output also depends on the previous input, the position right after a marker falls below the no-marker run in all 31 task--model cells, to near chance at the stronger models, even where the model is otherwise near ceiling. The next position recovers immediately. Rewriting the tasks so that this position needs nothing before the marker repairs it. Pooled task-level effects, including their changes of sign with length and model, follow from mixing this loss with the gains of Findings~1 and~2.
 \end{enumerate}
 
-The rule that follows for practitioners is short: place markers so that no position's dependency crosses one.
+We also test the obvious mechanism (Section~\ref{sec:mechanism}). In Qwen2.5, some heads attend from each position to the adjacent marker, but blocking the ten most marker-attending heads removes 1\% of the tokenization-independent gain at Qwen2.5-32B and at most a fifth of the gain on letters, so these heads are not what carries it. Section~\ref{sec:practical} turns the findings into guidance: separate characters before adding markers, use sparse markers on long sequences, and never place a marker where a position's dependency crosses it.
 
 % =====================================================================
 \section{Related work}
 \label{sec:related}
 
-\paragraph{Attention sinks and separator tokens.} Language models concentrate attention on a few tokens, most famously the first token, which act as sinks \citep{xiao2024streaming, gu2024sink, zhang2025catch}; \citet{su2026sinksurvey} survey uses and interpretations. SepLLM \citep{chen2024sepllm} shows that separator tokens can summarize the segment before them, and SinkLoRA \citep{zhang2024sinklora} exploits sinks during fine-tuning. \citet{oh2024tables} find that tabular structure in a prompt improves factual data interactions. We study untrained, content-free markers inserted into the input at inference time and ask where in the output they change accuracy; we do not show that they act as sinks in the sense of drawing more attention than content tokens (Section~\ref{sec:mechanism}).
+\paragraph{Tokenization, formatting, and position.} Formatting and positional cues change arithmetic accuracy: \citet{nogueira2021arithmetic} show that the surface form of numbers matters, \citet{shen2023positional} that positional description does, and \citet{duan2023interpolation} that length generalization depends on how positions are presented. Our tokenization controls apply the same lens to markers: on letter strings, part of what a marker does is change how the string is tokenized.
 
-\paragraph{Attention heads.} Induction heads implement in-context copying \citep{olsson2022induction}, and causal head gating assigns roles to heads by intervention \citep{nam2025headgating}. We use both ideas: a head-taxonomy test characterizes the marker-attending heads, and masking their attention to markers tests whether they carry the benefit.
+\paragraph{Attention sinks and separator tokens.} Language models concentrate attention on a few tokens, most famously the first token, which act as sinks \citep{xiao2024streaming, gu2024sink, zhang2025catch}; \citet{su2026sinksurvey} survey uses and interpretations. SepLLM \citep{chen2024sepllm} shows that separator tokens can summarize the segment before them, and SinkLoRA \citep{zhang2024sinklora} exploits sinks during fine-tuning. \citet{oh2024tables} find that tabular structure in a prompt improves factual data interactions. We study untrained, content-free markers inserted into the input at inference time; our head ablations suggest that their tokenization-independent benefit does not run through the heads that attend to them most.
 
-\paragraph{Long-sequence failure.} Models use the middle of long contexts poorly \citep{liu2024lost}, make sparse but systematic errors on flip-flop state tracking \citep{liu2023flipflop}, and fail long-horizon tasks for reasons that compound \citep{wang2026mirage, pushkin2026lead, anand2026periodic}. \citet{hou2025focus} quantify the accuracy cliff on repetitive deterministic tasks of the kind we use. Our intervention targets this cliff without changing the number of calls.
+\paragraph{Attention heads.} Induction heads implement in-context copying \citep{olsson2022induction}, and causal head gating assigns roles to heads by intervention \citep{nam2025headgating}. We characterize the marker-attending heads and block them from the markers.
 
-\paragraph{Decomposition, memory, tokenization, and formatting.} Least-to-most prompting \citep{zhou2023leasttomost}, program-of-thoughts \citep{chen2023pot}, and scratchpads \citep{nye2021scratchpad} decompose computation; Transformer-XL \citep{dai2019transformerxl}, recurrent memory \citep{bulatov2022rmt}, landmark tokens \citep{mohtashami2023landmark}, dynamic chunking \citep{hwang2025hnet}, and learned context management \citep{kontonis2026memento} build segmentation or memory into the model. Formatting, tokenization, and positional cues change arithmetic accuracy \citep{nogueira2021arithmetic, shen2023positional, duan2023interpolation}. Content-free markers sit at the cheap end of this spectrum, and, as we show, they act partly as a tokenization intervention.
+\paragraph{Long-sequence failure.} Models use the middle of long contexts poorly \citep{liu2024lost}, make sparse but systematic errors on flip-flop state tracking \citep{liu2023flipflop}, and fail long-horizon tasks for reasons that compound \citep{wang2026mirage, pushkin2026lead, anand2026periodic}. \citet{hou2025focus} quantify the accuracy cliff on repetitive deterministic tasks of the kind we use. The tokenization-independent benefit we find is a long-sequence effect of this kind.
+
+\paragraph{Decomposition and memory.} Least-to-most prompting \citep{zhou2023leasttomost}, program-of-thoughts \citep{chen2023pot}, and scratchpads \citep{nye2021scratchpad} decompose computation; Transformer-XL \citep{dai2019transformerxl}, recurrent memory \citep{bulatov2022rmt}, landmark tokens \citep{mohtashami2023landmark}, dynamic chunking \citep{hwang2025hnet}, and learned context management \citep{kontonis2026memento} build segmentation or memory into the model. Content-free markers sit at the cheap end of this spectrum.
 
 \paragraph{Benchmarks.} Our tasks are generated fresh for every trial, following the contamination-resistant approach of BeyondBench \citep{srivastava2025beyondbench}. External checks use ProcBench \citep{fujisawa2024procbench}, the copying task of \citet{jelassi2024repeat}, and CLRS-Text \citep{markeeva2024clrstext}.
 
@@ -79,26 +77,24 @@ The rule that follows for practitioners is short: place markers so that no posit
 \section{Setup}
 \label{sec:setup}
 
-\subsection{Tasks}
+\subsection{Tasks and formats}
 
-Every task maps an input string of length $N$ to an output string of the same length under a deterministic rule stated fully in the prompt (Table~\ref{tab:tasks}). In \emph{position-local} tasks, output $y_i$ depends only on input $x_i$. In \emph{one-step dependency} tasks, $y_i$ also depends on $x_{i-1}$. In the \emph{windowed} task, $y_i$ depends on $x_{i-2}, x_{i-1}, x_i$. For dependency tasks, the first position is copied as-is. Inputs are sampled uniformly from the alphabet with a deterministic seed per (length, density, alphabet, trial), so every model sees the same inputs.
+Every task maps an input string of length $N$ to an output string of the same length under a deterministic rule stated fully in the prompt (Table~\ref{tab:tasks}). In \emph{position-local} tasks, output $y_i$ depends only on input $x_i$. In \emph{one-step dependency} tasks, $y_i$ also depends on $x_{i-1}$; in the \emph{windowed} task, on $x_{i-2}, x_{i-1}, x_i$. For dependency tasks, the first position is copied as-is. Inputs are sampled uniformly with a deterministic seed per (task, length, spacing, alphabet size, trial), so every model sees the same inputs. \task{copy\_previous} requires no computation, only a one-step lookback, so any harm from markers cannot be blamed on arithmetic; \task{sliding\_window\_max} replaces a cumulative running maximum, whose output saturates as $N$ grows.
 
-The dependency tasks separate dependency from difficulty. \task{copy\_previous} requires no computation at all, only a one-step lookback, so any harm from markers cannot be blamed on arithmetic. \task{sliding\_window\_max} replaces a cumulative running maximum, whose output saturates at the alphabet's top symbol as $N$ grows; a sliding window stays informative at every length.
-
-The position-local tasks use letters and the dependency tasks use digits, and the two tokenize differently: on every model we test, 48 random letters encode to 25 to 29 tokens without markers and to one token per character with a marker after each letter, whereas 48 digits encode to one token per character either way. We therefore also run digit versions of the three position-local tasks (\task{\_digits}), which are exact relabelings: same seeds, same mappings, same prompts, with $0, 1, 2, \dots$ in place of $A, B, C, \dots$ (verified identical up to relabeling in every cell).
+The position-local tasks are posed in three formats. In the \emph{letter} format (the default), letters are written contiguously, and tokenizers merge them: on every model we test, 48 random letters encode to 23 to 32 tokens without markers and to one token per letter with a marker after each letter. In the \emph{spaced} format, the same letters are separated by single spaces and the model is asked to answer in the same format; 48 spaced letters encode to exactly 48 tokens on every model, with or without markers. In the \emph{digit} format, the letters are relabeled as digits ($A \to 0$, $B \to 1$, \dots), which every tokenizer we test encodes one per character. Both controls are exact transformations of the letter tasks: same seeds, same positions, same rule and prompt wording (verified in every cell). The dependency tasks use digits throughout. One caveat on \task{conditional\_shift}: its rule depends on a symbol's position in the alphabet, which for digits equals the digit itself, so its digit version is easier.
 
 \begin{table}[t]
 \centering
 \small
-\caption{Tasks. $A$ = alphabet size, $M$ = modulus. Lengths $N \in \{4, 8, 16, 32, 64\}$ for all tasks (\task{cyclic\_shift} also 128 and 256; selected Qwen2.5-32B analyses add 128).}
+\caption{Tasks. $A$ = alphabet size, $M$ = modulus. Lengths $N \in \{4, 8, 16, 32, 64\}$. Position-local tasks are run with letters, spaced letters, and digits; dependency tasks use digits.}
 \label{tab:tasks}
 \begin{tabular}{llll}
 \toprule
 Task & Tier & Rule & Axis \\
 \midrule
-\task{cyclic\_shift} & position-local & next letter in the alphabet, wrapping & $A \in \{2,4,8\}$ \\
+\task{cyclic\_shift} & position-local & next symbol in the alphabet, wrapping & $A \in \{2,4,8\}$ \\
 \task{random\_permutation} & position-local & fixed arbitrary substitution (a derangement) & $A \in \{2,4,8\}$ \\
-\task{conditional\_shift} & position-local & letters at even alphabet positions forward, odd back & $A \in \{2,4,8\}$ \\
+\task{conditional\_shift} & position-local & symbols at even alphabet positions forward, odd back & $A \in \{2,4,8\}$ \\
 \midrule
 \task{copy\_previous} & one-step & $y_i = x_{i-1}$ & binary \\
 \task{running\_xor} & one-step & $y_i = x_i \oplus x_{i-1}$ & binary \\
@@ -110,166 +106,147 @@ Task & Tier & Rule & Axis \\
 
 \subsection{The marker intervention}
 
-In the marker condition (``Bounds''), a \texttt{|} is inserted after every $k$ input characters, with $k \in \{1, 2, 4, 8, 16\}$ (density $1/k$); only $k < N$ is used. The expected output is the ground truth computed on the continuous, marker-free sequence, with markers spliced in at the same positions. The prompt states the rule, then instructs: \emph{``The input contains vertical bars (|). These are structural boundaries. DO NOT transform them. Copy them exactly to the output.''} The no-marker baseline (``Base'') uses the identical prompt, including that instruction; the only difference between conditions is whether markers appear in the input. Example prompts are in Appendix~\ref{app:prompts}. Runs also included $k=3$, which we exclude to keep the density grid at powers of two; Appendix~\ref{app:dose} reports how pooled results change with it.
-
-Markers interrupt a dependency only visually: the model still needs $x_{i-1}$ when a marker sits between $x_{i-1}$ and $x_i$. Section~\ref{sec:reset} removes the dependency itself.
+In the marker condition (``Bounds''), a \texttt{|} is inserted after every $k$ input characters, with $k \in \{1, 2, 4, 8, 16\}$; only $k < N$ is used. The expected output is the ground truth computed on the continuous, marker-free sequence, with markers spliced in at the same positions. The prompt states the rule, then instructs: \emph{``The input contains vertical bars (|). These are structural boundaries. DO NOT transform them. Copy them exactly to the output.''} The no-marker baseline (``Base'') uses the identical prompt, including that instruction; the only difference between conditions is whether markers appear in the input. Example prompts are in Appendix~\ref{app:prompts}. Runs also included $k=3$, which we exclude to keep the spacing grid at powers of two.
 
 \subsection{Models and decoding}
 
-Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-Instruct-v0.3 \citep{jiang2023mistral}, and Phi-3.5-mini-instruct \citep{abdin2024phi3}, run locally in bfloat16 with each model's chat template and greedy decoding, with a generation budget of $1.5N + 20$ new tokens, or $2N + 20$ at $k = 1$, where a correct marked answer is $2N - 1$ tokens. (The $k = 1$ cells at $N \ge 64$ were first generated under the smaller budget, which cut them off, and then regenerated under the larger one; with greedy decoding the new outputs extend the old ones, except for Mistral, Phi, and Qwen2.5-7B on two tasks, whose original runs used a different GPU model and diverge after a shared prefix with the same accuracy over it.) Two current-generation models complete the set: Qwen3.8-27B \citep{qwen2026qwen38} and Gemma-4-31B-it \citep{gemma2026gemma4}, run the same way with thinking disabled in their chat templates. Qwen3.8-27B is a hybrid architecture: 48 of its 64 layers use Gated DeltaNet linear attention \citep{yang2025gated} and only 16 use softmax attention. Gemma-4-31B-it uses softmax attention in every layer (50 sliding-window layers and 10 global layers). The closed model is Gemini 3.5 Flash \citep{gemini35flash}, queried through its API with the same prompts and seeds (the request for \texttt{gemini-2.5-flash} resolved to \texttt{gemini-3.5-flash}). Qwen2.5-32B is our primary model for mechanism experiments.
+Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-Instruct-v0.3 \citep{jiang2023mistral}, Phi-3.5-mini-instruct \citep{abdin2024phi3}, Qwen3.8-27B \citep{qwen2026qwen38}, and Gemma-4-31B-it \citep{gemma2026gemma4}, run locally in bfloat16 with each model's chat template (thinking disabled for Qwen3.8 and Gemma 4) and greedy decoding. Qwen3.8-27B is a hybrid architecture: 48 of its 64 layers use Gated DeltaNet linear attention \citep{yang2025gated} and only 16 use softmax attention; Gemma-4-31B-it uses softmax attention in every layer (50 sliding-window and 10 global layers). The generation budget is $1.5N + 20$ new tokens, or $2N + 20$ at $k = 1$, where a correct marked answer is $2N - 1$ tokens. (The $k = 1$ cells at $N \ge 64$ were first generated under the smaller budget, which cut them off, and then regenerated; with greedy decoding the new outputs extend the old ones, except for Mistral, Phi, and Qwen2.5-7B on two tasks, whose original runs used a different GPU model and diverge after a shared prefix with the same accuracy over it.) The closed model is Gemini 3.5 Flash \citep{gemini35flash}, queried through its API with the same prompts and seeds; it was run on the letter and dependency tasks but not on the two controls. Qwen2.5-32B is our primary model for head-level experiments.
 
 \subsection{Metrics and statistics}
 
-Token accuracy (TAR) is the fraction of output positions that match the ground truth after stripping markers from both sides and clipping the prediction to the ground-truth length; sequence accuracy (SAR) is exact match. Marker placement is never scored.
+Token accuracy (TAR) is the fraction of output positions that match the ground truth after stripping markers and spaces from both sides and clipping the prediction to the ground-truth length. Marker placement is never scored.
 
-\paragraph{Per-position accuracy.} For a marker run with spacing $k$, output position $i$ (0-indexed, markers stripped) is \emph{post-marker} if $i > 0$ and $i \bmod k = 0$, i.e., it is the first position after a marker, and \emph{within-segment} otherwise. We compare each class with the no-marker run's accuracy at the same position indices, which controls for accuracy varying along the sequence (post-marker positions sit later in the sequence on average than all positions do). Per-position results pool $N \in \{4, \dots, 64\}$, $k \in \{2, 4, 8, 16\}$ ($k = 1$ has no within-segment positions), and alphabet or modulus values; the unit for uncertainty is the generation, and intervals are 95\%.
+\paragraph{Pooled effects.} A pooled effect is $\Delta = \overline{\mathrm{TAR}}_{\text{Bounds}} - \overline{\mathrm{TAR}}_{\text{Base}}$ over $N \le 64$, $k \in \{1, 2, 4, 8, 16\}$, and alphabet or modulus values, with $z = \Delta / \sqrt{\mathrm{SE}_{\text{Base}}^2 + \mathrm{SE}_{\text{Bounds}}^2}$. Because the controls make strong models near ceiling, we also report the \emph{share of remaining errors removed}, $\Delta / (1 - \overline{\mathrm{TAR}}_{\text{Base}})$. Open models use 20 to 80 trials per cell (Appendix~\ref{app:trials}); Gemini uses 3. We call a pooled cell significant at $|z| \ge 3.38$, the Bonferroni-corrected two-sided $p < 0.05$ across the 70 cells of Figure~\ref{fig:split}.
 
-\paragraph{Pooled effects.} A pooled effect is $\Delta = \overline{\mathrm{TAR}}_{\text{Bounds}} - \overline{\mathrm{TAR}}_{\text{Base}}$ over $N \le 64$, $k \in \{1, 2, 4, 8, 16\}$, and alphabet or modulus values, with $z = \Delta / \sqrt{\mathrm{SE}_{\text{Base}}^2 + \mathrm{SE}_{\text{Bounds}}^2}$. Open models use 20 to 80 trials per cell (Appendix~\ref{app:trials}); Gemini uses 3. Figure~\ref{fig:split} contains 70 cells; we mark $|z| \ge 3.38$, the Bonferroni-corrected two-sided $p < 0.05$ across them.
+\paragraph{Per-position accuracy.} For a marker run with spacing $k$, output position $i$ (0-indexed, markers stripped) is \emph{post-marker} if $i > 0$ and $i \bmod k = 0$, and \emph{within-segment} otherwise. Each class is compared with the no-marker run's accuracy at the same position indices, which controls for accuracy varying along the sequence. Per-position results pool $N \le 64$, $k \in \{2, 4, 8, 16\}$ ($k = 1$ has no within-segment positions), and alphabet or modulus values; the unit for uncertainty is the generation, and intervals are 95\%.
 
 % =====================================================================
-\section{A marker anchors the position after it, unless that position needs the one before}
-\label{sec:position}
+\section{On letter strings, markers mostly re-tokenize}
+\label{sec:tokenization}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_three_formats.pdf}
+\caption{Token accuracy without markers (hollow) and with markers (filled) on the three position-local tasks in three formats: contiguous letters (blue), spaced letters (orange), and digits (green). Mean over tasks; $N \le 64$, $k \in \{1, \dots, 16\}$; whiskers are 95\% intervals. Spacing the letters without markers beats markers on contiguous letters at every model. With tokenization fixed, markers still help the stronger models.}
+\label{fig:formats}
+\end{figure}
+
+Figure~\ref{fig:formats} compares the three formats. On contiguous letters, markers raise accuracy at every model: by $+0.22$ at Qwen3.8-27B, $+0.20$ at Qwen2.5-32B, $+0.18$ at Gemma-4-31B, $+0.17$ at Qwen2.5-14B, $+0.09$ at Qwen2.5-7B, and $+0.04$ and $+0.03$ at Mistral-7B and Phi-3.5-mini (all 21 cells positive, 16 significant), and by $+0.15$ on Gemini. But simply spacing the letters, with no markers, helps more: $+0.31$ at Qwen3.8, $+0.30$ at Qwen2.5-32B, $+0.29$ at Gemma 4, $+0.28$ at Qwen2.5-14B, $+0.18$ at Qwen2.5-7B, $+0.09$ at Mistral, and $+0.06$ at Phi. At every model, spaced letters without markers are more accurate than contiguous letters with markers (for example, 0.83 against 0.74 at Qwen2.5-32B and 0.90 against 0.79 at Gemma 4). Without markers, the letter tasks are hard for these models largely because of how letters are tokenized: the same tasks with digits are solved at 0.82 to 0.94 by the four stronger models, against 0.47 to 0.61 with contiguous letters.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig1_per_position.pdf}
-\caption{Per-position accuracy, every model. For each model: accuracy within a segment (orange) and at the position right after a marker (blue), each next to the no-marker run's accuracy at the same position indices (hollow gray). Mean over the tasks in each block; $N \le 64$, $k \in \{2,4,8,16\}$; whiskers are 95\% intervals. Top: on position-local tasks, the post-marker position gains the most at every model. Bottom: on dependency tasks, the same position loses at every model, while within-segment positions gain in the stronger models. \pending{A digit-alphabet position-local panel will be added when those runs finish.}}
+\caption{Per-position accuracy, every model. For each model: accuracy within a segment (orange) and at the position right after a marker (blue), each next to the no-marker run's accuracy at the same position indices (hollow gray). Mean over the tasks in each block; $N \le 64$, $k \in \{2,4,8,16\}$; whiskers are 95\% intervals. Top: on contiguous letters, the post-marker position gains the most. Middle: with spaced letters it is no better than the rest of its segment. Bottom: on dependency tasks it loses at every model (Section~\ref{sec:blindspot}). Gemini was not run on spaced letters.}
 \label{fig:position}
 \end{figure}
 
-Figure~\ref{fig:position} shows the central result.
-
-\paragraph{Position-local tasks: the post-marker position is the most accurate.} On the three letter tasks, the position right after a marker beats the no-marker run at the same positions in all 24 task--model cells, with every 95\% interval clear of zero. The gain is $+0.34$ at Qwen2.5-32B and Qwen3.8-27B, $+0.32$ on Gemini, $+0.29$ at Gemma-4-31B, $+0.23$ at Qwen2.5-14B, $+0.14$ at Qwen2.5-7B, and $+0.09$ and $+0.07$ at Mistral-7B and Phi-3.5-mini (means over tasks; Appendix Table~\ref{tab:perpos}). It also beats the within-segment positions of the same marker runs in 22 of 24 cells; the two exceptions are \task{conditional\_shift} at Qwen2.5-7B and 14B, where the two classes are about equally accurate. Within-segment positions gain less ($+0.11$ to $+0.20$ at the Qwen2.5-14B and larger models, Gemma, and Gemini; $+0.07$ at Qwen2.5-7B) and not at all at Mistral and Phi, so at the two weakest models the entire benefit sits at the position after the marker.
-
-The gain is concentrated next to the marker and decays with distance from it. With a marker every 16 characters, Qwen2.5-32B is correct on 0.60 of the positions right after a marker and on 0.41 of the positions 8 to 15 characters after it; Qwen3.8-27B falls from 0.68 to 0.47 and Gemini from 0.74 to 0.46 (Appendix Table~\ref{tab:distance}).
-
-\paragraph{Dependency tasks: the same position fails.} On the four dependency tasks, the position right after a marker is below the no-marker run at the same positions in all 31 task--model cells. The loss grows with model strength: $-0.03$ to $-0.06$ at Phi, Mistral, and Qwen2.5-7B; $-0.15$ at Qwen2.5-14B and 32B; $-0.19$ at Qwen3.8; $-0.26$ at Gemma 4; and $-0.43$ on Gemini, which is near ceiling without markers. At the stronger models the post-marker position is close to chance: on \task{running\_xor} (chance 0.5) it is correct 0.51 to 0.54 of the time at Qwen2.5-14B and 32B, Qwen3.8, Gemma 4, and Gemini. The failure is confined to that position. With a marker every 16 characters, accuracy one position later is back at 0.85 (Qwen2.5-32B), 0.70 (Qwen3.8), 0.82 (Gemma 4), and 1.00 (Gemini).\footnote{For \task{sliding\_window\_max}, the second position after a marker also needs input from before it; we count it as within-segment, which makes the dependency-task estimates for that class conservative.}
-
-Meanwhile, within-segment positions of dependency tasks still gain at the stronger models: $+0.07$ at Qwen2.5-32B and $+0.05$ at Gemma 4 and Gemini. Because these tasks use digits, which tokenize one character per token with or without markers, this within-segment gain is not a tokenization effect.
-
-\paragraph{External tasks.} Pooled over positions, the pattern holds on tasks we did not design (Appendix Tables~\ref{tab:external} and~\ref{tab:gemini}, Figures~\ref{fig:external} and~\ref{fig:geminifig}). On ProcBench's per-character substitution task \citep{fujisawa2024procbench}, markers help at both scales tested \pending{(numbers from the regenerated grid; the original ProcBench generator drew its substitution table in a process-dependent order, so its prompts could not be rebuilt; fixed and rerun)}. On string copying \citep{jelassi2024repeat}, where base accuracy is above 0.97, the effect is null, as expected with nothing to anchor. On CLRS-Text's running-minimum algorithm \citep{markeeva2024clrstext}, where every position depends on the whole prefix, markers hurt wherever the model can do the task: $-0.25$ ($z = 5.1$) at Qwen2.5-32B and $-0.34$ ($z = 7.3$) on Gemini. Our one naturalistic position-local task, tagging each letter as vowel or consonant from pretrained knowledge, shows no benefit at Qwen2.5-32B ($+0.012$, $z = 0.5$); at 7B the baseline is at chance (0.44 on a binary task), so that cell is not interpretable.
+The per-position view (Figure~\ref{fig:position}) shows how. On contiguous letters, the position right after a marker beats the no-marker run at the same positions in all 24 task--model cells, by $+0.07$ (Phi) to $+0.34$ (Qwen2.5-32B and Qwen3.8), and it beats the within-segment positions of the same marker runs in 22 of 24 cells. A marker gives the following letter its own token. With spaced letters or digits, where every symbol is already its own token, that advantage is gone: the post-marker position beats the within-segment positions in only 10 of 21 cells in each control, and the two classes are within 0.04 of each other at every model, with the post-marker position slightly the lower of the two at Qwen2.5-7B (Appendix Table~\ref{tab:perpos}). The spacing profile tells the same story (Figure~\ref{fig:profile}b): on contiguous letters at $N = 64$, the gain is largest with a marker after every letter ($+0.47$ at the four stronger models) and falls steadily as markers get sparser ($+0.09$ at $k = 16$), as expected if markers help by splitting letter runs into shorter tokens. And the letter gain is present even on four-letter strings ($+0.15$), where the controls show no marker effect at all.
 
 % =====================================================================
-\section{Task-level effects are a mixture of two per-position effects}
-\label{sec:pooled}
+\section{Independent of tokenization, markers help strong models on long sequences}
+\label{sec:segmentation}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/fig_profile.pdf}
+\caption{The marker effect (Bounds $-$ Base) at the four stronger models (Qwen2.5-14B and 32B, Qwen3.8-27B, Gemma-4-31B), mean over the three position-local tasks. (a) By sequence length, pooled over spacing. (b) By marker spacing at $N = 64$. Whiskers are 95\% intervals over the 12 model--task pairs. The two tokenization controls (spaced letters, digits) agree: no effect up to $N = 16$, a large effect at $N = 64$, and little dependence on spacing. Contiguous letters show a different signature: a gain at every length that is largest for the densest markers.}
+\label{fig:profile}
+\end{figure}
+
+With tokenization fixed, markers still help the stronger models. With spaced letters, the gain is $+0.09$ at Qwen2.5-32B, $+0.07$ at Qwen3.8, $+0.06$ at Qwen2.5-14B, and $+0.04$ at Gemma 4, which removes 62\%, 54\%, 28\%, and 71\% of their remaining errors; with digits, $+0.04$ to $+0.07$, removing 28\% to 83\%. These effects are significant in 9 of 12 spaced-letter cells and 10 of 12 digit cells at these four models. The three smallest models show no such gain: with spaced letters, $-0.03$ at Qwen2.5-7B, $0.00$ at Mistral, and $-0.02$ at Phi, none significant.
+
+This benefit is a long-sequence effect (Figure~\ref{fig:profile}a). Up to $N = 16$, the four stronger models are near ceiling in both controls (0.92 to 0.96 without markers) and markers change nothing. At $N = 32$, accuracy without markers starts to fall and markers add $+0.07$ to $+0.09$; at $N = 64$, where accuracy without markers is 0.59 (spaced letters) and 0.68 (digits), markers add $+0.27$ and $+0.22$. In the strongest case, Qwen2.5-32B on \task{random\_permutation} with eight digits at $N = 64$, accuracy rises from 0.41 to between 0.87 and 0.99 with any spacing from every 2 to every 16 characters. The gain depends little on spacing (Figure~\ref{fig:profile}b): at $N = 64$ it is $+0.21$ to $+0.32$ for spaced letters and $+0.17$ to $+0.26$ for digits across all spacings, slightly weaker at the extremes (a marker after every character, which doubles the length of the output, or after every 16).
+
+The gain is spread over the whole segment rather than concentrated after the marker (Figure~\ref{fig:position}, middle). The same tokenization-independent gain appears inside segments on the dependency tasks, which use digits: within-segment positions gain $+0.07$ at Qwen2.5-32B and $+0.05$ at Gemma 4 and Gemini over the no-marker run at the same positions. A marker every few characters appears to help a strong model keep its place in a long sequence. Section~\ref{sec:mechanism} shows that the heads that attend most to markers do not carry this effect, and Qwen3.8-27B, whose layers are mostly linear attention, shows it as strongly as any model.
+
+% =====================================================================
+\section{The position after a marker is blind to the input before it}
+\label{sec:blindspot}
+
+On the four dependency tasks, the position right after a marker is below the no-marker run at the same positions in all 31 task--model cells (Figure~\ref{fig:position}, bottom; these tasks use digits, so tokenization plays no role). The loss grows with model strength: $-0.03$ to $-0.06$ at Phi, Mistral, and Qwen2.5-7B; $-0.15$ at Qwen2.5-14B and 32B; $-0.19$ at Qwen3.8; $-0.26$ at Gemma 4; and $-0.43$ on Gemini, which is near ceiling without markers. At the stronger models the post-marker position is close to chance: on \task{running\_xor} (chance 0.5) it is correct 0.51 to 0.54 of the time at Qwen2.5-14B and 32B, Qwen3.8, Gemma 4, and Gemini. The failure is confined to that position. With a marker every 16 characters, accuracy one position later is back at 0.85 (Qwen2.5-32B), 0.70 (Qwen3.8), 0.82 (Gemma 4), and 1.00 (Gemini).\footnote{For \task{sliding\_window\_max}, the second position after a marker also needs input from before it; we count it as within-segment, which makes the dependency-task estimates for that class conservative.}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig1_split_heatmap.pdf}
-\caption{Pooled change in token accuracy when markers are added (Bounds $-$ Base), every task and model. Pooled over $N \in \{4,\dots,64\}$, densities $k \in \{1,2,4,8,16\}$, and alphabet or modulus values. $^*$: $|z| \ge 3.38$ (Bonferroni across the 70 cells). Blue: markers help; red: markers hurt; ---: not run. Top: position-local tasks. Middle: dependency tasks. Bottom: dependency tasks rebuilt so the position after each marker needs nothing before it (Section~\ref{sec:reset}).}
+\caption{Pooled change in token accuracy when markers are added (Bounds $-$ Base), contiguous-letter position-local tasks and digit dependency tasks, every model. Pooled over $N \in \{4,\dots,64\}$, $k \in \{1,2,4,8,16\}$, and alphabet or modulus values. $^*$: $|z| \ge 3.38$ (Bonferroni across the 70 cells). Blue: markers help; red: markers hurt; ---: not run. Bottom: dependency tasks rebuilt so the position after each marker needs nothing before it (Section~\ref{sec:reset}).}
 \label{fig:split}
 \end{figure}
 
-Averaged over all positions, the effect of markers on a task (Figure~\ref{fig:split}) is a weighted mix of the two per-position effects: about a fraction $1/k$ of positions sit right after a marker, and the rest are within a segment. That mix explains the pooled picture.
+\paragraph{Pooled effects are a mixture.} Averaged over all positions (Figure~\ref{fig:split}), a dependency task's response to markers mixes this post-marker loss, on about a fraction $1/k$ of positions, with the within-segment gain of Section~\ref{sec:segmentation} on the rest. So the pooled sign depends on the balance: of 31 dependency cells, 10 are significantly negative and 3 significantly positive. Averaged over tasks, the effect is $-0.06$ at Qwen2.5-7B, 14B, and Gemini, $-0.05$ at Qwen3.8, $-0.02$ at Gemma 4, and between $-0.01$ and $+0.01$ at Qwen2.5-32B, Mistral, and Phi; \task{copy\_previous} is negative at all eight models. The mixture also explains why the pooled effect changes sign with length. Short sequences admit only dense spacings ($k < N$), so many of their positions sit right after a marker, while long sequences add sparse spacings and are where the within-segment gain is large. At Qwen2.5-32B, \task{running\_xor} goes from $-0.11$ at $N = 4$ to $+0.13$ at $N = 64$, and \task{running\_sum\_local} from $-0.05$ to $+0.14$; Gemma 4's \task{running\_sum\_local} goes from $-0.10$ at $N = 8$ to $+0.19$ at $N = 64$. Qwen3.8 is the one model where two dependency tasks gain on balance (\task{running\_xor} $+0.06$, \task{running\_sum\_local} $+0.09$): its post-marker positions fail as at every model, but its within-segment and long-sequence gains are larger.
 
-On position-local tasks both classes gain, so all 24 cells are positive (18 significant after correction). Averaged over tasks, the gain is $+0.09$ at Qwen2.5-7B, $+0.17$ at 14B, $+0.20$ at 32B, $+0.22$ at Qwen3.8-27B, $+0.18$ at Gemma-4-31B, and $+0.15$ on Gemini, and only $+0.04$ at Mistral-7B and $+0.03$ at Phi-3.5-mini, whose within-segment positions do not gain.
-
-On dependency tasks the two classes pull in opposite directions, so the pooled sign depends on the balance. Of 31 cells, 10 are significantly negative after correction and 3 significantly positive. Averaged over tasks, the effect is $-0.06$ at Qwen2.5-7B, 14B, and Gemini, $-0.05$ at Qwen3.8, $-0.02$ at Gemma 4, and between $-0.01$ and $+0.01$ at Qwen2.5-32B, Mistral, and Phi. \task{copy\_previous} is negative at all eight models.
-
-The mix also explains why the pooled dependency effect changes sign with length. Short sequences admit only dense spacings ($k < N$), so a large share of their positions sit right after a marker; long sequences add sparse spacings, and within-segment gains grow as the no-marker baseline degrades. At Qwen2.5-32B, \task{running\_xor} goes from $-0.11$ at $N = 4$ to $+0.13$ at $N = 64$, and \task{running\_sum\_local} from $-0.05$ to $+0.14$; Gemma 4's \task{running\_sum\_local} goes from $-0.10$ at $N = 8$ to $+0.19$ at $N = 64$. A pooled statement such as ``markers cancel the benefit on dependency tasks'' describes no single length. What is stable is the gap between tiers: at Qwen2.5-32B, dependency tasks gain 0.20 to 0.22 less than position-local tasks at every length from 4 to 64.
-
-\paragraph{Current-generation models.} Qwen3.8-27B and Gemma-4-31B-it follow the same per-position pattern, and their pooled effects differ only in the balance. Qwen3.8 is the one model where two dependency tasks gain on balance (\task{running\_xor} $+0.06$, \task{running\_sum\_local} $+0.09$): its post-marker positions fail as at every model, but its within-segment and long-sequence gains are larger. A single model cannot tell us whether this comes from its hybrid architecture or from its training.
-
-% =====================================================================
-\section{How much of the benefit is tokenization?}
-\label{sec:tokenization}
-
-Without markers, a string of letters encodes to roughly half as many tokens as characters; a marker after each letter restores one token per character, and sparser markers split the string into shorter runs that merge less. A model that transforms one token at a time may simply find split letters easier, independent of anything the marker does as a boundary. Digits are one token per character with or without markers, so the digit versions of the position-local tasks remove this channel while keeping everything else identical.
-
-\pending{Results of the digit controls at all seven open models go here: pooled and per-position effects for letters versus digits, task by task. Preliminary evidence: in an earlier digit \task{cyclic\_shift} run at Qwen2.5-7B, the pooled gain was $+0.05$ to $+0.07$ at $N = 4$ to $32$, against $+0.18$ to $+0.23$ for letters, and the post-marker advantage largely disappeared. If the larger models show the same, the post-marker anchoring on letter tasks is mostly tokenization; if not, it is mostly the marker. The dependency tasks already show one marker effect that tokenization cannot explain: within-segment gains on digits at the stronger models (Section~\ref{sec:position}).}
-
-% =====================================================================
-\section{Redefining the post-marker position}
+\subsection{Redefining the post-marker position}
 \label{sec:reset}
 
-If the post-marker position fails on dependency tasks because it needs the input before the marker, then removing that need should repair exactly that position and leave the others alone. We rebuild each dependency task as a \emph{reset} variant: the position right after each marker is treated like the first position of the sequence, so the recurrence restarts at every marker and nothing before a marker is needed after it. The prompt states the new rule and gives a worked example (Appendix~\ref{app:prompts}). Lengths and densities match the originals. Reset variants were run at Qwen2.5-7B and 32B, Qwen3.8-27B, and Gemma-4-31B.
+If the post-marker position fails because it needs the input before the marker, removing that need should repair exactly that position and leave the others alone. We rebuild each dependency task as a \emph{reset} variant: the position right after each marker is treated like the first position of the sequence, so the recurrence restarts at every marker. The prompt states the new rule with a worked example (Appendix~\ref{app:prompts}). Reset variants were run at Qwen2.5-7B and 32B, Qwen3.8-27B, and Gemma-4-31B.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig_reset_per_position.pdf}
-\caption{Reset variants, per position. Top row: accuracy at the position right after a marker, with the dependency intact (hollow) and with the recurrence restarting at each marker (filled). Bottom row: the same for within-segment positions. Restarting the recurrence repairs the post-marker position and leaves the others nearly unchanged. Models: Qwen2.5-7B and 32B, Qwen3.8-27B, Gemma-4-31B; \task{sliding\_window\_max} was not run in reset form at 7B. $N \le 64$, $k \in \{2,4,8,16\}$; whiskers are 95\% intervals.}
+\caption{Reset variants, per position. Top row: accuracy at the position right after a marker, with the dependency intact (hollow) and with the recurrence restarting at each marker (filled). Bottom row: the same for within-segment positions. Models: Qwen2.5-7B and 32B, Qwen3.8-27B, Gemma-4-31B; \task{sliding\_window\_max} was not run in reset form at 7B. $N \le 64$, $k \in \{2,4,8,16\}$; whiskers are 95\% intervals.}
 \label{fig:reset}
 \end{figure}
 
-Figure~\ref{fig:reset} confirms the prediction. On \task{running\_xor}, \task{running\_sum\_local}, and \task{sliding\_window\_max} at the three larger models, the post-marker position rises from 0.28--0.62 to 0.92--1.00, while within-segment positions change by $-0.09$ to $+0.07$. Qwen2.5-7B moves the same way with smaller gains (\task{running\_xor} 0.41 to 0.62; \task{running\_sum\_local} 0.22 to 0.49).
+Figure~\ref{fig:reset} confirms the prediction. On \task{running\_xor}, \task{running\_sum\_local}, and \task{sliding\_window\_max} at the three larger models, the post-marker position rises from 0.28--0.62 to 0.92--1.00, while within-segment positions change by $-0.09$ to $+0.07$. Qwen2.5-7B moves the same way with smaller gains (\task{running\_xor} 0.41 to 0.62; \task{running\_sum\_local} 0.22 to 0.49). Two caveats bound what this shows. The reset rule makes the post-marker position easier by design (on \task{running\_xor} it becomes ``copy this digit''), so the experiment localizes the harm rather than showing a new benefit. And the reset prompt alone shifts no-marker accuracy by $-0.08$ to $+0.06$, so pooled reset effects compare different baselines (Appendix Table~\ref{tab:reset}); the per-position comparison uses marker runs only.
 
-Two caveats bound what this shows. First, the reset rule makes the post-marker position easier by design: on \task{running\_xor} it becomes ``copy this digit''. The experiment therefore localizes the harm to the positions whose input crosses a marker; it does not show that markers benefit the computation once the dependency is gone. Second, the reset prompt alone shifts no-marker accuracy by $-0.08$ to $+0.06$ (for example, $-0.04$ at Qwen2.5-32B on \task{running\_sum\_local}), so pooled reset effects compare different baselines (Appendix Table~\ref{tab:reset}). The per-position comparison above uses marker runs only and is not affected.
+\task{copy\_previous} behaves differently. Its post-marker position is also repaired (0.52--0.66 to 0.83--1.00), but its within-segment positions fall at Qwen3.8 ($-0.03$) and Gemma 4 ($-0.07$), and in the original task they lose accuracy at six of eight models. Because the output is a shifted copy of the input, an off-by-one slip at a marker can carry through the rest of the segment; we read this as desynchronization, a failure distinct from the post-marker loss.
 
-\task{copy\_previous} behaves differently. Its post-marker position is also repaired (0.52--0.66 to 0.83--1.00), but within-segment positions fall at Qwen3.8 ($-0.03$) and Gemma 4 ($-0.07$). Because the output is a shifted copy of the input, an off-by-one slip at a marker can carry through the rest of the segment; in the original task, too, \task{copy\_previous} loses accuracy at within-segment positions at six of eight models (Appendix Table~\ref{tab:perpos}). We read this as desynchronization, a failure distinct from the post-marker loss.
+\subsection{External tasks}
+
+On tasks we did not design (Appendix Tables~\ref{tab:external} and~\ref{tab:gemini}), the pattern holds. On CLRS-Text's running-minimum algorithm \citep{markeeva2024clrstext}, where every position depends on the whole prefix, markers hurt wherever the model can do the task: $-0.25$ ($z = 5.1$) at Qwen2.5-32B and $-0.34$ ($z = 7.3$) on Gemini. On ProcBench's per-character substitution task \citep{fujisawa2024procbench}, a position-local task, markers help ($+0.057$, $z = 2.6$ at Qwen2.5-7B; $+0.137$, $z = 4.5$ at 32B); its strings mix letters and digits, so part of this gain may be tokenization. On string copying \citep{jelassi2024repeat}, where accuracy without markers is above 0.97, the effect is null. Tagging each letter as a vowel or consonant from pretrained knowledge shows no benefit at Qwen2.5-32B ($+0.012$, $z = 0.5$); at 7B the baseline is at chance, so that cell is not interpretable.
 
 % =====================================================================
-\section{Mechanism in Qwen2.5: local heads attend to the adjacent marker}
+\section{What carries the effects? Marker-attending heads}
 \label{sec:mechanism}
 
-We analyze Qwen2.5-32B on \task{cyclic\_shift}, using the real letter tokenization of the prompts.
+In Qwen2.5, individual heads attend sharply from each position to the nearest marker (Appendix Figures~\ref{fig:mechanism} and~\ref{fig:heads32b}). For the ten heads with the most attention to markers at Qwen2.5-32B, the mean percentile on a previous-token test is 95 and on an induction-head test 31 (Appendix Table~\ref{tab:heads}); since heads selected for attending to an adjacent token will score high on a previous-token test, we read this only as ``these are local heads''. The total attention mass on markers rises with density, but so does the number of markers, so we do not claim markers are attention sinks in the sense of drawing more attention than content tokens.
 
-\begin{figure}[t]
+\begin{table}[t]
 \centering
-\includegraphics[width=\linewidth]{figures/fig2_mechanism_merged.pdf}
-\caption{Mechanism (Qwen2.5-32B). (a) Total attention mass on all marker tokens rises with density at every length (\task{cyclic\_shift}, $A=2$); the number of markers rises faster, so this is not evidence that individual markers draw more attention than content tokens. (b) The most marker-attending head (layer 21, head 1) attends from each position to an adjacent marker. (c) Masking the ten most marker-attending heads' attention to markers removes a growing share of the benefit as $N$ grows (0\% at $N \le 16$, 11\% at 32, 32\% at 64, 28\% at 128). (d) \task{copy\_previous} at $N=32$: mean attention from each output position to the input token it needs (top-10 heads) is 0.535 at $k=1$, 0.101 at $k=2$, and 0.278 at $k=8$, matching accuracy (Base 0.83; $k=1$: 0.88; $k=2$: 0.65; $k=8$: 0.84).}
-\label{fig:mechanism}
-\end{figure}
+\small
+\caption{Head ablation at Qwen2.5-32B (\task{random\_permutation}, $A = 8$, 20 trials per cell, pooled over $k \in \{2, 8\}$). ``Top 10'': the ten most marker-attending heads, chosen on held-out trials, are blocked from attending to markers (weights zeroed, rows renormalized). Controls: ten random heads blocked from markers, and the top ten blocked from as many random non-marker input tokens (sham). Share of gain removed is $(\text{Markers} - \text{blocked}) / (\text{Markers} - \text{No markers})$; ``Controls'' gives the larger of the two control shares.}
+\label{tab:ablation}
+\input{tables/ablation_32b.tex}
+\end{table}
 
-\paragraph{Heads attend from each position to the adjacent marker.} Individual heads attend sharply from each position to the nearest marker (Figure~\ref{fig:mechanism}b; three such heads in Appendix Figure~\ref{fig:heads32b}), and attention entropy is higher with markers at nearly every layer (Appendix Figure~\ref{fig:attnmech}). The total attention mass on markers rises with density (Figure~\ref{fig:mechanism}a), but so does the number of markers, so we do not claim markers are attention sinks in the sense of drawing more attention than content tokens \citep{xiao2024streaming, gu2024sink}. The same attention pattern appears with a digit alphabet (Appendix Figure~\ref{fig:digits}).
+\paragraph{Blocking those heads removes little of the gain.} We block the ten most marker-attending heads from the markers during generation and compare with two controls (Table~\ref{tab:ablation}). On digits at Qwen2.5-32B, where markers raise accuracy from 0.41 to 0.96 at $N = 64$, blocking removes 1\% of the gain (paired drop $+0.003 \pm 0.005$). On spaced letters it removes 13\% at $N = 64$, and on contiguous letters 19\% (paired drops $+0.034 \pm 0.030$ and $+0.032 \pm 0.021$), against at most 5\% for either control. At $N = 32$ it removes 7\% or less in every format. The tokenization-independent benefit therefore does not run through these heads, and they carry only a modest share of the gain on letters. An earlier ablation on contiguous letters (\task{cyclic\_shift}, $A = 2$, $k = 2$) with heads re-identified per length removed 0\% to 32\% of the gain at Qwen2.5-32B and up to 74\% at Qwen2.5-7B (Appendix Figure~\ref{fig:ablation7b32b}); at 7B the gains in the new experiment are too small to read (Appendix Table~\ref{tab:ablation7b}). Blocking ten of the model's 2,560 heads is a narrow intervention, and the benefit may be distributed; what we can say is that it is not localized in the heads that attend to markers most.
 
-\paragraph{The heads are local.} For the ten heads with the most attention to markers, the mean percentile within the model on a previous-token test is 95 (none below 83), and on an induction-head test 31 (none above 65; Appendix Table~\ref{tab:heads}). Heads selected for attending to an adjacent token will tend to score high on a previous-token test, so we read this as ``these are local heads'' rather than as independent evidence of a positional role.
+\paragraph{The same heads draw attention away from a needed input.} On \task{copy\_previous} at $N=32$, a marker after every character keeps the marker pattern aligned with the one-step lookback, and attention from each output position to the input it needs is high (0.535). At $k=2$, every other lookback crosses a marker; attention to the needed token falls to 0.101 and accuracy drops from 0.88 to 0.65, below the no-marker baseline of 0.83. At $k=8$ both recover (Appendix Figure~\ref{fig:mechanism}d). This is the attention-level counterpart of the blind spot.
 
-\paragraph{Masking their attention to markers removes part of the gain.} At each length, we mask the attention from all positions to marker tokens in the ten most marker-attending heads, re-identified per length. At Qwen2.5-32B this removes 0\%, 0\%, 11\%, 32\%, and 28\% of the marker benefit at $N = 8, 16, 32, 64, 128$; at Qwen2.5-7B it removes 2\%, 35\%, 33\%, 63\%, and 74\% (Appendix Figure~\ref{fig:ablation7b32b}). At 7B, two controls rule out a generic ablation cost: at $N = 16$ to $64$, masking ten random heads changes TAR by at most 0.006, and masking the same ten heads at random non-marker positions by at most 0.023, against losses of 0.12 to 0.16 from the real ablation. These controls have not been run at 32B. At 32B, most of the benefit survives the ablation, so other pathways, including tokenization (Section~\ref{sec:tokenization}), must carry it.
-
-\paragraph{The same heads draw attention away from a needed input.} On \task{copy\_previous} at $N=32$, a marker after every character keeps the marker pattern aligned with the one-step lookback, and attention from each output position to the input it needs is high (0.535, Figure~\ref{fig:mechanism}d). At $k=2$, every other lookback crosses a marker; attention to the needed token falls to 0.101 and accuracy drops from 0.88 to 0.65, below the no-marker baseline of 0.83. At $k=8$, fewer lookbacks cross a marker and both recover. This is the attention-level counterpart of the post-marker failure in Section~\ref{sec:position}.
-
-\paragraph{Errors recover after markers.} On \task{cyclic\_shift} at Qwen2.5-32B, after a wrong output the next position is correct 89\% of the time when it comes right after a marker, against 50\% (chance for this binary alphabet) elsewhere at $N=16$, with the gap closing by $N = 128$ (Appendix Figure~\ref{fig:errorcontainment}). On a full-prefix sum task, where restarting locally is never valid, there is no consistent advantage.
-
-\paragraph{Scope.} Attention analyses are on Qwen2.5 only. In 48 of Qwen3.8-27B's 64 layers, Gated DeltaNet linear attention \citep{yang2025gated} replaces softmax attention, and attention sinks arise at least partly from softmax normalization: they do not emerge when it is removed, in models up to 1B parameters \citep{gu2024sink}. Only Qwen3.8's 16 softmax layers can host the head-level mechanism above, yet its post-marker gain ($+0.34$) is as large as any model's. Either those layers suffice, or the anchoring also works through a route that does not rely on attention to the marker, such as tokenization or position tracking in a recurrent state. Locating and masking marker-attending heads in Qwen3.8's softmax layers is the natural next test.
+\paragraph{A model with little softmax attention.} In 48 of Qwen3.8-27B's 64 layers, Gated DeltaNet linear attention \citep{yang2025gated} replaces softmax attention, and attention sinks arise at least partly from softmax normalization: they do not emerge when it is removed, in models up to 1B parameters \citep{gu2024sink}. Qwen3.8 nonetheless shows both the tokenization-independent gain (54\% of remaining spaced-letter errors removed) and the blind spot as strongly as any model, consistent with neither depending on attention concentrated on the marker.
 
 % =====================================================================
 \section{Practical considerations}
 \label{sec:practical}
 
-\paragraph{Markers help models stop, so sparse markers cost less than none.} Generation speed is constant across conditions (14 to 15 tokens/s at Qwen2.5-32B), so wall-clock time tracks token count (Appendix Table~\ref{tab:wallclock}). Without markers, models often do not stop at the end of the sequence: on letter tasks at $N = 64$ to 128, 18\% to 95\% of no-marker outputs run past the required length (Qwen2.5-32B, Qwen3.8, Gemma 4), against 0\% to 13\% with a marker every 8 characters. At $N = 128$, Qwen2.5-32B generates 169 tokens on average without markers and 76 with a marker every 8 characters, so sparse markers take 0.44 times as long as none (0.66 times at $N = 64$). The densest markers ($k=1$) take 3.4 times as long as none at $N=8$, falling to at least 1.3 times at $N=128$ (the $k=1$ timings at $N \ge 64$ were taken under the original, smaller budget that cut those outputs off, so the true ratio is somewhat higher). True divide-and-conquer, with one call per segment (Appendix Figure~\ref{fig:dnc}), holds accuracy nearly flat (TAR 0.93 to 0.92 from $N=8$ to 128) but costs about three times the wall-clock of the marker condition at $N=64$ to 128. Markers recover much of that accuracy (0.87 to 0.75, against a no-marker baseline of 0.86 to 0.51) at close to the baseline's cost.
+\paragraph{Separate characters first.} For letter strings, spacing the characters beats inserting markers at every model we test, and costs less: 48 spaced letters are 48 tokens, against 95 with a marker after every letter. On top of spacing, markers add a further gain at the stronger models on long sequences.
 
-\paragraph{Density should fall as sequences grow.} The density that maximizes accuracy shifts toward sparser markers with length (Figure~\ref{fig:density}). On \task{cyclic\_shift} at Qwen2.5-32B, a marker after every character is best through $N = 32$ and a marker every second character from $N = 64$ (0.88 against 0.82 at $N = 64$, with neither output cut off). \task{copy\_previous} prefers dense markers through $N = 16$ and one marker per 8 to 16 characters from $N = 32$, consistent with the per-position account: dense markers put more positions right after a marker, which this task cannot afford. We present this shift descriptively. A quadratic fit in density beats a linear one on held-out densities in only 42\% to 50\% of position-local curves and in none of 28 dependency-task curves (Appendix Table~\ref{tab:cv}).
+\paragraph{Use sparse markers on long sequences.} The tokenization-independent gain appears from $N \approx 32$ and depends little on spacing, so a marker every 4 to 16 characters captures it at little cost. Markers also help models stop at the right length. Without markers, on contiguous-letter tasks at $N = 64$ to 128, 18\% to 95\% of outputs run past the required length (Qwen2.5-32B, Qwen3.8, Gemma 4), against 0\% to 13\% with a marker every 8 characters. Because generation speed is constant across conditions (14 to 15 tokens/s at Qwen2.5-32B), sparse markers therefore take less time than none: 0.66 times as long at $N = 64$ and 0.44 times at $N = 128$ (Appendix Table~\ref{tab:wallclock}). True divide-and-conquer, with one call per segment, holds accuracy nearly flat (TAR 0.93 to 0.92 from $N=8$ to 128) but costs about three times the wall-clock of the marker condition at $N=64$ to 128 (Appendix Figure~\ref{fig:dnc}).
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{figures/fig2_vertex_migration.pdf}
-\caption{Accuracy by marker density at each length (Qwen2.5-32B; $A = 8$ where applicable). Dashed: no-marker baseline; dotted: chance; star: best density.}
-\label{fig:density}
-\end{figure}
+\paragraph{Never let a marker cut a dependency.} Wherever an output needs the input before a marker, the position after the marker fails. Place markers only at points where nothing after them depends on what came before, or restart the computation at each marker.
 
-\paragraph{What about the marker matters.} Ablations on \task{cyclic\_shift} ($A = 2$, $k = 4$; Appendix Tables~\ref{tab:markerid}--\ref{tab:prompts}):
-\begin{itemize}
-\item \emph{Identity:} swapping \texttt{|} for \texttt{;} or \texttt{\#} changes little at Qwen2.5-32B.
-\item \emph{Reserved tokens:} a reserved special token used as the marker performs far below the no-marker baseline at every length and both scales.
-\item \emph{Frequency over token count:} a frequent single-token marker beats a less frequent multi-token marker that spends the same total number of tokens.
-\item \emph{Regularity:} at 7B, jittered or random placement falls below the baseline at most lengths; at 32B both stay above it at every length.
-\item \emph{Prompt wording:} the benefit holds under formal and casual phrasings of the instructions, but a terse cipher-style phrasing reverses it at 32B in four of five lengths.
-\end{itemize}
-
-\paragraph{A format tax.} Markers slightly reduce the fraction of outputs that are well formed (correct alphabet and full length) in six of seven tasks at Qwen2.5-32B, even where accuracy rises (Appendix Table~\ref{tab:wfr}). \task{random\_permutation} is the exception, improving on both measures.
+\paragraph{What about the marker matters.} Ablations on contiguous-letter \task{cyclic\_shift} ($A = 2$, $k = 4$; Appendix Tables~\ref{tab:markerid}--\ref{tab:prompts}), where much of the effect is tokenization: swapping \texttt{|} for \texttt{;} or \texttt{\#} changes little at Qwen2.5-32B; a reserved special token used as the marker performs far below the no-marker baseline; a frequent single-token marker beats a less frequent multi-token one with the same token budget; jittered or random placement falls below the baseline at most lengths at 7B but stays above it at 32B; and the benefit holds under formal and casual phrasings, but a terse cipher-style phrasing reverses it at 32B. Markers also slightly reduce the share of well-formed outputs in six of seven tasks at Qwen2.5-32B (Appendix Table~\ref{tab:wfr}). The density that maximizes accuracy on contiguous letters falls with length (Appendix Figure~\ref{fig:density}), which we describe but do not fit.
 
 % =====================================================================
 \section{Limitations}
 \label{sec:limitations}
 
 \begin{itemize}
-\item \textbf{Tokenization.} Letter and digit tasks tokenize differently, and part of the letter-task benefit is a tokenization effect (Section~\ref{sec:tokenization}). \pending{State the measured share once the digit controls finish.}
+\item \textbf{Mechanism.} We rule out the most marker-attending heads as the carrier of the tokenization-independent gain but do not identify what carries it. Head experiments are on Qwen2.5 only, block ten heads, and were run on one task.
+\item \textbf{Controls not run everywhere.} The spaced-letter and digit controls were run on the seven open models, not on Gemini, whose tokenizer we cannot inspect.
 \item \textbf{Index-aligned scoring.} Accuracy compares predicted and true characters position by position, so a dropped or inserted character misaligns everything after it. This penalizes slips at markers and may inflate the desynchronization we report for \task{copy\_previous}.
-\item \textbf{Floors and ceilings.} Raw differences in accuracy are not directly comparable across tasks with different chance levels and baselines: Gemini's dependency tasks start near ceiling, and some 7B, Mistral, and Phi dependency cells start near chance.
-\item \textbf{Reset design.} The reset rule makes the post-marker position easier by construction, and the reset prompt shifts no-marker accuracy by up to 0.08 (Section~\ref{sec:reset}).
-\item \textbf{Mechanism scope.} Attention analyses and head ablations are on Qwen2.5-7B and 32B only, the ablation controls only at 7B, and attention is tokenizer-dependent. We did not measure per-token attention to markers against content tokens.
-\item \textbf{Models and sample size.} All seven open models are instruction-tuned, and five are 2024-era; we do not test base models. The Qwen2.5-32B reset variants are single-batch (20 trials per cell); Gemini uses 3 trials per cell.
-\item \textbf{Naturalistic tasks.} The one naturalistic position-local task (vowel tagging) shows no benefit at 32B. The anchoring is established for in-context rules, not for applying pretrained knowledge position by position.
-\item \textbf{Prompt and marker sensitivity.} One prompt phrasing reverses the effect at 32B, and reserved special tokens do not work as markers. The best density is described, not fitted.
+\item \textbf{Floors and ceilings.} Raw differences in accuracy are not comparable across tasks with different baselines; the controls leave strong models near ceiling at short lengths, which is why we report shares of remaining errors. Gemini's dependency tasks start near ceiling, and some 7B, Mistral, and Phi cells start near chance.
+\item \textbf{Reset design.} The reset rule makes the post-marker position easier by construction, and the reset prompt shifts no-marker accuracy by up to 0.08.
+\item \textbf{Models and sample size.} All open models are instruction-tuned, and five are 2024-era; we do not test base models. Reset variants at Qwen2.5-32B are single-batch (20 trials per cell); Gemini uses 3 trials per cell.
+\item \textbf{Task scope.} All tasks are synthetic character-level transformations with in-context rules; a naturalistic task (vowel tagging) shows no benefit at 32B.
 \end{itemize}
 
 % =====================================================================
 \section{Conclusion}
 \label{sec:conclusion}
 
-A content-free marker inserted every few characters changes accuracy where it lands. The position right after it becomes the most accurate in the sequence when its output depends only on itself, and falls toward chance when it needs the input before the marker; positions further inside a segment gain modestly in stronger models. Pooled task-level effects, and their changes of sign with length and model, follow from that mix. Part of the anchoring on letter tasks is tokenization. For practitioners the rule is short: place markers so that no position's dependency crosses one, and prefer sparse markers, which also help models stop at the right length and so cost less than no markers at all.
+A content-free marker inserted every few characters does three separate things. On letter strings it splits multi-letter tokens, which accounts for most of its visible benefit, and spacing the characters does that job better. Independently of tokenization, it helps strong models keep their place on long sequences, removing about half of their remaining errors, through a route other than the heads that attend to it most. And it blinds the position right after it to everything before it, which is harmless for position-local rules and damaging wherever an output needs its predecessor. Separate the characters, mark long sequences sparsely, and never let a marker cut a dependency.
 
-\paragraph{Reproducibility.} \pending{Code, prompts, raw generations, and analysis scripts: anonymized repository link.} All inputs are generated from deterministic seeds, and every prompt can be regenerated from (task, length, density, alphabet, trial).
+\paragraph{Reproducibility.} \pending{Code, prompts, raw generations, and analysis scripts: anonymized repository link.} All inputs are generated from deterministic seeds, and every prompt can be regenerated from (task, format, length, spacing, alphabet, trial).
 
 \bibliography{refs}
 \bibliographystyle{tmlr}
@@ -297,6 +274,8 @@ Output:                 (expected: DBCB|DDAB)
 \end{verbatim}
 \end{small}
 
+\paragraph{Spaced and digit formats.} The spaced version of this cell shows the input as \texttt{C A B A | C C D A} and replaces ``No spaces, no explanations.'' with ``Write the output in the same format as the input: every character separated by a single space. No explanations.''; everything else is unchanged. The digit version relabels $A, B, C, D$ as $0, 1, 2, 3$ (input \texttt{2010|2230}), with the task line, rule, and mapping worded for digits (``Cyclic digit shift'', ``Replace every digit with the next one in the alphabet''). The same seed draws the same positions in all three formats.
+
 \paragraph{\task{running\_xor}, original and reset ($N = 8$, $k = 4$).} Both prompts state the rule $y_i = x_i \oplus x_{i-1}$ with the first digit copied. The reset prompt adds: \emph{``Immediately after each boundary, treat that position exactly like the first digit of the whole input---copy it as-is (nothing before a boundary counts as `previous'), then resume the XOR rule from there until the next boundary,''} with the worked example \texttt{1011|0010} $\rightarrow$ \texttt{1110|0011}. For input \texttt{1101|1111}, the original expects \texttt{1011|0000}, while the reset variant expects \texttt{1011|1000}: only the digit after the marker differs.
 
 \paragraph{\task{sliding\_window\_max} ($N = 8$, $k = 4$).} The prompt states the rule with a worked example and adds: \emph{``DO NOT include them [the bars] in the window or count them as digits.''} For input \texttt{5170|1247} the expected output is \texttt{5577|7247}.
@@ -304,7 +283,7 @@ Output:                 (expected: DBCB|DDAB)
 \section{Trials per cell}
 \label{app:trials}
 
-Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, density, and alphabet or modulus value) for the data pooled in Figure~\ref{fig:split}. Gemini uses 3.
+Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, density, and alphabet or modulus value) for the data pooled in Figures~\ref{fig:split}, \ref{fig:formats}, and~\ref{fig:profile}. Gemini uses 3.
 
 \begin{table}[h]
 \centering
@@ -323,6 +302,9 @@ Task & Qwen2.5-7B & Qwen2.5-14B & Qwen2.5-32B & Mistral-7B & Phi-3.5-mini & Qwen
 \task{running\_sum\_local} & 40 & 40 & 80 & 40 & 20 & 40 & 40 \\
 \task{sliding\_window\_max} & 20 & 20 & 40 & 20 & 20 & 20 & 20 \\
 Reset variants & 80 & -- & 20 & -- & -- & 20 & 20 \\
+\midrule
+Spaced-letter versions (each) & 20 & 20 & 20 & 20 & 20 & 20 & 20 \\
+Digit versions (each) & 20 & 20 & 20 & 20 & 20 & 20 & 20 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -340,7 +322,7 @@ Reset variants & 80 & -- & 20 & -- & -- & 20 & 20 \\
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{figures/anchors_grid.pdf}
-\caption{\task{copy\_previous} and \task{sliding\_window\_max} by model. \task{copy\_previous} is hurt at most models; \task{sliding\_window\_max} is hurt at Qwen2.5-7B ($z = 4.6$), 14B ($z = 5.4$), Mistral, and Phi, and helped at Qwen2.5-32B ($z = 4.9$ with both seed batches; the curves shown are the first batch).}
+\caption{\task{copy\_previous} and \task{sliding\_window\_max} by model. \task{copy\_previous} is hurt at most models; \task{sliding\_window\_max} is hurt at Qwen2.5-7B ($z = 4.6$), 14B ($z = 5.3$), Mistral, and Phi, and helped at Qwen2.5-32B ($z = 5.1$).}
 \label{fig:anchors}
 \end{figure}
 
@@ -351,9 +333,11 @@ Reset variants & 80 & -- & 20 & -- & -- & 20 & 20 \\
 \label{fig:harddep}
 \end{figure}
 
-\paragraph{Mistral-7B.} In all three position-local tasks, the benefit is largest at short lengths and decays to zero at the longest length tested (\task{cyclic\_shift}, $N=256$: $-0.003$, $z = 0.2$; \task{random\_permutation}, $N = 64$: $-0.012$, $z = 0.7$; \task{conditional\_shift}, $N=64$: $-0.011$, $z = 0.7$). In Qwen models the benefit holds or grows with length.
+\paragraph{Mistral-7B.} In all three position-local tasks, the benefit is largest at short lengths and decays to zero at the longest length tested (\task{cyclic\_shift}, $N=256$: $+0.008$, $z = 0.4$; \task{random\_permutation}, $N = 64$: $-0.009$, $z = 0.5$; \task{conditional\_shift}, $N=64$: $-0.006$, $z = 0.4$). In Qwen models the benefit holds or grows with length.
 
 \paragraph{Repetition collapse.} On \task{running\_xor}, Qwen2.5-7B repeats a single wrong digit in about 38\% of trials, more often under dense markers. This failure falls to 0.9\% at 14B and 0.1\% for Mistral-7B, so it is specific to Qwen2.5-7B.
+
+\paragraph{Out-of-alphabet answers.} On the digit tasks, Qwen2.5-7B often writes a letter (usually \texttt{t}, sometimes \texttt{o}) in place of \texttt{0}, in 34\% to 39\% of outputs, with or without markers. On spaced letters, several models step outside the alphabet (for example \texttt{I} after \texttt{H} instead of wrapping to \texttt{A}). Such characters are scored as errors.
 
 \section{Per-position accuracy}
 \label{app:perpos}
@@ -407,7 +391,7 @@ Task & Model & Base$\rightarrow$Bounds & $\Delta$ ($|z|$) & Base$\rightarrow$Bou
 \begin{table}[h]
 \centering
 \small
-\caption{External position-local tasks, pooled across length and density. Best-$k$: TAR at the single best density (optimistic). $\Delta$: mean over all densities minus Base. $z$ as in Section~\ref{sec:setup}.}
+\caption{External position-local tasks, pooled across length and density. Best-$k$: TAR at the single best density (optimistic). $\Delta$: mean over all densities minus Base. $z$ as in Section~\ref{sec:setup}. ProcBench-Substitute was regenerated after we made the vendored ProcBench generator's substitution table deterministic (it was drawn in a process-dependent order).}
 \label{tab:external}
 \begin{tabular}{lcccccc}
 \toprule
@@ -416,7 +400,7 @@ Task & Model & Base$\rightarrow$Bounds & $\Delta$ ($|z|$) & Base$\rightarrow$Bou
 Task & Base & Best-$k$ & $\Delta$ ($z$) & Base & Best-$k$ & $\Delta$ ($z$) \\
 \midrule
 Vowel/consonant tagging & 0.438 & 0.435 & $-$0.083 (2.3) & 0.615 & 0.657 & +0.012 (0.5) \\
-ProcBench-Substitute & 0.196 & 0.422 & +0.054 (2.4) & 0.352 & 0.746 & +0.157 (5.9) \\
+ProcBench-Substitute & 0.189 & 0.432 & +0.057 (2.6) & 0.390 & 0.757 & +0.137 (4.5) \\
 String copying & 0.972 & 0.983 & $-$0.006 (0.8) & 0.992 & 1.000 & $-$0.005 (1.6) \\
 \bottomrule
 \end{tabular}
@@ -471,6 +455,21 @@ On Kadane's algorithm, base accuracy at both Qwen scales is statistically indist
 
 \begin{figure}[h]
 \centering
+\includegraphics[width=\linewidth]{figures/fig2_mechanism_merged.pdf}
+\caption{Mechanism (Qwen2.5-32B). (a) Total attention mass on all marker tokens rises with density at every length (\task{cyclic\_shift}, $A=2$); the number of markers rises faster, so this is not evidence that individual markers draw more attention than content tokens. (b) The most marker-attending head (layer 21, head 1) attends from each position to an adjacent marker. (c) Masking the ten most marker-attending heads' attention to markers removes a growing share of the benefit as $N$ grows (0\% at $N \le 16$, 11\% at 32, 32\% at 64, 28\% at 128). (d) \task{copy\_previous} at $N=32$: mean attention from each output position to the input token it needs (top-10 heads) is 0.535 at $k=1$, 0.101 at $k=2$, and 0.278 at $k=8$, matching accuracy (Base 0.83; $k=1$: 0.88; $k=2$: 0.65; $k=8$: 0.84).}
+\label{fig:mechanism}
+\end{figure}
+
+\begin{table}[h]
+\centering
+\small
+\caption{Head ablation at Qwen2.5-7B, same design as Table~\ref{tab:ablation}. Marker gains are small at this scale, so shares are noisy; ``--'' marks cells with a gain below 0.03.}
+\label{tab:ablation7b}
+\input{tables/ablation_7b.tex}
+\end{table}
+
+\begin{figure}[h]
+\centering
 \includegraphics[width=\linewidth]{figures/attention_mechanism_32b.pdf}
 \caption{Attention analysis, Qwen2.5-32B, \task{cyclic\_shift}: marker attention by density, attention entropy by layer (higher under markers at nearly every layer), off-diagonal attention, and distance decay.}
 \label{fig:attnmech}
@@ -486,7 +485,7 @@ On Kadane's algorithm, base accuracy at both Qwen scales is statistically indist
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{figures/causal_ablation.pdf}
-\caption{Head ablation at Qwen2.5-7B and 32B: share of the marker benefit removed by masking the ten most marker-attending heads' attention to markers, re-identified at each length.}
+\caption{Earlier head ablation, contiguous letters (\task{cyclic\_shift}, $A = 2$, $k = 2$), Qwen2.5-7B and 32B: share of the marker benefit removed by masking the ten most marker-attending heads' attention to markers, re-identified at each length. Unlike Table~\ref{tab:ablation}, Base and unablated runs come from an earlier grid and there are no controls at 32B.}
 \label{fig:ablation7b32b}
 \end{figure}
 
@@ -595,6 +594,13 @@ Terse cipher & $-$.07 & +.08 & +.00 & +.00 & +.05 & $-$.12 & $-$.11 & +.01 & $-$
 
 \section{Dose--response robustness}
 \label{app:dose}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{figures/fig2_vertex_migration.pdf}
+\caption{Accuracy by marker density at each length, contiguous letters and dependency tasks (Qwen2.5-32B; $A = 8$ where applicable). Dashed: no-marker baseline; dotted: chance; star: best density.}
+\label{fig:density}
+\end{figure}
 
 \begin{table}[h]
 \centering

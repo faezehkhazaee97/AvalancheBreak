@@ -29,9 +29,9 @@ MODELS = ["Qwen2.5 7B", "Qwen2.5 14B", "Qwen2.5 32B", "Mistral 7B", "Phi-3.5 min
           "Qwen3.8 27B", "Gemma 4 31B", "Gemini 3.5 Flash"]
 SHORT = {m: m.replace(" ", "\n", 1) for m in MODELS}
 BLOCKS = [
-    ("Position-local, letters", "Position-local tasks, letter alphabet"),
-    ("Position-local, digits", "Position-local tasks, digit alphabet"),
-    ("Dependency, as is", "Dependency tasks (digits)"),
+    ("Position-local, letters", "Position-local tasks, letters (merge into multi-letter tokens without markers)"),
+    ("Position-local, spaced letters", "Position-local tasks, spaced letters (one token per letter either way)"),
+    ("Dependency, as is", "Dependency tasks (digits, one token per digit either way)"),
 ]
 
 vals = pd.read_csv(REPO / "results_clean" / "_summary" / "per_position_values.csv")
@@ -65,7 +65,7 @@ def dumbbell(ax, x, lo, hi, ci, color):
 
 def make_fig1():
     blocks = [(b, t) for b, t in BLOCKS if (vals.block == b).any()]
-    fig, axes = plt.subplots(len(blocks), 1, figsize=(MULTI_COL_WIDTH, 1.85 * len(blocks) + 0.5),
+    fig, axes = plt.subplots(len(blocks), 1, figsize=(MULTI_COL_WIDTH, 1.6 * len(blocks) + 0.5),
                              sharex=True)
     axes = np.atleast_1d(axes)
     for ax, (block, title) in zip(axes, blocks):

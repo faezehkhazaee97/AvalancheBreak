@@ -17,6 +17,7 @@ OUT = REPO / "paper_tmlr" / "tables"
 MODELS = ["Qwen2.5 7B", "Qwen2.5 14B", "Qwen2.5 32B", "Mistral 7B", "Phi-3.5 mini",
           "Qwen3.8 27B", "Gemma 4 31B", "Gemini 3.5 Flash"]
 BLOCKS = [("Position-local, letters", "Position-local tasks, letters"),
+          ("Position-local, spaced letters", "Position-local tasks, spaced letters"),
           ("Position-local, digits", "Position-local tasks, digits"),
           ("Dependency, as is", "Dependency tasks"),
           ("Dependency severed (reset)", "Dependency tasks, reset variants")]
@@ -60,6 +61,7 @@ def distance():
              r"& & \multicolumn{5}{c}{Positions after the marker} \\", r"\cmidrule(lr){3-7}",
              "Tasks & Model & " + " & ".join(b for b, _ in bins) + r" \\", r"\midrule"]
     for block, title in [("Position-local, letters", "Position-local, letters"),
+                         ("Position-local, spaced letters", "Position-local, spaced"),
                          ("Position-local, digits", "Position-local, digits"),
                          ("Dependency, as is", "Dependency")]:
         s = d[d.block == block]

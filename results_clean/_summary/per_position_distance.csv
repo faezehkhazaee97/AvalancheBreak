@@ -575,6 +575,510 @@ block,task,model,k,d,acc
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,13,0.1528
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,14,0.2639
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,15,0.2917
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,0,0.5103
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,1,0.5951
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,2,0.6278
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,3,0.609
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,4,0.5799
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,5,0.5729
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,6,0.5979
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,7,0.5333
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,0,0.3333
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,1,0.5188
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,2,0.5438
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,3,0.5396
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,4,0.5062
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,5,0.4875
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,6,0.4771
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,7,0.4771
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,8,0.4333
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,9,0.4792
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,10,0.4271
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,11,0.3938
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,12,0.3542
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,13,0.3458
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,14,0.3479
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,16,15,0.2875
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,0,0.8984
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,1,0.8708
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,2,0.8917
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,3,0.8896
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,4,0.8715
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,5,0.8674
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,6,0.8667
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,8,7,0.8764
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,0,0.6278
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,1,0.6771
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,2,0.7354
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,3,0.7167
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,4,0.7125
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,5,0.7396
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,6,0.6792
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,7,0.7167
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,8,0.6979
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,9,0.6917
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,10,0.6521
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,11,0.5958
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,12,0.6333
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,13,0.6208
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,14,0.5938
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,16,15,0.5771
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,0,0.9942
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,1,0.9896
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,2,0.9917
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,3,0.991
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,4,0.9965
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,5,0.9917
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,6,0.9944
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,8,7,0.9965
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,0,0.875
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,1,0.9083
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,2,0.9083
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,3,0.8958
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,4,0.9042
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,5,0.9146
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,6,0.9
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,7,0.8917
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,8,0.9042
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,9,0.9125
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,10,0.9
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,11,0.8729
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,12,0.8688
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,13,0.8688
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,14,0.8521
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,16,15,0.8583
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,0,0.3
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,1,0.4444
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,2,0.4701
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,3,0.3625
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,4,0.3229
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,5,0.2965
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,6,0.2938
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,8,7,0.2667
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,0,0.3028
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,1,0.4917
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,2,0.4458
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,3,0.3812
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,4,0.2875
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,5,0.3062
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,6,0.3062
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,7,0.2688
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,8,0.2729
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,9,0.2708
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,10,0.2292
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,11,0.2771
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,12,0.2875
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,13,0.2083
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,14,0.2458
+"Position-local, spaced letters",cyclic_shift_spaced,Mistral 7B,16,15,0.2188
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,0,0.3008
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,1,0.3812
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,2,0.3208
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,3,0.2736
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,4,0.2549
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,5,0.2062
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,6,0.1868
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,8,7,0.1785
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,0,0.2861
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,1,0.4042
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,2,0.3479
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,3,0.3146
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,4,0.2917
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,5,0.1917
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,6,0.2521
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,7,0.2562
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,8,0.2792
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,9,0.2646
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,10,0.175
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,11,0.25
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,12,0.2125
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,13,0.175
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,14,0.2042
+"Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,16,15,0.1396
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,0,0.9405
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,1,0.909
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,2,0.9306
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,3,0.9375
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,4,0.9319
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,5,0.9222
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,6,0.9326
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,8,7,0.9556
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,0,0.9083
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,1,0.8917
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,2,0.925
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,3,0.9438
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,4,0.9188
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,5,0.925
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,6,0.9021
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,7,0.9354
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,8,0.9333
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,9,0.9312
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,10,0.8896
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,11,0.8979
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,12,0.9021
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,13,0.9167
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,14,0.8875
+"Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,16,15,0.8875
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,0,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,1,0.9965
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,2,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,3,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,4,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,5,0.9972
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,6,0.9979
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,8,7,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,0,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,1,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,2,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,3,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,4,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,5,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,6,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,7,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,8,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,9,0.9979
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,10,0.9938
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,11,0.9979
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,12,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,13,0.9938
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,14,0.9938
+"Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,15,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,0,0.4495
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,1,0.5278
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,2,0.5854
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,3,0.5611
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,4,0.5167
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,5,0.5056
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,6,0.5153
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,7,0.4611
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,0,0.3472
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,1,0.475
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,2,0.5604
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,3,0.5104
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,4,0.4792
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,5,0.5
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,6,0.4896
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,7,0.4646
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,8,0.4625
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,9,0.4771
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,10,0.4229
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,11,0.4
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,12,0.3458
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,13,0.3396
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,14,0.2958
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,16,15,0.2812
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,0,0.8532
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,1,0.8028
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,2,0.8479
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,3,0.8132
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,4,0.7861
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,5,0.7743
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,6,0.7403
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,8,7,0.7062
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,0,0.6194
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,1,0.6979
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,2,0.6812
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,3,0.6896
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,4,0.6604
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,5,0.6833
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,6,0.6604
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,7,0.6417
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,8,0.675
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,9,0.6729
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,10,0.6417
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,11,0.5875
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,12,0.5792
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,13,0.5292
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,14,0.5021
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,16,15,0.5167
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,0,0.9926
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,1,0.9882
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,2,0.9903
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,3,0.9868
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,4,0.9889
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,5,0.9806
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,6,0.9819
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,8,7,0.9875
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,0,0.9333
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,1,0.95
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,2,0.9458
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,3,0.9417
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,4,0.9375
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,5,0.9562
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,6,0.9479
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,7,0.9375
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,8,0.9458
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,9,0.9333
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,10,0.9167
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,11,0.9146
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,12,0.9229
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,13,0.8979
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,14,0.8875
+"Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,16,15,0.8833
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,0,0.3532
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,1,0.4062
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,2,0.4326
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,3,0.3785
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,4,0.3069
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,5,0.3319
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,6,0.2889
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,8,7,0.2674
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,0,0.3806
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,1,0.3792
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,2,0.3979
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,3,0.2688
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,4,0.3062
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,5,0.2604
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,6,0.2896
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,7,0.2396
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,8,0.2521
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,9,0.2333
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,10,0.2083
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,11,0.1958
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,12,0.2458
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,13,0.2188
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,14,0.2271
+"Position-local, spaced letters",random_permutation_spaced,Mistral 7B,16,15,0.2208
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,0,0.2079
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,1,0.3021
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,2,0.3146
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,3,0.2931
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,4,0.2674
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,5,0.2118
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,6,0.191
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,8,7,0.1486
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,0,0.2194
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,1,0.3458
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,2,0.3375
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,3,0.3104
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,4,0.2604
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,5,0.2396
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,6,0.2521
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,7,0.225
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,8,0.2229
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,9,0.2292
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,10,0.2271
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,11,0.2375
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,12,0.2146
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,13,0.1938
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,14,0.1812
+"Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,16,15,0.1729
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,0,0.9831
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,1,0.9562
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,2,0.9826
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,3,0.9812
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,4,0.9826
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,5,0.9826
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,6,0.9812
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,8,7,0.9875
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,0,0.9583
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,1,0.9375
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,2,0.9729
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,3,0.975
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,4,0.975
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,5,0.9729
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,6,0.9688
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,7,0.9792
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,8,0.9792
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,9,0.9708
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,10,0.975
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,11,0.9625
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,12,0.9583
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,13,0.9604
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,14,0.9521
+"Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,16,15,0.9792
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,0,0.9992
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,1,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,2,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,3,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,4,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,5,0.9979
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,6,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,8,7,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,0,0.9944
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,1,0.9917
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,2,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,3,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,4,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,5,0.9938
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,6,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,7,0.9979
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,8,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,9,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,10,0.9875
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,11,0.9938
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,12,0.9938
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,13,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,14,0.9958
+"Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,15,0.9938
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,0,0.2278
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,1,0.3604
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,2,0.3444
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,3,0.3035
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,4,0.2764
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,5,0.2715
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,6,0.2965
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,7,0.2569
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,0,0.2333
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,1,0.3958
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,2,0.3458
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,3,0.3312
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,4,0.3375
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,5,0.3104
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,6,0.3375
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,7,0.2896
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,8,0.325
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,9,0.2812
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,10,0.3167
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,11,0.2938
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,12,0.2792
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,13,0.2958
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,14,0.2083
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,16,15,0.2021
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,0,0.7775
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,1,0.7951
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,2,0.8062
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,3,0.8174
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,4,0.7986
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,5,0.7347
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,6,0.7618
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,8,7,0.7312
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,0,0.5222
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,1,0.6333
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,2,0.6292
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,3,0.6417
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,4,0.6417
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,5,0.6
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,6,0.6271
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,7,0.6042
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,8,0.6042
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,9,0.5854
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,10,0.5688
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,11,0.5354
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,12,0.525
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,13,0.5042
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,14,0.5167
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,16,15,0.5021
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,0,0.8254
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,1,0.8639
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,2,0.8375
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,3,0.8319
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,4,0.8326
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,5,0.8062
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,6,0.8424
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,8,7,0.8333
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,0,0.7778
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,1,0.8375
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,2,0.8208
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,3,0.8479
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,4,0.8
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,5,0.8021
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,6,0.8042
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,7,0.7875
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,8,0.8042
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,9,0.825
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,10,0.775
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,11,0.7646
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,12,0.7208
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,13,0.7458
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,14,0.7188
+"Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,16,15,0.7271
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,0,0.2987
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,1,0.3042
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,2,0.3354
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,3,0.3153
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,4,0.2611
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,5,0.2319
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,6,0.2236
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,8,7,0.2111
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,0,0.2417
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,1,0.3083
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,2,0.3771
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,3,0.3271
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,4,0.2562
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,5,0.2396
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,6,0.2688
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,7,0.2229
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,8,0.2438
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,9,0.2292
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,10,0.2458
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,11,0.2438
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,12,0.3208
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,13,0.1896
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,14,0.2271
+"Position-local, spaced letters",conditional_shift_spaced,Mistral 7B,16,15,0.2333
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,0,0.2968
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,1,0.3417
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,2,0.3271
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,3,0.284
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,4,0.2306
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,5,0.2389
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,6,0.1938
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,8,7,0.1799
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,0,0.2389
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,1,0.3708
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,2,0.3208
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,3,0.3208
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,4,0.2479
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,5,0.2479
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,6,0.2792
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,7,0.2
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,8,0.2479
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,9,0.2646
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,10,0.2229
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,11,0.2167
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,12,0.2083
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,13,0.1854
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,14,0.1979
+"Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,16,15,0.1771
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,0,0.8204
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,1,0.8354
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,2,0.8382
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,3,0.8701
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,4,0.8639
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,5,0.8285
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,6,0.8535
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,8,7,0.8306
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,0,0.7944
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,1,0.8188
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,2,0.8
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,3,0.8583
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,4,0.8188
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,5,0.8208
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,6,0.8354
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,7,0.8208
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,8,0.8021
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,9,0.8438
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,10,0.8521
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,11,0.8375
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,12,0.8125
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,13,0.85
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,14,0.8083
+"Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,16,15,0.85
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,0,0.7857
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,1,0.7882
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,2,0.8139
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,3,0.8111
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,4,0.8181
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,5,0.7924
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,6,0.8208
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,8,7,0.7708
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,0,0.7944
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,1,0.825
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,2,0.8292
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,3,0.8542
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,4,0.7917
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,5,0.7875
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,6,0.8458
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,7,0.7854
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,8,0.8146
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,9,0.8188
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,10,0.8438
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,11,0.8396
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,12,0.8146
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,13,0.8271
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,14,0.7917
+"Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,15,0.7896
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,0,0.3606
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,1,0.4562
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,2,0.4479
