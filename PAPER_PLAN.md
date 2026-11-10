@@ -1,5 +1,12 @@
 # Paper plan — boundary markers (status as of 2026-11-07)
 
+> **Status 2026-11-10: PAPER COMPLETE pending proofread fixes (commit e9a6e4d and later).** Title: *Re-Tokenization,
+> Segmentation, and a Blind Spot*. Three findings: (1) on letters markers mostly re-tokenize (spacing alone beats
+> markers); (2) tokenization-independent gain at strong models on long sequences (28-83% of remaining errors), not
+> carried by the top marker-attending heads; (3) post-marker blind spot on dependencies. Only `\pending`: code link.
+> Release (MIT) builds clean and reproduces figures/tables. Gemini controls skipped (in Limitations).
+> Everything below this block is history.
+
 > **Status 2026-11-09: digit controls + ProcBench regrid DONE (commit ace5906).** Digits: strong models near ceiling
 > without markers; pooled gains ~1/3 of letters; post-marker anchor mostly gone (10/21); but markers remove 58-83% of
 > remaining digit errors at 32B/Qwen3.8/Gemma, concentrated at N >= 32 and nearly independent of k (letters: densest best).
