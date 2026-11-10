@@ -70,30 +70,33 @@ google-genai==2.10.0   # Gemini runs only
 """
 
 README = """\
-# Boundary Markers Help Until They Cut a Dependency: code and data
+# Re-Tokenization, Segmentation, and a Blind Spot: code and data
 
-Code, prompts, raw generations, and analysis scripts for the anonymous submission. Every
-prompt is rebuilt deterministically from (task, length N, marker interval k, alphabet or
-modulus, trial), so the result files store inputs and outputs but not prompts.
+Code, prompts, raw generations, and analysis scripts for the anonymous submission "Re-Tokenization,
+Segmentation, and a Blind Spot: What Content-Free Boundary Markers Do in Sequence Transformation".
+Every prompt is rebuilt deterministically from (task, format, length N, marker spacing k, alphabet
+or modulus, trial), so the result files store inputs and outputs but not prompts.
 
 ## Layout
 
 | Path | Contents |
 |---|---|
-| `tasks/<task>/engine.py` | One task per folder: input generation, ground truth, marker insertion, prompt. |
-| `tasks/common/` | Shared runner (`runner.py`), scoring, statistics and analysis modules, Gemini client, vendored ProcBench and CLRS code (with their licenses). |
-| `tasks/run_task.py` | Main entry point for a task grid on one open model. |
-| `scripts/` | Slurm job scripts, mechanism experiments (attention capture, head ablation, controls), and figure scripts (`make_fig_*.py`). Many are earlier exploratory runs kept for completeness. |
+| `tasks/<task>/engine.py` | One task per folder: input generation, ground truth, marker insertion, prompt. `<task>_spaced` and `<task>_digits` are the tokenization controls (spaced letters; digits), exact reformattings of the letter tasks; `<task>_reset` are the reset variants of the dependency tasks. |
+| `tasks/common/` | Shared runner (`runner.py`, including the generation budget `max_new_tokens`), scoring, the spaced-format wrapper (`spaced.py`), analysis modules, Gemini client, vendored ProcBench and CLRS code (with their licenses). |
+| `tasks/run_task.py`, `tasks/run_digit_controls.py` | Entry points for a task grid on one open model (the second runs the spaced and digit controls at N <= 64). |
+| `scripts/` | Slurm job scripts, analysis and figure scripts (`analyze_per_position.py`, `make_fig_*.py`, `make_table*.py`), head-ablation experiments (`run_head_ablation_v2.py` is the one in the paper's main ablation table). Many other scripts are earlier exploratory runs kept for completeness. |
 | `results_clean/<task>/grid/<model>.csv` | Raw generations, one row per call (columns below). |
+| `results_clean/_summary/` | Derived values behind the figures and tables. |
 | `results_clean/gemini_pilot/` | Gemini runs (`gemini-flash-latest_POOLED_3trials.csv` is the pooled grid). |
-| `results/<model>/` | Outputs of the mechanism experiments (attention captures, ablations) and earlier grids they reuse. |
+| `results/ablation_v2/` | Head-ablation results and the heads blocked. |
+| `results/<model>/` | Earlier mechanism experiments (attention captures, the first head ablation) and the grids they reuse. |
 
 Result columns: `Method` (`Base` = no markers, `Cellular_Bounds` = markers), `Interval` (k; 0 for Base),
 `Seq_Length` (N), `Trial`, `Alphabet_Size` or `Modulus` where the task has one, `Input_Given`,
-`Ground_Truth`, `LLM_Output` (markers stripped, clipped to the truth length), `TAR` (per-position
-accuracy), `SAR` (exact match), `First_Error_Pos`, and `Raw_Model_Output` (full generation; absent in
-some early files). `_trialsA-B` files are additional, non-overlapping seed batches; `_N128` files
-extend a grid to N = 128. Read answer columns as text (e.g. `pd.read_csv(..., dtype=str)` for
+`Ground_Truth`, `LLM_Output` (markers and spaces stripped, clipped to the truth length), `TAR`
+(per-position accuracy), `SAR` (exact match), `First_Error_Pos`, and `Raw_Model_Output` (full generation;
+absent in some early files). `_trialsA-B` files are additional, non-overlapping seed batches; `_N128`
+files extend a grid to N = 128. Read answer columns as text (e.g. `pd.read_csv(..., dtype=str)` for
 those columns): all-digit answers lose leading zeros if parsed as numbers.
 
 ## Setup
@@ -110,48 +113,72 @@ otherwise), are submitted from the repository root, and contain placeholders `YO
 ## Running
 
     python -m tasks.run_task <task> <hf_model_id> grid <trials_per_cell> [trial_start]
+    python -m tasks.run_digit_controls <task>_spaced|<task>_digits <hf_model_id> 20
 
-writes `results_clean/<task>/grid/<model_tag>.csv` (`verify` instead of `grid` runs one trial per
-cell as a quick check). Core tasks: `cyclic_shift`, `random_permutation`, `conditional_shift`
-(position-local); `copy_previous`, `running_xor`, `running_sum_local`, `sliding_window_max`
-(dependency); and `<task>_reset` variants of the four dependency tasks, whose recurrence restarts at
-every marker. External tasks run through `python -m tasks.run_external_task`.
+write `results_clean/<task>/grid/<model_tag>.csv`. Position-local tasks: `cyclic_shift`,
+`random_permutation`, `conditional_shift`; dependency tasks: `copy_previous`, `running_xor`,
+`running_sum_local`, `sliding_window_max`, each with a `_reset` variant. External tasks run through
+`python -m tasks.run_external_task`. Head ablation: `python scripts/run_head_ablation_v2.py --model <id>`.
 
-Generation budget (`tasks/common/runner.py`, `max_new_tokens`): int(1.5N)+20 new tokens, and 2N+20
-at k = 1, where a correct marked answer is 2N-1 tokens. Cells at k = 1 and N >= 64 were first
-generated under the smaller budget and then regenerated with the larger one by
-`tasks/rerun_capped_k1.py` (greedy decoding: the new outputs extend the old ones).
+Generation budget: int(1.5N)+20 new tokens, and 2N+20 at k = 1, where a correct marked answer is
+2N-1 tokens. Cells at k = 1 and N >= 64 were first generated under the smaller budget and then
+regenerated with the larger one by `tasks/rerun_capped_k1.py` (greedy decoding: the new outputs extend
+the old ones).
 
-## Figures
+## Figures and tables
 
-Run `scripts/make_fig_split_heatmap.py` first: it also writes
-`results_clean/_summary/split_heatmap_values.csv`, which `make_fig3_causal_only.py` reads.
+Run `scripts/analyze_per_position.py` and `scripts/make_fig_split_heatmap.py` first; they write the
+summary CSVs the per-position figures and tables read.
 
-| Figure file (`figs/`) | Script (`scripts/`) |
+| Paper item | Script (`scripts/`) |
 |---|---|
-| `fig1_split_heatmap` (effect of markers, every task and model) | `make_fig_split_heatmap.py` |
-| `fig3_causal_only` (reset variants) | `make_fig3_causal_only.py` |
-| `fig2_mechanism_merged` (attention sinks, head ablation) | `make_fig2_mechanism_merged.py` |
-| `fig2_vertex_migration` (best density by length) | `make_fig2_vertex_migration.py` |
-| `divide_and_conquer` | `make_fig_divide_and_conquer.py` |
-| `attention_mechanism_32b` | `make_fig_attention_mechanism_32b.py` |
-| `head_heatmaps_32b` | `make_fig_head_heatmaps_32b.py` |
-| `error_containment_combined` | `make_fig_error_containment_combined.py` |
-| `attention_digits_comparison` | `make_fig_attention_digits_comparison.py` |
-| `tier1_cyclic_shift` | `make_fig_tier1_cyclic_shift.py` |
-| `anchors_grid` | `make_fig_anchors_grid.py` |
-| `hard_dependency_grid` | `make_fig_hard_dependency_grid.py` |
-| `external_vowel_tagging`, `external_procbench`, `external_string_copy` | `make_fig_external_tier1_checks.py` |
-| `external_benchmark_gemini` | `make_fig_external_benchmark_gemini.py` |
+| Three-format comparison; length and spacing profile | `make_fig_three_formats.py` |
+| Per-position accuracy; reset variants per position | `make_fig_per_position.py` |
+| Pooled effects, every task and model (heatmap) | `make_fig_split_heatmap.py` |
+| Head-ablation tables (32B in the main text, 7B in the appendix) | `make_table_ablation_v2.py` |
+| Appendix per-position and distance tables | `make_tables_per_position.py` |
+| Appendix: mechanism figure | `make_fig2_mechanism_merged.py` |
+| Appendix: best density by length | `make_fig2_vertex_migration.py` |
+| Appendix: other figures | `make_fig_divide_and_conquer.py`, `make_fig_attention_mechanism_32b.py`, `make_fig_head_heatmaps_32b.py`, `make_fig_error_containment_combined.py`, `make_fig_attention_digits_comparison.py`, `make_fig_tier1_cyclic_shift.py`, `make_fig_anchors_grid.py`, `make_fig_hard_dependency_grid.py`, `make_fig_external_tier1_checks.py`, `make_fig_external_benchmark_gemini.py` |
 
 ## Statistics
 
-An effect is the pooled difference in TAR between marker and no-marker conditions,
-Delta = mean TAR(Bounds) - mean TAR(Base), pooled over N in {4, 8, 16, 32, 64}, k in {1, 2, 4, 8, 16}
-(k = 3 is run but excluded), and alphabet or modulus values, with z = Delta / sqrt(SE_Base^2 + SE_Bounds^2)
-(see `pooled_delta` in `scripts/make_fig_split_heatmap.py`).
+A pooled effect is Delta = mean TAR(Bounds) - mean TAR(Base) over N in {4, 8, 16, 32, 64},
+k in {1, 2, 4, 8, 16} (k = 3 is run but excluded), and alphabet or modulus values, with
+z = Delta / sqrt(SE_Base^2 + SE_Bounds^2); the share of remaining errors removed is Delta / (1 - mean TAR(Base)).
+Per-position accuracy classes positions as right after a marker (i > 0, i mod k = 0) or within a segment
+and compares each with the no-marker run at the same indices (`scripts/analyze_per_position.py`).
+
+## License
+
+Our code is released under the MIT License (`LICENSE`). Vendored code keeps its own license:
+`tasks/common/procbench_vendor/LICENSE` (MIT) and `tasks/common/clrs_vendor/LICENSE` (Apache 2.0).
 """
 
+
+MIT_LICENSE = """\
+MIT License
+
+Copyright (c) 2026 Anonymous Authors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
 
 def tracked_files():
     out = subprocess.run(["git", "ls-files"], cwd=REPO, capture_output=True, text=True, check=True).stdout
@@ -180,6 +207,7 @@ def main():
         else:
             shutil.copy2(src, dst)
     (OUT / "README.md").write_text(README)
+    (OUT / "LICENSE").write_text(MIT_LICENSE)
     (OUT / "requirements.txt").write_text(REQUIREMENTS)
     for d in ("slurm_logs", "figs", "figs/png"):  # output folders the scripts write into
         (OUT / d).mkdir(parents=True, exist_ok=True)
