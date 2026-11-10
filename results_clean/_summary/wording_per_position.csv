@@ -1,0 +1,19 @@
+task,model,wording,base,post,within,post_gain,within_gain
+running_xor,Qwen2.5 32B,original,0.781,0.5216,0.848,-0.1897,0.1091
+running_xor,Qwen2.5 32B,neutral,0.7805,0.5437,0.8054,-0.1746,0.0561
+running_xor,Qwen2.5 32B,across,0.7688,0.5793,0.8238,-0.1383,0.0905
+running_xor,Qwen3.8 27B,original,0.6837,0.5092,0.7791,-0.0575,0.1278
+running_xor,Qwen3.8 27B,neutral,0.7013,0.5111,0.7362,-0.0711,0.0696
+running_xor,Qwen3.8 27B,across,0.6867,0.5427,0.7863,-0.0273,0.1266
+running_xor,Gemma 4 31B,original,0.838,0.5227,0.9055,-0.2644,0.0885
+running_xor,Gemma 4 31B,neutral,0.8352,0.5543,0.8946,-0.2468,0.0696
+running_xor,Gemma 4 31B,across,0.8636,0.6645,0.873,-0.1496,0.0343
+running_sum_local,Qwen2.5 32B,original,0.593,0.3121,0.6627,-0.1564,0.1119
+running_sum_local,Qwen2.5 32B,neutral,0.5973,0.3333,0.6288,-0.1538,0.0713
+running_sum_local,Qwen2.5 32B,across,0.5861,0.348,0.6349,-0.1407,0.0881
+running_sum_local,Qwen3.8 27B,original,0.486,0.2795,0.5978,-0.0605,0.1445
+running_sum_local,Qwen3.8 27B,neutral,0.4975,0.288,0.5958,-0.0734,0.1339
+running_sum_local,Qwen3.8 27B,across,0.4782,0.3011,0.5835,-0.0428,0.1422
+running_sum_local,Gemma 4 31B,original,0.796,0.3157,0.8547,-0.408,0.1088
+running_sum_local,Gemma 4 31B,neutral,0.8127,0.3571,0.85,-0.3884,0.082
+running_sum_local,Gemma 4 31B,across,0.7997,0.5872,0.8281,-0.1456,0.0723
