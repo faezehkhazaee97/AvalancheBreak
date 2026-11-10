@@ -19,5 +19,5 @@ export PYTHONUNBUFFERED=1
 cd /group/gquongrp/workspaces/baran/AvalancheBreak
 echo "Node: $(hostname) | Model: $1 | $(date)"
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader
-"$ENV/bin/python" scripts/run_head_ablation_v2.py --model "$1"
+"$ENV/bin/python" scripts/run_head_ablation_v2.py --model "$1" "${@:2}"
 echo "Done: $(date)"

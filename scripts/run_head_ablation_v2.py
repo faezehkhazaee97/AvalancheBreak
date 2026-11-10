@@ -152,12 +152,13 @@ def main():
     ap.add_argument("--lengths", default="32,64")
     ap.add_argument("--trials", type=int, default=20)
     ap.add_argument("--top", type=int, default=10)
+    ap.add_argument("--suffix", default="", help="appended to the output file names, e.g. _top50")
     args = ap.parse_args()
 
     tag = args.model.split("/")[-1]
     out_dir = REPO / "results" / "ablation_v2"
     out_dir.mkdir(parents=True, exist_ok=True)
-    out_csv, heads_csv = out_dir / f"{tag}.csv", out_dir / f"{tag}_heads.csv"
+    out_csv, heads_csv = out_dir / f"{tag}{args.suffix}.csv", out_dir / f"{tag}{args.suffix}_heads.csv"
     done = set()
     if out_csv.exists():
         with open(out_csv) as f:
