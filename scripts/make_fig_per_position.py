@@ -76,6 +76,13 @@ def make_fig1():
             dumbbell(ax, i - 0.14, r["base_within"], r["within"], r["within_ci"], WITHIN)
             dumbbell(ax, i + 0.14, r["base_post"], r["post"], r["post_ci"], POST)
         ax.set_title(title, loc="left", fontsize=8, color=INK)
+        # Chance = accuracy of always guessing the most frequent output symbol, averaged over the
+        # block's tasks: position-local 1/A over A in {2,4,8}; dependency: copy_previous 0.5,
+        # running_xor 0.5, running_sum_local 1/M over M in {2,4,8}, sliding_window_max
+        # P(max of 3 = top symbol) over A in {4,8}.
+        chance = 0.292 if block.startswith("Position-local") else (0.5 + 0.5 + 0.292 + 0.455) / 4
+        ax.axhline(chance, color=BASE, linestyle=":", linewidth=1.0, zorder=0)
+        ax.text(-0.45, chance + 0.012, "chance", fontsize=6, color=BASE, ha="left", va="bottom")
         ax.set_ylabel("Token accuracy")
         ax.set_ylim(0.2, 1.0)
         ax.grid(axis="y", color="#e4e3df", linewidth=0.6)

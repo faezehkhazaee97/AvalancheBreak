@@ -124,9 +124,36 @@ def fig_profile(cells):
     fig.savefig(REPO / "figs" / "png" / "fig_profile.png", dpi=200, bbox_inches="tight")
 
 
+def fig_profile_by_task(cells):
+    """Appendix: the length profile per task (mean over the four strong models)."""
+    s = cells[cells.model.isin(STRONG)]
+    fig, axes = plt.subplots(1, 3, figsize=(MULTI_COL_WIDTH, 2.3), sharey=True)
+    for ax, t in zip(axes, TASKS):
+        for fmt, _, lab, col in FORMATS:
+            x = s[(s.fmt == fmt) & (s.task == t)]
+            byN = x.groupby(["model", "N"]).delta.mean().groupby("N").agg(["mean", "sem"])
+            ax.errorbar(byN.index, byN["mean"], yerr=1.96 * byN["sem"], color=col, marker="o",
+                        markersize=3.2, linewidth=1.5, capsize=1.5, label=lab)
+        ax.set_title(t, fontsize=7.5, family="monospace")
+        ax.set_xscale("log", base=2)
+        ax.set_xticks([4, 8, 16, 32, 64]); ax.set_xticklabels(["4", "8", "16", "32", "64"])
+        ax.set_xlabel("Sequence length $N$")
+        ax.axhline(0, color=GRAY, linewidth=0.8)
+        ax.grid(axis="y", color="#e4e3df", linewidth=0.6)
+        ax.set_axisbelow(True)
+        for sp in ("top", "right"):
+            ax.spines[sp].set_visible(False)
+    axes[0].set_ylabel("Gain from markers\n(Bounds $-$ Base)")
+    axes[0].legend(frameon=False, loc="upper left", fontsize=6.5)
+    fig.tight_layout()
+    savefig(fig, REPO / "figs" / "fig_profile_by_task.pdf")
+    fig.savefig(REPO / "figs" / "png" / "fig_profile_by_task.png", dpi=200, bbox_inches="tight")
+
+
 if __name__ == "__main__":
     set_rc()
     pooled, cells = collect()
     fig_three_formats(pooled)
     fig_profile(cells)
+    fig_profile_by_task(cells)
     print("Wrote figs/fig_three_formats.pdf and figs/fig_profile.pdf")

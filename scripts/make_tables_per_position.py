@@ -86,3 +86,34 @@ if __name__ == "__main__":
     perpos()
     distance()
     print(f"Wrote {OUT / 'perpos.tex'} and {OUT / 'distance.tex'}")
+
+
+def aligned():
+    """Appendix table: per-position gains under index-aligned vs edit-distance-aligned scoring
+    (results_clean/_summary/aligned_scoring.csv from scripts/analyze_aligned_scoring.py)."""
+    f = SUMMARY / "aligned_scoring.csv"
+    if not f.exists():
+        return
+    a = pd.read_csv(f).pivot_table(index=["task", "model"], columns="scorer", values=["post_gain", "within_gain"])
+    lines = [r"\begin{tabular}{llcccc}", r"\toprule",
+             r"& & \multicolumn{2}{c}{Right after a marker} & \multicolumn{2}{c}{Within a segment} \\",
+             r"\cmidrule(lr){3-4}\cmidrule(lr){5-6}",
+             r"Task & Model & Index & Aligned & Index & Aligned \\", r"\midrule"]
+    for task in ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]:
+        first = True
+        for m in MODELS:
+            if (task, m) not in a.index:
+                continue
+            r = a.loc[(task, m)]
+            name = r"\task{" + task.replace("_", r"\_") + "}" if first else ""
+            lines.append(f"{name} & {m} & {signed(r[('post_gain', 'index')])} & {signed(r[('post_gain', 'aligned')])} & "
+                         f"{signed(r[('within_gain', 'index')])} & {signed(r[('within_gain', 'aligned')])} \\\\")
+            first = False
+        lines.append(r"\midrule")
+    lines[-1] = r"\bottomrule"
+    lines.append(r"\end{tabular}")
+    (OUT / "aligned.tex").write_text("\n".join(lines) + "\n")
+    print(f"Wrote {OUT / 'aligned.tex'}")
+
+
+aligned()
