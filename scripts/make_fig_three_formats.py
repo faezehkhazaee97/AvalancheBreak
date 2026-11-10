@@ -2,7 +2,8 @@
 """Figures for the tokenization analysis: merged letters vs spaced letters vs digits.
 
 fig_three_formats: per model, token accuracy without and with markers for each format,
-  mean over the three position-local tasks (N <= 64, k in {1,2,4,8,16}).
+  mean over the three position-local tasks (N <= 64, k in {1,2,4,8,16}); the no-marker value is
+  length-matched to the marker runs (tasks/common/pooled.py).
 fig_profile: at the four strong models (Qwen2.5-14B/32B, Qwen3.8-27B, Gemma-4-31B), the marker
   effect (Bounds - Base) by sequence length, and by marker spacing at N = 64.
 
@@ -20,6 +21,7 @@ from matplotlib.lines import Line2D
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
+from tasks.common.pooled import pooled_delta  # noqa: E402
 from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: E402
 
 MODELS = {"Qwen2.5 7B": "Qwen2.5-7B-Instruct", "Qwen2.5 14B": "Qwen2.5-14B-Instruct",
@@ -46,9 +48,10 @@ def collect():
         for t in TASKS:
             for fmt, suf, _, _ in FORMATS:
                 x = load(t + suf, tag)
-                b, c = x[x.Method == "Base"].TAR, x[x.Method == "Cellular_Bounds"].TAR
-                pooled.append(dict(model=m, task=t, fmt=fmt, base=b.mean(), bounds=c.mean(),
-                                   base_se=b.sem(), bounds_se=c.sem()))
+                r = pooled_delta(x)  # length-matched (tasks/common/pooled.py)
+                c = x[x.Method == "Cellular_Bounds"].TAR
+                pooled.append(dict(model=m, task=t, fmt=fmt, base=r["base"], bounds=r["bounds"],
+                                   bounds_se=c.sem()))
                 for N, g in x.groupby("Seq_Length"):
                     bb = g[g.Method == "Base"].TAR.mean()
                     for k, h in g[g.Method == "Cellular_Bounds"].groupby("Interval"):

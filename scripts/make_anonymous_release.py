@@ -127,8 +127,8 @@ the old ones).
 
 ## Figures and tables
 
-Run `scripts/analyze_per_position.py` and `scripts/make_fig_split_heatmap.py` first; they write the
-summary CSVs the per-position figures and tables read.
+Run `scripts/analyze_per_position.py`, `scripts/summarize_pooled.py`, and `scripts/make_fig_split_heatmap.py`
+first; they write the summary CSVs that the figures and tables read.
 
 | Paper item | Script (`scripts/`) |
 |---|---|
@@ -137,15 +137,18 @@ summary CSVs the per-position figures and tables read.
 | Pooled effects, every task and model (heatmap) | `make_fig_split_heatmap.py` |
 | Head-ablation tables (32B in the main text, 7B in the appendix) | `make_table_ablation_v2.py` |
 | Appendix per-position and distance tables | `make_tables_per_position.py` |
+| Appendix reset, Gemini/CLRS and external tables | `make_tables_pooled.py` |
 | Appendix: mechanism figure | `make_fig2_mechanism_merged.py` |
 | Appendix: best density by length | `make_fig2_vertex_migration.py` |
 | Appendix: other figures | `make_fig_divide_and_conquer.py`, `make_fig_attention_mechanism_32b.py`, `make_fig_head_heatmaps_32b.py`, `make_fig_error_containment_combined.py`, `make_fig_attention_digits_comparison.py`, `make_fig_tier1_cyclic_shift.py`, `make_fig_anchors_grid.py`, `make_fig_hard_dependency_grid.py`, `make_fig_external_tier1_checks.py`, `make_fig_external_benchmark_gemini.py` |
 
 ## Statistics
 
-A pooled effect is Delta = mean TAR(Bounds) - mean TAR(Base) over N in {4, 8, 16, 32, 64},
-k in {1, 2, 4, 8, 16} (k = 3 is run but excluded), and alphabet or modulus values, with
-z = Delta / sqrt(SE_Base^2 + SE_Bounds^2); the share of remaining errors removed is Delta / (1 - mean TAR(Base)).
+A pooled effect is Delta = mean TAR(Bounds) - sum_N p_N mean TAR(Base at N), where p_N is the share of
+marker runs at length N (only k < N is run, so marker runs sit at longer lengths); it pools N in
+{4, 8, 16, 32, 64}, k in {1, 2, 4, 8, 16} (k = 3 is run but excluded), and alphabet or modulus values
+(`tasks/common/pooled.py`). The share of remaining errors removed is the mean Delta over a model's tasks
+divided by one minus the mean length-matched no-marker accuracy.
 Per-position accuracy classes positions as right after a marker (i > 0, i mod k = 0) or within a segment
 and compares each with the no-marker run at the same indices (`scripts/analyze_per_position.py`).
 

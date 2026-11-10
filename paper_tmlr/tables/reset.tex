@@ -1,0 +1,23 @@
+\begin{tabular}{llcccc}
+\toprule
+& & \multicolumn{2}{c}{Original (dependency intact)} & \multicolumn{2}{c}{Reset (dependency severed)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Task & Model & Base$\rightarrow$Bounds & $\Delta$ ($|z|$) & Base$\rightarrow$Bounds & $\Delta$ ($|z|$) \\
+\midrule
+\task{running\_xor} & 7B & 0.401$\rightarrow$0.403 & +0.002 (0.1) & 0.450$\rightarrow$0.482 & +0.032 (3.4) \\
+ & 32B & 0.746$\rightarrow$0.798 & +0.053 (6.2) & 0.715$\rightarrow$0.878 & +0.163 (11.9) \\
+ & Qwen3.8 27B & 0.646$\rightarrow$0.742 & +0.096 (9.5) & 0.645$\rightarrow$0.855 & +0.210 (14.4) \\
+ & Gemma 4 31B & 0.816$\rightarrow$0.850 & +0.034 (4.3) & 0.816$\rightarrow$0.928 & +0.112 (10.2) \\
+\task{running\_sum\_local} & 7B & 0.286$\rightarrow$0.280 & $-$0.006 (0.8) & 0.277$\rightarrow$0.348 & +0.071 (12.4) \\
+ & 32B & 0.547$\rightarrow$0.603 & +0.056 (9.0) & 0.508$\rightarrow$0.660 & +0.152 (12.1) \\
+ & Qwen3.8 27B & 0.441$\rightarrow$0.573 & +0.131 (13.0) & 0.419$\rightarrow$0.683 & +0.264 (19.4) \\
+ & Gemma 4 31B & 0.754$\rightarrow$0.775 & +0.021 (3.2) & 0.723$\rightarrow$0.840 & +0.117 (10.8) \\
+\task{sliding\_window\_max} & 32B & 0.668$\rightarrow$0.733 & +0.065 (7.9) & 0.677$\rightarrow$0.816 & +0.139 (10.9) \\
+ & Qwen3.8 27B & 0.666$\rightarrow$0.653 & $-$0.013 (1.0) & 0.640$\rightarrow$0.824 & +0.183 (16.4) \\
+ & Gemma 4 31B & 0.708$\rightarrow$0.783 & +0.075 (6.3) & 0.718$\rightarrow$0.817 & +0.099 (7.9) \\
+\task{copy\_previous} & 7B & 0.508$\rightarrow$0.418 & $-$0.090 (7.0) & 0.565$\rightarrow$0.553 & $-$0.013 (1.4) \\
+ & 32B & 0.836$\rightarrow$0.818 & $-$0.018 (1.9) & 0.874$\rightarrow$0.792 & $-$0.083 (4.6) \\
+ & Qwen3.8 27B & 0.971$\rightarrow$0.709 & $-$0.262 (23.9) & 0.942$\rightarrow$0.836 & $-$0.105 (6.4) \\
+ & Gemma 4 31B & 0.917$\rightarrow$0.832 & $-$0.086 (6.5) & 0.837$\rightarrow$0.866 & +0.029 (1.3) \\
+\bottomrule
+\end{tabular}

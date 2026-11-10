@@ -54,7 +54,7 @@ for color, N in zip(SEQ_BLUE_ORDINAL, lengths):
                   markersize=4, linewidth=1.5, capsize=2, label=f"N={N}")
 ax_a.set_xlabel("Boundary density (1/k)")
 ax_a.set_ylabel("Attention mass on boundary tokens")
-ax_a.set_title("(a) Boundary tokens absorb attention,\nscaling with density (alphabet=2)", fontsize=8.5)
+ax_a.set_title("(a) Total attention on all markers\nby density (alphabet=2)", fontsize=8.5)
 set_power_of_2_xticks(ax_a, sweep_a2.Inv_K.unique(), fontsize=6.5)
 ax_a.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), frameon=False, fontsize=6.5, ncol=1)
 
@@ -97,13 +97,13 @@ normal_tar = ref[(ref.Method == "Cellular_Bounds") & (ref.Interval == 2)].groupb
 ablated_tar = abl.groupby("Seq_Length")["TAR"].mean().reindex(ablation_N)
 
 ax_c.plot(ablation_N, base_tar, color="black", linestyle="--", marker="o", markersize=4, linewidth=1.3, label="Base")
-ax_c.plot(ablation_N, normal_tar, color=CAT_BLUE, marker="s", markersize=4, linewidth=1.6, label="Cellular_Bounds")
-ax_c.plot(ablation_N, ablated_tar, color=CAT_ORANGE, marker="^", markersize=4, linewidth=1.6, label="Cellular_Bounds\n(sink heads ablated)")
+ax_c.plot(ablation_N, normal_tar, color=CAT_BLUE, marker="s", markersize=4, linewidth=1.6, label="Markers")
+ax_c.plot(ablation_N, ablated_tar, color=CAT_ORANGE, marker="^", markersize=4, linewidth=1.6, label="Markers, top heads\nblocked from markers")
 set_power_of_2_xticks(ax_c, ablation_N)
 ax_c.set_ylim(0.4, 1.05)
 ax_c.set_xlabel("Sequence length N")
 ax_c.set_ylabel("TAR")
-ax_c.set_title("(c) Blocking sink heads erases a growing\nshare of the benefit as N increases", fontsize=8.5)
+ax_c.set_title("(c) Blocking the top marker-attending heads\n(earlier ablation, letters, k=2)", fontsize=8.5)
 ax_c.legend(loc="lower left", frameon=False, fontsize=6)
 
 # ---- Panel (d): dip mechanism -- attention to correct target (from former Fig 3a) ----

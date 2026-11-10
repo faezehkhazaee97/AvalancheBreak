@@ -5,7 +5,7 @@ pooled over N in {4,8,16,32,64}, every tested density (k=3 excluded), and
 every alphabet/modulus value. Lengths are capped at 64 so every model is
 pooled over the same grid (the 32B-only N=128 extension and cyclic_shift's
 N=128/256 are left out here). '*' marks |delta / combined SEM| at or above the
-Bonferroni threshold across all plotted cells (two-sided p < 0.05; 3.38 for 70 cells).
+Bonferroni threshold across all pooled cells the paper tests (two-sided p < 0.05).
 
 Three row blocks: position-local tasks, dependency tasks as-is, and the same
 dependency tasks with the dependency severed at each marker (reset variants).
@@ -25,6 +25,7 @@ from matplotlib.colors import LinearSegmentedColormap
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
+from tasks.common.pooled import pooled_delta as _pooled  # noqa: E402
 from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: E402
 
 LENGTHS = [4, 8, 16, 32, 64]
@@ -78,13 +79,8 @@ def load_gemini(task):
 
 
 def pooled_delta(df):
-    df = df[(df.Interval != 3) & (df.Seq_Length.isin(LENGTHS))]
-    base, bnd = df[df.Method == "Base"].TAR, df[df.Method == "Cellular_Bounds"].TAR
-    if len(base) < 2 or len(bnd) < 2:
-        return None
-    delta = bnd.mean() - base.mean()
-    z = delta / np.sqrt(base.sem() ** 2 + bnd.sem() ** 2)
-    return dict(base=base.mean(), bounds=bnd.mean(), delta=delta, z=z, n_base=len(base), n_bounds=len(bnd))
+    """Length-matched pooled effect (tasks/common/pooled.py)."""
+    return _pooled(df, lengths=LENGTHS)
 
 
 rows, records = [], []
@@ -106,8 +102,11 @@ models = [MODELS[j] for j in keep]
 rows = [(b, t, [c[j] for j in keep]) for b, t, c in rows]
 
 from scipy.stats import norm  # noqa: E402
-SIG_Z = norm.ppf(1 - 0.05 / (2 * len(records)))  # Bonferroni, two-sided, over plotted cells
-print(f"{len(records)} cells; star threshold |z| >= {SIG_Z:.2f}")
+# Bonferroni, two-sided, over every pooled cell the paper tests: the cells plotted here plus the
+# 42 tokenization-control cells (3 position-local tasks x 7 open models x {spaced, digits}).
+N_FAMILY = len(records) + 42
+SIG_Z = norm.ppf(1 - 0.05 / (2 * N_FAMILY))
+print(f"{len(records)} cells plotted, family of {N_FAMILY}; star threshold |z| >= {SIG_Z:.2f}")
 
 out_csv = REPO / "results_clean" / "_summary" / "split_heatmap_values.csv"
 out_csv.parent.mkdir(parents=True, exist_ok=True)
@@ -158,7 +157,7 @@ for s in ax.spines.values():
 ax.tick_params(length=0)
 
 cb = fig.colorbar(im, ax=ax, orientation="horizontal", fraction=0.05, pad=0.04, aspect=40, shrink=0.6)
-cb.set_label("TAR change with markers (Cellular_Bounds − Base)   ← hurts    helps →", fontsize=7)
+cb.set_label("TAR change with markers (Bounds − Base)   ← hurts    helps →", fontsize=7)
 cb.ax.tick_params(labelsize=6.5)
 cb.outline.set_visible(False)
 
