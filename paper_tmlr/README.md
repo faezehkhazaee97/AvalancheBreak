@@ -6,7 +6,7 @@ files, `refs.bib`, `figures/`, `tables/`).
 
 ## Compile
 
-There is no LaTeX on Farm, so this has not been compiled here; static checks pass (every `\ref`
+Compiled with Tectonic (conda env `.conda/envs/tex`): `paper.pdf`. Static checks also pass (every `\ref`
 resolves, every `\cite` is in `refs.bib`, every figure file exists, environments balance).
 
 Overleaf: New Project → Upload Project → `paper_tmlr_overleaf.zip` (repo root). Compiler: pdfLaTeX,

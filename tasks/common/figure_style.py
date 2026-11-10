@@ -37,7 +37,19 @@ def set_rc():
     })
 
 
+def _plain_labels(fig):
+    """Replace the internal condition name in any displayed text (titles, axis labels,
+    legends) with the paper's wording; data filtering keeps using the internal name."""
+    from matplotlib.text import Text
+    for t in fig.findobj(Text):
+        s = t.get_text()
+        if "Cellular" in s:
+            t.set_text(s.replace("Cellular_Bounds", "Markers").replace("Cellular Bounds", "Markers")
+                       .replace("Cellular", "Markers"))
+
+
 def savefig(fig, path):
+    _plain_labels(fig)
     fig.savefig(path, format="pdf", bbox_inches="tight")
     print(f"Wrote {path}")
 

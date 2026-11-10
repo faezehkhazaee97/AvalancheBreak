@@ -61,7 +61,7 @@ ax_a.set_xticks(x)
 ax_a.set_xticklabels([power_of_2_label(n) for n in lengths], fontsize=6)
 ax_a.set_xlabel("Sequence length N")
 ax_a.set_ylabel("boundary-attn vs. density slope")
-ax_a.set_title("(a) Sink strength: letters vs. digits")
+ax_a.set_title("(a) Marker attention vs. density: letters vs. digits")
 ax_a.legend(loc="upper center", bbox_to_anchor=(0.5, -0.22), ncol=2, frameon=False, fontsize=6.5)
 
 # (b) entropy by layer, digit alphabet
