@@ -44,6 +44,7 @@ def table(tag):
             lines.append(" & ".join(cells) + r" \\")
     lines += [r"\bottomrule", r"\end{tabular}"]
     out = REPO / "paper_tmlr" / "tables" / f"ablation_{tag.split('-')[1].lower()}.tex"
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text("\n".join(lines) + "\n")
     p = a[a.Condition != "base"].pivot_table(index=["Task", "Seq_Length", "Interval", "Trial"],
                                               columns="Condition", values="TAR")
