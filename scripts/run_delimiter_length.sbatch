@@ -4,11 +4,11 @@
 #SBATCH --gres=gpu:a100:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=110G
-#SBATCH --time=12:00:00               # ~3-4 h expected (840 generations, up to N = 256); resumable
+#SBATCH --time=12:00:00               # ~5 h expected (1,260 generations, up to N = 256); resumable
 #SBATCH --output=/group/gquongrp/workspaces/baran/AvalancheBreak/slurm_logs/%x-%j.log
 
-# Delimiter type x longer sequences (scripts/run_delimiter_length.py): running_xor and
-# running_sum_local, N in {64, 128, 256}, markers "|", "," and line break at k in {4, 16}.
+# Delimiter type x longer sequences (scripts/run_delimiter_length.py): running_xor,
+# running_sum_local and random_permutation_digits, N in {64, 128, 256}, markers "|", "," and line break at k in {4, 16}.
 #   sbatch --job-name=delim-32B scripts/run_delimiter_length.sbatch Qwen/Qwen2.5-32B-Instruct
 set -euo pipefail
 ENV=/group/gquongrp/workspaces/baran/AvalancheBreak/.conda/envs/qwen-focus

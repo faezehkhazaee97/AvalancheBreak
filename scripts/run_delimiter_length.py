@@ -3,7 +3,9 @@
 long-sequence gain and the post-marker blind spot persist beyond N = 64, and do other common
 delimiters behave like "|"?).
 
-Tasks: running_xor and running_sum_local (modulus 4), digits. Lengths N in {64, 128, 256}.
+Tasks: running_xor and running_sum_local (modulus 4), digits, where the blind spot appears; and
+random_permutation_digits (alphabet size 8), a position-local control with no blind spot, which
+isolates the long-sequence gain. Lengths N in {64, 128, 256}.
 Markers: "|" (the original), "," and a line break, each every k in {4, 16} characters, plus
 the no-marker baseline. Seeds are those of the main grid (tasks.common.runner._local_seed),
 so the "|" cells at N = 64 replicate existing runs. Decoding is greedy, as everywhere.
@@ -44,7 +46,7 @@ MARKERS = {
     "newline": ("\n", "Constraint: The input is split across several lines. These line breaks are structural "
                       "boundaries.\nDO NOT transform them. Reproduce the same line breaks in the output."),
 }
-TASKS = {"running_xor": None, "running_sum_local": 4}
+TASKS = {"running_xor": None, "running_sum_local": 4, "random_permutation_digits": 8}
 LENGTHS, KS = [64, 128, 256], [4, 16]
 
 
@@ -127,7 +129,7 @@ def main():
     out_dir = REPO / "results" / "delimiter_length"
     out_dir.mkdir(parents=True, exist_ok=True)
     out_csv = out_dir / f"{tag}.csv"
-    fields = ["Task", "Marker", "Interval", "Seq_Length", "Modulus", "Trial", "TAR", "SAR",
+    fields = ["Task", "Marker", "Interval", "Seq_Length", "Axis", "Trial", "TAR", "SAR",
               "Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output"]
     done = set()
     if out_csv.exists():
@@ -161,7 +163,7 @@ def main():
                         w = csv.DictWriter(f, fieldnames=fields)
                         if new:
                             w.writeheader()
-                        w.writerow(dict(Task=task, Marker=marker, Interval=k, Seq_Length=N, Modulus=axis or 2,
+                        w.writerow(dict(Task=task, Marker=marker, Interval=k, Seq_Length=N, Axis=axis or 2,
                                         Trial=t, TAR=tar, SAR=sar, Input_Given=inp, Ground_Truth=ct,
                                         LLM_Output=pred, Raw_Model_Output=raw))
                 print(f"done N={N} {task} {marker} k={k}", flush=True)
