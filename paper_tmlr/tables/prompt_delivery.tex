@@ -1,0 +1,15 @@
+\begin{tabular}{ll ccc cc}
+\toprule
+Task & Prompt delivery & No markers & Markers & Change & Post-marker & Within-segment \\
+\midrule
+\task{running\_xor} & Default template & 0.66 & 0.77 & $+0.11 \pm 0.04$ & $-0.18$ & $+0.16$ \\
+ & Empty system message & 0.66 & 0.78 & $+0.12 \pm 0.04$ & $-0.17$ & $+0.17$ \\
+ & Task-oriented system message & 0.68 & 0.77 & $+0.09 \pm 0.04$ & $-0.14$ & $+0.14$ \\
+ & No chat template & 0.66 & 0.80 & $+0.13 \pm 0.04$ & $-0.15$ & $+0.18$ \\
+\midrule
+\task{random\_permutation (digits)} & Default template & 0.55 & 0.92 & $+0.37 \pm 0.07$ & --- & --- \\
+ & Empty system message & 0.59 & 0.95 & $+0.36 \pm 0.06$ & --- & --- \\
+ & Task-oriented system message & 0.55 & 0.94 & $+0.39 \pm 0.06$ & --- & --- \\
+ & No chat template & 0.60 & 0.95 & $+0.36 \pm 0.07$ & --- & --- \\
+\bottomrule
+\end{tabular}
