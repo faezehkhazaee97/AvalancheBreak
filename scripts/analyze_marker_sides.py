@@ -17,10 +17,14 @@ exists where the input carries markers.
 
 Outputs: results_clean/_summary/marker_sides.csv, paper_tmlr/tables/marker_sides.tex
 """
+import sys
 from pathlib import Path
 import numpy as np, pandas as pd
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 REPO = Path(__file__).resolve().parents[1]
+from analyze_compliance import marker_positions, expected_positions  # noqa: E402
 TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output")}
 TASKS = [("running_xor", None, None, "running\\_xor"),
          ("random_permutation_digits", "Alphabet_Size", 8, "random\\_permutation (digits)")]
@@ -68,8 +72,19 @@ def main():
                     v = vec(r.Ground_Truth, r.LLM_Output); idx = np.arange(len(v)); p = (idx > 0) & (idx % r.k == 0)
                     pv.append(v[p].mean()); bv.append(ref[r.N][p].mean())
                 post = np.mean(pv)
+            # compliance needs the raw generation; some older main-grid batches stored only the
+            # cleaned answer, and those rows are excluded rather than counted as failures
+            raw = d[d.Raw_Model_Output.map(lambda x: isinstance(x, str) and x != "")] \
+                if "Raw_Model_Output" in d.columns else d.iloc[0:0]
+            if not len(raw):
+                comp = np.nan
+            elif has_out == "yes":
+                comp = np.mean([marker_positions(r.Raw_Model_Output) == expected_positions(len(r.Ground_Truth), r.k)
+                                for r in raw.itertuples()])
+            else:
+                comp = np.mean([len(marker_positions(r.Raw_Model_Output)) == 0 for r in raw.itertuples()])
             rows.append(dict(task=task, cond=cond, markers_in=has_in, markers_out=has_out, n=len(d),
-                             acc=d.TAR.mean(), se=d.TAR.sem(), post=post))
+                             acc=d.TAR.mean(), se=d.TAR.sem(), post=post, complied=comp))
     o = pd.DataFrame(rows)
     # effects relative to the conventional baseline (marker sentence, no markers)
     for task, _, _, _ in TASKS:
@@ -78,16 +93,17 @@ def main():
     o = o.round(4)
     o.to_csv(REPO / "results_clean" / "_summary" / "marker_sides.csv", index=False)
     print(o.to_string(index=False))
-    lines = ["\\begin{tabular}{ll cc cc c}", "\\toprule",
+    lines = ["\\begin{tabular}{ll cc cc cc}", "\\toprule",
              "& & \\multicolumn{2}{c}{Markers} & & & \\\\", "\\cmidrule(lr){3-4}",
-             "Task & Condition & Input & Output & Accuracy & Change & Post-marker \\\\", "\\midrule"]
+             "Task & Condition & Input & Output & Accuracy & Change & Followed & Post-marker \\\\", "\\midrule"]
     for task, _, _, lab in TASKS:
         for i, (cond, hi, ho, clab) in enumerate(ORDER):
             r = o[(o.task == task) & (o.cond == cond)].iloc[0]
             post = "---" if np.isnan(r.post) else f"{r.post:.2f}"
             ch = "---" if cond == "base_instr" else f"${r.delta:+.2f}$"
+            comp = "n/a" if np.isnan(r.complied) else f"{r.complied:.0%}".replace("%", "\\%")
             lines.append(" & ".join(["\\task{" + lab + "}" if i == 0 else "", clab, hi, ho,
-                                     f"{r.acc:.2f} $\\pm$ {1.96 * r.se:.2f}", ch, post]) + " \\\\")
+                                     f"{r.acc:.2f} $\\pm$ {1.96 * r.se:.2f}", ch, comp, post]) + " \\\\")
         if task != TASKS[-1][0]:
             lines.append("\\midrule")
     lines += ["\\bottomrule", "\\end{tabular}"]

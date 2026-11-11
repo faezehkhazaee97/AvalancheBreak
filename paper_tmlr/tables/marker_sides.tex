@@ -1,19 +1,19 @@
-\begin{tabular}{ll cc cc c}
+\begin{tabular}{ll cc cc cc}
 \toprule
 & & \multicolumn{2}{c}{Markers} & & & \\
 \cmidrule(lr){3-4}
-Task & Condition & Input & Output & Accuracy & Change & Post-marker \\
+Task & Condition & Input & Output & Accuracy & Change & Followed & Post-marker \\
 \midrule
-\task{running\_xor} & No marker sentence & no & no & 0.70 $\pm$ 0.03 & $+0.04$ & --- \\
- & Marker sentence, no markers & no & no & 0.66 $\pm$ 0.03 & --- & --- \\
- & Markers in input only & yes & no & 0.65 $\pm$ 0.03 & $-0.01$ & 0.52 \\
- & Markers in output only & no & yes & 0.62 $\pm$ 0.02 & $-0.04$ & --- \\
- & Markers in input and output & yes & yes & 0.77 $\pm$ 0.02 & $+0.11$ & 0.51 \\
+\task{running\_xor} & No marker sentence & no & no & 0.70 $\pm$ 0.03 & $+0.04$ & 100\% & --- \\
+ & Marker sentence, no markers & no & no & 0.66 $\pm$ 0.03 & --- & n/a & --- \\
+ & Markers in input only & yes & no & 0.65 $\pm$ 0.03 & $-0.01$ & 72\% & 0.52 \\
+ & Markers in output only & no & yes & 0.62 $\pm$ 0.02 & $-0.04$ & 54\% & --- \\
+ & Markers in input and output & yes & yes & 0.77 $\pm$ 0.02 & $+0.11$ & n/a & 0.51 \\
 \midrule
-\task{random\_permutation (digits)} & No marker sentence & no & no & 0.57 $\pm$ 0.07 & $+0.02$ & --- \\
- & Marker sentence, no markers & no & no & 0.55 $\pm$ 0.06 & --- & --- \\
- & Markers in input only & yes & no & 0.76 $\pm$ 0.06 & $+0.22$ & 0.72 \\
- & Markers in output only & no & yes & 0.56 $\pm$ 0.04 & $+0.01$ & --- \\
- & Markers in input and output & yes & yes & 0.92 $\pm$ 0.03 & $+0.37$ & 0.90 \\
+\task{random\_permutation (digits)} & No marker sentence & no & no & 0.57 $\pm$ 0.07 & $+0.02$ & 100\% & --- \\
+ & Marker sentence, no markers & no & no & 0.55 $\pm$ 0.06 & --- & 100\% & --- \\
+ & Markers in input only & yes & no & 0.76 $\pm$ 0.06 & $+0.22$ & 38\% & 0.72 \\
+ & Markers in output only & no & yes & 0.56 $\pm$ 0.04 & $+0.01$ & 0\% & --- \\
+ & Markers in input and output & yes & yes & 0.92 $\pm$ 0.03 & $+0.37$ & 94\% & 0.90 \\
 \bottomrule
 \end{tabular}

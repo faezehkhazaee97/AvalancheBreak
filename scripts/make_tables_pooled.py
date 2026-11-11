@@ -53,7 +53,7 @@ def reset_table():
 
 def gemini_table():
     lines = [r"\begin{tabular}{llccc}", r"\toprule",
-             r"Task & Model & Base TAR & Bounds TAR & $\Delta$ ($|z|$) \\", r"\midrule"]
+             r"Task & Model & Base acc. & Bounds acc. & $\Delta$ ($|z|$) \\", r"\midrule"]
     for t in ["cyclic_shift", "random_permutation", "conditional_shift", "running_xor", "running_sum_local", "copy_previous"]:
         r = get("gemini_table", t, "Gemini 3.5 Flash")
         lines.append(f"{tt(t)} & Gemini & {r.base:.3f} & {r.bounds:.3f} & {dz(r)} \\\\")
