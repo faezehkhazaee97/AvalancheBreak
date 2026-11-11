@@ -19,8 +19,10 @@ All numbers come from the raw grids under `results_clean/` and `results/ablation
 repository root, with `.conda/envs/qwen-focus/bin/python`:
 
 1. `scripts/analyze_per_position.py` and `scripts/make_fig_split_heatmap.py` (summary CSVs)
-2. `scripts/make_fig_three_formats.py`, `scripts/make_fig_per_position.py`
-3. `scripts/make_tables_per_position.py`, `scripts/make_table_ablation_v2.py` (write `tables/`)
+2. `scripts/make_fig_overview.py`, `scripts/make_fig_three_formats.py`, `scripts/make_fig_per_position.py`,
+   `scripts/make_fig_by_model.py` (appendix per-model figures)
+3. `scripts/make_tables_per_position.py`, `scripts/make_table_ablation_v2.py`,
+   `scripts/analyze_wording_and_dose.py`, `scripts/analyze_delimiter_length.py` (write `tables/`)
 4. `bash paper_tmlr/sync_figures.sh`
 
 Numbers quoted in the text are not generated automatically; if data change, recheck them against

@@ -118,7 +118,7 @@ def make_reset_fig():
                 o = vals[(vals.task == t) & (vals.model == m)]
                 r = vals[(vals.task == f"{t}_reset") & (vals.model == m)]
                 if o.empty or r.empty:
-                    ax.text(i, 0.6, "not\nrun", ha="center", va="center", fontsize=5.8, color=BASE)
+                    ax.text(i, 0.6, "not\nrun", ha="center", va="center", fontsize=5.5, color=BASE, linespacing=0.9)
                     continue
                 a, b = o[col].iloc[0], r[col].iloc[0]
                 ax.plot([i, i], [a, b], color=color, linewidth=1.4, alpha=0.6, zorder=1)
@@ -133,6 +133,7 @@ def make_reset_fig():
             for s in ("top", "right"):
                 ax.spines[s].set_visible(False)
             ax.set_xticks(range(len(models)))
+            ax.set_xlim(-0.6, len(models) - 0.4)
             ax.set_xticklabels(["Q2.5\n7B", "Q2.5\n32B", "Q3.8\n27B", "Gemma\n4"], fontsize=6.0)
             if row == 0:
                 ax.set_title(t, fontsize=7.5, family="monospace")

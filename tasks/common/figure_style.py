@@ -38,14 +38,29 @@ def set_rc():
 
 
 def _plain_labels(fig):
-    """Replace the internal condition name in any displayed text (titles, axis labels,
-    legends) with the paper's wording; data filtering keeps using the internal name."""
+    """Put the paper's wording into any displayed text (titles, axis labels, legends); data
+    filtering keeps using the internal names. Also drops figure-level titles: in the paper the
+    caption carries the message, and several old titles used internal working names."""
+    import re
     from matplotlib.text import Text
+    if getattr(fig, "_suptitle", None) is not None:
+        fig._suptitle.set_text("")
+    swaps = [("Cellular_Bounds", "Markers"), ("Cellular Bounds", "Markers"), ("Cellular", "Markers"),
+             ("boundary-token", "marker"), ("Boundary-token", "Marker"),
+             ("boundaries", "markers"), ("Boundaries", "Markers"),
+             ("boundary", "marker"), ("Boundary", "Marker"),
+             (" (no workaround)", ""), ("(space-sep.)", "(spaced)"), (" -- ", ", ")]
     for t in fig.findobj(Text):
         s = t.get_text()
-        if "Cellular" in s:
-            t.set_text(s.replace("Cellular_Bounds", "Markers").replace("Cellular Bounds", "Markers")
-                       .replace("Cellular", "Markers"))
+        if not s:
+            continue
+        new = s
+        for a, b in swaps:
+            new = new.replace(a, b)
+        if "Bounds" not in new:  # keep "Bounds - Base", the paper's name for the difference
+            new = re.sub(r"\bBase\b", "No markers", new)
+        if new != s:
+            t.set_text(new)
 
 
 def savefig(fig, path):
@@ -54,22 +69,15 @@ def savefig(fig, path):
     print(f"Wrote {path}")
 
 
-_SUPERSCRIPT_DIGITS = str.maketrans("0123456789-", "⁰¹²³⁴⁵⁶⁷⁸⁹⁻")
-
-
 def power_of_2_label(value):
-    """Format a value as '2^n' with a unicode superscript exponent, e.g.
-    0.125 -> '2⁻³', 1.0 -> '2⁰'. Assumes value is (very close to) an exact
-    power of 2; raises if it isn't, so a non-power-of-2 point (most often
-    a stray k=3 density -- this study's own convention excludes k=3 from
-    pooled analyses precisely because it doesn't fit the power-of-2 grid)
-    surfaces as an error instead of a silently wrong label.
-    """
+    """Plain tick label for a power of two: 64 -> '64', 0.125 -> '1/8'. Raises if the value is
+    not a power of two (the study's grids are powers of two; k = 3 is excluded upstream), so a
+    stray value surfaces as an error instead of a silently wrong label."""
     import math
     n = round(math.log2(value))
     if not math.isclose(value, 2 ** n, rel_tol=1e-6):
         raise ValueError(f"{value} is not a power of 2 -- exclude it before labeling, don't mislabel it")
-    return f"2{str(n).translate(_SUPERSCRIPT_DIGITS)}"
+    return str(2 ** n) if n >= 0 else f"1/{2 ** -n}"
 
 
 def set_power_of_2_xticks(ax, values, fontsize=6.5, rotation=0):

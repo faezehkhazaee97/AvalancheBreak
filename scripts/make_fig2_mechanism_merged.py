@@ -34,8 +34,8 @@ CAT_AQUA = "#1baf7a"
 
 RESULTS_DIR = REPO_ROOT / "results" / "Qwen2.5-32B-Instruct"
 
-fig = plt.figure(figsize=(MULTI_COL_WIDTH * 2.0, 3.6))
-gs = fig.add_gridspec(1, 4, width_ratios=[1.0, 1.5, 1.0, 0.9])
+fig = plt.figure(figsize=(MULTI_COL_WIDTH, 5.8))
+gs = fig.add_gridspec(2, 2, width_ratios=[1.0, 1.15], hspace=0.45, wspace=0.42)
 
 # ---- Panel (a): boundary attention mass vs density, faceted by length ----
 sweep = pd.read_csv(RESULTS_DIR / "attention_metrics_32b_realletters.csv")
@@ -43,7 +43,7 @@ npz = np.load(RESULTS_DIR / "attention_run_0_32b_realletters.npz", allow_pickle=
 attn_cell = npz["attn_cell"]
 tokens_cell = [str(t) for t in npz["tokens_cell"]]
 
-ax_a = fig.add_subplot(gs[0])
+ax_a = fig.add_subplot(gs[0, 0])
 sweep_a2 = sweep[sweep.Alphabet_Size == 2] if "Alphabet_Size" in sweep.columns else sweep
 sweep_a2 = sweep_a2[sweep_a2.Interval != 3]
 lengths = sorted(sweep_a2.Seq_Length.unique())
@@ -54,9 +54,9 @@ for color, N in zip(SEQ_BLUE_ORDINAL, lengths):
                   markersize=4, linewidth=1.5, capsize=2, label=f"N={N}")
 ax_a.set_xlabel("Boundary density (1/k)")
 ax_a.set_ylabel("Attention mass on boundary tokens")
-ax_a.set_title("(a) Total attention on all markers\nby density (alphabet=2)", fontsize=8.5)
+ax_a.set_title("(a) Attention on all markers, by density", fontsize=8.5)
 set_power_of_2_xticks(ax_a, sweep_a2.Inv_K.unique(), fontsize=6.5)
-ax_a.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), frameon=False, fontsize=6.5, ncol=1)
+ax_a.legend(loc="upper left", frameon=False, fontsize=6, ncol=1, borderaxespad=0.2, labelspacing=0.25)
 
 # ---- Panel (b): representative heatmap, most boundary-attending head ----
 n_layers, n_heads = attn_cell.shape[0], attn_cell.shape[1]
@@ -69,24 +69,24 @@ for l in range(n_layers):
         if score > best_score:
             best_score, best_lh = score, (l, h)
 l, h = best_lh
-ax_b = fig.add_subplot(gs[1])
+ax_b = fig.add_subplot(gs[0, 1])
 m = attn_cell[l, h]
 im = ax_b.imshow(m, cmap="viridis", vmin=0, vmax=np.percentile(m, 99), aspect="auto")
 ax_b.set_xticks(range(len(tokens_cell)))
-ax_b.set_xticklabels(tokens_cell, rotation=90, fontsize=8)
+ax_b.set_xticklabels(tokens_cell, rotation=90, fontsize=6.5)
 ax_b.set_yticks(range(len(tokens_cell)))
-ax_b.set_yticklabels(tokens_cell, fontsize=8)
+ax_b.set_yticklabels(tokens_cell, fontsize=6.5)
 ax_b.tick_params(axis="x", pad=2)
-ax_b.set_xlabel("Key token (attended TO)", fontsize=7)
-ax_b.set_ylabel("Query token (attending FROM)", fontsize=7)
+ax_b.set_xlabel("Key token (attended to)", fontsize=7)
+ax_b.set_ylabel("Query token (attending from)", fontsize=7)
 for i in boundary_idx:
     ax_b.axvline(i, color=CAT_ORANGE, alpha=0.5, linewidth=0.8)
     ax_b.axhline(i, color=CAT_ORANGE, alpha=0.5, linewidth=0.8)
-ax_b.set_title(f"(b) Attention heatmap, L{l}/H{h}\n(orange lines = boundary tokens)", fontsize=8.5)
+ax_b.set_title(f"(b) Head L{l}/H{h} (orange lines: markers)", fontsize=8.5)
 fig.colorbar(im, ax=ax_b, fraction=0.046, pad=0.04)
 
 # ---- Panel (c): causal ablation-by-length ----
-ax_c = fig.add_subplot(gs[2])
+ax_c = fig.add_subplot(gs[1, 0])
 abl_csv = RESULTS_DIR / "causal_ablation_grid.csv"
 base_grid = pd.read_csv(RESULTS_DIR / "thermodynamics_grid_templated_v2.csv")
 abl = pd.read_csv(abl_csv)
@@ -103,14 +103,14 @@ set_power_of_2_xticks(ax_c, ablation_N)
 ax_c.set_ylim(0.4, 1.05)
 ax_c.set_xlabel("Sequence length N")
 ax_c.set_ylabel("TAR")
-ax_c.set_title("(c) Blocking the top marker-attending heads\n(earlier ablation, letters, k=2)", fontsize=8.5)
+ax_c.set_title("(c) Earlier ablation (letters, k = 2)", fontsize=8.5)
 ax_c.legend(loc="lower left", frameon=False, fontsize=6)
 
 # ---- Panel (d): dip mechanism -- attention to correct target (from former Fig 3a) ----
-ax_d = fig.add_subplot(gs[3])
+ax_d = fig.add_subplot(gs[1, 1])
 retrieval = pd.read_csv(RESULTS_DIR / "dip_explanation_retrieval_attn.csv")
 top10 = retrieval.groupby("k")["correct_target_attn"].apply(lambda s: s.sort_values(ascending=False).head(10).mean())
-k_labels = {1: "k=1\n(regular)", 2: "k=2\n(the dip)", 8: "k=8\n(recovered)"}
+k_labels = {1: "k = 1", 2: "k = 2", 8: "k = 8"}
 ks = [1, 2, 8]
 colors = [CAT_BLUE, CAT_ORANGE, CAT_AQUA]
 bars = ax_d.bar([k_labels[k] for k in ks], [top10[k] for k in ks], color=colors, width=0.6)
@@ -118,12 +118,10 @@ for bar, k in zip(bars, ks):
     ax_d.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.015, f"{top10[k]:.3f}",
                ha="center", fontsize=8)
 ax_d.set_ylabel("Mean attention to correct target\n(top-10 heads)")
-ax_d.set_title("(d) Attention to the needed token collapses\nat the misaligned density\n(copy_previous, N=32)", fontsize=8.5)
+ax_d.set_title("(d) Attention to the needed input", fontsize=8.5)
 ax_d.set_ylim(0, 0.65)
 
 # No suptitle: the paper's caption carries the message.
-fig.tight_layout()
-
 OUT = REPO_ROOT / "figs" / "fig2_mechanism_merged.pdf"
 savefig(fig, OUT)
 fig.savefig(str(OUT).replace("figs/", "figs/png/").replace(".pdf", ".png"), dpi=150, bbox_inches="tight")
