@@ -1,0 +1,11 @@
+task,cond,markers_in,markers_out,n,acc,se,post,delta
+running_xor,base_clean,no,no,40,0.6992,0.0149,,0.0391
+running_xor,base_instr,no,no,40,0.6602,0.0168,,0.0
+running_xor,in_only,yes,no,80,0.6529,0.0132,0.5179,-0.0072
+running_xor,out_only,no,yes,80,0.6154,0.0118,,-0.0447
+running_xor,in_out,yes,yes,80,0.7658,0.0095,0.5082,0.1057
+random_permutation_digits,base_clean,no,no,40,0.568,0.0358,,0.0215
+random_permutation_digits,base_instr,no,no,40,0.5465,0.0305,,0.0
+random_permutation_digits,in_only,yes,no,80,0.7627,0.0312,0.725,0.2162
+random_permutation_digits,out_only,no,yes,80,0.5586,0.022,,0.0121
+random_permutation_digits,in_out,yes,yes,80,0.9189,0.0171,0.8982,0.3725
