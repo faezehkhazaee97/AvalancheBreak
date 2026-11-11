@@ -46,6 +46,7 @@ def _plain_labels(fig):
     if getattr(fig, "_suptitle", None) is not None:
         fig._suptitle.set_text("")
     swaps = [("Cellular_Bounds", "Markers"), ("Cellular Bounds", "Markers"), ("Cellular", "Markers"),
+             ("Token accuracy", "Character accuracy"), ("token accuracy", "character accuracy"),
              ("boundary-token", "marker"), ("Boundary-token", "Marker"),
              ("boundaries", "markers"), ("Boundaries", "Markers"),
              ("boundary", "marker"), ("Boundary", "Marker"),
@@ -54,7 +55,7 @@ def _plain_labels(fig):
         s = t.get_text()
         if not s:
             continue
-        new = s
+        new = re.sub(r"\bTAR\b", "Character accuracy", s)
         for a, b in swaps:
             new = new.replace(a, b)
         if "Bounds" not in new:  # keep "Bounds - Base", the paper's name for the difference

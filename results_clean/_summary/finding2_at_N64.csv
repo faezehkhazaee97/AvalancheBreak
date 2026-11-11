@@ -1,0 +1,25 @@
+fam,task,model,delta,z,gen_z,clu_z
+spaced,cyclic_shift_spaced,Qwen2.5 14B,0.322,13.416,13.362,3.678
+spaced,cyclic_shift_spaced,Qwen2.5 32B,0.371,18.195,18.028,6.37
+spaced,cyclic_shift_spaced,Qwen3.8 27B,0.164,6.175,6.153,2.447
+spaced,cyclic_shift_spaced,Gemma 4 31B,0.159,6.666,6.708,2.437
+spaced,random_permutation_spaced,Qwen2.5 14B,0.253,9.379,9.457,2.416
+spaced,random_permutation_spaced,Qwen2.5 32B,0.37,15.142,15.414,4.112
+spaced,random_permutation_spaced,Qwen3.8 27B,0.31,10.099,10.284,3.089
+spaced,random_permutation_spaced,Gemma 4 31B,0.213,8.59,8.7,2.505
+spaced,conditional_shift_spaced,Qwen2.5 14B,0.294,10.839,10.857,2.749
+spaced,conditional_shift_spaced,Qwen2.5 32B,0.293,10.814,10.811,2.87
+spaced,conditional_shift_spaced,Qwen3.8 27B,0.247,8.038,8.145,2.493
+spaced,conditional_shift_spaced,Gemma 4 31B,0.184,4.756,4.749,1.244
+digits,cyclic_shift_digits,Qwen2.5 14B,0.273,12.938,12.977,3.655
+digits,cyclic_shift_digits,Qwen2.5 32B,0.218,9.728,9.872,3.201
+digits,cyclic_shift_digits,Qwen3.8 27B,0.069,4.458,4.485,2.546
+digits,cyclic_shift_digits,Gemma 4 31B,0.138,7.043,7.127,2.848
+digits,random_permutation_digits,Qwen2.5 14B,0.269,8.549,8.592,2.15
+digits,random_permutation_digits,Qwen2.5 32B,0.331,11.023,11.0,2.762
+digits,random_permutation_digits,Qwen3.8 27B,0.261,7.692,7.603,2.297
+digits,random_permutation_digits,Gemma 4 31B,0.242,9.504,9.634,2.513
+digits,conditional_shift_digits,Qwen2.5 14B,0.207,7.047,6.977,1.848
+digits,conditional_shift_digits,Qwen2.5 32B,0.207,7.019,7.168,1.968
+digits,conditional_shift_digits,Qwen3.8 27B,0.249,7.388,7.363,2.615
+digits,conditional_shift_digits,Gemma 4 31B,0.208,8.246,8.198,2.521

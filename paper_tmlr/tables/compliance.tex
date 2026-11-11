@@ -1,0 +1,37 @@
+\begin{tabular}{ll cc cc}
+\toprule
+& & \multicolumn{2}{c}{No markers} & \multicolumn{2}{c}{Markers} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Model & Task group & Exact & Compliant & Exact & Compliant \\
+\midrule
+Qwen2.5 7B & Position-local, spaced letters & 0.27 & 0.98 & 0.17 & 0.68 \\
+ & Position-local, digits & 0.03 & 0.96 & 0.03 & 0.65 \\
+ & Dependency, as is & 0.12 & 1.00 & 0.03 & 0.26 \\
+\midrule
+Qwen2.5 14B & Position-local, spaced letters & 0.42 & 1.00 & 0.40 & 0.82 \\
+ & Position-local, digits & 0.47 & 1.00 & 0.47 & 0.94 \\
+ & Dependency, as is & 0.21 & 1.00 & 0.07 & 0.65 \\
+\midrule
+Qwen2.5 32B & Position-local, spaced letters & 0.54 & 1.00 & 0.70 & 0.93 \\
+ & Position-local, digits & 0.59 & 1.00 & 0.71 & 0.95 \\
+ & Dependency, as is & 0.04 & 1.00 & 0.09 & 0.71 \\
+\midrule
+Mistral 7B & Position-local, spaced letters & 0.11 & 0.98 & 0.10 & 0.55 \\
+ & Position-local, digits & 0.10 & 0.94 & 0.07 & 0.75 \\
+ & Dependency, as is & 0.03 & 0.95 & 0.01 & 0.28 \\
+\midrule
+Phi-3.5 mini & Position-local, spaced letters & 0.07 & 0.94 & 0.05 & 0.50 \\
+ & Position-local, digits & 0.12 & 0.91 & 0.11 & 0.76 \\
+ & Dependency, as is & 0.06 & 0.44 & 0.05 & 0.48 \\
+\midrule
+Qwen3.8 27B & Position-local, letters & 0.13 & 1.00 & 0.35 & 0.93 \\
+ & Position-local, spaced letters & 0.57 & 1.00 & 0.71 & 0.97 \\
+ & Position-local, digits & 0.61 & 1.00 & 0.75 & 0.98 \\
+ & Dependency, as is & 0.24 & 1.00 & 0.10 & 0.89 \\
+\midrule
+Gemma 4 31B & Position-local, letters & 0.20 & 1.00 & 0.41 & 0.89 \\
+ & Position-local, spaced letters & 0.72 & 1.00 & 0.81 & 0.99 \\
+ & Position-local, digits & 0.78 & 1.00 & 0.88 & 0.99 \\
+ & Dependency, as is & 0.38 & 1.00 & 0.17 & 0.94 \\
+\bottomrule
+\end{tabular}
