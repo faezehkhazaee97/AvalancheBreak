@@ -1,0 +1,187 @@
+model,block,task,cls,n,at_budget,cut_off
+Qwen2.5 7B,"Position-local, spaced letters",cyclic_shift_spaced,k = 1,300,22,0
+Qwen2.5 7B,"Position-local, spaced letters",cyclic_shift_spaced,k >= 2,840,1,0
+Qwen2.5 7B,"Position-local, spaced letters",cyclic_shift_spaced,no markers,300,15,0
+Qwen2.5 7B,"Position-local, spaced letters",random_permutation_spaced,k = 1,300,17,0
+Qwen2.5 7B,"Position-local, spaced letters",random_permutation_spaced,k >= 2,840,2,0
+Qwen2.5 7B,"Position-local, spaced letters",random_permutation_spaced,no markers,300,7,0
+Qwen2.5 7B,"Position-local, spaced letters",conditional_shift_spaced,k = 1,300,21,0
+Qwen2.5 7B,"Position-local, spaced letters",conditional_shift_spaced,k >= 2,840,5,0
+Qwen2.5 7B,"Position-local, spaced letters",conditional_shift_spaced,no markers,300,17,0
+Qwen2.5 7B,"Position-local, digits",cyclic_shift_digits,k = 1,300,18,0
+Qwen2.5 7B,"Position-local, digits",cyclic_shift_digits,k >= 2,840,5,0
+Qwen2.5 7B,"Position-local, digits",cyclic_shift_digits,no markers,300,29,0
+Qwen2.5 7B,"Position-local, digits",random_permutation_digits,k = 1,300,13,0
+Qwen2.5 7B,"Position-local, digits",random_permutation_digits,k >= 2,840,4,0
+Qwen2.5 7B,"Position-local, digits",random_permutation_digits,no markers,300,22,1
+Qwen2.5 7B,"Position-local, digits",conditional_shift_digits,k = 1,300,18,1
+Qwen2.5 7B,"Position-local, digits",conditional_shift_digits,k >= 2,840,8,0
+Qwen2.5 7B,"Position-local, digits",conditional_shift_digits,no markers,300,21,0
+Qwen2.5 7B,"Dependency, as is",sliding_window_max,k = 1,200,13,0
+Qwen2.5 7B,"Dependency, as is",sliding_window_max,k >= 2,560,44,1
+Qwen2.5 7B,"Dependency, as is",sliding_window_max,no markers,200,27,0
+Qwen2.5 14B,"Position-local, spaced letters",cyclic_shift_spaced,k = 1,300,7,0
+Qwen2.5 14B,"Position-local, spaced letters",cyclic_shift_spaced,k >= 2,840,2,0
+Qwen2.5 14B,"Position-local, spaced letters",cyclic_shift_spaced,no markers,300,16,0
+Qwen2.5 14B,"Position-local, spaced letters",random_permutation_spaced,k = 1,300,2,0
+Qwen2.5 14B,"Position-local, spaced letters",random_permutation_spaced,k >= 2,840,0,0
+Qwen2.5 14B,"Position-local, spaced letters",random_permutation_spaced,no markers,300,4,0
+Qwen2.5 14B,"Position-local, spaced letters",conditional_shift_spaced,k = 1,300,1,0
+Qwen2.5 14B,"Position-local, spaced letters",conditional_shift_spaced,k >= 2,840,0,0
+Qwen2.5 14B,"Position-local, spaced letters",conditional_shift_spaced,no markers,300,10,0
+Qwen2.5 14B,"Position-local, digits",cyclic_shift_digits,k = 1,300,5,0
+Qwen2.5 14B,"Position-local, digits",cyclic_shift_digits,k >= 2,840,0,0
+Qwen2.5 14B,"Position-local, digits",cyclic_shift_digits,no markers,300,5,0
+Qwen2.5 14B,"Position-local, digits",random_permutation_digits,k = 1,300,1,0
+Qwen2.5 14B,"Position-local, digits",random_permutation_digits,k >= 2,840,0,0
+Qwen2.5 14B,"Position-local, digits",random_permutation_digits,no markers,300,6,0
+Qwen2.5 14B,"Position-local, digits",conditional_shift_digits,k = 1,300,2,0
+Qwen2.5 14B,"Position-local, digits",conditional_shift_digits,k >= 2,840,0,0
+Qwen2.5 14B,"Position-local, digits",conditional_shift_digits,no markers,300,5,0
+Qwen2.5 14B,"Dependency, as is",sliding_window_max,k = 1,200,8,0
+Qwen2.5 14B,"Dependency, as is",sliding_window_max,k >= 2,560,61,1
+Qwen2.5 14B,"Dependency, as is",sliding_window_max,no markers,200,71,0
+Qwen2.5 32B,"Position-local, spaced letters",cyclic_shift_spaced,k = 1,300,5,0
+Qwen2.5 32B,"Position-local, spaced letters",cyclic_shift_spaced,k >= 2,840,0,0
+Qwen2.5 32B,"Position-local, spaced letters",cyclic_shift_spaced,no markers,300,8,0
+Qwen2.5 32B,"Position-local, spaced letters",random_permutation_spaced,k = 1,300,6,0
+Qwen2.5 32B,"Position-local, spaced letters",random_permutation_spaced,k >= 2,840,0,0
+Qwen2.5 32B,"Position-local, spaced letters",random_permutation_spaced,no markers,300,6,0
+Qwen2.5 32B,"Position-local, spaced letters",conditional_shift_spaced,k = 1,300,18,0
+Qwen2.5 32B,"Position-local, spaced letters",conditional_shift_spaced,k >= 2,840,0,0
+Qwen2.5 32B,"Position-local, spaced letters",conditional_shift_spaced,no markers,300,11,0
+Qwen2.5 32B,"Position-local, digits",cyclic_shift_digits,k = 1,300,0,0
+Qwen2.5 32B,"Position-local, digits",cyclic_shift_digits,k >= 2,840,0,0
+Qwen2.5 32B,"Position-local, digits",cyclic_shift_digits,no markers,300,1,0
+Qwen2.5 32B,"Position-local, digits",random_permutation_digits,k = 1,300,1,0
+Qwen2.5 32B,"Position-local, digits",random_permutation_digits,k >= 2,840,0,0
+Qwen2.5 32B,"Position-local, digits",random_permutation_digits,no markers,300,0,0
+Qwen2.5 32B,"Position-local, digits",conditional_shift_digits,k = 1,300,1,0
+Qwen2.5 32B,"Position-local, digits",conditional_shift_digits,k >= 2,840,0,0
+Qwen2.5 32B,"Position-local, digits",conditional_shift_digits,no markers,300,0,0
+Qwen2.5 32B,"Dependency, as is",sliding_window_max,k = 1,200,40,0
+Qwen2.5 32B,"Dependency, as is",sliding_window_max,k >= 2,560,5,0
+Qwen2.5 32B,"Dependency, as is",sliding_window_max,no markers,200,54,0
+Mistral 7B,"Position-local, spaced letters",cyclic_shift_spaced,k = 1,300,35,3
+Mistral 7B,"Position-local, spaced letters",cyclic_shift_spaced,k >= 2,840,67,16
+Mistral 7B,"Position-local, spaced letters",cyclic_shift_spaced,no markers,300,11,2
+Mistral 7B,"Position-local, spaced letters",random_permutation_spaced,k = 1,300,14,4
+Mistral 7B,"Position-local, spaced letters",random_permutation_spaced,k >= 2,840,46,17
+Mistral 7B,"Position-local, spaced letters",random_permutation_spaced,no markers,300,5,2
+Mistral 7B,"Position-local, spaced letters",conditional_shift_spaced,k = 1,300,31,5
+Mistral 7B,"Position-local, spaced letters",conditional_shift_spaced,k >= 2,840,123,20
+Mistral 7B,"Position-local, spaced letters",conditional_shift_spaced,no markers,300,9,0
+Mistral 7B,"Position-local, digits",cyclic_shift_digits,k = 1,300,54,1
+Mistral 7B,"Position-local, digits",cyclic_shift_digits,k >= 2,840,82,2
+Mistral 7B,"Position-local, digits",cyclic_shift_digits,no markers,300,16,2
+Mistral 7B,"Position-local, digits",random_permutation_digits,k = 1,300,24,3
+Mistral 7B,"Position-local, digits",random_permutation_digits,k >= 2,840,10,2
+Mistral 7B,"Position-local, digits",random_permutation_digits,no markers,300,9,1
+Mistral 7B,"Position-local, digits",conditional_shift_digits,k = 1,300,53,0
+Mistral 7B,"Position-local, digits",conditional_shift_digits,k >= 2,840,14,2
+Mistral 7B,"Position-local, digits",conditional_shift_digits,no markers,300,3,0
+Mistral 7B,"Dependency, as is",sliding_window_max,k = 1,200,31,0
+Mistral 7B,"Dependency, as is",sliding_window_max,k >= 2,560,75,0
+Mistral 7B,"Dependency, as is",sliding_window_max,no markers,200,54,0
+Phi-3.5 mini,"Position-local, spaced letters",cyclic_shift_spaced,k = 1,300,45,15
+Phi-3.5 mini,"Position-local, spaced letters",cyclic_shift_spaced,k >= 2,840,85,48
+Phi-3.5 mini,"Position-local, spaced letters",cyclic_shift_spaced,no markers,300,55,29
+Phi-3.5 mini,"Position-local, spaced letters",random_permutation_spaced,k = 1,300,27,2
+Phi-3.5 mini,"Position-local, spaced letters",random_permutation_spaced,k >= 2,840,10,0
+Phi-3.5 mini,"Position-local, spaced letters",random_permutation_spaced,no markers,300,7,3
+Phi-3.5 mini,"Position-local, spaced letters",conditional_shift_spaced,k = 1,300,62,19
+Phi-3.5 mini,"Position-local, spaced letters",conditional_shift_spaced,k >= 2,840,250,121
+Phi-3.5 mini,"Position-local, spaced letters",conditional_shift_spaced,no markers,300,121,58
+Phi-3.5 mini,"Position-local, digits",cyclic_shift_digits,k = 1,300,33,1
+Phi-3.5 mini,"Position-local, digits",cyclic_shift_digits,k >= 2,840,7,0
+Phi-3.5 mini,"Position-local, digits",cyclic_shift_digits,no markers,300,14,0
+Phi-3.5 mini,"Position-local, digits",random_permutation_digits,k = 1,300,3,0
+Phi-3.5 mini,"Position-local, digits",random_permutation_digits,k >= 2,840,6,0
+Phi-3.5 mini,"Position-local, digits",random_permutation_digits,no markers,300,4,0
+Phi-3.5 mini,"Position-local, digits",conditional_shift_digits,k = 1,300,36,2
+Phi-3.5 mini,"Position-local, digits",conditional_shift_digits,k >= 2,840,14,9
+Phi-3.5 mini,"Position-local, digits",conditional_shift_digits,no markers,300,17,1
+Phi-3.5 mini,"Dependency, as is",copy_previous,k = 1,200,4,0
+Phi-3.5 mini,"Dependency, as is",copy_previous,k >= 2,560,2,0
+Phi-3.5 mini,"Dependency, as is",copy_previous,no markers,200,28,0
+Phi-3.5 mini,"Dependency, as is",sliding_window_max,k = 1,200,24,0
+Phi-3.5 mini,"Dependency, as is",sliding_window_max,k >= 2,560,78,0
+Phi-3.5 mini,"Dependency, as is",sliding_window_max,no markers,200,43,0
+Qwen3.8 27B,"Position-local, letters",cyclic_shift,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, letters",cyclic_shift,k >= 2,840,8,1
+Qwen3.8 27B,"Position-local, letters",cyclic_shift,no markers,300,8,0
+Qwen3.8 27B,"Position-local, letters",random_permutation,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, letters",random_permutation,k >= 2,840,2,0
+Qwen3.8 27B,"Position-local, letters",random_permutation,no markers,300,7,0
+Qwen3.8 27B,"Position-local, letters",conditional_shift,k = 1,300,1,0
+Qwen3.8 27B,"Position-local, letters",conditional_shift,k >= 2,840,1,0
+Qwen3.8 27B,"Position-local, letters",conditional_shift,no markers,300,12,0
+Qwen3.8 27B,"Position-local, spaced letters",cyclic_shift_spaced,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, spaced letters",cyclic_shift_spaced,k >= 2,840,0,0
+Qwen3.8 27B,"Position-local, spaced letters",cyclic_shift_spaced,no markers,300,1,0
+Qwen3.8 27B,"Position-local, spaced letters",random_permutation_spaced,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, spaced letters",random_permutation_spaced,k >= 2,840,0,0
+Qwen3.8 27B,"Position-local, spaced letters",random_permutation_spaced,no markers,300,2,0
+Qwen3.8 27B,"Position-local, spaced letters",conditional_shift_spaced,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, spaced letters",conditional_shift_spaced,k >= 2,840,0,0
+Qwen3.8 27B,"Position-local, spaced letters",conditional_shift_spaced,no markers,300,7,0
+Qwen3.8 27B,"Position-local, digits",cyclic_shift_digits,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, digits",cyclic_shift_digits,k >= 2,840,0,0
+Qwen3.8 27B,"Position-local, digits",cyclic_shift_digits,no markers,300,0,0
+Qwen3.8 27B,"Position-local, digits",random_permutation_digits,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, digits",random_permutation_digits,k >= 2,840,0,0
+Qwen3.8 27B,"Position-local, digits",random_permutation_digits,no markers,300,0,0
+Qwen3.8 27B,"Position-local, digits",conditional_shift_digits,k = 1,300,0,0
+Qwen3.8 27B,"Position-local, digits",conditional_shift_digits,k >= 2,840,0,0
+Qwen3.8 27B,"Position-local, digits",conditional_shift_digits,no markers,300,0,0
+Qwen3.8 27B,"Dependency, as is",copy_previous,k = 1,200,0,0
+Qwen3.8 27B,"Dependency, as is",copy_previous,k >= 2,560,0,0
+Qwen3.8 27B,"Dependency, as is",copy_previous,no markers,200,0,0
+Qwen3.8 27B,"Dependency, as is",running_xor,k = 1,200,0,0
+Qwen3.8 27B,"Dependency, as is",running_xor,k >= 2,560,0,0
+Qwen3.8 27B,"Dependency, as is",running_xor,no markers,200,0,0
+Qwen3.8 27B,"Dependency, as is",running_sum_local,k = 1,600,0,0
+Qwen3.8 27B,"Dependency, as is",running_sum_local,k >= 2,1680,0,0
+Qwen3.8 27B,"Dependency, as is",running_sum_local,no markers,600,0,0
+Qwen3.8 27B,"Dependency, as is",sliding_window_max,k = 1,200,0,0
+Qwen3.8 27B,"Dependency, as is",sliding_window_max,k >= 2,560,0,0
+Qwen3.8 27B,"Dependency, as is",sliding_window_max,no markers,200,0,0
+Gemma 4 31B,"Position-local, letters",cyclic_shift,k = 1,300,0,0
+Gemma 4 31B,"Position-local, letters",cyclic_shift,k >= 2,840,56,2
+Gemma 4 31B,"Position-local, letters",cyclic_shift,no markers,300,10,1
+Gemma 4 31B,"Position-local, letters",random_permutation,k = 1,300,0,0
+Gemma 4 31B,"Position-local, letters",random_permutation,k >= 2,840,25,3
+Gemma 4 31B,"Position-local, letters",random_permutation,no markers,300,11,3
+Gemma 4 31B,"Position-local, letters",conditional_shift,k = 1,300,0,0
+Gemma 4 31B,"Position-local, letters",conditional_shift,k >= 2,840,15,0
+Gemma 4 31B,"Position-local, letters",conditional_shift,no markers,300,22,0
+Gemma 4 31B,"Position-local, spaced letters",cyclic_shift_spaced,k = 1,300,0,0
+Gemma 4 31B,"Position-local, spaced letters",cyclic_shift_spaced,k >= 2,840,0,0
+Gemma 4 31B,"Position-local, spaced letters",cyclic_shift_spaced,no markers,300,2,0
+Gemma 4 31B,"Position-local, spaced letters",random_permutation_spaced,k = 1,300,0,0
+Gemma 4 31B,"Position-local, spaced letters",random_permutation_spaced,k >= 2,840,0,0
+Gemma 4 31B,"Position-local, spaced letters",random_permutation_spaced,no markers,300,0,0
+Gemma 4 31B,"Position-local, spaced letters",conditional_shift_spaced,k = 1,300,0,0
+Gemma 4 31B,"Position-local, spaced letters",conditional_shift_spaced,k >= 2,840,0,0
+Gemma 4 31B,"Position-local, spaced letters",conditional_shift_spaced,no markers,300,3,0
+Gemma 4 31B,"Position-local, digits",cyclic_shift_digits,k = 1,300,0,0
+Gemma 4 31B,"Position-local, digits",cyclic_shift_digits,k >= 2,840,0,0
+Gemma 4 31B,"Position-local, digits",cyclic_shift_digits,no markers,300,3,0
+Gemma 4 31B,"Position-local, digits",random_permutation_digits,k = 1,300,0,0
+Gemma 4 31B,"Position-local, digits",random_permutation_digits,k >= 2,840,0,0
+Gemma 4 31B,"Position-local, digits",random_permutation_digits,no markers,300,0,0
+Gemma 4 31B,"Position-local, digits",conditional_shift_digits,k = 1,300,0,0
+Gemma 4 31B,"Position-local, digits",conditional_shift_digits,k >= 2,840,0,0
+Gemma 4 31B,"Position-local, digits",conditional_shift_digits,no markers,300,1,0
+Gemma 4 31B,"Dependency, as is",copy_previous,k = 1,200,0,0
+Gemma 4 31B,"Dependency, as is",copy_previous,k >= 2,560,1,0
+Gemma 4 31B,"Dependency, as is",copy_previous,no markers,200,0,0
+Gemma 4 31B,"Dependency, as is",running_xor,k = 1,200,0,0
+Gemma 4 31B,"Dependency, as is",running_xor,k >= 2,560,6,0
+Gemma 4 31B,"Dependency, as is",running_xor,no markers,200,0,0
+Gemma 4 31B,"Dependency, as is",running_sum_local,k = 1,600,1,0
+Gemma 4 31B,"Dependency, as is",running_sum_local,k >= 2,1680,66,0
+Gemma 4 31B,"Dependency, as is",running_sum_local,no markers,600,15,1
+Gemma 4 31B,"Dependency, as is",sliding_window_max,k = 1,200,0,0
+Gemma 4 31B,"Dependency, as is",sliding_window_max,k >= 2,560,0,0
+Gemma 4 31B,"Dependency, as is",sliding_window_max,no markers,200,1,0
