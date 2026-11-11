@@ -71,8 +71,9 @@ def main():
         for i, (reg, rlab) in enumerate(REGIMES):
             r = out[(out.task == task) & (out.regime == reg)].iloc[0]
             pp = ("---", "---") if task.startswith("random") else (f"${r.post_gain:+.2f}$", f"${r.within_gain:+.2f}$")
-            lines.append(f"{'\\task{' + lab + '}' if i == 0 else ''} & {rlab} & {r.base:.2f} & {r.bounds:.2f} & "
-                         f"${r.delta:+.2f} \\pm {r.ci:.2f}$ & {pp[0]} & {pp[1]} \\\\")
+            first = "\\task{" + lab + "}" if i == 0 else ""
+            change = "$%+.2f \\pm %.2f$" % (r.delta, r.ci)
+            lines.append(" & ".join([first, rlab, "%.2f" % r.base, "%.2f" % r.bounds, change, pp[0], pp[1]]) + " \\\\")
         if task != TASKS[-1][0]:
             lines.append("\\midrule")
     lines += ["\\bottomrule", "\\end{tabular}"]

@@ -65,7 +65,7 @@ A marker does more than mark a boundary. Tokenizers merge runs of letters into m
 
 We also test the obvious mechanism (Section~\ref{sec:mechanism}). In Qwen2.5, some heads attend from each position to the adjacent marker, but at Qwen2.5-32B and $N = 64$, blocking the ten most marker-attending heads removes 1\% of the gain on digits, 13\% on spaced letters, and 19\% on contiguous letters, against at most 5\% for controls. Blocking 200 heads removes 21\% (digits) and 28\% (spaced letters), against none for controls of the same size: the gain runs partly through attention to markers, but spread thinly over many heads rather than concentrated in the few that attend to them most. Section~\ref{sec:practical} turns the findings into guidance: separate characters before adding markers, use sparse markers on long sequences, and avoid placing a marker where an output needs the input just before it.
 
-\paragraph{Supporting analyses.} Each finding is backed by checks reported in the appendix: re-scoring with an edit-distance alignment, which forgives dropped or inserted characters, leaves the blind spot intact (Table~\ref{tab:aligned}); the per-position comparisons hold model by model and by distance from the marker (Tables~\ref{tab:perpos} and~\ref{tab:distance}); on third-party tasks markers help a position-local substitution task and hurt a prefix-dependent algorithm (Table~\ref{tab:external}); changing the marker symbol, jittering its placement, or rephrasing the instruction changes the size of the letter-task gain at Qwen2.5-32B but not its sign, except for a reserved special token and a terse cipher-style prompt (Appendix~\ref{app:marker}); and sparse markers take less wall-clock time than none, because they keep models from generating past the required length (Table~\ref{tab:wallclock}).
+\paragraph{Supporting analyses.} Each finding is backed by checks reported in the appendix: re-scoring with an edit-distance alignment, which forgives dropped or inserted characters, leaves the blind spot intact (Table~\ref{tab:aligned}); sampling instead of greedy decoding changes neither the gain nor the blind spot (Table~\ref{tab:sampling}); the per-position comparisons hold model by model and by distance from the marker (Tables~\ref{tab:perpos} and~\ref{tab:distance}); on third-party tasks markers help a position-local substitution task and hurt a prefix-dependent algorithm (Table~\ref{tab:external}); changing the marker symbol, jittering its placement, or rephrasing the instruction changes the size of the letter-task gain at Qwen2.5-32B but not its sign, except for a reserved special token and a terse cipher-style prompt (Appendix~\ref{app:marker}); and sparse markers take less wall-clock time than none, because they keep models from generating past the required length (Table~\ref{tab:wallclock}).
 
 % =====================================================================
 \section{Related work}
@@ -198,6 +198,8 @@ On the four dependency tasks, with a marker every two or more characters, the po
 
 \paragraph{Other delimiters and longer sequences.} At Qwen2.5-32B we replaced \texttt{|} with a comma or a line break, each with a constraint sentence naming it, and extended \task{running\_xor} and \task{running\_sum\_local} (modulus 4) to $N = 128$ and 256 ($k \in \{4, 16\}$, 20 trials per cell; Appendix Table~\ref{tab:delimiter}). With every delimiter and at every length, the post-marker position is at chance: 0.48 to 0.52 on \task{running\_xor} (chance 0.5) and 0.21 to 0.26 on \task{running\_sum\_local} (chance 0.25). Within-segment positions gain $+0.16$ to $+0.26$ and $+0.09$ to $+0.19$ over the no-marker run at the same positions. Measured against the no-marker run, the post-marker loss shrinks with length (on \task{running\_xor}, $-0.11$ to $-0.14$ at $N = 64$, $-0.03$ to $-0.05$ at 128, and $+0.03$ to $+0.05$ at 256), but only because the no-marker run itself decays toward chance on long sequences; the post-marker position does not improve. The blind spot is a property of the boundary, not of the symbol. The line break gives the largest pooled gain in all six dependency cells, by up to 0.08.
 
+\paragraph{Sampling.} All runs above decode greedily. Repeating three tasks at Qwen2.5-32B with sampling ($N \in \{32, 64\}$, $k \in \{4, 16\}$; temperature 0.7 with top-$p$ 0.8, and temperature 1.0 with top-$p$ 0.95; one sample per prompt) changes little (Appendix Table~\ref{tab:sampling}). The post-marker position stays at chance, 0.51 to 0.52 on \task{running\_xor} and 0.26 to 0.27 on \task{running\_sum\_local} under all three decoding regimes, and the gain on \task{random\_permutation} with digits is $+0.37$ greedy, $+0.38$ at temperature 0.7, and $+0.42$ at temperature 1.0.
+
 \paragraph{Pooled effects mix the two.} Averaged over all positions (Figure~\ref{fig:split}), a dependency task's response to markers combines this post-marker loss, on about a fraction $1/k$ of positions, with the within-segment gain of Section~\ref{sec:segmentation} on the rest, and the pooled sign varies accordingly: of 31 dependency cells, 8 are significantly positive (all on \task{running\_xor}, \task{running\_sum\_local}, or \task{sliding\_window\_max} at the stronger models) and 5 significantly negative (four on \task{copy\_previous}). Averaged over tasks, the effect ranges from $-0.05$ (Gemini) and $-0.04$ (Qwen2.5-7B) to $+0.04$ (Qwen2.5-32B). \task{copy\_previous}, which needs no computation, is negative at six of eight models, significantly at four, including where the model is near ceiling without markers (Qwen3.8: $-0.26$). The pattern with length is consistent with this mixture: short sequences admit only dense spacings ($k < N$), so a larger share of their positions sit right after a marker, while long sequences add sparse spacings and are where the within-segment gain is large. At Qwen2.5-32B, \task{running\_xor} goes from $-0.11$ at $N = 4$ to $+0.13$ at $N = 64$, and \task{running\_sum\_local} from $-0.05$ to $+0.14$; Gemma 4's \task{running\_sum\_local} goes from $-0.10$ at $N = 8$ to $+0.19$ at $N = 64$. Qwen3.8 gains most on balance on \task{running\_xor} and \task{running\_sum\_local} ($+0.10$ and $+0.13$): its post-marker positions fail as at every model, but its within-segment positions on those two tasks gain $+0.13$ and $+0.14$.
 
 \subsection{Redefining the post-marker position}
@@ -276,7 +278,7 @@ In Qwen2.5, individual heads attend sharply from each position to the nearest ma
 \item \textbf{Reset design.} The reset rule makes the post-marker position easier by construction, and the reset prompt shifts no-marker accuracy by up to 0.08.
 \item \textbf{Spacing and pooling.} Per-position claims concern spacings of two or more ($k = 1$ has no within-segment positions, and behaves differently on \task{copy\_previous}). Pooled effects depend on how lengths are weighted; we match the no-marker baseline to the marker runs' lengths (Section~\ref{sec:setup}), which raises pooled effects relative to comparing raw means (by 0.03 in the median cell and at most 0.09).
 \item \textbf{Models and sample size.} All open models are instruction-tuned, and five are 2024-era; we do not test base models. Reset variants at Qwen2.5-32B are single-batch (20 trials per cell); Gemini uses 3 trials per cell.
-\item \textbf{Length and decoding.} Core grids stop at $N = 64$; a follow-up on three tasks at Qwen2.5-32B reaches $N = 256$. Behavior over thousands of characters, at other models, and under sampling (all decoding is greedy) is untested.
+\item \textbf{Length and decoding.} Core grids stop at $N = 64$; a follow-up on three tasks at Qwen2.5-32B reaches $N = 256$. Behavior over thousands of characters and at other models is untested. Main results use greedy decoding; sampling was checked on three tasks at Qwen2.5-32B only.
 \item \textbf{Marker variants.} Marker symbol, placement, and wording were ablated on one letter task at two models (Appendix~\ref{app:marker}); commas and line breaks were tested on three tasks at Qwen2.5-32B only.
 \item \textbf{Position encoding and prompt format.} A marker shifts the relative offset between an output position and the input it needs, so position-encoding schemes other than those of the models we test might change the blind spot; testing this requires models trained with them. We also use each model's default chat template with no system prompt.
 \item \textbf{Task scope.} All tasks are synthetic character-level transformations with in-context rules, with alphabets or moduli of at most eight symbols and dependencies of one or two steps; a naturalistic task (vowel tagging) shows no benefit at 32B.
@@ -327,7 +329,7 @@ Output:                 (expected: DBCB|DDAB)
 \section{Trials per cell}
 \label{app:trials}
 
-Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, density, and alphabet or modulus value) for the data pooled in Figures~\ref{fig:split}, \ref{fig:formats}, and~\ref{fig:profile}. Gemini uses 3.
+Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, density, and alphabet or modulus value) for the data pooled in Figures~\ref{fig:formats}, \ref{fig:profile}, and~\ref{fig:split}. Gemini uses 3.
 
 \begin{table}[!htbp]
 \centering
@@ -620,10 +622,10 @@ Terse cipher & $-$.07 & +.08 & +.00 & +.00 & +.05 & $-$.12 & $-$.11 & +.01 & $-$
 \end{table}
 
 \FloatBarrier
-\section{Delimiters and longer sequences}
+\section{Delimiters, longer sequences, and sampling}
 \label{app:delimiter}
 
-Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line breaks as markers and sequences up to $N = 256$ (Sections~\ref{sec:segmentation} and~\ref{sec:blindspot}).
+Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line breaks as markers and sequences up to $N = 256$, and Table~\ref{tab:sampling} repeats three tasks with sampling instead of greedy decoding (Sections~\ref{sec:segmentation} and~\ref{sec:blindspot}).
 
 \begin{table}[!htbp]
 \centering
@@ -631,6 +633,14 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \caption{Delimiter type and longer sequences at Qwen2.5-32B ($k \in \{4, 16\}$ pooled, 20 trials per cell; \task{random\_permutation} with digits at $A = 8$, \task{running\_sum\_local} at modulus 4). Change in accuracy: marker run minus no-marker run, pooled over positions. Post-marker and within-segment: marker run minus the no-marker run at the same positions. Each delimiter is named in its own constraint sentence. The \texttt{|} cells at $N = 64$ reproduce the main grid exactly (same prompts, greedy decoding). No output reached the generation budget.}
 \label{tab:delimiter}
 \resizebox{\linewidth}{!}{\input{tables/delimiter.tex}}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Sampling instead of greedy decoding at Qwen2.5-32B ($N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 prompts per cell, one sample each; \task{random\_permutation} at $A = 8$, \task{running\_sum\_local} at modulus 4). The greedy rows are the main-grid runs on the same prompts. Change: marker run minus the no-marker run of the same length and trial, with a 95\% interval. Post-marker and within-segment: marker run minus the no-marker run of the same decoding regime at the same positions.}
+\label{tab:sampling}
+\input{tables/sampling.tex}
 \end{table}
 
 \FloatBarrier

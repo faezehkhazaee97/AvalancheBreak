@@ -1,0 +1,17 @@
+\begin{tabular}{ll ccc cc}
+\toprule
+Task & Decoding & No markers & Markers & Change & Post-marker & Within-segment \\
+\midrule
+\task{random\_permutation (digits)} & Greedy & 0.55 & 0.92 & $+0.37 \pm 0.05$ & --- & --- \\
+ & $T = 0.7$, top-$p$ 0.8 & 0.54 & 0.92 & $+0.38 \pm 0.05$ & --- & --- \\
+ & $T = 1.0$, top-$p$ 0.95 & 0.52 & 0.93 & $+0.42 \pm 0.05$ & --- & --- \\
+\midrule
+\task{running\_xor} & Greedy & 0.66 & 0.77 & $+0.11 \pm 0.03$ & $-0.18$ & $+0.16$ \\
+ & $T = 0.7$, top-$p$ 0.8 & 0.67 & 0.76 & $+0.09 \pm 0.03$ & $-0.16$ & $+0.14$ \\
+ & $T = 1.0$, top-$p$ 0.95 & 0.66 & 0.76 & $+0.10 \pm 0.03$ & $-0.17$ & $+0.15$ \\
+\midrule
+\task{running\_sum\_local} & Greedy & 0.39 & 0.48 & $+0.09 \pm 0.03$ & $-0.04$ & $+0.12$ \\
+ & $T = 0.7$, top-$p$ 0.8 & 0.39 & 0.47 & $+0.08 \pm 0.03$ & $-0.06$ & $+0.12$ \\
+ & $T = 1.0$, top-$p$ 0.95 & 0.39 & 0.47 & $+0.08 \pm 0.03$ & $-0.07$ & $+0.11$ \\
+\bottomrule
+\end{tabular}
