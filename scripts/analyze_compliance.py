@@ -103,6 +103,14 @@ def main():
             lines.append(f"{label if first else ''} & {block} & " + " & ".join(cells) + " \\\\")
             first = False
         if not first:
+            # the model's pooled row over all task groups, weighted by generations (the per-model
+            # percentages quoted in the text)
+            x = g[g.model == label]
+            cells = []
+            for cls in ("no markers", "markers"):
+                y = x[x.cls == cls]
+                cells += ["---", "---"] if y.empty else [f"{y.ex.sum() / y.n.sum():.2f}", f"{y.co.sum() / y.n.sum():.2f}"]
+            lines.append(" & \\emph{all groups, weighted} & " + " & ".join(cells) + " \\\\")
             lines.append("\\midrule")
     # pooled over models, weighted by the number of generations (the averages the text quotes)
     first = True

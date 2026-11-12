@@ -22,8 +22,8 @@ def tt(t):
 
 
 def dz(r, signed_z=False):
-    d = r.delta
-    s = f"{'+' if d >= 0 else '$-$'}{abs(d):.3f}"
+    d = 0.0 if abs(r.delta) < 0.0005 else r.delta   # avoid printing "-0.000"
+    s = f"{'+' if d > 0 else ('$-$' if d < 0 else '')}{abs(d):.3f}"
     return f"{s} ({abs(r.z):.1f})"
 
 
@@ -54,12 +54,15 @@ def reset_table():
 def gemini_table():
     lines = [r"\begin{tabular}{llccc}", r"\toprule",
              r"Task & Model & Base acc. & Bounds acc. & $\Delta$ ($|z|$) \\", r"\midrule"]
-    for t in ["cyclic_shift", "random_permutation", "conditional_shift", "running_xor", "running_sum_local", "copy_previous"]:
-        r = get("gemini_table", t, "Gemini 3.5 Flash")
-        lines.append(f"{tt(t)} & Gemini 3.5 & {r.base:.3f} & {r.bounds:.3f} & {dz(r)} \\\\")
-        r6 = get("gemini_table", t, "Gemini 3.6 Flash")
-        if r6 is not None:
-            lines.append(f" & Gemini 3.6 & {r6.base:.3f} & {r6.bounds:.3f} & {dz(r6)} \\\\")
+    for t in ["cyclic_shift", "random_permutation", "conditional_shift", "running_xor", "running_sum_local", "copy_previous",
+              "sliding_window_max"]:
+        first = True
+        for lab, model in [("Gemini 3.5", "Gemini 3.5 Flash"), ("Gemini 3.6", "Gemini 3.6 Flash")]:
+            r = get("gemini_table", t, model)
+            if r is None:       # sliding_window_max was not run on Gemini 3.5
+                continue
+            lines.append(f"{tt(t) if first else ''} & {lab} & {r.base:.3f} & {r.bounds:.3f} & {dz(r)} \\\\")
+            first = False
     for t in ["cyclic_shift_spaced", "random_permutation_spaced", "conditional_shift_spaced", "cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits"]:
         r6 = get("gemini_table", t, "Gemini 3.6 Flash")
         if r6 is not None:
