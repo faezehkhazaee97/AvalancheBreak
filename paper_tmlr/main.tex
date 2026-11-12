@@ -17,6 +17,7 @@
 \usepackage{xcolor}
 \usepackage{placeins} % \FloatBarrier: keep appendix floats inside their sections
 \usepackage{flafter} % a float never appears above the text that introduces it
+\usepackage{float}   % [H] for the decision table
 \makeatletter\setlength{\@fptop}{0pt}\makeatother % float-only pages start at the top, not centered
 
 % Task names in monospace (escape underscores in the argument).
@@ -71,6 +72,7 @@ We also test the obvious mechanism (Section~\ref{sec:mechanism}). In Qwen2.5, so
 \end{figure}
 
 % =====================================================================
+\FloatBarrier
 \section{Related work}
 \label{sec:related}
 
@@ -89,6 +91,7 @@ We also test the obvious mechanism (Section~\ref{sec:mechanism}). In Qwen2.5, so
 \paragraph{Benchmarks.} Our tasks are generated fresh for every trial, following the contamination-resistant approach of BeyondBench \citep{srivastava2025beyondbench}. External checks use ProcBench \citep{fujisawa2024procbench}, the copying task of \citet{jelassi2024repeat}, and CLRS-Text \citep{markeeva2024clrstext}.
 
 % =====================================================================
+\FloatBarrier
 \section{Setup}
 \label{sec:setup}
 
@@ -119,6 +122,7 @@ Task & Tier & Rule & Axis \\
 \end{tabular}
 \end{table}
 
+\FloatBarrier
 \subsection{The marker intervention}
 
 In the marker condition (``Bounds''), a \texttt{|} is inserted after every $k$ input characters, with $k \in \{1, 2, 4, 8, 16\}$; only $k < N$ is used. The expected output is the ground truth computed on the continuous, marker-free sequence, with markers spliced in at the same positions. The prompt states the rule, then instructs, for example: \emph{``The input contains vertical bars (|). These are structural boundaries. DO NOT transform them. Copy them exactly to the output.''} (the verb matches the task, e.g.\ ``shift'' for \task{cyclic\_shift}). The no-marker baseline (``Base'') uses the identical prompt, including that instruction, so that the only difference between conditions is whether markers appear in the input. That instruction is odd for an input with no bars in it, so we measured what it costs: rerunning the no-marker condition with every mention of markers removed, on the same inputs, across 300 (task, length, alphabet) cells at the four stronger models, raises accuracy by $+0.006$ on average (95\% interval $[0.002, 0.009]$), by at most $+0.026$ in any model--family combination, and the sentence helps rather than hurts in 105 of the 300 cells (Appendix~\ref{app:stats}). The marker effects we report are therefore overstated by well under a percentage point on average against a baseline whose prompt never mentions bars. Example prompts are in Appendix~\ref{app:prompts}. Runs also included $k=3$, which we exclude to keep the spacing grid at powers of two.
@@ -129,7 +133,7 @@ Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-I
 
 \subsection{Metrics and statistics}
 
-\emph{Character accuracy} is the fraction of output positions whose character matches the ground truth, after stripping markers and spaces from both sides and clipping the prediction to the ground-truth length. We avoid the name ``token accuracy'' deliberately: the unit is a character of the answer, not a tokenizer token. Marker placement is not part of this metric; Appendix~\ref{app:wfr} reports exact-sequence match and marker-placement compliance separately.
+\emph{Character accuracy} is the fraction of output positions whose character matches the ground truth, after stripping markers and spaces from both sides and clipping the prediction to the ground-truth length. We avoid the name ``token accuracy'' deliberately: the unit is a character of the answer, not a tokenizer token. Marker placement is not part of this metric; Appendix~\ref{app:wfr} reports exact transformation match and marker-placement compliance separately.
 
 \paragraph{Pooled effects.} Only spacings $k < N$ are run, so marker runs are concentrated at longer lengths than no-marker runs, and accuracy falls with length. A pooled effect therefore compares the mean character accuracy of the marker runs with the no-marker mean reweighted to the same length distribution, $\Delta = \overline{\mathrm{acc}}_{\text{Bounds}} - \sum_N p_N\, \overline{\mathrm{acc}}_{\text{Base},N}$, where $p_N$ is the share of marker runs at length $N$; it pools $N \le 64$, $k \in \{1, 2, 4, 8, 16\}$, and alphabet or modulus values, and $z$ is $\Delta$ over its standard error. Because the controls leave strong models near ceiling, we also report the \emph{share of remaining errors removed}: the mean $\Delta$ over a model's tasks divided by one minus the mean length-matched no-marker accuracy. Open models use 20 to 80 trials per cell (Appendix~\ref{app:trials}); Gemini uses 3. We call a pooled cell significant at $|z| \ge 3.51$, the Bonferroni-corrected two-sided $p < 0.05$ across all 112 pooled cells we test (the 70 in the overview of Section~\ref{sec:blindspot} and 42 for the two controls).
 
@@ -140,6 +144,7 @@ Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-I
 \paragraph{Per-position accuracy.} For a marker run with spacing $k$, output position $i$ (0-indexed, markers stripped) is \emph{post-marker} if $i > 0$ and $i \bmod k = 0$, and \emph{within-segment} otherwise. Each class is compared with the no-marker run's accuracy at the same position indices, which controls for accuracy varying along the sequence. Per-position results pool $N \le 64$, $k \in \{2, 4, 8, 16\}$, and alphabet or modulus values; $k = 1$ has no within-segment positions, so per-position claims concern spacings of two or more. The unit for uncertainty is the generation, and intervals are 95\%.
 
 % =====================================================================
+\FloatBarrier
 \section{On letter strings, markers mostly re-tokenize}
 \label{sec:tokenization}
 
@@ -162,6 +167,7 @@ Figure~\ref{fig:formats} compares the three formats. On contiguous letters, mark
 The per-position view (Figure~\ref{fig:position}) shows how. On contiguous letters, the position right after a marker beats the no-marker run at the same positions in all 24 task--model cells, with per-model means from $+0.07$ (Phi) to $+0.34$ (Qwen2.5-32B and Qwen3.8), and it beats the within-segment positions of the same marker runs in 22 of 24 cells. A marker gives the following letter its own token. With spaced letters or digits, where every symbol is already its own token, that advantage is gone: the post-marker position beats the within-segment positions in only 10 of 21 cells in each control, and the two classes are within 0.04 of each other at every model, with the post-marker position slightly the lower of the two at Qwen2.5-7B (Appendix Table~\ref{tab:perpos}). The spacing profile tells the same story (Figure~\ref{fig:profile}b, next section): on contiguous letters at $N = 64$, the gain is largest with a marker after every letter ($+0.47$ at the four stronger models) and falls steadily as markers get sparser ($+0.09$ at $k = 16$), as expected if markers help by splitting letter runs into shorter tokens. And the letter gain is present even on four-letter strings ($+0.15$), where the controls show no marker effect at all.
 
 % =====================================================================
+\FloatBarrier
 \section{With one token per character, markers still help strong models on long sequences}
 \label{sec:segmentation}
 
@@ -179,6 +185,7 @@ This benefit is a long-sequence effect (Figure~\ref{fig:profile}a). Up to $N = 1
 The gain is spread over the whole segment rather than concentrated after the marker (Figure~\ref{fig:position}, middle). A similar tokenization-independent gain appears inside segments on the dependency tasks, which use digits: within-segment positions gain $+0.07$ at Qwen2.5-32B, $+0.05$ at Gemma 4 and Gemini, and $+0.02$ at Qwen3.8 over the no-marker run at the same positions, though not at Qwen2.5-14B. Under edit-distance alignment these within-segment gains shrink but stay positive at the stronger models (for example, Qwen2.5-32B: $+0.11$ to $+0.03$ on \task{running\_xor} and $+0.11$ to $+0.05$ on \task{running\_sum\_local}; Qwen3.8: $+0.13$ to $+0.06$ and $+0.14$ to $+0.09$), so part of what markers do inside segments is keep the model from slipping out of alignment. The gain also extends beyond the lengths of our main grid: at Qwen2.5-32B, on \task{random\_permutation} with digits ($A = 8$, $k \in \{4, 16\}$), markers remove 89\% to 91\% of the remaining errors at $N = 64$, 78\% to 81\% at $N = 128$, and 56\% to 57\% at $N = 256$ (accuracy 0.18 without markers, 0.64 to 0.65 with), the ranges spanning \texttt{|}, commas, and line breaks as markers (Appendix Table~\ref{tab:delimiter}). One reading is that a marker every few characters helps a strong model keep its place in a long sequence; Section~\ref{sec:mechanism} states that hypothesis precisely and tests the simplest version of it. The experiments in this section establish the effect, not its cause. Section~\ref{sec:mechanism} shows that the heads that attend most to markers carry little of this effect, and Qwen3.8-27B, whose layers are mostly linear attention, shows it comparably to the other strong models.
 
 % =====================================================================
+\FloatBarrier
 \section{The position after a marker fails on dependencies that cross it}
 \label{sec:blindspot}
 
@@ -236,6 +243,7 @@ Figure~\ref{fig:reset} confirms the prediction. On \task{running\_xor}, \task{ru
 On tasks we did not design (Appendix Tables~\ref{tab:external} and~\ref{tab:gemini}, Figures~\ref{fig:external} and~\ref{fig:geminifig}), the pattern holds. On CLRS-Text's running-minimum algorithm \citep{markeeva2024clrstext}, where every position depends on the whole prefix, markers hurt wherever the model can do the task: $-0.20$ ($z = 4.5$) at Qwen2.5-32B and $-0.34$ ($z = 7.3$) on Gemini. On ProcBench's per-character substitution task \citep{fujisawa2024procbench}, a position-local task, markers help ($+0.10$, $z = 6.7$ at Qwen2.5-7B; $+0.20$, $z = 10.8$ at 32B); its strings mix letters and digits, so part of this gain may be tokenization. On string copying \citep{jelassi2024repeat}, where accuracy without markers is above 0.97, the effect is null. Tagging each letter as a vowel or consonant from pretrained knowledge shows no benefit at Qwen2.5-32B ($+0.01$, $z = 0.5$); at 7B the baseline is at chance, so that cell is not interpretable.
 
 % =====================================================================
+\FloatBarrier
 \section{What carries the effects? Marker-attending heads}
 \label{sec:mechanism}
 
@@ -332,12 +340,13 @@ what breaks the cross-boundary dependency; emitting markers is not.
 \paragraph{A model with little softmax attention.} Qwen3.8-27B, in which 48 of 64 layers use Gated DeltaNet linear attention \citep{yang2025gated} rather than softmax attention, shows the tokenization-independent gain and the blind spot comparably to the other strong models.
 
 % =====================================================================
+\FloatBarrier
 \section{Practical considerations}
 \label{sec:practical}
 
 Table~\ref{tab:decision} summarizes the guidance; the paragraphs below give the evidence.
 
-\begin{table}[h]
+\begin{table}[H]
 \centering
 \small
 \caption{When to space characters, when to add markers, and when to avoid them. Based on the models and tasks tested here (Section~\ref{sec:limitations} bounds the scope).}
@@ -347,7 +356,7 @@ Table~\ref{tab:decision} summarizes the guidance; the paragraphs below give the 
 Situation & What to do \\
 \midrule
 Characters run together and the tokenizer merges them (letter strings) & Put a space between characters first. At the Qwen and Gemma models this beats markers and costs fewer tokens \\
-Sequence long enough that accuracy has started to fall (from about $N = 32$ here) & Add a marker every 4 to 16 characters. The gain depends little on the spacing, and sparse markers cost little \\
+Sequence long enough that accuracy has started to fall (from about $N = 32$ here) & Add a marker every 4 to 16 characters and have the model reproduce them in its output; input-only segmentation hurts (Section~\ref{sec:sides}). The gain depends little on the spacing, and sparse markers cost little \\
 Short sequences, where the model is near ceiling & Markers add nothing; skip them \\
 Each output depends only on the input at the same position & Markers are safe, and help most \\
 An output depends on the input just before a marker & Do not place a marker there, or restate the rule so the position after each marker needs nothing before it \\
@@ -365,6 +374,7 @@ Latency matters & Sparse markers are faster than none, because they stop models 
 \paragraph{What about the marker matters.} Ablations on contiguous-letter \task{cyclic\_shift} ($A = 2$, $k = 4$; Appendix Tables~\ref{tab:markerid}--\ref{tab:prompts}), where much of the effect is tokenization: replacing \texttt{|} with \texttt{;} or \texttt{\#} keeps accuracy above the no-marker baseline at Qwen2.5-32B, though markers differ by up to 0.13 at $N = 128$; a reserved special token used as the marker performs far below the no-marker baseline; a frequent single-token marker beats a less frequent multi-token one with the same token budget; jittered or random placement falls below the baseline at most lengths at 7B but stays above it at 32B; and the benefit holds under formal and casual phrasings, but a terse cipher-style phrasing reverses it at 32B. These ablations cover one task and two models. Common delimiters differ from our marker in ways that may matter: whitespace between characters is our spacing control, which fixes tokenization but marks no segments; commas and semicolons, like \texttt{|}, are frequent single tokens, and \texttt{;} behaves much like \texttt{|} here; newlines also change the line structure the model sees. On the dependency tasks at Qwen2.5-32B, commas and line breaks produce the same blind spot and the same long-sequence gain as \texttt{|} (Section~\ref{sec:blindspot}), so the advice on where to place markers applies to the delimiters we tested (bars, commas, and line breaks) and plausibly to other common ones. Markers also slightly reduce the share of well-formed outputs in six of seven tasks at Qwen2.5-32B (Appendix Table~\ref{tab:wfr}). The density that maximizes accuracy on contiguous letters falls with length (Appendix Figure~\ref{fig:density}).
 
 % =====================================================================
+\FloatBarrier
 \section{Limitations}
 \label{sec:limitations}
 
@@ -381,10 +391,11 @@ Latency matters & Sparse markers are faster than none, because they stop models 
 \item \textbf{Length and decoding.} Core grids stop at $N = 64$; a follow-up on three tasks at Qwen2.5-32B reaches $N = 256$. Behavior over thousands of characters and at other models is untested. Main results use greedy decoding; sampling was checked on three tasks at Qwen2.5-32B only.
 \item \textbf{Marker variants.} Marker symbol, placement, and wording were ablated on one letter task at two models (Appendix~\ref{app:marker}); commas and line breaks were tested on three tasks at Qwen2.5-32B only.
 \item \textbf{Position encoding.} A marker shifts the relative offset between an output position and the input it needs, so position-encoding schemes other than those of the models we test might change the blind spot; testing this requires models trained with them.
-\item \textbf{Task scope.} All tasks are synthetic character-level transformations with in-context rules, with alphabets or moduli of at most eight symbols and dependencies of one or two steps; a naturalistic task (vowel tagging) shows no benefit at 32B.
+\item \textbf{Task scope.} The core experiments use alphabets or moduli of at most eight symbols, with one follow-up extending the modulus to 32; dependencies span one or two input positions, and every task is a synthetic character-level transformation with an in-context rule; a naturalistic task (vowel tagging) shows no benefit at 32B.
 \end{itemize}
 
 % =====================================================================
+\FloatBarrier
 \section{Conclusion}
 \label{sec:conclusion}
 
