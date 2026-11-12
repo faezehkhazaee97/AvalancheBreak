@@ -1,0 +1,12 @@
+task,model,aligned,index,desync_share
+running_sum_local,Gemma 4 31B,0.066,0.109,0.394
+running_sum_local,Qwen2.5 14B,0.032,0.074,0.573
+running_sum_local,Qwen2.5 32B,0.048,0.112,0.575
+running_sum_local,Qwen3.8 27B,0.091,0.144,0.368
+running_xor,Gemma 4 31B,0.043,0.088,0.51
+running_xor,Qwen2.5 14B,0.007,0.048,0.853
+running_xor,Qwen2.5 32B,0.034,0.109,0.687
+running_xor,Qwen3.8 27B,0.061,0.128,0.523
+sliding_window_max,Gemma 4 31B,0.024,0.079,0.69
+sliding_window_max,Qwen2.5 32B,0.072,0.083,0.143
+sliding_window_max,Qwen3.8 27B,0.041,0.05,0.173

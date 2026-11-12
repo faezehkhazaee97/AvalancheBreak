@@ -1,0 +1,33 @@
+task,model,distance,acc,change
+running_xor,Qwen2.5 14B,0,0.499,-0.113
+running_xor,Qwen2.5 14B,1,0.803,0.194
+running_xor,Qwen2.5 14B,2,0.714,0.08
+running_xor,Qwen2.5 14B,3+,0.712,0.133
+running_xor,Qwen2.5 32B,0,0.507,-0.171
+running_xor,Qwen2.5 32B,1,0.918,0.282
+running_xor,Qwen2.5 32B,2,0.901,0.253
+running_xor,Qwen2.5 32B,3+,0.752,0.119
+running_xor,Qwen3.8 27B,0,0.491,-0.052
+running_xor,Qwen3.8 27B,1,0.799,0.196
+running_xor,Qwen3.8 27B,2,0.828,0.28
+running_xor,Qwen3.8 27B,3+,0.768,0.223
+running_xor,Gemma 4 31B,0,0.509,-0.262
+running_xor,Gemma 4 31B,1,0.87,0.128
+running_xor,Gemma 4 31B,2,0.846,0.106
+running_xor,Gemma 4 31B,3+,0.829,0.095
+sliding_window_max,Qwen2.5 14B,0,0.488,-0.12
+sliding_window_max,Qwen2.5 14B,1,0.582,0.003
+sliding_window_max,Qwen2.5 14B,2,0.641,0.045
+sliding_window_max,Qwen2.5 14B,3+,0.561,0.019
+sliding_window_max,Qwen2.5 32B,0,0.514,-0.128
+sliding_window_max,Qwen2.5 32B,1,0.67,0.045
+sliding_window_max,Qwen2.5 32B,2,0.799,0.202
+sliding_window_max,Qwen2.5 32B,3+,0.672,0.094
+sliding_window_max,Qwen3.8 27B,0,0.439,-0.165
+sliding_window_max,Qwen3.8 27B,1,0.652,0.05
+sliding_window_max,Qwen3.8 27B,2,0.789,0.232
+sliding_window_max,Qwen3.8 27B,3+,0.659,0.153
+sliding_window_max,Gemma 4 31B,0,0.542,-0.11
+sliding_window_max,Gemma 4 31B,1,0.679,-0.012
+sliding_window_max,Gemma 4 31B,2,0.653,0.044
+sliding_window_max,Gemma 4 31B,3+,0.685,0.1
