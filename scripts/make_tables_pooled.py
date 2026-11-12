@@ -22,8 +22,9 @@ def tt(t):
 
 
 def dz(r, signed_z=False):
-    d = 0.0 if abs(r.delta) < 0.0005 else r.delta   # avoid printing "-0.000"
-    s = f"{'+' if d > 0 else ('$-$' if d < 0 else '')}{abs(d):.3f}"
+    d = r.delta
+    prec = 3 if abs(d) >= 0.0005 or d == 0 else 4   # a delta that rounds to zero at 3 decimals shows 4
+    s = f"{'+' if d > 0 else ('$-$' if d < 0 else '')}{abs(d):.{prec}f}"
     return f"{s} ({abs(r.z):.1f})"
 
 
