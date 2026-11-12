@@ -101,7 +101,7 @@ Every task maps an input string of length $N$ to an output string of the same le
 
 The position-local tasks are posed in three formats. In the \emph{letter} format (the default), letters are written contiguously, and tokenizers merge them: on every model we test, 48 random letters encode to 23 to 32 tokens without markers and to one token per letter with a marker after each letter. In the \emph{spaced} format, the same letters are separated by single spaces and the model is asked to answer in the same format; the 48 letters encode to exactly 48 tokens on every model whether or not markers are present, and each marker adds one token of its own. In the \emph{digit} format, the letters are relabeled as digits ($A \to 0$, $B \to 1$, \dots), which every tokenizer we test encodes one per character. Both controls are exact transformations of the letter tasks: same seeds, same positions, same rule and prompt wording (verified in every cell). The dependency tasks use digits throughout. One caveat on \task{conditional\_shift}: its rule depends on a symbol's position in the alphabet, which for digits equals the digit itself, so its digit version is easier.
 
-\begin{table}[t]
+\begin{table}[!b]
 \centering
 \small
 \caption{Tasks. $A$ = alphabet size, $M$ = modulus. Lengths $N \in \{4, 8, 16, 32, 64\}$. Position-local tasks are run with letters, spaced letters, and digits; dependency tasks use digits.}
@@ -122,7 +122,6 @@ Task & Tier & Rule & Axis \\
 \end{tabular}
 \end{table}
 
-\FloatBarrier
 \subsection{The marker intervention}
 
 In the marker condition (``Bounds''), a \texttt{|} is inserted after every $k$ input characters, with $k \in \{1, 2, 4, 8, 16\}$; only $k < N$ is used. The expected output is the ground truth computed on the continuous, marker-free sequence, with markers spliced in at the same positions. The prompt states the rule, then instructs, for example: \emph{``The input contains vertical bars (|). These are structural boundaries. DO NOT transform them. Copy them exactly to the output.''} (the verb matches the task, e.g.\ ``shift'' for \task{cyclic\_shift}). The no-marker baseline (``Base'') uses the identical prompt, including that instruction, so that the only difference between conditions is whether markers appear in the input. That instruction is odd for an input with no bars in it, so we measured what it costs: rerunning the no-marker condition with every mention of markers removed, on the same inputs, across 300 (task, length, alphabet) cells at the four stronger models, raises accuracy by $+0.006$ on average (95\% interval $[0.002, 0.009]$), by at most $+0.026$ in any model--family combination, and the sentence helps rather than hurts in 105 of the 300 cells (Appendix~\ref{app:stats}). The marker effects we report are therefore overstated by well under a percentage point on average against a baseline whose prompt never mentions bars. Example prompts are in Appendix~\ref{app:prompts}. Runs also included $k=3$, which we exclude to keep the spacing grid at powers of two.
@@ -148,7 +147,7 @@ Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-I
 \section{On letter strings, markers mostly re-tokenize}
 \label{sec:tokenization}
 
-\begin{figure}[t]
+\begin{figure}[!b]
 \centering
 \includegraphics[width=\linewidth]{figures/fig_three_formats.pdf}
 \caption{Character accuracy without markers (hollow) and with markers (filled) on the three position-local tasks in three formats: contiguous letters (blue), spaced letters (orange), and digits (green). Mean over tasks; $N \le 64$, $k \in \{1, 2, 4, 8, 16\}$; no-marker values are length-matched to the marker runs (Section~\ref{sec:setup}); whiskers (95\% intervals) are mostly hidden by the markers. At the Qwen and Gemma models, spacing the letters without markers beats markers on contiguous letters. With tokenization fixed, markers still help the stronger models.}
@@ -157,7 +156,7 @@ Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-I
 
 Figure~\ref{fig:formats} compares the three formats. On contiguous letters, markers raise accuracy at every model: by $+0.26$ at Qwen3.8-27B, $+0.24$ at Qwen2.5-32B, $+0.23$ at Gemma-4-31B, $+0.20$ at Qwen2.5-14B, $+0.13$ at Qwen2.5-7B, $+0.07$ at Mistral-7B, $+0.06$ at Phi-3.5-mini, and $+0.22$ on Gemini (all 24 cells positive, 22 significant). But at the five Qwen and Gemma models, simply spacing the letters, with no markers, helps more: $+0.33$ at Qwen3.8, $+0.32$ at Gemma 4, $+0.30$ at Qwen2.5-32B, $+0.27$ at Qwen2.5-14B, and $+0.16$ at Qwen2.5-7B. At these models, spaced letters without markers are more accurate than contiguous letters with markers (for example, 0.80 against 0.74 at Qwen2.5-32B and 0.89 against 0.79 at Gemma 4); at Mistral ($+0.06$ from spacing) and Phi ($+0.05$), spacing and markers help about equally. Without markers, the letter tasks are hard for these models largely because of how letters are tokenized: averaged over lengths, the four stronger models solve the digit versions at 0.82 to 0.94, against 0.47 to 0.61 with contiguous letters.
 
-\begin{figure}[t]
+\begin{figure}[!b]
 \centering
 \includegraphics[width=\linewidth]{figures/fig1_per_position.pdf}
 \caption{Per-position accuracy, every model. For each model: accuracy within a segment (orange) and at the position right after a marker (blue), each next to the no-marker run's accuracy at the same position indices (hollow gray). Mean over the tasks in each block; $N \le 64$, $k \in \{2,4,8,16\}$; whiskers are 95\% intervals; dotted line: chance (always guessing the most frequent output symbol), averaged over the tasks. Top: on contiguous letters, the post-marker position gains the most. Middle: with spaced letters it is no better than the rest of its segment. Bottom: on dependency tasks it loses at every model (Section~\ref{sec:blindspot}). Gemini was not run on spaced letters.}
@@ -167,11 +166,10 @@ Figure~\ref{fig:formats} compares the three formats. On contiguous letters, mark
 The per-position view (Figure~\ref{fig:position}) shows how. On contiguous letters, the position right after a marker beats the no-marker run at the same positions in all 24 task--model cells, with per-model means from $+0.07$ (Phi) to $+0.34$ (Qwen2.5-32B and Qwen3.8), and it beats the within-segment positions of the same marker runs in 22 of 24 cells. A marker gives the following letter its own token. With spaced letters or digits, where every symbol is already its own token, that advantage is gone: the post-marker position beats the within-segment positions in only 10 of 21 cells in each control, and the two classes are within 0.04 of each other at every model, with the post-marker position slightly the lower of the two at Qwen2.5-7B (Appendix Table~\ref{tab:perpos}). The spacing profile tells the same story (Figure~\ref{fig:profile}b, next section): on contiguous letters at $N = 64$, the gain is largest with a marker after every letter ($+0.47$ at the four stronger models) and falls steadily as markers get sparser ($+0.09$ at $k = 16$), as expected if markers help by splitting letter runs into shorter tokens. And the letter gain is present even on four-letter strings ($+0.15$), where the controls show no marker effect at all.
 
 % =====================================================================
-\FloatBarrier
 \section{With one token per character, markers still help strong models on long sequences}
 \label{sec:segmentation}
 
-\begin{figure}[t]
+\begin{figure}[!b]
 \centering
 \includegraphics[width=\linewidth]{figures/fig_profile.pdf}
 \caption{The marker effect (Bounds $-$ Base) at the four stronger models (Qwen2.5-14B and 32B, Qwen3.8-27B, Gemma-4-31B), mean over the three position-local tasks. (a) By sequence length, pooled over spacing. (b) By marker spacing at $N = 64$. Whiskers are 95\% intervals over the 12 model--task pairs. The two tokenization controls (spaced letters, digits) agree: no effect up to $N = 16$, a large effect at $N = 64$, and little dependence on spacing. Contiguous letters show a different signature: a gain at every length that is largest for the densest markers.}
@@ -356,9 +354,9 @@ Table~\ref{tab:decision} summarizes the guidance; the paragraphs below give the 
 Situation & What to do \\
 \midrule
 Characters run together and the tokenizer merges them (letter strings) & Put a space between characters first. At the Qwen and Gemma models this beats markers and costs fewer tokens \\
-Sequence long enough that accuracy has started to fall (from about $N = 32$ here) & Add a marker every 4 to 16 characters and have the model reproduce them in its output; input-only segmentation hurts (Section~\ref{sec:sides}). The gain depends little on the spacing, and sparse markers cost little \\
+Sequence long enough that accuracy has started to fall (from about $N = 32$ here) & Add a marker every 4 to 16 characters and ask the model to reproduce them in its output; this combination gave the largest gains in the two-task ablation (Section~\ref{sec:sides}). The gain depends little on the spacing, and sparse markers cost little \\
 Short sequences, where the model is near ceiling & Markers add nothing; skip them \\
-Each output depends only on the input at the same position & Markers are safe, and help most \\
+Each output depends only on the input at the same position & Markers generally improve accuracy on the position-local tasks tested, particularly at stronger models \\
 An output depends on the input just before a marker & Do not place a marker there, or restate the rule so the position after each marker needs nothing before it \\
 Latency matters & Sparse markers are faster than none, because they stop models from running past the required length \\
 \bottomrule
