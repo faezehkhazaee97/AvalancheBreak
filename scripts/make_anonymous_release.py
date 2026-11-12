@@ -132,7 +132,8 @@ first; they write the summary CSVs that the figures and tables read.
 
 | Paper item | Script (`scripts/`) |
 |---|---|
-| Three-format comparison; length and spacing profile | `make_fig_three_formats.py` |
+| Overview figure (Figure 1) | `make_fig_overview.py` |
+| Three-format comparison; length and spacing profile; per-task profile | `make_fig_three_formats.py` |
 | Per-position accuracy; reset variants per position | `make_fig_per_position.py` |
 | Pooled effects, every task and model (heatmap) | `make_fig_split_heatmap.py` |
 | Head-ablation tables (32B in the main text, 7B in the appendix) | `make_table_ablation_v2.py` |
@@ -140,7 +141,30 @@ first; they write the summary CSVs that the figures and tables read.
 | Appendix reset, Gemini/CLRS and external tables | `make_tables_pooled.py` |
 | Appendix: mechanism figure | `make_fig2_mechanism_merged.py` |
 | Appendix: best density by length | `make_fig2_vertex_migration.py` |
-| Appendix: other figures | `make_fig_divide_and_conquer.py`, `make_fig_attention_mechanism_32b.py`, `make_fig_head_heatmaps_32b.py`, `make_fig_error_containment_combined.py`, `make_fig_attention_digits_comparison.py`, `make_fig_tier1_cyclic_shift.py`, `make_fig_anchors_grid.py`, `make_fig_hard_dependency_grid.py`, `make_fig_external_tier1_checks.py`, `make_fig_external_benchmark_gemini.py` |
+| Appendix: per-model accuracy by length (all seven open models) | `make_fig_by_model.py` |
+| Appendix: other figures | `make_fig_divide_and_conquer.py`, `make_fig_head_heatmaps_32b.py`, `make_fig_causal_ablation.py`, `make_fig_external_tier1_checks.py`, `make_fig_external_benchmark_gemini.py` |
+
+## Follow-up experiments and robustness checks
+
+Each pair is a run script (Slurm job, `.sbatch` alongside) and the analysis that writes the
+corresponding appendix table into `paper_tmlr/tables/`.
+
+| Paper item | Run | Analysis |
+|---|---|---|
+| Alignment-robust (edit-distance) re-scoring | (reuses the main grid) | `analyze_aligned_scoring.py` |
+| Instruction wording for the blind spot; head-count dose response | `run_wording_controls.sbatch`; `run_head_ablation_v2.py --top 50/200` | `analyze_wording_and_dose.py` |
+| Delimiter type (bar, comma, line break) and N up to 256 | `run_delimiter_length.py` | `analyze_delimiter_length.py` |
+| Sampling instead of greedy decoding | `run_sampling_decoding.py` | `analyze_sampling_decoding.py` |
+| Larger state space (modulus 8, 16, 32) | `run_large_state.py` | `analyze_large_state.py` |
+| Prompt delivery (system prompt, no chat template) | `run_prompt_delivery.py` | `analyze_prompt_delivery.py` |
+| Input vs output markers, instruction-based 2x2 | `run_marker_sides.py` | `analyze_marker_sides.py`, `analyze_interaction.py` |
+| Input vs output markers, format constrained by a logits processor | `run_marker_sides_forced.py` | `analyze_marker_sides_forced.py` |
+| No-marker baselines whose prompt never mentions markers (300 cells) | `run_clean_baseline.py` | `analyze_clean_baseline.py` |
+| Generation-budget cut-off check | (reuses the main grid) | `analyze_budget.py` |
+| Exact transformation match and marker-placement compliance | (reuses the main grid) | `analyze_compliance.py` |
+| Bootstrap sensitivity and the A = 2 / M = 2 redundancy check | (reuses the main grid) | `analyze_statistics_robustness.py` |
+
+Their raw outputs are under `results/<experiment>/` and `results_clean/<task>_{neutral,across}/`.
 
 ## Statistics
 
