@@ -119,7 +119,7 @@ Task & Tier & Rule & Axis \\
 
 \subsection{The marker intervention}
 
-In the marker condition (``Bounds''), a \texttt{|} is inserted after every $k$ input characters, with $k \in \{1, 2, 4, 8, 16\}$; only $k < N$ is used. The expected output is the ground truth computed on the continuous, marker-free sequence, with markers spliced in at the same positions. The prompt states the rule, then instructs, for example: \emph{``The input contains vertical bars (|). These are structural boundaries. DO NOT transform them. Copy them exactly to the output.''} (the verb matches the task, e.g.\ ``shift'' for \task{cyclic\_shift}). The no-marker baseline (``Base'') uses the identical prompt, including that instruction, so that the only difference between conditions is whether markers appear in the input. That instruction is odd for an input with no bars in it, and Section~\ref{sec:sides} measures what it costs: dropping it raises no-marker accuracy by 0.02 to 0.04 at Qwen2.5-32B, so the marker effects we report are overstated by about that much against a baseline whose prompt never mentions bars. Example prompts are in Appendix~\ref{app:prompts}. Runs also included $k=3$, which we exclude to keep the spacing grid at powers of two.
+In the marker condition (``Bounds''), a \texttt{|} is inserted after every $k$ input characters, with $k \in \{1, 2, 4, 8, 16\}$; only $k < N$ is used. The expected output is the ground truth computed on the continuous, marker-free sequence, with markers spliced in at the same positions. The prompt states the rule, then instructs, for example: \emph{``The input contains vertical bars (|). These are structural boundaries. DO NOT transform them. Copy them exactly to the output.''} (the verb matches the task, e.g.\ ``shift'' for \task{cyclic\_shift}). The no-marker baseline (``Base'') uses the identical prompt, including that instruction, so that the only difference between conditions is whether markers appear in the input. That instruction is odd for an input with no bars in it, so we measured what it costs: rerunning the no-marker condition with every mention of markers removed, on the same inputs, across 300 (task, length, alphabet) cells at the four stronger models, raises accuracy by $+0.006$ on average (95\% interval $[0.002, 0.009]$), by at most $+0.026$ in any model--family combination, and the sentence helps rather than hurts in 105 of the 300 cells (Appendix~\ref{app:stats}). The marker effects we report are therefore overstated by well under a percentage point on average against a baseline whose prompt never mentions bars. Example prompts are in Appendix~\ref{app:prompts}. Runs also included $k=3$, which we exclude to keep the spacing grid at powers of two.
 
 \subsection{Models and decoding}
 
@@ -292,11 +292,11 @@ and in none of the \task{random\_permutation} ones, where it emits on average 1.
 instruction, not of a realized format, and the output-only row on \task{random\_permutation}
 tells us almost nothing about output markers because the model did not produce them.
 
-\paragraph{What the experiment does show.} First, the marker sentence itself is not free: with no
-markers anywhere, dropping it raises accuracy from 0.66 to 0.70 on \task{running\_xor} and from
-0.55 to 0.57 on \task{random\_permutation}. Our baseline keeps that sentence, so the gains
-reported elsewhere in the paper are overstated by roughly 0.02 to 0.04; on these two cells the
-marker gain is $+0.07$ and $+0.35$ against the clean baseline rather than $+0.11$ and $+0.37$.
+\paragraph{What the experiment does show.} First, the marker sentence costs the baseline little. On these two cells, dropping it raises
+no-marker accuracy from 0.66 to 0.70 on \task{running\_xor} and from 0.55 to 0.57 on
+\task{random\_permutation}; across the full grid of 300 cells at four models the average cost is
+$+0.006$ (Appendix~\ref{app:stats}), so these two cells sit at the upper end of cell-to-cell
+variation and the gains reported elsewhere in the paper stand to within about a percentage point.
 
 Second, asking for markers on both sides beats asking for either alone, by more than their sum.
 The interaction $A_{11} - A_{10} - A_{01} + A_{00}$ is $+0.14$ (95\% interval $[0.06, 0.23]$) on
@@ -383,7 +383,7 @@ Latency matters & Sparse markers are faster than none, because they stop models 
 \item \textbf{Scoring.} Our main metric compares characters position by position, so a dropped or inserted character misaligns everything after it. An edit-distance-aligned re-scoring leaves the blind spot intact and attributes most of \task{copy\_previous}'s within-segment loss to such slips (Appendix Table~\ref{tab:aligned}); a fully alignment-free metric would be more lenient still, especially on binary alphabets.
 \item \textbf{Floors and ceilings.} Raw differences in accuracy are not comparable across tasks with different baselines; the controls leave strong models near ceiling at short lengths, which is why we report shares of remaining errors. Gemini's dependency tasks start near ceiling, and some 7B, Mistral, and Phi cells start near chance.
 \item \textbf{Output-only enforcement.} In the output-only cell the forced format is realized in 64\% to 75\% of generations, because a marker cannot be inserted inside a multi-character token; the other cells are exact.
-\item \textbf{Baseline prompt.} The no-marker baseline keeps the sentence describing the markers, which costs it 0.02 to 0.04 at Qwen2.5-32B on the two tasks where we measured it (Section~\ref{sec:sides}); reported gains are overstated by about that much, and we did not rerun the full grid with a clean baseline.
+\item \textbf{Baseline prompt.} The no-marker baseline keeps the sentence describing the markers. Measured across 300 cells at the four stronger models, that costs it $+0.006$ on average and at most $+0.026$ in any model--family combination (Appendix~\ref{app:stats}); the three smaller models and Gemini were not rechecked.
 \item \textbf{Reset design.} The reset rule makes the post-marker position easier by construction, and the reset prompt shifts no-marker accuracy by up to 0.08.
 \item \textbf{Spacing and pooling.} Per-position claims concern spacings of two or more ($k = 1$ has no within-segment positions, and behaves differently on \task{copy\_previous}). Pooled effects depend on how lengths are weighted; we match the no-marker baseline to the marker runs' lengths (Section~\ref{sec:setup}), which raises pooled effects relative to comparing raw means (by 0.03 in the median cell and at most 0.09).
 \item \textbf{Models and sample size.} All open models are instruction-tuned, and five are 2024-era. We do not test base checkpoints; stripping the chat template at Qwen2.5-32B, the closest available proxy, leaves both effects intact (Appendix Table~\ref{tab:delivery}), but that is not the same experiment. Reset variants at Qwen2.5-32B are single-batch (20 trials per cell); Gemini uses 3 trials per cell.
@@ -509,6 +509,25 @@ evidence that the effect is uniform across lengths and spacings, nor that it wou
 different choice of grid. The claims about structure rest on the length-resolved and
 position-resolved analyses (Figures~\ref{fig:profile} and~\ref{fig:position}), not on the
 pooled numbers.
+
+\paragraph{The baseline's marker sentence.} The no-marker prompt keeps the sentence that
+describes the markers. To measure what that costs, we reran the no-marker condition at the four
+stronger models with every mention of markers removed from the prompt, on the same inputs
+(\texttt{scripts/run\_clean\_baseline.py}): the ten task variants of the two tokenization
+controls and the dependency family, $N \in \{16, 32, 64\}$, every alphabet or modulus value, 20
+trials. Table~\ref{tab:cleanbase} gives the paired difference (clean minus with-sentence) per
+model and family. It is $+0.006$ overall (95\% interval $[0.002, 0.009]$ over 300 cells), between
+$-0.015$ and $+0.026$ in every model--family combination, and negative, meaning the sentence
+helped, in 105 of the 300 cells. Recomputing Finding~2 at $N = 64$ against the clean baseline
+moves the share of remaining errors removed by at most 0.014 at any model.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Cost of the baseline's marker sentence: no-marker accuracy with the sentence removed minus with it present, on the same inputs, mean over (task, length, alphabet) cells with a 95\% interval over cells. $N \in \{16, 32, 64\}$, 20 trials per cell.}
+\label{tab:cleanbase}
+\input{tables/clean_baseline.tex}
+\end{table}
 
 \paragraph{Dropping the redundant configurations.} At $A = 2$ the three position-local rules
 coincide and at $M = 2$ \task{running\_sum\_local} computes \task{running\_xor}
