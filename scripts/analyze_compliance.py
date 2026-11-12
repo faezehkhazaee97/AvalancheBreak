@@ -104,7 +104,19 @@ def main():
             first = False
         if not first:
             lines.append("\\midrule")
-    lines[-1] = "\\bottomrule"
+    # pooled over models, weighted by the number of generations (the averages the text quotes)
+    first = True
+    for block, _t in BLOCKS:
+        if "reset" in block:
+            continue
+        x = g[g.block == block]
+        cells = []
+        for cls in ("no markers", "markers"):
+            y = x[x.cls == cls]
+            cells += ["---", "---"] if y.empty else [f"{y.ex.sum() / y.n.sum():.2f}", f"{y.co.sum() / y.n.sum():.2f}"]
+        lines.append(f"{'All models, weighted' if first else ''} & {block} & " + " & ".join(cells) + " \\\\")
+        first = False
+    lines.append("\\bottomrule")
     lines.append("\\end{tabular}")
     (REPO / "paper_tmlr" / "tables" / "compliance.tex").write_text("\n".join(lines) + "\n")
     print("Wrote paper_tmlr/tables/compliance.tex")

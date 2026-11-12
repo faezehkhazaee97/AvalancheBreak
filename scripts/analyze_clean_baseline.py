@@ -94,7 +94,7 @@ def main():
             cells_.append("---" if y.empty else f"${y.mean():+.3f} \\pm {1.96 * y.sem():.3f}$")
         cells_.append(f"${x.cost.mean():+.3f} \\pm {1.96 * x.cost.sem():.3f}$")
         lines.append(f"{label} & " + " & ".join(cells_) + " \\\\")
-    lines += ["\\midrule", f"All & & & & ${o.cost.mean():+.3f} \\pm {1.96 * o.cost.sem():.3f}$ \\\\",
+    lines += ["\\midrule", f"All & & & & ${o.cost.mean():+.4f} \\pm {1.96 * o.cost.sem():.4f}$ \\\\",
               "\\bottomrule", "\\end{tabular}"]
     (REPO / "paper_tmlr" / "tables" / "clean_baseline.tex").write_text("\n".join(lines) + "\n")
     print("Wrote paper_tmlr/tables/clean_baseline.tex")
