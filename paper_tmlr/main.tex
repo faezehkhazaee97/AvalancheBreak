@@ -16,6 +16,7 @@
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage{placeins} % \FloatBarrier: keep appendix floats inside their sections
+\usepackage{flafter} % a float never appears above the text that introduces it
 \makeatletter\setlength{\@fptop}{0pt}\makeatother % float-only pages start at the top, not centered
 
 % Task names in monospace (escape underscores in the argument).
@@ -58,16 +59,16 @@ A marker does more than mark a boundary. Tokenizers merge runs of letters into m
 \item \textbf{The position after a marker fails on dependencies that cross it} (Section~\ref{sec:blindspot}). With a marker every two or more characters, on tasks where each output also depends on the previous input, the position right after a marker falls below the no-marker run in 29 of 31 task--model cells (every cell at the five strongest models), to near chance at the stronger models, even where the model is otherwise near ceiling. The next position recovers immediately, and rewriting the tasks so that this position needs nothing before the marker repairs it. The loss is not created by how the instruction describes the markers: telling the model they are only visual separators and that the rule continues across them narrows it but does not remove it, and commas or line breaks in place of \texttt{|} leave the position at chance up to $N = 256$. Pooled task-level effects on these tasks are consistent with a mix of this loss and the within-segment gains of Finding~2, which is why their sign varies with length and model.
 \end{enumerate}
 
-\begin{figure}[t]
+We also test the obvious mechanism (Section~\ref{sec:mechanism}). In Qwen2.5, some heads attend from each position to the adjacent marker, but at Qwen2.5-32B and $N = 64$, blocking the ten most marker-attending heads removes 1\% of the gain on digits, 13\% on spaced letters, and 19\% on contiguous letters, against at most 5\% for controls. Blocking 200 heads removes 21\% (digits) and 28\% (spaced letters), against none for controls of the same size. Marker-directed attention therefore contributes to the gain, and it is not concentrated in the few heads that attend to markers most; but the share removed does not rise monotonically with the number of heads blocked (8\%, 1\%, 28\% on spaced letters), so these experiments do not establish how the contribution is distributed. A $2 \times 2$ separating input from output markers under constrained decoding, on two tasks at Qwen2.5-32B (Section~\ref{sec:sides}), finds that marking either side alone \emph{hurts} ($-0.03$ to $-0.16$) while marking both helps ($+0.10$ and $+0.39$), an interaction of $+0.19$ and $+0.70$; the blind spot, by contrast, follows the input markers alone. Section~\ref{sec:practical} turns the findings into guidance: separate characters before adding markers, use sparse markers on long sequences, and avoid placing a marker where an output needs the input just before it.
+
+\paragraph{Supporting analyses.} Each finding is backed by checks reported in the appendix: re-scoring with an edit-distance alignment, which forgives dropped or inserted characters, leaves the blind spot intact (Table~\ref{tab:aligned}); sampling instead of greedy decoding changes neither the gain nor the blind spot (Table~\ref{tab:sampling}); the per-position comparisons hold model by model and by distance from the marker (Tables~\ref{tab:perpos} and~\ref{tab:distance}); on third-party tasks markers help a position-local substitution task and hurt a prefix-dependent algorithm (Table~\ref{tab:external}); changing the marker symbol, jittering its placement, or rephrasing the instruction changes the size of the letter-task gain at Qwen2.5-32B but not its sign, except for a reserved special token and a terse cipher-style prompt (Appendix~\ref{app:marker}); and sparse markers take less wall-clock time than none, because they keep models from generating past the required length (Table~\ref{tab:wallclock}).
+
+\begin{figure}[!htb]
 \centering
 \includegraphics[width=\linewidth]{figures/fig0_overview.pdf}
 \caption{The three effects at a glance. (a)~Qwen2.5's tokenizer merges runs of letters into multi-letter tokens; a marker every four letters splits only some of them, while spacing the letters gives one token per letter. (b)~With one token per character (spaced letters or digits), markers still help the four strongest open models, from $N = 32$ on (the marker runs, ``Bounds'', minus the no-marker runs, ``Base''; mean over models and the three position-local tasks; whiskers are 95\% intervals; same data as Figure~\ref{fig:profile}a). (c)~On \task{running\_xor}, each output is the XOR of its input and the one before; the position right after a marker, whose dependency crosses the marker, falls to near chance at the stronger models, and the next position recovers.}
 \label{fig:overview}
 \end{figure}
-
-We also test the obvious mechanism (Section~\ref{sec:mechanism}). In Qwen2.5, some heads attend from each position to the adjacent marker, but at Qwen2.5-32B and $N = 64$, blocking the ten most marker-attending heads removes 1\% of the gain on digits, 13\% on spaced letters, and 19\% on contiguous letters, against at most 5\% for controls. Blocking 200 heads removes 21\% (digits) and 28\% (spaced letters), against none for controls of the same size. Marker-directed attention therefore contributes to the gain, and it is not concentrated in the few heads that attend to markers most; but the share removed does not rise monotonically with the number of heads blocked (8\%, 1\%, 28\% on spaced letters), so these experiments do not establish how the contribution is distributed. A $2 \times 2$ separating input from output markers under constrained decoding, on two tasks at Qwen2.5-32B (Section~\ref{sec:sides}), finds that marking either side alone \emph{hurts} ($-0.03$ to $-0.16$) while marking both helps ($+0.10$ and $+0.39$), an interaction of $+0.19$ and $+0.70$; the blind spot, by contrast, follows the input markers alone. Section~\ref{sec:practical} turns the findings into guidance: separate characters before adding markers, use sparse markers on long sequences, and avoid placing a marker where an output needs the input just before it.
-
-\paragraph{Supporting analyses.} Each finding is backed by checks reported in the appendix: re-scoring with an edit-distance alignment, which forgives dropped or inserted characters, leaves the blind spot intact (Table~\ref{tab:aligned}); sampling instead of greedy decoding changes neither the gain nor the blind spot (Table~\ref{tab:sampling}); the per-position comparisons hold model by model and by distance from the marker (Tables~\ref{tab:perpos} and~\ref{tab:distance}); on third-party tasks markers help a position-local substitution task and hurt a prefix-dependent algorithm (Table~\ref{tab:external}); changing the marker symbol, jittering its placement, or rephrasing the instruction changes the size of the letter-task gain at Qwen2.5-32B but not its sign, except for a reserved special token and a terse cipher-style prompt (Appendix~\ref{app:marker}); and sparse markers take less wall-clock time than none, because they keep models from generating past the required length (Table~\ref{tab:wallclock}).
 
 % =====================================================================
 \section{Related work}
@@ -264,6 +265,7 @@ This section has three kinds of content, and we keep them apart: what the attent
 \input{tables/head_dose.tex}
 \end{table}
 
+\FloatBarrier
 \subsection{Input markers or output markers?}
 \label{sec:sides}
 
@@ -297,14 +299,14 @@ The interaction $A_{11} - A_{10} - A_{01} + A_{00}$ is $+0.14$ (95\% interval $[
 over the paired trials of the three marked conditions and, separately, over the unpaired
 baseline. Both intervals exclude zero.
 
-Third, forcing the format settles it. We reran the same four cells with a logits processor that
-counts the answer characters as they are generated and either forces the marker token when one is due or removes every marker-bearing token from consideration, so as to enforce the output format rather than request it (Table~\ref{tab:sidesforced}). This changes what the model is allowed to generate, not only the format of the string it produces, so the same machinery is applied in all four cells. The constraint holds exactly in the
+Third, constraining the decoder settles it. We reran the same four cells with a logits processor that
+counts the answer characters as they are generated and either forces the marker token when one is due or removes every marker-bearing token from consideration, so that the output format is constrained by the decoder rather than requested solely through the prompt (Table~\ref{tab:sidesforced}). This changes what the model is allowed to generate, not only the format of the string it produces, so the same machinery is applied in all four cells. The constraint holds exactly in the
 no-marker, input-only, and both-sides cells; in the output-only cell it holds in 64\% to 75\% of
 generations, because a marker cannot be placed inside a multi-character token. Constraining does
 not itself move the results: the no-marker and both-sides cells reproduce their unconstrained
 counterparts to within 0.03.
 
-With the format enforced, on these two tasks at Qwen2.5-32B, \emph{neither side alone helps, and both hurt}. Markers in the input
+Under constrained decoding, on these two tasks at Qwen2.5-32B, \emph{neither side alone helps, and both hurt}. Markers in the input
 with an output genuinely free of them give $-0.03$ on \task{running\_xor} and $-0.15$ on
 \task{random\_permutation}; markers forced into the output of an unmarked input give $-0.05$ and
 $-0.16$. Only the combination helps, by $+0.10$ and $+0.39$. The interaction is $+0.19$ (95\%
@@ -320,7 +322,7 @@ what breaks the cross-boundary dependency; emitting markers is not.
 \begin{table}[t]
 \centering
 \small
-\caption{The same 2$\times$2 with the output format enforced by a logits processor instead of requested in the prompt (Qwen2.5-32B; $N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 trials per cell). ``Format'' is the share of generations whose output came out as intended; it is below 100\% only where a marker was due inside a multi-character token. Change is against the no-marker cell, and the interaction is $A_{11} - A_{10} - A_{01} + A_{00}$ with a bootstrap interval. Post-marker is accuracy at the position right after a marker.}
+\caption{The same 2$\times$2 with the output format constrained by a logits processor rather than requested solely through the prompt (Qwen2.5-32B; $N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 trials per cell). ``Format'' is the share of generations whose output came out as intended; it is below 100\% only where a marker was due inside a multi-character token. Change is against the no-marker cell, and the interaction is $A_{11} - A_{10} - A_{01} + A_{00}$ with a bootstrap interval. Post-marker is accuracy at the position right after a marker.}
 \label{tab:sidesforced}
 \resizebox{\linewidth}{!}{\input{tables/marker_sides_forced.tex}}
 \end{table}
@@ -458,7 +460,7 @@ Qwen2.5-14B-Instruct \texttt{cf98f3b3bbb4}, Qwen2.5-32B-Instruct \texttt{5ede1c9
 Mistral-7B-Instruct-v0.3 \texttt{c170c708c41d}, Phi-3.5-mini-instruct \texttt{2fe192450127},
 Qwen3.8-27B \texttt{37561816e66b}, Gemma-4-31B-it \texttt{842da3794eaa}.
 
-\paragraph{Generation budget.} The no-marker run and every spacing $k \ge 2$ share one budget, $1.5N + 20$ new tokens; $k = 1$ uses $2N + 20$. To check that the budget does not drive any effect, we re-tokenized every stored raw output of the seven open models ($N \le 64$; 86,400 generations). Raw generations are stored for every spaced-letter and digit control run, every Qwen3.8 and Gemma 4 run, and the later Qwen2.5-32B batches; the original contiguous-letter and dependency grids of the five 2024-era models (Qwen2.5-7B, 14B, and the first 32B batch, Mistral, and Phi) predate that logging and store only the clipped answer, which is why a few compliance entries elsewhere are marked n/a and counted those that used the whole budget while giving fewer than $N$ answer characters on the first line. This is an upper bound on cut-off answers, because it also counts short answers followed by unrequested text. The share is 0.58\% without markers, 0.49\% at $k \ge 2$, and 0.31\% at $k = 1$; at the four stronger models it is 0.04\%, 0.02\%, and 0\%. Nearly all cases are Phi-3.5-mini on spaced letters (up to 19\% of one cell without markers, against 14\% with), and on the dependency tasks the share is 0.03\% or less in every class.
+\paragraph{Generation budget.} The no-marker run and every spacing $k \ge 2$ share one budget, $1.5N + 20$ new tokens; $k = 1$ uses $2N + 20$. To check that the budget does not drive any effect, we re-tokenized every stored raw output of the seven open models ($N \le 64$; 86,400 generations) and counted those that used the whole budget while giving fewer than $N$ answer characters on the first line. Raw generations are stored for every spaced-letter and digit control run, every Qwen3.8 and Gemma 4 run, and the later Qwen2.5-32B batches. The original contiguous-letter and dependency grids of the five earlier models (Qwen2.5-7B, 14B, and the first 32B batch, Mistral, and Phi) predate raw-generation logging and retain only the clipped answer, which is why some marker-compliance entries elsewhere are unavailable. This is an upper bound on cut-off answers, because it also counts short answers followed by unrequested text. The share is 0.58\% without markers, 0.49\% at $k \ge 2$, and 0.31\% at $k = 1$; at the four stronger models it is 0.04\%, 0.02\%, and 0\%. Nearly all cases are Phi-3.5-mini on spaced letters (up to 19\% of one cell without markers, against 14\% with), and on the dependency tasks the share is 0.03\% or less in every class.
 
 \FloatBarrier
 \section{How the uncertainty was computed}
