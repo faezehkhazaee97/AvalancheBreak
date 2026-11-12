@@ -23,6 +23,7 @@ PL = ["cyclic_shift", "random_permutation", "conditional_shift"]
 DEP = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]
 L64 = [4, 8, 16, 32, 64]
 GEMINI = REPO / "results_clean" / "gemini_pilot" / "gemini-flash-latest_POOLED_3trials.csv"
+GEMINI36 = REPO / "results_clean" / "gemini_pilot" / "gemini-3.6-flash_POOLED.csv"
 
 
 def grid(task, tag, n128=False):
@@ -60,6 +61,16 @@ def main():
         add("dependency", t, "Gemini 3.5 Flash", gem[gem.Task == t], L64)
     for t in sorted(gem.Task.unique()):
         add("gemini_table", t, "Gemini 3.5 Flash", gem[gem.Task == t], None)
+    if GEMINI36.exists():
+        g6 = pd.read_csv(GEMINI36)
+        for t in PL:
+            add("letters", t, "Gemini 3.6 Flash", g6[g6.Task == t], L64)
+            add("spaced", t, "Gemini 3.6 Flash", g6[g6.Task == t + "_spaced"], L64)
+            add("digits", t, "Gemini 3.6 Flash", g6[g6.Task == t + "_digits"], L64)
+        for t in DEP:
+            add("dependency", t, "Gemini 3.6 Flash", g6[g6.Task == t], L64)
+        for t in sorted(g6.Task.unique()):
+            add("gemini_table", t, "Gemini 3.6 Flash", g6[g6.Task == t], None)
     for model in ["Qwen2.5 7B", "Qwen2.5 32B"]:
         tag = MODELS[model]
         add("external", "procbench_substitute", model, grid("procbench_substitute", tag), None)

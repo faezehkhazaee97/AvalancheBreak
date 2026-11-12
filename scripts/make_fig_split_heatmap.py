@@ -48,8 +48,10 @@ MODELS = [
     ("Qwen3.8\n27B", "Qwen3.8-27B"),
     ("Gemma 4\n31B", "gemma-4-31B-it"),
     ("Gemini\n3.5 Flash", None),
+    ("Gemini\n3.6 Flash", "gemini36"),
 ]
 GEMINI_CSV = REPO / "results_clean" / "gemini_pilot" / "gemini-flash-latest_POOLED_3trials.csv"
+GEMINI36_CSV = REPO / "results_clean" / "gemini_pilot" / "gemini-3.6-flash_POOLED.csv"
 
 # Diverging pair from the validated palette (blue <-> red, neutral gray midpoint).
 CMAP = LinearSegmentedColormap.from_list("helps_hurts", ["#b52f2f", "#f0efec", "#184f95"])
@@ -70,10 +72,11 @@ def load_local(task, tag):
     return df.drop_duplicates(subset=keys)
 
 
-def load_gemini(task):
-    if not GEMINI_CSV.exists():
+def load_gemini(task, path=None):
+    path = path or GEMINI_CSV
+    if not path.exists():
         return None
-    df = pd.read_csv(GEMINI_CSV)
+    df = pd.read_csv(path)
     df = df[df.Task == task]
     return df if len(df) else None
 
@@ -88,7 +91,8 @@ for block, tasks in ROW_BLOCKS:
     for task in tasks:
         cells = []
         for label, tag in MODELS:
-            df = load_gemini(task) if tag is None else load_local(task, tag)
+            df = (load_gemini(task) if tag is None else load_gemini(task, GEMINI36_CSV) if tag == "gemini36"
+                  else load_local(task, tag))
             r = pooled_delta(df) if df is not None else None
             cells.append(r)
             if r:
@@ -104,7 +108,7 @@ rows = [(b, t, [c[j] for j in keep]) for b, t, c in rows]
 from scipy.stats import norm  # noqa: E402
 # Bonferroni, two-sided, over every pooled cell the paper tests: the cells plotted here plus the
 # 42 tokenization-control cells (3 position-local tasks x 7 open models x {spaced, digits}).
-N_FAMILY = len(records) + 42
+N_FAMILY = len(records) + 42 + (6 if GEMINI36_CSV.exists() else 0)  # controls: 7 open models x 6, plus Gemini 3.6's 6
 SIG_Z = norm.ppf(1 - 0.05 / (2 * N_FAMILY))
 print(f"{len(records)} cells plotted, family of {N_FAMILY}; star threshold |z| >= {SIG_Z:.2f}")
 

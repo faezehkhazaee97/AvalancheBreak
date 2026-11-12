@@ -49,7 +49,7 @@ def expected_positions(n, k):
 def main():
     rows, skipped, total = [], 0, 0
     for label, tag in MODELS:
-        if tag is None:
+        if tag is None or str(tag).startswith("gemini"):
             continue
         for block, tasks in BLOCKS:
             if "reset" in block:

@@ -91,7 +91,7 @@ def main():
     rows = []
     for task in TASKS:
         for label, tag in MODELS:
-            if tag is None:
+            if tag is None or str(tag).startswith("gemini"):
                 continue
             d = load(task, tag)
             if d is None:

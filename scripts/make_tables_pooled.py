@@ -56,7 +56,14 @@ def gemini_table():
              r"Task & Model & Base acc. & Bounds acc. & $\Delta$ ($|z|$) \\", r"\midrule"]
     for t in ["cyclic_shift", "random_permutation", "conditional_shift", "running_xor", "running_sum_local", "copy_previous"]:
         r = get("gemini_table", t, "Gemini 3.5 Flash")
-        lines.append(f"{tt(t)} & Gemini & {r.base:.3f} & {r.bounds:.3f} & {dz(r)} \\\\")
+        lines.append(f"{tt(t)} & Gemini 3.5 & {r.base:.3f} & {r.bounds:.3f} & {dz(r)} \\\\")
+        r6 = get("gemini_table", t, "Gemini 3.6 Flash")
+        if r6 is not None:
+            lines.append(f" & Gemini 3.6 & {r6.base:.3f} & {r6.bounds:.3f} & {dz(r6)} \\\\")
+    for t in ["cyclic_shift_spaced", "random_permutation_spaced", "conditional_shift_spaced", "cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits"]:
+        r6 = get("gemini_table", t, "Gemini 3.6 Flash")
+        if r6 is not None:
+            lines.append(f"{tt(t)} & Gemini 3.6 & {r6.base:.3f} & {r6.bounds:.3f} & {dz(r6)} \\\\")
     lines.append(r"\midrule")
     for t, lab in [("clrs_minimum", "CLRS minimum"), ("clrs_kadane", "CLRS Kadane")]:
         first = True
@@ -64,7 +71,7 @@ def gemini_table():
             r = get("external", t, m)
             if r is None:
                 continue
-            name = m.replace("Qwen2.5 ", "Qwen2.5-").replace("Gemini 3.5 Flash", "Gemini")
+            name = m.replace("Qwen2.5 ", "Qwen2.5-").replace("Gemini 3.5 Flash", "Gemini 3.5")
             lines.append(f"{lab if first else ''} & {name} & {r.base:.3f} & {r.bounds:.3f} & {dz(r)} \\\\")
             first = False
     lines += [r"\bottomrule", r"\end{tabular}"]

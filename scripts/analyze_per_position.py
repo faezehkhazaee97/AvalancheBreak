@@ -29,6 +29,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
 GEMINI = REPO / "results_clean" / "gemini_pilot" / "gemini-flash-latest_POOLED_3trials.csv"
+GEMINI36 = REPO / "results_clean" / "gemini_pilot" / "gemini-3.6-flash_POOLED.csv"  # all 13 tasks
 LENGTHS = [4, 8, 16, 32, 64]
 KS = [2, 4, 8, 16]
 BLOCKS = [
@@ -43,12 +44,18 @@ MODELS = [
     ("Qwen2.5 7B", "Qwen2.5-7B-Instruct"), ("Qwen2.5 14B", "Qwen2.5-14B-Instruct"),
     ("Qwen2.5 32B", "Qwen2.5-32B-Instruct"), ("Mistral 7B", "Mistral-7B-Instruct-v0.3"),
     ("Phi-3.5 mini", "Phi-3.5-mini-instruct"), ("Qwen3.8 27B", "Qwen3.8-27B"),
-    ("Gemma 4 31B", "gemma-4-31B-it"), ("Gemini 3.5 Flash", None),
+    ("Gemma 4 31B", "gemma-4-31B-it"), ("Gemini 3.5 Flash", None), ("Gemini 3.6 Flash", "gemini36"),
 ]
 TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output")}
 
 
 def load(task, tag):
+    if tag == "gemini36":
+        if not GEMINI36.exists():
+            return None
+        d = pd.read_csv(GEMINI36, dtype=TEXT, keep_default_na=False)
+        d = d[d.Task == task]
+        return d if len(d) else None
     if tag is None:
         if not GEMINI.exists():
             return None

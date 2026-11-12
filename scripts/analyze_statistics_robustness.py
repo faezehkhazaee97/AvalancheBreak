@@ -114,7 +114,7 @@ def main():
     for fam, tasks in FAMILIES.items():
         for task in tasks:
             for label, tag in MODELS:
-                if tag is None:
+                if tag is None or str(tag).startswith("gemini"):
                     continue
                 raw = load(task, tag)
                 if raw is None:

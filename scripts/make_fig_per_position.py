@@ -26,7 +26,7 @@ from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: 
 
 POST, WITHIN, BASE, INK = "#2a78d6", "#eb6834", "#78776f", "#0b0b0b"
 MODELS = ["Qwen2.5 7B", "Qwen2.5 14B", "Qwen2.5 32B", "Mistral 7B", "Phi-3.5 mini",
-          "Qwen3.8 27B", "Gemma 4 31B", "Gemini 3.5 Flash"]
+          "Qwen3.8 27B", "Gemma 4 31B", "Gemini 3.5 Flash", "Gemini 3.6 Flash"]
 SHORT = {m: m.replace(" ", "\n", 1) for m in MODELS}
 BLOCKS = [
     ("Position-local, letters", "Position-local tasks, letters (merge into multi-letter tokens without markers)"),

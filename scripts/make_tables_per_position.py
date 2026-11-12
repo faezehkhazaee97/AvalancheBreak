@@ -15,7 +15,7 @@ REPO = Path(__file__).resolve().parents[1]
 SUMMARY = REPO / "results_clean" / "_summary"
 OUT = REPO / "paper_tmlr" / "tables"
 MODELS = ["Qwen2.5 7B", "Qwen2.5 14B", "Qwen2.5 32B", "Mistral 7B", "Phi-3.5 mini",
-          "Qwen3.8 27B", "Gemma 4 31B", "Gemini 3.5 Flash"]
+          "Qwen3.8 27B", "Gemma 4 31B", "Gemini 3.5 Flash", "Gemini 3.6 Flash"]
 BLOCKS = [("Position-local, letters", "Position-local tasks, letters"),
           ("Position-local, spaced letters", "Position-local tasks, spaced letters"),
           ("Position-local, digits", "Position-local tasks, digits"),

@@ -34,7 +34,7 @@ def main():
     rows = []
     missing_raw = [0, 0]  # generations without a stored raw output, of all generations
     for label, tag in MODELS:
-        if tag is None:
+        if tag is None or str(tag).startswith("gemini"):
             continue
         tok = AutoTokenizer.from_pretrained(HF[tag])
         for block, tasks in BLOCKS:

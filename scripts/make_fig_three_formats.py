@@ -26,7 +26,9 @@ from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: 
 
 MODELS = {"Qwen2.5 7B": "Qwen2.5-7B-Instruct", "Qwen2.5 14B": "Qwen2.5-14B-Instruct",
           "Qwen2.5 32B": "Qwen2.5-32B-Instruct", "Mistral 7B": "Mistral-7B-Instruct-v0.3",
-          "Phi-3.5 mini": "Phi-3.5-mini-instruct", "Qwen3.8 27B": "Qwen3.8-27B", "Gemma 4 31B": "gemma-4-31B-it"}
+          "Phi-3.5 mini": "Phi-3.5-mini-instruct", "Qwen3.8 27B": "Qwen3.8-27B", "Gemma 4 31B": "gemma-4-31B-it",
+          "Gemini 3.6 Flash": "gemini36"}
+GEMINI36 = REPO / "results_clean" / "gemini_pilot" / "gemini-3.6-flash_POOLED.csv"
 STRONG = ["Qwen2.5 14B", "Qwen2.5 32B", "Qwen3.8 27B", "Gemma 4 31B"]
 TASKS = ["cyclic_shift", "random_permutation", "conditional_shift"]
 FORMATS = [("merged", "", "Letters", "#2a78d6"), ("spaced", "_spaced", "Spaced letters", "#eb6834"),
@@ -36,6 +38,11 @@ GRAY, INK = "#78776f", "#0b0b0b"
 
 
 def load(task, tag):
+    if tag == "gemini36":
+        if not GEMINI36.exists():
+            return None
+        d = pd.read_csv(GEMINI36); d = d[d.Task == task].rename(columns={"Axis_Val": "Alphabet_Size"})
+        return d[(d.Interval != 3) & (d.Seq_Length <= 64)] if len(d) else None
     fs = [f for f in glob.glob(str(REPO / "results_clean" / task / "grid" / f"{tag}*.csv"))
           if "POOLED" not in f and "N128" not in f]
     x = pd.concat([pd.read_csv(f) for f in fs]).drop_duplicates(
@@ -49,6 +56,8 @@ def collect():
         for t in TASKS:
             for fmt, suf, _, _ in FORMATS:
                 x = load(t + suf, tag)
+                if x is None:
+                    continue
                 r = pooled_delta(x)  # length-matched (tasks/common/pooled.py)
                 c = x[x.Method == "Cellular_Bounds"].TAR
                 pooled.append(dict(model=m, task=t, fmt=fmt, base=r["base"], bounds=r["bounds"],
