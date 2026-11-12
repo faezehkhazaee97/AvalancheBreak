@@ -30,8 +30,8 @@ MODEL_LABELS = {
 
 def set_rc():
     plt.rcParams.update({
-        "font.size": 8, "axes.labelsize": 8, "axes.titlesize": 8.5,
-        "xtick.labelsize": 7, "ytick.labelsize": 7, "legend.fontsize": 6.5,
+        "font.size": 8.5, "axes.labelsize": 8.5, "axes.titlesize": 9,
+        "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "legend.fontsize": 7.5,
         "pdf.fonttype": 42, "ps.fonttype": 42,  # embed as real text, not paths
         "axes.spines.top": False, "axes.spines.right": False,
     })

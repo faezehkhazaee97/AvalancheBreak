@@ -127,11 +127,11 @@ im = ax.imshow(np.ma.masked_invalid(grid), cmap=CMAP, vmin=-VMAX, vmax=VMAX, asp
 for i, (_, _, cells) in enumerate(rows):
     for j, c in enumerate(cells):
         if not c:
-            ax.text(j, i, "—", ha="center", va="center", fontsize=6.5, color="#9a9a96")
+            ax.text(j, i, "—", ha="center", va="center", fontsize=7.5, color="#9a9a96")
             continue
         txt = f"{c['delta']:+.2f}" + ("*" if abs(c["z"]) >= SIG_Z else "")
         dark = abs(c["delta"]) > 0.55 * VMAX
-        ax.text(j, i, txt, ha="center", va="center", fontsize=6.5,
+        ax.text(j, i, txt, ha="center", va="center", fontsize=7.5,
                 color=INK_ON_DARK if dark else INK)
 
 # 2px surface gaps between cells, heavier rules between row blocks.
@@ -148,16 +148,16 @@ for block, tasks in ROW_BLOCKS:
     start += len(tasks)
 
 ax.set_xticks(range(n_cols))
-ax.set_xticklabels([m[0] for m in models], fontsize=6.5)
+ax.set_xticklabels([m[0] for m in models], fontsize=7.5)
 ax.xaxis.tick_top()
 ax.set_yticks(range(n_rows))
-ax.set_yticklabels([t.replace("_reset", " (reset)") for _, t, _ in rows], fontsize=7)
+ax.set_yticklabels([t.replace("_reset", " (reset)") for _, t, _ in rows], fontsize=7.5)
 for s in ax.spines.values():
     s.set_visible(False)
 ax.tick_params(length=0)
 
 cb = fig.colorbar(im, ax=ax, orientation="horizontal", fraction=0.05, pad=0.04, aspect=40, shrink=0.6)
-cb.set_label("TAR change with markers (Bounds − Base)   ← hurts    helps →", fontsize=7)
+cb.set_label("TAR change with markers (Bounds − Base)   ← hurts    helps →", fontsize=8)
 cb.ax.tick_params(labelsize=6.5)
 cb.outline.set_visible(False)
 

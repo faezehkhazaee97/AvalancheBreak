@@ -31,6 +31,7 @@ STRONG = ["Qwen2.5 14B", "Qwen2.5 32B", "Qwen3.8 27B", "Gemma 4 31B"]
 TASKS = ["cyclic_shift", "random_permutation", "conditional_shift"]
 FORMATS = [("merged", "", "Letters", "#2a78d6"), ("spaced", "_spaced", "Spaced letters", "#eb6834"),
            ("digits", "_digits", "Digits", "#1baf7a")]
+MARKERS = {"merged": "o", "spaced": "s", "digits": "^"}  # shape as well as color
 GRAY, INK = "#78776f", "#0b0b0b"
 
 
@@ -102,10 +103,10 @@ def fig_profile(cells):
         x = s[s.fmt == fmt]
         # one value per (model, task) per N: mean over k; then mean and 95% CI over the 12 pairs
         byN = x.groupby(["model", "task", "N"]).delta.mean().groupby("N").agg(["mean", "sem"])
-        axes[0].errorbar(byN.index, byN["mean"], yerr=1.96 * byN["sem"], color=col, marker="o",
+        axes[0].errorbar(byN.index, byN["mean"], yerr=1.96 * byN["sem"], color=col, marker=MARKERS[fmt],
                          markersize=3.5, linewidth=1.6, capsize=1.5, label=lab)
         byk = x[x.N == 64].groupby(["model", "task", "k"]).delta.mean().groupby("k").agg(["mean", "sem"])
-        axes[1].errorbar(byk.index, byk["mean"], yerr=1.96 * byk["sem"], color=col, marker="o",
+        axes[1].errorbar(byk.index, byk["mean"], yerr=1.96 * byk["sem"], color=col, marker=MARKERS[fmt],
                          markersize=3.5, linewidth=1.6, capsize=1.5, label=lab)
     for ax, xl in [(axes[0], "Sequence length $N$"), (axes[1], "Marker spacing $k$ (at $N = 64$)")]:
         ax.set_xscale("log", base=2)
@@ -135,7 +136,7 @@ def fig_profile_by_task(cells):
         for fmt, _, lab, col in FORMATS:
             x = s[(s.fmt == fmt) & (s.task == t)]
             byN = x.groupby(["model", "N"]).delta.mean().groupby("N").agg(["mean", "sem"])
-            ax.errorbar(byN.index, byN["mean"], yerr=1.96 * byN["sem"], color=col, marker="o",
+            ax.errorbar(byN.index, byN["mean"], yerr=1.96 * byN["sem"], color=col, marker=MARKERS[fmt],
                         markersize=3.2, linewidth=1.5, capsize=1.5, label=lab)
         ax.set_title(t, fontsize=7.5, family="monospace")
         ax.set_xscale("log", base=2)

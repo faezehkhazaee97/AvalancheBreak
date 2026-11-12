@@ -16,6 +16,7 @@
 \usepackage{amsmath}
 \usepackage{xcolor}
 \usepackage{placeins} % \FloatBarrier: keep appendix floats inside their sections
+\makeatletter\setlength{\@fptop}{0pt}\makeatother % float-only pages start at the top, not centered
 
 % Task names in monospace (escape underscores in the argument).
 \newcommand{\task}[1]{\texttt{#1}}
@@ -38,7 +39,7 @@ What Content-Free Boundary Markers Do in Character-Level Transformations}
 \maketitle
 
 \begin{abstract}
-Inserting a content-free marker (\texttt{|}) into the input every $k$ characters of a character-level transformation, and asking the model to copy it through, is a cheap single-call intervention. We study what it does across seven tasks, seven open instruction-tuned models, and Gemini 3.5 Flash, using two controls that fix tokenization at one token per character: the same letter tasks with a space between letters, and exact relabelings with digits. We find three separate effects. First, on letter strings, which tokenizers merge into multi-letter tokens, markers act largely as re-tokenization: at five of the seven open models, spacing the letters with no markers at all improves accuracy more ($+0.16$ to $+0.33$) than markers do ($+0.13$ to $+0.26$), and the large advantage of the position right after a marker disappears once letters are spaced. Second, the gain survives when each character is already its own token: with spaced letters or digits they remove 33\% to 83\% of the remaining errors at the four strongest open models, with little dependence on spacing; at Qwen2.5-32B the gain persists to $N = 256$ and is the same with commas or line breaks as markers. In a two-task ablation with constrained decoding at Qwen2.5-32B, marking both input and output yields the largest gains, whereas single-sided marking reduces accuracy under the tested constraints; the cross-boundary failure arises from input markers even when output markers are suppressed. Blocking marker-attending heads removes part of it and matched controls remove none, so marker-directed attention contributes, but the mechanism is unresolved. Third, with a marker every two or more characters, the position right after a marker fails whenever its output depends on the input before the marker: on four dependency tasks it falls below the no-marker run in 29 of 31 task--model cells, to near chance at the stronger models, while the next position recovers. Commas and line breaks produce the same loss, and telling the model that the rule continues across the marker narrows it without removing it. In practice: separate characters before adding markers, use sparse markers on long sequences, and avoid placing a marker where an output needs the input just before it.
+Inserting a content-free marker (\texttt{|}) into the input every $k$ characters of a character-level transformation, and asking the model to copy it through, is a cheap single-call intervention. We study what it does across seven tasks, seven open instruction-tuned models, and Gemini 3.5 Flash, using two controls that fix tokenization at one token per character: the same letter tasks with a space between letters, and exact relabelings with digits. We find three separate effects. First, on letter strings, which tokenizers merge into multi-letter tokens, markers act largely as re-tokenization: at five of the seven open models, spacing the letters with no markers at all improves accuracy more ($+0.16$ to $+0.33$) than markers do ($+0.13$ to $+0.26$), and the large advantage of the position right after a marker disappears once letters are spaced. Second, the gain survives when each character is already its own token: with spaced letters or digits they remove 33\% to 83\% of the remaining errors at the four strongest open models, with little dependence on spacing; at Qwen2.5-32B the gain persists to $N = 256$ and is the same with commas or line breaks as markers. In a two-task ablation with constrained decoding at Qwen2.5-32B, marking both input and output yields the largest gains, whereas single-sided marking reduces accuracy under the tested constraints; the cross-boundary failure arises from input markers even when output markers are suppressed. Blocking marker-attending heads removes only part of this gain, so the mechanism is unresolved. Third, with a marker every two or more characters, the position right after a marker fails whenever its output depends on the input before the marker: on four dependency tasks it falls below the no-marker run in 29 of 31 task--model cells, to near chance at the stronger models, while the next position recovers. Commas and line breaks produce the same loss, and telling the model that the rule continues across the marker narrows it without removing it. In practice: separate characters before adding markers, use sparse markers on long sequences, and avoid placing a marker where an output needs the input just before it.
 \end{abstract}
 
 % =====================================================================
@@ -270,17 +271,9 @@ The intervention changes two things at once: it segments the input, and it asks 
 output. To separate them we ran a $2 \times 2$ at Qwen2.5-32B on \task{running\_xor} and
 \task{random\_permutation} with digits ($N \in \{32, 64\}$, $k \in \{4, 16\}$, 20 trials),
 varying whether the input carries markers and whether the output is asked to, plus a fifth
-condition whose prompt never mentions bars at all (Table~\ref{tab:sides}). The three
+condition whose prompt never mentions bars at all (Appendix Table~\ref{tab:sides}). The three
 marker-bearing conditions are built from the same underlying string per trial, so they are
 paired.
-
-\begin{table}[t]
-\centering
-\small
-\caption{Input markers, output markers, or both (Qwen2.5-32B; $N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 trials per cell). Change is against ``Marker sentence, no markers'', the baseline used throughout the paper; $\pm$ is a 95\% interval over generations. ``Followed'' is the share of generations whose output carried markers exactly as the prompt asked (none, or at the requested offsets); it is n/a where the main grid did not store the raw generations. Post-marker is accuracy at the position right after a marker, which exists only where the input carries markers (chance is 0.5 on \task{running\_xor} and 0.125 on \task{random\_permutation}).}
-\label{tab:sides}
-\resizebox{\linewidth}{!}{\input{tables/marker_sides.tex}}
-\end{table}
 
 \paragraph{What the conditions manipulate.} The 2$\times$2 varies what the prompt \emph{asks
 for}. Whether the model complies is a separate matter, and here it often does not: asked to omit
@@ -288,7 +281,7 @@ the markers from its output, it still emits them in 62\% of \task{random\_permut
 generations and 28\% of \task{running\_xor} ones; asked to insert markers into an output whose
 input has none, it produces the requested placement in 54\% of \task{running\_xor} generations
 and in none of the \task{random\_permutation} ones, where it emits on average 1.0 marker against
-6.5 requested. The single-sided rows of Table~\ref{tab:sides} are therefore effects of the
+6.5 requested. The single-sided rows of Appendix Table~\ref{tab:sides} are therefore effects of the
 instruction, not of a realized format, and the output-only row on \task{random\_permutation}
 tells us almost nothing about output markers because the model did not produce them.
 
@@ -367,7 +360,7 @@ Latency matters & Sparse markers are faster than none, because they stop models 
 
 \paragraph{Avoid markers where an output needs the input before them.} With a marker every two or more characters, the position after a marker fails wherever its output needs the input before the marker. Place markers only at points where nothing after them depends on what came before, or restart the computation at each marker. (A marker after every character behaves differently on \task{copy\_previous}; see Section~\ref{sec:blindspot}.)
 
-\paragraph{What about the marker matters.} Ablations on contiguous-letter \task{cyclic\_shift} ($A = 2$, $k = 4$; Appendix Tables~\ref{tab:markerid}--\ref{tab:prompts}), where much of the effect is tokenization: replacing \texttt{|} with \texttt{;} or \texttt{\#} keeps accuracy above the no-marker baseline at Qwen2.5-32B, though markers differ by up to 0.13 at $N = 128$; a reserved special token used as the marker performs far below the no-marker baseline; a frequent single-token marker beats a less frequent multi-token one with the same token budget; jittered or random placement falls below the baseline at most lengths at 7B but stays above it at 32B; and the benefit holds under formal and casual phrasings, but a terse cipher-style phrasing reverses it at 32B. These ablations cover one task and two models. Common delimiters differ from our marker in ways that may matter: whitespace between characters is our spacing control, which fixes tokenization but marks no segments; commas and semicolons, like \texttt{|}, are frequent single tokens, and \texttt{;} behaves much like \texttt{|} here; newlines also change the line structure the model sees. On the dependency tasks at Qwen2.5-32B, commas and line breaks produce the same blind spot and the same long-sequence gain as \texttt{|} (Section~\ref{sec:blindspot}), so the advice on where to place markers applies to the delimiters we tested (bars, commas, and line breaks) and plausibly to other common ones. Markers also slightly reduce the share of well-formed outputs in six of seven tasks at Qwen2.5-32B (Appendix Table~\ref{tab:wfr}). The density that maximizes accuracy on contiguous letters falls with length (Appendix Figure~\ref{fig:density}), which we describe but do not fit (Appendix Table~\ref{tab:cv}).
+\paragraph{What about the marker matters.} Ablations on contiguous-letter \task{cyclic\_shift} ($A = 2$, $k = 4$; Appendix Tables~\ref{tab:markerid}--\ref{tab:prompts}), where much of the effect is tokenization: replacing \texttt{|} with \texttt{;} or \texttt{\#} keeps accuracy above the no-marker baseline at Qwen2.5-32B, though markers differ by up to 0.13 at $N = 128$; a reserved special token used as the marker performs far below the no-marker baseline; a frequent single-token marker beats a less frequent multi-token one with the same token budget; jittered or random placement falls below the baseline at most lengths at 7B but stays above it at 32B; and the benefit holds under formal and casual phrasings, but a terse cipher-style phrasing reverses it at 32B. These ablations cover one task and two models. Common delimiters differ from our marker in ways that may matter: whitespace between characters is our spacing control, which fixes tokenization but marks no segments; commas and semicolons, like \texttt{|}, are frequent single tokens, and \texttt{;} behaves much like \texttt{|} here; newlines also change the line structure the model sees. On the dependency tasks at Qwen2.5-32B, commas and line breaks produce the same blind spot and the same long-sequence gain as \texttt{|} (Section~\ref{sec:blindspot}), so the advice on where to place markers applies to the delimiters we tested (bars, commas, and line breaks) and plausibly to other common ones. Markers also slightly reduce the share of well-formed outputs in six of seven tasks at Qwen2.5-32B (Appendix Table~\ref{tab:wfr}). The density that maximizes accuracy on contiguous letters falls with length (Appendix Figure~\ref{fig:density}).
 
 % =====================================================================
 \section{Limitations}
@@ -653,7 +646,7 @@ On Kadane's algorithm, base accuracy at both Qwen scales is statistically indist
 \section{Mechanism details}
 \label{app:mechanism}
 
-This appendix collects the attention analyses behind Section~\ref{sec:mechanism}: the mechanism overview (Figure~\ref{fig:mechanism}), attention statistics by layer (Figure~\ref{fig:attnmech}), example heads (Figure~\ref{fig:heads32b}), the earlier head ablation (Figure~\ref{fig:ablation7b32b}), a digit-tokenization check of the attention pattern (Figure~\ref{fig:digits}), error recovery after markers (Figure~\ref{fig:errorcontainment}), the head taxonomy (Table~\ref{tab:heads}), and the 7B ablation (Table~\ref{tab:ablation7b}). In Figure~\ref{fig:errorcontainment}, the 50\% rate away from markers is chance for this binary alphabet.
+This appendix collects the attention analyses behind Section~\ref{sec:mechanism}: the mechanism overview (Figure~\ref{fig:mechanism}), example heads (Figure~\ref{fig:heads32b}), the earlier head ablation (Figure~\ref{fig:ablation7b32b}), the head taxonomy (Table~\ref{tab:heads}), and the 7B ablation (Table~\ref{tab:ablation7b}).
 
 \begin{figure}[!htbp]
 \centering
@@ -672,13 +665,6 @@ This appendix collects the attention analyses behind Section~\ref{sec:mechanism}
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\linewidth]{figures/attention_mechanism_32b.pdf}
-\caption{Attention analysis, Qwen2.5-32B, \task{cyclic\_shift}: marker attention by density, attention entropy by layer (higher under markers at nearly every layer), off-diagonal attention, and distance decay.}
-\label{fig:attnmech}
-\end{figure}
-
-\begin{figure}[!htbp]
-\centering
 \includegraphics[width=\linewidth]{figures/head_heatmaps_32b.pdf}
 \caption{The three most marker-attending heads at Qwen2.5-32B (L21/H1, L37/H1, L1/H7). Without markers, letters merge into multi-character tokens; markers restore per-character resolution.}
 \label{fig:heads32b}
@@ -689,20 +675,6 @@ This appendix collects the attention analyses behind Section~\ref{sec:mechanism}
 \includegraphics[width=\linewidth]{figures/causal_ablation.pdf}
 \caption{Earlier head ablation, contiguous letters (\task{cyclic\_shift}, $A = 2$, $k = 2$), Qwen2.5-7B and 32B: share of the marker benefit removed by masking the ten most marker-attending heads' attention to markers, re-identified at each length. Unlike Table~\ref{tab:ablation}, Base and unablated runs come from an earlier grid and there are no controls at 32B.}
 \label{fig:ablation7b32b}
-\end{figure}
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=\linewidth]{figures/attention_digits_comparison.pdf}
-\caption{Tokenization check at Qwen2.5-7B: marker-attention slopes with letters (space-separated, one token per letter) and digits (natively one token per character) are nearly identical.}
-\label{fig:digits}
-\end{figure}
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=\linewidth]{figures/error_containment_combined.pdf}
-\caption{Error recovery: after a wrong output, the fraction of next positions that are correct, split by whether the next position follows a marker. Left: \task{cyclic\_shift}; right: a full-prefix modular sum. $A = M = 2$.}
-\label{fig:errorcontainment}
 \end{figure}
 
 \begin{table}[!htbp]
@@ -798,8 +770,18 @@ Terse cipher & $-$.07 & +.08 & +.00 & +.00 & +.05 & $-$.12 & $-$.11 & +.01 & $-$
 \end{table}
 
 \FloatBarrier
-\section{Delimiters, longer sequences, sampling, and larger state spaces}
+\section{Delimiters, longer sequences, sampling, larger state spaces, and the instruction-based 2$\times$2}
 \label{app:delimiter}
+
+Table~\ref{tab:sides} is the input/output-marker 2$\times$2 as first run, with the format requested in the prompt rather than enforced (Section~\ref{sec:sides}).
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Input markers, output markers, or both (Qwen2.5-32B; $N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 trials per cell). Change is against ``Marker sentence, no markers'', the baseline used throughout the paper; $\pm$ is a 95\% interval over generations. ``Followed'' is the share of generations whose output carried markers exactly as the prompt asked (none, or at the requested offsets); it is n/a where the main grid did not store the raw generations. Post-marker is accuracy at the position right after a marker, which exists only where the input carries markers (chance is 0.5 on \task{running\_xor} and 0.125 on \task{random\_permutation}).}
+\label{tab:sides}
+\resizebox{\linewidth}{!}{\input{tables/marker_sides.tex}}
+\end{table}
 
 Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line breaks as markers and sequences up to $N = 256$, and Table~\ref{tab:sampling} repeats three tasks with sampling instead of greedy decoding (Sections~\ref{sec:segmentation} and~\ref{sec:blindspot}).
 
@@ -839,7 +821,7 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \section{Accuracy by marker density}
 \label{app:dose}
 
-Figure~\ref{fig:density} shows accuracy as a function of marker density at each length, and Table~\ref{tab:cv} tests whether a simple curve describes it.
+Figure~\ref{fig:density} shows accuracy as a function of marker density at each length.
 
 \begin{figure}[!htbp]
 \centering
@@ -847,26 +829,6 @@ Figure~\ref{fig:density} shows accuracy as a function of marker density at each 
 \caption{Accuracy by marker density at each length, contiguous letters and dependency tasks (Qwen2.5-32B; $A = 8$ where applicable). Dashed: no-marker baseline; dotted: chance; star: best density.}
 \label{fig:density}
 \end{figure}
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{Does a quadratic in density describe accuracy curves? ``AIC'': share of curves where a quadratic beats linear and exponential fits in-sample. ``Held-out'': share where it also beats a linear fit on leave-one-density-out prediction.}
-\label{tab:cv}
-\begin{tabular}{llcccc}
-\toprule
-Task & Tier & Curves & Mean quadratic $R^2$ & AIC & Held-out \\
-\midrule
-\task{cyclic\_shift} & position-local & 15 & 0.876 & 93\% & 47\% \\
-\task{random\_permutation} & position-local & 12 & 0.941 & 92\% & 42\% \\
-\task{conditional\_shift} & position-local & 12 & 0.908 & 100\% & 50\% \\
-\task{copy\_previous} & one-step & 4 & 0.608 & 50\% & 0\% \\
-\task{running\_xor} & one-step & 4 & 0.449 & 25\% & 0\% \\
-\task{running\_sum\_local} & one-step & 12 & 0.512 & 42\% & 0\% \\
-\task{sliding\_window\_max} & windowed & 8 & 0.473 & 50\% & 0\% \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \FloatBarrier
 \section{Well-formedness and cost}

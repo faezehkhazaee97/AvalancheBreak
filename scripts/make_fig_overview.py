@@ -28,6 +28,7 @@ MERGED_FILL = "#d7e6f7"          # multi-letter token
 MARK = "#2a78d6"                 # marker
 BAD = "#c8402f"                  # failing dependency
 FORMATS = [("spaced", "Spaced letters", "#eb6834"), ("digits", "Digits", "#1baf7a")]
+MARKERS = {"spaced": "s", "digits": "^"}
 STRONG = ["Qwen2.5 14B", "Qwen2.5 32B", "Qwen3.8 27B", "Gemma 4 31B"]
 
 # Qwen2.5 tokenizer output for these strings (checked with AutoTokenizer, Qwen2.5-32B-Instruct)
@@ -65,7 +66,7 @@ def panel_profile(ax):
     s = cells[cells.model.isin(STRONG)]
     for fmt, lab, col in FORMATS:
         byN = s[s.fmt == fmt].groupby(["model", "task", "N"]).delta.mean().groupby("N").agg(["mean", "sem"])
-        ax.errorbar(byN.index, byN["mean"], yerr=1.96 * byN["sem"], color=col, marker="o", markersize=3.2,
+        ax.errorbar(byN.index, byN["mean"], yerr=1.96 * byN["sem"], color=col, marker=MARKERS[fmt], markersize=3.4,
                     linewidth=1.6, capsize=1.5, label=lab)
     ax.set_xscale("log", base=2)
     ax.set_xticks([4, 8, 16, 32, 64]); ax.set_xticklabels(["4", "8", "16", "32", "64"])
@@ -106,7 +107,7 @@ def panel_blindspot(ax):
 
 def main():
     set_rc()
-    fig = plt.figure(figsize=(MULTI_COL_WIDTH, 2.15))
+    fig = plt.figure(figsize=(MULTI_COL_WIDTH, 2.5))
     gs = fig.add_gridspec(1, 3, width_ratios=[1.1, 0.8, 1.0], wspace=0.42)
     panel_tokens(fig.add_subplot(gs[0]))
     panel_profile(fig.add_subplot(gs[1]))
