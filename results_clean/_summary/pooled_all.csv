@@ -120,6 +120,32 @@ gemini_table,random_permutation,Gemini 3.5 Flash,0.5614,0.8457,0.2843,8.4212,0.6
 gemini_table,running_max,Gemini 3.5 Flash,1.0,0.8476,-0.1524,-9.4679,1.0,45,171
 gemini_table,running_sum_local,Gemini 3.5 Flash,0.9184,0.8029,-0.1155,-5.2094,0.9358,45,171
 gemini_table,running_xor,Gemini 3.5 Flash,0.8816,0.9131,0.0315,0.3737,0.9,15,57
+letters,cyclic_shift,Gemini 3.6 Flash,0.7374,0.9254,0.188,9.1755,0.7771,75,285
+spaced,cyclic_shift,Gemini 3.6 Flash,0.9921,1.0,0.0079,1.5401,0.994,75,285
+digits,cyclic_shift,Gemini 3.6 Flash,1.0,0.9998,-0.0002,-1.0,1.0,75,285
+letters,random_permutation,Gemini 3.6 Flash,0.549,0.8405,0.2914,10.3354,0.5913,75,285
+spaced,random_permutation,Gemini 3.6 Flash,0.9701,0.9999,0.0298,2.7077,0.9773,75,285
+digits,random_permutation,Gemini 3.6 Flash,0.9812,0.9963,0.0151,2.0084,0.9844,75,285
+letters,conditional_shift,Gemini 3.6 Flash,0.6366,0.8311,0.1945,8.9802,0.6823,75,285
+spaced,conditional_shift,Gemini 3.6 Flash,0.9364,0.9732,0.0368,2.6689,0.945,75,285
+digits,conditional_shift,Gemini 3.6 Flash,0.9851,0.9957,0.0106,1.7699,0.9858,75,285
+dependency,copy_previous,Gemini 3.6 Flash,1.0,0.9701,-0.0299,-4.6817,1.0,25,95
+dependency,running_xor,Gemini 3.6 Flash,0.9755,0.9107,-0.0648,-4.4854,0.9794,25,95
+dependency,running_sum_local,Gemini 3.6 Flash,0.8776,0.826,-0.0515,-2.8737,0.9031,75,285
+dependency,sliding_window_max,Gemini 3.6 Flash,0.8491,0.84,-0.009,-0.5479,0.8678,50,190
+gemini_table,conditional_shift,Gemini 3.6 Flash,0.6366,0.8311,0.1945,8.9802,0.6823,75,285
+gemini_table,conditional_shift_digits,Gemini 3.6 Flash,0.9851,0.9957,0.0106,1.7699,0.9858,75,285
+gemini_table,conditional_shift_spaced,Gemini 3.6 Flash,0.9364,0.9732,0.0368,2.6689,0.945,75,285
+gemini_table,copy_previous,Gemini 3.6 Flash,1.0,0.9701,-0.0299,-4.6817,1.0,25,95
+gemini_table,cyclic_shift,Gemini 3.6 Flash,0.7374,0.9254,0.188,9.1755,0.7771,75,285
+gemini_table,cyclic_shift_digits,Gemini 3.6 Flash,1.0,0.9998,-0.0002,-1.0,1.0,75,285
+gemini_table,cyclic_shift_spaced,Gemini 3.6 Flash,0.9921,1.0,0.0079,1.5401,0.994,75,285
+gemini_table,random_permutation,Gemini 3.6 Flash,0.549,0.8405,0.2914,10.3354,0.5913,75,285
+gemini_table,random_permutation_digits,Gemini 3.6 Flash,0.9812,0.9963,0.0151,2.0084,0.9844,75,285
+gemini_table,random_permutation_spaced,Gemini 3.6 Flash,0.9701,0.9999,0.0298,2.7077,0.9773,75,285
+gemini_table,running_sum_local,Gemini 3.6 Flash,0.8776,0.826,-0.0515,-2.8737,0.9031,75,285
+gemini_table,running_xor,Gemini 3.6 Flash,0.9755,0.9107,-0.0648,-4.4854,0.9794,25,95
+gemini_table,sliding_window_max,Gemini 3.6 Flash,0.8491,0.84,-0.009,-0.5479,0.8678,50,190
 external,procbench_substitute,Qwen2.5 7B,0.1495,0.2453,0.0959,6.6507,0.1887,112,446
 external,string_copy,Qwen2.5 7B,0.969,0.9778,0.0088,1.0309,0.9725,360,1440
 external,clrs_minimum,Qwen2.5 7B,0.133,0.1829,0.0499,3.2582,0.1634,200,760

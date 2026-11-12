@@ -31,7 +31,9 @@ GRID = "#e4e3df"
 
 
 def panel(ax, d):
-    axis = next((c for c in ("Alphabet_Size", "Modulus") if c in d.columns), None)
+    axis = next((c for c in ("Alphabet_Size", "Modulus", "Axis_Val") if c in d.columns), None)
+    if axis is not None and (d[axis].astype(str).str.strip() == "").all():   # Gemini files: blank on binary tasks
+        axis = None
     d = d.assign(N=d.Seq_Length.astype(int), k=d.Interval.astype(int), TAR=d.TAR.astype(float))
     d = d[d.N.isin(LENGTHS) & d.k.isin([0] + KS)]
     vals = sorted(d[axis].astype(int).unique()) if axis else [None]
@@ -58,7 +60,7 @@ def panel(ax, d):
 
 def make(tasks, out, color_label, color_vals):
     models = [(lab, tag) for lab, tag in MODELS if tag is not None]
-    fig, axes = plt.subplots(len(tasks), len(models), figsize=(MULTI_COL_WIDTH, 1.12 * len(tasks) + 0.55),
+    fig, axes = plt.subplots(len(tasks), len(models), figsize=(MULTI_COL_WIDTH, 1.12 * len(tasks) + 0.7),
                              sharex=True, sharey=True)
     for i, t in enumerate(tasks):
         for j, (lab, tag) in enumerate(models):
@@ -70,7 +72,7 @@ def make(tasks, out, color_label, color_vals):
             else:
                 panel(ax, d)
             if i == 0:
-                ax.set_title(lab, fontsize=7.5)
+                ax.set_title("\n".join(lab.rsplit(" ", 1)), fontsize=7)   # two lines: nine columns
             if j == 0:
                 ax.set_ylabel(t.replace("_", "_\n", 1) if len(t) > 14 else t, fontsize=6.5, family="monospace")
             if i == len(tasks) - 1:

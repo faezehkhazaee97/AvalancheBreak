@@ -191,6 +191,30 @@ block,task,model,k,d,acc
 "Position-local, letters",cyclic_shift,Gemini 3.5 Flash,16,13,0.7639
 "Position-local, letters",cyclic_shift,Gemini 3.5 Flash,16,14,0.7222
 "Position-local, letters",cyclic_shift,Gemini 3.5 Flash,16,15,0.7778
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,0,0.9365
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,1,0.9306
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,2,0.8361
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,3,0.8167
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,4,0.7778
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,5,0.7806
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,6,0.8722
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,8,7,0.8722
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,0,0.9111
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,1,0.8583
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,2,0.8417
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,3,0.85
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,4,0.7167
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,5,0.7333
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,6,0.8
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,7,0.75
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,8,0.6833
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,9,0.675
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,10,0.7
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,11,0.6333
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,12,0.6417
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,13,0.7
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,14,0.7
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,16,15,0.7333
 "Position-local, letters",random_permutation,Qwen2.5 7B,8,0,0.5153
 "Position-local, letters",random_permutation,Qwen2.5 7B,8,1,0.3938
 "Position-local, letters",random_permutation,Qwen2.5 7B,8,2,0.3295
@@ -383,6 +407,30 @@ block,task,model,k,d,acc
 "Position-local, letters",random_permutation,Gemini 3.5 Flash,16,13,0.4583
 "Position-local, letters",random_permutation,Gemini 3.5 Flash,16,14,0.4444
 "Position-local, letters",random_permutation,Gemini 3.5 Flash,16,15,0.5833
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,0,0.9058
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,1,0.7167
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,2,0.65
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,3,0.6556
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,4,0.5694
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,5,0.6111
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,6,0.6333
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,8,7,0.6222
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,0,0.8556
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,1,0.7
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,2,0.7167
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,3,0.6333
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,4,0.625
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,5,0.5583
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,6,0.5583
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,7,0.5833
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,8,0.525
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,9,0.55
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,10,0.55
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,11,0.5583
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,12,0.525
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,13,0.4833
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,14,0.525
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,16,15,0.55
 "Position-local, letters",conditional_shift,Qwen2.5 7B,8,0,0.3418
 "Position-local, letters",conditional_shift,Qwen2.5 7B,8,1,0.3295
 "Position-local, letters",conditional_shift,Qwen2.5 7B,8,2,0.3229
@@ -575,6 +623,30 @@ block,task,model,k,d,acc
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,13,0.1528
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,14,0.2639
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,16,15,0.2917
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,0,0.9153
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,1,0.7722
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,2,0.6778
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,3,0.6694
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,4,0.6306
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,5,0.6333
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,6,0.6278
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,8,7,0.7278
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,0,0.8778
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,1,0.825
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,2,0.7
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,3,0.6333
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,4,0.6083
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,5,0.6667
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,6,0.6333
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,7,0.525
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,8,0.625
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,9,0.6167
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,10,0.575
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,11,0.6083
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,12,0.525
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,13,0.4833
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,14,0.5583
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,16,15,0.55
 "Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,0,0.5103
 "Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,1,0.5951
 "Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,8,2,0.6278
@@ -743,6 +815,30 @@ block,task,model,k,d,acc
 "Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,13,0.9938
 "Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,14,0.9938
 "Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,16,15,0.9958
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,0,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,1,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,2,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,3,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,4,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,5,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,6,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,8,7,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,0,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,1,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,2,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,3,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,4,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,5,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,6,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,7,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,8,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,9,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,10,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,11,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,12,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,13,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,14,1.0
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,16,15,1.0
 "Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,0,0.4495
 "Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,1,0.5278
 "Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,8,2,0.5854
@@ -911,6 +1007,30 @@ block,task,model,k,d,acc
 "Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,13,0.9958
 "Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,14,0.9958
 "Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,16,15,0.9938
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,0,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,1,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,2,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,3,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,4,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,5,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,6,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,8,7,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,0,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,1,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,2,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,3,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,4,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,5,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,6,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,7,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,8,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,9,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,10,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,11,0.9917
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,12,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,13,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,14,1.0
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,16,15,1.0
 "Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,0,0.2278
 "Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,1,0.3604
 "Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,8,2,0.3444
@@ -1079,6 +1199,30 @@ block,task,model,k,d,acc
 "Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,13,0.8271
 "Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,14,0.7917
 "Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,16,15,0.7896
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,0,0.9767
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,1,0.9944
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,2,0.9778
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,3,0.9889
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,4,0.9694
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,5,0.9806
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,6,0.9806
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,8,7,0.9917
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,0,0.9556
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,1,0.95
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,2,0.9833
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,3,0.9917
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,4,0.9083
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,5,0.95
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,6,0.9417
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,7,0.975
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,8,0.9417
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,9,0.9417
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,10,0.9333
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,11,0.9667
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,12,0.9417
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,13,0.975
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,14,0.9333
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,16,15,0.975
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,0,0.3606
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,1,0.4562
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,8,2,0.4479
@@ -1247,6 +1391,30 @@ block,task,model,k,d,acc
 "Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,13,0.9979
 "Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,14,1.0
 "Position-local, digits",cyclic_shift_digits,Gemma 4 31B,16,15,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,0,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,1,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,2,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,3,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,4,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,5,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,6,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,8,7,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,0,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,1,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,2,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,3,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,4,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,5,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,6,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,7,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,8,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,9,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,10,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,11,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,12,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,13,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,14,1.0
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,16,15,1.0
 "Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,0,0.387
 "Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,1,0.3993
 "Position-local, digits",random_permutation_digits,Qwen2.5 7B,8,2,0.391
@@ -1415,6 +1583,30 @@ block,task,model,k,d,acc
 "Position-local, digits",random_permutation_digits,Gemma 4 31B,16,13,0.9792
 "Position-local, digits",random_permutation_digits,Gemma 4 31B,16,14,0.9729
 "Position-local, digits",random_permutation_digits,Gemma 4 31B,16,15,0.9708
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,0,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,1,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,2,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,3,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,4,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,5,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,6,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,8,7,1.0
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,0,0.9667
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,1,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,2,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,3,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,4,0.9833
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,5,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,6,0.9833
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,7,0.9833
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,8,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,9,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,10,0.9833
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,11,0.9833
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,12,0.9833
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,13,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,14,0.975
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,16,15,0.9667
 "Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,0,0.2225
 "Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,1,0.2924
 "Position-local, digits",conditional_shift_digits,Qwen2.5 7B,8,2,0.2667
@@ -1583,6 +1775,30 @@ block,task,model,k,d,acc
 "Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,13,0.9646
 "Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,14,0.9604
 "Position-local, digits",conditional_shift_digits,Gemma 4 31B,16,15,0.9479
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,0,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,1,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,2,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,3,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,4,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,5,0.9889
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,6,0.9889
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,8,7,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,0,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,1,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,2,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,3,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,4,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,5,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,6,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,7,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,8,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,9,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,10,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,11,0.9917
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,12,0.975
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,13,1.0
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,14,0.9833
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,16,15,1.0
 "Dependency, as is",copy_previous,Qwen2.5 7B,8,0,0.4111
 "Dependency, as is",copy_previous,Qwen2.5 7B,8,1,0.4531
 "Dependency, as is",copy_previous,Qwen2.5 7B,8,2,0.4844
@@ -1775,6 +1991,30 @@ block,task,model,k,d,acc
 "Dependency, as is",copy_previous,Gemini 3.5 Flash,16,13,1.0
 "Dependency, as is",copy_previous,Gemini 3.5 Flash,16,14,1.0
 "Dependency, as is",copy_previous,Gemini 3.5 Flash,16,15,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,0,0.673
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,1,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,2,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,3,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,4,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,5,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,6,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,8,7,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,0,0.5
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,1,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,2,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,3,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,4,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,5,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,6,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,7,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,8,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,9,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,10,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,11,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,12,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,13,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,14,1.0
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,16,15,1.0
 "Dependency, as is",running_xor,Qwen2.5 7B,8,0,0.4496
 "Dependency, as is",running_xor,Qwen2.5 7B,8,1,0.4573
 "Dependency, as is",running_xor,Qwen2.5 7B,8,2,0.4812
@@ -1967,6 +2207,30 @@ block,task,model,k,d,acc
 "Dependency, as is",running_xor,Gemini 3.5 Flash,16,13,0.9167
 "Dependency, as is",running_xor,Gemini 3.5 Flash,16,14,1.0
 "Dependency, as is",running_xor,Gemini 3.5 Flash,16,15,1.0
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,0,0.5016
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,1,1.0
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,2,0.9833
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,3,1.0
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,4,0.9583
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,5,0.9917
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,6,1.0
+"Dependency, as is",running_xor,Gemini 3.6 Flash,8,7,1.0
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,0,0.7
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,1,0.975
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,2,0.975
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,3,0.975
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,4,0.975
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,5,0.975
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,6,0.95
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,7,0.95
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,8,0.925
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,9,0.95
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,10,0.9
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,11,0.975
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,12,0.925
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,13,0.95
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,14,0.95
+"Dependency, as is",running_xor,Gemini 3.6 Flash,16,15,0.925
 "Dependency, as is",running_sum_local,Qwen2.5 7B,8,0,0.2411
 "Dependency, as is",running_sum_local,Qwen2.5 7B,8,1,0.2365
 "Dependency, as is",running_sum_local,Qwen2.5 7B,8,2,0.2688
@@ -2159,6 +2423,30 @@ block,task,model,k,d,acc
 "Dependency, as is",running_sum_local,Gemini 3.5 Flash,16,13,0.9306
 "Dependency, as is",running_sum_local,Gemini 3.5 Flash,16,14,0.8333
 "Dependency, as is",running_sum_local,Gemini 3.5 Flash,16,15,0.9167
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,0,0.3026
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,1,0.9833
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,2,0.9722
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,3,0.9889
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,4,0.9722
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,5,0.9639
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,6,0.9694
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,8,7,0.9694
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,0,0.4
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,1,0.9583
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,2,0.9667
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,3,0.9667
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,4,0.9583
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,5,0.95
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,6,0.9667
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,7,0.95
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,8,0.9667
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,9,0.9917
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,10,0.9667
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,11,0.9667
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,12,0.8583
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,13,0.9083
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,14,0.9333
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,16,15,0.9583
 "Dependency, as is",sliding_window_max,Qwen2.5 7B,8,0,0.3409
 "Dependency, as is",sliding_window_max,Qwen2.5 7B,8,1,0.5979
 "Dependency, as is",sliding_window_max,Qwen2.5 7B,8,2,0.5531
@@ -2327,6 +2615,30 @@ block,task,model,k,d,acc
 "Dependency, as is",sliding_window_max,Gemma 4 31B,16,13,0.6312
 "Dependency, as is",sliding_window_max,Gemma 4 31B,16,14,0.6438
 "Dependency, as is",sliding_window_max,Gemma 4 31B,16,15,0.5594
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,0,0.4063
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,1,0.825
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,2,0.8583
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,3,0.8792
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,4,0.9042
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,5,0.8167
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,6,0.85
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,8,7,0.875
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,0,0.35
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,1,0.7125
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,2,0.95
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,3,0.8875
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,4,0.9125
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,5,0.85
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,6,0.9
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,7,0.8625
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,8,0.825
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,9,0.775
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,10,0.8875
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,11,0.925
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,12,0.9
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,13,0.9125
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,14,0.9
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,16,15,0.7125
 Dependency severed (reset),copy_previous_reset,Qwen2.5 7B,8,0,0.6327
 Dependency severed (reset),copy_previous_reset,Qwen2.5 7B,8,1,0.651
 Dependency severed (reset),copy_previous_reset,Qwen2.5 7B,8,2,0.6344

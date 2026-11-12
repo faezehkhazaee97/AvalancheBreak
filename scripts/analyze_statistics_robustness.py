@@ -16,7 +16,7 @@
               enter or leave a resample and so propagates between-cell heterogeneity
 
    For each it reports the 95% interval and a bootstrap z (Delta / bootstrap SD), next to the
-   analytic z, and whether the Bonferroni verdict (|z| >= 3.51) would change.
+   analytic z, and whether the Bonferroni verdict (|z| >= SIG_Z) would change.
 
 2. Mathematically redundant configurations. At A = 2 the three position-local rules coincide
    (all flip the bit) and at M = 2 running_sum_local computes running_xor, so those cells are
@@ -39,6 +39,7 @@ from tasks.common.pooled import pooled_delta  # noqa: E402
 from analyze_per_position import load, MODELS  # noqa: E402
 
 LENGTHS = [4, 8, 16, 32, 64]
+SIG_Z = 3.54   # Bonferroni |z| across the 125 pooled cells of the main analysis (Section 3.4)
 FAMILIES = {
     "letters": ["cyclic_shift", "random_permutation", "conditional_shift"],
     "spaced": ["cyclic_shift_spaced", "random_permutation_spaced", "conditional_shift_spaced"],
@@ -142,18 +143,18 @@ def main():
     out = pd.DataFrame(rows).round(4)
     out.to_csv(REPO / "results_clean" / "_summary" / "statistics_robustness.csv", index=False)
 
-    sig = out.z.abs() >= 3.51
+    sig = out.z.abs() >= SIG_Z
     print(f"\ncells: {len(out)}; significant analytically: {sig.sum()}")
     for mode in ("gen", "cluster"):
-        s2 = out[f"{mode}_z"].abs() >= 3.51
+        s2 = out[f"{mode}_z"].abs() >= SIG_Z
         print(f"  {mode:8s} bootstrap: significant {s2.sum()};  verdict differs in {(sig != s2).sum()} cells;"
               f"  median |z| ratio {np.nanmedian(out[f'{mode}_z'].abs() / out.z.abs()):.2f}")
     excl = out.dropna(subset=["delta_no_redundant"])
     diff = (excl.delta_no_redundant - excl.delta).abs()
-    s3 = excl.z_no_redundant.abs() >= 3.51
+    s3 = excl.z_no_redundant.abs() >= SIG_Z
     print(f"\ndropping A = 2 and M = 2 ({len(excl)} cells): median |change| in delta {diff.median():.3f}, "
           f"max {diff.max():.3f}; sign flips {(np.sign(excl.delta_no_redundant) != np.sign(excl.delta)).sum()}; "
-          f"significance differs in {(s3 != (excl.z.abs() >= 3.51)).sum()} cells")
+          f"significance differs in {(s3 != (excl.z.abs() >= SIG_Z)).sum()} cells")
     print("\nlargest shifts when the redundant configurations are dropped:")
     print(excl.assign(change=diff).nlargest(6, "change")[
         ["family", "task", "model", "delta", "delta_no_redundant", "z", "z_no_redundant"]].to_string(index=False))

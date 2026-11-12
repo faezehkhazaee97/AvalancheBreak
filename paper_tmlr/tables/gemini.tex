@@ -3,11 +3,23 @@
 Task & Model & Base acc. & Bounds acc. & $\Delta$ ($|z|$) \\
 \midrule
 \task{cyclic\_shift} & Gemini 3.5 & 0.596 & 0.852 & +0.256 (14.4) \\
+ & Gemini 3.6 & 0.737 & 0.925 & +0.188 (9.2) \\
 \task{random\_permutation} & Gemini 3.5 & 0.561 & 0.846 & +0.284 (8.4) \\
+ & Gemini 3.6 & 0.549 & 0.841 & +0.291 (10.3) \\
 \task{conditional\_shift} & Gemini 3.5 & 0.453 & 0.628 & +0.175 (3.1) \\
+ & Gemini 3.6 & 0.637 & 0.831 & +0.195 (9.0) \\
 \task{running\_xor} & Gemini 3.5 & 0.882 & 0.913 & +0.032 (0.4) \\
+ & Gemini 3.6 & 0.976 & 0.911 & $-$0.065 (4.5) \\
 \task{running\_sum\_local} & Gemini 3.5 & 0.918 & 0.803 & $-$0.116 (5.2) \\
+ & Gemini 3.6 & 0.878 & 0.826 & $-$0.051 (2.9) \\
 \task{copy\_previous} & Gemini 3.5 & 0.984 & 0.924 & $-$0.060 (2.8) \\
+ & Gemini 3.6 & 1.000 & 0.970 & $-$0.030 (4.7) \\
+\task{cyclic\_shift\_spaced} & Gemini 3.6 & 0.992 & 1.000 & +0.008 (1.5) \\
+\task{random\_permutation\_spaced} & Gemini 3.6 & 0.970 & 1.000 & +0.030 (2.7) \\
+\task{conditional\_shift\_spaced} & Gemini 3.6 & 0.936 & 0.973 & +0.037 (2.7) \\
+\task{cyclic\_shift\_digits} & Gemini 3.6 & 1.000 & 1.000 & $-$0.000 (1.0) \\
+\task{random\_permutation\_digits} & Gemini 3.6 & 0.981 & 0.996 & +0.015 (2.0) \\
+\task{conditional\_shift\_digits} & Gemini 3.6 & 0.985 & 0.996 & +0.011 (1.8) \\
 \midrule
 CLRS minimum & Qwen2.5-7B & 0.133 & 0.183 & +0.050 (3.3) \\
  & Qwen2.5-32B & 0.592 & 0.392 & $-$0.200 (4.5) \\

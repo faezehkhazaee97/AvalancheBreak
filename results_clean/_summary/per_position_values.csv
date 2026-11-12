@@ -7,6 +7,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, letters",cyclic_shift,Qwen3.8 27B,0.6422,0.027,0.7838,0.0123,0.8579,0.0167,0.5712,0.5822,300,840
 "Position-local, letters",cyclic_shift,Gemma 4 31B,0.659,0.0298,0.7999,0.0135,0.8327,0.0187,0.5849,0.6035,300,840
 "Position-local, letters",cyclic_shift,Gemini 3.5 Flash,0.7951,0.0628,0.898,0.0236,0.9637,0.0264,0.6974,0.7253,45,126
+"Position-local, letters",cyclic_shift,Gemini 3.6 Flash,0.7771,0.0494,0.8903,0.0193,0.9531,0.0199,0.6962,0.7273,75,210
 "Position-local, letters",random_permutation,Qwen2.5 7B,0.417,0.0201,0.425,0.0137,0.5437,0.0184,0.3479,0.3793,600,1680
 "Position-local, letters",random_permutation,Qwen2.5 14B,0.4449,0.0201,0.5069,0.0133,0.6892,0.0167,0.3683,0.411,600,1680
 "Position-local, letters",random_permutation,Qwen2.5 32B,0.4991,0.0203,0.6015,0.0124,0.8092,0.014,0.4158,0.459,600,1680
@@ -15,6 +16,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, letters",random_permutation,Qwen3.8 27B,0.5134,0.0299,0.6638,0.0167,0.8413,0.0185,0.4272,0.4601,300,840
 "Position-local, letters",random_permutation,Gemma 4 31B,0.611,0.0306,0.742,0.0165,0.8576,0.0186,0.5007,0.5556,300,840
 "Position-local, letters",random_permutation,Gemini 3.5 Flash,0.6056,0.0799,0.7688,0.0403,0.9464,0.027,0.4826,0.5605,45,126
+"Position-local, letters",random_permutation,Gemini 3.6 Flash,0.5913,0.0628,0.7525,0.0314,0.9373,0.0243,0.4699,0.5517,75,210
 "Position-local, letters",conditional_shift,Qwen2.5 7B,0.3623,0.02,0.3603,0.011,0.3588,0.0166,0.334,0.3213,600,1680
 "Position-local, letters",conditional_shift,Qwen2.5 14B,0.4264,0.0266,0.4629,0.0149,0.4552,0.0238,0.3662,0.3923,300,840
 "Position-local, letters",conditional_shift,Qwen2.5 32B,0.5007,0.018,0.6022,0.0114,0.7275,0.016,0.4182,0.4673,600,1680
@@ -23,6 +25,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, letters",conditional_shift,Qwen3.8 27B,0.4795,0.029,0.6312,0.0167,0.7328,0.0229,0.4082,0.4483,300,840
 "Position-local, letters",conditional_shift,Gemma 4 31B,0.5585,0.0303,0.6253,0.018,0.7174,0.0229,0.4519,0.5137,300,840
 "Position-local, letters",conditional_shift,Gemini 3.5 Flash,0.5438,0.1168,0.5486,0.0755,0.5862,0.0848,0.3651,0.4302,45,126
+"Position-local, letters",conditional_shift,Gemini 3.6 Flash,0.6823,0.0488,0.7483,0.0267,0.917,0.0276,0.6095,0.6245,75,210
 "Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 7B,0.7054,0.032,0.6643,0.0167,0.6065,0.0261,0.6108,0.6356,300,840
 "Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 14B,0.7974,0.0291,0.8716,0.0118,0.8805,0.0166,0.7201,0.7355,300,840
 "Position-local, spaced letters",cyclic_shift_spaced,Qwen2.5 32B,0.8785,0.0223,0.9744,0.0064,0.9749,0.0089,0.8288,0.8299,300,840
@@ -30,6 +33,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, spaced letters",cyclic_shift_spaced,Phi-3.5 mini,0.4334,0.0305,0.3764,0.016,0.3748,0.0243,0.3351,0.3719,300,840
 "Position-local, spaced letters",cyclic_shift_spaced,Qwen3.8 27B,0.9109,0.0175,0.9429,0.0068,0.9502,0.0095,0.8924,0.8868,300,840
 "Position-local, spaced letters",cyclic_shift_spaced,Gemma 4 31B,0.9648,0.0119,0.9993,0.0004,1.0,0.0,0.9541,0.9488,300,840
+"Position-local, spaced letters",cyclic_shift_spaced,Gemini 3.6 Flash,0.994,0.008,1.0,0.0,1.0,0.0,0.9949,0.991,75,210
 "Position-local, spaced letters",random_permutation_spaced,Qwen2.5 7B,0.6818,0.0324,0.6138,0.0185,0.6074,0.0256,0.576,0.6039,300,840
 "Position-local, spaced letters",random_permutation_spaced,Qwen2.5 14B,0.7546,0.0301,0.8026,0.0148,0.8544,0.0184,0.6829,0.6845,300,840
 "Position-local, spaced letters",random_permutation_spaced,Qwen2.5 32B,0.8643,0.0235,0.9794,0.0051,0.9827,0.0066,0.8049,0.812,300,840
@@ -37,6 +41,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, spaced letters",random_permutation_spaced,Phi-3.5 mini,0.3922,0.0314,0.3389,0.0167,0.3287,0.0241,0.3131,0.3349,300,840
 "Position-local, spaced letters",random_permutation_spaced,Qwen3.8 27B,0.8837,0.0229,0.9741,0.0058,0.9797,0.0072,0.8685,0.8516,300,840
 "Position-local, spaced letters",random_permutation_spaced,Gemma 4 31B,0.9523,0.0139,0.9985,0.0014,0.9984,0.0013,0.9353,0.9314,300,840
+"Position-local, spaced letters",random_permutation_spaced,Gemini 3.6 Flash,0.9773,0.019,0.9999,0.0002,1.0,0.0,0.9746,0.9669,75,210
 "Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 7B,0.4254,0.036,0.38,0.016,0.3456,0.0241,0.3643,0.3825,300,840
 "Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 14B,0.7033,0.0317,0.7314,0.0163,0.731,0.0238,0.6194,0.6459,300,840
 "Position-local, spaced letters",conditional_shift_spaced,Qwen2.5 32B,0.7544,0.0281,0.8277,0.0133,0.8156,0.0198,0.7252,0.7164,300,840
@@ -44,6 +49,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, spaced letters",conditional_shift_spaced,Phi-3.5 mini,0.401,0.0272,0.3227,0.014,0.3188,0.0216,0.3291,0.3562,300,840
 "Position-local, spaced letters",conditional_shift_spaced,Qwen3.8 27B,0.7827,0.0264,0.8419,0.0136,0.8321,0.0194,0.7672,0.7472,300,840
 "Position-local, spaced letters",conditional_shift_spaced,Gemma 4 31B,0.7827,0.029,0.8156,0.0153,0.8123,0.0203,0.7714,0.7513,300,840
+"Position-local, spaced letters",conditional_shift_spaced,Gemini 3.6 Flash,0.945,0.0248,0.9712,0.0114,0.982,0.0108,0.9365,0.9347,75,210
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 7B,0.4025,0.0278,0.44,0.0166,0.3903,0.0254,0.3481,0.3779,300,840
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 14B,0.8977,0.019,0.9619,0.0056,0.9692,0.009,0.8605,0.8588,300,840
 "Position-local, digits",cyclic_shift_digits,Qwen2.5 32B,0.9274,0.0159,0.9939,0.0026,0.9957,0.0026,0.902,0.8972,300,840
@@ -51,6 +57,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, digits",cyclic_shift_digits,Phi-3.5 mini,0.5641,0.0281,0.6162,0.0145,0.6263,0.0239,0.4818,0.5039,300,840
 "Position-local, digits",cyclic_shift_digits,Qwen3.8 27B,0.9338,0.0129,0.9579,0.0055,0.9733,0.0071,0.927,0.9224,300,840
 "Position-local, digits",cyclic_shift_digits,Gemma 4 31B,0.9697,0.0102,0.9994,0.0003,0.9997,0.0003,0.9604,0.9567,300,840
+"Position-local, digits",cyclic_shift_digits,Gemini 3.6 Flash,1.0,0.0,0.9995,0.001,1.0,0.0,1.0,1.0,75,210
 "Position-local, digits",random_permutation_digits,Qwen2.5 7B,0.3546,0.0275,0.3675,0.0148,0.416,0.0251,0.2781,0.3337,300,840
 "Position-local, digits",random_permutation_digits,Qwen2.5 14B,0.8011,0.0276,0.8561,0.013,0.908,0.0145,0.7446,0.7419,300,840
 "Position-local, digits",random_permutation_digits,Qwen2.5 32B,0.8708,0.0232,0.9797,0.0044,0.9783,0.0077,0.8295,0.8206,300,840
@@ -58,6 +65,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, digits",random_permutation_digits,Phi-3.5 mini,0.4808,0.0354,0.4957,0.0212,0.5498,0.0263,0.3705,0.4385,300,840
 "Position-local, digits",random_permutation_digits,Qwen3.8 27B,0.8914,0.0228,0.961,0.0078,0.9669,0.0094,0.865,0.8627,300,840
 "Position-local, digits",random_permutation_digits,Gemma 4 31B,0.9347,0.0162,0.9944,0.0019,0.9894,0.0057,0.9058,0.91,300,840
+"Position-local, digits",random_permutation_digits,Gemini 3.6 Flash,0.9844,0.0113,0.995,0.0063,0.9942,0.0094,0.9728,0.9818,75,210
 "Position-local, digits",conditional_shift_digits,Qwen2.5 7B,0.3502,0.0232,0.3439,0.0134,0.2474,0.0208,0.2795,0.3284,300,840
 "Position-local, digits",conditional_shift_digits,Qwen2.5 14B,0.7541,0.0283,0.7244,0.0171,0.718,0.0228,0.7142,0.7067,300,840
 "Position-local, digits",conditional_shift_digits,Qwen2.5 32B,0.8161,0.0246,0.8459,0.0126,0.8097,0.0208,0.7688,0.7836,300,840
@@ -65,6 +73,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Position-local, digits",conditional_shift_digits,Phi-3.5 mini,0.5468,0.0282,0.5445,0.015,0.5172,0.0248,0.4678,0.4948,300,840
 "Position-local, digits",conditional_shift_digits,Qwen3.8 27B,0.7951,0.0282,0.902,0.0119,0.8855,0.0173,0.766,0.7789,300,840
 "Position-local, digits",conditional_shift_digits,Gemma 4 31B,0.9212,0.0163,0.964,0.0055,0.9475,0.0119,0.8988,0.8957,300,840
+"Position-local, digits",conditional_shift_digits,Gemini 3.6 Flash,0.9858,0.0116,0.9929,0.0041,0.9984,0.0017,0.9823,0.9851,75,210
 "Dependency, as is",copy_previous,Qwen2.5 7B,0.529,0.027,0.4201,0.0147,0.4163,0.0275,0.5196,0.4951,200,560
 "Dependency, as is",copy_previous,Qwen2.5 14B,0.8612,0.0259,0.7304,0.0156,0.6171,0.0261,0.8242,0.8331,200,560
 "Dependency, as is",copy_previous,Qwen2.5 32B,0.8584,0.0168,0.8117,0.0103,0.6611,0.0177,0.8073,0.8325,400,1120
@@ -73,6 +82,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Dependency, as is",copy_previous,Qwen3.8 27B,0.9745,0.0122,0.7259,0.0188,0.5232,0.0277,0.9778,0.9679,200,560
 "Dependency, as is",copy_previous,Gemma 4 31B,0.9333,0.0202,0.8449,0.013,0.6211,0.027,0.9082,0.9132,200,560
 "Dependency, as is",copy_previous,Gemini 3.5 Flash,0.9875,0.0245,0.9397,0.0387,0.6006,0.1148,0.9968,0.9791,15,42
+"Dependency, as is",copy_previous,Gemini 3.6 Flash,1.0,0.0,0.9744,0.018,0.8066,0.0763,1.0,1.0,25,70
 "Dependency, as is",running_xor,Qwen2.5 7B,0.4105,0.0249,0.4073,0.0151,0.4123,0.0287,0.3968,0.401,200,560
 "Dependency, as is",running_xor,Qwen2.5 14B,0.7483,0.0231,0.7549,0.0121,0.5153,0.0275,0.6505,0.7074,200,560
 "Dependency, as is",running_xor,Qwen2.5 32B,0.781,0.022,0.848,0.0102,0.5216,0.0272,0.7112,0.7388,200,560
@@ -81,6 +91,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Dependency, as is",running_xor,Qwen3.8 27B,0.6837,0.0258,0.7791,0.0137,0.5092,0.0272,0.5667,0.6513,200,560
 "Dependency, as is",running_xor,Gemma 4 31B,0.838,0.0178,0.9055,0.0085,0.5227,0.0267,0.7871,0.817,200,560
 "Dependency, as is",running_xor,Gemini 3.5 Flash,0.9,0.1306,0.985,0.0141,0.543,0.1058,0.8837,0.8705,15,42
+"Dependency, as is",running_xor,Gemini 3.6 Flash,0.9794,0.0183,0.9676,0.0147,0.5455,0.0809,0.9654,0.9774,25,70
 "Dependency, as is",running_sum_local,Qwen2.5 7B,0.3092,0.0141,0.2818,0.0082,0.2216,0.0138,0.2529,0.2885,600,1680
 "Dependency, as is",running_sum_local,Qwen2.5 14B,0.5477,0.0203,0.5766,0.0104,0.3318,0.016,0.414,0.5023,600,1680
 "Dependency, as is",running_sum_local,Qwen2.5 32B,0.593,0.0137,0.6627,0.0073,0.3121,0.011,0.4684,0.5509,1200,3360
@@ -89,6 +100,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Dependency, as is",running_sum_local,Qwen3.8 27B,0.486,0.0208,0.5978,0.012,0.2795,0.0152,0.3399,0.4533,600,1680
 "Dependency, as is",running_sum_local,Gemma 4 31B,0.796,0.0168,0.8547,0.0076,0.3157,0.0157,0.7236,0.7459,600,1680
 "Dependency, as is",running_sum_local,Gemini 3.5 Flash,0.9358,0.031,0.9776,0.0135,0.328,0.0591,0.8862,0.9148,45,126
+"Dependency, as is",running_sum_local,Gemini 3.6 Flash,0.9031,0.0317,0.9621,0.0119,0.3494,0.0454,0.8669,0.8728,75,210
 "Dependency, as is",sliding_window_max,Qwen2.5 7B,0.5967,0.0358,0.5233,0.0183,0.3987,0.028,0.5075,0.5478,200,560
 "Dependency, as is",sliding_window_max,Qwen2.5 14B,0.7381,0.0281,0.6447,0.0159,0.4975,0.0285,0.657,0.6773,200,560
 "Dependency, as is",sliding_window_max,Qwen2.5 32B,0.6849,0.0165,0.748,0.0091,0.5694,0.0199,0.6604,0.6647,400,1120
@@ -96,6 +108,7 @@ block,task,model,base,base_ci,within,within_ci,post,post_ci,base_at_post,base_at
 "Dependency, as is",sliding_window_max,Phi-3.5 mini,0.4973,0.0328,0.4321,0.019,0.4069,0.0295,0.3883,0.4521,200,560
 "Dependency, as is",sliding_window_max,Qwen3.8 27B,0.7155,0.03,0.7006,0.0145,0.4574,0.0279,0.6415,0.6509,200,560
 "Dependency, as is",sliding_window_max,Gemma 4 31B,0.7449,0.0262,0.778,0.0125,0.6146,0.0287,0.6822,0.6993,200,560
+"Dependency, as is",sliding_window_max,Gemini 3.6 Flash,0.8678,0.0384,0.8769,0.0158,0.5722,0.0631,0.8206,0.8449,50,140
 Dependency severed (reset),copy_previous_reset,Qwen2.5 7B,0.587,0.0191,0.5453,0.0117,0.6337,0.0199,0.5421,0.5588,400,1120
 Dependency severed (reset),copy_previous_reset,Qwen2.5 32B,0.8967,0.0287,0.8556,0.0186,0.8298,0.0297,0.8478,0.8708,100,280
 Dependency severed (reset),copy_previous_reset,Qwen3.8 27B,0.9502,0.0238,0.693,0.0252,1.0,0.0,0.9507,0.9381,100,280
