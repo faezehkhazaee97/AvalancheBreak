@@ -1,0 +1,301 @@
+model,family,task,N,axis,n,clean,instr,cost
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,16,2,20,1.0,0.9969,0.0031
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,16,4,20,0.9438,0.8906,0.0531
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,16,8,20,0.9594,0.9375,0.0219
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,32,2,20,0.8812,0.9031,-0.0219
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,32,4,20,0.6188,0.5875,0.0312
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,32,8,20,0.6594,0.6375,0.0219
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,64,2,20,0.6359,0.6281,0.0078
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,64,4,20,0.4125,0.3828,0.0297
+Qwen2.5 14B,spaced letters,cyclic_shift_spaced,64,8,20,0.3242,0.3031,0.0211
+Qwen2.5 14B,spaced letters,random_permutation_spaced,16,2,20,0.9969,0.9875,0.0094
+Qwen2.5 14B,spaced letters,random_permutation_spaced,16,4,20,0.8719,0.8531,0.0188
+Qwen2.5 14B,spaced letters,random_permutation_spaced,16,8,20,0.8094,0.7906,0.0188
+Qwen2.5 14B,spaced letters,random_permutation_spaced,32,2,20,0.9109,0.9141,-0.0031
+Qwen2.5 14B,spaced letters,random_permutation_spaced,32,4,20,0.5062,0.5141,-0.0078
+Qwen2.5 14B,spaced letters,random_permutation_spaced,32,8,20,0.4656,0.4797,-0.0141
+Qwen2.5 14B,spaced letters,random_permutation_spaced,64,2,20,0.6344,0.6195,0.0148
+Qwen2.5 14B,spaced letters,random_permutation_spaced,64,4,20,0.3727,0.3859,-0.0133
+Qwen2.5 14B,spaced letters,random_permutation_spaced,64,8,20,0.2398,0.2375,0.0023
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,16,2,20,1.0,0.9969,0.0031
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,16,4,20,0.7812,0.7562,0.025
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,16,8,20,0.6344,0.6406,-0.0062
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,32,2,20,0.8984,0.8812,0.0172
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,32,4,20,0.5672,0.5469,0.0203
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,32,8,20,0.4641,0.4562,0.0078
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,64,2,20,0.6258,0.6148,0.0109
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,64,4,20,0.3516,0.3211,0.0305
+Qwen2.5 14B,spaced letters,conditional_shift_spaced,64,8,20,0.2344,0.2352,-0.0008
+Qwen2.5 14B,digits,cyclic_shift_digits,16,2,20,1.0,0.9969,0.0031
+Qwen2.5 14B,digits,cyclic_shift_digits,16,4,20,0.9812,0.9875,-0.0062
+Qwen2.5 14B,digits,cyclic_shift_digits,16,8,20,0.9938,0.9938,0.0
+Qwen2.5 14B,digits,cyclic_shift_digits,32,2,20,0.9906,0.9875,0.0031
+Qwen2.5 14B,digits,cyclic_shift_digits,32,4,20,0.7859,0.7703,0.0156
+Qwen2.5 14B,digits,cyclic_shift_digits,32,8,20,0.9,0.8891,0.0109
+Qwen2.5 14B,digits,cyclic_shift_digits,64,2,20,0.7961,0.7969,-0.0008
+Qwen2.5 14B,digits,cyclic_shift_digits,64,4,20,0.5125,0.5,0.0125
+Qwen2.5 14B,digits,cyclic_shift_digits,64,8,20,0.6188,0.6,0.0188
+Qwen2.5 14B,digits,random_permutation_digits,16,2,20,1.0,1.0,0.0
+Qwen2.5 14B,digits,random_permutation_digits,16,4,20,0.8656,0.8469,0.0188
+Qwen2.5 14B,digits,random_permutation_digits,16,8,20,0.7844,0.775,0.0094
+Qwen2.5 14B,digits,random_permutation_digits,32,2,20,0.9906,0.9828,0.0078
+Qwen2.5 14B,digits,random_permutation_digits,32,4,20,0.6531,0.6516,0.0016
+Qwen2.5 14B,digits,random_permutation_digits,32,8,20,0.5062,0.5125,-0.0062
+Qwen2.5 14B,digits,random_permutation_digits,64,2,20,0.8195,0.7891,0.0305
+Qwen2.5 14B,digits,random_permutation_digits,64,4,20,0.4062,0.4477,-0.0414
+Qwen2.5 14B,digits,random_permutation_digits,64,8,20,0.3203,0.2867,0.0336
+Qwen2.5 14B,digits,conditional_shift_digits,16,2,20,0.9969,0.9938,0.0031
+Qwen2.5 14B,digits,conditional_shift_digits,16,4,20,0.8531,0.7969,0.0562
+Qwen2.5 14B,digits,conditional_shift_digits,16,8,20,0.6719,0.6938,-0.0219
+Qwen2.5 14B,digits,conditional_shift_digits,32,2,20,0.9719,0.9594,0.0125
+Qwen2.5 14B,digits,conditional_shift_digits,32,4,20,0.625,0.6234,0.0016
+Qwen2.5 14B,digits,conditional_shift_digits,32,8,20,0.5484,0.575,-0.0266
+Qwen2.5 14B,digits,conditional_shift_digits,64,2,20,0.757,0.7445,0.0125
+Qwen2.5 14B,digits,conditional_shift_digits,64,4,20,0.4117,0.4125,-0.0008
+Qwen2.5 14B,digits,conditional_shift_digits,64,8,20,0.3297,0.343,-0.0133
+Qwen2.5 14B,dependency,copy_previous,16,2,20,0.7938,0.925,-0.1312
+Qwen2.5 14B,dependency,copy_previous,32,2,20,0.7219,0.7906,-0.0688
+Qwen2.5 14B,dependency,copy_previous,64,2,20,0.8078,0.7953,0.0125
+Qwen2.5 14B,dependency,running_xor,16,2,20,0.7562,0.7531,0.0031
+Qwen2.5 14B,dependency,running_xor,32,2,20,0.6391,0.6266,0.0125
+Qwen2.5 14B,dependency,running_xor,64,2,20,0.5672,0.5898,-0.0227
+Qwen2.5 14B,dependency,running_sum_local,16,2,20,0.6969,0.7531,-0.0562
+Qwen2.5 14B,dependency,running_sum_local,16,4,20,0.5125,0.5219,-0.0094
+Qwen2.5 14B,dependency,running_sum_local,16,8,20,0.3438,0.3594,-0.0156
+Qwen2.5 14B,dependency,running_sum_local,32,2,20,0.6359,0.6188,0.0172
+Qwen2.5 14B,dependency,running_sum_local,32,4,20,0.3312,0.3656,-0.0344
+Qwen2.5 14B,dependency,running_sum_local,32,8,20,0.2547,0.2641,-0.0094
+Qwen2.5 14B,dependency,running_sum_local,64,2,20,0.5977,0.6055,-0.0078
+Qwen2.5 14B,dependency,running_sum_local,64,4,20,0.3023,0.3047,-0.0023
+Qwen2.5 14B,dependency,running_sum_local,64,8,20,0.1797,0.1703,0.0094
+Qwen2.5 14B,dependency,sliding_window_max,16,4,20,0.7906,0.7875,0.0031
+Qwen2.5 14B,dependency,sliding_window_max,16,8,20,0.7125,0.7156,-0.0031
+Qwen2.5 14B,dependency,sliding_window_max,32,4,20,0.6906,0.6859,0.0047
+Qwen2.5 14B,dependency,sliding_window_max,32,8,20,0.5188,0.5125,0.0062
+Qwen2.5 14B,dependency,sliding_window_max,64,4,20,0.6117,0.6305,-0.0188
+Qwen2.5 14B,dependency,sliding_window_max,64,8,20,0.4211,0.4242,-0.0031
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,16,2,20,1.0,1.0,0.0
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,16,4,20,0.9781,0.975,0.0031
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,16,8,20,0.9938,0.975,0.0188
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,32,2,20,0.9609,0.9578,0.0031
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,32,4,20,0.8,0.8141,-0.0141
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,32,8,20,0.8578,0.8516,0.0062
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,64,2,20,0.743,0.6648,0.0781
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,64,4,20,0.5031,0.5242,-0.0211
+Qwen2.5 32B,spaced letters,cyclic_shift_spaced,64,8,20,0.4531,0.4461,0.007
+Qwen2.5 32B,spaced letters,random_permutation_spaced,16,2,20,1.0,1.0,0.0
+Qwen2.5 32B,spaced letters,random_permutation_spaced,16,4,20,0.9656,0.975,-0.0094
+Qwen2.5 32B,spaced letters,random_permutation_spaced,16,8,20,0.9156,0.9469,-0.0312
+Qwen2.5 32B,spaced letters,random_permutation_spaced,32,2,20,0.9531,0.9359,0.0172
+Qwen2.5 32B,spaced letters,random_permutation_spaced,32,4,20,0.7953,0.8172,-0.0219
+Qwen2.5 32B,spaced letters,random_permutation_spaced,32,8,20,0.7031,0.7031,0.0
+Qwen2.5 32B,spaced letters,random_permutation_spaced,64,2,20,0.707,0.732,-0.025
+Qwen2.5 32B,spaced letters,random_permutation_spaced,64,4,20,0.4875,0.518,-0.0305
+Qwen2.5 32B,spaced letters,random_permutation_spaced,64,8,20,0.3945,0.3797,0.0148
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,16,2,20,1.0,1.0,0.0
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,16,4,20,0.8812,0.8625,0.0188
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,16,8,20,0.75,0.7125,0.0375
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,32,2,20,0.9406,0.9641,-0.0234
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,32,4,20,0.7156,0.7516,-0.0359
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,32,8,20,0.5328,0.5547,-0.0219
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,64,2,20,0.6891,0.7,-0.0109
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,64,4,20,0.4398,0.4586,-0.0188
+Qwen2.5 32B,spaced letters,conditional_shift_spaced,64,8,20,0.3109,0.318,-0.007
+Qwen2.5 32B,digits,cyclic_shift_digits,16,2,20,1.0,1.0,0.0
+Qwen2.5 32B,digits,cyclic_shift_digits,16,4,20,1.0,0.9969,0.0031
+Qwen2.5 32B,digits,cyclic_shift_digits,16,8,20,1.0,0.9969,0.0031
+Qwen2.5 32B,digits,cyclic_shift_digits,32,2,20,0.9875,0.9875,0.0
+Qwen2.5 32B,digits,cyclic_shift_digits,32,4,20,0.825,0.8125,0.0125
+Qwen2.5 32B,digits,cyclic_shift_digits,32,8,20,0.9031,0.9359,-0.0328
+Qwen2.5 32B,digits,cyclic_shift_digits,64,2,20,0.8898,0.8664,0.0234
+Qwen2.5 32B,digits,cyclic_shift_digits,64,4,20,0.5727,0.5953,-0.0227
+Qwen2.5 32B,digits,cyclic_shift_digits,64,8,20,0.6883,0.7266,-0.0383
+Qwen2.5 32B,digits,random_permutation_digits,16,2,20,1.0,1.0,0.0
+Qwen2.5 32B,digits,random_permutation_digits,16,4,20,0.9688,0.9062,0.0625
+Qwen2.5 32B,digits,random_permutation_digits,16,8,20,0.9406,0.9438,-0.0031
+Qwen2.5 32B,digits,random_permutation_digits,32,2,20,0.9875,0.9891,-0.0016
+Qwen2.5 32B,digits,random_permutation_digits,32,4,20,0.7578,0.7984,-0.0406
+Qwen2.5 32B,digits,random_permutation_digits,32,8,20,0.7547,0.6781,0.0766
+Qwen2.5 32B,digits,random_permutation_digits,64,2,20,0.8906,0.882,0.0086
+Qwen2.5 32B,digits,random_permutation_digits,64,4,20,0.4641,0.493,-0.0289
+Qwen2.5 32B,digits,random_permutation_digits,64,8,20,0.3812,0.4148,-0.0336
+Qwen2.5 32B,digits,conditional_shift_digits,16,2,20,1.0,1.0,0.0
+Qwen2.5 32B,digits,conditional_shift_digits,16,4,20,0.8844,0.8938,-0.0094
+Qwen2.5 32B,digits,conditional_shift_digits,16,8,20,0.8094,0.8188,-0.0094
+Qwen2.5 32B,digits,conditional_shift_digits,32,2,20,0.9969,1.0,-0.0031
+Qwen2.5 32B,digits,conditional_shift_digits,32,4,20,0.7078,0.7078,0.0
+Qwen2.5 32B,digits,conditional_shift_digits,32,8,20,0.6047,0.6406,-0.0359
+Qwen2.5 32B,digits,conditional_shift_digits,64,2,20,0.8531,0.8484,0.0047
+Qwen2.5 32B,digits,conditional_shift_digits,64,4,20,0.5414,0.5234,0.018
+Qwen2.5 32B,digits,conditional_shift_digits,64,8,20,0.443,0.4469,-0.0039
+Qwen2.5 32B,dependency,copy_previous,16,2,20,0.8469,0.8844,-0.0375
+Qwen2.5 32B,dependency,copy_previous,32,2,20,0.8344,0.8484,-0.0141
+Qwen2.5 32B,dependency,copy_previous,64,2,20,0.7016,0.6914,0.0102
+Qwen2.5 32B,dependency,running_xor,16,2,20,0.8406,0.7719,0.0688
+Qwen2.5 32B,dependency,running_xor,32,2,20,0.75,0.7141,0.0359
+Qwen2.5 32B,dependency,running_xor,64,2,20,0.6484,0.6062,0.0422
+Qwen2.5 32B,dependency,running_sum_local,16,2,20,0.7844,0.7875,-0.0031
+Qwen2.5 32B,dependency,running_sum_local,16,4,20,0.5562,0.5219,0.0344
+Qwen2.5 32B,dependency,running_sum_local,16,8,20,0.5125,0.4656,0.0469
+Qwen2.5 32B,dependency,running_sum_local,32,2,20,0.6984,0.6672,0.0312
+Qwen2.5 32B,dependency,running_sum_local,32,4,20,0.4688,0.4438,0.025
+Qwen2.5 32B,dependency,running_sum_local,32,8,20,0.35,0.3219,0.0281
+Qwen2.5 32B,dependency,running_sum_local,64,2,20,0.618,0.5797,0.0383
+Qwen2.5 32B,dependency,running_sum_local,64,4,20,0.3469,0.3328,0.0141
+Qwen2.5 32B,dependency,running_sum_local,64,8,20,0.2289,0.2141,0.0148
+Qwen2.5 32B,dependency,sliding_window_max,16,4,20,0.8156,0.8,0.0156
+Qwen2.5 32B,dependency,sliding_window_max,16,8,20,0.7219,0.7062,0.0156
+Qwen2.5 32B,dependency,sliding_window_max,32,4,20,0.7125,0.7312,-0.0188
+Qwen2.5 32B,dependency,sliding_window_max,32,8,20,0.5969,0.5922,0.0047
+Qwen2.5 32B,dependency,sliding_window_max,64,4,20,0.625,0.6312,-0.0062
+Qwen2.5 32B,dependency,sliding_window_max,64,8,20,0.4617,0.4906,-0.0289
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,16,2,20,1.0,1.0,0.0
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,16,4,20,0.9094,0.8625,0.0469
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,16,8,20,0.9875,0.9906,-0.0031
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,32,2,20,0.9781,0.9812,-0.0031
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,32,4,20,0.8656,0.8453,0.0203
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,32,8,20,0.8859,0.9016,-0.0156
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,64,2,20,0.8352,0.9156,-0.0805
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,64,4,20,0.675,0.6914,-0.0164
+Qwen3.8 27B,spaced letters,cyclic_shift_spaced,64,8,20,0.5938,0.6562,-0.0625
+Qwen3.8 27B,spaced letters,random_permutation_spaced,16,2,20,1.0,1.0,0.0
+Qwen3.8 27B,spaced letters,random_permutation_spaced,16,4,20,1.0,0.8781,0.1219
+Qwen3.8 27B,spaced letters,random_permutation_spaced,16,8,20,0.9875,0.9594,0.0281
+Qwen3.8 27B,spaced letters,random_permutation_spaced,32,2,20,0.9781,0.9906,-0.0125
+Qwen3.8 27B,spaced letters,random_permutation_spaced,32,4,20,0.9609,0.8312,0.1297
+Qwen3.8 27B,spaced letters,random_permutation_spaced,32,8,20,0.925,0.8844,0.0406
+Qwen3.8 27B,spaced letters,random_permutation_spaced,64,2,20,0.8453,0.8727,-0.0273
+Qwen3.8 27B,spaced letters,random_permutation_spaced,64,4,20,0.6227,0.6328,-0.0102
+Qwen3.8 27B,spaced letters,random_permutation_spaced,64,8,20,0.468,0.45,0.018
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,16,2,20,1.0,1.0,0.0
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,16,4,20,0.7594,0.8969,-0.1375
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,16,8,20,0.6375,0.6688,-0.0312
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,32,2,20,0.9828,0.9641,0.0188
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,32,4,20,0.7016,0.7984,-0.0969
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,32,8,20,0.5578,0.6062,-0.0484
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,64,2,20,0.7414,0.775,-0.0336
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,64,4,20,0.4969,0.5641,-0.0672
+Qwen3.8 27B,spaced letters,conditional_shift_spaced,64,8,20,0.3711,0.3797,-0.0086
+Qwen3.8 27B,digits,cyclic_shift_digits,16,2,20,1.0,1.0,0.0
+Qwen3.8 27B,digits,cyclic_shift_digits,16,4,20,0.8344,0.8375,-0.0031
+Qwen3.8 27B,digits,cyclic_shift_digits,16,8,20,0.9625,0.9594,0.0031
+Qwen3.8 27B,digits,cyclic_shift_digits,32,2,20,1.0,1.0,0.0
+Qwen3.8 27B,digits,cyclic_shift_digits,32,4,20,0.9031,0.875,0.0281
+Qwen3.8 27B,digits,cyclic_shift_digits,32,8,20,0.8969,0.8969,0.0
+Qwen3.8 27B,digits,cyclic_shift_digits,64,2,20,0.957,0.9367,0.0203
+Qwen3.8 27B,digits,cyclic_shift_digits,64,4,20,0.8258,0.8445,-0.0188
+Qwen3.8 27B,digits,cyclic_shift_digits,64,8,20,0.8695,0.85,0.0195
+Qwen3.8 27B,digits,random_permutation_digits,16,2,20,1.0,1.0,0.0
+Qwen3.8 27B,digits,random_permutation_digits,16,4,20,0.9438,0.925,0.0188
+Qwen3.8 27B,digits,random_permutation_digits,16,8,20,0.9125,0.875,0.0375
+Qwen3.8 27B,digits,random_permutation_digits,32,2,20,1.0,1.0,0.0
+Qwen3.8 27B,digits,random_permutation_digits,32,4,20,0.9141,0.8875,0.0266
+Qwen3.8 27B,digits,random_permutation_digits,32,8,20,0.8031,0.7969,0.0062
+Qwen3.8 27B,digits,random_permutation_digits,64,2,20,0.9758,0.9695,0.0062
+Qwen3.8 27B,digits,random_permutation_digits,64,4,20,0.7141,0.6281,0.0859
+Qwen3.8 27B,digits,random_permutation_digits,64,8,20,0.4367,0.5016,-0.0648
+Qwen3.8 27B,digits,conditional_shift_digits,16,2,20,1.0,1.0,0.0
+Qwen3.8 27B,digits,conditional_shift_digits,16,4,20,0.8594,0.8,0.0594
+Qwen3.8 27B,digits,conditional_shift_digits,16,8,20,0.7062,0.7344,-0.0281
+Qwen3.8 27B,digits,conditional_shift_digits,32,2,20,1.0,1.0,0.0
+Qwen3.8 27B,digits,conditional_shift_digits,32,4,20,0.7703,0.6844,0.0859
+Qwen3.8 27B,digits,conditional_shift_digits,32,8,20,0.7438,0.6984,0.0453
+Qwen3.8 27B,digits,conditional_shift_digits,64,2,20,0.9227,0.8969,0.0258
+Qwen3.8 27B,digits,conditional_shift_digits,64,4,20,0.6352,0.5531,0.082
+Qwen3.8 27B,digits,conditional_shift_digits,64,8,20,0.5648,0.5531,0.0117
+Qwen3.8 27B,dependency,copy_previous,16,2,20,0.9938,0.9906,0.0031
+Qwen3.8 27B,dependency,copy_previous,32,2,20,0.9547,0.9672,-0.0125
+Qwen3.8 27B,dependency,copy_previous,64,2,20,0.9117,0.9281,-0.0164
+Qwen3.8 27B,dependency,running_xor,16,2,20,0.7469,0.7312,0.0156
+Qwen3.8 27B,dependency,running_xor,32,2,20,0.6047,0.6031,0.0016
+Qwen3.8 27B,dependency,running_xor,64,2,20,0.5031,0.4867,0.0164
+Qwen3.8 27B,dependency,running_sum_local,16,2,20,0.7562,0.7594,-0.0031
+Qwen3.8 27B,dependency,running_sum_local,16,4,20,0.4562,0.3906,0.0656
+Qwen3.8 27B,dependency,running_sum_local,16,8,20,0.3875,0.3094,0.0781
+Qwen3.8 27B,dependency,running_sum_local,32,2,20,0.6453,0.6453,0.0
+Qwen3.8 27B,dependency,running_sum_local,32,4,20,0.3062,0.275,0.0312
+Qwen3.8 27B,dependency,running_sum_local,32,8,20,0.2609,0.2062,0.0547
+Qwen3.8 27B,dependency,running_sum_local,64,2,20,0.4578,0.4609,-0.0031
+Qwen3.8 27B,dependency,running_sum_local,64,4,20,0.2172,0.2102,0.007
+Qwen3.8 27B,dependency,running_sum_local,64,8,20,0.1406,0.1273,0.0133
+Qwen3.8 27B,dependency,sliding_window_max,16,4,20,0.7562,0.7219,0.0344
+Qwen3.8 27B,dependency,sliding_window_max,16,8,20,0.7625,0.7312,0.0312
+Qwen3.8 27B,dependency,sliding_window_max,32,4,20,0.65,0.65,0.0
+Qwen3.8 27B,dependency,sliding_window_max,32,8,20,0.5219,0.5156,0.0062
+Qwen3.8 27B,dependency,sliding_window_max,64,4,20,0.5359,0.5461,-0.0102
+Qwen3.8 27B,dependency,sliding_window_max,64,8,20,0.4352,0.4531,-0.018
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,16,2,20,1.0,1.0,0.0
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,16,4,20,1.0,1.0,0.0
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,16,8,20,1.0,1.0,0.0
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,32,2,20,0.9859,0.9953,-0.0094
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,32,4,20,0.9719,0.9719,0.0
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,32,8,20,0.9797,0.9875,-0.0078
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,64,2,20,0.9781,0.9945,-0.0164
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,64,4,20,0.8086,0.8023,0.0062
+Gemma 4 31B,spaced letters,cyclic_shift_spaced,64,8,20,0.7664,0.7211,0.0453
+Gemma 4 31B,spaced letters,random_permutation_spaced,16,2,20,1.0,1.0,0.0
+Gemma 4 31B,spaced letters,random_permutation_spaced,16,4,20,1.0,1.0,0.0
+Gemma 4 31B,spaced letters,random_permutation_spaced,16,8,20,1.0,1.0,0.0
+Gemma 4 31B,spaced letters,random_permutation_spaced,32,2,20,0.9859,0.9844,0.0016
+Gemma 4 31B,spaced letters,random_permutation_spaced,32,4,20,0.9844,0.9828,0.0016
+Gemma 4 31B,spaced letters,random_permutation_spaced,32,8,20,0.9766,0.9703,0.0062
+Gemma 4 31B,spaced letters,random_permutation_spaced,64,2,20,0.9891,0.9945,-0.0055
+Gemma 4 31B,spaced letters,random_permutation_spaced,64,4,20,0.7219,0.6789,0.043
+Gemma 4 31B,spaced letters,random_permutation_spaced,64,8,20,0.6633,0.6734,-0.0102
+Gemma 4 31B,spaced letters,conditional_shift_spaced,16,2,20,0.9969,0.9969,0.0
+Gemma 4 31B,spaced letters,conditional_shift_spaced,16,4,20,0.8656,0.8781,-0.0125
+Gemma 4 31B,spaced letters,conditional_shift_spaced,16,8,20,0.6,0.5344,0.0656
+Gemma 4 31B,spaced letters,conditional_shift_spaced,32,2,20,0.9844,0.9844,0.0
+Gemma 4 31B,spaced letters,conditional_shift_spaced,32,4,20,0.7641,0.7891,-0.025
+Gemma 4 31B,spaced letters,conditional_shift_spaced,32,8,20,0.5578,0.5656,-0.0078
+Gemma 4 31B,spaced letters,conditional_shift_spaced,64,2,20,0.9469,0.9648,-0.018
+Gemma 4 31B,spaced letters,conditional_shift_spaced,64,4,20,0.625,0.5648,0.0602
+Gemma 4 31B,spaced letters,conditional_shift_spaced,64,8,20,0.4609,0.3805,0.0805
+Gemma 4 31B,digits,cyclic_shift_digits,16,2,20,1.0,1.0,0.0
+Gemma 4 31B,digits,cyclic_shift_digits,16,4,20,1.0,1.0,0.0
+Gemma 4 31B,digits,cyclic_shift_digits,16,8,20,1.0,1.0,0.0
+Gemma 4 31B,digits,cyclic_shift_digits,32,2,20,1.0,1.0,0.0
+Gemma 4 31B,digits,cyclic_shift_digits,32,4,20,0.9844,0.9672,0.0172
+Gemma 4 31B,digits,cyclic_shift_digits,32,8,20,0.9984,1.0,-0.0016
+Gemma 4 31B,digits,cyclic_shift_digits,64,2,20,0.9805,0.9773,0.0031
+Gemma 4 31B,digits,cyclic_shift_digits,64,4,20,0.7281,0.7797,-0.0516
+Gemma 4 31B,digits,cyclic_shift_digits,64,8,20,0.7664,0.8219,-0.0555
+Gemma 4 31B,digits,random_permutation_digits,16,2,20,0.9875,0.9875,0.0
+Gemma 4 31B,digits,random_permutation_digits,16,4,20,0.9812,0.9719,0.0094
+Gemma 4 31B,digits,random_permutation_digits,16,8,20,1.0,1.0,0.0
+Gemma 4 31B,digits,random_permutation_digits,32,2,20,0.9984,1.0,-0.0016
+Gemma 4 31B,digits,random_permutation_digits,32,4,20,0.9359,0.9297,0.0062
+Gemma 4 31B,digits,random_permutation_digits,32,8,20,0.8969,0.9078,-0.0109
+Gemma 4 31B,digits,random_permutation_digits,64,2,20,0.9703,0.9711,-0.0008
+Gemma 4 31B,digits,random_permutation_digits,64,4,20,0.6648,0.7023,-0.0375
+Gemma 4 31B,digits,random_permutation_digits,64,8,20,0.5867,0.575,0.0117
+Gemma 4 31B,digits,conditional_shift_digits,16,2,20,1.0,1.0,0.0
+Gemma 4 31B,digits,conditional_shift_digits,16,4,20,0.9875,0.9625,0.025
+Gemma 4 31B,digits,conditional_shift_digits,16,8,20,0.8969,0.8781,0.0188
+Gemma 4 31B,digits,conditional_shift_digits,32,2,20,1.0,1.0,0.0
+Gemma 4 31B,digits,conditional_shift_digits,32,4,20,0.9812,0.9422,0.0391
+Gemma 4 31B,digits,conditional_shift_digits,32,8,20,0.8984,0.8531,0.0453
+Gemma 4 31B,digits,conditional_shift_digits,64,2,20,0.9617,0.9594,0.0023
+Gemma 4 31B,digits,conditional_shift_digits,64,4,20,0.75,0.6875,0.0625
+Gemma 4 31B,digits,conditional_shift_digits,64,8,20,0.675,0.6297,0.0453
+Gemma 4 31B,dependency,copy_previous,16,2,20,0.9688,0.9312,0.0375
+Gemma 4 31B,dependency,copy_previous,32,2,20,0.9047,0.9219,-0.0172
+Gemma 4 31B,dependency,copy_previous,64,2,20,0.8414,0.8117,0.0297
+Gemma 4 31B,dependency,running_xor,16,2,20,0.8656,0.8812,-0.0156
+Gemma 4 31B,dependency,running_xor,32,2,20,0.8188,0.8,0.0188
+Gemma 4 31B,dependency,running_xor,64,2,20,0.7211,0.6914,0.0297
+Gemma 4 31B,dependency,running_sum_local,16,2,20,0.8781,0.875,0.0031
+Gemma 4 31B,dependency,running_sum_local,16,4,20,0.9562,0.9562,0.0
+Gemma 4 31B,dependency,running_sum_local,16,8,20,0.8625,0.85,0.0125
+Gemma 4 31B,dependency,running_sum_local,32,2,20,0.8438,0.8312,0.0125
+Gemma 4 31B,dependency,running_sum_local,32,4,20,0.7562,0.7234,0.0328
+Gemma 4 31B,dependency,running_sum_local,32,8,20,0.6656,0.6094,0.0562
+Gemma 4 31B,dependency,running_sum_local,64,2,20,0.6727,0.6867,-0.0141
+Gemma 4 31B,dependency,running_sum_local,64,4,20,0.5062,0.4492,0.057
+Gemma 4 31B,dependency,running_sum_local,64,8,20,0.3812,0.3609,0.0203
+Gemma 4 31B,dependency,sliding_window_max,16,4,20,0.8594,0.8312,0.0281
+Gemma 4 31B,dependency,sliding_window_max,16,8,20,0.8125,0.7812,0.0312
+Gemma 4 31B,dependency,sliding_window_max,32,4,20,0.7656,0.7141,0.0516
+Gemma 4 31B,dependency,sliding_window_max,32,8,20,0.6766,0.5547,0.1219
+Gemma 4 31B,dependency,sliding_window_max,64,4,20,0.6727,0.6227,0.05
+Gemma 4 31B,dependency,sliding_window_max,64,8,20,0.482,0.4766,0.0055
