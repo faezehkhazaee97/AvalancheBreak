@@ -1,0 +1,19 @@
+\begin{tabular}{ll cc cc cc}
+\toprule
+& & \multicolumn{2}{c}{Markers} & & & & \\
+\cmidrule(lr){3-4}
+Task & Condition & Input & Output & Accuracy & Change & Format & Post-marker \\
+\midrule
+\task{running\_xor} & Neither side & no & no & 0.66 $\pm$ 0.03 & --- & 100\% & --- \\
+ & Input only & yes & no & 0.63 $\pm$ 0.02 & $-0.03$ & 100\% & 0.53 \\
+ & Output only & no & yes & 0.61 $\pm$ 0.02 & $-0.05$ & 75\% & --- \\
+ & Both sides & yes & yes & 0.77 $\pm$ 0.02 & $+0.10$ & 100\% & 0.51 \\
+\multicolumn{8}{l}{\quad Interaction $+0.19$, 95\% interval $[+0.15, +0.24]$} \\
+\midrule
+\task{random\_permutation (digits)} & Neither side & no & no & 0.55 $\pm$ 0.06 & --- & 100\% & --- \\
+ & Input only & yes & no & 0.40 $\pm$ 0.03 & $-0.15$ & 100\% & 0.35 \\
+ & Output only & no & yes & 0.39 $\pm$ 0.03 & $-0.16$ & 64\% & --- \\
+ & Both sides & yes & yes & 0.94 $\pm$ 0.02 & $+0.39$ & 100\% & 0.94 \\
+\multicolumn{8}{l}{\quad Interaction $+0.70$, 95\% interval $[+0.61, +0.79]$} \\
+\bottomrule
+\end{tabular}
