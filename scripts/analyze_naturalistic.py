@@ -19,6 +19,7 @@ import numpy as np
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(REPO / "scripts"))
 from analyze_per_position import load, MODELS as ALL_MODELS, LENGTHS  # noqa: E402
 from analyze_aligned_scoring import summarize, index_vector  # noqa: E402
@@ -40,10 +41,41 @@ def pooled_delta(d):
     return float((m.TAR.values - np.asarray(ref, dtype=float)).mean())
 
 
+def reset_truth(task, shown):
+    """Ground truth if the running state restarted at every marker (segments treated as fresh starts)."""
+    import importlib
+    e = importlib.import_module(f"tasks.{task}.engine")
+    fn = e._depth if task == "bracket_depth" else e._checksum
+    return "".join(fn(seg) for seg in shown.split("|"))
+
+
+def reset_consistency(task, d):
+    """Over marked rows (k >= 2, N <= 64): index accuracy against the true answer and against the
+    reset answer, at post-marker and within-segment positions."""
+    import numpy as np
+    from analyze_aligned_scoring import index_vector, clean
+    d = d[(d.Method == "Cellular_Bounds") & d.Interval.astype(int).isin([2, 4, 8, 16]) & d.Seq_Length.astype(int).isin(LENGTHS)]
+    out = {"post_true": [], "post_reset": [], "within_true": [], "within_reset": []}
+    for _, r in d.iterrows():
+        k = int(r.Interval)
+        pred = clean(r.LLM_Output)
+        vt = index_vector(clean(r.Ground_Truth), pred)
+        vr = index_vector(reset_truth(task, r.Input_Given), pred)
+        idx = np.arange(len(vt)); p = (idx > 0) & (idx % k == 0)
+        if not p.any():
+            continue
+        out["post_true"].append(vt[p].mean()); out["post_reset"].append(vr[p].mean())
+        out["within_true"].append(vt[~p].mean()); out["within_reset"].append(vr[~p].mean())
+    return {k: float(np.mean(v)) for k, v in out.items()}
+
+
 def row(task, label, d):
     s = summarize(d, index_vector)
-    return dict(task=task, model=label, n=len(d), base=s["base"], delta=pooled_delta(d),
-                post=s["post"], post_gain=s["post_gain"], within_gain=s["within_gain"])
+    r = dict(task=task, model=label, n=len(d), base=s["base"], delta=pooled_delta(d),
+             post=s["post"], post_gain=s["post_gain"], within_gain=s["within_gain"])
+    if task in ("bracket_depth", "running_checksum"):
+        r.update(reset_consistency(task, d))
+    return r
 
 
 def main():
@@ -70,8 +102,9 @@ def main():
     print(out.to_string(index=False))
 
     names = dict(NAT + [("synthetic_mean", "Four synthetic tasks (mean)")])
-    lines = ["\\begin{tabular}{ll cccc}", "\\toprule",
-             "Task & Model & No-marker acc. & $\\Delta$ & Post-marker & Within-segment \\\\", "\\midrule"]
+    lines = ["\\begin{tabular}{ll cccc cc}", "\\toprule",
+             "& & & & & & \\multicolumn{2}{c}{Matches reset answer} \\\\", "\\cmidrule(lr){7-8}",
+             "Task & Model & No-marker acc. & $\\Delta$ & Post-marker & Within-segment & Post & Within \\\\", "\\midrule"]
     for task in [t for t, _ in NAT] + ["synthetic_mean"]:
         first = True
         for label, _ in ALL_MODELS:
@@ -80,7 +113,8 @@ def main():
                 continue
             r = x.iloc[0]
             tlab = names[task] if first else ""
-            lines.append(f"{tlab} & {label} & {r.base:.2f} & ${r.delta:+.2f}$ & ${r.post_gain:+.2f}$ & ${r.within_gain:+.2f}$ \\\\")
+            rc = (f"{r.post_reset:.2f} & {r.within_reset:.2f}" if task != "synthetic_mean" else "-- & --")
+            lines.append(f"{tlab} & {label} & {r.base:.2f} & ${r.delta:+.2f}$ & ${r.post_gain:+.2f}$ & ${r.within_gain:+.2f}$ & {rc} \\\\")
             first = False
         if task != "synthetic_mean":
             lines.append("\\addlinespace")

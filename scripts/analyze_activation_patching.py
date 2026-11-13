@@ -91,7 +91,7 @@ def main():
                 ax.axhline(0, color="black", linewidth=0.6); ax.axhline(1, color="black", linewidth=0.6, linestyle="--")
                 ax.set_title(f"{label}: {TASKN[task]}", loc="left")
                 ax.set_xlabel("patched layer"); ax.set_ylabel("log-odds recovery" if j == 0 else "")
-        axes[0][0].legend(frameon=False, loc="best")
+        axes[0][-1].legend(frameon=False, loc="upper right", fontsize=6.8)
         fig.tight_layout()
         savefig(fig, REPO / "paper_tmlr" / "figures" / "patching.pdf")
 

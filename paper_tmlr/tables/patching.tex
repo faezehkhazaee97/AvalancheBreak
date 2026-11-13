@@ -1,0 +1,10 @@
+\begin{tabular}{ll cc cccc}
+\toprule
+& & \multicolumn{2}{c}{Post-marker acc.} & \multicolumn{4}{c}{Recovery, all layers (best single layer)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-8}
+Model & Task & Clean & Marked & pre\_in & post\_in & all\_in & prev\_out \\
+\midrule
+Qwen2.5 32B & Running XOR & 0.79 & 0.46 & 0.12 (0.11 at 37) & 0.59 (0.33 at 33) & 0.75 (0.81 at 34) & 0.18 (0.07 at 41) \\
+ & Running sum (mod 4) & 0.47 & 0.32 & 0.01 (0.06 at 34) & 0.64 (0.63 at 34) & 0.86 (0.94 at 34) & 0.20 (0.09 at 41) \\
+\bottomrule
+\end{tabular}
