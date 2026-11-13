@@ -17,6 +17,18 @@ Task & Condition & Input & Output & Accuracy & Change & Format & Post-marker \\
  & Both sides & yes & yes & 0.94 $\pm$ 0.02 & $+0.39$ & 100\% & 0.94 \\
 \multicolumn{8}{l}{\quad Interaction $+0.70$, 95\% interval $[+0.61, +0.79]$} \\
 \midrule
+\task{copy\_previous} & Neither side & no & no & 0.77 $\pm$ 0.06 & --- & 100\% & --- \\
+ & Input only & yes & no & 0.65 $\pm$ 0.03 & $-0.12$ & 100\% & 0.59 \\
+ & Output only & no & yes & 0.71 $\pm$ 0.04 & $-0.06$ & 35\% & --- \\
+ & Both sides & yes & yes & 0.79 $\pm$ 0.03 & $+0.02$ & 99\% & 0.60 \\
+\multicolumn{8}{l}{\quad Interaction $+0.20$, 95\% interval $[+0.12, +0.27]$} \\
+\midrule
+\task{running\_sum\_local ($M=4$)} & Neither side & no & no & 0.40 $\pm$ 0.03 & --- & 100\% & --- \\
+ & Input only & yes & no & 0.35 $\pm$ 0.02 & $-0.04$ & 100\% & 0.28 \\
+ & Output only & no & yes & 0.35 $\pm$ 0.02 & $-0.05$ & 32\% & --- \\
+ & Both sides & yes & yes & 0.48 $\pm$ 0.02 & $+0.08$ & 100\% & 0.27 \\
+\multicolumn{8}{l}{\quad Interaction $+0.17$, 95\% interval $[+0.13, +0.22]$} \\
+\midrule
 \multicolumn{8}{l}{\emph{Qwen2.5 7B}} \\
 \task{running\_xor} & Neither side & no & no & 0.48 $\pm$ 0.03 & --- & 100\% & --- \\
  & Input only & yes & no & 0.48 $\pm$ 0.02 & $-0.00$ & 100\% & 0.50 \\

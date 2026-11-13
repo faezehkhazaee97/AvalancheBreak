@@ -7,6 +7,14 @@ Qwen2.5 32B,random_permutation_digits,base,no,no,40,0.5547,0.03,0.0,1.0,
 Qwen2.5 32B,random_permutation_digits,in_only,yes,no,80,0.4049,0.015,-0.1498,1.0,0.3512
 Qwen2.5 32B,random_permutation_digits,out_only,no,yes,80,0.3924,0.0174,-0.1623,0.6375,
 Qwen2.5 32B,random_permutation_digits,in_out,yes,yes,80,0.9441,0.0104,0.3895,1.0,0.944
+Qwen2.5 32B,copy_previous,base,no,no,40,0.7703,0.0298,0.0,1.0,
+Qwen2.5 32B,copy_previous,in_only,yes,no,80,0.6541,0.0142,-0.1162,1.0,0.5924
+Qwen2.5 32B,copy_previous,out_only,no,yes,80,0.7107,0.0196,-0.0596,0.35,
+Qwen2.5 32B,copy_previous,in_out,yes,yes,80,0.7914,0.016,0.0211,0.9875,0.5961
+Qwen2.5 32B,running_sum_local,base,no,no,40,0.3969,0.0157,0.0,1.0,
+Qwen2.5 32B,running_sum_local,in_only,yes,no,80,0.3535,0.0098,-0.0434,1.0,0.2845
+Qwen2.5 32B,running_sum_local,out_only,no,yes,80,0.351,0.01,-0.0459,0.325,
+Qwen2.5 32B,running_sum_local,in_out,yes,yes,80,0.4799,0.011,0.083,1.0,0.271
 Qwen2.5 7B,running_xor,base,no,no,40,0.4836,0.0142,0.0,1.0,
 Qwen2.5 7B,running_xor,in_only,yes,no,80,0.4828,0.0078,-0.0008,1.0,0.4969
 Qwen2.5 7B,running_xor,out_only,no,yes,80,0.4922,0.0068,0.0086,0.3375,

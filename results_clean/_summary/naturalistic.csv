@@ -1,4 +1,7 @@
 task,model,n,base,delta,post,post_gain,within_gain,post_true,post_reset,within_true,within_reset
+bracket_depth,Qwen2.5 7B,580,0.3016,-0.0014,0.2651,0.0074,-0.003,0.2651,0.2886,0.2517,0.2561
+running_checksum,Qwen2.5 7B,580,0.2194,-0.0463,0.0609,-0.0723,-0.0415,0.0609,0.3319,0.1546,0.1594
+synthetic_mean,Qwen2.5 7B,6960,0.4614,-0.0365,0.3622,-0.057,-0.025,,,,
 bracket_depth,Qwen2.5 32B,580,0.5444,-0.0927,0.3582,-0.074,-0.0647,0.3582,0.4071,0.4205,0.4425
 running_checksum,Qwen2.5 32B,580,0.5503,-0.0035,0.2274,-0.1409,-0.0849,0.2274,0.4913,0.3637,0.4675
 synthetic_mean,Qwen2.5 32B,13740,0.7293,0.0386,0.516,-0.1458,0.0709,,,,

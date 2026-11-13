@@ -66,7 +66,7 @@ def main():
     o.to_csv(REPO / "results_clean" / "_summary" / "blind_spot_by_k.csv", index=False)
     piv = o.pivot_table(index=["task", "model"], columns="k", values="post_gain")
     print("post-marker change vs no-marker run, by spacing:\n", piv.round(2).to_string())
-    print("\nmean over the 16 cells:", piv.mean().round(3).to_dict())
+    print(f"\nmean over the {len(piv)} cells:", piv.mean().round(3).to_dict())
     print("cells where k=3 loss lies between or beyond its neighbours (same sign):",
           int(((np.sign(piv[3]) == np.sign(piv[2])) & (np.sign(piv[3]) == np.sign(piv[4]))).sum()), "of", len(piv))
     KS = (2, 3, 4, 5, 6)
