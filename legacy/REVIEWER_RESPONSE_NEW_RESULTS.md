@@ -2,7 +2,7 @@
 
 This file summarizes code + experiments run to answer specific reviewer questions on the
 draft. Everything below is backed by real data sitting in `results/` or `results_clean/`.
-Give this file to Claude-writing-the-paper and ask it to (a) add the new findings to the
+Give this file to whoever writes the paper and ask them to (a) add the new findings to the
 relevant sections/appendices, (b) fix the two factual discrepancies flagged near the bottom,
 and (c) apply the reset-variant second-batch numbers (section 14 below, now complete) to
 verify §4.5's single-batch caveat and drop the corresponding Limitations bullet.

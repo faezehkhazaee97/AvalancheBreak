@@ -26,7 +26,6 @@ INCLUDE = ("tasks/", "scripts/", "results_clean/", "results/")
 EXCLUDE = (
     "results_clean/_excluded_undocumented_models/",  # models not in the paper
     "results_clean/_k1_rerun/",                      # staging area, merged into the sources
-    "results_clean/APPENDIX_HANDOFF_FOR_FABLE.md",   # internal note
     "scripts/make_anonymous_release.py",             # this file
 )
 TEXT_EXT = {".py", ".sh", ".sbatch", ".md", ".txt", ".csv", ".json", ".typed", ""}
@@ -36,7 +35,7 @@ SUBS = [  # (regex, replacement), applied in order
     # Python: absolute repo paths -> paths relative to the script (all such files live in scripts/)
     (re.compile(r'Path\("' + re.escape(ROOT_PATH) + r'/?([^"]*)"\)'),
      r'(Path(__file__).resolve().parents[1] / "\1")'),
-    (re.compile(r'Path\("/tmp/claude-[^"]*/scratchpad/([^"]*)"\)'), r'Path("/tmp/\1")'),
+    (re.compile(r'Path\("/tmp/[^"]*/scratchpad/([^"]*)"\)'), r'Path("/tmp/\1")'),
     # Slurm directives: log paths relative to the submission directory (the repo root)
     (re.compile(r"^(#SBATCH[^\n]*?)" + re.escape(ROOT_PATH) + "/", re.M), r"\1"),
     # Shell: repo root
@@ -51,7 +50,7 @@ SUBS = [  # (regex, replacement), applied in order
 ]
 FILENAME_SUBS = [("ctbrowngrp", "altaccount"), ("ctbrown", "alt")]
 FORBIDDEN = re.compile(
-    r"gquon|quonbio|\bbaran\b|khazaee|faezeh|ucdavis|davis|cvmfs|ctbrown|/group/|claude-\d|"
+    r"gquon|quonbio|\bbaran\b|khazaee|faezeh|ucdavis|davis|cvmfs|ctbrown|/group/|scratchpad|"
     r"\bfarm\b|hpccf|AIza[0-9A-Za-z_-]{30,}|hf_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{20,}",
     re.I)
 

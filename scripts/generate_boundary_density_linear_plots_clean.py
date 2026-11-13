@@ -20,7 +20,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 RESULTS_DIR = Path("/group/gquongrp/workspaces/baran/AvalancheBreak/results")
-OUTPUT_DIR = Path("/tmp/claude-2342120/-group-gquongrp-workspaces-baran-AvalancheBreak/dc5ef812-e9e0-469f-b195-1961d9d3c5af/scratchpad/clean_plots")
+OUTPUT_DIR = Path("/group/gquongrp/workspaces/baran/AvalancheBreak/results/clean_plots")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 TASKS = {

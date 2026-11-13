@@ -1,4 +1,4 @@
-# Appendix content for Fable — Appendices A, E, F, H
+# Appendix content handoff — Appendices A, E, F, H
 
 One required correction before anything else: change **"45 task×model"** -> **"43 task×model"**
 and **"45 of 45"** -> **"43 of 43"** in the abstract, Section 3.2, and the Discussion. Nothing
