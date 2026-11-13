@@ -95,6 +95,8 @@ We also test the obvious mechanism (Section~\ref{sec:mechanism}). In Qwen2.5, so
 \section{Experimental Setup}
 \label{sec:setup}
 
+This section describes the tasks and the three formats they are posed in, the marker intervention, the models and their decoding settings, and the metrics and statistics used throughout.
+
 \subsection{Tasks and Formats}
 
 Every task maps an input string of length $N$ to an output string of the same length under a deterministic rule stated fully in the prompt (Table~\ref{tab:tasks}). In \emph{position-local} tasks, output $y_i$ depends only on input $x_i$. In \emph{one-step dependency} tasks, $y_i$ also depends on $x_{i-1}$; in the \emph{windowed} task, on $x_{i-2}, x_{i-1}, x_i$. For dependency tasks, the first position is copied as-is. Inputs are sampled uniformly with a deterministic seed per (task, length, spacing, alphabet size, trial), so every model sees the same inputs. \task{copy\_previous} requires no computation, only a one-step lookback, so any harm from markers cannot be blamed on arithmetic; \task{sliding\_window\_max} uses a three-symbol window, so its output stays informative at every length.

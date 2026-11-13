@@ -770,7 +770,7 @@
          \@titlesize{\@title} \\ \@titleskip
          \normalsize By \\ \@titleskip
          \textsc{\@author} \\
-         \@authordegrees \\ \@titleskip
+         \ifx\@authordegrees\empty\else\@authordegrees \\ \fi\@titleskip
          \textsc{\@Thesisname} \\ \@titleskip
          Submitted in partial satisfaction of the requirements
          for the degree of \\ \@titleskip
