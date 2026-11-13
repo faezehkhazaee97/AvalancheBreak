@@ -40,7 +40,7 @@ sys.path.insert(0, str(REPO))
 from tasks.common import scoring  # noqa: E402
 from tasks.common.runner import _local_seed, max_new_tokens  # noqa: E402
 
-TASKS = {"running_xor": None, "random_permutation_digits": 8}
+TASKS = {"running_xor": None, "random_permutation_digits": 8, "copy_previous": None, "running_sum_local": 4}
 LENGTHS, KS = [32, 64], [4, 16]
 ORIGINAL = ("Constraint: The input contains vertical bars (|). These are structural boundaries.\n"
             "DO NOT transform them. Copy them exactly to the output.")

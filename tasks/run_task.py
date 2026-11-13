@@ -33,6 +33,8 @@ TASK_NAMES = [
     "reverse_xor", "copy_previous", "running_max",
     "running_xor_reset", "running_sum_local_reset", "reverse_xor_reset",
     "copy_previous_reset", "running_max_reset",
+    "copy_previous_finek", "running_xor_finek", "running_sum_local_finek", "sliding_window_max_finek",
+    "copy_previous_jitter", "running_xor_jitter", "running_sum_local_jitter", "sliding_window_max_jitter",
     "clrs_minimum", "clrs_kadane",
     "procbench_substitute", "string_copy", "flip_flop_high", "flip_flop_low",
     "cyclic_shift_digits", "sliding_window_max", "sliding_window_max_reset",

@@ -22,7 +22,8 @@ from analyze_compliance import marker_positions, expected_positions  # noqa: E40
 TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output")}
 MODELS = [("Qwen2.5 32B", "Qwen2.5-32B-Instruct"), ("Qwen2.5 7B", "Qwen2.5-7B-Instruct"),
           ("Mistral 7B", "Mistral-7B-Instruct-v0.3")]
-TASKS = [("running_xor", "running\\_xor"), ("random_permutation_digits", "random\\_permutation (digits)")]
+TASKS = [("running_xor", "running\\_xor"), ("random_permutation_digits", "random\\_permutation (digits)"),
+         ("copy_previous", "copy\\_previous"), ("running_sum_local", "running\\_sum\\_local ($M=4$)")]
 CONDS = [("base", "no", "no"), ("in_only", "yes", "no"), ("out_only", "no", "yes"), ("in_out", "yes", "yes")]
 B = 10000
 RNG = np.random.default_rng(20261111)
