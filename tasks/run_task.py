@@ -36,6 +36,7 @@ TASK_NAMES = [
     "clrs_minimum", "clrs_kadane",
     "procbench_substitute", "string_copy", "flip_flop_high", "flip_flop_low",
     "cyclic_shift_digits", "sliding_window_max", "sliding_window_max_reset",
+    "bracket_depth", "running_checksum",
 ]
 
 

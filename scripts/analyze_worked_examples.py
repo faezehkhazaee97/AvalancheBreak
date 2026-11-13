@@ -54,8 +54,8 @@ def main():
                 continue
             cells = ([f"{x.loc[v, 'base']:.2f}" for v, _ in VARIANTS] + [f(x.loc[v, "post_gain"]) for v, _ in VARIANTS]
                      + [f(x.loc[v, "within_gain"]) for v, _ in VARIANTS])
-            lines.append(f"{'\\task{' + task.replace('_', chr(92) + '_') + '}' if first else ''} & {label} & "
-                         + " & ".join(cells) + " \\\\")
+            tlab = "\\task{" + task.replace("_", "\\_") + "}" if first else ""
+            lines.append(tlab + " & " + label + " & " + " & ".join(cells) + " \\\\")
             first = False
     lines += ["\\bottomrule", "\\end{tabular}"]
     (REPO / "paper_tmlr" / "tables" / "worked.tex").write_text("\n".join(lines) + "\n")
