@@ -3,7 +3,8 @@
 
 The main grids include k = 3, excluded from the pooled analyses to keep the spacing grid at
 powers of two. Here the per-position comparison of scripts/analyze_per_position.py is repeated
-at k = 2, 3 and 4 separately (N <= 64; post-marker and within-segment positions, each against
+at k = 2, 3, 4, 5 and 6 separately (N <= 64; k = 5 and 6 come from the
+<task>_finek runs, which reuse the main grid's seeds and no-marker reference; post-marker and within-segment positions, each against
 the no-marker run at the same indices), on the four dependency tasks at the four stronger
 models. If the loss is a property of the position right after a marker, k = 3 should look like
 its neighbours rather than like an artifact of the power-of-two grid.
@@ -18,7 +19,7 @@ sys.path.insert(0, str(REPO / "scripts"))
 from analyze_per_position import load, LENGTHS  # noqa: E402
 from analyze_aligned_scoring import index_vector, clean  # noqa: E402
 
-MODELS = [("Qwen2.5 14B", "Qwen2.5-14B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct"),
+MODELS = [("Qwen2.5 7B", "Qwen2.5-7B-Instruct"), ("Qwen2.5 14B", "Qwen2.5-14B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct"),
           ("Qwen3.8 27B", "Qwen3.8-27B"), ("Gemma 4 31B", "gemma-4-31B-it")]
 TASKS = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]
 
@@ -51,8 +52,14 @@ def main():
             d = load(task, tag)
             if d is None:
                 continue
-            for k in (2, 3, 4):
-                r = per_k(d, k)
+            fine = load(task + "_finek", tag)
+            for k in (2, 3, 4, 5, 6):
+                if k in (5, 6):
+                    if fine is None:
+                        continue
+                    r = per_k(pd.concat([d[d.Method == "Base"], fine[fine.Interval.astype(int) == k]], ignore_index=True), k)
+                else:
+                    r = per_k(d, k)
                 if r:
                     rows.append(dict(task=task, model=lab, k=k, **r))
     o = pd.DataFrame(rows).round(3)
@@ -62,16 +69,17 @@ def main():
     print("\nmean over the 16 cells:", piv.mean().round(3).to_dict())
     print("cells where k=3 loss lies between or beyond its neighbours (same sign):",
           int(((np.sign(piv[3]) == np.sign(piv[2])) & (np.sign(piv[3]) == np.sign(piv[4]))).sum()), "of", len(piv))
-    lines = ["\\begin{tabular}{ll ccc ccc}", "\\toprule",
-             "& & \\multicolumn{3}{c}{Post-marker change} & \\multicolumn{3}{c}{Within-segment change} \\\\",
-             "\\cmidrule(lr){3-5}\\cmidrule(lr){6-8}", "Task & Model & $k=2$ & $k=3$ & $k=4$ & $k=2$ & $k=3$ & $k=4$ \\\\", "\\midrule"]
+    KS = (2, 3, 4, 5, 6)
+    lines = ["\\begin{tabular}{ll ccccc ccccc}", "\\toprule",
+             "& & \\multicolumn{5}{c}{Post-marker change} & \\multicolumn{5}{c}{Within-segment change} \\\\",
+             "\\cmidrule(lr){3-7}\\cmidrule(lr){8-12}", "Task & Model & " + " & ".join(f"$k={k}$" for k in KS) + " & " + " & ".join(f"$k={k}$" for k in KS) + " \\\\", "\\midrule"]
     for task in TASKS:
         for i, (lab, _) in enumerate(MODELS):
             x = o[(o.task == task) & (o.model == lab)].set_index("k")
             if x.empty:
                 continue
-            c = [f"${x.loc[k, 'post_gain']:+.2f}$" if k in x.index else "---" for k in (2, 3, 4)]
-            c += [f"${x.loc[k, 'within_gain']:+.2f}$" if k in x.index else "---" for k in (2, 3, 4)]
+            c = [f"${x.loc[k, 'post_gain']:+.2f}$" if k in x.index else "---" for k in KS]
+            c += [f"${x.loc[k, 'within_gain']:+.2f}$" if k in x.index else "---" for k in KS]
             lines.append(("\\task{" + task.replace("_", "\\_") + "}" if i == 0 else "") + f" & {lab} & " + " & ".join(c) + " \\\\")
         if task != TASKS[-1]:
             lines.append("\\midrule")
