@@ -99,7 +99,7 @@ def main():
     lines = ["\\begin{tabular}{ll cc cccc}", "\\toprule",
              "& & \\multicolumn{2}{c}{Post-marker acc.} & \\multicolumn{4}{c}{Recovery, all layers (best single layer)} \\\\",
              "\\cmidrule(lr){3-4}\\cmidrule(lr){5-8}",
-             "Model & Task & Clean & Marked & " + " & ".join(s for s, _, _ in SITES).replace("_", "\\_") + " \\\\", "\\midrule"]
+             "Model & Task & Clean & Marked & Input before & Input after & All inputs & Answer before \\\\", "\\midrule"]
     for label, _ in MODELS:
         first = True
         for task in TASKN:
