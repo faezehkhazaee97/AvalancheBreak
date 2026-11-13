@@ -4,7 +4,7 @@ matplotlib.use("Agg")
 # ============================================================
 # DRAFT-PAPER REPLICATION DIAGNOSTIC
 # ============================================================
-# The first draft (Keep_LLMs_Focused.pdf, Appendix B / Table 2) reported much
+# The first draft (legacy/Keep_LLMs_Focused.pdf, Appendix B / Table 2) reported much
 # cleaner R^2 values for TAR-vs-boundary-frequency on Qwen2.5-7B-Instruct
 # than the current notebook's thermodynamics_regression.csv (e.g. A=4,
 # N=16: 0.930 in the draft vs 0.421 now; A=4, N=32: 0.799 vs 0.409 now).

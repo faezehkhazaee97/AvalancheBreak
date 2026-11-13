@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Per-model sliding_window_max figures, matching the established
-per-task-card visual convention used throughout boundaries_report.html
+per-task-card visual convention used throughout legacy/boundaries_report.html
 (Fig. 1 cyclic_shift, Fig. 6 running_xor, Fig. 7 running_sum_local, Fig. 8
 copy_previous): one PNG per model, TAR on top row / SAR on bottom row,
 one panel per sequence length N, x-axis = boundary density (1/k, k=3

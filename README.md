@@ -1,52 +1,65 @@
-# Keeping LLMs Focused: Delaying Error Avalanches via Structural Boundaries
+# Re-Tokenization, Segmentation, and a Blind Spot: What Content-Free Boundary Markers Do in Character-Level Transformations
 
-Do periodic structural boundary tokens (`|`) delay the "accuracy cliff" LLMs hit on long
-deterministic sequence tasks? This repo replicates and extends the paper draft in
-[`Keep_LLMs_Focused.pdf`](Keep_LLMs_Focused.pdf), which itself builds on the SK spin-glass
-framework from Hou et al., ["How Focused Are LLMs?"](https://arxiv.org/abs/2511.00763)
-(arXiv:2511.00763).
+Inserting a content-free marker (`|`) into the input every *k* characters of a character-level
+transformation, and asking the model to copy it through, is a cheap single-call intervention.
+This repository holds the tasks, runners, raw generations, analysis scripts, and paper sources
+for a study of what that intervention does across seven synthetic tasks, seven open
+instruction-tuned models (Qwen2.5-7B/14B/32B, Mistral-7B, Phi-3.5-mini, Qwen3.8-27B,
+Gemma-4-31B) and two versions of Gemini Flash (3.5 and 3.6).
 
-Read [`project_explainer.html`](project_explainer.html) first (open it in a browser) for a
-full visual walkthrough of the project, the method, and the headline results.
+Three effects are separated with two tokenization controls that fix one token per character
+(spaced letters, and digit relabelings of the same tasks):
 
-## Repository layout
+1. **On letter strings, markers mostly re-tokenize.** Spacing the letters with no markers
+   improves accuracy more than markers do at five of the seven open models.
+2. **The gain survives one token per character.** With spaced letters or digits, markers remove
+   33% to 83% of the remaining errors at the four strongest open models, persist to N = 256, and
+   are the same with commas or line breaks as markers.
+3. **A post-marker blind spot.** With a marker every two or more characters, the position right
+   after a marker fails whenever its output depends on the input before the marker: on four
+   dependency tasks it falls to near chance at the stronger models while the next position
+   recovers. Rewriting the tasks so that position needs nothing before the marker repairs it,
+   and worked examples of the crossing step repair most of it at Gemma 4 and about a third at
+   Qwen2.5-32B.
 
-| Path | What it is |
+## Layout
+
+| Path | Contents |
 |---|---|
-| `LLM-Focus.ipynb` | **The main notebook.** Canonical, up-to-date, bug-fixed source for every experiment. Run top to bottom to reproduce everything for one model (set `MODEL_ID` in the "MODEL SELECTION" cell). |
-| `code/LLM-Focus.ipynb` | The original first-draft notebook that produced the paper draft's numbers, kept for reference/history. |
-| `notebooks/` | Frozen executed/input snapshots from the 14B and Mistral runs, plus fully-executed copies of the main notebook (with embedded output). Historical record, not meant to be re-run. |
-| `results/<model_tag>/` | All experiment output: CSVs (grids, regressions, SK fits, significance tests) and figures (PNG), one directory per model (`Qwen2.5-7B-Instruct`, `Qwen2.5-14B-Instruct`, `Mistral-7B-Instruct-v0.3`). |
-| `results/model_scale_comparison.{csv,png}` | Cross-model comparison of the headline effect. |
-| `scripts/` | Standalone Python scripts + matching SLURM batch scripts, each one a self-contained patch that backfilled a specific analysis (ablation, addition, LSD carry-direction test, scratchpad, Pauli strings, divide-and-conquer benchmark, k=16 grid extension, etc.) for a specific model, without needing to rerun the whole notebook. Useful as a reference for exactly how each experiment was run; the notebook is the source of truth for current logic. |
-| `Keep_LLMs_Focused.pdf` | The paper draft this project is based on/extending. |
-
-## What's studied
-
-- **Cyclic-shift task**: replace each character with the next in a fixed alphabet; deterministic, position-local.
-- **Running-sum-mod-M task**: cumulative sum tracking; deterministic, requires long-range state.
-- **Integer addition** (direct, LSD-first/carry-direction variant, with a scratchpad/CoT variant).
-- **Pauli string multiplication**: hybrid task with a position-local part (the operator string) and a global part (the accumulated phase).
-- All tasks are run with and without periodic `|` boundary markers inserted into the prompt ("Cellular_Bounds" vs "Base"), and fit to the SK spin-glass model `SAR(N) = exp(-β0 · N · α^(N-1))` from Hou et al. to quantify whether boundaries reduce the error-accumulation factor α and push out the cliff length N*.
-- Mechanistic follow-ups: boundary ablation (marker identity/placement/density), attention-sink analysis, entropy, clustering, a true divide-and-conquer benchmark (actually splitting the sequence into separate model calls) as a cost/accuracy baseline against the single-pass boundary trick, and cross-model replication on Qwen2.5-7B/14B-Instruct and Mistral-7B-Instruct-v0.3.
+| `tasks/<task>/engine.py` | One module per task: input generation, ground truth, prompt. `tasks/common/` holds the shared runner, marker insertion, scoring, and the wording and spaced-letter variants. |
+| `tasks/run_task.py`, `tasks/run_digit_controls.py` | Command-line entry points that run one task on one model over the full grid (lengths 4 to 64, every spacing, 20 trials per cell). |
+| `results_clean/<task>/grid/<model>.csv` | Every stored generation of the open models (one row per prompt, with the raw output). `results_clean/gemini_pilot/` holds the Gemini runs. |
+| `results_clean/_summary/` | Pooled effects, per-position values, and every derived table as CSV. |
+| `results/` | Follow-up experiments (head ablations, constrained 2x2, paired inputs, base checkpoints, clean baselines, activation patching, LoRA). |
+| `scripts/` | `summarize_pooled.py` and `analyze_*.py` produce the summary CSVs and the LaTeX tables; `make_fig_*.py` produce the figures; `run_*.py` are the follow-up experiment runners with matching `.sbatch` files for Slurm. |
+| `paper_tmlr/` | The paper source (`main.tex`, `refs.bib`, figures, tables) and the compiled `paper.pdf`. |
+| `paper_ms/` | The master's project version of the same text in the UC Davis thesis format; `scripts/make_ms_version.py` regenerates it from the paper source. |
+| `legacy/` | Earlier drafts and reviewer-response notes from the project's first phase, kept for the record and not used by anything above. |
 
 ## Reproducing
 
-1. Conda env: `.conda/envs/qwen-focus` (not tracked in git — rebuild from the imports at the top of `LLM-Focus.ipynb`: `transformers`, `torch`, `pandas`, `numpy`, `scipy`, `matplotlib`, `seaborn`, `networkx`, `tqdm`).
-2. GPU cluster: designed for SLURM (A100). See `scripts/run_notebook_batch.sh` for the canonical submission pattern:
-   ```bash
-   sbatch scripts/run_notebook_batch.sh       # 7B
-   sbatch scripts/run_notebook_batch_14b.sh   # 14B
-   sbatch scripts/run_notebook_batch_mistral.sh  # Mistral
-   ```
-   These run `jupyter nbconvert --execute` on the main notebook end-to-end.
-3. Set `HF_HOME` to a local cache directory with enough space for model weights (see the "HIVE STORAGE REDIRECTION" cell at the top of the notebook) and authenticate via `hf auth login` if you hit HF Hub rate limits.
-4. Outputs land in `results/<model_tag>/`, namespaced so multiple model scales can coexist and be compared.
+Every input is generated from a deterministic seed, so every prompt can be rebuilt from its
+(task, length, spacing, alphabet or modulus, trial) coordinates without the stored CSVs.
 
-## Key gotchas (already handled in the current notebook, documented here so they don't get reintroduced)
+```bash
+# environment: Python 3.10, torch, transformers, pandas, matplotlib (see .conda/envs/qwen-focus)
+python -m tasks.run_task running_xor Qwen/Qwen2.5-7B-Instruct grid 20      # one task, one model
+python -m tasks.run_digit_controls cyclic_shift_digits Qwen/Qwen2.5-7B-Instruct 20
 
-- Attention-weight capture requires `attn_implementation="eager"` at model load time — `sdpa`/flash-attention can't return attention weights.
-- Use `bf16`, not 8-bit quantization — quantization noise confounds the attention/entropy analysis.
-- NetworkX directed weighted clustering coefficient produces `NaN` on self-loops (self-attention) — strip self-loops before computing, and use a length-adaptive threshold, not a fixed one.
-- SK-model curve fits on degenerate data (SAR constant/all-zero across every tested N) still "succeed" numerically but are meaningless — always check the `Fit_Valid` column before trusting `Beta0`/`Alpha`/`N_star`.
-- Addition-task prompts need an explicit separator between the two addends, and scoring must only credit a *leading* run of digits (not any digit found anywhere in the response) — otherwise stray digits from explanation text silently pollute the score.
+python scripts/summarize_pooled.py          # pooled, length-matched effects for every cell
+python scripts/analyze_per_position.py      # post-marker vs within-segment accuracy
+python scripts/make_tables_pooled.py        # LaTeX tables under paper_tmlr/tables/
+python scripts/make_fig_overview.py         # figures under paper_tmlr/figures/
+```
+
+The models run on one 80 GB GPU for the 27B to 32B checkpoints and on a 24 GB GPU for the 7B
+class; a full grid for one task takes 25 minutes to 2 hours. The Gemini runs need an API key in
+the `GEMINI_API_KEY` environment variable (`tasks/common/gemini_full_grid.py`).
+
+## Paper
+
+`paper_tmlr/main.tex` compiles with Tectonic or any TeX Live installation:
+
+```bash
+cd paper_tmlr && tectonic --keep-logs --outdir build main.tex
+```

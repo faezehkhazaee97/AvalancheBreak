@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Per-model cyclic_shift figures, matching the established per-task-card
-visual convention used throughout boundaries_report.html (same convention
+visual convention used throughout legacy/boundaries_report.html (same convention
 as make_fig_sliding_window_max_bymodel.py: one PNG per model, TAR on top
 row / SAR on bottom row, one panel per sequence length N, x-axis =
 boundary density (1/k, k=3 excluded), Base plotted as a star at

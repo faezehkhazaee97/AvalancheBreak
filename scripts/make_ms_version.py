@@ -53,15 +53,28 @@ def main():
                   "Code, prompts, raw generations, and analysis scripts are at \\\\url{%s}." % PERSON["code_url"], body)
     assert "\\pending{" not in body + appendix, "a placeholder is left in the project version"
     # tables wider than the 6.5-inch text block are shrunk to fit; those already in a \resizebox are left alone
-    fit = lambda t: re.sub(r"(?<!\{)\\input\{tables/([^}]+)\}", r"\\adjustbox{max width=\\linewidth}{\\input{tables/\1}}", t)
+    fit = lambda t: re.sub(r"(?<!\{)\\input\{tables/([^}]+)\}", r"\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{\\input{tables/\1}}", t)
     body, appendix = fit(body), fit(appendix)
     # inline tabulars (Table 1, the summary and decision tables) get the same treatment
-    inl = lambda t: re.sub(r"(?<!\{)(\\begin\{tabular\}.*?\\end\{tabular\})", r"\\adjustbox{max width=\\linewidth}{\1}", t, flags=re.S)
+    inl = lambda t: re.sub(r"(?<!\{)(\\begin\{tabular\}.*?\\end\{tabular\})", r"\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{\1}", t, flags=re.S)
     body, appendix = inl(body), inl(appendix)
+    # tables the TMLR source already scales to the line width: bound their height too
+    rb = lambda t: t.replace("\\resizebox{\\linewidth}{!}{", "\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{")
+    body, appendix = rb(body), rb(appendix)
+    # the external-tasks figure: three panels side by side are unreadable at this page size; stack them
+    appendix = appendix.replace("\\includegraphics[width=0.32\\linewidth]{figures/external_vowel_tagging.pdf}\\hfill\n"
+                                "\\includegraphics[width=0.32\\linewidth]{figures/external_procbench.pdf}\\hfill\n"
+                                "\\includegraphics[width=0.32\\linewidth]{figures/external_string_copy.pdf}",
+                                "\\includegraphics[width=0.72\\linewidth]{figures/external_vowel_tagging.pdf}\\\\[1ex]\n"
+                                "\\includegraphics[width=0.72\\linewidth]{figures/external_procbench.pdf}\\\\[1ex]\n"
+                                "\\includegraphics[width=0.72\\linewidth]{figures/external_string_copy.pdf}")
+    assert "width=0.72" in appendix, "external figure block not found"
+    appendix = appendix.replace("External tasks by marker density. Left: vowel/consonant tagging. Middle: ProcBench-Substitute. Right: string copying.",
+                                "External tasks by marker density. Top: vowel/consonant tagging. Middle: ProcBench-Substitute. Bottom: string copying.")
     # thesis wording: "the paper" -> "this work"; references to chapter-level labels say Chapter
     chap_labels = re.findall(r"\\chapter\{[^}]*\}\n\\label\{([^}]*)\}", body)
     def wording(x):
-        x = re.sub(r"\b([Tt]he|[Tt]his) paper\b", lambda m: ("This" if m.group(1)[0] == "T" else "this") + " work", x)
+        x = re.sub(r"\b([Tt]he|[Tt]his) paper\b", lambda m: ("This" if m.group(1)[0] == "T" else "this") + " report", x)
         for lab in chap_labels:
             x = x.replace("Section~\\ref{%s}" % lab, "Chapter~\\ref{%s}" % lab)
             x = x.replace("Sections~\\ref{%s}" % lab, "Chapters~\\ref{%s}" % lab)
@@ -89,6 +102,7 @@ def main():
 \usepackage[htt]{hyphenat}
 \makeatletter\setlength{\@fptop}{0pt}\makeatother
 \renewcommand{\bibfont}{\singlespacing}
+\setlength{\bibsep}{4pt plus 2pt}
 
 \newcommand{\task}[1]{\texttt{#1}}
 \newcommand{\pending}[1]{\textcolor{red}{[#1]}}
