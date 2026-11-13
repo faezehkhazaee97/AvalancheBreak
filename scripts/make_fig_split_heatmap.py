@@ -63,6 +63,7 @@ def load_local(task, tag):
     # Qwen2.5-7B/14B/32B they hold a second, "legacy" batch under the same trial numbers,
     # which sorts first and would silently replace the raw (k=1-budget-corrected) batch.
     files = [f for f in sorted((REPO / "results_clean" / task / "grid").glob(f"{tag}*.csv"))
+             if (f.name == f"{tag}.csv" or f.name.startswith(f"{tag}_"))
              if "POOLED" not in f.name]
     if not files:
         return None

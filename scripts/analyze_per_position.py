@@ -63,6 +63,7 @@ def load(task, tag):
         d = d[d.Task == task]
         return d if len(d) else None
     files = [f for f in sorted((REPO / "results_clean" / task / "grid").glob(f"{tag}*.csv"))
+             if (f.name == f"{tag}.csv" or f.name.startswith(f"{tag}_"))
              if "POOLED" not in f.name]
     if not files:
         return None
