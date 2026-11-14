@@ -72,34 +72,44 @@ def collect():
     return pd.DataFrame(pooled), cells
 
 
+MODEL_COLORS = {"Qwen2.5 7B": "#9ecae1", "Qwen2.5 14B": "#4292c6", "Qwen2.5 32B": "#08306b", "Mistral 7B": "#E69F00",
+                "Phi-3.5 mini": "#CC79A7", "Qwen3.8 27B": "#009E73", "Gemma 4 31B": "#D55E00", "Gemini 3.6 Flash": "#6e6e6e"}
+SHORT = {"Qwen2.5 7B": "Qwen2.5 7B", "Qwen2.5 14B": "Qwen2.5 14B", "Qwen2.5 32B": "Qwen2.5 32B", "Mistral 7B": "Mistral 7B",
+         "Phi-3.5 mini": "Phi-3.5 mini", "Qwen3.8 27B": "Qwen3.8 27B", "Gemma 4 31B": "Gemma 4 31B", "Gemini 3.6 Flash": "Gemini 3.6"}
+
+
 def fig_three_formats(p):
-    """One panel per format; per model a pair of bars: no-marker accuracy (light) and marker accuracy
-    (full color) with a 95% interval, mean over the three position-local tasks."""
-    fig, axes = plt.subplots(1, 3, figsize=(MULTI_COL_WIDTH, 2.3), sharey=True)
-    w = 0.38
-    for ax, (fmt, _, lab, col) in zip(axes, FORMATS):
-        for i, m in enumerate(MODELS):
+    """Slopegraph, one panel per format: for each model a line from its no-marker accuracy to its
+    accuracy with markers (95% interval at the marker end), mean over the three position-local tasks."""
+    fig, axes = plt.subplots(1, 3, figsize=(MULTI_COL_WIDTH, 2.6), sharey=True)
+    for ax, (fmt, _, lab, _) in zip(axes, FORMATS):
+        rows = []
+        for m in MODELS:
             s = p[(p.model == m) & (p.fmt == fmt)]
             if s.empty:
-                ax.text(i, 0.25, "not\nrun", ha="center", va="bottom", fontsize=5.5, color=GRAY, linespacing=0.9)
                 continue
             b, c = s.base.mean(), s.bounds.mean()
             ci = 1.96 * np.sqrt((s.bounds_se ** 2).sum()) / len(s)
-            ax.bar(i - w / 2, b, w, color=col, alpha=0.3, linewidth=0, zorder=2)
-            ax.bar(i + w / 2, c, w, color=col, linewidth=0, zorder=3)
-            ax.errorbar(i + w / 2, c, yerr=ci, fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.3, zorder=4)
+            col = MODEL_COLORS[m]
+            ax.plot([0, 1], [b, c], color=col, linewidth=1.2, zorder=3)
+            ax.plot(0, b, marker="o", markersize=3.2, color=col, zorder=4)
+            ax.errorbar(1, c, yerr=ci, fmt="o", markersize=3.2, color=col, ecolor=col, elinewidth=0.7, capsize=1.5, zorder=4)
+            rows.append((c, m, col))
+        # right-hand labels, nudged apart when they would collide
+        rows.sort()
+        ys = [r[0] for r in rows]
+        for k in range(1, len(ys)):
+            if ys[k] - ys[k - 1] < 0.035:
+                ys[k] = ys[k - 1] + 0.035
+        for (c, m, col), y in zip(rows, ys):
+            ax.annotate(SHORT[m], xy=(1, c), xytext=(1.08, y), fontsize=5.8, color=col, va="center",
+                        arrowprops=dict(arrowstyle="-", color=col, linewidth=0.4, alpha=0.6, shrinkA=0, shrinkB=1))
         ax.set_title(lab)
-        ax.set_xticks(range(len(MODELS)))
-        short = {"Qwen2.5 7B": "Q2.5\n7B", "Qwen2.5 14B": "Q2.5\n14B", "Qwen2.5 32B": "Q2.5\n32B", "Mistral 7B": "Mistral\n7B",
-                 "Phi-3.5 mini": "Phi\n3.5", "Qwen3.8 27B": "Q3.8\n27B", "Gemma 4 31B": "Gemma\n4", "Gemini 3.6 Flash": "Gemini\n3.6"}
-        ax.set_xticklabels([short[m] for m in MODELS], fontsize=5.8)
-        ax.set_xlim(-0.6, len(MODELS) - 0.4)
-        ax.set_ylim(0.2, 1.0)
+        ax.set_xticks([0, 1]); ax.set_xticklabels(["No markers", "Markers"], fontsize=7)
+        ax.set_xlim(-0.15, 1.75); ax.set_ylim(0.25, 1.02)
+        ax.grid(True, axis="y", color="#e6e6e6", linewidth=0.5)
     axes[0].set_ylabel("Character accuracy")
-    from matplotlib.patches import Patch
-    handles = [Patch(facecolor=INK, alpha=0.3, label="No markers"), Patch(facecolor=INK, label="Markers (95% interval)")]
-    fig.legend(handles=handles, loc="lower center", ncol=2, frameon=False, bbox_to_anchor=(0.5, -0.02))
-    fig.tight_layout(rect=(0, 0.05, 1, 1))
+    fig.tight_layout()
     savefig(fig, REPO / "figs" / "fig_three_formats.pdf")
     fig.savefig(REPO / "figs" / "png" / "fig_three_formats.png", dpi=200, bbox_inches="tight")
 

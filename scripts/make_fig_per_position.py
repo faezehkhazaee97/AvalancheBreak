@@ -55,43 +55,38 @@ def block_means(block):
     return out
 
 
-def bars(ax, x, base, within, within_ci, post, post_ci, w=0.26):
-    """Three bars per model: no-marker accuracy at the same positions (gray), within-segment and
-    post-marker accuracy with markers (color), 95% intervals on the marker bars."""
-    ax.bar(x - w, base, w, color=BASE, alpha=0.45, linewidth=0, zorder=2)
-    ax.bar(x, within, w, color=WITHIN, linewidth=0, zorder=3)
-    ax.errorbar(x, within, yerr=within_ci, fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.2, zorder=4)
-    ax.bar(x + w, post, w, color=POST, linewidth=0, zorder=3)
-    ax.errorbar(x + w, post, yerr=post_ci, fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.2, zorder=4)
-
-
 def make_fig1():
-    from matplotlib.patches import Patch
+    """Forest plot: one panel per block; rows are models; for each, the change with markers at the
+    within-segment positions (orange circle) and at the position right after a marker (blue diamond),
+    each against the no-marker run at the same positions, with 95% intervals; zero line."""
+    from matplotlib.lines import Line2D
     blocks = [(b, t) for b, t in BLOCKS if (vals.block == b).any()]
-    fig, axes = plt.subplots(len(blocks), 1, figsize=(MULTI_COL_WIDTH, 1.55 * len(blocks) + 0.5), sharex=True)
+    fig, axes = plt.subplots(1, len(blocks), figsize=(MULTI_COL_WIDTH, 2.9), sharey=True)
     axes = np.atleast_1d(axes)
+    n = len(MODELS)
     for ax, (block, title) in zip(axes, blocks):
+        ax.axvline(0, color=BASE, linewidth=0.7, zorder=1)
         for i, r in enumerate(block_means(block)):
+            y = n - 1 - i
             if r is None:
-                ax.text(i, 0.5, "not run", ha="center", va="center", fontsize=6.5, color=BASE)
+                ax.text(0, y, "not run", ha="center", va="center", fontsize=6, color=BASE)
                 continue
-            # the no-marker bar shows the no-marker run at the post-marker indices (the comparison the
-            # text makes); the within-segment comparison differs from it by at most 0.03 in any cell
-            bars(ax, i, r["base_post"], r["within"], r["within_ci"], r["post"], r["post_ci"])
-        ax.set_title(title)
-        chance = 0.292 if block.startswith("Position-local") else (0.5 + 0.5 + 0.292 + 0.455) / 4
-        ax.axhline(chance, color=BASE, linestyle=":", linewidth=0.9, zorder=1)
-        ax.text(len(MODELS) - 0.55, chance + 0.012, "chance", fontsize=6, color=BASE, ha="right", va="bottom")
-        ax.set_ylabel("Character accuracy")
-        ax.set_ylim(0.2, 1.0)
-    axes[-1].set_xticks(range(len(MODELS)))
-    axes[-1].set_xticklabels([SHORT[m] for m in MODELS], fontsize=6.8)
-    axes[-1].set_xlim(-0.6, len(MODELS) - 0.4)
-    handles = [Patch(facecolor=BASE, alpha=0.45, label="No markers, same positions"),
-               Patch(facecolor=WITHIN, label="Markers: within a segment"),
-               Patch(facecolor=POST, label="Markers: right after a marker")]
-    axes[0].legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 1.12), ncol=3, frameon=False)
-    fig.tight_layout()
+            ax.errorbar(r["within"] - r["base_within"], y + 0.17, xerr=r["within_ci"], fmt="o", markersize=3.4, color=WITHIN,
+                        ecolor=WITHIN, elinewidth=0.8, capsize=1.5, zorder=3)
+            ax.errorbar(r["post"] - r["base_post"], y - 0.17, xerr=r["post_ci"], fmt="D", markersize=3.2, color=POST,
+                        ecolor=POST, elinewidth=0.8, capsize=1.5, zorder=3)
+        ax.set_title(title.split(" (")[0], fontsize=7.5)
+        ax.set_xlabel("Change in accuracy with markers")
+        ax.set_xlim(-0.55, 0.55)
+        ax.grid(True, axis="x", color="#e6e6e6", linewidth=0.5); ax.grid(False, axis="y")
+        for yy in range(n):
+            ax.axhline(yy - 0.5, color="#f0f0f0", linewidth=0.5, zorder=0)
+    axes[0].set_yticks(range(n)); axes[0].set_yticklabels([SHORT[m].replace("\n", " ") for m in MODELS][::-1], fontsize=6.8)
+    axes[0].set_ylim(-0.6, n - 0.4)
+    handles = [Line2D([], [], marker="o", linestyle="none", color=WITHIN, markersize=4, label="Within a segment"),
+               Line2D([], [], marker="D", linestyle="none", color=POST, markersize=3.8, label="Right after a marker")]
+    fig.legend(handles=handles, loc="lower center", ncol=2, frameon=False, bbox_to_anchor=(0.5, -0.02))
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
     out = REPO / "figs" / "fig1_per_position.pdf"
     savefig(fig, out)
     fig.savefig(REPO / "figs" / "png" / "fig1_per_position.png", dpi=200, bbox_inches="tight")
@@ -113,11 +108,9 @@ def make_reset_fig():
                     ax.text(i, 0.6, "not\nrun", ha="center", va="center", fontsize=5.5, color=BASE, linespacing=0.9)
                     continue
                 a, b = o[col].iloc[0], r[col].iloc[0]
-                w = 0.36
-                ax.bar(i - w / 2, a, w, color=color, alpha=0.35, linewidth=0, zorder=2)
-                ax.errorbar(i - w / 2, a, yerr=o[f"{col}_ci"].iloc[0], fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.2, zorder=4)
-                ax.bar(i + w / 2, b, w, color=color, linewidth=0, zorder=3)
-                ax.errorbar(i + w / 2, b, yerr=r[f"{col}_ci"].iloc[0], fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.2, zorder=4)
+                ax.annotate("", xy=(i, b), xytext=(i, a), arrowprops=dict(arrowstyle="-|>", color=color, linewidth=1.1, mutation_scale=7), zorder=3)
+                ax.plot(i, a, marker="o", markersize=3, color=color, markerfacecolor="white", markeredgewidth=1.0, zorder=4)
+                ax.errorbar(i, b, yerr=r[f"{col}_ci"].iloc[0], fmt="none", ecolor=color, elinewidth=0.7, capsize=1.5, zorder=4)
             ax.set_ylim(0.15, 1.05)
             ax.grid(axis="y", color="#e6e6e6", linewidth=0.6)
             ax.set_axisbelow(True)
@@ -130,9 +123,8 @@ def make_reset_fig():
                 ax.set_title(t, fontsize=7.5, family="monospace")
             if j == 0:
                 ax.set_ylabel(f"{label}\ntoken accuracy", fontsize=7.5)
-    from matplotlib.patches import Patch
-    handles = [Patch(facecolor=INK, alpha=0.35, label="Dependency intact (original task)"),
-               Patch(facecolor=INK, label="Dependency severed (recurrence restarts at each marker)")]
+    handles = [Line2D([], [], marker="o", linestyle="none", color=INK, markerfacecolor="white", markeredgewidth=1.0, markersize=4, label="Dependency intact (original task)"),
+               Line2D([], [], marker=">", linestyle="-", color=INK, markersize=4, label="Dependency severed (recurrence restarts at each marker)")]
     fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=2, frameon=False, fontsize=6.8)
     fig.tight_layout()
     out = REPO / "figs" / "fig_reset_per_position.pdf"

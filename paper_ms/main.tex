@@ -147,7 +147,7 @@ Open models are Qwen2.5-7B/14B/32B-Instruct \citep{qwen2024qwen25}, Mistral-7B-I
 \begin{figure}[!b]
 \centering
 \includegraphics[width=\linewidth]{figures/fig_three_formats.pdf}
-\caption{Character accuracy without markers (light bars) and with markers (full bars, 95\% intervals) on the three position-local tasks, one panel per format: contiguous letters, spaced letters, and digits. Mean over tasks; $N \le 64$, $k \in \{1, 2, 4, 8, 16\}$; no-marker values are length-matched to the marker runs (Chapter~\ref{sec:setup}). At the Qwen and Gemma models, spacing the letters without markers beats markers on contiguous letters. With tokenization fixed, markers still help the stronger models.}
+\caption{Character accuracy without markers (left end of each line) and with markers (right end, with its 95\% interval) on the three position-local tasks, one line per model and one panel per format: contiguous letters, spaced letters, and digits. Mean over tasks; $N \le 64$, $k \in \{1, 2, 4, 8, 16\}$; no-marker values are length-matched to the marker runs (Chapter~\ref{sec:setup}). At the Qwen and Gemma models, spacing the letters without markers beats markers on contiguous letters. With tokenization fixed, markers still help the stronger models.}
 \label{fig:formats}
 \end{figure}
 
@@ -156,7 +156,7 @@ Figure~\ref{fig:formats} compares the three formats. On contiguous letters, mark
 \begin{figure}[!b]
 \centering
 \includegraphics[width=\linewidth]{figures/fig1_per_position.pdf}
-\caption{Per-position accuracy, every model. For each model, three bars: the no-marker run's accuracy at the post-marker position indices (gray), and with markers the accuracy within a segment (orange) and at the position right after a marker (blue), with 95\% intervals. Mean over the tasks in each block; $N \le 64$, $k \in \{2,4,8,16\}$; dotted line: chance (always guessing the most frequent output symbol), averaged over the tasks. Top: on contiguous letters, the post-marker position gains the most. Middle: with spaced letters it is no better than the rest of its segment. Bottom: on dependency tasks it loses at every model (Chapter~\ref{sec:blindspot}). Gemini 3.5 was not run on spaced letters.}
+\caption{Per-position effects, every model. For each model, the change in accuracy with markers at the within-segment positions (orange circles) and at the position right after a marker (blue diamonds), each against the no-marker run at the same position indices, with 95\% intervals; one panel per block, mean over its tasks; $N \le 64$, $k \in \{2,4,8,16\}$. Left: on contiguous letters the post-marker position gains the most. Middle: with spaced letters it gains no more than the rest of its segment. Right: on the dependency tasks it loses at every model while the within-segment positions hold or gain (Chapter~\ref{sec:blindspot}). Gemini 3.5 was not run on spaced letters.}
 \label{fig:position}
 \end{figure}
 
@@ -257,7 +257,7 @@ If the post-marker position fails because it needs the input before the marker, 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=\linewidth]{figures/fig_reset_per_position.pdf}
-\caption{Reset variants, per position. Top row: accuracy at the position right after a marker, with the dependency intact (light bars) and with the recurrence restarting at each marker (full bars). Bottom row: the same for within-segment positions. Models: Qwen2.5-7B and 32B, Qwen3.8-27B, Gemma-4-31B; \task{sliding\_window\_max} was not run in reset form at 7B. $N \le 64$, $k \in \{2,4,8,16\}$; 95\% intervals.}
+\caption{Reset variants, per position. Top row: accuracy at the position right after a marker, with the dependency intact (hollow circle) and with the recurrence restarting at each marker (arrow head, with its 95\% interval). Bottom row: the same for within-segment positions. Models: Qwen2.5-7B and 32B, Qwen3.8-27B, Gemma-4-31B; \task{sliding\_window\_max} was not run in reset form at 7B. $N \le 64$, $k \in \{2,4,8,16\}$; 95\% intervals.}
 \label{fig:reset}
 \end{figure}
 
