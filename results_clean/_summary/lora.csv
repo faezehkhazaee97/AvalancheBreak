@@ -1,28 +1,36 @@
-task,model,n,base,delta,post,post_gain,within_gain
-running_xor,Qwen2.5 7B (as released),1160,0.4105,0.0015,0.4123,0.0156,0.0062
-running_xor,"+ LoRA, k = 0 only (control)",580,0.9998,-0.1188,0.6048,-0.3951,-0.0665
-running_xor,"+ LoRA, k = 0 only, matched steps",580,1.0,-0.1472,0.5638,-0.4362,-0.025
-running_xor,"+ LoRA, marked targets",580,1.0,-0.0002,1.0,0.0,0.0
-running_xor,Qwen2.5 32B (as released),1160,0.781,0.0526,0.5216,-0.1897,0.1091
-running_xor,"+ LoRA, k = 0 only (control)",580,1.0,-0.065,0.5859,-0.4141,-0.0009
-running_sum_local,Qwen2.5 7B (as released),3480,0.3092,-0.0061,0.2216,-0.0314,-0.0067
-running_sum_local,"+ LoRA, k = 0 only (control)",1740,0.9755,-0.2422,0.4045,-0.5719,-0.1294
-running_sum_local,"+ LoRA, k = 0 only, matched steps",1740,0.9923,-0.2597,0.3661,-0.6254,-0.0725
-running_sum_local,"+ LoRA, marked targets",1740,0.9999,-0.0006,1.0,0.0001,0.0001
-running_sum_local,Qwen2.5 32B (as released),3480,0.5902,0.0585,0.3124,-0.1567,0.1143
-copy_previous,Qwen2.5 7B (as released),580,0.5469,-0.1127,0.414,-0.1122,-0.1018
-copy_previous,"+ LoRA, k = 0 only (control)",580,0.6291,-0.0249,0.5197,-0.0536,0.0271
-copy_previous,"+ LoRA, k = 0 only, matched steps",580,0.6025,-0.0134,0.5147,0.0037,0.0203
-copy_previous,"+ LoRA, marked targets",580,0.5312,0.0238,0.4992,0.036,0.0196
-copy_previous,Qwen2.5 32B (as released),1160,0.8595,-0.0162,0.6508,-0.1582,-0.0187
-copy_previous,"+ LoRA, k = 0 only (control)",580,0.9453,-0.0105,0.7079,-0.2168,0.0214
-sliding_window_max,Qwen2.5 7B (as released),1160,0.5967,-0.0515,0.3987,-0.1088,-0.0245
-sliding_window_max,"+ LoRA, k = 0 only (control)",1160,0.5509,0.0049,0.4493,-0.0101,0.0561
-sliding_window_max,"+ LoRA, k = 0 only, matched steps",1160,0.435,0.0669,0.432,0.0632,0.0805
-sliding_window_max,"+ LoRA, marked targets",1160,0.4327,-0.0065,0.3021,-0.0715,0.0253
-sliding_window_max,Qwen2.5 32B (as released),1160,0.6839,0.0561,0.5555,-0.1253,0.0799
-random_permutation_digits,Qwen2.5 7B (as released),1740,0.3546,0.0814,0.416,0.1379,0.0338
-random_permutation_digits,"+ LoRA, k = 0 only (control)",1740,0.4673,0.0559,0.4703,0.1262,0.0306
-random_permutation_digits,"+ LoRA, k = 0 only, matched steps",1740,0.3358,-0.0124,0.2502,-0.0081,-0.0009
-random_permutation_digits,"+ LoRA, marked targets",1740,0.3565,-0.0175,0.2517,-0.0142,-0.0089
-random_permutation_digits,Qwen2.5 32B (as released),1740,0.8708,0.1378,0.9783,0.1488,0.1592
+task,model,n,base,delta,post,post_gain,within_gain,base_model,tag
+running_xor,as released,1160,0.4105,0.0015,0.4123,0.0156,0.0062,Qwen2.5 7B,Qwen2.5-7B-Instruct
+running_xor,"+ LoRA, $k = 0$ only (control)",580,0.9998,-0.1188,0.6048,-0.3951,-0.0665,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
+running_xor,"+ LoRA, $k = 0$ only, matched steps",580,1.0,-0.1472,0.5638,-0.4362,-0.025,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched
+running_xor,"+ LoRA, marked targets",580,1.0,-0.0002,1.0,0.0,0.0,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorasep
+running_xor,as released,1160,0.781,0.0526,0.5216,-0.1897,0.1091,Qwen2.5 32B,Qwen2.5-32B-Instruct
+running_xor,"+ LoRA, $k = 0$ only (control)",580,1.0,-0.065,0.5859,-0.4141,-0.0009,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
+running_xor,"+ LoRA, marked targets",580,1.0,0.0,1.0,0.0,0.0,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep
+running_sum_local,as released,3480,0.3092,-0.0061,0.2216,-0.0314,-0.0067,Qwen2.5 7B,Qwen2.5-7B-Instruct
+running_sum_local,"+ LoRA, $k = 0$ only (control)",1740,0.9755,-0.2422,0.4045,-0.5719,-0.1294,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
+running_sum_local,"+ LoRA, $k = 0$ only, matched steps",1740,0.9923,-0.2597,0.3661,-0.6254,-0.0725,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched
+running_sum_local,"+ LoRA, marked targets",1740,0.9999,-0.0006,1.0,0.0001,0.0001,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorasep
+running_sum_local,as released,3480,0.5902,0.0585,0.3124,-0.1567,0.1143,Qwen2.5 32B,Qwen2.5-32B-Instruct
+running_sum_local,"+ LoRA, $k = 0$ only (control)",1740,0.9996,-0.1643,0.3753,-0.6246,-0.0141,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
+running_sum_local,"+ LoRA, marked targets",1740,1.0,-0.0,1.0,0.0,0.0,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep
+copy_previous,as released,580,0.5469,-0.1127,0.414,-0.1122,-0.1018,Qwen2.5 7B,Qwen2.5-7B-Instruct
+copy_previous,"+ LoRA, $k = 0$ only (control)",580,0.6291,-0.0249,0.5197,-0.0536,0.0271,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
+copy_previous,"+ LoRA, $k = 0$ only, matched steps",580,0.6025,-0.0134,0.5147,0.0037,0.0203,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched
+copy_previous,"+ LoRA, marked targets",580,0.5312,0.0238,0.4992,0.036,0.0196,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorasep
+copy_previous,as released,1160,0.8595,-0.0162,0.6508,-0.1582,-0.0187,Qwen2.5 32B,Qwen2.5-32B-Instruct
+copy_previous,"+ LoRA, $k = 0$ only (control)",580,0.9453,-0.0105,0.7079,-0.2168,0.0214,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
+copy_previous,"+ LoRA, marked targets",580,0.747,0.0073,0.7289,0.0461,-0.0007,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep
+sliding_window_max,as released,1160,0.5967,-0.0515,0.3987,-0.1088,-0.0245,Qwen2.5 7B,Qwen2.5-7B-Instruct
+sliding_window_max,"+ LoRA, $k = 0$ only (control)",1160,0.5509,0.0049,0.4493,-0.0101,0.0561,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
+sliding_window_max,"+ LoRA, $k = 0$ only, matched steps",1160,0.435,0.0669,0.432,0.0632,0.0805,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched
+sliding_window_max,"+ LoRA, marked targets",1160,0.4327,-0.0065,0.3021,-0.0715,0.0253,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorasep
+sliding_window_max,as released,1160,0.6839,0.0561,0.5555,-0.1253,0.0799,Qwen2.5 32B,Qwen2.5-32B-Instruct
+sliding_window_max,"+ LoRA, $k = 0$ only (control)",1160,0.7816,-0.0555,0.4692,-0.2741,0.0155,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
+sliding_window_max,"+ LoRA, marked targets",1160,0.7567,0.0341,0.6929,0.017,0.0512,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep
+random_permutation_digits,as released,1740,0.3546,0.0814,0.416,0.1379,0.0338,Qwen2.5 7B,Qwen2.5-7B-Instruct
+random_permutation_digits,"+ LoRA, $k = 0$ only (control)",1740,0.4673,0.0559,0.4703,0.1262,0.0306,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
+random_permutation_digits,"+ LoRA, $k = 0$ only, matched steps",1740,0.3358,-0.0124,0.2502,-0.0081,-0.0009,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched
+random_permutation_digits,"+ LoRA, marked targets",1740,0.3565,-0.0175,0.2517,-0.0142,-0.0089,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorasep
+random_permutation_digits,as released,1740,0.8708,0.1378,0.9783,0.1488,0.1592,Qwen2.5 32B,Qwen2.5-32B-Instruct
+random_permutation_digits,"+ LoRA, $k = 0$ only (control)",1740,0.9493,0.0418,0.9945,0.0706,0.0379,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
+random_permutation_digits,"+ LoRA, marked targets",1740,0.7467,0.1289,0.8624,0.2466,0.0953,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep

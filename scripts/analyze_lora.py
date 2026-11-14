@@ -24,11 +24,16 @@ sys.path.insert(0, str(REPO / "scripts"))
 from analyze_naturalistic import row  # noqa: E402
 
 TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output")}
-MODELS = [("Qwen2.5 7B (as released)", "Qwen2.5-7B-Instruct"),
-          ("+ LoRA, k = 0 only (control)", "Qwen2.5-7B-Instruct-lorabase"),
-          ("+ LoRA, marked targets", "Qwen2.5-7B-Instruct-lorasep")]
-TASKS = [("running_xor", "Running XOR (trained)"), ("running_sum_local", "Running sum (trained)"), ("copy_previous", "Copy previous (held out)"),
-         ("sliding_window_max", "Sliding-window max (held out)"), ("random_permutation_digits", "Random permutation, digits (held out)")]
+# (base model, row label, checkpoint tag); labels repeat across base models, so rows are keyed by tag
+MODELS = [("Qwen2.5 7B", "as released", "Qwen2.5-7B-Instruct"),
+          ("Qwen2.5 7B", "+ LoRA, $k = 0$ only (control)", "Qwen2.5-7B-Instruct-lorabase"),
+          ("Qwen2.5 7B", "+ LoRA, $k = 0$ only, matched steps", "Qwen2.5-7B-Instruct-lorabase-matched"),
+          ("Qwen2.5 7B", "+ LoRA, marked targets", "Qwen2.5-7B-Instruct-lorasep"),
+          ("Qwen2.5 32B", "as released", "Qwen2.5-32B-Instruct"),
+          ("Qwen2.5 32B", "+ LoRA, $k = 0$ only (control)", "Qwen2.5-32B-Instruct-lorabase"),
+          ("Qwen2.5 32B", "+ LoRA, marked targets", "Qwen2.5-32B-Instruct-lorasep")]
+TASKS = [("running_xor", "XOR (trained)"), ("running_sum_local", "Sum (trained)"), ("copy_previous", "Copy previous (held out)"),
+         ("sliding_window_max", "Window max (held out)"), ("random_permutation_digits", "Permutation, digits (held out)")]
 
 
 def load_exact(task, tag):
@@ -43,32 +48,40 @@ def load_exact(task, tag):
 def main():
     rows = []
     for task, _ in TASKS:
-        for label, tag in MODELS:
+        for base, label, tag in MODELS:
             d = load_exact(task, tag)
             if d is not None:
-                rows.append(row(task, label, d))
+                r = row(task, label, d); r.update(base_model=base, tag=tag)
+                rows.append(r)
     out = pd.DataFrame(rows).round(4)
     if out.empty:
         print("no results yet"); return
     out.to_csv(REPO / "results_clean" / "_summary" / "lora.csv", index=False)
-    pd.set_option("display.width", 200)
-    print(out.to_string(index=False))
+    pd.set_option("display.width", 220)
+    print(out[["base_model", "model", "task", "n", "base", "delta", "post", "post_gain", "within_gain"]].to_string(index=False))
 
-    lines = ["\\begin{tabular}{ll cccc}", "\\toprule",
-             "Task & Model & No-marker acc. & $\\Delta$ & Post-marker & Within-segment \\\\", "\\midrule"]
-    for task, tname in TASKS:
-        first = True
-        for label, _ in MODELS:
-            x = out[(out.task == task) & (out.model == label)]
-            if x.empty:
+    def cell(r):
+        return f"{r.base:.2f} & ${r.post_gain:+.2f}$ & ${r.within_gain:+.2f}$"
+    tasks = [t for t, _ in TASKS if (out.task == t).any()]
+    head = " & ".join("\\multicolumn{3}{c}{" + dict(TASKS)[t] + "}" for t in tasks)
+    cmid = "".join(f"\\cmidrule(lr){{{2 + 3 * i}-{4 + 3 * i}}}" for i in range(len(tasks)))
+    sub = " & ".join(["Base & Post & Within"] * len(tasks))
+    lines = ["\\begin{tabular}{l" + " ccc" * len(tasks) + "}", "\\toprule", "& " + head + " \\\\", cmid,
+             "Checkpoint & " + sub + " \\\\", "\\midrule"]
+    for bi, base in enumerate(dict.fromkeys(b for b, _, _ in MODELS)):
+        if bi:
+            lines.append("\\midrule")
+        lines.append(f"\\multicolumn{{{1 + 3 * len(tasks)}}}{{l}}{{\\emph{{{base}}}}} \\\\")
+        for b, label, tag in MODELS:
+            if b != base:
                 continue
-            r = x.iloc[0]
-            lines.append(f"{tname if first else ''} & {label} & {r.base:.2f} & ${r.delta:+.2f}$ & ${r.post_gain:+.2f}$ & ${r.within_gain:+.2f}$ \\\\")
-            first = False
-        if not first:
-            lines.append("\\addlinespace")
-    if lines[-1] == "\\addlinespace":
-        lines.pop()
+            cells = []
+            for t in tasks:
+                x = out[(out.task == t) & (out.tag == tag)]
+                cells.append(cell(x.iloc[0]) if len(x) else "-- & -- & --")
+            if all(c.startswith("--") for c in cells):
+                continue
+            lines.append(f"\\quad {label} & " + " & ".join(cells) + " \\\\")
     lines += ["\\bottomrule", "\\end{tabular}"]
     (REPO / "paper_tmlr" / "tables" / "lora.tex").write_text("\n".join(lines) + "\n")
     print("wrote tables/lora.tex")

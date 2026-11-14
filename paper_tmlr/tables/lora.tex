@@ -1,45 +1,18 @@
-\begin{tabular}{ll cccc}
+\begin{tabular}{l ccc ccc ccc ccc ccc}
 \toprule
-Task & Model & No-marker acc. & $\Delta$ & Post-marker & Within-segment \\
+& \multicolumn{3}{c}{XOR (trained)} & \multicolumn{3}{c}{Sum (trained)} & \multicolumn{3}{c}{Copy previous (held out)} & \multicolumn{3}{c}{Window max (held out)} & \multicolumn{3}{c}{Permutation, digits (held out)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}\cmidrule(lr){11-13}\cmidrule(lr){14-16}
+Checkpoint & Base & Post & Within & Base & Post & Within & Base & Post & Within & Base & Post & Within & Base & Post & Within \\
 \midrule
-Running XOR (trained) & Qwen2.5 7B (as released) & 0.41 & $+0.00$ & $+0.02$ & $+0.01$ \\
- & + LoRA, k = 0 only (control) & 1.00 & $-0.12$ & $-0.40$ & $-0.07$ \\
- & + LoRA, k = 0 only, matched steps & 1.00 & $-0.15$ & $-0.44$ & $-0.03$ \\
- & + LoRA, marked targets & 1.00 & $-0.00$ & $+0.00$ & $+0.00$ \\
- & Qwen2.5 32B (as released) & 0.78 & $+0.05$ & $-0.19$ & $+0.11$ \\
- & + LoRA, k = 0 only (control) & 1.00 & $-0.12$ & $-0.40$ & $-0.07$ \\
- & + LoRA, marked targets & 1.00 & $-0.00$ & $+0.00$ & $+0.00$ \\
-\addlinespace
-Running sum (trained) & Qwen2.5 7B (as released) & 0.31 & $-0.01$ & $-0.03$ & $-0.01$ \\
- & + LoRA, k = 0 only (control) & 0.98 & $-0.24$ & $-0.57$ & $-0.13$ \\
- & + LoRA, k = 0 only, matched steps & 0.99 & $-0.26$ & $-0.63$ & $-0.07$ \\
- & + LoRA, marked targets & 1.00 & $-0.00$ & $+0.00$ & $+0.00$ \\
- & Qwen2.5 32B (as released) & 0.59 & $+0.06$ & $-0.16$ & $+0.11$ \\
- & + LoRA, k = 0 only (control) & 0.98 & $-0.24$ & $-0.57$ & $-0.13$ \\
- & + LoRA, marked targets & 1.00 & $-0.00$ & $+0.00$ & $+0.00$ \\
-\addlinespace
-Copy previous (held out) & Qwen2.5 7B (as released) & 0.55 & $-0.11$ & $-0.11$ & $-0.10$ \\
- & + LoRA, k = 0 only (control) & 0.63 & $-0.02$ & $-0.05$ & $+0.03$ \\
- & + LoRA, k = 0 only, matched steps & 0.60 & $-0.01$ & $+0.00$ & $+0.02$ \\
- & + LoRA, marked targets & 0.53 & $+0.02$ & $+0.04$ & $+0.02$ \\
- & Qwen2.5 32B (as released) & 0.86 & $-0.02$ & $-0.16$ & $-0.02$ \\
- & + LoRA, k = 0 only (control) & 0.63 & $-0.02$ & $-0.05$ & $+0.03$ \\
- & + LoRA, marked targets & 0.53 & $+0.02$ & $+0.04$ & $+0.02$ \\
-\addlinespace
-Sliding-window max (held out) & Qwen2.5 7B (as released) & 0.60 & $-0.05$ & $-0.11$ & $-0.02$ \\
- & + LoRA, k = 0 only (control) & 0.55 & $+0.00$ & $-0.01$ & $+0.06$ \\
- & + LoRA, k = 0 only, matched steps & 0.43 & $+0.07$ & $+0.06$ & $+0.08$ \\
- & + LoRA, marked targets & 0.43 & $-0.01$ & $-0.07$ & $+0.03$ \\
- & Qwen2.5 32B (as released) & 0.68 & $+0.06$ & $-0.13$ & $+0.08$ \\
- & + LoRA, k = 0 only (control) & 0.55 & $+0.00$ & $-0.01$ & $+0.06$ \\
- & + LoRA, marked targets & 0.43 & $-0.01$ & $-0.07$ & $+0.03$ \\
-\addlinespace
-Random permutation, digits (held out) & Qwen2.5 7B (as released) & 0.35 & $+0.08$ & $+0.14$ & $+0.03$ \\
- & + LoRA, k = 0 only (control) & 0.47 & $+0.06$ & $+0.13$ & $+0.03$ \\
- & + LoRA, k = 0 only, matched steps & 0.34 & $-0.01$ & $-0.01$ & $-0.00$ \\
- & + LoRA, marked targets & 0.36 & $-0.02$ & $-0.01$ & $-0.01$ \\
- & Qwen2.5 32B (as released) & 0.87 & $+0.14$ & $+0.15$ & $+0.16$ \\
- & + LoRA, k = 0 only (control) & 0.47 & $+0.06$ & $+0.13$ & $+0.03$ \\
- & + LoRA, marked targets & 0.36 & $-0.02$ & $-0.01$ & $-0.01$ \\
+\multicolumn{16}{l}{\emph{Qwen2.5 7B}} \\
+\quad as released & 0.41 & $+0.02$ & $+0.01$ & 0.31 & $-0.03$ & $-0.01$ & 0.55 & $-0.11$ & $-0.10$ & 0.60 & $-0.11$ & $-0.02$ & 0.35 & $+0.14$ & $+0.03$ \\
+\quad + LoRA, $k = 0$ only (control) & 1.00 & $-0.40$ & $-0.07$ & 0.98 & $-0.57$ & $-0.13$ & 0.63 & $-0.05$ & $+0.03$ & 0.55 & $-0.01$ & $+0.06$ & 0.47 & $+0.13$ & $+0.03$ \\
+\quad + LoRA, $k = 0$ only, matched steps & 1.00 & $-0.44$ & $-0.03$ & 0.99 & $-0.63$ & $-0.07$ & 0.60 & $+0.00$ & $+0.02$ & 0.43 & $+0.06$ & $+0.08$ & 0.34 & $-0.01$ & $-0.00$ \\
+\quad + LoRA, marked targets & 1.00 & $+0.00$ & $+0.00$ & 1.00 & $+0.00$ & $+0.00$ & 0.53 & $+0.04$ & $+0.02$ & 0.43 & $-0.07$ & $+0.03$ & 0.36 & $-0.01$ & $-0.01$ \\
+\midrule
+\multicolumn{16}{l}{\emph{Qwen2.5 32B}} \\
+\quad as released & 0.78 & $-0.19$ & $+0.11$ & 0.59 & $-0.16$ & $+0.11$ & 0.86 & $-0.16$ & $-0.02$ & 0.68 & $-0.13$ & $+0.08$ & 0.87 & $+0.15$ & $+0.16$ \\
+\quad + LoRA, $k = 0$ only (control) & 1.00 & $-0.41$ & $-0.00$ & 1.00 & $-0.62$ & $-0.01$ & 0.95 & $-0.22$ & $+0.02$ & 0.78 & $-0.27$ & $+0.02$ & 0.95 & $+0.07$ & $+0.04$ \\
+\quad + LoRA, marked targets & 1.00 & $+0.00$ & $+0.00$ & 1.00 & $+0.00$ & $+0.00$ & 0.75 & $+0.05$ & $-0.00$ & 0.76 & $+0.02$ & $+0.05$ & 0.75 & $+0.25$ & $+0.10$ \\
 \bottomrule
 \end{tabular}
