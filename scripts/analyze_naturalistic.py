@@ -102,9 +102,9 @@ def main():
     print(out.to_string(index=False))
 
     names = dict(NAT + [("synthetic_mean", "Four synthetic tasks (mean)")])
-    lines = ["\\begin{tabular}{ll cccc cc}", "\\toprule",
-             "& & & & & & \\multicolumn{2}{c}{Matches reset answer} \\\\", "\\cmidrule(lr){7-8}",
-             "Task & Model & No-marker acc. & $\\Delta$ & Post-marker & Within-segment & Post & Within \\\\", "\\midrule"]
+    lines = ["\\begin{tabular}{ll cccc cc cc}", "\\toprule",
+             "& & & & & & \\multicolumn{2}{c}{Matches true answer} & \\multicolumn{2}{c}{Matches reset answer} \\\\", "\\cmidrule(lr){7-8}\\cmidrule(lr){9-10}",
+             "Task & Model & No-marker acc. & $\\Delta$ & Post-marker & Within-segment & Post & Within & Post & Within \\\\", "\\midrule"]
     for task in [t for t, _ in NAT] + ["synthetic_mean"]:
         first = True
         for label, _ in ALL_MODELS:
@@ -113,7 +113,7 @@ def main():
                 continue
             r = x.iloc[0]
             tlab = names[task] if first else ""
-            rc = (f"{r.post_reset:.2f} & {r.within_reset:.2f}" if task != "synthetic_mean" else "-- & --")
+            rc = (f"{r.post_true:.2f} & {r.within_true:.2f} & {r.post_reset:.2f} & {r.within_reset:.2f}" if task != "synthetic_mean" else "-- & -- & -- & --")
             lines.append(f"{tlab} & {label} & {r.base:.2f} & ${r.delta:+.2f}$ & ${r.post_gain:+.2f}$ & ${r.within_gain:+.2f}$ & {rc} \\\\")
             first = False
         if task != "synthetic_mean":
