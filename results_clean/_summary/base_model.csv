@@ -1,0 +1,15 @@
+model,family,task,n,base,delta,post,post_gain,within_gain
+Qwen2.5-7B (base),Digits,cyclic_shift_digits,840,0.6253,0.1049,0.7696,0.1757,0.078
+Qwen2.5-7B (base),Digits,random_permutation_digits,840,0.4745,0.1032,0.6658,0.2421,0.0604
+Qwen2.5-7B (base),Digits,conditional_shift_digits,840,0.5589,0.0834,0.7055,0.1803,0.0541
+Qwen2.5-7B (base),Dependency,copy_previous,280,0.7268,-0.0578,0.5271,-0.197,-0.0342
+Qwen2.5-7B (base),Dependency,running_xor,280,0.5823,-0.0094,0.5384,-0.0196,0.0
+Qwen2.5-7B (base),Dependency,running_sum_local,840,0.3679,0.003,0.3107,-0.0441,0.0124
+Qwen2.5-7B (base),Dependency,sliding_window_max,560,0.5544,0.0309,0.4995,-0.0211,0.0446
+Qwen2.5-7B-Instruct,Digits,cyclic_shift_digits,840,0.5546,0.1535,0.789,0.2868,0.1158
+Qwen2.5-7B-Instruct,Digits,random_permutation_digits,840,0.4173,0.1541,0.7016,0.3359,0.1127
+Qwen2.5-7B-Instruct,Digits,conditional_shift_digits,840,0.4589,0.1236,0.6909,0.2654,0.0939
+Qwen2.5-7B-Instruct,Dependency,copy_previous,280,0.6052,-0.0042,0.5329,-0.0926,0.011
+Qwen2.5-7B-Instruct,Dependency,running_xor,280,0.5664,-0.0028,0.4861,-0.072,0.0124
+Qwen2.5-7B-Instruct,Dependency,running_sum_local,840,0.3625,0.021,0.3112,-0.0223,0.032
+Qwen2.5-7B-Instruct,Dependency,sliding_window_max,560,0.5186,0.0654,0.5076,0.0528,0.0695

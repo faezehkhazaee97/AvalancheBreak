@@ -23,6 +23,14 @@ Qwen2.5 7B,random_permutation_digits,base,no,no,40,0.2344,0.0119,0.0,1.0,
 Qwen2.5 7B,random_permutation_digits,in_only,yes,no,80,0.1855,0.0083,-0.0488,1.0,0.1327
 Qwen2.5 7B,random_permutation_digits,out_only,no,yes,80,0.1562,0.0087,-0.0781,0.6875,
 Qwen2.5 7B,random_permutation_digits,in_out,yes,yes,80,0.2721,0.0162,0.0377,0.9875,0.3918
+Qwen2.5 7B,copy_previous,base,no,no,40,0.5066,0.0189,0.0,1.0,
+Qwen2.5 7B,copy_previous,in_only,yes,no,80,0.4918,0.0154,-0.0148,1.0,0.5151
+Qwen2.5 7B,copy_previous,out_only,no,yes,80,0.465,0.0114,-0.0416,0.1875,
+Qwen2.5 7B,copy_previous,in_out,yes,yes,80,0.4965,0.0132,-0.0102,0.95,0.469
+Qwen2.5 7B,running_sum_local,base,no,no,40,0.2617,0.0126,0.0,1.0,
+Qwen2.5 7B,running_sum_local,in_only,yes,no,80,0.2684,0.0079,0.0066,1.0,0.2313
+Qwen2.5 7B,running_sum_local,out_only,no,yes,80,0.2561,0.0069,-0.0057,0.35,
+Qwen2.5 7B,running_sum_local,in_out,yes,yes,80,0.2789,0.0075,0.0172,1.0,0.2255
 Mistral 7B,running_xor,base,no,no,40,0.4977,0.0122,0.0,0.75,
 Mistral 7B,running_xor,in_only,yes,no,80,0.4432,0.0131,-0.0545,1.0,0.4638
 Mistral 7B,running_xor,out_only,no,yes,80,0.3812,0.016,-0.1164,0.1875,
@@ -31,3 +39,11 @@ Mistral 7B,random_permutation_digits,base,no,no,40,0.1613,0.0108,0.0,1.0,
 Mistral 7B,random_permutation_digits,in_only,yes,no,80,0.1271,0.0068,-0.0342,0.9625,0.1067
 Mistral 7B,random_permutation_digits,out_only,no,yes,80,0.1469,0.007,-0.0145,0.1875,
 Mistral 7B,random_permutation_digits,in_out,yes,yes,80,0.1328,0.0074,-0.0285,0.9625,0.3006
+Mistral 7B,copy_previous,base,no,no,40,0.5078,0.0203,0.0,1.0,
+Mistral 7B,copy_previous,in_only,yes,no,80,0.452,0.015,-0.0559,1.0,0.4054
+Mistral 7B,copy_previous,out_only,no,yes,80,0.5492,0.0105,0.0414,0.3125,
+Mistral 7B,copy_previous,in_out,yes,yes,80,0.5475,0.0114,0.0396,0.975,0.5246
+Mistral 7B,running_sum_local,base,no,no,40,0.2473,0.0137,0.0,0.525,
+Mistral 7B,running_sum_local,in_only,yes,no,80,0.1994,0.0101,-0.0479,1.0,0.1754
+Mistral 7B,running_sum_local,out_only,no,yes,80,0.1562,0.0096,-0.091,0.0875,
+Mistral 7B,running_sum_local,in_out,yes,yes,80,0.2086,0.0097,-0.0387,0.575,0.2405

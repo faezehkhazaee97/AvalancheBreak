@@ -1,0 +1,13 @@
+task,model,n,base,delta,post,post_gain,within_gain
+running_xor,Qwen2.5 7B (as released),1160,0.4105,0.0015,0.4123,0.0156,0.0062
+running_xor,"+ LoRA, k = 0 only (control)",580,0.9998,-0.1188,0.6048,-0.3951,-0.0665
+running_xor,"+ LoRA, marked targets",580,1.0,-0.0002,1.0,0.0,0.0
+copy_previous,Qwen2.5 7B (as released),580,0.5469,-0.1127,0.414,-0.1122,-0.1018
+copy_previous,"+ LoRA, k = 0 only (control)",580,0.6291,-0.0249,0.5197,-0.0536,0.0271
+copy_previous,"+ LoRA, marked targets",580,0.5312,0.0238,0.4992,0.036,0.0196
+sliding_window_max,Qwen2.5 7B (as released),1160,0.5967,-0.0515,0.3987,-0.1088,-0.0245
+sliding_window_max,"+ LoRA, k = 0 only (control)",1160,0.5509,0.0049,0.4493,-0.0101,0.0561
+sliding_window_max,"+ LoRA, marked targets",1160,0.4327,-0.0065,0.3021,-0.0715,0.0253
+random_permutation_digits,Qwen2.5 7B (as released),1740,0.3546,0.0814,0.416,0.1379,0.0338
+random_permutation_digits,"+ LoRA, k = 0 only (control)",1740,0.4673,0.0559,0.4703,0.1262,0.0306
+random_permutation_digits,"+ LoRA, marked targets",1740,0.3565,-0.0175,0.2517,-0.0142,-0.0089

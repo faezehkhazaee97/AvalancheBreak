@@ -72,7 +72,9 @@ def main():
     print(out[out.layer.isin(["-1", "all"])].to_string(index=False))
 
     # figure: one row per model, one panel per task; x = layer, y = log-odds recovery, line per site
-    models = [m for m in MODELS if any(k[0] == m[0] for k in fig_data)]
+    # figure only for models whose clean and marked runs differ enough to define a recovery (gap >= 2 nats)
+    gap = {m: abs(float(out[(out.model == m) & (out.site == "clean")].logodds.mean() - out[(out.model == m) & (out.site == "marked")].logodds.mean())) for m, _ in MODELS}
+    models = [m for m in MODELS if any(k[0] == m[0] for k in fig_data) and gap.get(m[0], 0) >= 2]
     if models:
         set_rc()
         fig, axes = plt.subplots(len(models), len(TASKN), figsize=(MULTI_COL_WIDTH, 2.1 * len(models)), squeeze=False)

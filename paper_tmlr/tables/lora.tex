@@ -3,11 +3,19 @@
 Task & Model & No-marker acc. & $\Delta$ & Post-marker & Within-segment \\
 \midrule
 Running XOR (trained) & Qwen2.5 7B (as released) & 0.41 & $+0.00$ & $+0.02$ & $+0.01$ \\
+ & + LoRA, k = 0 only (control) & 1.00 & $-0.12$ & $-0.40$ & $-0.07$ \\
+ & + LoRA, marked targets & 1.00 & $-0.00$ & $+0.00$ & $+0.00$ \\
 \addlinespace
 Copy previous (held out) & Qwen2.5 7B (as released) & 0.55 & $-0.11$ & $-0.11$ & $-0.10$ \\
+ & + LoRA, k = 0 only (control) & 0.63 & $-0.02$ & $-0.05$ & $+0.03$ \\
+ & + LoRA, marked targets & 0.53 & $+0.02$ & $+0.04$ & $+0.02$ \\
 \addlinespace
 Sliding-window max (held out) & Qwen2.5 7B (as released) & 0.60 & $-0.05$ & $-0.11$ & $-0.02$ \\
+ & + LoRA, k = 0 only (control) & 0.55 & $+0.00$ & $-0.01$ & $+0.06$ \\
+ & + LoRA, marked targets & 0.43 & $-0.01$ & $-0.07$ & $+0.03$ \\
 \addlinespace
 Random permutation, digits (held out) & Qwen2.5 7B (as released) & 0.35 & $+0.08$ & $+0.14$ & $+0.03$ \\
+ & + LoRA, k = 0 only (control) & 0.47 & $+0.06$ & $+0.13$ & $+0.03$ \\
+ & + LoRA, marked targets & 0.36 & $-0.02$ & $-0.01$ & $-0.01$ \\
 \bottomrule
 \end{tabular}
