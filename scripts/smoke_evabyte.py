@@ -32,8 +32,12 @@ for k in (0, 4):
     except Exception as ex:
         print("chat template failed:", ex); enc = tok(prompt, return_tensors="pt")
     enc = {a: b.to(model.device) for a, b in enc.items()}
-    t0 = time.time()
-    with torch.no_grad():
-        out = model.generate(**enc, max_new_tokens=60, do_sample=False)
-    text = tok.decode(out[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
-    print(f"k={k}: truth {ans} | output {text!r} | {round(time.time() - t0, 1)} s")
+    for mode, kw in [("default cache", {}), ("use_cache=False", {"use_cache": False})]:
+        t0 = time.time()
+        try:
+            with torch.no_grad():
+                out = model.generate(**enc, max_new_tokens=60, do_sample=False, **kw)
+            text = tok.decode(out[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
+            print(f"k={k} [{mode}]: truth {ans} | output {text!r} | {round(time.time() - t0, 1)} s")
+        except Exception as ex:
+            print(f"k={k} [{mode}]: FAILED {type(ex).__name__}: {str(ex)[:160]}")
