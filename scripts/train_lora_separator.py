@@ -5,7 +5,8 @@ LoRA on Qwen2.5-7B-Instruct with synthetic examples of two dependency tasks, run
 running_sum_local (moduli 2, 4, 8), at N in {8, 16, 32, 64} and every spacing k in
 {0, 2, 4, 8, 16} (k < N), with the marked answers as targets, so every cross-boundary step is
 supervised. A control adapter (--no-markers) is trained on the same tasks and seeds with k = 0 only,
-to separate learning the tasks from learning to cross a marker. Examples are drawn from a seed
+to separate learning the tasks from learning to cross a marker; with --epochs 9 --tag-suffix -matched
+the control sees about as many example passes (4,320) as the marked adapter (4,080). Examples are drawn from a seed
 stream disjoint from every grid seed. The merged models are saved as ordinary checkpoints so the
 usual runners evaluate them on held-out tasks (copy_previous, sliding_window_max,
 random_permutation with digits) and on running_xor at the grid's own, unseen inputs.
@@ -51,13 +52,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-markers", action="store_true")
     ap.add_argument("--base", default=BASE)
+    ap.add_argument("--tag-suffix", default="", help="appended to the output tag, e.g. -matched")
     ap.add_argument("--epochs", type=int, default=2)
     ap.add_argument("--lr", type=float, default=2e-4)
     ap.add_argument("--batch", type=int, default=2)
     ap.add_argument("--accum", type=int, default=8)
     ap.add_argument("--dry", action="store_true")
     args = ap.parse_args()
-    tag = args.base.split("/")[-1] + "-" + ("lorabase" if args.no_markers else "lorasep")
+    tag = args.base.split("/")[-1] + "-" + ("lorabase" if args.no_markers else "lorasep") + args.tag_suffix
     data = examples(args.no_markers)
     print(f"{len(data)} training examples ({tag})")
     if args.dry:
