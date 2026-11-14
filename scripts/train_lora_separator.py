@@ -5,7 +5,7 @@ LoRA on Qwen2.5-7B-Instruct with synthetic examples of two dependency tasks, run
 running_sum_local (moduli 2, 4, 8), at N in {8, 16, 32, 64} and every spacing k in
 {0, 2, 4, 8, 16} (k < N), with the marked answers as targets, so every cross-boundary step is
 supervised. A control adapter (--no-markers) is trained on the same tasks and seeds with k = 0 only,
-to separate learning the tasks from learning to cross a marker; with --epochs 9 --tag-suffix -matched
+to separate learning the tasks from learning to cross a marker; with --epochs 9 --tag-suffix=-matched
 the control sees about as many example passes (4,320) as the marked adapter (4,080). Examples are drawn from a seed
 stream disjoint from every grid seed. The merged models are saved as ordinary checkpoints so the
 usual runners evaluate them on held-out tasks (copy_previous, sliding_window_max,
