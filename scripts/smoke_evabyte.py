@@ -32,12 +32,22 @@ for k in (0, 4):
     except Exception as ex:
         print("chat template failed:", ex); enc = tok(prompt, return_tensors="pt")
     enc = {a: b.to(model.device) for a, b in enc.items()}
-    for mode, kw in [("default cache", {}), ("use_cache=False", {"use_cache": False})]:
+    import sys, traceback
+    mod = sys.modules[type(model).__module__]
+    pkg = mod.__name__.rsplit(".", 1)[0]
+    attempts = [("triton kernels, use_cache=False", True, {"use_cache": False}),
+                ("pytorch fallback, use_cache=False", False, {"use_cache": False}),
+                ("pytorch fallback, default cache", False, {})]
+    for mode, use_triton, kw in attempts:
+        for name in list(sys.modules):
+            if name.startswith(pkg) and hasattr(sys.modules[name], "USE_TRITON_IMPL"):
+                sys.modules[name].USE_TRITON_IMPL = use_triton
         t0 = time.time()
         try:
             with torch.no_grad():
                 out = model.generate(**enc, max_new_tokens=60, do_sample=False, **kw)
             text = tok.decode(out[0][enc["input_ids"].shape[1]:], skip_special_tokens=True)
-            print(f"k={k} [{mode}]: truth {ans} | output {text!r} | {round(time.time() - t0, 1)} s")
+            print(f"k={k} [{mode}]: truth {ans} | output {text!r} | {round(time.time() - t0, 1)} s", flush=True)
         except Exception as ex:
-            print(f"k={k} [{mode}]: FAILED {type(ex).__name__}: {str(ex)[:160]}")
+            tb = traceback.extract_tb(ex.__traceback__)[-1]
+            print(f"k={k} [{mode}]: FAILED {type(ex).__name__}: {str(ex)[:120]} at {tb.filename.split('/')[-1]}:{tb.lineno}", flush=True)
