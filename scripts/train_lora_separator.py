@@ -11,7 +11,7 @@ usual runners evaluate them on held-out tasks (copy_previous, sliding_window_max
 random_permutation with digits) and on running_xor at the grid's own, unseen inputs.
 
 Output: results/lora_separator/<tag>/ (merged checkpoint + tokenizer), results/lora_separator/<tag>.log
-Usage:  python scripts/train_lora_separator.py [--no-markers] [--dry]
+Usage:  python scripts/train_lora_separator.py [--no-markers] [--base Qwen/Qwen2.5-32B-Instruct] [--batch 1 --accum 16] [--dry]
 """
 
 import argparse
@@ -25,7 +25,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 from tasks.common.boundary import valid_intervals  # noqa: E402
 
-BASE = "Qwen/Qwen2.5-7B-Instruct"
+BASE = "Qwen/Qwen2.5-7B-Instruct"   # default; --base overrides
 TASKS = {"running_xor": [None], "running_sum_local": [2, 4, 8]}
 LENGTHS = [8, 16, 32, 64]
 KS = [0, 2, 4, 8, 16]
@@ -50,13 +50,14 @@ def examples(no_markers):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-markers", action="store_true")
+    ap.add_argument("--base", default=BASE)
     ap.add_argument("--epochs", type=int, default=2)
     ap.add_argument("--lr", type=float, default=2e-4)
     ap.add_argument("--batch", type=int, default=2)
     ap.add_argument("--accum", type=int, default=8)
     ap.add_argument("--dry", action="store_true")
     args = ap.parse_args()
-    tag = "Qwen2.5-7B-Instruct-" + ("lorabase" if args.no_markers else "lorasep")
+    tag = args.base.split("/")[-1] + "-" + ("lorabase" if args.no_markers else "lorasep")
     data = examples(args.no_markers)
     print(f"{len(data)} training examples ({tag})")
     if args.dry:
@@ -69,8 +70,8 @@ def main():
     from peft import LoraConfig, get_peft_model
     from tasks.common.runner import load_model
 
-    tokenizer = AutoTokenizer.from_pretrained(BASE)
-    model = load_model(BASE)
+    tokenizer = AutoTokenizer.from_pretrained(args.base)
+    model = load_model(args.base)
     model.gradient_checkpointing_enable()
     model.enable_input_require_grads()
     cfg = LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05, task_type="CAUSAL_LM",
