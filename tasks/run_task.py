@@ -37,6 +37,7 @@ TASK_NAMES = [
     "copy_previous_jitter", "running_xor_jitter", "running_sum_local_jitter", "sliding_window_max_jitter",
     "dna_complement", "dna_same_class", "dna_gc_count", "text_shift", "text_ascending", "text_vowel_count",
     "dna_complement_spaced", "dna_same_class_spaced", "dna_gc_count_spaced", "text_shift_spaced", "text_ascending_spaced", "text_vowel_count_spaced",
+    "dna_copy_previous", "text_copy_previous", "dna_copy_previous_spaced", "text_copy_previous_spaced",
     "clrs_minimum", "clrs_kadane",
     "procbench_substitute", "string_copy", "flip_flop_high", "flip_flop_low",
     "cyclic_shift_digits", "sliding_window_max", "sliding_window_max_reset",
