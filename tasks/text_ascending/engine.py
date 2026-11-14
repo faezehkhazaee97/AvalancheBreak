@@ -14,7 +14,7 @@ def rule(s):
     return "0" + "".join("1" if s[i] > s[i - 1] else "0" for i in range(1, len(s)))
 
 
-assert rule("thelazydog") == "0010101001"
+assert rule("thelazydog") == "0001010010"
 
 
 def build_prompt(N, k, rng, axis_val=None):
@@ -25,7 +25,7 @@ def build_prompt(N, k, rng, axis_val=None):
 Task: Later in the alphabet than the previous letter.
 Alphabet: lowercase letters a-z in the input (English text with spaces and punctuation removed); digits 0 and 1 in the output.
 Rule: For each letter, output 1 if it comes later in the alphabet than the letter immediately before it, and 0 otherwise (also 0 if the two letters are the same). The first letter has no previous letter and gets 0.
-Example: Input thelazydog → Output 0010101001 (t: first, 0; h after t: 0; e after h: 0; l after e: 1; a after l: 0; z after a: 1; y after z: 0; d after y: 0; o after d: 1; g after o: 0)
+Example: Input thelazydog → Output 0001010010 (t: first, 0; h after t: 0; e after h: 0; l after e: 1; a after l: 0; z after a: 1; y after z: 0; d after y: 0; o after d: 1; g after o: 0)
 Constraint: The input contains vertical bars (|). These are structural boundaries.
 DO NOT transform them. Copy them exactly to the output.
 No spaces, no explanations.

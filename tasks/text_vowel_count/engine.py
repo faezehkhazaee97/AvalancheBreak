@@ -19,7 +19,7 @@ def rule(s):
     return "".join(out)
 
 
-assert rule("thelazydog") == "0011122223"
+assert rule("thelazydog") == "0011222233"
 
 
 def build_prompt(N, k, rng, axis_val=None):
@@ -30,7 +30,7 @@ def build_prompt(N, k, rng, axis_val=None):
 Task: Running vowel count modulo {MOD}.
 Alphabet: lowercase letters a-z in the input (English text with spaces and punctuation removed); digits 0-{MOD - 1} in the output.
 Rule: Read the input left to right, keeping a count of the vowels (a, e, i, o, u) seen so far, starting at 0. After each letter, output the count modulo {MOD}.
-Example: Input thelazydog → Output 0011122223
+Example: Input thelazydog → Output 0011222233
 Constraint: The input contains vertical bars (|). These are structural boundaries.
 DO NOT transform them. Copy them exactly to the output.
 No spaces, no explanations.

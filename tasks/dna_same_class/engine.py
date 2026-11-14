@@ -18,7 +18,7 @@ def rule(s):
     return "".join(out)
 
 
-assert rule("AGCTTA") == "010100"
+assert rule("AGCTTA") == "010110"
 
 
 def build_prompt(N, k, rng, axis_val=None):
@@ -29,7 +29,7 @@ def build_prompt(N, k, rng, axis_val=None):
 Task: Same base class as the previous base.
 Alphabet: A, C, G, T in the input (a stretch of a human promoter sequence); digits 0 and 1 in the output.
 Rule: A and G are purines; C and T are pyrimidines. For each base, output 1 if it is in the same class as the base immediately before it, and 0 otherwise. The first base has no previous base and gets 0.
-Example: Input AGCTTA → Output 010100 (A: first, 0; G: purine after purine, 1; C: pyrimidine after purine, 0; T: pyrimidine after pyrimidine, 1; T: 1; A: purine after pyrimidine, 0)
+Example: Input AGCTTA → Output 010110 (A: first, 0; G: purine after purine, 1; C: pyrimidine after purine, 0; T: pyrimidine after pyrimidine, 1; T: pyrimidine after pyrimidine, 1; A: purine after pyrimidine, 0)
 Constraint: The input contains vertical bars (|). These are structural boundaries.
 DO NOT transform them. Copy them exactly to the output.
 No spaces, no explanations.
