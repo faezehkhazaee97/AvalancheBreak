@@ -167,14 +167,17 @@ def _run_one(engine, tokenizer, model, N, k, axis_val, t):
     inputs = {kk: vv.to(model.device) for kk, vv in enc.items()}
 
     max_new = max_new_tokens(engine, N, k)
-    with torch.no_grad():
-        outputs = model.generate(
-            **inputs, max_new_tokens=max_new, do_sample=False,
-            pad_token_id=tokenizer.eos_token_id,
-            # EvaByte builds its own cache inside forward and rejects the library cache object
-            **({"use_cache": False} if type(model).__name__.startswith("EvaByte") else {}),
-        )
-    gen_only = outputs[0][inputs["input_ids"].shape[1]:]
+    if type(model).__name__.startswith("EvaByte"):
+        # byte-level EvaByte: its own cache and a manual greedy loop (tasks/common/evabyte_generate.py)
+        from tasks.common.evabyte_generate import manual_greedy
+        gen_only = manual_greedy(model, tokenizer, inputs["input_ids"], max_new)
+    else:
+        with torch.no_grad():
+            outputs = model.generate(
+                **inputs, max_new_tokens=max_new, do_sample=False,
+                pad_token_id=tokenizer.eos_token_id,
+            )
+        gen_only = outputs[0][inputs["input_ids"].shape[1]:]
     raw_output = tokenizer.decode(gen_only, skip_special_tokens=True)
 
     if getattr(engine, "SCORING_MODE", "char") == "token":
