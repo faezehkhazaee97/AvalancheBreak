@@ -2,6 +2,7 @@ task,model,n,base,delta,post,post_gain,within_gain
 running_xor,Qwen2.5 7B (as released),1160,0.4105,0.0015,0.4123,0.0156,0.0062
 running_xor,"+ LoRA, k = 0 only (control)",580,0.9998,-0.1188,0.6048,-0.3951,-0.0665
 running_xor,"+ LoRA, marked targets",580,1.0,-0.0002,1.0,0.0,0.0
+running_sum_local,Qwen2.5 7B (as released),3480,0.3092,-0.0061,0.2216,-0.0314,-0.0067
 copy_previous,Qwen2.5 7B (as released),580,0.5469,-0.1127,0.414,-0.1122,-0.1018
 copy_previous,"+ LoRA, k = 0 only (control)",580,0.6291,-0.0249,0.5197,-0.0536,0.0271
 copy_previous,"+ LoRA, marked targets",580,0.5312,0.0238,0.4992,0.036,0.0196

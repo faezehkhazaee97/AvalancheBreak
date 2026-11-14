@@ -85,29 +85,34 @@ def main():
     print(o.to_string(index=False))
     for (m, t), (p, lo, hi) in inter.items():
         print(f"interaction {m} {t}: {p:+.3f}  95% [{lo:+.3f}, {hi:+.3f}]")
-    lines = ["\\begin{tabular}{ll cc cc cc}", "\\toprule",
-             "& & \\multicolumn{2}{c}{Markers} & & & & \\\\", "\\cmidrule(lr){3-4}",
-             "Task & Condition & Input & Output & Accuracy & Change & Format & Post-marker \\\\", "\\midrule"]
     names = {"base": "Neither side", "in_only": "Input only", "out_only": "Output only", "in_out": "Both sides"}
-    blocks = [(m, t) for m, _ in MODELS for t, _ in TASKS if (m, t) in inter]
-    for bi, (label, task) in enumerate(blocks):
-        lab = dict(TASKS)[task]
-        lines.append(f"\\multicolumn{{8}}{{l}}{{\\emph{{{label}}}}} \\\\" if bi == 0 or blocks[bi - 1][0] != label else "")
-        for i, (cond, hi_, ho_) in enumerate(CONDS):
-            r = o[(o.model == label) & (o.task == task) & (o.cond == cond)].iloc[0]
-            ch = "---" if cond == "base" else f"${r.delta:+.2f}$"
-            post = "---" if np.isnan(r.post) else f"{r.post:.2f}"
-            lines.append(" & ".join(["\\task{" + lab + "}" if i == 0 else "", names[cond], hi_, ho_,
-                                     f"{r.acc:.2f} $\\pm$ {1.96 * r.se:.2f}", ch,
-                                     f"{r.format_ok:.0%}".replace("%", "\\%"), post]) + " \\\\")
-        p, lo, hi = inter[(label, task)]
-        lines.append(f"\\multicolumn{{8}}{{l}}{{\\quad Interaction ${p:+.2f}$, 95\\% interval $[{lo:+.2f}, {hi:+.2f}]$}} \\\\")
-        if bi != len(blocks) - 1:
-            lines.append("\\midrule")
-    lines = [l for l in lines if l != ""]
-    lines += ["\\bottomrule", "\\end{tabular}"]
-    (REPO / "paper_tmlr" / "tables" / "marker_sides_forced.tex").write_text("\n".join(lines) + "\n")
-    print("Wrote paper_tmlr/tables/marker_sides_forced.tex")
+
+    def table(models, path):
+        lines = ["\\begin{tabular}{ll cc cc cc}", "\\toprule",
+                 "& & \\multicolumn{2}{c}{Markers} & & & & \\\\", "\\cmidrule(lr){3-4}",
+                 "Task & Condition & Input & Output & Accuracy & Change & Format & Post-marker \\\\", "\\midrule"]
+        blocks = [(m, t) for m in models for t, _ in TASKS if (m, t) in inter]
+        for bi, (label, task) in enumerate(blocks):
+            lab = dict(TASKS)[task]
+            if len(models) > 1 and (bi == 0 or blocks[bi - 1][0] != label):
+                lines.append(f"\\multicolumn{{8}}{{l}}{{\\emph{{{label}}}}} \\\\")
+            for i, (cond, hi_, ho_) in enumerate(CONDS):
+                r = o[(o.model == label) & (o.task == task) & (o.cond == cond)].iloc[0]
+                ch = "---" if cond == "base" else f"${r.delta:+.2f}$"
+                post = "---" if np.isnan(r.post) else f"{r.post:.2f}"
+                lines.append(" & ".join(["\\task{" + lab + "}" if i == 0 else "", names[cond], hi_, ho_,
+                                         f"{r.acc:.2f} $\\pm$ {1.96 * r.se:.2f}", ch,
+                                         f"{r.format_ok:.0%}".replace("%", "\\%"), post]) + " \\\\")
+            p, lo, hi = inter[(label, task)]
+            lines.append(f"\\multicolumn{{8}}{{l}}{{\\quad Interaction ${p:+.2f}$, 95\\% interval $[{lo:+.2f}, {hi:+.2f}]$}} \\\\")
+            if bi != len(blocks) - 1:
+                lines.append("\\midrule")
+        lines += ["\\bottomrule", "\\end{tabular}"]
+        (REPO / "paper_tmlr" / "tables" / path).write_text("\n".join(lines) + "\n")
+        print("Wrote paper_tmlr/tables/" + path)
+
+    table([MODELS[0][0]], "marker_sides_forced.tex")                 # Qwen2.5-32B, main text
+    table([m for m, _ in MODELS[1:]], "marker_sides_forced_7b.tex")   # 7B-class models, appendix
 
 
 if __name__ == "__main__":

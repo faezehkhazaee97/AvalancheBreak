@@ -27,7 +27,7 @@ TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model
 MODELS = [("Qwen2.5 7B (as released)", "Qwen2.5-7B-Instruct"),
           ("+ LoRA, k = 0 only (control)", "Qwen2.5-7B-Instruct-lorabase"),
           ("+ LoRA, marked targets", "Qwen2.5-7B-Instruct-lorasep")]
-TASKS = [("running_xor", "Running XOR (trained)"), ("copy_previous", "Copy previous (held out)"),
+TASKS = [("running_xor", "Running XOR (trained)"), ("running_sum_local", "Running sum (trained)"), ("copy_previous", "Copy previous (held out)"),
          ("sliding_window_max", "Sliding-window max (held out)"), ("random_permutation_digits", "Random permutation, digits (held out)")]
 
 
