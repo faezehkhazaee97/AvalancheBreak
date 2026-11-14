@@ -82,11 +82,15 @@ def load_model(model_id):
     vision_config) load with their own class: AutoModelForCausalLM can resolve
     them to a text-only class whose weight names don't match the checkpoint.
     Generation here is text-only either way."""
-    cfg = AutoConfig.from_pretrained(model_id)
+    remote = "evabyte" in model_id.lower()          # byte-level EvaByte ships its own model code
+    cfg = AutoConfig.from_pretrained(model_id, trust_remote_code=remote)
     cls = AutoModelForImageTextToText if getattr(cfg, "vision_config", None) is not None else AutoModelForCausalLM
-    return cls.from_pretrained(
-        model_id, device_map="auto", dtype=torch.bfloat16, attn_implementation="eager",
-    )
+    kw = dict(device_map="auto", dtype=torch.bfloat16)
+    if remote:
+        kw["trust_remote_code"] = True
+    else:
+        kw["attn_implementation"] = "eager"
+    return cls.from_pretrained(model_id, **kw)
 
 
 def _build_grid(engine, trials_per_cell, trial_start=0):
@@ -118,7 +122,7 @@ def run(engine, model_id, mode, output_csv, trials_per_cell=None, trial_start=0)
     print(f"Task: {engine.TASK_NAME} | Model: {model_id} | Mode: {mode} | Trials/cell: {trials_per_cell}")
     _seed_everything()
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code="evabyte" in model_id.lower())
     model = load_model(model_id)
     model.eval()
 
@@ -167,6 +171,8 @@ def _run_one(engine, tokenizer, model, N, k, axis_val, t):
         outputs = model.generate(
             **inputs, max_new_tokens=max_new, do_sample=False,
             pad_token_id=tokenizer.eos_token_id,
+            # EvaByte builds its own cache inside forward and rejects the library cache object
+            **({"use_cache": False} if type(model).__name__.startswith("EvaByte") else {}),
         )
     gen_only = outputs[0][inputs["input_ids"].shape[1]:]
     raw_output = tokenizer.decode(gen_only, skip_special_tokens=True)
