@@ -48,3 +48,52 @@ for k in (0, 4):
         except Exception as ex:
             tb = traceback.extract_tb(ex.__traceback__)[-1]
             print(f"k={k} [{mode}]: FAILED {type(ex).__name__}: {str(ex)[:120]} at {tb.filename.split('/')[-1]}:{tb.lineno}", flush=True)
+
+# ---- attempt with a manual greedy loop on the model's own cache (no library generate)
+def manual_greedy(model, tok, enc, max_new=60, chunked_prefill=True):
+    """Greedy decoding with EvaCache: prefill the prompt (in one call, or one token at a time), then
+    feed one token per step with explicit position ids."""
+    import importlib
+    mod = sys.modules[type(model).__module__]
+    pkg = mod.__name__.rsplit(".", 1)[0]
+    EvaCache = importlib.import_module(pkg + ".eva_cache").EvaCache
+    ids = enc["input_ids"]
+    cache = EvaCache()
+    dev = ids.device
+    with torch.no_grad():
+        if chunked_prefill:
+            pos = torch.arange(ids.shape[1], device=dev)[None]
+            out = model(input_ids=ids, position_ids=pos, past_key_values=cache, use_cache=True)
+            logits = out.logits[:, -1]
+        else:
+            for i in range(ids.shape[1]):
+                out = model(input_ids=ids[:, i:i + 1], position_ids=torch.tensor([[i]], device=dev), past_key_values=cache, use_cache=True)
+            logits = out.logits[:, -1]
+        gen = []
+        n = ids.shape[1]
+        eos = {tok.eos_token_id, tok.convert_tokens_to_ids("<|eot_id|>")}
+        for step in range(max_new):
+            nxt = int(logits.argmax(-1))
+            if nxt in eos:
+                break
+            gen.append(nxt)
+            out = model(input_ids=torch.tensor([[nxt]], device=dev), position_ids=torch.tensor([[n + step]], device=dev),
+                        past_key_values=cache, use_cache=True)
+            logits = out.logits[:, -1]
+    return tok.decode(gen, skip_special_tokens=True)
+
+
+for k in (0, 4):
+    inp, ans, prompt = e.build_prompt(16, k, random.Random(_local_seed(16, k, None, 0)))
+    enc = tok.apply_chat_template([{"role": "user", "content": prompt}], add_generation_prompt=True, return_tensors="pt", return_dict=True)
+    enc = {a: b.to(model.device) for a, b in enc.items()}
+    for chunked in (True, False):
+        t0 = time.time()
+        try:
+            text = manual_greedy(model, tok, enc, chunked_prefill=chunked)
+            print(f"k={k} [manual loop, {'one-call' if chunked else 'token-by-token'} prefill]: truth {ans} | output {text!r} | {round(time.time() - t0, 1)} s", flush=True)
+            break
+        except Exception as ex:
+            tb = traceback.extract_tb(ex.__traceback__)[-1]
+            print(f"k={k} [manual loop, {'one-call' if chunked else 'token-by-token'} prefill]: FAILED {type(ex).__name__}: {str(ex)[:120]} at {tb.filename.split('/')[-1]}:{tb.lineno}", flush=True)
+
