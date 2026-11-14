@@ -9,7 +9,11 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from tasks.running_xor import engine as e
 from tasks.common.runner import _local_seed
 
-MODEL = sys.argv[1] if len(sys.argv) > 1 else "evabyte/EvaByte-SFT"
+MODEL = next((a for a in sys.argv[1:] if not a.startswith("--")), "evabyte/EvaByte-SFT")
+if "--no-triton" in sys.argv:
+    # make `import triton` fail so the model's own code picks its pure-PyTorch attention (eva_pt_ref)
+    sys.modules["triton"] = None
+    print("triton disabled: using the model's PyTorch attention fallback")
 # transformers 5 passes additional_special_tokens=None to the remote tokenizer class, whose
 # constructor iterates over it; an empty list takes the branch that keeps the config's own specials.
 try:
@@ -32,16 +36,9 @@ for k in (0, 4):
     except Exception as ex:
         print("chat template failed:", ex); enc = tok(prompt, return_tensors="pt")
     enc = {a: b.to(model.device) for a, b in enc.items()}
-    import sys, traceback
-    mod = sys.modules[type(model).__module__]
-    pkg = mod.__name__.rsplit(".", 1)[0]
-    attempts = [("triton kernels, use_cache=False", True, {"use_cache": False}),
-                ("pytorch fallback, use_cache=False", False, {"use_cache": False}),
-                ("pytorch fallback, default cache", False, {})]
-    for mode, use_triton, kw in attempts:
-        for name in list(sys.modules):
-            if name.startswith(pkg) and hasattr(sys.modules[name], "USE_TRITON_IMPL"):
-                sys.modules[name].USE_TRITON_IMPL = use_triton
+    import traceback
+    attempts = [("use_cache=False", {"use_cache": False}), ("default cache", {})]
+    for mode, kw in attempts:
         t0 = time.time()
         try:
             with torch.no_grad():
