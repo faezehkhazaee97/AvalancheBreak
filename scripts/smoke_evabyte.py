@@ -11,9 +11,9 @@ from tasks.common.runner import _local_seed
 
 MODEL = next((a for a in sys.argv[1:] if not a.startswith("--")), "evabyte/EvaByte-SFT")
 if "--no-triton" in sys.argv:
-    # make `import triton` fail so the model's own code picks its pure-PyTorch attention (eva_pt_ref)
-    sys.modules["triton"] = None
-    print("triton disabled: using the model's PyTorch attention fallback")
+    import os
+    os.environ["EVABYTE_NO_TRITON"] = "1"   # honored by the locally patched modeling_evabyte.py
+    print("EVABYTE_NO_TRITON=1: using the model's PyTorch attention fallback")
 # transformers 5 passes additional_special_tokens=None to the remote tokenizer class, whose
 # constructor iterates over it; an empty list takes the branch that keeps the config's own specials.
 try:
