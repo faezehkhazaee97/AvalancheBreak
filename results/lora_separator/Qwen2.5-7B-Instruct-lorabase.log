@@ -1,0 +1,6 @@
+epoch 0 step 10/60 loss 2.0019 27s
+epoch 0 step 20/60 loss 0.2560 51s
+epoch 0 step 30/60 loss 0.0024 76s
+epoch 1 step 40/60 loss 0.0005 101s
+epoch 1 step 50/60 loss 0.0007 126s
+epoch 1 step 60/60 loss 0.0002 151s

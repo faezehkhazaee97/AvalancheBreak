@@ -13,3 +13,17 @@ Qwen2.5-7B-Instruct,Dependency,copy_previous,280,0.6052,-0.0042,0.5329,-0.0926,0
 Qwen2.5-7B-Instruct,Dependency,running_xor,280,0.5664,-0.0028,0.4861,-0.072,0.0124
 Qwen2.5-7B-Instruct,Dependency,running_sum_local,840,0.3625,0.021,0.3112,-0.0223,0.032
 Qwen2.5-7B-Instruct,Dependency,sliding_window_max,560,0.5186,0.0654,0.5076,0.0528,0.0695
+Qwen2.5-32B (base),Digits,cyclic_shift_digits,840,0.9775,0.0229,0.9985,0.0255,0.0228
+Qwen2.5-32B (base),Digits,random_permutation_digits,840,0.9395,0.0601,0.9962,0.0662,0.0593
+Qwen2.5-32B (base),Digits,conditional_shift_digits,840,0.9697,0.0232,0.9893,0.0245,0.0236
+Qwen2.5-32B (base),Dependency,copy_previous,280,0.9479,-0.0906,0.761,-0.1902,-0.0629
+Qwen2.5-32B (base),Dependency,running_xor,280,0.9216,-0.0477,0.5998,-0.3078,0.0071
+Qwen2.5-32B (base),Dependency,running_sum_local,840,0.5523,0.0439,0.3492,-0.1615,0.0998
+Qwen2.5-32B (base),Dependency,sliding_window_max,560,0.646,0.0279,0.5883,-0.0282,0.0365
+Qwen2.5-32B-Instruct,Digits,cyclic_shift_digits,840,0.974,0.027,0.9983,0.0266,0.0275
+Qwen2.5-32B-Instruct,Digits,random_permutation_digits,840,0.9309,0.07,0.9942,0.0785,0.0695
+Qwen2.5-32B-Instruct,Digits,conditional_shift_digits,840,0.9683,0.026,0.9917,0.0279,0.0271
+Qwen2.5-32B-Instruct,Dependency,copy_previous,280,0.949,-0.1164,0.6225,-0.326,-0.0803
+Qwen2.5-32B-Instruct,Dependency,running_xor,280,0.8966,-0.0289,0.5578,-0.3322,0.0343
+Qwen2.5-32B-Instruct,Dependency,running_sum_local,840,0.5536,0.04,0.3326,-0.1679,0.0956
+Qwen2.5-32B-Instruct,Dependency,sliding_window_max,560,0.6534,0.0368,0.5709,-0.0506,0.0546
