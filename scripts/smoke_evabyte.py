@@ -10,7 +10,13 @@ from tasks.running_xor import engine as e
 from tasks.common.runner import _local_seed
 
 MODEL = sys.argv[1] if len(sys.argv) > 1 else "evabyte/EvaByte-SFT"
-tok = AutoTokenizer.from_pretrained(MODEL, trust_remote_code=True)
+# transformers 5 passes additional_special_tokens=None to the remote tokenizer class, whose
+# constructor iterates over it; an empty list takes the branch that keeps the config's own specials.
+try:
+    tok = AutoTokenizer.from_pretrained(MODEL, trust_remote_code=True)
+except TypeError:
+    tok = AutoTokenizer.from_pretrained(MODEL, trust_remote_code=True, additional_special_tokens=[])
+print("specials:", tok.special_tokens_map)
 for k in (0, 4):
     inp, ans, prompt = e.build_prompt(16, k, random.Random(_local_seed(16, k, None, 0)))
     ids = tok(inp, add_special_tokens=False)["input_ids"]
