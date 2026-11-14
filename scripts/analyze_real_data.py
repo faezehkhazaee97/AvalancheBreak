@@ -21,11 +21,15 @@ from analyze_per_position import load, MODELS as ALL_MODELS  # noqa: E402
 from analyze_naturalistic import row  # noqa: E402
 
 TASKS = [("dna_complement", "DNA", "Complement", "position-local"),
+         ("dna_copy_previous", "DNA", "Copy previous base", "one-step"),
          ("dna_same_class", "DNA", "Same class as previous base", "one-step"),
          ("dna_gc_count", "DNA", "Running GC count mod 4", "prefix state"),
          ("text_shift", "Text", "Shift letters by one", "position-local"),
+         ("text_copy_previous", "Text", "Copy previous letter", "one-step"),
          ("text_ascending", "Text", "Later than previous letter", "one-step"),
          ("text_vowel_count", "Text", "Running vowel count mod 4", "prefix state")]
+# Only these three models were run on the real sequences
+ALL_MODELS = [m for m in ALL_MODELS if m[0] in ("Qwen2.5 7B", "Qwen2.5 32B", "Gemma 4 31B")]
 FORMATS = [("", "contiguous"), ("_spaced", "spaced")]
 
 
