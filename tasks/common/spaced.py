@@ -24,7 +24,7 @@ def spaced(s):
 
 
 def make_spaced(engine):
-    def build_prompt(N, k, rng, axis_val):
+    def build_prompt(N, k, rng, axis_val=None):
         inp, out, prompt = engine.build_prompt(N, k, rng, axis_val=axis_val)
         old_input_line = f"Input: {inp}"
         assert prompt.count(old_input_line) == 1 and prompt.count("No spaces, no explanations.") == 1
