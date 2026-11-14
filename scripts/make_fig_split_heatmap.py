@@ -54,8 +54,8 @@ GEMINI_CSV = REPO / "results_clean" / "gemini_pilot" / "gemini-flash-latest_POOL
 GEMINI36_CSV = REPO / "results_clean" / "gemini_pilot" / "gemini-3.6-flash_POOLED.csv"
 
 # Diverging pair from the validated palette (blue <-> red, neutral gray midpoint).
-CMAP = LinearSegmentedColormap.from_list("helps_hurts", ["#b52f2f", "#f0efec", "#184f95"])
-INK, INK_ON_DARK, BLANK = "#0b0b0b", "#ffffff", "#fcfcfb"
+CMAP = LinearSegmentedColormap.from_list("helps_hurts", ["#D55E00", "#f0efec", "#0072B2"])
+INK, INK_ON_DARK, BLANK = "#1a1a1a", "#ffffff", "#fcfcfb"
 
 
 def load_local(task, tag):
@@ -147,7 +147,7 @@ ax.tick_params(which="minor", length=0)
 start = 0
 for block, tasks in ROW_BLOCKS:
     if start:
-        ax.axhline(start - 0.5, color="#0b0b0b", linewidth=0.9)
+        ax.axhline(start - 0.5, color="#1a1a1a", linewidth=0.9)
     ax.text(n_cols - 0.35, start + (len(tasks) - 1) / 2, block, ha="left", va="center",
             fontsize=7, color="#4a4a47")
     start += len(tasks)

@@ -36,7 +36,7 @@ from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_powe
 
 set_rc()
 
-SEQ_BLUE_ORDINAL = ["#86b6ef", "#5598e7", "#2a78d6", "#184f95", "#0d366b"]
+SEQ_BLUE_ORDINAL = ["#b9d7ee", "#6faad8", "#0072B2", "#0072B2", "#003f6b"]
 
 
 def plot_by_density(ax, df, chance, title):

@@ -23,11 +23,11 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: E402
 
-INK, GRAY, LIGHT = "#0b0b0b", "#78776f", "#ecebe6"
+INK, GRAY, LIGHT = "#1a1a1a", "#6e6e6e", "#ecebe6"
 MERGED_FILL = "#d7e6f7"          # multi-letter token
-MARK = "#2a78d6"                 # marker
-BAD = "#c8402f"                  # failing dependency
-FORMATS = [("spaced", "Spaced letters", "#eb6834"), ("digits", "Digits", "#1baf7a")]
+MARK = "#0072B2"                 # marker
+BAD = "#D55E00"                  # failing dependency
+FORMATS = [("spaced", "Spaced letters", "#D55E00"), ("digits", "Digits", "#009E73")]
 MARKERS = {"spaced": "s", "digits": "^"}
 STRONG = ["Qwen2.5 14B", "Qwen2.5 32B", "Qwen3.8 27B", "Gemma 4 31B"]
 
@@ -71,7 +71,7 @@ def panel_profile(ax):
     ax.set_xscale("log", base=2)
     ax.set_xticks([4, 8, 16, 32, 64]); ax.set_xticklabels(["4", "8", "16", "32", "64"])
     ax.axhline(0, color=GRAY, linewidth=0.8)
-    ax.grid(axis="y", color="#e4e3df", linewidth=0.6); ax.set_axisbelow(True)
+    ax.grid(axis="y", color="#e6e6e6", linewidth=0.6); ax.set_axisbelow(True)
     ax.set_xlabel("Sequence length $N$")
     ax.set_ylabel("Gain from markers")
     ax.set_title("(b) Gain on long sequences", loc="left", fontsize=8.5)

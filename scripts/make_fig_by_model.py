@@ -27,7 +27,7 @@ from tasks.common.figure_style import set_rc, savefig, AXIS_COLORS, MULTI_COL_WI
 
 LENGTHS = [4, 8, 16, 32, 64]
 KS = [1, 2, 4, 8, 16]
-GRID = "#e4e3df"
+GRID = "#e6e6e6"
 
 
 def panel(ax, d):
@@ -39,7 +39,7 @@ def panel(ax, d):
     vals = sorted(d[axis].astype(int).unique()) if axis else [None]
     for v in vals:
         x = d[d[axis].astype(int) == v] if axis else d
-        color = AXIS_COLORS.get(v, "#333333") if v is not None else "#333333"
+        color = AXIS_COLORS.get(v, "#1a1a1a") if v is not None else "#1a1a1a"
         base = x[x.Method == "Base"].groupby("N").TAR.agg(["mean", "sem"])
         bnd = x[x.Method == "Cellular_Bounds"].groupby("N").TAR.agg(["mean", "sem"])
         ax.plot(base.index, base["mean"], color=color, linestyle="--", linewidth=1.1, marker="o", markersize=2.2)
@@ -68,7 +68,7 @@ def make(tasks, out, color_label, color_vals):
             d = load(t, tag)
             if d is None:
                 ax.text(0.5, 0.5, "not run", transform=ax.transAxes, ha="center", va="center", fontsize=6.5,
-                        color="#78776f")
+                        color="#6e6e6e")
             else:
                 panel(ax, d)
             if i == 0:
@@ -77,10 +77,10 @@ def make(tasks, out, color_label, color_vals):
                 ax.set_ylabel(t.replace("_", "_\n", 1) if len(t) > 14 else t, fontsize=6.5, family="monospace")
             if i == len(tasks) - 1:
                 ax.set_xlabel("$N$", fontsize=7.5, labelpad=1)
-    handles = [Line2D([], [], color="#333333", linestyle="--", marker="o", markersize=3, linewidth=1.1, label="No markers"),
-               Line2D([], [], color="#333333", linestyle="-", marker="s", markersize=3, linewidth=1.4, label="Markers"),
-               Line2D([], [], color="#333333", linestyle=":", linewidth=0.9, label="Chance")]
-    handles += [Line2D([], [], color=AXIS_COLORS.get(v, "#333333") if v else "#333333", linewidth=2,
+    handles = [Line2D([], [], color="#1a1a1a", linestyle="--", marker="o", markersize=3, linewidth=1.1, label="No markers"),
+               Line2D([], [], color="#1a1a1a", linestyle="-", marker="s", markersize=3, linewidth=1.4, label="Markers"),
+               Line2D([], [], color="#1a1a1a", linestyle=":", linewidth=0.9, label="Chance")]
+    handles += [Line2D([], [], color=AXIS_COLORS.get(v, "#1a1a1a") if v else "#1a1a1a", linewidth=2,
                        label=("binary" if v is None else f"{color_label} = {v}")) for v in color_vals]
     fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=len(handles), frameon=False,
                fontsize=7)

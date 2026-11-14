@@ -29,9 +29,10 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: E402
 
-MODELS = [("Qwen2.5 7B", "Qwen2.5-7B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct")]
-SITES = [("pre_in", "input digit before the marker", "#1b9e77"), ("post_in", "input digit after the marker", "#d95f02"),
-         ("all_in", "every input digit", "#7570b3"), ("prev_out", "answer digit before the marker", "#e7298a")]
+MODELS = [("Qwen2.5 7B", "Qwen2.5-7B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct"),
+          ("Qwen3.8 27B", "Qwen3.8-27B"), ("Gemma 4 31B", "gemma-4-31B-it")]
+SITES = [("pre_in", "input digit before the marker", "#009E73"), ("post_in", "input digit after the marker", "#D55E00"),
+         ("all_in", "every input digit", "#0072B2"), ("prev_out", "answer digit before the marker", "#CC79A7")]
 TASKN = {"running_xor": "Running XOR", "running_sum_local": "Running sum (mod 4)"}
 
 
@@ -72,29 +73,43 @@ def main():
     print(out[out.layer.isin(["-1", "all"])].to_string(index=False))
 
     # figure: one row per model, one panel per task; x = layer, y = log-odds recovery, line per site
-    # figure only for models whose clean and marked runs differ enough to define a recovery (gap >= 2 nats)
+    # figure: causal-tracing style heatmaps, one row per model, one panel per task; rows are the patch
+    # sites, columns the patched layer, color the log-odds recovery; a separate last column is the
+    # patch at every layer at once. Only models whose clean-marked gap is at least 2 nats are shown.
     gap = {m: abs(float(out[(out.model == m) & (out.site == "clean")].logodds.mean() - out[(out.model == m) & (out.site == "marked")].logodds.mean())) for m, _ in MODELS}
     models = [m for m in MODELS if any(k[0] == m[0] for k in fig_data) and gap.get(m[0], 0) >= 2]
     if models:
+        import numpy as np
+        from matplotlib.colors import LinearSegmentedColormap
         set_rc()
-        fig, axes = plt.subplots(len(models), len(TASKN), figsize=(MULTI_COL_WIDTH, 2.1 * len(models)), squeeze=False)
+        cmap = LinearSegmentedColormap.from_list("rec", ["#f7f7f7", "#9ecae1", "#0072B2", "#08306b"])
+        fig, axes = plt.subplots(len(models), len(TASKN), figsize=(MULTI_COL_WIDTH, 1.25 * len(models) + 0.5), squeeze=False)
+        snames = {s: n for s, n, _ in SITES}
+        short = {"pre_in": "input before marker", "post_in": "input after marker", "all_in": "every input", "prev_out": "answer before marker"}
         for i, (label, _) in enumerate(models):
             for j, task in enumerate(TASKN):
                 ax = axes[i][j]
-                for site, sname, col in SITES:
-                    s = out[(out.model == label) & (out.task == task) & (out.site == site)]
-                    per = s[s.layer != "all"].assign(L=lambda z: z.layer.astype(int)).sort_values("L")
-                    if per.empty:
-                        continue
-                    ax.plot(per.L, per.rec_logodds, color=col, linewidth=1.4, label=sname)
-                    a = s[s.layer == "all"]
+                sub = out[(out.model == label) & (out.task == task)]
+                L = int(sub[sub.layer != "all"].layer.astype(int).max()) + 1 if not sub.empty else 0
+                grid = np.full((len(SITES), L + 2), np.nan)
+                for r, (site, _, _) in enumerate(SITES):
+                    z = sub[sub.site == site]
+                    for _, row in z[z.layer != "all"].iterrows():
+                        grid[r, int(row.layer)] = row.rec_logodds
+                    a = z[z.layer == "all"]
                     if not a.empty:
-                        ax.axhline(float(a.rec_logodds.iloc[0]), color=col, linewidth=0.8, linestyle=":")
-                ax.axhline(0, color="black", linewidth=0.6); ax.axhline(1, color="black", linewidth=0.6, linestyle="--")
-                ax.set_title(f"{label}: {TASKN[task]}", loc="left")
-                ax.set_xlabel("patched layer"); ax.set_ylabel("log-odds recovery" if j == 0 else "")
-        axes[0][-1].legend(frameon=False, loc="upper right", fontsize=6.8)
-        fig.tight_layout()
+                        grid[r, L + 1] = float(a.rec_logodds.iloc[0])
+                im = ax.imshow(np.ma.masked_invalid(np.clip(grid, 0, 1)), cmap=cmap, vmin=0, vmax=1, aspect="auto", interpolation="nearest")
+                ax.set_yticks(range(len(SITES))); ax.set_yticklabels([short[s] for s, _, _ in SITES] if j == 0 else [""] * len(SITES), fontsize=6)
+                ticks = [0, 10, 20, 30, 40, 50]; ax.set_xticks(ticks + [L + 1]); ax.set_xticklabels([str(t) for t in ticks] + ["all"], fontsize=6)
+                ax.set_title(f"{label}: {TASKN[task]}", fontsize=7.5); ax.grid(False)
+                for sp in ("top", "right"):
+                    ax.spines[sp].set_visible(True)
+                if i == len(models) - 1:
+                    ax.set_xlabel("Patched layer")
+        cax = fig.add_axes([0.92, 0.2, 0.012, 0.6]); cb = fig.colorbar(im, cax=cax)
+        cb.set_label("Log-odds recovery (0 = marked run, 1 = clean run)", fontsize=6.5); cb.ax.tick_params(labelsize=6)
+        fig.subplots_adjust(left=0.17, right=0.9, top=0.93, bottom=0.1, hspace=0.6, wspace=0.08)
         savefig(fig, REPO / "paper_tmlr" / "figures" / "patching.pdf")
 
     # table

@@ -11,11 +11,14 @@ import matplotlib.pyplot as plt
 SINGLE_COL_WIDTH = 3.3
 MULTI_COL_WIDTH = 7.0
 
-AXIS_COLORS = {
-    2: "#1b9e77", 4: "#d95f02", 8: "#7570b3",
-}
-BASE_STYLE = dict(color="black", linestyle="--", linewidth=1.3, marker="o", markersize=3)
-BOUNDS_STYLE = dict(linestyle="-", linewidth=1.6, marker="s", markersize=3)
+# Okabe-Ito palette (colorblind-safe), one fixed meaning per hue across every figure
+OI = dict(blue="#0072B2", vermilion="#D55E00", green="#009E73", orange="#E69F00", purple="#CC79A7",
+          sky="#56B4E9", yellow="#F0E442", black="#000000")
+FORMAT_COLORS = {"letters": OI["blue"], "spaced": OI["vermilion"], "digits": OI["green"]}
+AXIS_COLORS = {2: OI["blue"], 4: OI["orange"], 8: OI["purple"]}
+INK, GRAY, GRID = "#1a1a1a", "#6e6e6e", "#e6e6e6"
+BASE_STYLE = dict(color=INK, linestyle="--", linewidth=1.0, marker="o", markersize=2.6)
+BOUNDS_STYLE = dict(linestyle="-", linewidth=1.2, marker="s", markersize=2.6)
 
 MODEL_ORDER = [
     "Qwen2.5-7B-Instruct", "Qwen2.5-14B-Instruct", "Qwen2.5-32B-Instruct",
@@ -29,11 +32,21 @@ MODEL_LABELS = {
 
 
 def set_rc():
+    """House style: Computer Modern Roman (the paper's body font is Latin Modern), 8 pt, thin marks,
+    light horizontal grid, no top or right spines, frameless legends, real text in the PDF."""
     plt.rcParams.update({
-        "font.size": 8.5, "axes.labelsize": 8.5, "axes.titlesize": 9,
-        "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "legend.fontsize": 7.5,
-        "pdf.fonttype": 42, "ps.fonttype": 42,  # embed as real text, not paths
+        "font.family": "serif", "font.serif": ["cmr10", "Latin Modern Roman", "DejaVu Serif"],
+        "mathtext.fontset": "cm", "axes.formatter.use_mathtext": True, "axes.unicode_minus": False,
+        "font.size": 8, "axes.labelsize": 8, "axes.titlesize": 8.5, "figure.titlesize": 8.5,
+        "xtick.labelsize": 7, "ytick.labelsize": 7, "legend.fontsize": 7, "legend.title_fontsize": 7,
+        "legend.frameon": False, "legend.handlelength": 1.6, "legend.borderaxespad": 0.3,
+        "lines.linewidth": 1.1, "lines.markersize": 2.8, "errorbar.capsize": 1.5,
+        "axes.linewidth": 0.6, "xtick.major.width": 0.6, "ytick.major.width": 0.6,
+        "xtick.major.size": 2.5, "ytick.major.size": 2.5, "xtick.direction": "out", "ytick.direction": "out",
+        "axes.grid": True, "axes.grid.axis": "y", "grid.color": GRID, "grid.linewidth": 0.5, "axes.axisbelow": True,
         "axes.spines.top": False, "axes.spines.right": False,
+        "axes.titlelocation": "left", "axes.titleweight": "normal", "axes.titlepad": 4,
+        "pdf.fonttype": 42, "ps.fonttype": 42,
     })
 
 
@@ -50,7 +63,10 @@ def _plain_labels(fig):
              ("boundary-token", "marker"), ("Boundary-token", "Marker"),
              ("boundaries", "markers"), ("Boundaries", "Markers"),
              ("boundary", "marker"), ("Boundary", "Marker"),
-             (" (no workaround)", ""), ("(space-sep.)", "(spaced)"), (" -- ", ", ")]
+             (" (no workaround)", ""), ("(space-sep.)", "(spaced)"), (" -- ", ", "),
+             # glyphs absent from Computer Modern: use mathtext or plain equivalents
+             ("\u2212", "-"), ("\u2014", "-"), ("\u2013", "-"), ("\u2190", r"$\leftarrow$"), ("\u2192", r"$\rightarrow$"),
+             ("\u2265", r"$\geq$"), ("\u2264", r"$\leq$"), ("\u00b1", r"$\pm$"), ("\u2295", r"$\oplus$")]
     for t in fig.findobj(Text):
         s = t.get_text()
         if not s:

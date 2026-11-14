@@ -45,8 +45,8 @@ print(f"Provenance -- 32B source: {(RESULTS_32B / 'causal_ablation_grid.csv').re
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(MULTI_COL_WIDTH, 3.0))
 
 ax1.plot(df7.Seq_Length, df7.Base_TAR, color="black", linestyle="--", marker="o", markersize=4, label="Base")
-ax1.plot(df7.Seq_Length, df7.Cellular_Normal_TAR, color="#1b9e77", linestyle="-", marker="s", markersize=4, label="Markers")
-ax1.plot(df7.Seq_Length, df7.Cellular_Ablated_TAR, color="#d95f02", linestyle="-", marker="^", markersize=4, label="Markers, top heads blocked")
+ax1.plot(df7.Seq_Length, df7.Cellular_Normal_TAR, color="#009E73", linestyle="-", marker="s", markersize=4, label="Markers")
+ax1.plot(df7.Seq_Length, df7.Cellular_Ablated_TAR, color="#D55E00", linestyle="-", marker="^", markersize=4, label="Markers, top heads blocked")
 ax1.set_xlabel("Sequence length N")
 ax1.set_ylabel("TAR")
 set_power_of_2_xticks(ax1, df7.Seq_Length.unique(), fontsize=6.5)
@@ -62,8 +62,8 @@ width = 0.35
 vals7 = [df7.set_index("Seq_Length").loc[n, "Pct_of_Cellular_Benefit_Erased"] for n in shared_N]
 vals32 = [pct32.loc[n] for n in shared_N]
 
-b1 = ax2.bar(x - width / 2, vals7, width, color="#d95f02", label="Qwen2.5-7B")
-b2 = ax2.bar(x + width / 2, vals32, width, color="#2a78d6", label="Qwen2.5-32B")
+b1 = ax2.bar(x - width / 2, vals7, width, color="#D55E00", label="Qwen2.5-7B")
+b2 = ax2.bar(x + width / 2, vals32, width, color="#0072B2", label="Qwen2.5-32B")
 
 for xi, y in zip(x - width / 2, vals7):
     ax2.text(xi, y + 1.5, f"{y:.0f}%", ha="center", fontsize=6)

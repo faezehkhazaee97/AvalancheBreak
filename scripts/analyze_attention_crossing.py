@@ -48,8 +48,8 @@ def main():
     set_rc()
     models = [m for m, _ in MODELS if m in set(o.model)]
     fig, axes = plt.subplots(len(models), len(TASKN), figsize=(MULTI_COL_WIDTH, 2.0 * len(models)), squeeze=False)
-    styles = {("clean", "post"): ("#1b9e77", "-", "clean run, same positions"), ("marked", "post"): ("#d95f02", "-", "marked run, post-marker"),
-              ("marked", "within"): ("#7570b3", "--", "marked run, within-segment")}
+    styles = {("clean", "post"): ("#009E73", "-", "clean run, same positions"), ("marked", "post"): ("#D55E00", "-", "marked run, post-marker"),
+              ("marked", "within"): ("#0072B2", "--", "marked run, within-segment")}
     for i, label in enumerate(models):
         for j, task in enumerate(TASKN):
             ax = axes[i][j]
@@ -59,7 +59,7 @@ def main():
                     ax.plot(x.Layer, x.prev_in, color=col, linestyle=ls, linewidth=1.4, label=name)
             x = o[(o.model == label) & (o.Task == task) & (o.Run == "marked") & (o.PosType == "post")].sort_values("Layer")
             if not x.empty:
-                ax.plot(x.Layer, x.marker, color="#e7298a", linestyle=":", linewidth=1.2, label="marked run, mass on the marker")
+                ax.plot(x.Layer, x.marker, color="#CC79A7", linestyle=":", linewidth=1.1, label="marked run, mass on the marker")
             ax.set_title(f"{label}: {TASKN[task]}", loc="left"); ax.set_xlabel("layer")
             ax.set_ylabel("attention to input $j-1$" if j == 0 else "")
     axes[0][-1].legend(frameon=False, fontsize=6.5, loc="upper right")

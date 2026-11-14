@@ -31,10 +31,10 @@ MODELS = {"Qwen2.5 7B": "Qwen2.5-7B-Instruct", "Qwen2.5 14B": "Qwen2.5-14B-Instr
 GEMINI36 = REPO / "results_clean" / "gemini_pilot" / "gemini-3.6-flash_POOLED.csv"
 STRONG = ["Qwen2.5 14B", "Qwen2.5 32B", "Qwen3.8 27B", "Gemma 4 31B"]
 TASKS = ["cyclic_shift", "random_permutation", "conditional_shift"]
-FORMATS = [("merged", "", "Letters", "#2a78d6"), ("spaced", "_spaced", "Spaced letters", "#eb6834"),
-           ("digits", "_digits", "Digits", "#1baf7a")]
+FORMATS = [("merged", "", "Letters", "#0072B2"), ("spaced", "_spaced", "Spaced letters", "#D55E00"),
+           ("digits", "_digits", "Digits", "#009E73")]
 MARKERS = {"merged": "o", "spaced": "s", "digits": "^"}  # shape as well as color
-GRAY, INK = "#78776f", "#0b0b0b"
+GRAY, INK = "#6e6e6e", "#1a1a1a"
 
 
 def load(task, tag):
@@ -73,34 +73,33 @@ def collect():
 
 
 def fig_three_formats(p):
-    fig, ax = plt.subplots(figsize=(MULTI_COL_WIDTH, 2.6))
-    offs = {"merged": -0.24, "spaced": 0.0, "digits": 0.24}
-    for i, m in enumerate(MODELS):
-        for fmt, _, _, col in FORMATS:
+    """One panel per format; per model a pair of bars: no-marker accuracy (light) and marker accuracy
+    (full color) with a 95% interval, mean over the three position-local tasks."""
+    fig, axes = plt.subplots(1, 3, figsize=(MULTI_COL_WIDTH, 2.3), sharey=True)
+    w = 0.38
+    for ax, (fmt, _, lab, col) in zip(axes, FORMATS):
+        for i, m in enumerate(MODELS):
             s = p[(p.model == m) & (p.fmt == fmt)]
-            x = i + offs[fmt]
+            if s.empty:
+                ax.text(i, 0.25, "not\nrun", ha="center", va="bottom", fontsize=5.5, color=GRAY, linespacing=0.9)
+                continue
             b, c = s.base.mean(), s.bounds.mean()
             ci = 1.96 * np.sqrt((s.bounds_se ** 2).sum()) / len(s)
-            ax.plot([x, x], [b, c], color=col, linewidth=1.5, alpha=0.6, zorder=1)
-            ax.plot(x, b, marker="o", markersize=4.6, markerfacecolor="white", markeredgecolor=col,
-                    markeredgewidth=1.2, linestyle="none", zorder=3)
-            ax.errorbar(x, c, yerr=ci, fmt="o", markersize=4.8, color=col, ecolor=col, elinewidth=0.9,
-                        capsize=1.5, zorder=4, markeredgecolor="white", markeredgewidth=0.6)
-    ax.set_xticks(range(len(MODELS)))
-    ax.set_xticklabels([m.replace(" ", "\n", 1) for m in MODELS], fontsize=7)
-    ax.set_xlim(-0.5, len(MODELS) - 0.5)
-    ax.set_ylim(0.2, 1.02)
-    ax.set_ylabel("Token accuracy")
-    ax.grid(axis="y", color="#e4e3df", linewidth=0.6)
-    ax.set_axisbelow(True)
-    for s in ("top", "right"):
-        ax.spines[s].set_visible(False)
-    handles = [Line2D([], [], marker="o", linestyle="none", markerfacecolor="white", markeredgecolor=INK,
-                      markeredgewidth=1.1, markersize=4.6, label="No markers"),
-               Line2D([], [], marker="o", linestyle="none", color=INK, markersize=4.8, label="Markers")]
-    handles += [Line2D([], [], color=col, linewidth=2.2, label=lab) for _, _, lab, col in FORMATS]
-    ax.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=5, frameon=False)
-    fig.tight_layout()
+            ax.bar(i - w / 2, b, w, color=col, alpha=0.3, linewidth=0, zorder=2)
+            ax.bar(i + w / 2, c, w, color=col, linewidth=0, zorder=3)
+            ax.errorbar(i + w / 2, c, yerr=ci, fmt="none", ecolor=INK, elinewidth=0.6, capsize=1.3, zorder=4)
+        ax.set_title(lab)
+        ax.set_xticks(range(len(MODELS)))
+        short = {"Qwen2.5 7B": "Q2.5\n7B", "Qwen2.5 14B": "Q2.5\n14B", "Qwen2.5 32B": "Q2.5\n32B", "Mistral 7B": "Mistral\n7B",
+                 "Phi-3.5 mini": "Phi\n3.5", "Qwen3.8 27B": "Q3.8\n27B", "Gemma 4 31B": "Gemma\n4", "Gemini 3.6 Flash": "Gemini\n3.6"}
+        ax.set_xticklabels([short[m] for m in MODELS], fontsize=5.8)
+        ax.set_xlim(-0.6, len(MODELS) - 0.4)
+        ax.set_ylim(0.2, 1.0)
+    axes[0].set_ylabel("Character accuracy")
+    from matplotlib.patches import Patch
+    handles = [Patch(facecolor=INK, alpha=0.3, label="No markers"), Patch(facecolor=INK, label="Markers (95% interval)")]
+    fig.legend(handles=handles, loc="lower center", ncol=2, frameon=False, bbox_to_anchor=(0.5, -0.02))
+    fig.tight_layout(rect=(0, 0.05, 1, 1))
     savefig(fig, REPO / "figs" / "fig_three_formats.pdf")
     fig.savefig(REPO / "figs" / "png" / "fig_three_formats.png", dpi=200, bbox_inches="tight")
 
@@ -121,7 +120,7 @@ def fig_profile(cells):
         ax.set_xscale("log", base=2)
         ax.set_xlabel(xl)
         ax.axhline(0, color=GRAY, linewidth=0.8)
-        ax.grid(axis="y", color="#e4e3df", linewidth=0.6)
+        ax.grid(axis="y", color="#e6e6e6", linewidth=0.6)
         ax.set_axisbelow(True)
         for sp in ("top", "right"):
             ax.spines[sp].set_visible(False)
@@ -152,7 +151,7 @@ def fig_profile_by_task(cells):
         ax.set_xticks([4, 8, 16, 32, 64]); ax.set_xticklabels(["4", "8", "16", "32", "64"])
         ax.set_xlabel("Sequence length $N$")
         ax.axhline(0, color=GRAY, linewidth=0.8)
-        ax.grid(axis="y", color="#e4e3df", linewidth=0.6)
+        ax.grid(axis="y", color="#e6e6e6", linewidth=0.6)
         ax.set_axisbelow(True)
         for sp in ("top", "right"):
             ax.spines[sp].set_visible(False)
