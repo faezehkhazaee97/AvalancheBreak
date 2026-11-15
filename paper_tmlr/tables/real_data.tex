@@ -1,23 +1,35 @@
-\begin{tabular}{lll cc cc cc}
+\begin{tabular}{llll cc cc cc c}
 \toprule
-& & & \multicolumn{2}{c}{No-marker acc.} & \multicolumn{2}{c}{Pooled $\Delta$} & \multicolumn{2}{c}{Post-marker / within} \\
-\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
-Source, task & Dependency & Model & Contig. & Spaced & Contig. & Spaced & Contig. & Spaced \\
+& & & & & & \multicolumn{2}{c}{Post-marker} & \multicolumn{3}{c}{Within segment} \\
+\cmidrule(lr){7-8}\cmidrule(lr){9-11}
+Source, task & Dependency & Model & Format & No-marker acc. & Pooled $\Delta$ & Index & Aligned & Index & Aligned & Share \\
 \midrule
-DNA: Complement & position-local & Qwen2.5 7B & 0.46 & 0.68 & $+0.14$ & $+0.10$ & $\mathbf{+0.28}$ / $+0.09$ & $+0.09$ / $+0.10$ \\
- &  & Qwen2.5 32B & 0.62 & 0.83 & $+0.21$ & $+0.13$ & $\mathbf{+0.27}$ / $+0.17$ & $+0.12$ / $+0.14$ \\
- &  & Gemma 4 31B & 0.82 & 0.99 & $+0.12$ & $+0.01$ & $+0.12$ / $+0.11$ & $+0.01$ / $+0.01$ \\
+DNA: Complement & position-local & Qwen2.5 7B & Contig. & 0.46 & $+0.14$ & $\mathbf{+0.28}$ & $+0.11$ & $+0.09$ & $+0.02$ & $74\%$ \\
+ &  &  & Spaced & 0.68 & $+0.10$ & $+0.09$ & $+0.05$ & $+0.10$ & $+0.06$ & $46\%$ \\
+ &  & Qwen2.5 32B & Contig. & 0.62 & $+0.21$ & $\mathbf{+0.27}$ & $+0.09$ & $+0.17$ & $+0.04$ & $75\%$ \\
+ &  &  & Spaced & 0.83 & $+0.13$ & $+0.12$ & $+0.05$ & $+0.14$ & $+0.05$ & $62\%$ \\
+ &  & Gemma 4 31B & Contig. & 0.82 & $+0.12$ & $+0.12$ & $+0.02$ & $+0.11$ & $+0.01$ & $87\%$ \\
+ &  &  & Spaced & 0.99 & $+0.01$ & $+0.01$ & $0.00$ & $+0.01$ & $0.00$ & -- \\
 \addlinespace
-DNA: Copy previous base & one-step & Qwen2.5 7B & 0.67 & 0.77 & $-0.10$ & $-0.19$ & $-0.10$ / $-0.07$ & $\mathbf{-0.25}$ / $-0.18$ \\
- &  & Qwen2.5 32B & 0.95 & 0.93 & $-0.34$ & $-0.37$ & $\mathbf{-0.40}$ / $-0.35$ & $\mathbf{-0.45}$ / $-0.32$ \\
- &  & Gemma 4 31B & 0.98 & 1.00 & $-0.26$ & $-0.25$ & $\mathbf{-0.81}$ / $-0.21$ & $\mathbf{-0.95}$ / $-0.12$ \\
+DNA: Copy previous base & one-step & Qwen2.5 7B & Contig. & 0.67 & $-0.10$ & $-0.10$ & $-0.14$ & $-0.07$ & $-0.01$ & $88\%$ \\
+ &  &  & Spaced & 0.77 & $-0.19$ & $\mathbf{-0.25}$ & $-0.08$ & $-0.18$ & $-0.04$ & $77\%$ \\
+ &  & Qwen2.5 32B & Contig. & 0.95 & $-0.35$ & $\mathbf{-0.40}$ & $-0.19$ & $-0.35$ & $-0.11$ & $70\%$ \\
+ &  &  & Spaced & 0.93 & $-0.37$ & $\mathbf{-0.45}$ & $-0.28$ & $-0.32$ & $-0.09$ & $71\%$ \\
+ &  & Gemma 4 31B & Contig. & 0.98 & $-0.26$ & $\mathbf{-0.81}$ & $-0.68$ & $-0.21$ & $-0.07$ & $67\%$ \\
+ &  &  & Spaced & 1.00 & $-0.25$ & $\mathbf{-0.95}$ & $-0.86$ & $-0.12$ & $-0.09$ & $25\%$ \\
 \addlinespace
-Text: Shift letters by one & position-local & Qwen2.5 7B & 0.17 & 0.28 & $+0.15$ & $+0.18$ & $+0.21$ / $+0.14$ & $\mathbf{+0.31}$ / $+0.14$ \\
- &  & Qwen2.5 32B & 0.31 & 0.49 & $+0.18$ & $+0.22$ & $+0.23$ / $+0.15$ & $\mathbf{+0.27}$ / $+0.21$ \\
- &  & Gemma 4 31B & 0.48 & 0.79 & $+0.26$ & $+0.18$ & $\mathbf{+0.29}$ / $+0.20$ & $+0.20$ / $+0.17$ \\
+Text: Shift letters by one & position-local & Qwen2.5 7B & Contig. & 0.17 & $+0.15$ & $+0.21$ & $+0.19$ & $+0.14$ & $+0.13$ & $10\%$ \\
+ &  &  & Spaced & 0.28 & $+0.18$ & $\mathbf{+0.31}$ & $+0.32$ & $+0.14$ & $+0.12$ & $17\%$ \\
+ &  & Qwen2.5 32B & Contig. & 0.31 & $+0.18$ & $+0.24$ & $+0.28$ & $+0.15$ & $+0.16$ & -- \\
+ &  &  & Spaced & 0.49 & $+0.22$ & $\mathbf{+0.27}$ & $+0.19$ & $+0.21$ & $+0.14$ & $35\%$ \\
+ &  & Gemma 4 31B & Contig. & 0.48 & $+0.26$ & $\mathbf{+0.29}$ & $+0.22$ & $+0.20$ & $+0.10$ & $50\%$ \\
+ &  &  & Spaced & 0.79 & $+0.18$ & $+0.20$ & $+0.03$ & $+0.17$ & $+0.03$ & $84\%$ \\
 \addlinespace
-Text: Copy previous letter & one-step & Qwen2.5 7B & 0.31 & 0.44 & $-0.06$ & $-0.13$ & $-0.13$ / $-0.06$ & $-0.13$ / $-0.08$ \\
- &  & Qwen2.5 32B & 0.91 & 0.82 & $-0.33$ & $-0.39$ & $\mathbf{-0.31}$ / $-0.29$ & $\mathbf{-0.36}$ / $-0.34$ \\
- &  & Gemma 4 31B & 0.90 & 0.99 & $-0.24$ & $-0.33$ & $\mathbf{-0.51}$ / $-0.29$ & $\mathbf{-0.79}$ / $-0.28$ \\
+Text: Copy previous letter & one-step & Qwen2.5 7B & Contig. & 0.31 & $-0.06$ & $-0.13$ & $-0.25$ & $-0.06$ & $-0.04$ & $35\%$ \\
+ &  &  & Spaced & 0.44 & $-0.13$ & $-0.13$ & $-0.18$ & $-0.08$ & $-0.01$ & $89\%$ \\
+ &  & Qwen2.5 32B & Contig. & 0.91 & $-0.33$ & $\mathbf{-0.31}$ & $-0.05$ & $-0.29$ & $-0.04$ & $88\%$ \\
+ &  &  & Spaced & 0.82 & $-0.39$ & $\mathbf{-0.36}$ & $-0.11$ & $-0.34$ & $-0.10$ & $70\%$ \\
+ &  & Gemma 4 31B & Contig. & 0.90 & $-0.24$ & $\mathbf{-0.51}$ & $-0.42$ & $-0.29$ & $-0.02$ & $92\%$ \\
+ &  &  & Spaced & 0.99 & $-0.33$ & $\mathbf{-0.79}$ & $-0.60$ & $-0.28$ & $-0.08$ & $73\%$ \\
 \bottomrule
 \end{tabular}

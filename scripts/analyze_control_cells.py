@@ -89,13 +89,26 @@ def main():
     names = {"cyclic_shift": "\\task{cyclic\\_shift}", "random_permutation": "\\task{random\\_permutation}",
              "conditional_shift": "\\task{conditional\\_shift}"}
     f = lambda v: "--" if pd.isna(v) else f"{v:.1f}"
-    lines = ["\\begin{tabular}{lll ccc c ccc c}", "\\toprule",
-             "Model & Format & Task & No markers & Markers & $\\Delta$ & Share removed & $z$ & $z$ (stratified) & $z$ (cell bootstrap) & $\\Delta$ at $N = 64$ \\\\", "\\midrule"]
+    # Eleven columns at \scriptsize have to fit \linewidth on their own (main.tex \input's this
+    # table without a \resizebox), and the multi-word headings, not the data, set the width: they
+    # are stacked onto two lines and \tabcolsep is reduced.
+    hdr = lambda *ls: "\\begin{tabular}[b]{@{}c@{}}" + "\\\\".join(ls) + "\\end{tabular}"
+    head = ["Model", "Format", "Task", hdr("No", "markers"), "Markers", "$\\Delta$",
+            hdr("Share", "removed"), "$z$", hdr("$z$", "(stratified)"),
+            hdr("$z$ (cell", "bootstrap)"), hdr("$\\Delta$ at", "$N = 64$")]
+    lines = ["{\\setlength{\\tabcolsep}{3.5pt}", "\\begin{tabular}{lll ccc c ccc c}", "\\toprule",
+             " & ".join(head) + " \\\\", "\\midrule"]
     d64 = lambda v: "--" if pd.isna(v) else f"${v:+.2f}$".replace("$-0.00$", "$0.00$").replace("$+0.00$", "$0.00$")
 
     def pct(v):
-        """Share of remaining errors removed; blank at ceiling, where the denominator vanishes."""
-        return "--" if not np.isfinite(v) else f"{100 * v:.0f}\\%"
+        """Share of remaining errors removed; blank at ceiling, where the denominator vanishes.
+        A negative share gets a math minus, not an ASCII hyphen (tidy_tables.py only repairs bare
+        hyphens in front of a decimal, so a whole-number percentage has to be written correctly
+        here)."""
+        if not np.isfinite(v):
+            return "--"
+        n = int(round(100 * v))
+        return f"$-{abs(n)}\\%$" if n < 0 else f"{n}\\%"
 
     for model in t.model.unique():
         g = t[t.model == model]; first = True
@@ -104,7 +117,7 @@ def main():
                          f"{pct(r.share)} & {r.z:.1f} & {r.z_strat:.1f} & {f(r.z_cluster)} & {d64(r.delta64)} \\\\".replace("$-0.00$", "$0.00$").replace("$+0.00$", "$0.00$"))
             first = False
         lines.append("\\addlinespace")
-    lines[-1:] = ["\\bottomrule", "\\end{tabular}"]
+    lines[-1:] = ["\\bottomrule", "\\end{tabular}}"]
     (REPO / "paper_tmlr" / "tables" / "control_cells.tex").write_text("\n".join(lines) + "\n")
     print("wrote tables/control_cells.tex")
 

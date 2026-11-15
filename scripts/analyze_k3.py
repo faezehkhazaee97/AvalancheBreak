@@ -15,8 +15,11 @@ marker also has an input across it. For that task the positions are also split i
   second    i mod k = 1, i > k   (one after the post-marker position; its oldest input is across the marker)
   internal  i mod k >= 2         (no input across a marker; exists only for k >= 3)
 Positions 0 and 1 (start of the first segment, no marker before them) are in none of the three.
-Each class is compared with the no-marker run at the same indices, per k = 2 to 6 and pooled
-over k in {2, 4, 8, 16} (as in scripts/analyze_per_position.py).
+Each class is compared with the no-marker run at the same indices, per k = 2 to 6, 8 and 16, and
+pooled over k in {2, 4, 8, 16} (as in scripts/analyze_per_position.py). Both tables carry k = 8
+and 16 so that every spacing entering the pooled column is also displayed; the pooled column is
+not the mean of those four, because it pools marker rows (each row is one unit) and the four
+spacings contribute different numbers of rows.
 
 Output: results_clean/_summary/blind_spot_by_k.csv, results_clean/_summary/blind_spot_window.csv,
         paper_tmlr/tables/blind_spot_by_k.tex, paper_tmlr/tables/blind_spot_window.tex
@@ -61,6 +64,9 @@ def signed(x):
 
 
 WINDOW_CLASSES = [("first", "First after marker"), ("second", "Second after marker"), ("internal", "Strictly internal")]
+# Spacings shown as columns in both tables: the fine grid 2..6 plus the two remaining pooled
+# spacings, so that every k of the pooled k in {2,4,8,16} column is also displayed.
+KCOL_KS = (2, 3, 4, 5, 6, 8, 16)
 
 
 def window_classes(idx, k):
@@ -105,7 +111,7 @@ def window_table():
         if d is None:
             continue
         fine = load(task + "_finek", tag)
-        for k in (2, 3, 4, 5, 6):
+        for k in KCOL_KS:
             if k in (5, 6):
                 if fine is None:
                     continue
@@ -117,17 +123,18 @@ def window_table():
         r = window_split(d, KS)
         if r:
             rows.append(dict(model=lab, k="pooled", **r))
-    o = pd.DataFrame(rows).round(3)  # same rounding as blind_spot_by_k, so shared cells print alike
-    o.to_csv(REPO / "results_clean" / "_summary" / "blind_spot_window.csv", index=False)
+    o = pd.DataFrame(rows)  # unrounded, as in main(), so shared cells print alike
+    o.round(3).to_csv(REPO / "results_clean" / "_summary" / "blind_spot_window.csv", index=False)
     print("\nsliding_window_max: change vs the no-marker run at the same indices, by position class")
     print(o.pivot_table(index="model", columns="k", values=[c + "_change" for c, _ in WINDOW_CLASSES], sort=False).round(3).to_string())
     strong = ["Qwen2.5 14B", "Qwen2.5 32B", "Qwen3.8 27B", "Gemma 4 31B"]
     p = o[(o.k == "pooled") & o.model.isin(strong)]
     print("pooled k in {2,4,8,16}, mean over the four stronger models: " +
           ", ".join(f"{c} {p[c + '_change'].mean():+.3f} (acc {p[c].mean():.3f})" for c, _ in WINDOW_CLASSES))
-    KCOLS = ["2", "3", "4", "5", "6", "pooled"]
-    lines = ["\\begin{tabular}{ll cccccc}", "\\toprule",
-             "& & \\multicolumn{5}{c}{Spacing $k$} & Pooled \\\\", "\\cmidrule(lr){3-7}",
+    KCOLS = [str(k) for k in KCOL_KS] + ["pooled"]
+    nk = len(KCOL_KS)
+    lines = ["\\begin{tabular}{ll " + "c" * (nk + 1) + "}", "\\toprule",
+             f"& & \\multicolumn{{{nk}}}{{c}}{{Spacing $k$}} & Pooled \\\\", f"\\cmidrule(lr){{3-{2 + nk}}}",
              "Model & Position & " + " & ".join(f"${k}$" for k in KCOLS[:-1]) + " & $k \\in \\{2,4,8,16\\}$ \\\\", "\\midrule"]
     for i, (lab, _) in enumerate(MODELS):
         x = o[o.model == lab].set_index("k")
@@ -154,7 +161,7 @@ def main():
             if d is None:
                 continue
             fine = load(task + "_finek", tag)
-            for k in (2, 3, 4, 5, 6):
+            for k in KCOL_KS:
                 if k in (5, 6):
                     if fine is None:
                         continue
@@ -163,17 +170,30 @@ def main():
                     r = per_k(d, k)
                 if r:
                     rows.append(dict(task=task, model=lab, k=k, **r))
-    o = pd.DataFrame(rows).round(3)
-    o.to_csv(REPO / "results_clean" / "_summary" / "blind_spot_by_k.csv", index=False)
+    # NB: kept unrounded for the table. Rounding to three decimals first made a cell such as
+    # -0.2152 print as -0.21, because the double nearest -0.215 lies just below the tie.
+    o = pd.DataFrame(rows)
+    o.round(3).to_csv(REPO / "results_clean" / "_summary" / "blind_spot_by_k.csv", index=False)
     piv = o.pivot_table(index=["task", "model"], columns="k", values="post_gain")
     print("post-marker change vs no-marker run, by spacing:\n", piv.round(2).to_string())
     print(f"\nmean over the {len(piv)} cells:", piv.mean().round(3).to_dict())
     print("cells where k=3 loss lies between or beyond its neighbours (same sign):",
           int(((np.sign(piv[3]) == np.sign(piv[2])) & (np.sign(piv[3]) == np.sign(piv[4]))).sum()), "of", len(piv))
-    KS = (2, 3, 4, 5, 6)
-    lines = ["\\begin{tabular}{ll ccccc ccccc}", "\\toprule",
-             "& & \\multicolumn{5}{c}{Post-marker change} & \\multicolumn{5}{c}{Within-segment change} \\\\",
-             "\\cmidrule(lr){3-7}\\cmidrule(lr){8-12}", "Task & Model & " + " & ".join(f"$k={k}$" for k in KS) + " & " + " & ".join(f"$k={k}$" for k in KS) + " \\\\", "\\midrule"]
+    # how close the mean of the displayed k in {2,4,8,16} entries is to the row-pooled value
+    disp = o[o.k.isin([2, 4, 8, 16])].pivot_table(index=["task", "model"], columns="k", values="post_gain")
+    print("mean of the displayed k in {2,4,8,16} post-marker entries, per cell:\n",
+          disp.mean(axis=1).round(3).to_string())
+    KS = KCOL_KS
+    nk = len(KS)
+    # Seven spacings on each side of the table: \tabcolsep is halved and only the leading column of
+    # each half repeats "k=", so the natural width stays inside what \resizebox can take without
+    # shrinking the figures below legibility (see the note in the module docstring).
+    head = lambda: " & ".join((f"$k={k}$" if i == 0 else f"${k}$") for i, k in enumerate(KS))
+    lines = ["{\\setlength{\\tabcolsep}{3pt}",
+             "\\begin{tabular}{ll " + "c" * nk + " " + "c" * nk + "}", "\\toprule",
+             f"& & \\multicolumn{{{nk}}}{{c}}{{Post-marker change}} & \\multicolumn{{{nk}}}{{c}}{{Within-segment change}} \\\\",
+             f"\\cmidrule(lr){{3-{2 + nk}}}\\cmidrule(lr){{{3 + nk}-{2 + 2 * nk}}}",
+             "Task & Model & " + head() + " & " + head() + " \\\\", "\\midrule"]
     for task in TASKS:
         for i, (lab, _) in enumerate(MODELS):
             x = o[(o.task == task) & (o.model == lab)].set_index("k")
@@ -184,7 +204,7 @@ def main():
             lines.append(("\\task{" + task.replace("_", "\\_") + "}" if i == 0 else "") + f" & {lab} & " + " & ".join(c) + " \\\\")
         if task != TASKS[-1]:
             lines.append("\\midrule")
-    lines += ["\\bottomrule", "\\end{tabular}"]
+    lines += ["\\bottomrule", "\\end{tabular}}"]
     (REPO / "paper_tmlr" / "tables" / "blind_spot_by_k.tex").write_text("\n".join(lines) + "\n")
     print("Wrote paper_tmlr/tables/blind_spot_by_k.tex")
 

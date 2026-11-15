@@ -1,6 +1,7 @@
+{\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{lll ccc c ccc c}
 \toprule
-Model & Format & Task & No markers & Markers & $\Delta$ & Share removed & $z$ & $z$ (stratified) & $z$ (cell bootstrap) & $\Delta$ at $N = 64$ \\
+Model & Format & Task & \begin{tabular}[b]{@{}c@{}}No\\markers\end{tabular} & Markers & $\Delta$ & \begin{tabular}[b]{@{}c@{}}Share\\removed\end{tabular} & $z$ & \begin{tabular}[b]{@{}c@{}}$z$\\(stratified)\end{tabular} & \begin{tabular}[b]{@{}c@{}}$z$ (cell\\bootstrap)\end{tabular} & \begin{tabular}[b]{@{}c@{}}$\Delta$ at\\$N = 64$\end{tabular} \\
 \midrule
 Qwen2.5 7B & Spaced & \task{cyclic\_shift} & 0.65 & 0.69 & $+0.04$ & 12\% & 3.1 & \textbf{3.9} & 1.1 & $+0.13$ \\
  & Spaced & \task{random\_permutation} & 0.62 & 0.64 & $+0.02$ & 4\% & 1.1 & 1.5 & 0.3 & $+0.07$ \\
@@ -26,9 +27,9 @@ Qwen2.5 32B & Spaced & \task{cyclic\_shift} & 0.84 & 0.97 & $+0.13$ & 82\% & \te
 Mistral 7B & Spaced & \task{cyclic\_shift} & 0.45 & 0.54 & $+0.09$ & 17\% & \textbf{6.7} & \textbf{10.3} & 2.0 & $+0.03$ \\
  & Spaced & \task{random\_permutation} & 0.43 & 0.46 & $+0.03$ & 5\% & 2.0 & 3.1 & 0.5 & $-0.01$ \\
  & Spaced & \task{conditional\_shift} & 0.36 & 0.41 & $+0.05$ & 9\% & \textbf{4.2} & \textbf{5.6} & 1.4 & $+0.02$ \\
- & Digits & \task{cyclic\_shift} & 0.43 & 0.38 & $-0.05$ & -9\% & $-3.3$ & $-3.8$ & $-1.6$ & $-0.07$ \\
+ & Digits & \task{cyclic\_shift} & 0.43 & 0.38 & $-0.05$ & $-9\%$ & $-3.3$ & $\mathbf{-3.8}$ & $-1.6$ & $-0.07$ \\
  & Digits & \task{random\_permutation} & 0.41 & 0.45 & $+0.04$ & 6\% & 2.2 & \textbf{3.6} & 0.6 & $0.00$ \\
- & Digits & \task{conditional\_shift} & 0.46 & 0.44 & $-0.03$ & -5\% & $-1.7$ & $-2.9$ & $-0.4$ & $-0.02$ \\
+ & Digits & \task{conditional\_shift} & 0.46 & 0.44 & $-0.03$ & $-5\%$ & $-1.7$ & $-2.9$ & $-0.4$ & $-0.02$ \\
 \addlinespace
 Phi-3.5 mini & Spaced & \task{cyclic\_shift} & 0.38 & 0.42 & $+0.04$ & 7\% & 3.1 & \textbf{3.7} & 1.4 & $-0.01$ \\
  & Spaced & \task{random\_permutation} & 0.34 & 0.39 & $+0.04$ & 7\% & 3.0 & \textbf{4.0} & 1.1 & $-0.01$ \\
@@ -58,4 +59,4 @@ Gemini 3.6 Flash & Spaced & \task{cyclic\_shift} & 0.99 & 1.00 & $+0.01$ & -- & 
  & Digits & \task{random\_permutation} & 0.98 & 1.00 & $+0.02$ & -- & 2.0 & 2.1 & -- & $+0.03$ \\
  & Digits & \task{conditional\_shift} & 0.99 & 1.00 & $+0.01$ & -- & 1.8 & 1.7 & -- & $+0.01$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}}

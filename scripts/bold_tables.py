@@ -75,8 +75,12 @@ def control(text):
             cells = line.rstrip(" \\").split("&")
             for j in (7, 8, 9):                                    # the three z columns
                 c = cells[j].strip()
-                if re.fullmatch(r"-?\d+\.\d", c) and abs(float(c)) >= 3.54:
-                    cells[j] = " \\textbf{" + c + "} "
+                # a negative z arrives as $-3.8$ (tidy_tables.py has already made the minus a
+                # math minus), so match it with or without the dollars and bold it in kind
+                m = re.fullmatch(r"\$?(-?\d+\.\d)\$?", c)
+                if m and abs(float(m.group(1))) >= 3.54:
+                    cells[j] = (" $\\mathbf{" + m.group(1) + "}$ " if c.startswith("$")
+                                else " \\textbf{" + m.group(1) + "} ")
             line = "&".join(cells) + " \\\\"
         out.append(line)
     return "\n".join(out)
@@ -118,13 +122,16 @@ RULES = {"wording.tex": wording,
          "marker_sides_forced_full.tex": lambda t: sides_did(sides(t)),
          "marker_sides_forced_7b.tex": sides_did,
          "control_cells.tex": control,
-         "real_data.tex": lambda t: bold_cells(t, [7, 8], lambda v: abs(v) >= 0.25),
-         "real_data_full.tex": lambda t: bold_cells(t, [7, 8], lambda v: abs(v) >= 0.25),
+         # merged real-sequence tables: column 7 (0-based 6) is the index-scored post-marker change
+         "real_data.tex": lambda t: bold_cells(t, [6], lambda v: abs(v) >= 0.25),
+         "real_data_full.tex": lambda t: bold_cells(t, [6], lambda v: abs(v) >= 0.25),
          "ablation_32b.tex": lambda t: bold_cells(t, [7], lambda v: v >= 10),
          "perpos.tex": lambda t: bold_cells(t, [6], lambda v: abs(v) >= 0.20),
          "aligned.tex": lambda t: bold_cells(t, [3], lambda v: v <= -0.10),
-         "blind_spot_by_k.tex": lambda t: bold_cells(t, [2, 3, 4, 5, 6], lambda v: v <= -0.25),
-         "blind_spot_window.tex": lambda t: bold_cells(t, [7], lambda v: v <= -0.10),
+         # k = 2, 3, 4, 5, 6, 8, 16: the seven post-marker columns are 0-based 2..8 (within-segment 9..15)
+         "blind_spot_by_k.tex": lambda t: bold_cells(t, [2, 3, 4, 5, 6, 7, 8], lambda v: v <= -0.25),
+         # same seven spacings then the pooled column, 0-based 9
+         "blind_spot_window.tex": lambda t: bold_cells(t, [9], lambda v: v <= -0.10),
          "patching.tex": lambda t: bold_cells(t, [5, 6, 7, 8], lambda v: v >= 0.50),
          "attention_crossing.tex": lambda t: bold_cells(t, [3], lambda v: v <= 0.20),
          "lora.tex": lambda t: bold_cells(t, [8, 11], lambda v: v >= 0.0)}
