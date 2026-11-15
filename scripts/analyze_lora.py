@@ -31,6 +31,7 @@ MODELS = [("Qwen2.5 7B", "as released", "Qwen2.5-7B-Instruct"),
           ("Qwen2.5 7B", "+ LoRA, marked targets", "Qwen2.5-7B-Instruct-lorasep"),
           ("Qwen2.5 32B", "as released", "Qwen2.5-32B-Instruct"),
           ("Qwen2.5 32B", "+ LoRA, $k = 0$ only (control)", "Qwen2.5-32B-Instruct-lorabase"),
+          ("Qwen2.5 32B", "+ LoRA, $k = 0$ only, matched steps", "Qwen2.5-32B-Instruct-lorabase-matched"),
           ("Qwen2.5 32B", "+ LoRA, marked targets", "Qwen2.5-32B-Instruct-lorasep")]
 TASKS = [("running_xor", "XOR (trained)"), ("running_sum_local", "Sum (trained)"), ("copy_previous", "Copy previous (held out)"),
          ("sliding_window_max", "Window max (held out)"), ("random_permutation_digits", "Permutation, digits (held out)")]
