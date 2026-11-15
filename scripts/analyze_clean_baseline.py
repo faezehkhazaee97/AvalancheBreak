@@ -21,7 +21,7 @@ from analyze_per_position import load  # noqa: E402
 
 TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output")}
 MODELS = [("Qwen2.5 14B", "Qwen2.5-14B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct"),
-          ("Qwen3.8 27B", "Qwen3.8-27B"), ("Gemma 4 31B", "gemma-4-31B-it")]
+          ("Qwen3.8 27B", "Qwen3.8-27B"), ("Gemma 4 31B", "gemma-4-31B-it"), ("Qwen2.5 7B", "Qwen2.5-7B-Instruct")]
 FAM = {"spaced letters": ["cyclic_shift_spaced", "random_permutation_spaced", "conditional_shift_spaced"],
        "digits": ["cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits"],
        "dependency": ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]}

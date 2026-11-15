@@ -10,3 +10,4 @@ text_copy_previous,Qwen2.5 7B,spaced,0.0473,0.0098,0.0,1860
 text_copy_previous,Qwen2.5 32B,contiguous,0.0312,0.0175,0.0,1860
 text_copy_previous,Qwen2.5 32B,spaced,0.0715,0.0239,0.0,1860
 text_copy_previous,Gemma 4 31B,contiguous,0.0925,0.0203,0.0,1860
+text_copy_previous,Gemma 4 31B,spaced,0.5296,0.0276,0.0,1860
