@@ -32,19 +32,20 @@ LENGTHS = [4, 8, 16, 32, 64]
 VMAX = 0.30
 SIG_Z = None  # set below to the Bonferroni threshold over the plotted cells
 
+# The reset variants are deliberately NOT a block here. They change the rule at the position after
+# each marker, so Bounds - Base would compare a different ground-truth function against a baseline
+# whose prompt never triggers the reset (and whose no-marker accuracy shifts by -0.08 to +0.06).
+# The valid comparison is per-position across marker runs alone, which is Figure~\ref{fig:reset}.
 ROW_BLOCKS = [
     ("Position-local", ["cyclic_shift", "random_permutation", "conditional_shift"]),
     ("Dependency, as is", ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]),
-    ("Reset rule\n(different task\nand baseline)", ["copy_previous_reset", "running_xor_reset",
-                                                   "running_sum_local_reset", "sliding_window_max_reset"]),
 ]
-RESET_BLOCK = ROW_BLOCKS[-1][0]
+RESET_BLOCK = "Reset rule"          # retained so the values CSV keeps its column name
 CSV_BLOCK = {RESET_BLOCK: "Dependency severed (reset variant)"}  # block name kept stable in the values CSV
 # Displayed block titles, one header row above each block, starting with the panel letter. The reset
 # variants change the rule at the position after each marker (different tasks with their own shifted
 # no-marker baselines); the caption says so.
-BLOCK_TITLES = {"Position-local": "(a) Position-local tasks", "Dependency, as is": "(b) Dependency tasks",
-                RESET_BLOCK: "(c) Reset variants"}
+BLOCK_TITLES = {"Position-local": "(a) Position-local tasks", "Dependency, as is": "(b) Dependency tasks"}
 # (column label, local model tag or None for Gemini)
 MODELS = [
     ("Qwen2.5\n7B", "Qwen2.5-7B-Instruct"),
@@ -116,7 +117,11 @@ rows = [(b, t, [c[j] for j in keep]) for b, t, c in rows]
 from scipy.stats import norm  # noqa: E402
 # Bonferroni, two-sided, over every pooled cell the paper tests: the cells plotted here plus the
 # 42 tokenization-control cells (3 position-local tasks x 7 open models x {spaced, digits}).
-N_FAMILY = len(records) + 42 + (6 if GEMINI36_CSV.exists() else 0)  # controls: 7 open models x 6, plus Gemini 3.6's 6
+# The 15 reset-variant cells are still counted here although they are no longer plotted: they were
+# run and computed, and keeping them in the family leaves the threshold where the paper states it
+# (|z| >= 3.54 over 125 cells). Dropping them would lower it to 3.51, which is less conservative.
+RESET_CELLS_NOT_PLOTTED = 15
+N_FAMILY = len(records) + 42 + (6 if GEMINI36_CSV.exists() else 0) + RESET_CELLS_NOT_PLOTTED
 SIG_Z = norm.ppf(1 - 0.05 / (2 * N_FAMILY))
 print(f"{len(records)} cells plotted, family of {N_FAMILY}; star threshold |z| >= {SIG_Z:.2f}")
 
@@ -151,7 +156,8 @@ for i, row in enumerate(rows):
         if not c:
             ax.text(j, i, "—", ha="center", va="center", fontsize=7, color="#9a9a96")
             continue
-        txt = f"{c['delta']:+.2f}" + ("*" if abs(c["z"]) >= SIG_Z else "")
+        d = 0.0 if abs(c["delta"]) < 0.005 else c["delta"]        # no signed zeros
+        txt = (f"{d:+.2f}" if d else "0.00") + ("*" if abs(c["z"]) >= SIG_Z else "")
         dark = abs(c["delta"]) > 0.55 * VMAX
         ax.text(j, i, txt, ha="center", va="center", fontsize=7,
                 color=INK_ON_DARK if dark else INK)
