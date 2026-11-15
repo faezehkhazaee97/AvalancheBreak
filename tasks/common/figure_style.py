@@ -128,8 +128,29 @@ def cm_safe_text(s):
     return "\n".join(out)
 
 
+def align_panel_titles(fig):
+    """Start every lettered panel title ("(a) ...") at the panel's leftmost content -- its y tick
+    labels and y-axis label included -- rather than at the edge of the plotting area, so the letter
+    sits at the true top-left corner of each panel."""
+    import re as _re
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    for ax in fig.axes:
+        t = ax._left_title
+        if not _re.match(r"\([a-z]\)", t.get_text() or ""):
+            continue
+        t.set_visible(False)
+        bb = ax.get_tightbbox(renderer)
+        t.set_visible(True)
+        box = ax.get_window_extent(renderer)
+        if bb is None or box.width == 0:
+            continue
+        t.set_x((bb.x0 - box.x0) / box.width)
+
+
 def savefig(fig, path):
     _plain_labels(fig)
+    align_panel_titles(fig)
     fig.savefig(path, format="pdf", bbox_inches="tight")
     print(f"Wrote {path}")
 

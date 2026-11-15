@@ -72,10 +72,13 @@ def main():
     # (8.5 pt, normal weight), left-aligned with the row's first panel: (a) above the model names,
     # (b) at the usual title position of its row.
     pad = plt.rcParams["axes.titlepad"]
+    fig.canvas.draw(); renderer = fig.canvas.get_renderer()
     for r, (letter, (bname, _)) in enumerate(zip("ab", BLOCKS)):
         lift = pad + (7 * 1.2 + 3 if r == 0 else 0)
         tr = offset_copy(axes[r][0].transAxes, fig=fig, x=0, y=lift, units="points")
-        fig.text(0.0, 1.0, f"({letter}) {bname}", transform=tr, ha="left", va="baseline",
+        bb, box = axes[r][0].get_tightbbox(renderer), axes[r][0].get_window_extent(renderer)
+        x0 = (bb.x0 - box.x0) / box.width      # start at the row's leftmost content (its y-axis label)
+        fig.text(x0, 1.0, f"({letter}) {bname}", transform=tr, ha="left", va="baseline",
                  fontsize=plt.rcParams["axes.titlesize"])
     savefig(fig, REPO / "figs" / "fig_length_spacing_grid.pdf")
 
