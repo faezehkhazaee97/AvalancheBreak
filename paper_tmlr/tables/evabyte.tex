@@ -1,0 +1,17 @@
+\begin{tabular}{ll cc cc}
+\toprule
+Task & Model & No markers & Pooled $\Delta$ ($z$) & Post-marker & Within segment \\
+\midrule
+\task{running\_xor} & EvaByte-SFT & 0.52 & $-0.02$ (1.8) & $-0.01$ & 0.00 \\
+ & Qwen2.5 7B & 0.40 & 0.00 (0.1) & 0.00 & $+0.02$ \\
+\addlinespace
+\task{copy\_previous} & EvaByte-SFT & 0.55 & $-0.02$ (1.7) & $-0.01$ & $-0.01$ \\
+ & Qwen2.5 7B & 0.52 & $-0.11$ (6.1) & $-0.09$ & $-0.07$ \\
+\addlinespace
+\task{random\_permutation}, digits & EvaByte-SFT & 0.13 & $-0.02$ (1.4) & $-0.02$ & $-0.02$ \\
+ & Qwen2.5 7B & 0.33 & $+0.08$ (6.0) & $+0.14$ & $+0.03$ \\
+\addlinespace
+\task{cyclic\_shift}, digits & EvaByte-SFT & 0.13 & $-0.01$ (1.2) & $-0.04$ & $-0.03$ \\
+ & Qwen2.5 7B & 0.38 & $+0.07$ (4.9) & $+0.09$ & $+0.08$ \\
+\bottomrule
+\end{tabular}
