@@ -87,7 +87,9 @@ def external_table():
              r"& \multicolumn{3}{c}{Qwen2.5-7B} & \multicolumn{3}{c}{Qwen2.5-32B} \\",
              r"\cmidrule(lr){2-4}\cmidrule(lr){5-7}",
              r"Task & Base & Best-$k$ & $\Delta$ ($|z|$) & Base & Best-$k$ & $\Delta$ ($|z|$) \\", r"\midrule"]
-    for t, lab in [("vowel_tagging", "Vowel/consonant tagging"), ("procbench_substitute", "ProcBench-Substitute"),
+    # vowel_tagging is dropped: it queries pretrained knowledge rather than an in-context
+    # transformation, so a marker effect there is not comparable with the other rows.
+    for t, lab in [("procbench_substitute", "ProcBench-Substitute"),
                    ("string_copy", "String copying")]:
         cells = [lab]
         for m in ["Qwen2.5 7B", "Qwen2.5 32B"]:
