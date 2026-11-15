@@ -1,0 +1,23 @@
+\begin{tabular}{ll ccc cc}
+\toprule
+Task & Condition & No markers & Markers & Change & Post-marker & Within-segment \\
+\midrule
+\task{running\_xor} & Main grid (greedy, default template) & 0.66 & 0.77 & $+0.11 \pm 0.03$ & $-0.18$ & $+0.16$ \\
+ & Sampling, $T = 0.7$, top-$p$ 0.8 & 0.67 & 0.76 & $+0.09 \pm 0.03$ & $-0.16$ & $+0.14$ \\
+ & Sampling, $T = 1.0$, top-$p$ 0.95 & 0.66 & 0.76 & $+0.10 \pm 0.03$ & $-0.17$ & $+0.15$ \\
+ & Empty system message & 0.66 & 0.78 & $+0.12 \pm 0.04$ & $-0.17$ & $+0.17$ \\
+ & Task-oriented system message & 0.68 & 0.77 & $+0.09 \pm 0.04$ & $-0.14$ & $+0.14$ \\
+ & No chat template & 0.66 & 0.80 & $+0.13 \pm 0.04$ & $-0.15$ & $+0.18$ \\
+\midrule
+\task{running\_sum\_local} & Main grid & 0.39 & 0.48 & $+0.09 \pm 0.03$ & $-0.04$ & $+0.12$ \\
+ & Sampling, $T = 0.7$, top-$p$ 0.8 & 0.39 & 0.47 & $+0.08 \pm 0.03$ & $-0.06$ & $+0.12$ \\
+ & Sampling, $T = 1.0$, top-$p$ 0.95 & 0.39 & 0.47 & $+0.08 \pm 0.03$ & $-0.07$ & $+0.11$ \\
+\midrule
+\task{random\_permutation} (digits) & Main grid & 0.55 & 0.92 & $+0.37 \pm 0.05$ & --- & --- \\
+ & Sampling, $T = 0.7$, top-$p$ 0.8 & 0.54 & 0.92 & $+0.38 \pm 0.05$ & --- & --- \\
+ & Sampling, $T = 1.0$, top-$p$ 0.95 & 0.52 & 0.93 & $+0.42 \pm 0.05$ & --- & --- \\
+ & Empty system message & 0.59 & 0.95 & $+0.36 \pm 0.06$ & --- & --- \\
+ & Task-oriented system message & 0.55 & 0.94 & $+0.39 \pm 0.06$ & --- & --- \\
+ & No chat template & 0.60 & 0.95 & $+0.36 \pm 0.07$ & --- & --- \\
+\bottomrule
+\end{tabular}
