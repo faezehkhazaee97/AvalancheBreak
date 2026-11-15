@@ -64,7 +64,7 @@ def make_fig1():
     fig, axes = plt.subplots(1, len(blocks), figsize=(MULTI_COL_WIDTH, 2.9), sharey=True)
     axes = np.atleast_1d(axes)
     n = len(MODELS)
-    for ax, (block, title) in zip(axes, blocks):
+    for letter, ax, (block, title) in zip("abc", axes, blocks):
         ax.axvline(0, color=BASE, linewidth=0.7, zorder=1)
         for i, r in enumerate(block_means(block)):
             y = n - 1 - i
@@ -78,7 +78,7 @@ def make_fig1():
                         ecolor=WITHIN, elinewidth=0.8, capsize=1.5, zorder=3)
             ax.errorbar(r["post"] - r["base_post"], y - 0.17, xerr=r["post_ci"], fmt="D", markersize=3.2, color=POST,
                         ecolor=POST, elinewidth=0.8, capsize=1.5, zorder=3)
-        ax.set_title(title.split(" (")[0], fontsize=7.5)
+        ax.set_title(f"({letter}) " + title.split(" (")[0], fontsize=8.5)   # panel letter as in Figure 1
         ax.set_xlabel("Change in accuracy with markers")
         ax.set_xlim(-0.55, 0.55)
         # labelled ticks every 0.2, light gridlines every 0.1, so points near zero (e.g. Mistral's

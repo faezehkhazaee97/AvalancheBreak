@@ -26,7 +26,7 @@ from matplotlib.colors import LinearSegmentedColormap
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 from tasks.common.pooled import pooled_delta as _pooled  # noqa: E402
-from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: E402
+from tasks.common.figure_style import set_rc, savefig, _plain_labels, MULTI_COL_WIDTH  # noqa: E402
 
 LENGTHS = [4, 8, 16, 32, 64]
 VMAX = 0.30
@@ -187,6 +187,24 @@ cb = fig.colorbar(im, ax=ax, orientation="horizontal", fraction=0.05, pad=0.04, 
 cb.set_label("TAR change with markers (Bounds − Base)   ← hurts    helps →", fontsize=8)
 cb.ax.tick_params(labelsize=6.5)
 cb.outline.set_visible(False)
+
+# Panel letters, one per row block, in Figure 1's style (8.5 pt, normal weight): top left of each
+# block, left of the task names, top-aligned with the block's first row (for the reset block, its
+# header row). Measured after the paper's wording is applied, since that changes the label widths.
+from matplotlib.transforms import blended_transform_factory, offset_copy  # noqa: E402
+_plain_labels(fig)
+fig.canvas.draw()
+renderer = fig.canvas.get_renderer()
+x_left = min(t.get_window_extent(renderer).x0 for t in ax.get_yticklabels() if t.get_text())
+x_left = ax.transAxes.inverted().transform((x_left, 0))[0]
+letter_tr = offset_copy(blended_transform_factory(ax.transAxes, ax.transData), fig=fig, x=-6, y=0, units="points")
+start = 0
+for letter, (block, tasks) in zip("abc", ROW_BLOCKS):
+    if block == RESET_BLOCK:
+        start += 1  # the spacer row holds the reset block's header
+    top = (SPACER if block == RESET_BLOCK else start) - 0.5
+    ax.text(x_left, top, f"({letter})", transform=letter_tr, ha="right", va="top", fontsize=8.5)
+    start += len(tasks)
 
 out = REPO / "figs" / "fig1_split_heatmap.pdf"
 savefig(fig, out)

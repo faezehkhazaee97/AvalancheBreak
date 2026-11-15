@@ -54,7 +54,7 @@ def panel_tokens(ax):
                                         boxstyle="round,pad=0,rounding_size=0.12",
                                         facecolor=fill, edgecolor=MARK if t == "|" else GRAY, linewidth=0.6))
             ax.text(x + w / 2, y, t, ha="center", va="center", fontsize=6.6,
-                    color=MARK if t == "|" else INK, family="monospace", fontweight="bold" if t == "|" else None)
+                    color=MARK if t == "|" else INK, family="cmtt10", fontweight="bold" if t == "|" else None)
             x += w
     ax.add_patch(FancyBboxPatch((x0, 0.15), 0.5, 0.5, boxstyle="round,pad=0,rounding_size=0.08",
                                 facecolor=MERGED_FILL, edgecolor=GRAY, linewidth=0.6))
@@ -89,9 +89,9 @@ def panel_blindspot(ax):
     ax.text(0.0, yo, "out", ha="left", va="center", fontsize=6.5, color=GRAY)
     for x, a, b in zip(xs, x_in, y_out):
         c = MARK if a == "|" else INK
-        ax.text(x, yi, a, ha="center", va="center", fontsize=8, family="monospace", color=c,
+        ax.text(x, yi, a, ha="center", va="center", fontsize=8, family="cmtt10", color=c,
                 fontweight="bold" if a == "|" else None)
-        ax.text(x, yo, b, ha="center", va="center", fontsize=8, family="monospace", color=c,
+        ax.text(x, yo, b, ha="center", va="center", fontsize=8, family="cmtt10", color=c,
                 fontweight="bold" if a == "|" else None)
     digits = [i for i, a in enumerate(x_in) if a != "|"]
     for j in range(1, len(digits)):

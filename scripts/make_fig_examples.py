@@ -66,7 +66,7 @@ def draw(ax, shown, truth, pred, k, title):
         for j, ch in enumerate(s[:N]):
             face = "white" if corr is None else (OK if corr[j] else BAD)
             ax.add_patch(Rectangle((xs[j], y), w, h, facecolor=face, edgecolor="#bbbbbb", linewidth=0.4))
-            ax.text(xs[j] + w / 2, y + h / 2, ch, ha="center", va="center", fontsize=6.5, family="monospace", color=INK)
+            ax.text(xs[j] + w / 2, y + h / 2, ch, ha="center", va="center", fontsize=6.5, family="cmtt10", color=INK)
         ax.text(-0.4, y + h / 2, name, ha="right", va="center", fontsize=6.5, color=INK)
     if k:
         for m in range(k, N, k):
@@ -75,18 +75,18 @@ def draw(ax, shown, truth, pred, k, title):
             ax.annotate("", xy=(xs[m] + w / 2, -2 * 1.05 - 0.1), xytext=(xs[m] + w / 2, -2 * 1.05 - 0.45),
                         arrowprops=dict(arrowstyle="->", color=INK, linewidth=0.6))
     ax.set_xlim(-4.2, x + 0.2); ax.set_ylim(-2 * 1.05 - 0.55, h + 0.45)
-    ax.set_title(title, fontsize=7.5); ax.axis("off")
+    ax.set_title(title, fontsize=8.5); ax.axis("off")
 
 
 def main():
     set_rc()
     fig, axes = plt.subplots(3, 1, figsize=(MULTI_COL_WIDTH, 3.9))
     r0 = pick("running_xor", 0, False)
-    draw(axes[0], r0.Input_Given, r0.Ground_Truth, r0.LLM_Output, 0, "Running XOR, no markers")
+    draw(axes[0], r0.Input_Given, r0.Ground_Truth, r0.LLM_Output, 0, "(a) Running XOR, no markers")
     r1 = pick("running_xor", K, True)
-    draw(axes[1], r1.Input_Given, r1.Ground_Truth, r1.LLM_Output, K, "Running XOR, a marker every 4 characters (arrows: the position right after a marker)")
+    draw(axes[1], r1.Input_Given, r1.Ground_Truth, r1.LLM_Output, K, "(b) Running XOR, a marker every 4 characters (arrows: the position right after a marker)")
     r2 = pick("random_permutation_digits", K, False, axis=8)
-    draw(axes[2], r2.Input_Given, r2.Ground_Truth, r2.LLM_Output, K, "Random permutation of eight digits, a marker every 4 characters")
+    draw(axes[2], r2.Input_Given, r2.Ground_Truth, r2.LLM_Output, K, "(c) Random permutation of eight digits, a marker every 4 characters")
     fig.tight_layout(h_pad=0.6)
     savefig(fig, REPO / "figs" / "fig_examples.pdf")
 

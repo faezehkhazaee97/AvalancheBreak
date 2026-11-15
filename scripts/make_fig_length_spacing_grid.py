@@ -67,6 +67,16 @@ def main():
     cax = fig.add_axes([0.915, 0.18, 0.012, 0.64]); cb = fig.colorbar(im, cax=cax)
     cb.set_label("Character accuracy", fontsize=6.5); cb.ax.tick_params(labelsize=6)
     fig.subplots_adjust(left=0.09, right=0.9, top=0.92, bottom=0.12, wspace=0.12, hspace=0.18)
+    # Panel letters, one per block of panels, in Figure 1's style (8.5 pt, normal weight): top left
+    # of the block, left of its row label, on the baseline of the panel titles.
+    from matplotlib.transforms import blended_transform_factory, offset_copy
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    for letter, row in zip("ab", axes):
+        x = fig.transFigure.inverted().transform((row[0].yaxis.label.get_window_extent(renderer).x0, 0))[0]
+        tr = offset_copy(blended_transform_factory(fig.transFigure, row[0].transAxes), fig=fig,
+                         x=-2, y=plt.rcParams["axes.titlepad"], units="points")
+        fig.text(x, 1.0, f"({letter})", transform=tr, ha="right", va="baseline", fontsize=8.5)
     savefig(fig, REPO / "figs" / "fig_length_spacing_grid.pdf")
 
 
