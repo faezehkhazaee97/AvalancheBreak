@@ -42,6 +42,7 @@ TASK_NAMES = [
     "procbench_substitute", "string_copy", "flip_flop_high", "flip_flop_low",
     "cyclic_shift_digits", "sliding_window_max", "sliding_window_max_reset",
     "bracket_depth", "running_checksum",
+    "running_xor_echo", "running_sum_local_echo", "text_copy_previous_natural",
 ]
 
 
