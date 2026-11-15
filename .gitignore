@@ -21,3 +21,10 @@ paper_tmlr_overleaf.zip
 # anonymized code release, built by scripts/make_anonymous_release.py
 release/
 paper_tmlr/build/
+
+# merged LoRA checkpoints (tens of GB each); the evaluation CSVs live in results_clean/
+results/lora_separator/*/
+results/lora_separator/*.log
+# build output and scratch logs
+paper_ms/build/
+logs/

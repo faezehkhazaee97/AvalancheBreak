@@ -1,0 +1,419 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Raw_Model_Output
+Base,0,16,0,e bayeux and tursti,# ebayeu xan dturst,#bayuexnadturst,0.10526315789473684,0.0,1,# bayuex na dturst
+Base,0,16,1,nean passages unde,#nea npassage sund,#enanpassgesund,0.16666666666666666,0.0,1,#ena npassge sund
+Base,0,16,2,os returned to manc,#o sreturne dt oman,#soreturnedtomanb,0.05263157894736842,0.0,1,#s oreturne d to manb
+Base,0,16,3,th the victorious p,#t hth evictoriou s,#ththevictoriousp,0.10526315789473684,0.0,2,#t hth e victoriou s p
+Base,0,16,4,"ped, ribs and finger","#pe, drib san dfinge","#ed,pribsandefinge",0.1,0.0,1,"#ed, pri bsa nd efinge"
+Base,0,16,5,ruinous condition,#ruinou sconditio,#uinousondition,0.058823529411764705,0.0,1,#uinous ondition
+Base,0,16,6,n only kaltouma nad,# nonl ykaltoum ana,#nolklaltoumnac,0.10526315789473684,0.0,1,# nolk laltoum n ac
+Base,0,16,7,e center is tucked i,# ecente ri stucke d,#centeristuckedi,0.1,0.0,1,# center is tucked i
+Base,0,16,8,ber states whose pr,#be rstate swhos ep,#erbstateswhosepr,0.05263157894736842,0.0,1,#er bstat es whos epr
+Base,0,16,9,ired for its contro,#ire dfo rit scontr,#redforitscontr,0.05263157894736842,0.0,1,#red for its contr
+Base,0,16,10,ted states navy in a,#te dstate snav yi n,#edtatesnavyina,0.05,0.0,1,#ed tate s navy in a
+Base,0,16,11,"ar. up until now, no re","#a. ru punti lno, wn or","#r.uauntillon,onre",0.13043478260869565,0.0,1,"#r. ua until lon, on re"
+Base,0,16,12,escheat roll is unc,#eschea trol li sun,#scheatrollisunc,0.05263157894736842,0.0,1,#scheat rol l i sunc
+Base,0,16,13,ame against the bos,#am eagains tth ebo,#maegainstthebo,0.10526315789473684,0.0,1,#ma egainst th ebo
+Base,0,16,14,he transfer of acyl,#h etransfe ro facy,#ehtransferofacy,0.05263157894736842,0.0,1,#e htransfe r o facy
+Base,0,16,15,an antoine sim on fo,#a nantoin esi mo nf,#nnantoinesimonen,0.05,0.0,1,#n nantoine si m on en
+Base,0,16,16,and at no. on the mode,#an da tn. oo nth emod,"#nadta,no.onthemod",0.13636363636363635,0.0,1,"#na dta, no. on th e mod"
+Base,0,16,17,in the company. as th,#i nth ecompan. ya st,#nthiecompan.sasg,0.047619047619047616,0.0,1,#n thi ecompan. sa sg
+Base,0,16,18,"tream, each night th","#trea, meac hnigh tt","#ream,teachnights",0.1,0.0,1,"#rea m, tea chni ght s"
+Base,0,16,19,w emperor. chaos wou,# wempero. rchao swo,#wempere.chaoswou,0.1,0.0,1,"# wempere. chaos wou
+# wempere. chaos wou
+# wempere. chaos wou
+# wempere. chaos wou
+# wempere. chaos wou
+# wempere. chaos"
+Base,0,16,20,he could not soften,#h ecoul dno tsofte,#ehouldnotsoften,0.15789473684210525,0.0,1,#e houl dno tso fte n
+Base,0,16,21,sioned by the chief,#sione db yth echie,#ionedbythechief,0.15789473684210525,0.0,1,"#ioned by the chief
+#ioned by the chief
+#ioned by the chief
+#ioned by the chief
+#ioned by the chief
+#ioned by the chief
+#ioned by the chief
+#ioned by the chief
+#ioned by the"
+Base,0,16,22,ne battalions of in,#n ebattalion so fi,#ebattalionsofi,0.05263157894736842,0.0,1,#e battalions of i
+Base,0,16,23,"division, which und","#divisio, nwhic hun","#ivisiio,nwhichun",0.21052631578947367,0.0,1,"#ivisiio, nwhic hun"
+Base,0,16,24,nd a network of ceil,#n d anetwor ko fcei,#danetworkofceil,0.1,0.0,1,#d a network of ceil
+Base,0,16,25,from narnia. it web s,#fro mnarni. ai twe b,#romnarni.aitwebs,0.047619047619047616,0.0,1,#rom narni. a it we b s
+Base,0,16,26,n allowed to enter t,# nallowe dt oente r,#nallowedtoenter,0.15,0.0,1,# nallowe dto ente r
+Base,0,16,27,ructed a full scale,#ructe d aful lscal,#uctedafullscal,0.10526315789473684,0.0,1,#ucted a ful lscal
+Base,0,16,28,ith headlights bla,#it hheadlight sbl,#ithheadlighsbla,0.2222222222222222,0.0,3,#it hheadlighs bla
+Base,0,16,29,r butler. jukes scor,# rbutle. rjuke ssco,#butler.rukessco,0.05,0.0,1,# butler. rukes sco
+Base,0,16,30,rpioen is a museum s,#rpioe ni s amuseu m,#rpioeniamuseum,0.3,0.0,6,#rpioe ni a museu m
+Base,0,16,31,iminated from cont,#iminate dfro mcon,#minatedfromcon,0.05555555555555555,0.0,1,#minated fro mcon
+Base,0,16,32,as unimaginable at,#a sunimaginabl ea,#sunimaginablea,0.05555555555555555,0.0,1,#s unimaginabl e a
+Base,0,16,33,nique and language,#niqu ean dlanguag,#inuqeanlanguag,0.1111111111111111,0.0,1,#inuq ean languag
+Base,0,16,34,luded nymphidius s,#lude dnymphidiu s,#ludednymphidiuss,0.2777777777777778,0.0,5,#lude dnymphi dius s
+Base,0,16,35,s. nero s contributi,#. sner o scontribut,#.snerocontributi,0.2,0.0,2,#. sner o contributi
+Base,0,16,36,of ny s former routi,#o fn y sforme rrout,#ofnysformerrouti,0.15,0.0,2,#o fn y s former routi
+Base,0,16,37,o make a return to th,# omak e aretur nt ot,#makeareturnotth,0.14285714285714285,0.0,1,# make a retur n ot th
+Base,0,16,38,"saurus in, and dasyc","#sauru si, nan ddasy","#aaurusi,nadasyb",0.3,0.0,1,"#aauru s i, na d asy b"
+Base,0,16,39,"ion at resonance, in","#io na tresonanc, ei","#ionatresonanc,ei",0.2,0.0,3,"#io n at resonanc, ei"
+Base,0,16,40,opportunity to com,#opportunit yt oco,#pportunityotoco,0.16666666666666666,0.0,1,#pportunit y ot oco
+Base,0,16,41,his crater functio,#hi scrate rfuncti,#ihsctraerfuncti,0.16666666666666666,0.0,1,#ih sctrae rfuncti
+Base,0,16,42,ed unable to make th,#e dunabl et omak et,#ddunableotmaketh,0.05,0.0,1,#d dunabl e ot mak e th
+Base,0,16,43,es that pagasa clas,#e stha tpagas acla,#sethatpagasacla,0.21052631578947367,0.0,1,#s ethat pagas acla
+Base,0,16,44,gers shut down kers,#ger sshu tdow nker,#ersghutsudowker,0.05263157894736842,0.0,1,#ers ghu tsu dow ker
+Base,0,16,45,ssembly. a stone mon,#ssembl. y aston emo,#ssembly.#stonemo,0.35,0.0,7,#ssembly. # s ton e mo
+Base,0,16,46,o bill guthridge in,# obil lguthridg ei,#oallftsqghfcdhi,0.05263157894736842,0.0,1,# oall ftsqghfcd hi
+Base,0,16,47,th century transfo,#t hcentur ytransf,#thcenturytransfo,0.1111111111111111,0.0,2,#t hcentur ytransfo
+Base,0,16,48,"tal units, and regim","#ta lunit, san dregi","#altunit,sandregi",0.05,0.0,1,"#al tunit, san dregi"
+Base,0,16,49,"s, upon hearing news","#, supo nhearin gnew","#,suponhearingnew",0.15,0.0,2,"#, supo nhearin gnew"
+Base,0,16,50,d conference sched,# dconferenc esche,#dconferencesche,0.05555555555555555,0.0,1,# dconferenc e sche
+Base,0,16,51,following giants a,#followin ggiant s,#ollownigiantsa,0.16666666666666666,0.0,1,#ollownig iants a
+Base,0,16,52,nd light industrie,#n dligh tindustri,#nlightindustrie,0.1111111111111111,0.0,2,#n ligh t industrie
+Base,0,16,53,"country, at the riza","#countr, ya tth eriz","#ountry,catheriz",0.1,0.0,1,"#ountry, ca t he riz"
+Base,0,16,54,osaurus of eastern,#osauru so feaster,#saurusofeastern,0.05555555555555555,0.0,1,#saurus o f eastern
+Base,0,16,55,was never complete,#wa sneve rcomplet,#aswnevnercomplet,0.1111111111111111,0.0,1,#as wne vne rcom plet
+Base,0,16,56,aphics and animati,#aphic san danimat,#phaicsandanimat,0.16666666666666666,0.0,1,#phaic s an d animat
+Base,0,16,57,"t. on june, a federal j","#. to njun, e afedera l","#.t#onjun,efederal",0.17391304347826086,0.0,2,"#. t#on jun, e federa l"
+Base,0,16,58,en in competition o,#e ni ncompetitio n,#nenompetitionn,0.10526315789473684,0.0,1,#n en ompetition n
+Base,0,16,59,l to the people and b,# lt oth epeopl ean d,#lothtepeopleand#,0.14285714285714285,0.0,1,# l ot hte peopl ean d#
+Base,0,16,60,"ro, was born on decem","#r, owa sbor no ndece","#o,rwasbornondcebe",0.09523809523809523,0.0,1,"#o, rw as bor n on dcebe"
+Base,0,16,61,s led the war office,# sle dth ewa roffic,#sledthewaroffi,0.05,0.0,1,# sle dth ewa roffi
+Base,0,16,62,"diego, club intramu","#dieg, oclu bintram","#ideg,clubintramu",0.21052631578947367,0.0,1,"#ideg, c lub intramu"
+Base,0,16,63,resulting high cas,#resultin ghig hca,#esultinghighca,0.05555555555555555,0.0,1,#esulting high ca
+Base,0,16,64,s no longer widely h,# sn olonge rwidel y,#snolongerwidelyh,0.1,0.0,1,# sno longe rwidely h
+Base,0,16,65,he coast of souther,#h ecoas to fsouthe,#ehcoastosouthe,0.10526315789473684,0.0,1,#e hcoas t o southe
+Base,0,16,66,s farther away from,# sfarthe rawa yfro,#sfartherawayfro,0.10526315789473684,0.0,1,# sfarthe r awa y fro
+Base,0,16,67,or pagasa. this can o,#o rpagas. athi sca n,#ropaags.#hiscan,0.14285714285714285,0.0,1,#r opaags. #his ca n
+Base,0,16,68,ete after the year. t,#et eafte rth eyea. r,#teeteaftertheyea.t,0.19047619047619047,0.0,1,#te ete afte rth eyea. t
+Base,0,16,69,al in an attempt to r,#a li na nattemp tt o,#lalinanattempttor,0.14285714285714285,0.0,1,#l al in an attemp t to r
+Base,0,16,70,uestrian australi,#uestria naustral,#uestrianaustral,0.47058823529411764,0.0,8,#uestria naustral
+Base,0,16,71,before striking ar,#befor estrikin ga,#eforestrikingar,0.1111111111111111,0.0,1,#efore strikin g ar
+Base,0,16,72,vealed through its,#veale dthroug hit,#ealedthroughit,0.05555555555555555,0.0,1,#ealed throug h it
+Base,0,16,73,med it had granted l,#me di tha dgrante d,#edmithadgranted,0.05,0.0,1,#ed mi t ha dgrante d
+Base,0,16,74,ial entourage and p,#ia lentourag ean d,#ialentourageandp,0.15789473684210525,0.0,3,#ia lentourag e an d p
+Base,0,16,75,dia. operation cali,#di. aoperatio ncal,#id.doperationcal,0.10526315789473684,0.0,1,"#id. doperatio n cal
+
+Wait, let me re-calculate carefully:
+Input: `d i a .   o p e r a t i o n   c a l i`
+1. `d` -> #
+2"
+Base,0,16,76,"rich colouring, vel","#ric hcolourin, gve","#ichcolouring,vel",0.10526315789473684,0.0,1,"#ich colouri ng, vel
+#ich colouri ng, vel
+#ich colouri ng, vel
+#ich colouri ng, vel
+#ich colouri ng, vel
+#ich colouri ng, vel
+#ich colouri"
+Base,0,16,77,ed technical probl,#e dtechnica lprob,#detchnicalprob,0.05555555555555555,0.0,1,#d etchnica l prob
+Base,0,16,78,shallow seas off fl,#shallo wsea sof ff,#hallowlseassffol,0.10526315789473684,0.0,1,#hallow lsea s s ffo l
+Base,0,16,79,dies before the tri,#die sbefor eth etr,#idesbeforethetr,0.10526315789473684,0.0,1,#ide sbef ore th e tr
+Base,0,32,0,he couple married in august. tracy work,#h ecoupl emarrie di naugus. ttrac ywor,#ecouplemarrie#inaugus.tracywork,0.05128205128205128,0.0,1,"#e couple marrie# in augus. tracy work
+#e coupl# marrie# in augus. tracy work
+#e coupl# marrie# in augus. tracy work
+
+Wait, let me re-calculate carefully:
+Input: h e c o u p l e   m a r r i e d   i n   a u"
+Base,0,32,1,hen he added drew cannon to the staff. if,#he nh eadde ddre wcanno nt oth estaf. fi,#eneheddeddrewannonothtesaff.i#,0.07317073170731707,0.0,1,#en eh edde ddr ew annon ot ht esaff. i#
+Base,0,32,2,s embraced his concern for the poor. lit,# sembrace dhi sconcer nfo rth epoo. rli,#embracedhisconcernforthepoor.lit,0.075,0.0,1,"# embraced his concern for the poor. lit
+#s embrace dhi sconc ern fo rth epoo. li
+
+Wait, let me re-calculate carefully:
+Input: `s embraced his concern for the poor. lit`
+1. `s` -> `#`
+2. ` ` -> ` `
+3. `e` -> `s`
+4. `m` -> `"
+Base,0,32,3,cularly if the gun then needed to be re a,#cularl yi fth egu nthe nneede dt ob er e,#ularlyifthegunthenneededtoberea,0.04878048780487805,0.0,1,"#ularly if the gun then needed to be re a
+#ularly if the gun then needed to be re a
+#ularly if the gun then needed to be re a
+#ularly if the gun then needed to be re a
+#ularly if the gun then needed to be re a
+#ularly if the gun then needed to be re a
+#ularly if the gun"
+Base,0,32,4,"s of wolfgang blaum, aka baumann, head of","# so fwolfgan gblau, mak abauman, nhea do","#s#ofwolfgangblaum,akabaumann,heado",0.04878048780487805,0.0,1,"# s#o f wol fgan gbla um, ak a baum ann, hea d o"
+Base,0,32,5,m his producers to take a year off to be c,# mhi sproducer st otak e ayea rof ft ob e,#mhisproducersotakeyearofftobec,0.047619047619047616,0.0,1,# mhi sproduce rs otak e yea r of f to be c
+Base,0,32,6,"ese, the church recognized five parish","#es, eth echurc hrecognize dfiv eparis","#se,ethechurcrecognizdfivparis",0.10526315789473684,0.0,1,"#se, eth echurc recognizd fiv paris"
+Base,0,32,7,"h republic, denmark, estonia, germany, hu","# hrepubli, cdenmar, kestoni, agerman, yh","#republic,denmark,estonia,germany,hu",0.04878048780487805,0.0,1,"# republic, denmark, estonia, germany, hu
+#republic, denmark, estonia, germany, hu
+# republic, denmark, estonia, germany, hu
+# republic, denmark, estonia, germany, hu
+# republic, denmark, estonia, germany, hu
+# republic, denmark, estonia, germany, hu
+# republic, denmark"
+Base,0,32,8,l four years. he was a member of the natio,# lfou ryear. sh ewa s amembe ro fth enati,#lfouryea.shevasamemberofthenatio,0.023809523809523808,0.0,1,# lfou r yea. s he va s a membe r o f th e natio
+Base,0,32,9,ght rounds per minute. two twin gun moun,#gh tround spe rminut. etw otwi ngu nmou,#htgoundsperminut.#wotwingunoum,0.025,0.0,1,#ht gound sper minut. #wo twi ngu noum
+Base,0,32,10,"xed feelings, as they had allegiance to","#xe dfeeling, sa sthe yha dallegianc et","#xedfeelings,astheyhadallegianceto",0.1794871794871795,0.0,3,"#xe dfeelings, as th ey ha dallegianc e to"
+Base,0,32,11,e captain informs him that the diary is,# ecaptai ninform shi mtha tth ediar yi,#captaininformshimthatthediaryis,0.07692307692307693,0.0,1,"# captain informs him that the diary is
+#c aptain informs him that the diary is
+#c aptain informs him that the diary is
+#c aptain informs him that the diary is
+#c aptain informs him that the diary is
+#c aptain informs him that the diary is
+#c aptain informs him that the diary is
+#c aptain informs him that the diary"
+Base,0,32,12,r the next two months. this period of ina,# rth enex ttw omonth. sthi sperio do fin,#rthenexttwomonths.thisperiodofina,0.12195121951219512,0.0,1,# rthe nex ttw omon ths. thisp erio dofi na
+Base,0,32,13,have been deposited long after the hea,#hav ebee ndeposite dlon gafte rth ehe,#aveeebndepositedlongafterthehea,0.07894736842105263,0.0,1,#ave eeb ndeposite dlon gaft er th ehea
+Base,0,32,14,port citing the city s income at billio,#por tcitin gth ecit y sincom ea tbilli,#ortcitingthecitysicomeatbillio,0.07692307692307693,0.0,1,#ort citin gth eci ty s icom e a tbil lio
+Base,0,32,15,wmen of the first were later found to ha,#wme no fth efirs twer elate rfoun dt oh,#meno#thefirstwerelaterfoundtoha,0.025,0.0,1,#men o# th efirs twer elate rfou ndt oha
+Base,0,32,16,ey with the provinces ruined. modern hi,#e ywit hth eprovince sruine. dmoder nh,#yewiththeprvincesruidn.modernhi,0.07692307692307693,0.0,1,#y ewit hth ep rvinces ruidn. moder n hi
+Base,0,32,17,the polar regions and farside of the mo,#th epola rregion san dfarsid eo fth em,#thepolarregionsandfarsideofthemo,0.10256410256410256,0.0,3,"#th e polar regions and farside of the mo
+#th e polar regions and farside of the mo
+#th e polar regions and farside of the mo
+#th e polar regions and farside of the mo
+#th e polar regions and farside of the mo
+#th e polar regions and farside of the mo
+"
+Base,0,32,18,rnment was welcome particularly to th,#rnmen twa swelcom eparticularl yt ot,#nmentwaswelcomeparticularlytoth,0.02702702702702703,0.0,1,"#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome particularly to th
+#nment was welcome"
+Base,0,32,19,mperor by the roman senate. this was the,#mpero rb yth eroma nsenat. ethi swa sth,#mperorb#yth#romansenate.th#iswa#sth#e,0.225,0.0,6,#mperor b#y th# roman senate. th#is wa#s th#e
+Base,0,32,20,"the sibylline verses, lactantius main","#th esibyllin everse, slactantiu smai","#thesibyllin,everse,slactantiusmai#",0.10810810810810811,0.0,3,"#th e sibyllin, e verse, s lactantiu s mai#"
+Base,0,32,21,embers of the praetorian guard and sev,#ember so fth epraetoria nguar dan dse,#mbersofthepraetorianguardandasev,0.07894736842105263,0.0,1,"#mbers o fthe praetoria nguar danda sev
+#mbers o fthe praetoria nguar danda sev
+#mbers o fthe praetoria nguar danda sev
+#mbers o fthe praetoria nguar danda sev
+#mbers o fthe praetoria nguar danda sev
+#mbers o"
+Base,0,32,22,d is considered one of the better field,# di sconsidere don eo fth ebette rfiel,#disconsideeredoneofthebetterfield,0.05128205128205128,0.0,1,# d is consideere done of th ebette rfield
+Base,0,32,23,istics used to transport the stone to t,#istic suse dt otranspor tth eston et o,#sticsusedtotransportthestonetot,0.10256410256410256,0.0,1,"#stics used to transport the stone to t
+#stics used to transport the stone to t
+#stics used to transport the stone to t
+#stics used to transport the stone to t
+#stics used to transport the stone to t
+#stics used to transport the stone to t
+#stics used to transport the stone to t
+#stics used to transport the"
+Base,0,32,24,f san lorenzo head was donated to covin,# fsa nlorenz ohea dwa sdonate dt ocovi,#sanlorenzoheadwasdonatedtocovin,0.07692307692307693,0.0,1,"# san lorenzo head was donated to covin
+# fsa n lorenzo head was donated to covin
+# fsa n lorenzo head was donated to covin
+# fsa n lorenzo head was donated to covin
+# fsa n lorenzo head was donated to covin
+# fsa n lorenzo head was donated to covin
+# f"
+Base,0,32,25,pporter of the bar kokhba rebellion ag,#pporte ro fth eba rkokhb arebellio na,#pporterofthebarkokhbarebelliona,0.21052631578947367,0.0,7,#pporte r of th e ba r ko khba rebellio n a
+Base,0,32,26,"orld war ii, almost all of the structure","#orl dwa ri, ialmos tal lo fth estructur","#rldwarii,lmostallofthestructur",0.075,0.0,1,"#rld wa r ii, lmos t al l o f th e structur"
+Base,0,32,27,"ar with the roman people, especially in","#a rwit hth eroma npeopl, eespeciall yi","#rawiththromnpeopl,especiallyi",0.05128205128205128,0.0,1,"#r aw ith th romn peopl, especiall y i"
+Base,0,32,28,wmen is an episode of the british scien,#wme ni sa nepisod eo fth ebritis hscie,#wmenisanepisodeofthebritishscie,0.1282051282051282,0.0,4,#wme n i s an episod e o f th e britis h scie
+Base,0,32,29,and also returned to this type of feedi,#an dals oreturne dt othi styp eo ffeed,#nadlosreturnedtothsitypeofeedi,0.02564102564102564,0.0,1,#na dlo sreturne dto thsi typ eof eedi
+Base,0,32,30,s annual financial report citing the c,# sannua lfinancia lrepor tcitin gth e,#sannuallfinancialreportcitingtheb,0.07894736842105263,0.0,1,# sannuall financia lrepor tcitin gth e b
+Base,0,32,31,e congress voted that million be appro,# econgres svote dtha tmillio nb eappr,#congressvotedthatmillionbappro,0.05263157894736842,0.0,1,# congres s vote d tha t millio n b appro
+Base,0,32,32,on the moon would lie permanently froz,#o nth emoo nwoul dli epermanentl yfro,"#nethoom,oouldoldeielermanentlfro",0.10526315789473684,0.0,1,"#n eth oom, oou ldo lde iel ermanentl fro"
+Base,0,32,33,"ngs, rendered in two distinct styles. bu","#ng, srendere di ntw odistinc tstyle. sb","#gn,rnederedintwodistinctstyle.bu",0.075,0.0,1,"#gn, rnedere d i n t wo distinc t style. b u"
+Base,0,32,34,backs of many of these massive monumen,#back so fman yo fthes emassiv emonume,#acksbofmnayofthesemassivemonumne,0.05263157894736842,0.0,1,#acks bof mna yof thes emass ivem onumne
+Base,0,32,35,hat his imagination was stimulated by,#ha thi simaginatio nwa sstimulate db,#atthsimagnationvasstimulatebby,0.13513513513513514,0.0,1,#at ths imagnation vas stimulateb by
+Base,0,32,36,"man rights, charged with graft over the","#ma nright, scharge dwit hgraf tove rth","#anrighst,hargecdwithgraftoverth",0.02564102564102564,0.0,1,"#an righst, hargec dwi th graf t ove rth"
+Base,0,32,37,"s but reformed, ending with the death of","# sbu treforme, dendin gwit hth edeat ho","#sutbteforme,dningwiththdatho",0.05,0.0,1,"# sut bteforme, dning wit hth dath o"
+Base,0,32,38,"ction. in july, he compiled a record and e","#ctio. ni njul, yh ecompile d arecor dan d","#ctio.nijul,yhecompiledarecordand#",0.16666666666666666,0.0,6,"#ctio. n i jul, yh e compile d a recor d an d #"
+Base,0,32,39,nar but the match was scrapped and lesn,#na rbu tth ematc hwa sscrappe dan dles,#anrbutthematchwasscrappeddnaelsn,0.05128205128205128,0.0,1,#an rbu tth emat chw as s cra pped dna elsn
+Base,0,32,40,the s which defeated the spanish fleet,#th e swhic hdefeate dth espanis hflee,#theswhichdefeatedthespanishfleet,0.15789473684210525,0.0,3,#th e s whic h defeat ed th e spanis h flee t
+Base,0,32,41,nding came in the form of public works p,#ndin gcam ei nth efor mo fpubli cwork s,#ndingcameintheformofpublicworksp,0.125,0.0,5,#ndin gcam e i n th efor m o fpub li cwor ks p
+Base,0,32,42,ystal palace on november. it also seeme,#ysta lpalac eo nnovembe. ri tals oseem,#ystalpalaceonnovember.#italsoseemd,0.15384615384615385,0.0,5,#ystal palac eon novemb er. #it als o seem d
+Base,0,32,43,"n puts the gun in her handbag, shouting, i","# nput sth egu ni nhe rhandba, gshoutin, g","#nputstheguninherhandbag,shouting,i",0.023809523809523808,0.0,1,"# nput s th egu n i nh erha ndba g, shoutin g, i"
+Base,0,32,44,dvodnik no. survived the war and was ced,#dvodni kn. osurvive dth ewa ran dwa sce,#vvodnikno.ssurvivedthewarandwasced,0.2,0.0,1,#vvodni k no. ssurvive d th e wa r an d wa s ce d
+Base,0,32,45,opical storm continued to weaken as it,#opica lstor mcontinue dt oweake na si,#picalstormcontinuedtoweakenasit,0.05263157894736842,0.0,1,#pical stor mcontinue dto weake nas it
+Base,0,32,46,ime when the philippines was under the,#im ewhe nth ephilippine swa sunde rth,#miewhntthephilippineswasunderth,0.05263157894736842,0.0,1,#mi ewhn tth ephilippine swa sunder th
+Base,0,32,47,he elite family of agricola. he entered,#h eelit efamil yo fagricol. ah eentere,#ehliteemilfayofagricol.#eentere,0.02564102564102564,0.0,1,#e hlite emilf ay of agrico l. #e entere
+Base,0,32,48,city s three tier public education sys,#cit y sthre etie rpubli ceducatio nsy,#itysthreetierpubliceducationsys,0.02631578947368421,0.0,1,#ity s thre e tie rpub lic ed ucat ion sys
+Base,0,32,49,bombers to cause additional damage to,#bomber st ocaus eadditiona ldamag et,#ommbesrtocausadditonaldamageot,0.13513513513513514,0.0,1,#ommbes rt ocaus additonal damag eot
+Base,0,32,50,fensive squares quickly enough to pro,#fensiv esquare squickl yenoug ht opr,#ensivesquaresquicklyenoughtopro,0.02702702702702703,0.0,1,#ensive square squick lyenoug hto pro
+Base,0,32,51,rticularly popular with the french na,#rticularl ypopula rwit hth efrenc hn,#ticularlypopularwiththefrenchna,0.05405405405405406,0.0,1,"#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly popular with the french na
+#ticularly"
+Base,0,32,52,doctor who was teased by the bbc via twi,#docto rwh owa stease db yth ebb cvi atw,#octorhdowasteasedbythebbcviatwi,0.075,0.0,1,#octor hdo wa s tease d b y th e bb c vi a twi
+Base,0,32,53,st participated in the olympics at age,#s tparticipate di nth eolympic sa tag,#tsarticpatedi#ntheolympcis#tag#,0.02631578947368421,0.0,1,#t sarticpated i# n th eolympci s# t ag#
+Base,0,32,54,ng to enquiries from relatives of thos,#n gt oenquirie sfro mrelative so ftho,#gntoenquireiesfromrelativeoftho,0.02631578947368421,0.0,1,#g nt oenquireie s fro mrelativ e o ftho
+Base,0,32,55,adcast announcements that the forces,#adcas tannouncement stha tth eforce,#adcastannouncemenstthattheforce,0.2222222222222222,0.0,6,#adcas t announcemenst tha tth eforce
+Base,0,32,56,igade forming the st croatian guards b,#igad eformin gth es tcroatia nguard s,#gadeformingthescroatianguards#,0.02631578947368421,0.0,1,#gade formin gth es croatia nguard s#
+Base,0,32,57,of responsibility located between e a,#o fresponsibilit ylocate dbetwee n e,#frresponsibilitylocatedbetweenea,0.08108108108108109,0.0,1,#f rresponsibilit ylocat ed betwee n e a
+Base,0,32,58,"rn provinces, that he was not dead and so","#r nprovince, stha th ewa sno tdea dan ds","#nrprovince,thatehwasnotdeadandso",0.04878048780487805,0.0,1,"#n rprovince, that eh wa sno tde ad an dso"
+Base,0,32,59,as being strongly influenced by his mo,#a sbein gstrongl yinfluence db yhi sm,#sabeingstronlgyinfluencdebyhismo,0.02631578947368421,0.0,1,#s abeing stronlgy influencde b y hi s mo
+Base,0,32,60,ending days searching the debris with,#endin gday ssearchin gth edebri swit,#ndingdayssearchingthedebriswit,0.02702702702702703,0.0,1,#nding day ssearchin gth edebri swit
+Base,0,32,61,e allowed to stay but it gave the entire,# eallowe dt osta ybu ti tgav eth eentir,#allowedtostaybutitgavetheentire,0.05,0.0,1,"# allowed to stay but it gave the entire
+#e allowe d to stay but it gave the entire
+#e allowe d to stay but it gave the entire
+#e allowe d to stay but it gave the entire
+#e allowe d to stay but it gave the entire
+#e allowe d to stay but it gave the entire
+#e allowe d to stay but it"
+Base,0,32,62,ng approximately families. the floodi,#n gapproximatel yfamilie. sth eflood,#gnpproximatleyfamilie.#hefloodi,0.02702702702702703,0.0,1,#g npproximatley familie. #he floodi
+Base,0,32,63,t examples of globalization. due to the,# texample so fglobalizatio. ndu et oth,#texamplesofglobalization.duetothe,0.05128205128205128,0.0,1,# texampl es o fglobalizatio n. du e t o th e
+Base,0,32,64,a university collegiate sports are al,# auniversit ycollegiat esport sar ea,#univrsitycolliagtesportsareak,0.05405405405405406,0.0,1,# univrsity colliagte sport s are ak
+Base,0,32,65,icized old commentaries during the yu,#icize dol dcommentarie sdurin gth ey,#cizidoldcommentariesduringtheyt,0.02702702702702703,0.0,1,#cizid ol dcommentarie sdurin gth eyt
+Base,0,32,66,ng the yuan dynasty were too unfathoma,#n gth eyua ndynast ywer eto ounfathom,"#gtheyu,anadynastyweretoounfathoma",0.07894736842105263,0.0,1,"#g th eyu, ana dynast ywe ret oo unfathoma"
+Base,0,32,67,s to the neural arch. additional featur,# st oth eneura larc. hadditiona lfeatu,#sothteneuralarc.#dditionalfeatu,0.05128205128205128,0.0,1,# s ot hte neura larc. #dditiona lfeat u
+Base,0,32,68,urns the remaining blocks into a bonus,#urn sth eremainin gblock sint o abonu,#urnsthemainingblocksintoabonu,0.13157894736842105,0.0,4,#urn sth emainin gbloc ksint o a bonu
+Base,0,32,69,"red division. however, the faults disco","#re ddivisio. nhoweve, rth efault sdisc","#edredivisi.oneweve,thefaultsdisc",0.20512820512820512,0.0,1,"#ed redivisi. oneweve, th efault sdisc"
+Base,0,32,70,ation is no longer viable. the basic rha,#atio ni sn olonge rviabl. eth ebasi crh,#tanisonlongerviabl.ethbasicrha,0.1,0.0,1,#tan i s on longe rviabl. eth basic rha
+Base,0,32,71,ead coach. stevens was a finalist for bo,#ea dcoac. hsteven swa s afinalis tfo rb,#adcoac.hstevenswasafinalistforbo,0.025,0.0,1,#ad coac. hsteve ns wa s a finalis t fo r bo
+Base,0,32,72,ds repeatedly tried to ram one another,#d srepeatedl ytrie dt ora mon eanothe,#sdrpeateedlytriedtoramoneanothe,0.13157894736842105,0.0,1,#sd rpeateedly trie dto ra mone anothe
+Base,0,32,73,en enhanced its authority as one of the,#e nenhance dit sauthorit ya son eo fth,#nenhancdehtsauthorityasoneofth,0.05128205128205128,0.0,1,#n enhancde hts authorit y as on e of th
+Base,0,32,74,rce the un forces back. five battle grou,#rc eth eu nforce sbac. kfiv ebattl egro,#certheunforcesbac.fivebattlegrou,0.025,0.0,1,#ce rth eun force sbac. fiv ebattl egrou
+Base,0,32,75,l masculinity conflict with his respo,# lmasculinit yconflic twit hhi sresp,#lmasculinitlconflictwithhisrespo,0.05405405405405406,0.0,1,# lmasculinit lconflic t wit h hi s respo
+Base,0,32,76,"tillery batteries, approximately men","#tiller ybatterie, sapproximatel yme","#illerybatterie,sapproximatelyme",0.05555555555555555,0.0,1,"#illery batterie, sapproximately me"
+Base,0,32,77,he crater floor makes it ideal for infr,#h ecrate rfloo rmake si tidea lfo rinf,#ehcraterfloomakesitidealforinfr,0.02564102564102564,0.0,1,#e hcrater floo make s it idea l fo r inf r
+Base,0,32,78,"hree to one, assaulted in the front by mi","#hre et oon, eassaulte di nth efron tb ym","#reeetoone,assaultedinthefrontbymi",0.07317073170731707,0.0,1,"#ree et oone, assaulte d i n th e fron t b y mi"
+Base,0,32,79,wer kw meadows engine. suspension was o,#we rk wmeadow sengin. esuspensio nwa s,#erwkeadowsengin.suspensionwaso,0.02564102564102564,0.0,1,#er wk eadows engin. suspensio nwa s o
+Base,0,64,0,ntation of capacitors and inductors and on knowledge of the frequency domai,#ntatio no fcapacitor san dinductor san do nknowledg eo fth efrequenc ydoma,#tationo#fcapacitorsandinductorsandonknowledgeo#fthefrequencydomai,0.06666666666666667,0.0,1,#tation o# f capacitor s an d inductor s an d o n knowledg e o# f th e frequenc y domai
+Base,0,64,1,"irst world war. boats were constructed, most of which went into service with th","#irs tworl dwa. rboat swer econstructe, dmos to fwhic hwen tint oservic ewit ht","#irstworldwar.boatswereconstucted,mostofwhichwentintoservicewithth",0.06329113924050633,0.0,4,"#irs t worl d war. boa t swer e constucted, mos t of whic h wen t int o servic e wit h th"
+Base,0,64,2,"he port, and the vichy french defending forces was limited and vague, although","#h epor, tan dth evich yfrenc hdefendin gforce swa slimite dan dvagu, ealthoug","#ehpor,tnadthevichyfrencdefendingforceswalimitedanvagu,lthough",0.038461538461538464,0.0,1,"#e hpor, tna dth evi ch yfrenc defen din gforce swa limite dan vagu, lthoug h"
+Base,0,64,3,"it is viewed edge on in a region of rough, cratered terrain. it is located within","#i ti sviewe dedg eo ni n aregio no froug, hcratere dterrai. ni ti slocate dwithi","#ttiseviewedgdeoniaegionorouh,crateredterai.#ttislocatedwithi",0.06172839506172839,0.0,1,"#t ti sevie we dgd eo n i a egio n o rouh, crate re dterai. #t ti slocat edwithi"
+Base,0,64,4,"rumors held nero responsible. to deflect blame, nero targeted christians. he o","#rumor shel dner oresponsibl. et odeflec tblam, ener otargete dchristian. sh e","#umorsrheldneroresponsibl.etodeflectblam,enerotargetedchristia.nshe",0.08974358974358974,0.0,1,"#umors rhel dner oresponsibl. et odeflec tblam, ener otarge te dchristia. ns h e"
+Base,0,64,5,"ed sean in donkey punch, who tags along with character josh as the quiet brothe","#e dsea ni ndonke ypunc, hwh otag salon gwit hcharacte rjos ha sth equie tbroth","#dseanindonkeypunch,whotagsalongwithcharacterjoshasthequietbrothe",0.0379746835443038,0.0,1,"#d sea n in donke y punc h, wh o tag s alo ng wit h char acter jos h as th e quie t broth e"
+Base,0,64,6,"ade a sailing rig increasingly inconvenient. hms inflexible, launched in but","#ad e asailin gri gincreasingl yinconvenien. thm sinflexibl, elaunche di nbu","#daesailingrigincreasinglyinconvenient.hmsinflexible,launchedinbut",0.09210526315789473,0.0,1,"#da e sailin g rig increasin gl y inconvenien t. hms inflexibl e, launche d in bu t"
+Base,0,64,7,"rn with a second album. he said that they had written over songs, some during the","#r nwit h asecon dalbu. mh esai dtha tthe yha dwritte nove rsong, ssom edurin gth","#nrwithasecondalbu.ehsaidthattheyhadwrittenoversong,someduringthe",0.012345679012345678,0.0,1,"#n rw ith a secon dalbu. eh sai dtha tthe yha dwritte nover song, som edurin gth e"
+Base,0,64,8,ated along roxas boulevard. some universal banks in the philippines that has,#ate dalon groxa sboulevar. dsom euniversa lbank si nth ephilippine stha tha,#tedalongroxasboulevard.#omeuniversalbanksinthephilippinesthatha,0.02631578947368421,0.0,1,#ted alon grox asbou levard. #om euniv ersal bank s i nthe phil ippin estha t ha
+Base,0,64,9,"the rd district population covers binondo, quiapo, san nicolas and santa cruz","#th er ddistric tpopulatio ncover sbinond, oquiap, osa nnicola san dsant acru","#therddistric#popu#ationcover#binond#,quiap#,sa#nicolasan#sant#cru#",0.09090909090909091,0.0,3,"#th e rd distric# popu#ation cover# binond#, quiap#, sa# nicolas an# sant# cru#"
+Base,0,64,10,le or section rely on the reader s knowledge of the complex impedance represe,#l eo rsectio nrel yo nth ereade r sknowledg eo fth ecomple ximpedanc erepres,#el#orsectio#nrel#onth#read#rsknowledg#ofth#comple#impedanc#repres#,0.03896103896103896,0.0,1,#e l# or sectio#n rel# on th# read#r s knowledg# of th# comple# impedanc# repres#
+Base,0,64,11,"rea was formed during the pleistocene period silt, clay, and gravel can be foun","#re awa sforme ddurin gth epleistocen eperio dsil, tcla, yan dgrave lca nb efou","#eareawasformeduringthpleistoeneperiodsil,cla,yandgravelcanbefou",0.10126582278481013,0.0,1,"#ea rea was forme durin gth pleistoen eperio dsil, cla, yan dgrave lca nbe fou"
+Base,0,64,12,"s are capable of nitrogen atom transfer, although this reactivity has receiv","# sar ecapabl eo fnitroge nato mtransfe, ralthoug hthi sreactivit yha srecei","#sarecapableofnitrogenatomtransfer,althoughthisreactivityhasrecei",0.06578947368421052,0.0,1,"# s are capabl eof nitrog enato mtran sfer, althoug hthis reactiv ityha srecei"
+Base,0,64,13,"ated to the british museum, performances of noh plays in london, and the succes","#ate dt oth ebritis hmuseu, mperformance so fno hplay si nlondo, nan dth esucce","#tedothtebritismuseum,performancsefonohplaysinlondo,nadhtesucce",0.0379746835443038,0.0,1,"#ted ot hte britis museum, performancse fo noh play s in londo, nad hte succe"
+Base,0,64,14,"jor clade, limnarchia, includes most mesozoic temnospondyls, as well as some p","#jo rclad, elimnarchi, ainclude smos tmesozoi ctemnospondyl, sa swel la ssom e","#jorcla,dlimnarchi,nincludesmostmesoizictemnospondyly,saswellasmep",0.0641025641025641,0.0,3,"#jo rcla, dlimnarchi, ninclud esmos tmesoi zictem nospon dyly, sas wel lasm ep"
+Base,0,64,15,"ny architects, artists, historians and heritage advocacy groups are pushing","#n yarchitect, sartist, shistorian san dheritag eadvocac ygroup sar epushin","#ynrchitects,artists,historiansandheritageadvocacygroupsarepushing",0.05333333333333334,0.0,1,"#y nrchitects, artist s, historian s and heritag e advocac y group s are pushin g"
+Base,0,64,16,against nero and the likelihood that they did not have eyewitness accounts o,#agains tner oan dth elikelihoo dtha tthe ydi dno thav eeyewitnes saccount s,#gainstneronadnthelikelihoodthattheydidnothaveyewitnessaccounts,0.07894736842105263,0.0,1,#gainst neron ad nthe likelihood tha tthey di dnot hav eyewitness account s
+Base,0,64,17,ea is headed by a director and is responsible for areas not covered by any of th,#e ai sheade db y adirecto ran di sresponsibl efo rarea sno tcovere db yan yo ft,#aeisheadedbyadirectorandisresponsibleforareasnotcoveredbyanyoft#,0.0625,0.0,1,#a e is heade d by a directo r and i s responsibl e for area s not covere d by an y of t#
+Base,0,64,18,crew two decker sms kaiser remarkably survived close actions with four ital,#cre wtw odecke rsm skaise rremarkabl ysurvive dclos eaction swit hfou rita,#rewctoedckersmskaierremarkablysurivedcloseactionswithfourita,0.02666666666666667,0.0,1,#rew cto edcke rsm skai errem arkabl ysuriv edcl oseact ions wit hfou rita
+Base,0,64,19,sion series. that was the third most strikeouts by a dodger pitcher in the play,#sio nserie. stha twa sth ethir dmos tstrikeout sb y adodge rpitche ri nth epla,#ionserie.tthatwasthethirdmoststrikeoutsbyadodgerpitcherintheplay,0.0759493670886076,0.0,1,#ion serie. ttha twa s th e thir d mos t strikeout s b y a dodge r pitche r i n th e pla y
+Base,0,64,20,me for a return to what they saw as the best poetic practice of the past. f. s. flint,#m efo r aretur nt owha tthe ysa wa sth ebes tpoeti cpractic eo fth epas. t. f. sflin,#eemforaeturntowhattheysawasthebespoeticpracticeofthepas.f.s.flint,0.07058823529411765,0.0,1,#e em fo r a eturn t o what the ysa w a s th e bes poet ic pract ic e o f th e pas. f. s. flin t
+Base,0,64,21,"entered into an affair with claudia acte, a former slave. in, agrippina attempt","#entere dint oa naffai rwit hclaudi aact, e aforme rslav. ei, nagrippin aattemp","#ntereedntoanaffairwithclaudiaact,aformerslav.i,agrippinaattemp",0.02531645569620253,0.0,1,"#nteree dnt o an affai r wit h claudia act, a forme r slav. i, agrippin a attemp"
+Base,0,64,22,atedly tried to ram one another while shells bounced off their armor. the batt,#atedl ytrie dt ora mon eanothe rwhil eshell sbounce dof fthei rarmo. rth ebat,#tatedltrie#tora#on#anothe#whil#shell#bounc#offthei#armo#.th#bat#,0.05128205128205128,0.0,1,#tatedl trie# to ra# on# anothe# whil# shell# bounc# off thei# armo#. th# bat#
+Base,0,64,23,"with nazi swastikas through the synagogue s stained glass windows, then sped","#wit hnaz iswastika sthroug hth esynagogu e sstaine dglas swindow, sthe nspe","#ithhnaziswastikasthroughthesynagoguesstainedglasswindows,thensped",0.05263157894736842,0.0,1,"#ith hnaz i swastika s throug h th e synagogu e s staine d glas s window s, th e n spe d"
+Base,0,64,24,"final home series against the perth heat was held at gilchrist oval, whereas a","#fina lhom eserie sagains tth epert hhea twa shel da tgilchris tova, lwherea s","#inalhfomeerisriesgainsthetperthheatwasheldatgilchristova,whereasa",0.10256410256410256,0.0,1,"#inal hfom eeri srie sgain st h etper th hea twas hel dat gilchris t ova, whe rea s a"
+Base,0,64,25,ium now regularly hosts matches of the united football league. the stadium al,#iu mno wregularl yhost smatche so fth eunite dfootbal lleagu. eth estadiu ma,#iumnowregularlyhostmatchesoftheunitedfootballlueag.thestadiumal,0.06493506493506493,0.0,3,#iu mno wreg ularl yhos tmat ches of the unite dfoot ball lueag. the stad iu m al
+Base,0,64,26,"fifth column, lieutenant general freiherr von maltitz, nine battalions of in","#fift hcolum, nlieutenan tgenera lfreiher rvo nmaltit, znin ebattalion so fi","#iftthcolum,lietenenatgenerlfreiherrvonmalitz,ninebattalionsofi",0.07894736842105263,0.0,1,"#iftt hcolum, lietenena tgener lfreiher rvo nmalit z, nin ebattalion s o f i
+
+Wait, let me re-calculate carefully:
+f -> #
+i -> f
+f -> i
+t -> f
+h -> t
+
+c -> h
+o -> c
+l -> o
+u -> l
+m -> u
+n -> m
+
+l -> n
+i -> l
+e -> i
+u -> e
+t -> u
+e -> t
+n -> e
+a -> n
+n -> a
+t -> n
+
+g -> t
+e -> g
+n -> e
+e -> n
+r -> e
+a -> r"
+Base,0,64,27,he plan which was signed by adolf hitler himself was formulated at the highes,#h epla nwhic hwa ssigne db yadol fhitle rhimsel fwa sformulate da tth ehighe,#ehplanwhichwassignedbyadolfhitlerhimselfwasformulatedatthehighes,0.012987012987012988,0.0,1,#e hpla nwhic hwa ssigne dby adol fhitl erhimse lfwas formulat edat th ehighes
+Base,0,64,28,"wept the perimeter. soon, mortars emplaced on a neighboring high finger ridge","#wep tth eperimete. rsoo, nmortar semplace do n aneighborin ghig hfinge rridg","#epthteperimete.rsoo,nmortarsemplacedonaneighboringhighfingerridg",0.1038961038961039,0.0,1,"#ept hte perimete. r soo, n mortar semplac ed o n a neighborin g hig h finge r ridg"
+Base,0,64,29,"ederalist caleb strong. gore and other federalists raised a public outcry, an","#ederalis tcale bstron. ggor ean dothe rfederalist sraise d apubli coutcr, ya","#deralistcalebstrong.goreandotherfederalistsraisedapublicoutcry,an",0.03896103896103896,0.0,1,"#deralist caleb strong. gore and other federalists raised a public outcry, an
+#deralist caleb strong. gore and other federalists raised a public outcry, an
+#deralist caleb strong. gore and other federalists raised a public outcry, an
+#deralist caleb strong. gore and other federalists raised a public outcry, an
+#deralist caleb strong. gore and other federalists raised a public outcry, an
+#deralist caleb strong. gore and other federalists raised a public outcry, an
+#deralist caleb strong. gore and other federalists raised a public outcry, an
+#deralist caleb strong."
+Base,0,64,30,"antry brigade, major general johann nepomuk von nostitz rieneck, four battal","#antr ybrigad, emajo rgenera ljohan nnepomu kvo nnostit zrienec, kfou rbatta","#ntrxbrigad,majorgenerljohannnepomukvonnostitzrienec,fourbatta",0.05263157894736842,0.0,1,"#ntrx brigad, majo rgener ljohan nne pomu kvon nosti tzrie nec, fou rbatta"
+Base,0,64,31,ed c. when ny was truncated eastward to a new western terminus in central new yo,#e d. cwhe nn ywa struncate deastwar dt o ane wwester nterminu si ncentra lne wy,#de.#henwhenywastruncatedeastwardtoanewwesternterminusincentralnewyo,0.0375,0.0,1,#d e. #he nwh eny wa s truncat ed eastwar d to a ne w wester n terminu s in centra l ne w yo
+Base,0,64,32,aryloxaziridines are oxidation of imines with peracids a and amination of c,#aryloxaziridine sar eoxidatio no fimine swit hperacid s aan daminatio no f,#ryloxaziridinesareoxidationofimineswithperacidsaandaminationofc,0.02666666666666667,0.0,1,#ryloxaziridine s are oxidatio n of imine s wit h peracid s a an d amination o f c
+Base,0,64,33,"k force. the st platoon, nd engineer combat battalion, was to transport it acros","# kforc. eth es tplatoo, nn denginee rcomba tbattalio, nwa st otranspor ti tacro","#kforc.#hetsplatoo,ndengineecombabattalio,wastotransportiacro",0.0875,0.0,1,"# kforc. #he ts platoo, nd enginee comba battalio, wa s to transpor ti acro"
+Base,0,64,34,"and launched in. redoutable nonetheless had wrought iron armor plate, and par","#an dlaunche di. nredoutabl enonetheles sha dwrough tiro narmo rplat, ean dpa","#ndlanchedi.redoutablenonetheleshadwroughtironarmorplate,andpa",0.025974025974025976,0.0,1,"#nd lanche d i. redoutabl e nonethel es had wrough t iro n armo r plat e, an d pa"
+Base,0,64,35,"ed into an affair with claudia acte, a former slave. in, agrippina attempted to i","#e dint oa naffai rwit hclaudi aact, e aforme rslav. ei, nagrippin aattempte dt o","#dedintonaaffairwithclaudiaact,aformerslav.in,agrippinaattemptedtoi",0.09876543209876543,0.0,1,"#d edi nto na affai r wit h claudia act, a forme r slav. in, agrippin a attempte d to i"
+Base,0,64,36,"ment between then and the th, he would rule in favor of lesnar, giving him a summa","#men tbetwee nthe nan dth et, hh ewoul drul ei nfavo ro flesna, rgivin ghi m asumm","#entbeetweenthennadtheth,ehouldruleinfavoroflesna,rgivinghimasumm",0.036585365853658534,0.0,1,"#ent beetwee nthe nna dth eth, eh oul d rul e i nfavo ro flesna, rgivin gh im a sum m"
+Base,0,64,37,he new york times john leonard wrote that while the book has its strong points,#h ene wyor ktime sjoh nleonar dwrot etha twhil eth eboo kha sit sstron gpoint,#ehenewyorktimesjohnleonardwrotethatwhilethebookhasitsstrongpoints,0.10256410256410256,0.0,1,#e hen ew yor ktim es joh nleo nard wrot etha twhil ethe boo khas it sstr ong poi nt s
+Base,0,64,38,ring the season including for two reserve team matches but became a frequent,#rin gth eseaso nincludin gfo rtw oreserv etea mmatche sbu tbecam e afrequen,#ingtheseasonincludingfortworeserveteammatchesbutbecameafrequen,0.07894736842105263,0.0,1,#ing th e seaso n includin g fo r tw o reserv e tea m matche s bu t becam e a frequen
+Base,0,64,39,lly to have these employees airlifted to safer parts of somalia. many of the fs,#ll yt ohav ethes eemployee sairlifte dt osafe rpart so fsomali. aman yo fth ef,#llyothavetheseemployeesairliftedotsaferpartsofsomalia.manyofthefs,0.0759493670886076,0.0,3,#ll y ot hav e thes e employe es airlifte d ot safe r part s of somali a. man y of th e f s
+Base,0,64,40,e allied invasion of sicily in instead they were attached to the new th airbor,# eallie dinvasio no fsicil yi ninstea dthe ywer eattache dt oth ene wt hairbo,#allieddliasionofsicilyinnsteadtheywereattachedtothenewthairbor,0.0641025641025641,0.0,1,# allied dliasion of sicily in nstead they were attached to the new th airbor
+Base,0,64,41,"rs bought kershaw s minor league contract, and he was added to the active roste","#r sbough tkersha w smino rleagu econtrac, tan dh ewa sadde dt oth eactiv erost","#srboughtkershawsminorleaguecontract,andhewasaddedtotheactiveroste",0.06329113924050633,0.0,1,"#s rbough t kersha w s mino r leagu e contrac t, an d he wa s adde d to th e activ e rost e"
+Base,0,64,42,"ird studio album, blackout, on march,. it peaked at no. on the billboard, while its t","#ir dstudi oalbu, mblackou, to nmarc,. hi tpeake da tn. oo nth ebillboar, dwhil eit s","#irdstudioalbu,blackou,onmarc,.itpeakeatno.onthbillboar,whilitss",0.03529411764705882,0.0,3,"#ir dstudio albu, blackou, on marc, . it peake at no. on th billboar, whil its s"
+Base,0,64,43,"negative comments on nero s character in his work, but makes no remarks on the n","#negativ ecomment so nner o scharacte ri nhi swor, kbu tmake sn oremark so nth e","#egativeecommentnsonneronscharacteerinhiswor,butmakesnoremarksonthem",0.075,0.0,1,"#egativee commentn s on neron s charactee r in hi s wor, but make s no remark s on th e m"
+Base,0,64,44,ndings chameleon like according to watson his earliest works are in a relati,#nding schameleo nlik eaccordin gt owatso nhi searlies twork sar ei n arelat,#dingschameloenlkeaccordingtowatsonisearliesworksareinarelati,0.013157894736842105,0.0,1,#dings chameloen lke accordin gto watso nis earlies work sare i na relati
+Base,0,64,45,"onsible for austria, belgium, czech republic, denmark, estonia, germany, hungar","#onsibl efo raustri, abelgiu, mczec hrepubli, cdenmar, kestoni, agerman, yhunga","#nsibleforaustria,belgium,czechrepublic,denmark,estonia,germany,hungar",0.02531645569620253,0.0,1,"#nsible for austria, belgium, czech republic, denmark, estonia, germany, hungar
+#nsible for austria, belgium, czech republic, denmark, estonia, germany, hungar
+#nsible for austria, belgium, czech republic, denmark, estonia, germany, hungar
+#nsible for austria, belgium, czech republic, denmark, estonia, germany, hungar
+#nsible for austria, belgium, czech republic, denmark, estonia, germany, hungar
+#nsible for austria, belgium, czech republic, denmark, estonia, germany, hung"
+Base,0,64,46,nd tension. this tension would have been experienced during suction feeding,#n dtensio. nthi stensio nwoul dhav ebee nexperience ddurin gsuctio nfeedin,#dntensio.#hisntensionwouldhavebeenexperienceduringsuctionfeedin,0.05333333333333334,0.0,1,#d ntensio. #his ntensio n woul d hav e bee n experienc e durin g suctio n feedin
+Base,0,64,47,"en married him. according to dion cassius, sporus bore an uncanny resemblance","#e nmarrie dhi. maccordin gt odio ncassiu, ssporu sbor ea nuncann yresemblanc","#nemarriedhi.accordingtodioncassiu,sporusboreanuncannyresemblanc",0.03896103896103896,0.0,1,"#n emarrie dhi. accordin gto dio ncas siu, sporu sbore an uncan nyres emblanc"
+Base,0,64,48,all number of powerful guns capable of penetrating the armor of enemy ships a,#al lnumbe ro fpowerfu lgun scapabl eo fpenetratin gth earmo ro fenem yship s,#llnumberofpowerfulgunscapableofpenetratingthearmorofenemyships#,0.06493506493506493,0.0,1,#ll numbe r of powerfu l guns capabl e of penetratin g the armo r of enem y ship s #
+Base,0,64,49,"ropical storm. during this time, pagasa classified it as tropical storm zigza","#ropica lstor. mdurin gthi stim, epagas aclassifie di ta stropica lstor mzigz","#opicalstor.duringthistim,pagasaclassifieditastropicalstormzigz",0.025974025974025976,0.0,1,"#opical stor. durin g th i s tim, pagas a classifie d i t a s tropica l stor m zigz"
+Base,0,64,50,"he film s content. spacey, bening and hall worked for significantly less than t","#h efil m sconten. tspace, ybenin gan dhal lworke dfo rsignificantl yles stha n","#ehfilmsconten.pacey,beningandhallworkedforsignificantlylessthan#",0.02531645569620253,0.0,1,"#e hfil m sconten. pacey, benin g an d hal l worke d fo r significan tly les s tha n #"
+Base,0,64,51,chased from france until. the french navy decided in to adopt compound armor f,#chase dfro mfranc eunti. lth efrenc hnav ydecide di nt oadop tcompoun darmo r,#haseddromranceunti.ethrenchavyecideinotdoptompoundrmor#,0.038461538461538464,0.0,1,#hased drom rance unti. eth rench avy ecide i n ot dop t ompoun drmor #
+Base,0,64,52,"september, the italian stefani news agency reported as a reprisal for the bom","#septembe, rth eitalia nstefan inew sagenc yreporte da s areprisa lfo rth ebo","#eptember,t#hitalians#tefanin#ewsagenc#yreporte#dasar#eprisalf#orth#ebo#m",0.05194805194805195,0.0,1,"#eptember, t#h italian s#tefani n#ews agenc#y reporte#d as a r#eprisal f#or th#e bo#m"
+Base,0,64,53,ble platinum for more than copies sold. it was certified gold in chile for copi,#bl eplatinu mfo rmor etha ncopie ssol. di twa scertifie dgol di nchil efo rcop,#lebplatinuformorethacopiesol.itwascertifiegoldinchileforcop,0.05063291139240506,0.0,1,#le bplatinu for mor etha copie s ol. i tw as certifie gol d i n chil e fo r cop
+Base,0,64,54,a classified as tropical depression quiel on september. the system moved wes,# aclassifie da stropica ldepressio nquie lo nseptembe. rth esyste mmove dwe,#classifiedastropicaldepressionquielonseptember.thesystemmovedwes,0.06578947368421052,0.0,1,"# classified as tropical depression quiel on september. the system moved wes
+#ac lassiie d as tropica l depressio n quiel o n septembe r. th e syste m move d wes
+#ac lassiie d as tropica l depressio n quiel o n septembe r. th e syste m move d wes
+
+Wait, let me re-calculate carefully:
+Input: a classified as tropical depression quiel on september. the system moved wes
+
+1. 'a' -> #
+2. ' ' -> ' '
+3. 'c' -> 'a'
+4. 'l' -> 'c'
+5. 'a' -> 'l'
+"
+Base,0,64,55,"ng alone, more than any other tang poet. du fu s seemingly negative commentary o","#n galon, emor etha nan yothe rtan gpoe. td uf u sseemingl ynegativ ecommentar y","#gnaloe,morethananyothertangpoe.dufusseeminglynegativecommentaryo",0.025,0.0,1,"#g nalo e, m ore t ha n an y ot her tan gpo e. du f u sseem ing l yne gativ ecom ment ar y o"
+Base,0,64,56,"des when the philippines hosted sri lanka in july. the stadium, which was previ","#de swhe nth ephilippine shoste dsr ilank ai njul. yth estadiu, mwhic hwa sprev","#edswhnethtphillippineshostedsrilankainjul.thtstadiu,whichwasprevi",0.06329113924050633,0.0,1,"#ed swhne tht phillippine shoste dsri lank a i n jul. tht stadiu, whic hwa sprevi"
+Base,0,64,57,"s to vote in local elections, rather than one man, one vote, so that a higher numbe","# st ovot ei nloca lelection, srathe rtha non ema, non evot, es otha t ahighe rnumb","#sotovoteinlocalelection,ratherthanonema,onevot,sothatahighernumb",0.03614457831325301,0.0,1,"# s ot ovot e in loca l election, rath er tha n on ema, on evot, so tha t a highe r numb"
+Base,0,64,58,"e early s, has relied on fundraising efforts featuring singers and celebriti","# eearl y, sha srelie do nfundraisin geffort sfeaturin gsinger san dcelebrit","#earlyr,hasreliedonfundraisingeffortsfeaturingsingersandcelebriti",0.09210526315789473,0.0,1,"# early r, ha srelie d o nfundraisin geffort sfeaturin gsinger s an dcelebrit i"
+Base,0,64,59,essed their pounders to increase their muzzle velocity and armour penetrat,#esse dthei rpounder st oincreas ethei rmuzzl evelocit yan darmou rpenetra,#ssedtheirthepounderstoincreasetheirmuzzlevelocityandarmourpenetrat,0.14864864864864866,0.0,1,#sse dthe ir th e poun der s t o inc rea se th ei r m uz zl e v el oc it y a nd a rm ou r p en et ra t
+Base,0,64,60,"h column, lieutenant general freiherr von maltitz, nine battalions of infant","# hcolum, nlieutenan tgenera lfreiher rvo nmaltit, znin ebattalion so finfan","#column,hlieutenanlgeneralfreiherrvonmalitz,ninebattalionsofinfan",0.02631578947368421,0.0,1,"# column, hlieutenan lgenera lfreiher rvo nmalit z, nin ebattalion s o finfan"
+Base,0,64,61,"ge. he awaits for her to return from college, but mary leaves with her romantic i","#g. eh eawait sfo rhe rt oretur nfro mcolleg, ebu tmar yleave swit hhe rromanti c","#e.#ehwaitsforrheroreturnfromollge,utmaryleaveswithitherromantic",0.1111111111111111,0.0,1,"#e. #e hwait s for r her o retur n from ollge, ut mar y leave s with ith er romanti c"
+Base,0,64,62,"arawak berhad cmsb, one of the largest publicly traded companies in sarawak, s","#arawa kberha dcms, bon eo fth elarges tpublicl ytrade dcompanie si nsarawa, k","#rawakberhadcms,oneofthelargetpublicltradedcompaniesinsarawa,s",0.01282051282051282,0.0,1,"#rawak berha d cms, one of the larget publicl traded companie s in sarawa, s"
+Base,0,64,63,an baseball federation. the tournament was considered preparation for the i,#a nbasebal lfederatio. nth etournamen twa sconsidere dpreparatio nfo rth e,#naaseballfederatio.thetournamentwasconsideredpreparationforthe#,0.04,0.0,1,#n aasebal l federatio. th e tournamen t wa s considere d preparatio n fo r th e #
+Base,0,64,64,ion with ny cambria wilson road. the hamlet s residential surroundings conti,#io nwit hn ycambri awilso nroa. dth ehamle t sresidentia lsurrounding scont,#ionwithnycambriawilsonroad.#thehamletsresidentialsurroundingconti,0.05263157894736842,0.0,3,#io n wit h ny cambria wilson road. #th e hamle t s residentia l surroundin g conti
+Base,0,64,65,ng on the album in the studio. the cover artwork from the album was released onl,#n go nth ealbu mi nth estudi. oth ecove rartwor kfro mth ealbu mwa srelease don,#gnothealbuminthestudio.thecoverartworkfromthealbumwasreleasedonl,0.0125,0.0,1,#g no th ealbu mi nt hes tudio. th e cove rartwor kfro mth ealbu mwa sreleas edo nl
+Base,0,64,66,"mons. originally from england, he was a graduate of university of london and ox","#mon. soriginall yfro menglan, dh ewa s agraduat eo funiversit yo flondo nan do","#ons.roriginallyfromenglan,ehwasgraduateofuniversityoflondonandox",0.0379746835443038,0.0,1,"#ons. rorigina lly fro menglan, eh wa sgraduat eof unive rsity of londo nan dox"
+Base,0,64,67,"sabina died in, nero went into deep mourning. her body was not cremated, it was st","#sabin adie di, nner owen tint odee pmournin. ghe rbod ywa sno tcremate, di twa ss","#abinaddiei,neronwentintodeepmournin.herbodywasnotcremate,itwasst",0.036585365853658534,0.0,1,"#abi na ddie i, neron wen tinto dee pmournin. h erbod ywa sno tcremate, i twas st"
+Base,0,64,68,n gardener at suez war memorial cemetery. during the lebanese civil war two ce,# ngardene ra tsue zwa rmemoria lcemeter. ydurin gth elebanes ecivi lwa rtw oc,#gardenerrgardeneatsuezwarmemorialcemetery.duringthelebanesecivilwartwoce,0.14102564102564102,0.0,1,"# gardener r gardene at suez war memorial cemetery. durin g the lebanes e civil war two ce
+#gardener r gardene at suez war memorial cemetery. durin g the lebanes e civil war two ce
+
+Wait, let me re-process carefully:
+Input: `n gardener at suez war memorial cemetery. during the lebanese civil war two ce`
+
+1. `n` -> `#`
+2. ` ` -> ` `
+3. `g` -> `n`
+4. `a` -> `g`
+5. `r` -> `a`
+6. `d` -> `r`
+7. `e` -> `"
+Base,0,64,69,ck and she received direct hits and up to near misses. she was badly damaged wit,#c kan dsh ereceive ddirec thit san du pt onea rmisse. ssh ewa sbadl ydamage dwi,#ckan#dsh#ereceiv#ddirec#thit#san#dupt#onea#rmiss#s.sh#ewa#sbadl#ydamag#dwi#t,0.0625,0.0,2,#c k an#d sh#e receiv#d direc#t hit#s an#d up t#o nea#r miss#s. sh#e wa#s badl#y damag#d wi#t
+Base,0,64,70,s third shot at angle in as many months when he faced the champion in a sixty min,# sthir dsho ta tangl ei na sman ymonth swhe nh eface dth echampio ni n asixt ymi,#sthirdshotatangleinasmanymonthswhenhefacedthechampioninasixtymin,0.024691358024691357,0.0,1,# s thir d sho t at angl e in as man y mont hs whe n he face d th e champ ion in a si xty mi n
+Base,0,64,71,"executive humberto calderon and bmg s miriam sommerz, and is based in miami an","#executiv ehumbert ocaldero nan dbm g smiria msommer, zan di sbase di nmiam ia","#xecutivehumbertocalderonandbmgsmiriamsommerz,andisbasedinmiamian",0.05128205128205128,0.0,1,"#xecutive humberto calderon and bmg s miriam sommerz, and is based in miami an
+#xecutive humberto calderon and bmg s miriam sommerz, and is based in miami an
+#xecutive humberto calderon and bmg s miriam sommerz, and is based in miami an
+#xecutive humberto calderon and bmg s miriam sommerz, and is based in miami an
+#xecutive humberto calderon and bmg s miriam sommerz, and is based in miami an
+#xecutive humberto calderon and bmg"
+Base,0,64,72,res of tropical cyclones within the northwest pacific ocean. the system as it,#re so ftropica lcyclone swithi nth enorthwes tpacifi cocea. nth esyste ma si,#esroftropicalcycloneswithinthenorwestpacificoea.nthesystemassit,0.05194805194805195,0.0,1,#es r of tropica lcyclon eswithi nthe norwes tpacif icoea. nthe syst emas si t
+Base,0,64,73,d charlie don t surf. the episode features the final appearance of dianna agro,# dcharli edo n tsur. fth eepisod efeature sth efina lappearanc eo fdiann aagr,#dcharliedontsur.theepisodefeaturesthefinalappearanceofdiannaagr,0.05128205128205128,0.0,1,# dcharli e don t sur. th eepisod e feature s th efina l appearanc e o f diann a agr
+Base,0,64,74,"game, he would again be dominant, but again would take the loss after giving up a","#gam, eh ewoul dagai nb edominan, tbu tagai nwoul dtak eth elos safte rgivin gu p","#ame,ghvtoucagaibedominant,buagaivtouctakthlosaftergivingu#",0.07407407407407407,0.0,1,"#ame, gh vtouc agai be domina nt, bu agai vtouc tak th l os aft er givin g u #"
+Base,0,64,75,f a significant crisis. the mutiny led by casperius aelianus was never intend,# f asignifican tcrisi. sth emutin yle db ycasperiu saelianu swa sneve rinten,#fasignificantcrisi.themutinyledbycasperiusaelianuswasneverinten,0.03896103896103896,0.0,1,# f a signifi can t cri si. th e mutin y le d b y casperiu s aelianu s wa s neve r inten
+Base,0,64,76,ks along the rim of the crater are almost continually illuminated by sunligh,#k salon gth eri mo fth ecrate rar ealmos tcontinuall yilluminate db ysunlig,#sklongtheerimofthecrateraremostcontinuallyilluminatedbysunligh,0.05263157894736842,0.0,1,#s klon gth eer im o fth ecr ate rar emo stc ont inu ally ill umi nat edb ysun ligh
+Base,0,64,77,es fast eddie felson as one of only a handful of movie characters so real that t,#e sfas teddi efelso na son eo fonl y ahandfu lo fmovi echaracter ss orea ltha t,#seasteddiefelsnasoneofonlyahandfulofmoviecharacterssorealthat,0.05,0.0,1,#s eas t eddi efelsn as on e of onl y a handfu l of movi e characte rs so rea l tha t
+Base,0,64,78,"ated to around bc. furthermore, negritos, a class of australoid peoples, became","#ate dt oaroun db. cfurthermor, enegrito, s aclas so faustraloi dpeople, sbecam","#tedotarounbc.furthermor,negritso,aclasofaustraloipeople,becam",0.0379746835443038,0.0,1,"#ted ot aroun bc. furthermor, negritso, a clas of australoi people, becam"
+Base,0,64,79,"he bridge there, and the other under franz von werneck went north with most of t","#h ebridg ether, ean dth eothe runde rfran zvo nwernec kwen tnort hwit hmos to f","#ehbridgether,andtheotherunderfranzvonwerneckwentnorthwithmostoft",0.0875,0.0,1,"#e hbridg e ther, an dth e othe r unde r fran z vo n wernec k wen t nort h wit h mos t of t"

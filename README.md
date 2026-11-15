@@ -22,6 +22,10 @@ Three effects are separated with two tokenization controls that fix one token pe
    and worked examples of the crossing step repair most of it at Gemma 4 and about a third at
    Qwen2.5-32B.
 
+The same gain and failure appear on windows of real human promoter DNA (Nucleotide Transformer
+benchmark) and WikiText-2 text: position-local rules gain from markers, and copy-previous and the
+other one-step rules the models can do lose at the position after a marker.
+
 ## Layout
 
 | Path | Contents |
@@ -34,6 +38,9 @@ Three effects are separated with two tokenization controls that fix one token pe
 | `scripts/` | `summarize_pooled.py` and `analyze_*.py` produce the summary CSVs and the LaTeX tables; `make_fig_*.py` produce the figures; `run_*.py` are the follow-up experiment runners with matching `.sbatch` files for Slurm. |
 | `paper_tmlr/` | The paper source (`main.tex`, `refs.bib`, figures, tables) and the compiled `paper.pdf`. |
 | `paper_ms/` | The master's project version of the same text in the UC Davis thesis format; `scripts/make_ms_version.py` regenerates it from the paper source. |
+| `data/real/` | The real sequences: `promoters.txt` (human promoter DNA, test split of the Nucleotide Transformer promoter task), `wikitext_letters.txt` and `wikitext_natural.txt` (WikiText-2 test paragraphs, letters only and with spaces and punctuation). `scripts/fetch_real_data.py` rebuilds them. |
+| `tasks/dna_*`, `tasks/text_*` | The real-sequence tasks, each with a `_spaced` variant (`tasks/common/real_data.py` draws the windows). |
+| `tasks/common/evabyte_generate.py` | Loading fix and greedy decoding for the byte-level model EvaByte-SFT (its rotary tables are left uninitialized by current Transformers releases). |
 | `legacy/` | Earlier drafts and reviewer-response notes from the project's first phase, kept for the record and not used by anything above. |
 
 ## Reproducing
@@ -42,7 +49,7 @@ Every input is generated from a deterministic seed, so every prompt can be rebui
 (task, length, spacing, alphabet or modulus, trial) coordinates without the stored CSVs.
 
 ```bash
-# environment: Python 3.10, torch, transformers, pandas, matplotlib (see .conda/envs/qwen-focus)
+# environment: Python 3.11, torch 2.6, transformers 5.12, pandas, matplotlib, peft (see .conda/envs/qwen-focus)
 python -m tasks.run_task running_xor Qwen/Qwen2.5-7B-Instruct grid 20      # one task, one model
 python -m tasks.run_digit_controls cyclic_shift_digits Qwen/Qwen2.5-7B-Instruct 20
 
@@ -61,5 +68,11 @@ the `GEMINI_API_KEY` environment variable (`tasks/common/gemini_full_grid.py`).
 `paper_tmlr/main.tex` compiles with Tectonic or any TeX Live installation:
 
 ```bash
+python scripts/tidy_tables.py        # signed zeros and minus signs in the generated tables
+python scripts/bold_tables.py        # bold the cells each caption names
+python scripts/make_longtables.py    # derived tables (dependency-only per-task table, short compliance table)
 cd paper_tmlr && tectonic --keep-logs --outdir build main.tex
+cd .. && python scripts/make_ms_version.py && cd paper_ms && tectonic --outdir build main.tex   # project version
 ```
+
+`scripts/measure_blank_pages.sh <pdf>` lists pages with large blank areas.

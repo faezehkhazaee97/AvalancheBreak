@@ -1,0 +1,443 @@
+Method,Interval,Seq_Length,Trial,Input_Given,Ground_Truth,LLM_Output,TAR,SAR,First_Error_Pos,Raw_Model_Output
+Base,0,16,0,ebayeuxandtursti,#ebayeuxandturst,#ebayeuxandturst,1.0,1.0,16,#ebayeuxandturst
+Base,0,16,1,neanpassagesunde,#neanpassagesund,#neanpassagesund,1.0,1.0,16,#neanpassagesund
+Base,0,16,2,osreturnedtomanc,#osreturnedtoman,#osreturnedtoman,1.0,1.0,16,#osreturnedtoman
+Base,0,16,3,ththevictoriousp,#ththevictorious,#ththevictorious,1.0,1.0,16,#ththevictorious
+Base,0,16,4,pedribsandfinger,#pedribsandfinge,#pedribsandfinge,1.0,1.0,16,#pedribsandfinge
+Base,0,16,5,ruinouscondition,#ruinousconditio,#ruinousconditio,1.0,1.0,16,#ruinousconditio
+Base,0,16,6,nonlykaltoumanad,#nonlykaltoumana,#nonlykaltoumana,1.0,1.0,16,#nonlykaltoumana
+Base,0,16,7,ecenteristuckedi,#ecenteristucked,#ecenteristucke,0.9375,0.0,15,#ecenteristucke
+Base,0,16,8,berstateswhosepr,#berstateswhosep,#berstateswhosep,1.0,1.0,16,#berstateswhosep
+Base,0,16,9,iredforitscontro,#iredforitscontr,#iredforitscontr,1.0,1.0,16,#iredforitscontr
+Base,0,16,10,tedstatesnavyina,#tedstatesnavyin,#tedstatesnavyi,0.9375,0.0,15,#tedstatesnavy i
+Base,0,16,11,arupuntilnownore,#arupuntilnownor,#arupuntilnownor,1.0,1.0,16,#arupuntilnownor
+Base,0,16,12,escheatrollisunc,#escheatrollisun,#escheatrollisun,1.0,1.0,16,#escheatrollisun
+Base,0,16,13,ameagainstthebos,#ameagainstthebo,#ameagainstthebo,1.0,1.0,16,#ameagainstthebo
+Base,0,16,14,hetransferofacyl,#hetransferofacy,#hetransferofa,0.875,0.0,14,#hetransferofa
+Base,0,16,15,anantoinesimonfo,#anantoinesimonf,#anantoinesimonf,1.0,1.0,16,#anantoinesimonf
+Base,0,16,16,andatnoonthemode,#andatnoonthemod,#andatnoonthemod,1.0,1.0,16,#andatnoonthemod
+Base,0,16,17,inthecompanyasth,#inthecompanyast,#inthecompanysas,0.8125,0.0,13,#inthecompanysas
+Base,0,16,18,treameachnightth,#treameachnightt,#treameachnightt,1.0,1.0,16,#treameachnightt
+Base,0,16,19,wemperorchaoswou,#wemperorchaoswo,#wemperorchaoswo,1.0,1.0,16,#wemperorchaoswou
+Cellular_Bounds,1,16,0,o|u|t|h|a|m|e|r|i|c|a|a|n|d|h|i,#outhamericaandh,#outhamericaandh,1.0,1.0,16,#|o|u|t|h|a|m|e|r|i|c|a|a|n|d|h|i
+Cellular_Bounds,1,16,1,i|n|i|s|t|e|r|e|d|b|y|o|t|h|e|r,#inisteredbyothe,#inisteredbyothe,1.0,1.0,16,#|i|n|i|s|t|e|r|e|d|b|y|o|t|h|e
+Cellular_Bounds,1,16,2,o|u|g|h|t|h|e|v|i|l|l|a|g|e|s|o,#oughthevillages,#oughthevillages,1.0,1.0,16,#|o|u|g|h|t|h|e|v|i|l|l|a|g|e|s|o
+Cellular_Bounds,1,16,3,m|t|o|c|o|m|e|h|e|r|e|c|e|i|v|e,#mtocomehereceiv,#mtocomehereceiv,1.0,1.0,16,#|m|t|o|c|o|m|e|h|e|r|e|c|e|i|v|e
+Cellular_Bounds,1,16,4,e|y|s|h|o|u|l|d|n|o|t|b|e|c|o|n,#eyshouldnotbeco,#eyshouldnotbeco,1.0,1.0,16,#|e|y|s|h|o|u|l|d|n|o|t|b|e|c|o|n
+Cellular_Bounds,1,16,5,u|c|h|a|s|s|l|a|y|e|r|a|n|d|n|e,#uchasslayerandn,#uchasslayerandn,1.0,1.0,16,#|u|c|h|a|s|s|l|a|y|e|r|a|n|d|n|e
+Cellular_Bounds,1,16,6,y|i|t|s|t|a|r|s|p|a|u|l|n|e|w|m,#yitstarspaulnew,#yitstarspaulnew,1.0,1.0,16,#|y|i|t|s|t|a|r|s|p|a|u|l|n|e|w
+Cellular_Bounds,1,16,7,r|e|s|o|u|r|c|e|s|i|t|i|s|t|h|o,#resourcesitisth,#resourcesitisth,1.0,1.0,16,#|r|e|s|o|u|r|c|e|s|i|t|i|s|t|h
+Cellular_Bounds,1,16,8,r|i|z|o|n|l|e|a|g|u|e|t|o|u|r|n,#rizonleaguetour,#rizonleaguetour,1.0,1.0,16,#|r|i|z|o|n|l|e|a|g|u|e|t|o|u|r
+Cellular_Bounds,1,16,9,r|d|b|a|t|t|a|l|i|o|n|o|f|t|h|e,#rdbattalionofth,#rdbattalionofth,1.0,1.0,16,#|r|d|b|a|t|t|a|l|i|o|n|o|f|t|h
+Cellular_Bounds,1,16,10,s|s|e|d|o|f|s|u|p|e|r|i|o|r|t|r,#ssedofsuperiort,#ssedofsuperiort,1.0,1.0,16,#|s|s|e|d|o|f|s|u|p|e|r|i|o|r|t
+Cellular_Bounds,1,16,11,m|i|n|a|n|c|e|a|s|a|c|o|m|p|e|t,#minanceasacompe,#minanceasacompe,1.0,1.0,16,#|m|i|n|a|n|c|e|a|s|a|c|o|m|p|e
+Cellular_Bounds,1,16,12,o|n|s|t|a|t|d|e|e|p|l|o|a|d|r|o,#onstatdeeploadr,#onstatdeeploadr,1.0,1.0,16,#|o|n|s|t|a|t|d|e|e|p|l|o|a|d|r|o
+Cellular_Bounds,1,16,13,g|e|s|t|o|e|v|a|d|e|i|t|s|t|r|a,#gestoevadeitstr,#gestoevadeitstr,1.0,1.0,16,#|g|e|s|t|o|e|v|a|d|e|i|t|s|t|r
+Cellular_Bounds,1,16,14,c|o|a|s|t|a|l|d|e|f|e|n|s|e|d|u,#coastaldefensed,#coastaldefensed,1.0,1.0,16,#|c|o|a|s|t|a|l|d|e|f|e|n|s|e|d|u
+Cellular_Bounds,1,16,15,g|g|i|o|p|w|a|s|t|h|e|t|h|l|o|n,#ggiopwasthethlo,#ggiopwasthethlo,1.0,1.0,16,#|g|g|i|o|p|w|a|s|t|h|e|t|h|l|o
+Cellular_Bounds,1,16,16,d|e|d|b|y|t|h|e|i|r|o|w|n|p|a|t,#dedbytheirownpa,##d#b#y#h#e#i#r#,0.125,0.0,1,#|#|d|#|b|#|y|#|h|#|e|#|i|#|r|#|o|#|w|#|n|#|p|#|a
+Cellular_Bounds,1,16,17,m|e|t|e|r|s|a|r|e|g|i|v|e|n|b|y,#metersaregivenb,#metersaregivenb,1.0,1.0,16,#|m|e|t|e|r|s|a|r|e|g|i|v|e|n|b|y
+Cellular_Bounds,1,16,18,r|s|i|n|t|h|e|i|r|o|n|c|l|a|d|p,#rsintheironclad,#rsintheironclad,1.0,1.0,16,#|r|s|i|n|t|h|e|i|r|o|n|c|l|a|d|p
+Cellular_Bounds,1,16,19,e|s|t|o|r|e|d|t|h|e|l|i|b|e|r|t,#estoredtheliber,#estoredtheliber,1.0,1.0,16,#|e|s|t|o|r|e|d|t|h|e|l|i|b|e|r|t
+Cellular_Bounds,2,16,0,he|at|la|nt|ic|sh|ew|ou,#heatlanticshewo,#ehatlanticshewo,0.875,0.0,1,#e|h|a|t|l|a|n|t|i|c|s|h|e|w|o|u
+Cellular_Bounds,2,16,1,hn|ic|ol|or|vi|be|an|da,#hnicolorvibeand,#nhicolorvibeand,0.875,0.0,1,#n|h|i|c|o|l|o|r|v|i|b|e|a|n|d|a
+Cellular_Bounds,2,16,2,mi|na|te|th|eu|nd|er|ta,#minatetheundert,#minatetheundert,1.0,1.0,16,#m|i|n|a|t|e|t|h|e|u|n|d|e|r|t
+Cellular_Bounds,2,16,3,ed|ep|ar|tm|en|ts|of|bu,#edepartmentsofb,#ed#ep#ar#tm#en#,0.1875,0.0,3,#e|d#e|p#a|r#t|m#e|n#t|s#o|f#b|u
+Cellular_Bounds,2,16,4,pi|ne|sr|an|ks|th|ec|it,#pinesrankstheci,#pinesrankstheci,1.0,1.0,16,#p|i|n|e|s|r|a|n|k|s|t|h|e|c|i
+Cellular_Bounds,2,16,5,dm|ir|al|ty|th|in|ki|ng,#dmiraltythinkin,#dmiraltythinkin,1.0,1.0,16,#d|m|i|r|a|l|t|y|t|h|i|n|k|i|n
+Cellular_Bounds,2,16,6,tl|as|ta|nd|fu|ll|sc|al,#tlastandfullsca,#ttatnflsa,0.1875,0.0,2,#t|t|a|t|n|f|l|s|a
+Cellular_Bounds,2,16,7,el|fc|ri|ti|ca|la|nd|of,#elfcriticalando,#elfcriticalando,1.0,1.0,16,#e|l f|c r|i t|i c|a l|a n|d o
+Cellular_Bounds,2,16,8,am|to|ch|ar|mt|ob|ew|it,#amtocharmtobewi,#am#to#ch#ar#mt#,0.1875,0.0,3,#a|m#t|o#c|h#a|r#m|t#o|b#e|w#i|t
+Cellular_Bounds,2,16,9,bi|li|sc|on|si|de|ri|ng,#bilisconsiderin,#bbilsocnsiderin,0.6875,0.0,2,#b|bi|ls|oc|ns|id|er|in
+Cellular_Bounds,2,16,10,fi|na|lc|ut|re|us|ed|as,#finalcutreuseda,#finalcutreuseda,1.0,1.0,16,#f|i|n|a|l|c|u|t|r|e|u|s|e|d|a
+Cellular_Bounds,2,16,11,nc|yo|fc|ha|di|an|ol|ym,#ncyofchadianoly,#ncyofchadianoly,1.0,1.0,16,#n|c|y|o|f|c|h|a|d|i|a|n|o|l|y|m
+Cellular_Bounds,2,16,12,ci|en|th|ow|ev|er|an|dd,#cienthoweverand,#cienthoweverand,1.0,1.0,16,#c|i|e|n|t|h|o|w|e|v|e|r|a|n|d|d
+Cellular_Bounds,2,16,13,mb|yt|he|ti|me|it|ap|pr,#mbythetimeitapp,#mbythetimeitapp,1.0,1.0,16,#m|b|y|t|h|e|t|i|m|e|i|t|a|p|p|r
+Cellular_Bounds,2,16,14,yt|er|ms|wi|th|in|di|vi,#ytermswithindiv,#ytermswithindiv,1.0,1.0,16,#y|t|e|r|m|s|w|i|t|h|i|n|d|i|v|i
+Cellular_Bounds,2,16,15,ti|on|of|wo|rs|hi|pi|ng,#tionofworshipin,#tionofworshipin,1.0,1.0,16,#t|i|o|n|o|f|w|o|r|s|h|i|p|i|n
+Cellular_Bounds,2,16,16,hi|pg|en|er|al|ly|ho|ld,#hipgenerallyhol,#hipgeneerallyoh,0.625,0.0,8,#h|ip|ge|ne|er|al|ly|oh|ol
+Cellular_Bounds,2,16,17,ov|er|ob|je|ct|io|ns|fr,#overobjectionsf,#overobjectionsf,1.0,1.0,16,#o|v|e|r|o|b|j|e|c|t|i|o|n|s|f
+Cellular_Bounds,2,16,18,nt|sa|re|ba|se|do|ne|mo,#ntsarebasedonem,#ntsarebasedonem,1.0,1.0,16,#n|t s|a r|e b|a s|e d|o n|e m|o
+Cellular_Bounds,2,16,19,op|ug|on|gn|ia|nd|th|en,#opugongniandthe,#opugongniandthe,1.0,1.0,16,#o|p u|g|o n|g n|i a|n d|t h|e n
+Cellular_Bounds,3,16,0,ean|dhe|adf|ora|mam|i,#eandheadforamam,#ea#dh#ad#or#ma#,0.6875,0.0,3,#ea|#dh|#ad|#or|#ma|#m
+Cellular_Bounds,3,16,1,dev|elo|pme|nta|uth|o,#developmentauth,#developmentauth,1.0,1.0,16,#de|v e|lo|pm|en|ta|ut|h
+Cellular_Bounds,3,16,2,tis|hla|ter|reb|uil|t,#tishlaterrebuil,#ti#hl#te#re#ui#,0.6875,0.0,3,#ti|#hl|#te|#re|#ui|#t
+Cellular_Bounds,3,16,3,sur|esa|gai|nst|the|f,#suresagainstthe,#surseagansthef,0.4375,0.0,4,#su|rs|ea|ga|ns|th|ef
+Cellular_Bounds,3,16,4,oem|sge|org|eme|red|i,#oemsgeorgemered,#oemsgeorgemered,1.0,1.0,16,#oe|m|sg|e|or|g|em|e|re|d|#
+Cellular_Bounds,3,16,5,byp|ale|ont|olo|gis|t,#bypaleontologis,#by#aleonotolgis,0.6875,0.0,3,#by|#a|le|on|ot|ol|gi|s
+Cellular_Bounds,3,16,6,edo|nst|and|bya|ler|t,#edonstandbyaler,#doenstanbyler,0.375,0.0,1,#do|en|st|an|by|le|r
+Cellular_Bounds,3,16,7,dro|ppe|dou|tof|use|n,#droppedoutofuse,#droppedotouse,0.5625,0.0,9,#dr|op|pe|do|to|us|e
+Cellular_Bounds,3,16,8,als|att|rac|ted|mos|t,#alsattractedmos,#alsataratemos,0.5,0.0,6,#al|sa|ta|ra|te|mo|s
+Cellular_Bounds,3,16,9,eve|nte|eno|fth|ege|r,#eventeenofthege,#veenenfteger,0.1875,0.0,1,#ve|en|en|ft|eg|er
+Cellular_Bounds,3,16,10,has|hir|aji|mat|ojo|i,#hashirajimatojo,#hashhiajmaojo#,0.5,0.0,5,#ha|sh|hi|aj|ma|oj|o|#
+Cellular_Bounds,3,16,11,edt|orr|ent|ial|rai|n,#edtorrentialrai,#edtoeniarai,0.3125,0.0,5,#ed|to|en|ia|ra|i
+Cellular_Bounds,3,16,12,eni|nni|ngs|the|exc|e,#eninningstheexc,#eninngthexc,0.375,0.0,6,#en|in|ng|th|ex|c
+Cellular_Bounds,3,16,13,epu|tat|ion|ast|het|e,#eputationasthet,#eputtaioashet,0.4375,0.0,5,#ep|ut|ta|io|as|he|t
+Cellular_Bounds,3,16,14,ila|zoo|nat|ion|alm|u,#ilazoonationalm,#il#zo#na#io#al#,0.6875,0.0,3,#il|#zo|#na|#io|#al|#u
+Cellular_Bounds,3,16,15,ine|asa|fre|emp|dow|n,#ineasafreempdow,#iniafremdo#,0.25,0.0,3,#in|ia|fr|em|do|#
+Cellular_Bounds,3,16,16,vec|tio|nwa|sex|pos|e,#vectionwasexpos,#vectionwasexpo,0.9375,0.0,15,#ve|ct|io|nw|as|ex|po
+Cellular_Bounds,3,16,17,nor|his|pal|ati|alm|a,#norhispalatialm,#norhpaatalm,0.3125,0.0,5,#no|rh|pa|at|al|m
+Cellular_Bounds,3,16,18,con|dyo|ung|est|coa|c,#condyoungestcoa,#condyounescoa,0.5625,0.0,9,#co|nd|yo|un|es|co|a
+Cellular_Bounds,3,16,19,ste|ven|sis|apr|opo|n,#stevensisapropo,#stevsispropo,0.4375,0.0,5,#st|ev|si|sp|ro|po
+Cellular_Bounds,4,16,0,mely|phil|ostr|atus,#melyphilostratu,#melyphiostratu,0.5,0.0,8,#mel|yphi|ostr|atu
+Cellular_Bounds,4,16,1,atea|swhe|nhug|hbar,#ateaswhenhughba,#ate#swh#nhu#hba,0.8125,0.0,4,#ate|#swh|#nhu|#hba
+Cellular_Bounds,4,16,2,vero|nica|shel|pinp,#veronicashelpin,#veronshelpin,0.375,0.0,6,#ver|on|she|lpin
+Cellular_Bounds,4,16,3,that|rang|edin|thic,#thatrangedinthi,#thatrangednthi,0.6875,0.0,11,#tha|t ran|g ed|n thi
+Cellular_Bounds,4,16,4,queu|sing|foss|ilev,#queusingfossile,#quessinfosilve,0.4375,0.0,4,#que|s|sin|fos|ilve
+Cellular_Bounds,4,16,5,sayo|utha|ndwh|ohad,#sayouthandwhoha,#sayouthandwhoha,1.0,1.0,16,#say|o ut|han|dwh|oha
+Cellular_Bounds,4,16,6,roll|woul|deve|ntua,#rollwouldeventu,#rollwoodeventua,0.4375,0.0,7,#rol|lwoo|deve|ntua
+Cellular_Bounds,4,16,7,esna|rtow|orka|nywh,#esnartoworkanyw,#esnartoworkanyw,1.0,1.0,16,#esn|a|rto|wor|kanywh
+Cellular_Bounds,4,16,8,rlis|leun|ited|onam,#rlisleunitedona,#rlileuiteona,0.25,0.0,4,#rl|i|leu|ite|ona
+Cellular_Bounds,4,16,9,renc|hacc|esst|othe,#renchaccesstoth,#ren#hacc#s#oth,0.5625,0.0,4,#ren|#ha|cc#s|#oth
+Cellular_Bounds,4,16,10,oasl|owst|arts|cori,#oaslowstartscor,#oas#ows#art#cor,0.8125,0.0,4,#oas|#ows|#art|#cor
+Cellular_Bounds,4,16,11,alan|dabd|icat|eduf,#alandabdicatedu,#ala#dab#ica#edu,0.8125,0.0,4,#ala|#dab|#ica|#edu
+Cellular_Bounds,4,16,12,ciat|edpr|essw|ewil,#ciatedpresswewi,#ciatedpressewi,0.75,0.0,12,#cia|t|edp|ress|ewi
+Cellular_Bounds,4,16,13,thro|ughi|tsop|erat,#throughitsopera,#throughtsopera,0.5,0.0,8,#thr|ou|gh|tso|pera
+Cellular_Bounds,4,16,14,mene|nter|edup|onhi,#menentereduponh,#menenteeduonh,0.5,0.0,8,#men|en te|edu|onh
+Cellular_Bounds,4,16,15,eand|univ|ersi|tyst,#eanduniversitys,#eandunivrstys,0.5625,0.0,9,#ean|duni|vrs|tys
+Cellular_Bounds,4,16,16,alru|mble|lesn|aran,#alrumblelesnara,#alrumbllesara,0.5625,0.0,8,#alr|umbl|les|ara
+Cellular_Bounds,4,16,17,esof|luzo|nman|ilal,#esofluzonmanila,#eso#luz#nma#ila,0.8125,0.0,4,#eso|#luz|#nma|#ila
+Cellular_Bounds,4,16,18,swor|dsof|fthe|cros,#swordsoffthecro,#wordsofthecros,0.0625,0.0,1,#wor|ds o|fthe|cros
+Cellular_Bounds,4,16,19,hebi|ntul|udiv|isio,#hebintuludivisi,#hebnntuuudiviis,0.75,0.0,4,#heb|n|ntu|u|udiv|i|isio
+Cellular_Bounds,8,16,0,hefireis|uncertai,#hefireisuncerta,#hefirei#uncerta,0.9375,0.0,8,#hefirei|#uncertai
+Cellular_Bounds,8,16,1,playinwi|ththeyan,#playinwiththeya,#playinw#ththeya,0.9375,0.0,8,#playinw|#ththeya
+Cellular_Bounds,8,16,2,ngweekon|rawgener,#ngweekonrawgene,#ngweeko#rawgene,0.9375,0.0,8,#ngweeko|#rawgene
+Cellular_Bounds,8,16,3,earslivi|nginthel,#earslivinginthe,#earsliv#nginthe,0.9375,0.0,8,#earsliv|#nginthel
+Cellular_Bounds,8,16,4,ovedacro|ssthesta,#ovedacrossthest,#ovedacrossthest,1.0,1.0,16,#ovedacr|ossthest
+Cellular_Bounds,8,16,5,kingdoma|lexander,#kingdomalexande,#ingdoma#lexande,0.5,0.0,1,#ingdoma|#lexande
+Cellular_Bounds,8,16,6,avyuband|ubintwoc,#avyubandubintwo,#avyuban#ubintwo,0.9375,0.0,8,#avyuban|#ubintwo
+Cellular_Bounds,8,16,7,andbuchd|erpalaeo,#andbuchderpalae,#andbuch#erpalae,0.9375,0.0,8,#andbuch|#erpalae
+Cellular_Bounds,8,16,8,tthreebo|atslaunc,#tthreeboatslaun,#tthreeb#atslaun,0.9375,0.0,8,#tthreeb|#atslaun
+Cellular_Bounds,8,16,9,mebothha|dbutlert,#mebothhadbutler,#mebotth#dbutler,0.875,0.0,6,#mebotth|#dbutler
+Cellular_Bounds,8,16,10,ionalcha|mpionshi,#ionalchampionsh,#ionalchmpionsh,0.5,0.0,8,#iona lch|mpionsh
+Cellular_Bounds,8,16,11,ndoverno|nwarmili,#ndovernonwarmil,#ndovern#nwarmil,0.9375,0.0,8,#ndovern|#nwarmil
+Cellular_Bounds,8,16,12,shispass|ionforhu,#shispassionforh,#shispassionforh,1.0,1.0,16,#shispas|sionforh
+Cellular_Bounds,8,16,13,ardenine|xchangef,#ardeninexchange,#ardenin#xchange,0.9375,0.0,8,#ardenin|#xchange
+Cellular_Bounds,8,16,14,etreated|andromea,#etreatedandrome,#treatedandrome,0.0625,0.0,1,#treated|androme
+Cellular_Bounds,8,16,15,presence|ofbicusp,#presenceofbicus,#presenc#ofbicus,0.9375,0.0,8,#presenc|#ofbicus
+Cellular_Bounds,8,16,16,efilmisr|eallyabo,#efilmisreallyab,#efilmis#eallyab,0.9375,0.0,8,#efilmis|#eallyab
+Cellular_Bounds,8,16,17,adhadcol|lapsedin,#adhadcollapsedi,#adhadco#lapsedi,0.9375,0.0,8,#adhadco|#lapsedi
+Cellular_Bounds,8,16,18,istorica|lsignifi,#istoricalsignif,#storic#lsignif,0.0625,0.0,1,#storic|#lsignif
+Cellular_Bounds,8,16,19,reundert|akenfrom,#reundertakenfro,#reundertakenfro,1.0,1.0,16,#reunder|takenfro
+Base,0,32,0,hecouplemarriedinaugusttracywork,#hecouplemarriedinaugusttracywor,#hecouplemarriedinaugusttracywor,1.0,1.0,32,#hecouplemarriedinaugusttracywor
+Base,0,32,1,henheaddeddrewcannontothestaffif,#henheaddeddrewcannontothestaffi,#enheaddeddrewcannontothestaffi,0.15625,0.0,1,#enheaddeddrewcannontothestaffi
+Base,0,32,2,sembracedhisconcernforthepoorlit,#sembracedhisconcernforthepoorli,#sembracedhisconcernforthepoorli,1.0,1.0,32,#sembracedhisconcernforthepoorli
+Base,0,32,3,cularlyifthegunthenneededtoberea,#cularlyifthegunthenneededtobere,#cularlyifthegunthenneededtobere,1.0,1.0,32,#cularlyifthegunthenneededtobere
+Base,0,32,4,sofwolfgangblaumakabaumannheadof,#sofwolfgangblaumakabaumannheado,#sofwolfgangblaumakabaumannheado,1.0,1.0,32,#sofwolfgangblaumakabaumannheado
+Base,0,32,5,mhisproducerstotakeayearofftobec,#mhisproducerstotakeayearofftobe,#mhisproducerstotakeayearofftobe,1.0,1.0,32,#mhisproducerstotakeayearofftobeb
+Base,0,32,6,esethechurchrecognizedfiveparish,#esethechurchrecognizedfiveparis,#esethechurchnrecognizedfivepari,0.40625,0.0,13,#esethechurchnrecognizedfiveparish
+Base,0,32,7,hrepublicdenmarkestoniagermanyhu,#hrepublicdenmarkestoniagermanyh,#hrepublicdenmarkestoniagermanyh,1.0,1.0,32,#hrepublicdenmarkestoniagermanyh
+Base,0,32,8,lfouryearshewasamemberofthenatio,#lfouryearshewasamemberofthenati,#lfouryearshewasamemberofthenati,1.0,1.0,32,#lfouryearshewasamemberofthenati
+Base,0,32,9,ghtroundsperminutetwotwingunmoun,#ghtroundsperminutetwotwingunmou,#ghtroundsperminutetwotwingunmou,1.0,1.0,32,#ghtroundsperminutetwotwingunmou
+Base,0,32,10,xedfeelingsastheyhadallegianceto,#xedfeelingsastheyhadallegiancet,#xedfeelingsastheyhadallegiancet,1.0,1.0,32,#xedfeelingsastheyhadallegiancet
+Base,0,32,11,ecaptaininformshimthatthediaryis,#ecaptaininformshimthatthediaryi,#ecaptaininformshimthatthediaryi,1.0,1.0,32,#ecaptaininformshimthatthediaryi
+Base,0,32,12,rthenexttwomonthsthisperiodofina,#rthenexttwomonthsthisperiodofin,#rthenexttwomonthsthisperiodofin,1.0,1.0,32,#rthenexttwomonthsthisperiodofin
+Base,0,32,13,havebeendepositedlongafterthehea,#havebeendepositedlongafterthehe,#havebeendepositedlongafterthehe,1.0,1.0,32,#havebeendepositedlongafterthehe
+Base,0,32,14,portcitingthecitysincomeatbillio,#portcitingthecitysincomeatbilli,#portcitingthecitysincomeatbilli,1.0,1.0,32,#portcitingthecitysincomeatbillio
+Base,0,32,15,wmenofthefirstwerelaterfoundtoha,#wmenofthefirstwerelaterfoundtoh,#wmenofthefirstwerelaterfoundtoh,1.0,1.0,32,#wmenofthefirstwerelaterfoundtoh
+Base,0,32,16,eywiththeprovincesruinedmodernhi,#eywiththeprovincesruinedmodernh,#eywiththeprovincesruinedmodernh,1.0,1.0,32,#eywiththeprovincesruinedmodernh
+Base,0,32,17,thepolarregionsandfarsideofthemo,#thepolarregionsandfarsideofthem,#thepolarregionsandfarsideofthem,1.0,1.0,32,#thepolarregionsandfarsideofthem
+Base,0,32,18,rnmentwaswelcomeparticularlytoth,#rnmentwaswelcomeparticularlytot,#rmnentwaswelcomeparticularlytot,0.9375,0.0,2,#rmnentwaswelcomeparticularlytoth
+Base,0,32,19,mperorbytheromansenatethiswasthe,#mperorbytheromansenatethiswasth,#mperorbytheromansenatethiswasth,1.0,1.0,32,#mperorbytheromansenatethiswasthe
+Cellular_Bounds,1,32,0,f|t|e|m|p|l|e|b|e|t|h|i|s|r|a|e|l|a|n|d|h|i|s|r|o|l|e|a|s|a|r|a,#ftemplebethisraelandhisroleasar,#ftemplebethisraelandhisroleasar,1.0,1.0,32,#|f|t|e|m|p|l|e|b|e|t|h|i|s|r|a|e|l|a|n|d|h|i|s|r|o|l|e|a|s|a|r|a
+Cellular_Bounds,1,32,1,i|t|e|d|k|i|n|g|d|o|m|c|a|n|a|d|a|a|u|s|t|r|a|l|i|a|n|e|w|z|e|a,#itedkingdomcanadaaustralianewze,#itedkingdomcanadaaustralianewze,1.0,1.0,32,#|i|t|e|d|k|i|n|g|d|o|m|c|a|n|a|d|a|a|u|s|t|r|a|l|i|a|n|e|w|z|e
+Cellular_Bounds,1,32,2,m|b|e|r|o|f|m|o|n|a|s|t|e|r|i|e|s|i|n|c|l|u|d|i|n|g|d|r|a|x|p|r,#mberofmonasteriesincludingdraxp,#mberofmonasteriesincludingdraxp,1.0,1.0,32,#|m|b|e|r|o|f|m|o|n|a|s|t|e|r|i|e|s|i|n|c|l|u|d|i|n|g|d|r|a|x|p|r
+Cellular_Bounds,1,32,3,d|j|a|c|k|u|l|t|i|m|a|t|e|l|y|r|e|v|e|a|l|s|t|h|a|t|t|h|e|c|h|i,#djackultimatelyrevealsthatthech,###############################,0.03125,0.0,1,#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#
+Cellular_Bounds,1,32,4,l|l|o|w|i|n|g|t|h|e|s|u|c|c|e|s|s|f|u|l|c|o|m|p|l|e|t|i|o|n|o|f,#llowingthesuccessfulcompletiono,#llowingthesuccessfulcompletiono,1.0,1.0,32,#|l|l|o|w|i|n|g|t|h|e|s|u|c|c|e|s|s|f|u|l|c|o|m|p|l|e|t|i|o|n|o|f
+Cellular_Bounds,1,32,5,i|s|t|g|l|o|r|i|a|p|e|t|y|a|r|r|e|j|o|s|e|p|h|a|p|e|t|r|i|c|k|m,#istgloriapetyarrejosephapetrick,#istgloriapetyarrejosephapetrick,1.0,1.0,32,#|i|s|t|g|l|o|r|i|a|p|e|t|y|a|r|r|e|j|o|s|e|p|h|a|p|e|t|r|i|c|k
+Cellular_Bounds,1,32,6,o|t|s|u|r|p|r|i|s|i|n|g|t|h|a|t|s|e|n|e|c|a|c|b|c|n|e|r|o|s|t|e,#otsurprisingthatsenecacbcnerost,#otsurprisingthatsenecacbcnerost,1.0,1.0,32,#|o|t|s|u|r|p|r|i|s|i|n|g|t|h|a|t|s|e|n|e|c|a|c|b|c|n|e|r|o|s|t|e
+Cellular_Bounds,1,32,7,n|i|a|w|a|s|t|o|b|e|a|p|a|r|t|h|i|a|n|p|r|i|n|c|e|b|u|t|h|i|s|a,#niawastobeaparthianprincebuthis,#niawastobeaparthianprincebuthis,1.0,1.0,32,#|n|i|a|w|a|s|t|o|b|e|a|p|a|r|t|h|i|a|n|p|r|i|n|c|e|b|u|t|h|i|s
+Cellular_Bounds,1,32,8,b|l|i|s|h|e|d|i|n|k|u|m|r|o|v|e|c|o|n|m|a|y|d|u|r|i|n|g|t|h|e|c,#blishedinkumroveconmayduringthe,#blishedinkumroveconmayduringthe,1.0,1.0,32,#|b|l|i|s|h|e|d|i|n|k|u|m|r|o|v|e|c|o|n|m|a|y|d|u|r|i|n|g|t|h|e
+Cellular_Bounds,1,32,9,n|e|s|b|e|d|r|o|o|m|f|i|n|d|i|n|g|h|e|r|a|r|g|u|i|n|g|w|i|t|h|a,#nesbedroomfindingherarguingwith,#nesbedroomfindingherarguingwith,1.0,1.0,32,#|n|e|s|b|e|d|r|o|o|m|f|i|n|d|i|n|g|h|e|r|a|r|g|u|i|n|g|w|i|t|h|a
+Cellular_Bounds,1,32,10,o|r|p|o|r|a|t|e|o|f|f|i|c|e|a|n|d|m|a|i|n|o|p|e|r|a|t|i|o|n|s|i,#orporateofficeandmainoperations,#orporateofficeandmainoperations,1.0,1.0,32,#|o|r|p|o|r|a|t|e|o|f|f|i|c|e|a|n|d|m|a|i|n|o|p|e|r|a|t|i|o|n|s|i
+Cellular_Bounds,1,32,11,n|t|a|t|u|i|n|i|o|r|t|a|d|w|i|n|u|s|c|w|a|s|t|h|e|t|e|n|t|h|a|r,#ntatuiniortadwinuscwasthetentha,#ntatuiniortadwinuscwasthetentha,1.0,1.0,32,#|n|t|a|t|u|i|n|i|o|r|t|a|d|w|i|n|u|s|c|w|a|s|t|h|e|t|e|n|t|h|a
+Cellular_Bounds,1,32,12,r|y|i|n|t|h|e|c|o|n|f|u|s|e|d|m|e|l|e|e|t|h|e|v|i|n|e|y|a|r|d|s,#ryintheconfusedmeleethevineyard,#ryintheconfusedmeleethevineyard,1.0,1.0,32,#|r|y|i|n|t|h|e|c|o|n|f|u|s|e|d|m|e|l|e|e|t|h|e|v|i|n|e|y|a|r|d
+Cellular_Bounds,1,32,13,a|l|l|e|d|f|r|o|m|o|l|d|h|a|m|t|o|c|o|v|e|r|f|o|r|e|d|w|i|n|v|a,#alledfromoldhamtocoverforedwinv,#alledfromoldhamtocoverforedwinv,1.0,1.0,32,#|a|l|l|e|d|f|r|o|m|o|l|d|h|a|m|t|o|c|o|v|e|r|f|o|r|e|d|w|i|n|v|a
+Cellular_Bounds,1,32,14,a|n|g|l|i|c|a|n|c|o|m|m|u|n|i|t|y|e|s|t|a|b|l|i|s|h|e|d|i|n|b|y,#anglicancommunityestablishedinb,#anglicancommunityestablishedinb,1.0,1.0,32,#|a|n|g|l|i|c|a|n|c|o|m|m|u|n|i|t|y|e|s|t|a|b|l|i|s|h|e|d|i|n|b|y
+Cellular_Bounds,1,32,15,g|i|d|e|o|n|b|e|n|a|s|s|e|r|a|f|f|a|l|l|s|i|l|l|a|n|d|d|i|e|s|b,#gideonbenasseraffallsillanddies,#gideonbenasseraffallsillanddies,1.0,1.0,32,#|g|i|d|e|o|n|b|e|n|a|s|s|e|r|a|f|f|a|l|l|s|i|l|l|a|n|d|d|i|e|s|b
+Cellular_Bounds,1,32,16,i|n|d|e|m|n|i|t|y|o|f|m|i|l|l|i|o|n|f|r|a|n|c|s|v|i|c|t|o|r|y|a,#indemnityofmillionfrancsvictory,#indemnityofmillionfrancsvictory,1.0,1.0,32,#|i|n|d|e|m|n|i|t|y|o|f|m|i|l|l|i|o|n|f|r|a|n|c|s|v|i|c|t|o|r|y|a
+Cellular_Bounds,1,32,17,u|a|r|e|m|a|i|n|t|a|i|n|e|d|b|y|t|h|e|b|i|n|t|u|l|u|d|e|v|e|l|o,#uaremaintainedbythebintuludevel,#uaremaintainedbythebintuludevel,1.0,1.0,32,#|u|a|r|e|m|a|i|n|t|a|i|n|e|d|b|y|t|h|e|b|i|n|t|u|l|u|d|e|v|e|l|o
+Cellular_Bounds,1,32,18,b|l|e|v|o|i|c|e|s|i|n|t|r|u|d|i|n|g|o|n|t|h|e|o|r|i|g|i|n|a|l|a,#blevoicesintrudingontheoriginal,#blevoicesintrudingontheoriginal,1.0,1.0,32,#|b|l|e|v|o|i|c|e|s|i|n|t|r|u|d|i|n|g|o|n|t|h|e|o|r|i|g|i|n|a|l|a
+Cellular_Bounds,1,32,19,b|u|h|a|y|i|n|a|n|g|m|a|y|n|i|l|a|r|e|v|i|v|e|m|a|n|i|l|a|w|h|i,#buhayinangmaynilarevivemanilawh,#buhayinangmaynilarevivemanilawh,1.0,1.0,32,#|b|u|h|a|y|i|n|a|n|g|m|a|y|n|i|l|a|r|e|v|i|v|e|m|a|n|i|l|a|w|h
+Cellular_Bounds,2,32,0,am|en|ta|ri|an|sa|nd|ro|ya|li|st|sb|ut|re|fo|rm,#amentariansandroyalistsbutrefor,#am#en#ta#ri#an#sa#nd#ro#ya#li#s,0.09375,0.0,3,#a|m#e|n#t|a#r|i#a|n#s|a#n|d#r|o#y|a#l|i#s|t#s|b#u|t#r|e#f|o#r
+Cellular_Bounds,2,32,1,of|th|et|wo|fu|ll|ya|ir|co|nd|it|io|ne|dc|at|ho,#ofthetwofullyairconditionedcath,#of#th#et#wo#fu#ll#ya#ir#co#nd#i,0.09375,0.0,3,#o|f#t|h#e|t#w|o#f|u#l|l#y|a#i|r#c|o#n|d#i|t#i|o#n|e#d|c#a|t#h|o
+Cellular_Bounds,2,32,2,ng|eo|ff|le|xi|bi|li|ty|la|te|rs|em|ia|qu|at|ic,#ngeofflexibilitylatersemiaquati,#ngeofflexibilitylatersemiaquati,1.0,1.0,32,#n|g|e|o|f|f|l|e|x|i|b|i|l|i|t|y|l|a|t|e|r|s|e|m|i|a|q|u|a|t|i
+Cellular_Bounds,2,32,3,no|go|ar|ea|on|ei|nw|hi|ch|br|it|is|hs|ec|ur|it,#nogoareaoneinwhichbritishsecuri,#nn#gg#aa#ee#oo#ee#nn#hh#cc#bb#i,0.15625,0.0,2,#n|n|#g|g|#a|a|#e|e|#o|o|#e|e|#n|n|#h|h|#c|c|#b|b|#i|i|#t|t|#s|s|#e|
+Cellular_Bounds,2,32,4,er|of|ew|su|rv|iv|in|gs|ou|rc|es|pa|in|tn|er|oi,#erofewsurvivingsourcespaintnero,#er#o#e#s#r#i#n#g#o#r#c#e#p#a#t#,0.125,0.0,3,#e|r#|o#|e#|s#|r#|i#|n#|g#|o#|r#|c#|e#|p#|a#|t#|n#|e#|o#
+Cellular_Bounds,2,32,5,np|re|pa|ra|ti|on|th|ey|re|ma|in|ed|on|st|an|db,#npreparationtheyremainedonstand,#npreparationtheyremainedonstand,1.0,1.0,32,#n|p|r|e|p|a|r|a|t|i|o|n|t|h|e|y|r|e|m|a|i|n|e|d|o|n|s|t|a|n|d
+Cellular_Bounds,2,32,6,ei|rh|ig|he|le|ct|ro|ne|ga|ti|vi|ty|ox|az|ir|id,#eirhighelectronegativityoxaziri,#eerhigelectronegativityoxazirid,0.1875,0.0,2,#e|e|r|h|i|g|e|l|e|c|t|r|o|n|e|g|a|t|i|v|i|t|y|o|x|a|z|i|r|i|d
+Cellular_Bounds,2,32,7,re|as|et|he|ir|mu|zz|le|ve|lo|ci|ty|an|da|rm|ou,#reasetheirmuzzlevelocityandarmo,#reasetheirmuzzlevelocityandarmo,1.0,1.0,32,#r|e|a|s|e|t|h|e|i|r|m|u|z|z|l|e|v|e|l|o|c|i|t|y|a|n|d|a|r|m|o
+Cellular_Bounds,2,32,8,eg|er|ma|np|la|nn|er|sd|ec|id|ed|th|at|th|ef|in,#egermanplannersdecidedthatthefi,#ge#m#n#l#n#e#s#e#i#e#t#a#t#e#i#,0.0625,0.0,1,#g|e#|m#|n#|l#|n#|e#|s#|e#|i#|e#|t#|a#|t#|e#|i#
+Cellular_Bounds,2,32,9,or|ds|fo|rb|ot|hc|ar|ee|rt|ou|ch|do|wn|an|ds|in,#ordsforbothcareertouchdownandsi,#ordsforbothcareertouchdownandsi,1.0,1.0,32,#o|r|d|s|f|o|r|b|o|t|h|c|a|r|e|e|r|t|o|u|c|h|d|o|w|n|a|n|d|s|i|n
+Cellular_Bounds,2,32,10,er|ew|it|ho|th|er|pl|an|so|ft|he|fa|re|as|tc|om,#erewithotherplansofthefareastco,#ereewithotherplansofthefareastc,0.125,0.0,4,#e|re|ew|it|ho|th|er|pl|an|so|ft|he|fa|re|as|tc
+Cellular_Bounds,2,32,11,ou|gh|he|co|nt|in|ue|dt|op|ai|nt|he|wa|sa|ru|th,#oughhecontinuedtopainthewasarut,#oughhecontinuedtopainthewasarut,1.0,1.0,32,#o|u|g|h|h|e|c|o|n|t|i|n|u|e|d|t|o|p|a|i|n|t|h|e|w|a|s|a|r|u|t
+Cellular_Bounds,2,32,12,ba|ta|re|gi|on|wa|st|he|so|ur|ce|of|th|eb|as|al,#bataregionwasthesourceofthebasa,#bbatrreegionwasthesourceoftheba,0.125,0.0,2,#b|ba|tr|re|eg|io|nw|as|th|es|ou|rc|eo|ft|he|ba|as
+Cellular_Bounds,2,32,13,hi|ch|ij|im|at|yp|ho|on|ko|pp|up|ro|du|ce|ds|us,#hichijimatyphoonkoppuproducedsu,#h#c#i#i#a#y#h#o#k#p#u#r#d#c#d#u,0.53125,0.0,2,#h|#c|#i|#i|#a|#y|#h|#o|#k|#p|#u|#r|#d|#c|#d|#u
+Cellular_Bounds,2,32,14,ta|bl|ef|or|cu|lt|iv|at|io|nt|he|lo|ib|en|pl|ai,#tableforcultivationtheloibenpla,#tableforcultivationtheloibenpla,1.0,1.0,32,#t|a|b|l|e|f|o|r|c|u|l|t|i|v|a|t|i|o|n|t|h|e|l|o|i|b|e|n|p|l|a
+Cellular_Bounds,2,32,15,to|ry|an|dj|ma|co|nt|in|ue|to|ut|il|iz|ed|vo|ra,#toryandjmacontinuetoutilizedvor,#ttoryyaannddjjmmaaccoonnttiinnu,0.0625,0.0,2,#t|to|ry|ya|an|nd|dj|jm|ma|ac|co|on|nt|ti|in|nu|ue|et|to|ou|ut|ti|il|li|iz|ze|ed|dv|vo|or|ra
+Cellular_Bounds,2,32,16,is|ed|ph|yl|og|en|yo|fm|or|ed|er|iv|ed|te|mn|os,#isedphylogenyofmorederivedtemno,#is#ed#ph#yl#og#en#yo#fm#or#ed#e,0.125,0.0,3,#i|s#e|d#p|h#y|l#o|g#e|n#y|o#f|m#o|r#e|d#e|r#i|v#e|d#t|e#m|n#o|s
+Cellular_Bounds,2,32,17,ic|oe|xh|ib|it|io|nw|hi|ch|ra|nf|ro|mf|eb|ru|ar,#icoexhibitionwhichranfromfebrua,#icoexhibitionwhichranfromfebrua,1.0,1.0,32,#i|c|o|e|x|h|i|b|i|t|i|o|n|w|h|i|c|h|r|a|n|f|r|o|m|f|e|b|r|u|a|r
+Cellular_Bounds,2,32,18,et|he|ye|ar|si|mm|ed|ia|te|ly|fo|ll|ow|in|gw|or,#etheyearsimmediatelyfollowingwo,#te#h#e#a#s#m#e#i#t#l#l#o#i#g#o#,0.09375,0.0,1,#t|e#|h#|e#|a#|s#|m#|e#|i#|t#|l#|l#|o#|i#|g#|o#
+Cellular_Bounds,2,32,19,ec|on|st|an|ti|no|pl|ef|lo|ti|ll|aa|ll|we|re|se,#econstantinopleflotillaallweres,#ceonstantinopleflotillaallweres,0.9375,0.0,1,#c|e|o|n|s|t|a|n|t|i|n|o|p|l|e|f|l|o|t|i|l|l|a|a|l|l|w|e|r|e|s
+Cellular_Bounds,3,32,0,rin|gon|eof|his|fev|eri|ndu|ced|ram|bli|ng,#ringoneofhisfeverinducedramblin,#ringeohifeerndcerabln,0.25,0.0,5,#ri|ng|eo|hi|fe|er|nd|ce|ra|bl|n
+Cellular_Bounds,3,32,1,ion|cov|ers|bin|ond|oqu|iap|osa|nni|col|as,#ioncoversbinondoquiaposannicola,#ioncoverbionodoqiaosnncola,0.34375,0.0,9,#io|nc|ov|er|bi|on|od|oq|ia|os|nn|co|la
+Cellular_Bounds,3,32,2,ked|bro|ads|ide|iro|ncl|ads|eve|rbu|ilt|ma,#kedbroadsideironcladseverbuiltm,#kekbbaidirncadevrbiltm,0.15625,0.0,3,#ke|kb|ba|id|ir|nc|ad|ev|rb|il|tm
+Cellular_Bounds,3,32,3,fth|est|ate|fin|anc|esa|ndl|ack|ofa|uth|or,#fthestatefinancesandlackofautho,#fthestatfinacesandacofauth,0.28125,0.0,9,#ft|he|st|at|fi|na|ce|sa|nd|ac|of|au|th
+Cellular_Bounds,3,32,4,rob|abl|yco|nta|ins|ana|uth|ent|icw|itn|es,#robablycontainsanauthenticwitne,#rorblaycontainanutenicwitne,0.34375,0.0,3,#ro|rb|la|yc|on|ta|in|an|ut|en|ic|wi|tn|e
+Cellular_Bounds,3,32,5,ure|sof|ver|oni|cam|ars|kri|ste|nbe|lla|ss,#uresofveronicamarskristenbellas,#uresofveoncaamarkristenbellas,0.28125,0.0,9,#ur|e s|of|ve|on|ca|am|ar|kr|is|te|nb|el|la|s
+Cellular_Bounds,3,32,6,ter|min|ati|ond|omi|nat|ion|and|sur|viv|al,#terminationdominationandsurviva,#terminatondominationansurviva,0.3125,0.0,9,#te|rm|in|at|on|do|mi|na|ti|on|an|su|rv|iv|a
+Cellular_Bounds,3,32,7,ved|too|lat|eto|par|tic|ipa|tet|oth|eac|ti,#vedtoolatetoparticipatetotheact,#vettolaetpatiipteoteat,0.28125,0.0,3,#ve|tto|la|et|pa|ti|ip|te|ot|ea|t
+Cellular_Bounds,3,32,8,pon|the|sol|die|rsf|oll|owi|ngh|isa|cce|ss,#ponthesoldiersfollowinghisacces,#ponthesoldiersfollowinghisacces,1.0,1.0,32,#po|n t|he|so|ld|ie|rs|fo|ll|ow|in|gh|is|ac|ce|s
+Cellular_Bounds,3,32,9,ere|was|apr|ema|tur|ede|ton|ati|oni|nth|el,#erewasaprematuredetonationinthe,#erewaapemtuedtoatonnthe,0.1875,0.0,6,#er|e|wa|ap|em|tu|ed|to|at|on|nt|he
+Cellular_Bounds,3,32,10,ito|ent|ers|erv|ice|was|ubw|hic|hfo|rme|dt,#itoenterservicewasubwhichformed,#itoenterservicewasubwhichformed,1.0,1.0,32,#it|o e|nt e|rs e|rv i|ce w|as u|bw h|ic h|fo r|me d|t
+Cellular_Bounds,3,32,11,rat|eth|att|hei|nne|rwa|lls|ofs|hac|kle|to,#ratethattheinnerwallsofshacklet,#rateathennrwllofhaklet,0.21875,0.0,5,#ra|te|at|he|nn|rw|ll|of|ha|kl|et
+Cellular_Bounds,3,32,12,ume|nta|lar|chi|tec|tur|ean|dto|set|tle|in,#umentalarchitectureandtosettlei,#umenlachtetueadtsetli,0.21875,0.0,5,#um|en|la|ch|te|tu|ea|dt|se|tl|i
+Cellular_Bounds,3,32,13,nor|igi|nal|lyi|nte|nde|dto|bep|lac|edi|nj,#noriginallyintendedtobeplacedin,#norinalyntnddtbelaedni,0.1875,0.0,5,#no|ri|na|ly|nt|nd|dt|be|la|ed|ni
+Cellular_Bounds,3,32,14,tto|his|own|sli|ght|lyc|omi|cal|tri|via|li,#ttohisownslightlycomicaltrivial,#tothowslghlyomcatrvil,0.125,0.0,2,#to|th|ow|sl|gh|ly|om|ca|tr|vi|l
+Cellular_Bounds,3,32,15,ere|lym|ean|the|pre|sen|tat|ion|ofp|ict|ur,#erelymeanthepresentationofpictu,#ereleathprsetaioofictu,0.21875,0.0,5,#er|el|ea|th|pr|se|ta|io|of|ic|tu
+Cellular_Bounds,3,32,16,jul|yhe|com|pil|eda|rec|ord|and|era|ins|ix,#julyhecompiledarecordanderainsi,#julycompiledarecoranerinsi,0.15625,0.0,5,#ju|ly|co|mp|il|ed|ar|ec|or|an|er|in|si
+Cellular_Bounds,3,32,17,ran|gay|sha|vec|ove|red|cou|rts|whe|rei|nt,#rangayshavecoveredcourtswherein,#rangshveovrecortwhren,0.1875,0.0,5,#ra|ng|sh|ve|ov|re|co|rt|wh|re|n
+Cellular_Bounds,3,32,18,sth|ath|eha|dpu|tth|emv|irt|ual|lyv|erb|at,#sthathehadputthemvirtuallyverba,#st#at#eh#dp#tt#em#iv#ua#ly#er#b,0.625,0.0,3,#st|#at|#eh|#dp|#tt|#em|#iv|#ua|#ly|#er|#ba
+Cellular_Bounds,3,32,19,keo|utr|eco|rde|din|wit|hke|rsh|aws|car|ee,#keoutrecordedinwithkershawscare,#keoutrecoerddinwithkershawscare,0.90625,0.0,10,#ke|o u|tr|ec|oe|rd|di|nw|it|hk|er|sh|aw|sc|ar|e
+Cellular_Bounds,4,32,0,orar|easn|otco|vere|dbya|nyof|theo|ther,#orareasnotcoveredbyanyoftheothe,#orareasnotcoveredbynyothethe,0.625,0.0,20,#ora|r|eas|not|cov|ere|dby|nyo|the|the
+Cellular_Bounds,4,32,1,ergo|rdon|hayw|ardw|assi|deli|nedw|ithl,#ergordonhaywardwassidelinedwith,#ergordohayardassdelineith,0.3125,0.0,8,#erg|o|rdo|hay|ard|ass|del|ine|ith
+Cellular_Bounds,4,32,2,urof|theb|atte|rshe|face|dinc|ludi|ngth,#urofthebattershefacedincludingt,#urofththeattrshfacdincludint,0.34375,0.0,7,#uro|fth|the|att|rsh|fac|din|clu|dint
+Cellular_Bounds,4,32,3,aseb|alla|llst|arga|mehi|sfir|stal|lsta,#aseballallstargamehisfirstallst,#ase#all#lls#arg#meh#sfi#sta#lst,0.78125,0.0,4,#ase|#all|#lls|#arg|#meh|#sfi|#sta|#lst
+Cellular_Bounds,4,32,4,nale|tter|toth|efre|nchc|riti|cand|tran,#nalettertothefrenchcriticandtra,#nalettothefrenchritcantra,0.3125,0.0,7,#nal|et|to|th|efre|nch|rit|can|tra
+Cellular_Bounds,4,32,5,lize|sthe|cold|ness|ofth|eclo|udto|pswi,#lizesthecoldnessofthecloudtopsw,#lizesthecoldnessoftheclodudtops,0.78125,0.0,25,#liz|e st|heco|ldne|ssof|th ec|lodu|dtops|wi
+Cellular_Bounds,4,32,6,ster|rebu|ffst|heco|lone|lwho|tear|full,#sterrebuffsthecolonelwhotearful,#sterrebuffhelonlwhteaful,0.375,0.0,11,#ste|rre|buf|fhe|lon|lwh|tea|ful
+Cellular_Bounds,4,32,7,hefi|rstt|orea|ctan|djum|psup|shou|ting,#hefirsttoreactandjumpsupshoutin,#efirstorectadjumpssupshotin,0.125,0.0,1,#efi|rs t|ore|cta|dju|mps|sup|sho|tin
+Cellular_Bounds,4,32,8,tean|dthe|nort|hkor|eana|rmye|xhau|sted,#teandthenorthkoreanarmyexhauste,#teandthenorthkoreanarmyexhauste,1.0,1.0,32,#tea|n dt|heno|rth|kor|ean|arm|yex|hau|ste
+Cellular_Bounds,4,32,9,anma|dame|vast|rahe|rhum|anwi|feje|nnyf,#anmadamevastraherhumanwifejenny,#anm#dam#vas#rah#rhu#anw#fej#nny,0.78125,0.0,4,#anm|#dam|#vas|#rah|#rhu|#anw|#fej|#nny
+Cellular_Bounds,4,32,10,ethe|hous|etha|twas|buil|tupo|nthe|irre,#ethehousethatwasbuiltupontheirr,#ethehouethatwauiltupnthirr,0.25,0.0,8,#eth|eho|uet|ha|twa|uil|tup|nth|irr
+Cellular_Bounds,4,32,11,elin|efad|eawa|yjum|pera|ndbr|ianz|oube,#elinefadeawayjumperandbrianzoub,#elin#efad#eawa#yjum#pera#ndbr#i,0.1875,0.0,5,#eli|n#ef|ad#ea|wa#yj|um#pe|ra#nd|br#ia|nz#ou
+Cellular_Bounds,4,32,12,imse|lfhi|sabd|icat|iona|ndba|nish|ment,#imselfhisabdicationandbanishmen,#imselfhsabicationdbnismen,0.28125,0.0,8,#ims|e|lfh|sab|ica|tio|ndb|nis|men
+Cellular_Bounds,4,32,13,terw|ards|thou|ghth|esto|rmat|tain|edty,#terwardsthoughthestormattainedt,#terwrdthoughestrmataiedt,0.25,0.0,5,#ter|wrd|tho|ugh|est|rma|tai|edt
+Cellular_Bounds,4,32,14,went|onto|bece|rtif|iedg|oldi|nthe|ukca,#wentontobecertifiedgoldintheukc,#wentontbecertifiedgoldintheukca,0.25,0.0,8,"#wen|tont|bece|rtif|iedg|oldi|nthe|ukca
+Wait, let me re-calculate carefully.
+
+Input: `went|onto|bece|rtif|iedg|oldi|nthe|ukca`
+
+1. `went` -> `#wen`
+"
+Cellular_Bounds,4,32,15,ious|advi|sors|enec|awas|orde|redt|ocom,#iousadvisorsenecawasorderedtoco,#ious#advi#sor#sen#ecaw#asor#der,0.15625,0.0,5,#iou|s#ad|vi#s|or#s|en#ec|aw#as|or#de|re#dt|oc#om
+Cellular_Bounds,4,32,16,rala|ctor|sfor|ther|oleo|fcar|olyn|unti,#ralactorsfortheroleofcarolynunt,#ralactsfotheolefcaolyunt,0.25,0.0,7,#ral|act|sfo|the|ole|fca|oly|unt
+Cellular_Bounds,4,32,17,dele|dond|iego|velz|quez|spor|trai|tofi,#deledondiegovelzquezsportraitof,#deledondiegovelzquespotratof,0.65625,0.0,20,#del|e do|ndie|gov|elz|que|spo|tra|tof
+Cellular_Bounds,4,32,18,icsa|ndan|imat|ions|they|also|foun|dthe,#icsandanimationstheyalsofoundth,#icsanimionthealsfoudth,0.21875,0.0,6,#ics|an|im|ion|the|als|fou|dth
+Cellular_Bounds,4,32,19,sthe|keys|tepi|nhis|synt|hesi|sofy|ohim,#sthekeystepinhissynthesisofyohi,#stheketepnhisynhessofohi,0.28125,0.0,7,#sth|eke|tep|nhi|syn|hes|sof|ohi
+Cellular_Bounds,8,32,0,isplacem|entincre|asedover|longtons,#isplacementincreasedoverlongton,#isplacementincreasedoverlongto,0.96875,0.0,31,#isplace|mentinc|reasedov|erlongto
+Cellular_Bounds,8,32,1,calstyle|ofindepe|ndientew|ithpasta,#calstyleofindependientewithpast,#calstyleofindepndientewithpast,0.5,0.0,16,#calstyl|eofindep|ndientew|ithpast
+Cellular_Bounds,8,32,2,onaugust|thetypho|onattain|edpeakwi,#onaugustthetyphoonattainedpeakw,#onaugus#thetyph#onattaiedpeakw,0.6875,0.0,8,#onaugus|#thetyph|#onattai|edpeakw
+Cellular_Bounds,8,32,3,whokille|dthenort|hkoreani|nhandtoh,#whokilledthenorthkoreaninhandto,#whokilledthenorthkoreaninhandto,1.0,1.0,32,#whokill|e|dthenort|h|koreani|n|handtoh
+Cellular_Bounds,8,32,4,oweverre|newshiss|trengtha|ndwhenth,#oweverrenewshisstrengthandwhent,#oweverrenewshisstrength#ndwhent,0.96875,0.0,24,#oweverr|enewshis|strength#|ndwhenth
+Cellular_Bounds,8,32,5,sourandt|hebandwa|stalking|withafew,#sourandthebandwastalkingwithafe,#sourand#heband#stalkin#withafe,0.4375,0.0,8,#sourand|#heband|#stalkin|#withafe
+Cellular_Bounds,8,32,6,ndtheust|hinfantr|yregimen|ttomovet,#ndtheusthinfantryregimenttomove,#ndtheusthinfantryregimenttomove,1.0,1.0,32,#ndtheus|t|hinfant|r|yregime|n|ttomove
+Cellular_Bounds,8,32,7,enousart|movement|thathadb|egunatpa,#enousartmovementthathadbegunatp,#enousartmovementhathadegunatp,0.53125,0.0,17,#enousar|tmovemen|thathad|egunatp
+Cellular_Bounds,8,32,8,thatswhe|remyfrie|ndsandih|ungoutit,#thatswheremyfriendsandihungouti,#thatswheremyfriendsandhungouti,0.71875,0.0,23,#thatswh|eremyfri|endsand|hungouti
+Cellular_Bounds,8,32,9,etrapods|thatwere|almostex|clusivel,#etrapodsthatwerealmostexclusive,#etrapodsthatwerealmostexclusiv,0.96875,0.0,31,#etrapod|sthatwer|ealmoste|xclusiv
+Cellular_Bounds,8,32,10,ratablei|ntseliot|sprelude|sandmorn,#ratableintseliotspreludesandmor,#ratable#ntselio#sprelud#sandmor,0.90625,0.0,8,#ratable|#ntselio|#sprelud|#sandmor
+Cellular_Bounds,8,32,11,ockhasmo|reunderg|roundtun|nelsthan,#ockhasmoreundergroundtunnelstha,#ockhasmoreundergroundtunnelstha,1.0,1.0,32,#ockhasm|oreunder|groundt|unnelstha
+Cellular_Bounds,8,32,12,rredduri|ngthesum|merolymp|icsinath,#rredduringthesummerolympicsinat,#redduringthesummerolympicsinat,0.125,0.0,2,#reddur|i ngthesu|m merolymp|i csinat
+Cellular_Bounds,8,32,13,tivetoth|ehouseof|represen|tativesa,#tivetothehouseofrepresentatives,#tivetot#houseof#represen#tative,0.5,0.0,8,"#tivetot|#houseof|#represen|#tatives
+
+Wait, let me re-calculate carefully:
+Input: t i v e t o t h | e h o u s e o f | r e p r e s e n | t a t i v e s a
+Pos "
+Cellular_Bounds,8,32,14,yetcompl|etelyequ|ippedand|readytob,#yetcompletelyequippedandreadyto,#yetcompletelyequippedandreadyto,1.0,1.0,32,#yetcompl|etelyequ|ippedand|readytob
+Cellular_Bounds,8,32,15,unknownb|utitwasd|edicated|byfidelh,#unknownbutitwasdedicatedbyfidel,#unknownbutitwasdedicatebyfidelg,0.75,0.0,24,#unknown|b utitwas|d edicate|byfidelg
+Cellular_Bounds,8,32,16,surrende|redatsev|astopoli|nnovembe,#surrenderedatsevastopolinnovemb,#surrenderedatsevastopolinnovemb,1.0,1.0,32,#surrend|e|redatse|v|astopol|i|nnovembe
+Cellular_Bounds,8,32,17,nterpris|ezoneane|wattract|ioncalle,#nterprisezoneanewattractioncall,#nterprisezooneanwattractioncall,0.84375,0.0,12,#nterpris|ezoonean|wattract|ioncall
+Cellular_Bounds,8,32,18,derrecei|vedseven|nominati|onseachi,#derreceivedsevennominationseach,#derrecevedsevenominationseach,0.25,0.0,8,#derrece|vedseve|nominati|onseach
+Cellular_Bounds,8,32,19,amedtoth|edeansli|standgra|duatedin,#amedtothedeanslistandgraduatedi,#amedtot#edeansl#standgr#duatedi,0.90625,0.0,8,#amedtot|#edeansl|#standgr|#duatedi
+Cellular_Bounds,16,32,0,narspurseorlethi|moutofhiscontrac,#narspurseorlethimoutofhiscontra,#narspurseorlet#moutofhiscontrac,0.46875,0.0,15,#narspurseorlet|#moutofhiscontrac
+Cellular_Bounds,16,32,1,thelegendofneros|returnlastedforh,#thelegendofnerosreturnlastedfor,#thelegendofnero#returnlastedfo,0.9375,0.0,16,#thelegendofnero|#returnlastedfo
+Cellular_Bounds,16,32,2,rkeysingingmodif|iedversionsofsev,#rkeysingingmodifiedversionsofse,#rkeysingingmodifiedversionsofse,1.0,1.0,32,#rkeysingingmodi|fiedversionsofse
+Cellular_Bounds,16,32,3,asjoinedbyubandu|binearlyallthree,#asjoinedbyubandubinearlyallthre,#asjoinebyuband#binearlyallthre,0.28125,0.0,8,#asjoinebyuband|#binearlyallthre
+Cellular_Bounds,16,32,4,inageneralnorthw|estsoutheastdire,#inageneralnorthwestsoutheastdir,#inageneralnorthwestsoutheastedi,0.90625,0.0,29,#inageneralnorthw|estsoutheastedir
+Cellular_Bounds,16,32,5,commerceraidingo|rprotectionofcom,#commerceraidingorprotectionofco,#ommerceraiding#rprotectionofco,0.0625,0.0,1,#ommerceraiding|#rprotectionofco
+Cellular_Bounds,16,32,6,romoldhamtocover|foredwinvandersa,#romoldhamtocoverforedwinvanders,#romoldhamtocove#foredwinvanders,0.96875,0.0,16,#romoldhamtocove|#foredwinvanders
+Cellular_Bounds,16,32,7,arkedlytoachieve|greaterpenetrati,#arkedlytoachievegreaterpenetrat,#arkedlytoachiev#greaterpenetrat,0.96875,0.0,16,#arkedlytoachiev|#greaterpenetrat
+Cellular_Bounds,16,32,8,iangareahisearli|estsurvivingpoem,#iangareahisearliestsurvivingpoe,#iangareahisearl#estsurvivingpoe,0.96875,0.0,16,#iangareahisearl|#estsurvivingpoe
+Cellular_Bounds,16,32,9,chialbonesbutdid|nothaveexternalg,#chialbonesbutdidnothaveexternal,#chialbonebutdi#othaveexternalf,0.3125,0.0,10,#chialbonebutdi|#othaveexternalf
+Cellular_Bounds,16,32,10,derthisrevoltwas|eventuallyputdow,#derthisrevoltwaseventuallyputdo,#derthisrevoltwa#eventuallyputdo,0.96875,0.0,16,#derthisrevoltwa|#eventuallyputdo
+Cellular_Bounds,16,32,11,ppearedatthetoro|ntointernational,#ppearedatthetorontointernationa,#pearedatthetorntointernationa,0.09375,0.0,2,#pearedatthetor|ntointernationa
+Cellular_Bounds,16,32,12,recommendedboats|toreturntoportag,#recommendedboatstoreturntoporta,#ecommendeboat#toreturntoporta,0.125,0.0,1,#ecommendeboat|#toreturntoporta
+Cellular_Bounds,16,32,13,meatropicaldepre|ssiononseptember,#meatropicaldepressiononseptembe,#meatropicaldepr#ssiononseptembe,0.96875,0.0,16,#meatropicaldepr|#ssiononseptembe
+Cellular_Bounds,16,32,14,ectwhichistodeli|verrecoveryaidto,#ectwhichistodeliverrecoveryaidt,#ectwhichistodeliverrecoveryaidt,1.0,1.0,32,#ectwhichistodel|iverrecoveryaidt
+Cellular_Bounds,16,32,15,laterthcenturysv|esderberghusedth,#laterthcenturysvesderberghusedt,#laterthcenturys#esderberghusedt,0.96875,0.0,16,#laterthcenturys|#esderberghusedt
+Cellular_Bounds,16,32,16,undintheredsands|toneofwarwickshi,#undintheredsandstoneofwarwicksh,#undintheredsand#toneofwarwicksh,0.96875,0.0,16,#undintheredsand|#toneofwarwicksh
+Cellular_Bounds,16,32,17,musicandelectron|icsstoresarecomm,#musicandelectronicsstoresarecom,#musicandelectronicsstoresarecom,1.0,1.0,32,#musicandelectro|nicsstore sarecomm
+Cellular_Bounds,16,32,18,thesquadronopera|tedinthetranspor,#thesquadronoperatedinthetranspo,#thesquadronopertedinthetranspo,0.5,0.0,16,#thesquadronoper|tedinthetranspo
+Cellular_Bounds,16,32,19,dhehadtiedthepri|orweekandbutlerc,#dhehadtiedthepriorweekandbutler,#dhehadtiedtheprorweekandbutler,0.53125,0.0,16,#dhehadtiedthepr|orweekandbutler
+Base,0,64,0,ntationofcapacitorsandinductorsandonknowledgeofthefrequencydomai,#ntationofcapacitorsandinductorsandonknowledgeofthefrequencydoma,#ntationofcapacitorsandinductorsandonknowledgeofthefrequencydoma,1.0,1.0,64,#ntationofcapacitorsandinductorsandonknowledgeofthefrequencydomai
+Base,0,64,1,irstworldwarboatswereconstructedmostofwhichwentintoservicewithth,#irstworldwarboatswereconstructedmostofwhichwentintoservicewitht,#irstworldwarboatswereconstructedmostofwhichwentintoservicewitht,1.0,1.0,64,#irstworldwarboatswereconstructedmostofwhichwentintoservicewitht
+Base,0,64,2,heportandthevichyfrenchdefendingforceswaslimitedandvaguealthough,#heportandthevichyfrenchdefendingforceswaslimitedandvaguealthoug,#eportandthevichyfrenchdefendingforceswaslimitedandvaguealthoug,0.015625,0.0,1,#eportandthevichyfrenchdefendingforceswaslimitedandvaguealthoug
+Base,0,64,3,itisviewededgeoninaregionofroughcrateredterrainitislocatedwithin,#itisviewededgeoninaregionofroughcrateredterrainitislocatedwithi,#itisviewededgeoninaregionofroughcrateredterrainitislocatedwithi,1.0,1.0,64,#itisviewededgeoninaregionofroughcrateredterrainitislocatedwithi
+Base,0,64,4,rumorsheldneroresponsibletodeflectblamenerotargetedchristiansheo,#rumorsheldneroresponsibletodeflectblamenerotargetedchristianshe,#umorsheldneroresponsibletodeflectblamenerotargetedchristianshe,0.015625,0.0,1,#umorsheldneroresponsibletodeflectblamenerotargetedchristianshe
+Base,0,64,5,edseanindonkeypunchwhotagsalongwithcharacterjoshasthequietbrothe,#edseanindonkeypunchwhotagsalongwithcharacterjoshasthequietbroth,#edseanindonkeypunchwhotagsalongwithcharacterjoshasthequietbroth,1.0,1.0,64,#edseanindonkeypunchwhotagsalongwithcharacterjoshasthequietbrothe
+Base,0,64,6,adeasailingrigincreasinglyinconvenienthmsinflexiblelaunchedinbut,#adeasailingrigincreasinglyinconvenienthmsinflexiblelaunchedinbu,#adeasailingrigincreasinglyinconvenienthmsinflexiblelaunchedinbu,1.0,1.0,64,#adeasailingrigincreasinglyinconvenienthmsinflexiblelaunchedinbu
+Base,0,64,7,rnwithasecondalbumhesaidthattheyhadwrittenoversongssomeduringthe,#rnwithasecondalbumhesaidthattheyhadwrittenoversongssomeduringth,#rnwithasecondalbumhesaidthattheyhadwrittenoversongssomeduringth,1.0,1.0,64,#rnwithasecondalbumhesaidthattheyhadwrittenoversongssomeduringth
+Base,0,64,8,atedalongroxasboulevardsomeuniversalbanksinthephilippinesthathas,#atedalongroxasboulevardsomeuniversalbanksinthephilippinesthatha,#atedalongroxasboulevardsomeuniversalbanksinthephilippinesthatha,1.0,1.0,64,#atedalongroxasboulevardsomeuniversalbanksinthephilippinesthatha
+Base,0,64,9,therddistrictpopulationcoversbinondoquiaposannicolasandsantacruz,#therddistrictpopulationcoversbinondoquiaposannicolasandsantacru,#therddistrictpopulationcoversbinondoquiaposannicolasandsantacru,1.0,1.0,64,#therddistrictpopulationcoversbinondoquiaposannicolasandsantacru
+Base,0,64,10,leorsectionrelyonthereadersknowledgeofthecompleximpedancereprese,#leorsectionrelyonthereadersknowledgeofthecompleximpedancerepres,#leorsectionrelyonthereadersknowledgeofthecompleximpedancerepres,1.0,1.0,64,#leorsectionrelyonthereadersknowledgeofthecompleximpedancerepres
+Base,0,64,11,reawasformedduringthepleistoceneperiodsiltclayandgravelcanbefoun,#reawasformedduringthepleistoceneperiodsiltclayandgravelcanbefou,#reawasformedduringthepleistoceneperiodsiltclayandgravelcanbefou,1.0,1.0,64,#reawasformedduringthepleistoceneperiodsiltclayandgravelcanbefou
+Base,0,64,12,sarecapableofnitrogenatomtransferalthoughthisreactivityhasreceiv,#sarecapableofnitrogenatomtransferalthoughthisreactivityhasrecei,#sarecapableofnitrogenatomtransferalthoughthisreactivityhasrecei,1.0,1.0,64,#sarecapableofnitrogenatomtransferalthoughthisreactivityhasreceiv
+Base,0,64,13,atedtothebritishmuseumperformancesofnohplaysinlondonandthesucces,#atedtothebritishmuseumperformancesofnohplaysinlondonandthesucce,#atedtothebritishmuseumperformancesofnohplaysinlondonandthesucce,1.0,1.0,64,#atedtothebritishmuseumperformancesofnohplaysinlondonandthesucces
+Base,0,64,14,jorcladelimnarchiaincludesmostmesozoictemnospondylsaswellassomep,#jorcladelimnarchiaincludesmostmesozoictemnospondylsaswellassome,#jorcladelimnarchiaincludesmostmesozoictemnospondylsaswellassome,1.0,1.0,64,#jorcladelimnarchiaincludesmostmesozoictemnospondylsaswellassome
+Base,0,64,15,nyarchitectsartistshistoriansandheritageadvocacygroupsarepushing,#nyarchitectsartistshistoriansandheritageadvocacygroupsarepushin,#nyarchitectsartistshistoriansandheritageadvocacygroupsarepushin,1.0,1.0,64,#nyarchitectsartistshistoriansandheritageadvocacygroupsarepushin
+Base,0,64,16,againstneroandthelikelihoodthattheydidnothaveeyewitnessaccountso,#againstneroandthelikelihoodthattheydidnothaveeyewitnessaccounts,#gainstneroandthelikelihoodthattheydidnothaveeyewitnessaccounts,0.09375,0.0,1,#gainstneroandthelikelihoodthattheydidnothaveeyewitnessaccounts
+Base,0,64,17,eaisheadedbyadirectorandisresponsibleforareasnotcoveredbyanyofth,#eaisheadedbyadirectorandisresponsibleforareasnotcoveredbyanyoft,#eaisheadedbyadirectorandisresponsibleforareasnotcoveredbyanyoft,1.0,1.0,64,#eaisheadedbyadirectorandisresponsibleforareasnotcoveredbyanyofth
+Base,0,64,18,crewtwodeckersmskaiserremarkablysurvivedcloseactionswithfourital,#crewtwodeckersmskaiserremarkablysurvivedcloseactionswithfourita,#rewtwodeckersmskaiserremarkablysurvivedcloseactionswithfourita,0.03125,0.0,1,#rewtwodeckersmskaiserremarkablysurvivedcloseactionswithfourita
+Base,0,64,19,sionseriesthatwasthethirdmoststrikeoutsbyadodgerpitcherintheplay,#sionseriesthatwasthethirdmoststrikeoutsbyadodgerpitcherinthepla,#sionseriesthatwasthethirdmoststrikeoutsbyadodgerpitcherinthepla,1.0,1.0,64,#sionseriesthatwasthethirdmoststrikeoutsbyadodgerpitcherinthepla
+Cellular_Bounds,1,64,0,e|s|s|i|o|n|s|o|f|t|h|e|b|o|d|i|e|s|o|f|t|h|r|e|e|t|e|m|n|o|s|p|o|n|d|y|l|s|t|h|e|s|e|i|m|p|r|e|s|s|i|o|n|s|s|h|o|w|w|h|e|n|a|l,#essionsofthebodiesofthreetemnospondylstheseimpressionsshowwhena,#essionsofthebodiesofthreetemnospondylstheseimpressionsshowwhena,1.0,1.0,64,#|e|s|s|i|o|n|s|o|f|t|h|e|b|o|d|i|e|s|o|f|t|h|r|e|e|t|e|m|n|o|s|p|o|n|d|y|l|s|t|h|e|s|e|i|m|p|r|e|s|s|i|o|n|s|s|h|o|w|w|h|e|n|a|l
+Cellular_Bounds,1,64,1,s|s|i|c|a|q|u|a|t|i|c|f|o|r|m|s|w|i|t|h|s|i|m|p|l|e|r|v|e|r|t|e|b|r|a|e|w|e|r|e|p|l|a|c|e|d|i|n|t|h|e|s|u|b|o|r|d|e|r|s|t|e|r|e,#ssicaquaticformswithsimplervertebraewereplacedinthesuborderster,#ssicaquaticformswithsimplervertebraewereplacedinthesuborderster,1.0,1.0,64,#|s|s|i|c|a|q|u|a|t|i|c|f|o|r|m|s|w|i|t|h|s|i|m|p|l|e|r|v|e|r|t|e|b|r|a|e|w|e|r|e|p|l|a|c|e|d|i|n|t|h|e|s|u|b|o|r|d|e|r|s|t|e|r
+Cellular_Bounds,1,64,2,o|s|s|e|d|a|t|p|a|s|s|a|u|a|n|d|b|y|n|o|v|e|m|b|e|r|s|t|o|o|d|a|t|m|a|r|b|a|c|h|k|i|l|o|m|e|t|e|r|s|m|i|u|p|s|t|r|e|a|m|a|n|d|d,#ossedatpassauandbynovemberstoodatmarbachkilometersmiupstreamand,#ossedatpassauandbynovemberstoodatmarbachkilometersmiupstreamand,1.0,1.0,64,#|o|s|s|e|d|a|t|p|a|s|s|a|u|a|n|d|b|y|n|o|v|e|m|b|e|r|s|t|o|o|d|a|t|m|a|r|b|a|c|h|k|i|l|o|m|e|t|e|r|s|m|i|u|p|s|t|r|e|a|m|a|n|d|d
+Cellular_Bounds,1,64,3,t|o|t|e|m|p|o|r|a|r|y|e|x|h|i|b|i|t|i|o|n|s|a|b|r|o|a|d|s|a|n|l|o|r|e|n|z|o|c|o|l|o|s|s|a|l|h|e|a|d|w|a|s|l|o|a|n|e|d|t|o|t|h|e,#totemporaryexhibitionsabroadsanlorenzocolossalheadwasloanedtoth,#totemporaryexhibitionsabroadsanlorenzocolossalheadwasloanedtoth,1.0,1.0,64,#|t|o|t|e|m|p|o|r|a|r|y|e|x|h|i|b|i|t|i|o|n|s|a|b|r|o|a|d|s|a|n|l|o|r|e|n|z|o|c|o|l|o|s|s|a|l|h|e|a|d|w|a|s|l|o|a|n|e|d|t|o|t|h|e
+Cellular_Bounds,1,64,4,e|i|r|v|a|l|u|e|w|o|u|l|d|r|i|s|e|b|y|l|a|t|e|o|c|t|o|b|e|r|o|f|t|h|a|t|y|e|a|r|t|h|e|p|a|i|r|h|a|d|m|e|t|t|h|i|s|g|o|a|l|g|o|r,#eirvaluewouldrisebylateoctoberofthatyearthepairhadmetthisgoalgo,#eirvaluewouldrisebylateoctoberofthatyearthepairhadmetthisgoalgo,1.0,1.0,64,#|e|i|r|v|a|l|u|e|w|o|u|l|d|r|i|s|e|b|y|l|a|t|e|o|c|t|o|b|e|r|o|f|t|h|a|t|y|e|a|r|t|h|e|p|a|i|r|h|a|d|m|e|t|t|h|i|s|g|o|a|l|g|o
+Cellular_Bounds,1,64,5,b|i|s|m|a|l|t|h|o|u|g|h|i|m|a|g|i|s|m|i|s|o|l|a|t|e|s|o|b|j|e|c|t|s|t|h|r|o|u|g|h|t|h|e|u|s|e|o|f|w|h|a|t|e|z|r|a|p|o|u|n|d|c|a,#bismalthoughimagismisolatesobjectsthroughtheuseofwhatezrapoundc,#bismalthoughimagismisolatesobjectsthroughtheuseofwhatezrapoundc,1.0,1.0,64,#|b|i|s|m|a|l|t|h|o|u|g|h|i|m|a|g|i|s|m|i|s|o|l|a|t|e|s|o|b|j|e|c|t|s|t|h|r|o|u|g|h|t|h|e|u|s|e|o|f|w|h|a|t|e|z|r|a|p|o|u|n|d|c
+Cellular_Bounds,1,64,6,s|t|a|n|t|i|a|l|l|y|b|y|h|u|m|a|n|i|n|t|e|r|v|e|n|t|i|o|n|w|i|t|h|c|o|n|s|i|d|e|r|a|b|l|e|l|a|n|d|r|e|c|l|a|m|a|t|i|o|n|a|l|o|n,#stantiallybyhumaninterventionwithconsiderablelandreclamationalo,#stantiallybyhumaninterventionwithconsiderablelandreclamationalo,1.0,1.0,64,#|s|t|a|n|t|i|a|l|l|y|b|y|h|u|m|a|n|i|n|t|e|r|v|e|n|t|i|o|n|w|i|t|h|c|o|n|s|i|d|e|r|a|b|l|e|l|a|n|d|r|e|c|l|a|m|a|t|i|o|n|a|l|o
+Cellular_Bounds,1,64,7,u|e|o|f|k|z|a|n|d|y|h|o|w|e|v|e|r|a|r|e|b|o|t|h|a|p|p|r|o|a|c|h|i|n|g|z|e|r|o|a|n|d|f|r|o|m|t|h|e|f|o|r|m|u|l|a|e|b|e|l|o|w|f|o,#ueofkzandyhoweverarebothapproachingzeroandfromtheformulaebelowf,#ueofkzandyhoweverarebothapproachingzeroandfromtheformulaebelowf,1.0,1.0,64,#|u|e|o|f|k|z|a|n|d|y|h|o|w|e|v|e|r|a|r|e|b|o|t|h|a|p|p|r|o|a|c|h|i|n|g|z|e|r|o|a|n|d|f|r|o|m|t|h|e|f|o|r|m|u|l|a|e|b|e|l|o|w|f|o
+Cellular_Bounds,1,64,8,a|r|a|h|a|n|a|s|i|n|s|t|i|t|u|t|p|e|n|d|i|d|i|k|a|n|g|u|r|u|k|a|m|p|u|s|t|u|n|a|b|d|u|l|r|a|z|a|k|t|u|n|a|b|d|u|l|r|a|z|a|k|t|e,#arahanasinstitutpendidikangurukampustunabdulrazaktunabdulrazakt,#arahanasinstitutpendidikangurukampustunabdulrazaktunabdulrazakt,1.0,1.0,64,#|a|r|a|h|a|n|a|s|i|n|s|t|i|t|u|t|p|e|n|d|i|d|i|k|a|n|g|u|r|u|k|a|m|p|u|s|t|u|n|a|b|d|u|l|r|a|z|a|k|t|u|n|a|b|d|u|l|r|a|z|a|k|t
+Cellular_Bounds,1,64,9,f|r|a|n|c|e|i|n|m|a|r|c|h|t|h|e|r|e|m|a|i|n|s|o|f|c|o|m|m|o|n|w|e|a|l|t|h|a|n|d|g|e|r|m|a|n|s|o|l|d|i|e|r|s|w|e|r|e|d|i|s|c|o|v,#franceinmarchtheremainsofcommonwealthandgermansoldiersweredisco,#franceinmarchtheremainsofcommonwealthandgermansoldiersweredisco,1.0,1.0,64,#|f|r|a|n|c|e|i|n|m|a|r|c|h|t|h|e|r|e|m|a|i|n|s|o|f|c|o|m|m|o|n|w|e|a|l|t|h|a|n|d|g|e|r|m|a|n|s|o|l|d|i|e|r|s|w|e|r|e|d|i|s|c|o
+Cellular_Bounds,1,64,10,r|s|h|a|w|w|a|s|s|e|l|e|c|t|e|d|t|o|t|h|e|n|a|t|i|o|n|a|l|l|e|a|g|u|e|t|e|a|m|f|o|r|t|h|e|m|a|j|o|r|l|e|a|g|u|e|b|a|s|e|b|a|l|l,#rshawwasselectedtothenationalleagueteamforthemajorleaguebasebal,#rshawwasselectedtothenationalleagueteamforthemajorleaguebasebal,1.0,1.0,64,#|r|s|h|a|w|w|a|s|s|e|l|e|c|t|e|d|t|o|t|h|e|n|a|t|i|o|n|a|l|l|e|a|g|u|e|t|e|a|m|f|o|r|t|h|e|m|a|j|o|r|l|e|a|g|u|e|b|a|s|e|b|a|l|l
+Cellular_Bounds,1,64,11,e|a|l|m|o|s|t|a|l|l|t|h|e|p|o|i|n|t|s|o|f|h|i|t|l|e|r|s|s|p|e|e|c|h|a|r|e|d|r|a|w|n|f|r|o|m|s|o|m|e|o|f|s|t|e|i|n|e|r|s|e|a|r|l,#ealmostallthepointsofhitlersspeecharedrawnfromsomeofsteinersear,##ealmostallthepointsofhitlersspeecharedrawnfromsomeofsteinersea,0.0625,0.0,1,#|#|e|a|l|m|o|s|t|a|l|l|t|h|e|p|o|i|n|t|s|o|f|h|i|t|l|e|r|s|s|p|e|e|c|h|a|r|e|d|r|a|w|n|f|r|o|m|s|o|m|e|o|f|s|t|e|i|n|e|r|s|e|a|r
+Cellular_Bounds,1,64,12,e|m|b|a|s|s|y|i|n|m|o|g|a|d|i|s|h|u|t|h|e|c|a|p|i|t|a|l|o|f|s|o|m|a|l|i|a|i|n|j|a|n|u|a|r|y|i|n|l|a|t|e|d|e|c|e|m|b|e|r|v|i|o|l,#embassyinmogadishuthecapitalofsomaliainjanuaryinlatedecembervio,#embassyinmogadishuthecapitalofsomaliainjanuaryinlatedecembervio,1.0,1.0,64,#|e|m|b|a|s|s|y|i|n|m|o|g|a|d|i|s|h|u|t|h|e|c|a|p|i|t|a|l|o|f|s|o|m|a|l|i|a|i|n|j|a|n|u|a|r|y|i|n|l|a|t|e|d|e|c|e|m|b|e|r|v|i|o
+Cellular_Bounds,1,64,13,n|t|e|n|d|e|d|f|o|r|c|o|m|m|e|r|c|e|r|a|i|d|i|n|g|o|r|p|r|o|t|e|c|t|i|o|n|o|f|c|o|m|m|e|r|c|e|c|a|l|l|e|d|a|r|m|o|u|r|e|d|c|r|u,#ntendedforcommerceraidingorprotectionofcommercecalledarmouredcr,#ntendedforcommerceraidingorprotectionofcommercecalledarmouredcr,1.0,1.0,64,#|n|t|e|n|d|e|d|f|o|r|c|o|m|m|e|r|c|e|r|a|i|d|i|n|g|o|r|p|r|o|t|e|c|t|i|o|n|o|f|c|o|m|m|e|r|c|e|c|a|l|l|e|d|a|r|m|o|u|r|e|d|c|r|u
+Cellular_Bounds,1,64,14,e|b|i|n|t|u|l|u|o|i|l|a|n|d|g|a|s|f|a|c|i|l|i|t|i|e|s|s|h|o|r|t|l|y|a|f|t|e|r|n|i|g|h|t|f|a|l|l|b|i|n|t|u|l|u|p|r|o|m|e|n|a|d|e,#ebintuluoilandgasfacilitiesshortlyafternightfallbintulupromenad,##bintuluoilandgasfacilitiesshortlyafternightfallbintulupromenad,0.984375,0.0,1,#|#|b|i|n|t|u|l|u|o|i|l|a|n|d|g|a|s|f|a|c|i|l|i|t|i|e|s|s|h|o|r|t|l|y|a|f|t|e|r|n|i|g|h|t|f|a|l|l|b|i|n|t|u|l|u|p|r|o|m|e|n|a|d
+Cellular_Bounds,1,64,15,t|e|s|o|f|m|i|c|r|o|n|e|s|i|a|t|h|e|s|e|a|s|o|n|c|l|o|s|e|d|w|i|t|h|t|h|e|d|i|s|s|i|p|a|t|i|o|n|o|f|a|t|r|o|p|i|c|a|l|d|e|p|r|e,#tesofmicronesiatheseasonclosedwiththedissipationofatropicaldepr,#tesofmicronesiatheseasonclosedwiththedissipationofatropicaldepr,1.0,1.0,64,#|t|e|s|o|f|m|i|c|r|o|n|e|s|i|a|t|h|e|s|e|a|s|o|n|c|l|o|s|e|d|w|i|t|h|t|h|e|d|i|s|s|i|p|a|t|i|o|n|o|f|a|t|r|o|p|i|c|a|l|d|e|p|r
+Cellular_Bounds,1,64,16,a|t|c|h|a|t|u|n|f|o|r|g|i|v|e|n|t|h|e|m|a|t|c|h|e|n|d|e|d|i|n|a|d|o|u|b|l|e|d|i|s|q|u|a|l|i|f|i|c|a|t|i|o|n|r|e|s|u|l|t|i|n|g|i,#atchatunforgiventhematchendedinadoubledisqualificationresulting,#atchatunforgiventhematchendedinadoubledisqualificationresulting,1.0,1.0,64,#|a|t|c|h|a|t|u|n|f|o|r|g|i|v|e|n|t|h|e|m|a|t|c|h|e|n|d|e|d|i|n|a|d|o|u|b|l|e|d|i|s|q|u|a|l|i|f|i|c|a|t|i|o|n|r|e|s|u|l|t|i|n|g
+Cellular_Bounds,1,64,17,f|r|o|n|t|b|y|m|i|l|o|r|a|d|o|v|i|c|h|s|c|o|l|u|m|n|i|n|t|h|e|m|i|d|d|l|e|b|y|s|t|r|i|k|s|a|n|d|i|n|t|h|e|r|e|a|r|b|y|d|o|k|h|t,#frontbymiloradovichscolumninthemiddlebystriksandintherearbydokh,#frontbymiloradovichscolumninthemiddlebystriksandintherearbydokh,1.0,1.0,64,#|f|r|o|n|t|b|y|m|i|l|o|r|a|d|o|v|i|c|h|s|c|o|l|u|m|n|i|n|t|h|e|m|i|d|d|l|e|b|y|s|t|r|i|k|s|a|n|d|i|n|t|h|e|r|e|a|r|b|y|d|o|k|h
+Cellular_Bounds,1,64,18,p|r|o|d|u|c|e|d|i|n|a|u|g|u|s|t|w|i|t|h|l|o|c|a|t|i|o|n|f|i|l|m|i|n|g|i|n|n|e|w|p|o|r|t|w|a|l|e|s|a|n|d|b|r|i|s|t|o|l|i|t|r|e|c,#producedinaugustwithlocationfilminginnewportwalesandbristolitre,#producedinaugustwithlocationfilminginnewportwalesandbristolitre,1.0,1.0,64,#|p|r|o|d|u|c|e|d|i|n|a|u|g|u|s|t|w|i|t|h|l|o|c|a|t|i|o|n|f|i|l|m|i|n|g|i|n|n|e|w|p|o|r|t|w|a|l|e|s|a|n|d|b|r|i|s|t|o|l|i|t|r|e
+Cellular_Bounds,1,64,19,e|k|n|o|w|n|s|i|n|c|e|t|h|e|e|a|r|l|y|p|a|r|t|o|f|t|h|e|t|h|c|e|n|t|u|r|y|h|o|w|e|v|e|r|t|h|e|e|a|r|l|i|e|s|t|d|e|s|c|r|i|b|e|d,#eknownsincetheearlypartofthethcenturyhowevertheearliestdescribe,################################################################,0.015625,0.0,1,#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|#|
+Cellular_Bounds,2,64,0,li|gh|sl|an|ec|am|eu|nd|er|su|st|ai|ne|da|tt|ac|ka|nd|tr|oo|ps|th|er|ea|nd|ar|ou|nd|th|ec|it|yc,#lighslanecameundersustainedattackandtroopsthereandaroundthecity,#lighslanecameundersustainedattackandtroopsthereandaroundth,0.921875,0.0,59,#l|i|g|h|s|l|a|n|e|c|a|m|e|u|n|d|e|r|s|u|s|t|a|i|n|e|d|a|t|t|a|c|k|a|n|d|t|r|o|o|p|s|t|h|e|r|e|a|n|d|a|r|o|u|n|d|t|h
+Cellular_Bounds,2,64,1,es|of|ro|me|an|dw|it|ht|he|pa|rt|hi|an|sa|sw|el|lt|he|pe|ac|eb|et|we|en|pa|rt|hi|aa|nd|ro|me|la,#esofromeandwiththeparthiansaswellthepeacebetweenparthiaandromel,#seoromeandwiththeparthiansaswellthepeacebetweenparthiaandr,0.078125,0.0,1,#s|e|o|r|o|m|e|a|n|d|w|i|t|h|t|h|e|p|a|r|t|h|i|a|n|s|a|s|w|e|l|l|t|h|e|p|e|a|c|e|b|e|t|w|e|e|n|p|a|r|t|h|i|a|a|n|d|r
+Cellular_Bounds,2,64,2,ed|es|ig|no|ft|he|fu|sc|la|ss|ba|tt|le|sh|ip|sw|as|sh|ap|ed|bo|th|by|th|eo|ng|oi|ng|in|te|rn|at,#edesignofthefusclassbattleshipswasshapedbothbytheongoinginterna,#edesignofthefusclassbattleshipswasshapedbothbytheongoingin,0.921875,0.0,59,#e|d|e|s|i|g|n|o|f|t|h|e|f|u|s|c|l|a|s|s|b|a|t|t|l|e|s|h|i|p|s|w|a|s|s|h|a|p|e|d|b|o|t|h|b|y|t|h|e|o|n|g|o|i|n|g|i|n
+Cellular_Bounds,2,64,3,un|ds|kg|an|dw|as|po|we|re|db|ya|ho|rs|ep|ow|er|kw|me|ad|ow|se|ng|in|es|us|pe|ns|io|nw|as|on|ei,#undskgandwaspoweredbyahorsepowerkwmeadowsenginesuspensionwasone,#undskgandwaspoweredbyahorsepowerkwmeadowsenginesuspensionw,0.921875,0.0,59,#u|n|d|s|k|g|a|n|d|w|a|s|p|o|w|e|r|e|d|b|y|a|h|o|r|s|e|p|o|w|e|r|k|w|m|e|a|d|o|w|s|e|n|g|i|n|e|s|u|s|p|e|n|s|i|o|n|w
+Cellular_Bounds,2,64,4,st|al|re|gi|on|of|ce|nt|ra|ls|ar|aw|ak|ge|ol|og|yo|ft|he|co|as|ta|la|re|aw|as|fo|rm|ed|du|ri|ng,#stalregionofcentralsarawakgeologyofthecoastalareawasformeddurin,#stalregionofcentralsarawakgeologyofthecoastalareawasformed,0.921875,0.0,59,#s|t|a|l|r|e|g|i|o|n|o|f|c|e|n|t|r|a|l|s|a|r|a|w|a|k|g|e|o|l|o|g|y|o|f|t|h|e|c|o|a|s|t|a|l|a|r|e|a|w|a|s|f|o|r|m|e|d
+Cellular_Bounds,2,64,5,an|da|ll|en|gi|ns|be|rg|in|pa|rt|ic|ul|ar|we|re|in|fl|ue|nc|ed|by|th|ei|ma|gi|st|em|ph|as|is|on,#andallenginsberginparticularwereinfluencedbytheimagistemphasiso,#nalleinbegipatiuaweifunebtemgsepaio,0.015625,0.0,1,#n|a|l|l|e|i|n|b|e|g|i|p|a|t|i|u|a|w|e|i|f|u|n|e|b|t|e|m|g|s|e|p|a|i|o
+Cellular_Bounds,2,64,6,li|gh|tt|an|km|kv|ii|ib|ut|no|ne|of|th|es|ew|er|ee|ve|ru|se|di|na|ct|iv|es|er|vi|ce|wi|th|th|eb,#lighttankmkviiibutnoneofthesewereeverusedinactiveservicewiththe,#llgttnkkviibutnoneofthesewereeverusedinactiveservicewithth,0.125,0.0,2,#l|l|g|t|t|n|k|k|v|i|i|b|u|t|n|o|n|e|o|f|t|h|e|s|e|w|e|r|e|e|v|e|r|u|s|e|d|i|n|a|c|t|i|v|e|s|e|r|v|i|c|e|w|i|t|h|t|h
+Cellular_Bounds,2,64,7,ol|at|il|es|si|nc|ei|ts|fo|rm|at|io|nh|ow|ev|er|ot|he|rc|ra|te|rs|in|th|ev|ic|in|it|ya|re|co|ns,#olatilessinceitsformationhoweverothercratersinthevicinityarecon,#ooaiesinetformationhoweverothercratersinthevicinityarecon,0.140625,0.0,2,#o|o|a|i|e|s|i|n|e|t|f|o|r|m|a|t|i|o|n|h|o|w|e|v|e|r|o|t|h|e|r|c|r|a|t|e|r|s|i|n|t|h|e|v|i|c|i|n|i|t|y|a|r|e|c|o|n
+Cellular_Bounds,2,64,8,at|ou|nl|ik|em|od|er|nt|em|no|sp|on|dy|lc|la|ss|if|ic|at|io|nh|ow|ev|er|ro|me|ri|nc|lu|de|dt|he,#atounlikemoderntemnospondylclassificationhoweverromerincludedth,#taonlikemoderntemnospondylclassificationhoweverromerinclud,0.0625,0.0,1,#t|a|o|n|l|i|k|e|m|o|d|e|r|n|t|e|m|n|o|s|p|o|n|d|y|l|c|l|a|s|s|i|f|i|c|a|t|i|o|n|h|o|w|e|v|e|r|r|o|m|e|r|i|n|c|l|u|d
+Cellular_Bounds,2,64,9,rt|ie|ro|nh|is|mi|ss|io|nn|ap|ol|eo|ni|ns|tr|uc|te|dh|im|to|pr|ot|ec|th|is|no|rt|hf|la|nk|at|al,#rtieronhismissionnapoleoninstructedhimtoprotecthisnorthflankata,#rtieronhismissionnapoleoninstructedhimtoprotecthisnorthfla,0.921875,0.0,59,#r|t|i|e|r|o|n|h|i|s|m|i|s|s|i|o|n|n|a|p|o|l|e|o|n|i|n|s|t|r|u|c|t|e|d|h|i|m|t|o|p|r|o|t|e|c|t|h|i|s|n|o|r|t|h|f|l|a
+Cellular_Bounds,2,64,10,ge|he|ha|dt|wo|ch|il|dr|en|wi|th|me|ss|al|in|ac|la|ud|ia|oc|ta|vi|ab|or|na|nd|br|it|an|ni|cu|sb,#gehehadtwochildrenwithmessalinaclaudiaoctaviabornandbritannicus,#gge#hhe#hha#ddt#wwo#cch#iil#ddr#een#wwi#tth#mme#sss#aal#iin#aac,0.078125,0.0,2,#g|ge|#h|he|#h|ha|#d|dt|#w|wo|#c|ch|#i|il|#d|dr|#e|en|#w|wi|#t|th|#m|me|#s|ss|#a|al|#i|in|#a|ac|#l|la|#u|ud|#i|ia|#o|oc|#t|ta|#v|vi|#a|ab|#
+Cellular_Bounds,2,64,11,an|ce|ai|rc|ra|ft|al|li|ed|re|po|rt|in|gn|am|ep|au|lb|ot|ha|ir|cr|af|th|ad|de|ve|lo|pm|en|tp|ro,#anceaircraftalliedreportingnamepaulbothaircrafthaddevelopmentpr,#na#iraft#lle#eport#ng#mep#ulbot#aircraft#addevelopment#ro,0.046875,0.0,1,#n|a|#i|r|a|f|t|#l|l|e|#e|p|o|r|t|#n|g|#m|e|p|#u|l|b|o|t|#a|i|r|c|r|a|f|t|#a|d|d|e|v|e|l|o|p|m|e|n|t|#r|o
+Cellular_Bounds,2,64,12,ng|le|gi|ti|ma|cy|ba|ck|to|th|ew|we|an|db|ec|om|et|he|ne|wf|ac|eo|ft|he|ww|el|au|ri|na|it|is|al,#nglegitimacybacktothewweandbecomethenewfaceofthewwelaurinaitisa,#nglegitimacybacktothewweandbecomethenewfaceofthewwelaurina,0.921875,0.0,59,#n|g|l|e|g|i|t|i|m|a|c|y|b|a|c|k|t|o|t|h|e|w|w|e|a|n|d|b|e|c|o|m|e|t|h|e|n|e|w|f|a|c|e|o|f|t|h|e|w|w|e|l|a|u|r|i|n|a
+Cellular_Bounds,2,64,13,in|ed|yn|as|ti|es|it|is|af|ac|to|fi|ro|ny|th|at|ev|en|th|eo|nl|ym|aj|or|pu|bl|ic|wo|rk|co|mp|le,#inedynastiesitisafactofironythateventheonlymajorpublicworkcompl,#niedynastiesitisafactofironythateventheonlymajorpublicwork,0.890625,0.0,1,#n|i|e|d|y|n|a|s|t|i|e|s|i|t|i|s|a|f|a|c|t|o|f|i|r|o|n|y|t|h|a|t|e|v|e|n|t|h|e|o|n|l|y|m|a|j|o|r|p|u|b|l|i|c|w|o|r|k
+Cellular_Bounds,2,64,14,er|ss|om|et|im|eb|ef|or|ea|sh|is|co|ll|ea|gu|ea|ta|tt|co|ot|to|zo|be|lw|as|al|re|ad|ym|ak|in|gi,#erssometimebeforeashiscolleagueatattcoottozobelwasalreadymaking,#ressometimebeefroeashhiscolleagueattatcooottoozbeelwaasalreadym,0.265625,0.0,1,#r|es|so|me|ti|me|be|ef|ro|ea|sh|hi|sc|ol|le|ag|ue|at|ta|tc|oo|ot|to|oz|be|el|wa|as|al|re|ad|ym|ak|in|gn
+Cellular_Bounds,2,64,15,ew|hi|ch|sa|il|ed|fo|rf|re|et|ow|ni|nw|es|ta|fr|ic|ad|ur|in|gt|hi|sp|er|io|do|ft|he|wa|rt|he|re,#ewhichsailedforfreetowninwestafricaduringthisperiodofthewarther,#ewhichsailedforfreetowninwestafricaduringthisperiodofthewa,0.921875,0.0,59,#e|w|h|i|c|h|s|a|i|l|e|d|f|o|r|f|r|e|e|t|o|w|n|i|n|w|e|s|t|a|f|r|i|c|a|d|u|r|i|n|g|t|h|i|s|p|e|r|i|o|d|o|f|t|h|e|w|a
+Cellular_Bounds,2,64,16,wo|to|mb|st|on|ep|il|ed|ri|ve|rs|th|is|en|de|dt|he|ma|tc|hw|it|hl|es|na|rw|in|ni|ng|by|di|sq|ua,#wotombstonepiledriversthisendedthematchwithlesnarwinningbydisqu,#wotombstonepiledriversthisendedthematchwithlesnarwinningby,0.921875,0.0,59,#w|o|t|o|m|b|s|t|o|n|e|p|i|l|e|d|r|i|v|e|r|s|t|h|i|s|e|n|d|e|d|t|h|e|m|a|t|c|h|w|i|t|h|l|e|s|n|a|r|w|i|n|n|i|n|g|b|y
+Cellular_Bounds,2,64,17,es|ta|di|um|ho|st|sg|am|es|of|ba|se|ba|ll|ph|il|ip|pi|ne|sl|ou|ge|hr|ig|an|db|ab|er|ut|hw|er|et,#estadiumhostsgamesofbaseballphilippineslougehrigandbaberuthwere,#setadium#ostsgamesofbaseballphilippineslougehrigandbaberut,0.875,0.0,1,#s|e|t|a|d|i|u|m|#o|s|t|s|g|a|m|e|s|o|f|b|a|s|e|b|a|l|l|p|h|i|l|i|p|p|i|n|e|s|l|o|u|g|e|h|r|i|g|a|n|d|b|a|b|e|r|u|t|
+Cellular_Bounds,2,64,18,th|ek|in|de|st|ac|co|un|ts|of|ne|ro|sr|ul|eh|ew|ri|te|so|fp|ea|ce|an|dp|ro|sp|er|it|yu|nd|er|ne,#thekindestaccountsofnerosrulehewritesofpeaceandprosperityundern,#thekindestaccountsofnerosrulehewritesofpeaceandprosperityu,0.921875,0.0,59,#t|h|e|k|i|n|d|e|s|t|a|c|c|o|u|n|t|s|o|f|n|e|r|o|s|r|u|l|e|h|e|w|r|i|t|e|s|o|f|p|e|a|c|e|a|n|d|p|r|o|s|p|e|r|i|t|y|u
+Cellular_Bounds,2,64,19,pl|ay|be|tw|ee|nt|he|la|nd|sc|ap|eo|fs|wa|mp|an|dj|un|gl|ea|nd|th|el|an|ds|ca|pe|of|sp|ee|ch|th,#playbetweenthelandscapeofswampandjungleandthelandscapeofspeecht,#playbetweenthelandscapeofswampandjungleandthelandscapeofsp,0.921875,0.0,59,#p|l|a|y|b|e|t|w|e|e|n|t|h|e|l|a|n|d|s|c|a|p|e|o|f|s|w|a|m|p|a|n|d|j|u|n|g|l|e|a|n|d|t|h|e|l|a|n|d|s|c|a|p|e|o|f|s|p
+Cellular_Bounds,3,64,0,ofa|uth|ori|tyf|rom|the|sen|ate|inn|ero|pro|mis|edt|ogi|vet|hes|ena|tep|owe|rse|qui|v,#ofauthorityfromthesenateinneropromisedtogivethesenatepowersequi,#ofauthortyrothseatinneroprmiedogivheenteowrsequiv,0.1875,0.0,9,#of|au|th|or|ty|ro|th|se|at|in|ne|ro|pr|mi|ed|og|iv|he|en|te|ow|rs|eq|ui|v
+Cellular_Bounds,3,64,1,erc|onf|ede|rat|ewa|rsh|ips|int|his|eng|age|men|tth|ese|con|dda|yof|the|bat|tle|ofh|a,#erconfederatewarshipsinthisengagementtheseconddayofthebattleofh,#rceonfedraewrsipinthisengagementthesconddayofthebatlleofha,0.15625,0.0,1,#rc|eo|nf|ed|ra|ew|rs|ip|in|th|is|en|ga|ge|me|nt|th|es|co|nd|da|yo|ft|he|ba|tl|le|of|ha
+Cellular_Bounds,3,64,2,ria|lco|rre|spo|nde|nce|whi|lei|nth|isp|osi|tio|nsu|eto|niu|sst|art|edw|rit|ing|bio|g,#rialcorrespondencewhileinthispositionsuetoniusstartedwritingbio,#rialrcrespondencwhileinthispositionsuetoniusstartedwritingbio,0.125,0.0,5,#ri|al|rc|re|sp|on|de|nc|wh|il|ei|nt|hi|sp|os|it|io|ns|ue|to|ni|us|st|ar|te|dw|ri|ti|ng|bi|o
+Cellular_Bounds,3,64,3,toi|tas|heo|pen|lya|dmi|tte|dfo|rhe|use|daf|ter|war|dst|ola|udm|ush|roo|mst|hev|ehi|c,#toitasheopenlyadmittedforheusedafterwardstolaudmushroomsthevehi,#totthepelydmttdfrhusdatewadsoludmsromsheehi,0.078125,0.0,3,#to|t t|he|pe|ly|dm|tt|df|rh|us|da|te|wa|ds|ol|ud|ms|ro|ms|he|eh|i
+Cellular_Bounds,3,64,4,tba|yon|etp|oin|tby|fre|nch|tro|ops|tob|oar|dta|kin|gon|lyw|hat|the|yco|uld|car|ryl|e,#tbayonetpointbyfrenchtroopstoboardtakingonlywhattheycouldcarryl,#tbayetoitbfrnctroptooadtkigolywhthyculcaryle,0.09375,0.0,5,#tb|ay|et|oi|tb|fr|nc|tr|op|to|oa|dt|ki|go|ly|wh|th|yc|ul|ca|ry|le
+Cellular_Bounds,3,64,5,man|yir|onc|lad|swe|reb|uil|tto|mak|eus|eof|the|ram|ort|het|orp|edo|whi|cha|num|ber|o,#manyironcladswerebuilttomakeuseoftheramorthetorpedowhichanumber,#manyrolaswreuittmaeueothraorheoredwhchnubeo,0.109375,0.0,5,#ma|ny|ro|la|sw|re|ui|tt|ma|eu|eo|th|ra|or|he|or|ed|wh|ch|nu|be|o
+Cellular_Bounds,3,64,6,ted|byf|ide|lhe|rre|rab|elt|rnt|hen|gov|ern|oro|fve|rac|ruz|dur|ing|his|tim|ein|off|i,#tedbyfidelherrerabeltrnthengovernorofveracruzduringhistimeinoff,#ted#byfi#ddel#hher#rrer#aabe#lltr#nnth#eeng#oove#rrno#rrof#vver,0.078125,0.0,4,#te|d#b|yf|i#d|de|l#h|he|r#r|re|r#a|ab|e#l|lt|r#n|nt|h#e|en|g#o|ov|e#r|rn|o#r|ro|f#v|ve|r#a|ac|r#u|uz|d#u|ur|i#n|ng|h#i|is|t#i|im|e#i|in
+Cellular_Bounds,3,64,7,ste|rsb|oss|bra|dte|lls|him|tha|the|ist|obe|lai|dof|fle|ste|rin|ste|adb|lac|kma|ils|h,#stersbossbradtellshimthatheistobelaidofflesterinsteadblackmails,#stersbosbrdtllhiththisobladoflstristadlakmilh,0.140625,0.0,9,#st|er|sb|os|br|dt|ll|hi|th|th|is|ob|la|do|fl|st|ri|st|ad|la|km|il|h
+Cellular_Bounds,3,64,8,ugh|tsi|mul|tan|eou|sly|the|bat|tle|end|edi|nav|ict|ory|for|the|uni|ted|nat|ion|saf|t,#ughtsimultaneouslythebattleendedinavictoryfortheunitednationsaf,#ughtsmultaeoslthbatlenedinavicorfothuntenaiosaf,0.15625,0.0,6,#ug|ht|sm|ul|ta|eo|sl|th|ba|tl|en|ed|in|av|ic|or|fo|th|un|te|na|io|sa|f
+Cellular_Bounds,3,64,9,chr|oma|nti|can|dvi|cto|ria|npo|etr|yin|con|tra|stt|oth|eir|con|tem|por|ari|est|heg|e,#chromanticandvictorianpoetryincontrasttotheircontemporariestheg,#crhomantcadvictorinpoetryicontrastotheircontemporariesthege,0.125,0.0,2,#cr|ho|ma|nt|ca|dv|ic|to|ri|np|oe|tr|yi|co|nt|ra|st|ot|he|ir|co|nt|em|po|ra|ri|es|th|eg|e
+Cellular_Bounds,3,64,10,usa|nds|upr|oss|vil|est|ree|tan|din|tol|eck|yro|adw|her|ehe|too|kre|fug|ein|alo|cal|h,#usandsuprossvilestreetandintoleckyroadwherehetookrefugeinalocal,#usandsuprossvilestreetandintoleckyroadwherehetookrefugeinalocal,1.0,1.0,64,#us|an|ds|up|ro|ss|vi|le|st|re|et|an|di|nt|ol|ec|ky|ro|ad|wh|er|eh|et|oo|kr|ef|ug|ei|na|lo|ca|lh
+Cellular_Bounds,3,64,11,yre|spo|nde|dto|hun|tle|sna|rto|ldt|hea|sso|cia|ted|pre|ssw|ewi|llg|ett|oth|ebo|tto|m,#yrespondedtohuntlesnartoldtheassociatedpresswewillgettothebotto,#yrespondethuntlesnartoldtheassociatedpresswewillgettothoebottom,0.203125,0.0,10,#yr|es|po|nd|et|hu|nt|le|sn|ar|to|ld|th|ea|ss|oc|ia|te|dp|re|ss|we|wi|ll|ge|tt|ot|ho|eb|ot|to|m
+Cellular_Bounds,3,64,12,tay|lor|sai|dwe|rea|lly|wan|ted|tod|oso|met|hin|gwh|ich|was|rea|lly|coo|lsa|yin|gth|a,#taylorsaidwereallywantedtodosomethingwhichwasreallycoolsayingth,#taylorsaidwereallywantedtodosomethingwhichwasreallycoolsayingth,1.0,1.0,64,#ta|y l|or|sa|id|we|re|al|ly|wa|nt|ed|to|do|so|me|th|in|gw|hi|ch|wa|sr|ea|ll|yc|oo|ls|ay|in|gt|ha
+Cellular_Bounds,3,64,13,tor|yfo|rne|rop|oli|tic|all|yne|rob|eca|mev|ery|pop|ula|rin|the|eas|ter|npr|ovi|nce|s,#toryforneropoliticallynerobecameverypopularintheeasternprovince,#toryfornroopolticallynroebcameevrypopularintheeasternpovinces,0.234375,0.0,9,#to|r y|fo|rn|ro|op|ol|ti|ca|ll|yn|ro|eb|ca|me|ev|ry|po|pu|la|ri|nt|he|ea|st|er|np|ov|in|ce|s
+Cellular_Bounds,3,64,14,erf|orc|ana|dat|oth|eun|ite|dki|ngd|omg|ord|onc|amp|bel|lhe|wst|rac|han|kei|ths|imp|s,#erforcanadatotheunitedkingdomgordoncampbellhewstrachankeithsimp,#rfeoandaoteuitdkngomoronambelhwsrachankethimps,0.0625,0.0,1,#rf|eo|an|da|ot|eu|it|dk|ng|om|or|on|am|be|lh|ws|ra|ch|an|ke|th|im|ps
+Cellular_Bounds,3,64,15,twh|owa|sst|ill|nor|tho|fth|eda|nub|ein|atw|opr|ong|eda|tta|ckn|eys|ent|one|div|isi|o,#twhowasstillnorthofthedanubeinatwoprongedattackneysentonedivisi,#twtossilnothftednubeatoponedatckeyentodiisio,0.0625,0.0,3,#tw|to|ss|il|no|th|ft|ed|nu|be|at|op|on|ed|at|ck|ey|en|to|di|is|io
+Cellular_Bounds,3,64,16,and|his|fou|rth|alb|umt|och|art|ins|pai|npe|aki|nga|tnu|mbe|rsi|xty|eig|htw|ith|ino|n,#andhisfourthalbumtochartinspainpeakingatnumbersixtyeightwithino,#ndanisfourthalumtochartinspainpeakingatnumbersixtyeightwithinon,0.171875,0.0,1,#nd|an|is|fo|ur|th|al|um|to|ch|ar|ti|ns|pa|in|pe|ak|in|ga|tn|um|be|rs|ix|ty|ei|gh|tw|it|hi|no|n
+Cellular_Bounds,3,64,17,jan|uar|yhe|has|als|obe|enb|oth|ahu|ghd|urh|ama|war|dan|dji|mph|ela|naw|ard|fin|ali|s,#januaryhehasalsobeenbothahughdurhamawardandjimphelanawardfinali,#janu#yh#ha#al#ob#en#ot#ah#gh#ur#am#wa#da#dj#mp#el#na#ar#fi#al#s,0.09375,0.0,5,#ja|nu#|yh#|ha#|al#|ob#|en#|ot#|ah#|gh#|ur#|am#|wa#|da#|dj#|mp#|el#|na#|ar#|fi#|al#|s
+Cellular_Bounds,3,64,18,hed|asm|any|mor|eno|rth|kor|ean|sra|nin|toa|vil|lag|ebe|low|the|mdi|rec|ted|art|ill|e,#hedasmanymorenorthkoreansranintoavillagebelowthemdirectedartill,#edhanamoenrtkoeasrnitovilaeblothmdirectdarill,0.0625,0.0,1,#ed|ha|na|mo|en|rt|ko|ea|sr|ni|to|vi|la|eb|lo|th|md|ir|ec|td|ar|il|l
+Cellular_Bounds,3,64,19,ten|tio|nof|ste|reo|che|mis|try|isv|ery|hig|hof|ten|ret|ent|ono|fst|ere|och|emi|str|y,#tentionofstereochemistryisveryhighoftenretentonofstereochemistr,#tentionofstereochemistryisveryhighoftenretentonofstereochemistr,1.0,1.0,64,#te|nt|io|no|fs|te|re|oc|he|mi|st|ry|is|ve|ry|hi|gh|of|te|nr|et|en|to|no|fs|te|re|oc|he|mi|st|ry
+Cellular_Bounds,4,64,0,hewa|roff|icev|acil|late|dint|heir|dema|ndin|july|itre|ques|tedt|hato|fthe|tank,#hewarofficevacillatedintheirdemandinjulyitrequestedthatofthetan,#hewarofficevacillatedintheirdemandinjulyitrequestedthatofthetan,1.0,1.0,64,#hew|a|rof|f|ice|v|aci|l|lat|e|din|t|hei|r|dem|a|ndi|n|jul|y|itr|e|que|s|ted|t|hat|o|fthe|tan
+Cellular_Bounds,4,64,1,expo|sedu|pper|port|ionu|sing|aste|elch|isel|asar|esul|tthe|topi|sfra|gmen|teda,#exposedupperportionusingasteelchiselasaresultthetopisfragmented,#exposeduppporionsinasteleichiseasaesulthtopsfrgmeted,0.21875,0.0,11,#exp|o|sed|upp|por|ion|sin|ast|ele|ich|ise|asa|esu|lth|top|sfr|gme|ted
+Cellular_Bounds,4,64,2,omma|nder|corb|ulor|espo|nded|andr|epel|ledm|osto|fthe|part|hian|army|that|same,#ommandercorbulorespondedandrepelledmostoftheparthianarmythatsam,#ommandecororbuloespondandreplelledmosofttheparhiaarmthasam,0.234375,0.0,8,#omma|nde|cor|orb|ulo|esp|ond|and|rep|lel|led|mos|oft|the|par|hia|arm|tha|sam
+Cellular_Bounds,4,64,3,lled|andw|ound|eddu|ring|thea|ttac|kshe|slow|lyfo|unde|redo|vert|hene|xttw|oday,#lledandwoundedduringtheattacksheslowlyfounderedoverthenexttwoda,#ledlnaouneddrinthettakshslolyfundredovethexttoda,0.0625,0.0,2,#led|lna|oun|edd|rin|the|tta|ksh|slo|lyf|und|red|ove|the|xtt|oda
+Cellular_Bounds,4,64,4,xolt|otal|synt|hesi|sand|thew|ende|rtax|olto|tals|ynth|esis|addi|tion|ally|fors,#xoltotalsynthesisandthewendertaxoltotalsynthesisadditionallyfor,#xoltotasynhessantheendrtaoltotayntesiaddtionalfor,0.171875,0.0,8,#xol|tota|syn|hes|san|the|end|rta|olt|ota|ynt|esi|add|tio|nal|for
+Cellular_Bounds,4,64,5,alpa|nicg|azan|scol|umnr|etai|nedi|tsco|hesi|onan|dres|pond|edwe|llto|vari|ousd,#alpanicgazanscolumnretaineditscohesionandrespondedwelltovarious,#alpalniazanascolumnretaineditscohesionandrespondedwelltovarious,0.875,0.0,5,"#alp|alni|azana|scol|umnr|etai|nedi|tsco|hesi|onan|dres|pond|edwe|llto|vari|ousd
+Wait, let me re-calculate carefully.
+
+Input: `alpa|nicg|azan|scol|umnr|etai|nedi|tsco|hesi|onan|dres|pond|edwe|llto|vari|ousd`
+
+1. `alpa` -> `#alp`
+2. `|"
+Cellular_Bounds,4,64,6,obeg|anta|king|onam|orea|ctiv|erol|easa|nadm|inis|trat|orhe|wasc|onsu|lfou|rtim,#obegantakingonamoreactiveroleasanadministratorhewasconsulfourti,#obegantakinonamoreactiveroleasanadministratorhewasconsulfourtim,0.1875,0.0,12,"#obe|gant|akin|onam|orea|ctiv|erol|easa|nadm|inis|trat|orhe|wasc|onsu|lfou|rtim
+Wait, let me re-calculate carefully.
+
+Input: `obeg|anta|king|onam|orea|ctiv|erol|easa|nadm|inis|trat|orhe|wasc|onsu|lfou|rtim`
+
+1. `obeg` -> `#obe`
+2. `|` ->"
+Cellular_Bounds,4,64,7,dmuc|hoft|hepu|sanp|erim|eter|duri|ngth|enig|htan|dthe|unun|itsb|egan|adva|ncin,#dmuchofthepusanperimeterduringthenightandtheununitsbeganadvanci,#dmu#hof#hep#san#eri#ete#dur#ngt#eni#hta#dth#unu#its#ega#dva#nci,0.71875,0.0,4,#dm u|#hof|#hep|#san|#eri|#ete|#dur|#ngt|#eni|#hta|#dth|#unu|#its|#ega|#dva|#nci
+Cellular_Bounds,4,64,8,orsp|rogr|aman|dthe|depa|uwco|mmun|itys|ervi|cess|port|snig|htex|ecut|iveb|oard,#orsprogramandthedepauwcommunityservicessportsnightexecutiveboar,#ors#pro#ama#dth#dep#uwc#omm#ity#erv#ces#por#sni#hte#exe#ive#oar,0.65625,0.0,4,#ors|#pro|#ama|#dth|#dep|#uwc|#omm|#ity|#erv|#ces|#por|#sni|#hte|#exe|#ive|#oar
+Cellular_Bounds,4,64,9,fdik|eton|essu|bsti|tuti|onof|ahyd|roxy|lfor|alea|ving|grou|pand|dire|ctox|idat,#fdiketonessubstitutionofahydroxylforaleavinggroupanddirectoxida,#fdiketonessbsuttutionofahydroxylforaleavinggroupanddirectoxidat,0.234375,0.0,12,#fdi|keto|ness|bsut|tuti|onof|ahyd|roxy|lfor|alea|ving|grou|pand|dire|ctox|idat
+Cellular_Bounds,4,64,10,ense|rife|nbur|ghel|dthe|univ|ersi|tyof|mich|igan|ssin|gles|easo|nand|care|erre,#enserifenburgheldtheuniversityofmichiganssingleseasonandcareerr,#enserifnbughedthuniversityofmichiganssingleeasonandacarerr,0.15625,0.0,8,#ens|e|rif|nbu|ghe|dth|uni|ver|sit|yof|mic|hig|ans|sin|gle|eas|ona|nda|car|err
+Cellular_Bounds,4,64,11,seco|ndda|yoft|hefi|ghti|ngat|thep|asst|here|lief|forc|ebro|keth|roug|hthe|road,#seconddayofthefightingatthepassthereliefforcebrokethroughtheroa,#econddyofhefghtngatheassherlieforebrketroughtroa,0.078125,0.0,1,#eco|ndd|yof|hef|ght|nga|the|ass|her|lie|for|ebr|ket|rou|ght|roa
+Cellular_Bounds,4,64,12,seda|tthe|coll|eget|here|plic|awas|agif|tbyt|hego|vern|ment|ofve|razr|uzst|atec,#sedatthecollegethereplicawasagiftbythegovernmentofverazruzstate,#sedatthecolegeherpliawaagitbyhegovernmentofvrazruzustate,0.203125,0.0,12,#sed|a|tthe|col|ege|her|pli|awa|agi|tby|heg|ove|rnm|ent|ofv|raz|ruz|ust|ate
+Cellular_Bounds,4,64,13,iaca|nada|denm|arkf|ranc|enew|zeal|anda|ndth|enet|herl|ands|thes|ingl|epea|keda,#iacanadadenmarkfrancenewzealandandthenetherlandsthesinglepeaked,#iacanadenarkranenezeaandndteneherandtheingepaked,0.15625,0.0,8,#iac|ana|den|ark|ran|ene|zea|and|ndt|ene|her|and|the|ing|epa|ked
+Cellular_Bounds,4,64,14,nvas|iono|ffre|nchn|orth|afri|cain|nove|mber|wasc|oord|inat|edfr|omth|eroc|kgen,#nvasionoffrenchnorthafricainnovemberwascoordinatedfromtherockge,#nvasiononffrenchnorthafricainnovemberwascoordinatedfromtherockg,0.1875,0.0,9,"#nva|sio|non|ffre|nchn|orth|afri|cain|nove|mber|wasc|oord|inat|edfr|omth|eroc|kgen
+Wait, let me re-calculate carefully.
+
+Input: nvas|iono|ffre|nchn|orth|afri|cain|nove|mber|wasc|oord|inat|edfr|omth|eroc|kgen
+
+1. nvas -> #nva
+2. iono ->"
+Cellular_Bounds,4,64,15,hewo|rkof|then|avyt|hebr|iefs|ucce|ssof|thef|loat|ingi|ronc|ladb|atte|ries|conv,#heworkofthenavythebriefsuccessofthefloatingironcladbatteriescon,#eworkofthenavythebriefsuccessofthefloatingironcladbatteriesconv,0.0625,0.0,1,"#ewo|rkof|then|avyt|hebr|iefs|ucce|ssof|thef|loat|ingi|ronc|ladb|atte|ries|conv
+Wait, let me re-calculate carefully.
+
+Input: `hewo|rkof|then|avyt|hebr|iefs|ucce|ssof|thef|loat|ingi|ronc|ladb|atte|ries|conv`
+
+1. `hewo` -> `#hew`
+2. `|` -> `"
+Cellular_Bounds,4,64,16,send|apar|tydi|rect|lyfr|omgi|bral|tart|othe|isla|ndan|deva|cuee|slef|tfor|jama,#sendapartydirectlyfromgibraltartotheislandandevacueesleftforjam,#sendaptydreclyfomgibrtarothislndadevcuesletfojam,0.109375,0.0,7,#sen|dap|tyd|rec|lyf|omg|ibr|tar|oth|isl|nda|dev|cue|sle|tfo|jam
+Cellular_Bounds,4,64,17,ials|port|scom|plex|ands|anan|dres|gymt|heho|meof|then|owde|func|tman|ilam|etro,#ialsportscomplexandsanandresgymthehomeofthenowdefunctmanilametr,#ialsponscompleandanadregymthehomthenowfuntmailamet,0.109375,0.0,7,#ial|spon|scom|ple|and|ana|dre|gym|the|hom|the|now|fun|tma|ila|met
+Cellular_Bounds,4,64,18,nrep|rise|dhis|role|asfa|sted|dief|elso|nint|hefi|lmth|ecol|orof|mone|yfor|whic,#nreprisedhisroleasfasteddiefelsoninthefilmthecolorofmoneyforwhi,#nrepripdhirolasfstedieelsninthelmtecooromonyfowhi,0.125,0.0,7,#nre|prip|dhi|rol|asf|ste|die|els|nin|the|lmt|eco|oro|mon|yfo|whi
+Cellular_Bounds,4,64,19,atio|nsth|roug|hout|theu|ssho|wedh|ighs|uppo|rtfo|rthe|song|amus|icvi|deof|orth,#ationsthroughouttheusshowedhighsupportforthesongamusicvideofort,#tionstroughoouttheushowedhighsupportforthesongamuicvdeoort,0.03125,0.0,1,#tio|nst|rou|gho|out|the|ush|owe|dhig|hsu|ppo|rtf|ort|hes|ong|amu|icv|deo|ort
+Cellular_Bounds,8,64,0,nchofthe|departme|ntofeduc|ationref|erstothe|citysthr|eetierpu|bliceduc,#nchofthedepartmentofeducationreferstothecitysthreetierpublicedu,#nchofthendepartmntofeducationreferstothcitysthreetierpubliceduc,0.515625,0.0,9,#nchofthe|ndepartm|ntofeduc|ationre|ferstoth|citysthr|eetierpu|bliceduc
+Cellular_Bounds,8,64,1,hdarkaci|dwitamer|icanbeau|tyisasma|rtprovoc|ativehig|hpointof|latesmai,#hdarkacidwitamericanbeautyisasmartprovocativehighpointoflatesma,#hdarkac#dwitame#icanbea#tyisasm#rtprovoc#ativehi#hpointo#latesm,0.578125,0.0,8,#hdarkac|#dwitame|#icanbea|#tyisasm|#rtprovoc|#ativehi|#hpointo|#latesma
+Cellular_Bounds,8,64,2,hechildr|eninneed|telethon|onnovemb|ertitled|thegreat|detectiv|ethesilu,#hechildreninneedtelethononnovembertitledthegreatdetectivethesil,#hechildreninneelethononnovemertitlethegreadetectiethesil,0.359375,0.0,16,#hechild|reninne|elethon|onnovem|ertitle|thegrea|detecti|ethesil
+Cellular_Bounds,8,64,3,ringthed|ungeonso|utsideof|aspecifi|corderin|addition|tothisso|melevels,#ringthedungeonsoutsideofaspecificorderinadditiontothissomelevel,#ringthedungeonsooutsideofaspecificorderinadditiontothissomeleve,0.296875,0.0,17,#ringthe|dungeons|ooutside|ofaspecif|icorderi|nadditio|ntothiss|omelevel
+Cellular_Bounds,8,64,4,nofhisbi|rthplace|wasrecov|eredbygo|vernment|forcesin|thewinte|rofandin,#nofhisbirthplacewasrecoveredbygovernmentforcesinthewinterofandi,#nofhisb#rthplace#wasrecov#eredbygo#vernment#forcesin#thewinte#r,0.296875,0.0,8,#nofhisb|#rthplace|#wasrecov|#eredbygo|#vernment|#forcesin|#thewinte|#rofandin
+Cellular_Bounds,8,64,5,eimporta|nceofbei|ngprepar|edtodeal|withemer|genciesa|ndspentt|heaftern,#eimportanceofbeingpreparedtodealwithemergenciesandspenttheafter,#importnceofbengprepaedtodeawithemegenciesndspentheafter,0.0625,0.0,1,#import|nceofbe|ngprepa|edtodea|witheme|gencies|ndspent|heafter
+Cellular_Bounds,8,64,6,sthreene|phewshue|ydeweyan|dlouieas|treasure|huntersa|ndispart|ofaserie,#sthreenephewshueydeweyandlouieastreasurehuntersandispartofaseri,#sthreen#phewshue#ydeweya#dlouiea#treasur#hunters#ndispar#ofaser,0.25,0.0,8,#sthreen|#phewshue|#ydeweya|#dlouiea|#treasur|#hunter s|#ndispar|#ofaseri
+Cellular_Bounds,8,64,7,efieldph|otosther|ewasanim|mediatep|ublicout|cryfollo|wingthep|ublicati,#efieldphotostherewasanimmediatepublicoutcryfollowingthepublicat,#efieldp#otosthe#ewasani#mediate#ublicou#cryfollo#wingthe#ublica,0.6875,0.0,8,#efieldp|#otosthe|#ewasani|#mediate|#ublicou|#cryfollo|#wingthe|#ublicat
+Cellular_Bounds,8,64,8,tracttob|ecomethe|headcoac|hofthebo|stoncelt|icsinthe|nbainapr|ilsteven,#tracttobecometheheadcoachofthebostoncelticsinthenbainaprilsteve,#racttobcometheheadcoachofthebostoncelticsinthenbainaprilsteven,0.078125,0.0,1,#ractto|bcomethe|headcoac|hofthebo|stoncelt|icsinthe|nbainapr|ilsteven
+Cellular_Bounds,8,64,9,ripostes|areconsi|deredtob|efirstap|pearance|softhewo|rdimagis|telatera,#ripostesareconsideredtobefirstappearancesofthewordimagistelater,#ripostesareconsideredtoefirstappearancesofthewrdimagistelater,0.390625,0.0,24,#riposte|sarecons|ideredto|efirsta|ppearanc|esofthew|rdimagis|telater
+Cellular_Bounds,8,64,10,ndonedby|jackdenb|eighlate|rbearing|hischild|onceezra|becomesb|rokehefi,#ndonedbyjackdenbeighlaterbearinghischildonceezrabecomesbrokehef,#ndonedbyjackdenbighlaterbearinghischildonceezrabecomesbrokehef,0.28125,0.0,17,#ndonedb|yjackden|bighlat|erbearin|ghischil|donceezr|abecomes|brokehef
+Cellular_Bounds,8,64,11,esthesea|ttackswo|uldoverw|helmtheu|ndefende|rsandall|owthenor|thkorean,#estheseattackswouldoverwhelmtheundefendersandallowthenorthkorea,#esthesettackswuldoverhelmthendefendrsandallowthenorthkore,0.1875,0.0,8,#esthese|ttacksw|uldover|helmthe|ndefend|rsandal|lowthen|orthkore
+Cellular_Bounds,8,64,12,siannove|lwarandp|eaceleot|olstoyde|votedsev|eralpage|stotheba|ttleitsp,#siannovelwarandpeaceleotolstoydevotedseveralpagestothebattleits,#siannovlwarandpeaceleotolstoydevotedseveralpagestothebattleitsp,0.140625,0.0,8,"#siannov|lwarandp|eaceleot|olstoyde|votedsev|eralpage|stotheba|ttleitsp
+#siannov|lwarandp|eaceleot|olstoyde|votedsev|eralpage|stotheba|ttleitsp
+
+Wait, let me re-calculate carefully:
+Input: s i a n n o v e | l w a r a n d p | e a c e l e o t | o l s t o y d"
+Cellular_Bounds,8,64,13,phisthst|rikeouto|fjoining|halloffa|merssand|ykoufaxa|nddondry|sdaleast,#phisthstrikeoutofjoininghalloffamerssandykoufaxanddondrysdaleas,#phisthstikeoutfjoininhalloffmerssanykoufaxnddondrsdaleas,0.1875,0.0,9,#phisths|tikeout|fjoinin|halloff|merssan|ykoufax|nddondr|sdaleas
+Cellular_Bounds,8,64,14,genandni|trogentr|ansferre|actionsi|ncluding|butnotli|mitedtoh|ydroxyla,#genandnitrogentransferreactionsincludingbutnotlimitedtohydroxyl,#genandn#trogent#ansferre#actions#ncluding#butnotl#mitedto#ydrox,0.359375,0.0,8,#genandn|#trogent|#ansferre|#actions|#ncluding|#butnotl|#mitedto|#ydroxyl
+Cellular_Bounds,8,64,15,ongbuthe|wascaptu|redbythe|rebelsan|dtakento|changani|ntheautu|mnhisyou,#ongbuthewascapturedbytherebelsandtakentochanganintheautumnhisyo,#ongbuthe#wascaptu#redbythe#rebelsan#dtakento#changani#ntheautu#,0.171875,0.0,9,#ongbuthe|#wascaptu|#redbythe|#rebelsan|#dtakento|#changani|#ntheautu|#mnhisyo
+Cellular_Bounds,8,64,16,cleophil|esduetot|heirhigh|electron|egativit|yoxaziri|dinesall|owforele,#cleophilesduetotheirhighelectronegativityoxaziridinesallowforel,#cleophillesduetottheirhighhelectronnegativittyoxaziriidinesalll,0.171875,0.0,9,#cleophil|l esduetot|t heirhigh|h electron|n egativit|t yoxaziri|i dinesall|l owforele
+Cellular_Bounds,8,64,17,atedtheu|ndertake|rtoendhi|sundefea|tedstrea|katthepr|emierann|ualevent,#atedtheundertakertoendhisundefeatedstreakatthepremierannualeven,#tedtheundertakertoendhisundefeatedstreakatthepremierannualevent,0.046875,0.0,1,#tedtheu|ndertake|rtoendhi|sundefea|tedstrea|katthepr|emierann|ualevent
+Cellular_Bounds,8,64,18,pricwill|iamfitzh|erbertan|dworkedt|osecuref|itzherbe|rtsdepos|itionand,#pricwilliamfitzherbertandworkedtosecurefitzherbertsdepositionan,#pricwilliamfitzherbertandworkedtosecurefitzherbertsdepositionan,1.0,1.0,64,#pricwill|iamfitzh|erbertan|dworkedt|osecuref|itzherbe|rtsdepos|itionan
+Cellular_Bounds,8,64,19,aseasone|pisodeof|newgirlw|hichorig|inallyai|redfollo|wingfoxs|telecast,#aseasonepisodeofnewgirlwhichoriginallyairedfollowingfoxstelecas,#aseason#pisodeo#newgirl#hichori#inallya#redfollo#wingfox#teleca,0.6875,0.0,8,#aseason|#pisodeo|#newgirl|#hichori|#inallya|#redfollo|#wingfox|#telecas
+Cellular_Bounds,16,64,0,resultofhislustf|orangelaandthest|ateofhisrelation|shipwithcarolyni,#resultofhislustforangelaandthestateofhisrelationshipwithcarolyn,#esultofhislustf#orangelaandthest#ateofhisrelation#shipwithcarol,0.265625,0.0,1,#esultofhislustf|#orangelaandthest|#ateofhisrelation|#shipwithcarolyni
+Cellular_Bounds,16,64,1,sportsarealsohel|dwiththeuniversi|tyathleticassoci|ationofthephilip,#sportsarealsoheldwiththeuniversityathleticassociationofthephili,#sportsaresoheldwiththeuniverstyathleticassociationofthephili,0.234375,0.0,10,#sportsaresohel|dwiththeunivers|tyathleticassoci|ationofthephili
+Cellular_Bounds,16,64,2,athewouldbringth|eunpreparedingre|dientsforgrilled|cheesesandwiches,#athewouldbringtheunpreparedingredientsforgrilledcheesesandwiche,#athewouldbringtheunpreparedingredientsforgrilledcheesesandwiche,1.0,1.0,64,#athewouldbringt|heunpreparedingr|edientsforgrille|dcheesesandwiche
+Cellular_Bounds,16,64,3,griverlinethediv|isionwhichwasunt|riedincombatwass|truckwithastrong,#griverlinethedivisionwhichwasuntriedincombatwasstruckwithastron,#griverlinethedivisonwhichwasuntriedincombatwastruckwithastrong,0.296875,0.0,19,#griverlinethedi|visonwhichwasunt|riedincombatwas|truckwithastrong
+Cellular_Bounds,16,64,4,longjunctionroad|thelowermountain|roadportionofnys|formerroutingisn,#longjunctionroadthelowermountainroadportionofnysformerroutingis,#longjunctionroa#thelowermountai#roadportionofny#formerroutingis,0.953125,0.0,16,#longjunctionroa|#thelowermountai|#roadportionofny|#formerroutingis
+Cellular_Bounds,16,64,5,camethesecondyou|ngestheadcoachto|coachinthencaana|tionalchampionsh,#camethesecondyoungestheadcoachtocoachinthencaanationalchampions,#camethesecondyoungestheadcoachtcoachinthencaanationalchampions,0.515625,0.0,32,#camethesecondyou|ngestheadcoacht|coachinthencaan|ationalchampion s
+Cellular_Bounds,16,64,6,cyclonesarenotin|cludedpagasaname|sforstormsarepro|videdinparenthes,#cyclonesarenotincludedpagasanamesforstormsareprovidedinparenthe,#yclonesarenotiludedpagasanamsforstormsarepvidedinparenthe,0.078125,0.0,1,#yclonesarenoti|ludedpagasanam|sforstormsarep|videdinparenthe
+Cellular_Bounds,16,64,7,weretoldtherewou|ldbenowayoutanda|nyonewhodiedwith|inthechamberwoul,#weretoldtherewouldbenowayoutandanyonewhodiedwithinthechamberwou,#weretoldtherewouldbenowayoutandanyonewhodiedwithinthechamberwou,1.0,1.0,64,#weretoldtherewou|ldbenowayoutanda|nyonewhodiedwith|inthechamberwoul
+Cellular_Bounds,16,64,8,tinginmaytodiscu|sshispassionforh|untingandhisrole|asaspokesmanforf,#tinginmaytodiscusshispassionforhuntingandhisroleasaspokesmanfor,#tinginmaytodiscusshispassionforhuntingandhisroleasaspokesmanfor,1.0,1.0,64,#tinginmaytodiscu|sshispassionforh|untingandhisrole|asaspokesmanfor
+Cellular_Bounds,16,64,9,hestandardeducat|ionofafuturecivi|lservantstudyand|memorisationofth,#hestandardeducationofafuturecivilservantstudyandmemorisationoft,#hestandardeducationofafuturecivilservantstudyandmemorisationoft,1.0,1.0,64,"#hestandardeducat|ionofafuturecivi|lservantstudyand|memorisationofth
+#hestandardeducat|ionofafuturecivi|lservantstudyand|memorisationofth
+
+Wait, let me re-calculate carefully:
+Input: h e s t a n d a r d e d u c a t | i o n o f a f u t u r e c i v i | l s e r v a n t s t u d y a n d | m e m"
+Cellular_Bounds,16,64,10,eweekonedirectio|nheldatnumbertwo|onthebillboardss|ocialchartarisei,#eweekonedirectionheldatnumbertwoonthebillboardssocialchartarise,#eweekonedirectinheldatnumbertoonthebillboardsocialchartaris,0.28125,0.0,16,#eweekonedirecti|nheldatnumberto|onthebillboards|ocialchartaris
+Cellular_Bounds,16,64,11,litzafterausterl|itzaustriawithdr|ewfromthewarthef|renchdemandedahi,#litzafterausterlitzaustriawithdrewfromthewarthefrenchdemandedah,#litzafterauste#itzaustriawithdrewfromthewarthefrenchendeman,0.234375,0.0,15,#litzafterauste|#itzaustriawith|drewfromthewart|hefrenchendeman
+Cellular_Bounds,16,64,12,oordinatinggroup|salphatotheoxazi|ridineringasoxaz|iridinesbandcint,#oordinatinggroupsalphatotheoxaziridineringasoxaziridinesbandcin,#oordinatinggroupsalphatotheoxaziridineringasoxaziridinesbandcin,1.0,1.0,64,#oordinatinggro u|p salphatotheoxaz|i ridineringasoxaz|i ridinesbandcin
+Cellular_Bounds,16,64,13,cladcssjacksonca|nbeseeninthenati|onalcivilwarnava|lmuseumatportcol,#cladcssjacksoncanbeseeninthenationalcivilwarnavalmuseumatportco,#cladcssjacksonbeeseeninthenationalcivilwarnavlmuseumatportco,0.296875,0.0,15,#cladcssjackso|nbeeseeninthenat|ionalcivilwarnav|lmuseumatportco
+Cellular_Bounds,16,64,14,demanilainitsnam|einotherprominen|teducationalinst|itutionsincludet,#demanilainitsnameinotherprominenteducationalinstitutionsinclude,#demanilainitsnameinotherprominenteducationalinstitutionsinclude,1.0,1.0,64,#demanilainitsna|m einotherpromine|n teducationalins|t itutionsinclude
+Cellular_Bounds,16,64,15,mstheinterestinj|apaneseverseform|scanbeplacedinac|ontextofthelatev,#mstheinterestinjapaneseverseformscanbeplacedinacontextofthelate,#mstheinterestinapaneseverseforscanbeplacedinontextofthelate,0.28125,0.0,16,#mstheinterestin|apaneseversefor|scanbeplacedin|ontextofthelate
+Cellular_Bounds,16,64,16,lassicperiodscol|ossalheadwearsac|omplexheaddresst|hatsportsahorizo,#lassicperiodscolossalheadwearsacomplexheaddressthatsportsahoriz,#lassicperiodscolossalheadwearsomplexheaddreshatsportsahoriz,0.484375,0.0,31,#lassicperiodsco|lossalheadwears|omplexheaddres|hatsportsahoriz
+Cellular_Bounds,16,64,17,riedoutbythewarg|ravesphotographi|cprojectinconjun|ctionwiththecwgc,#riedoutbythewargravesphotographicprojectinconjunctionwiththecwg,#riedoutbythewargrravesphotographicprojectinconjunctionwiththecw,0.28125,0.0,18,#riedoutbythewarg|rravesphotograph|icprojectinconju|nctionwiththecwg
+Cellular_Bounds,16,64,18,ickandthegirlsip|laywithareawesom|eifihavechosebet|weenmytwosportsf,#ickandthegirlsiplaywithareawesomeifihavechosebetweenmytwosports,#ickandthegirlsiplaywithareawesomeifihavechosebeweenmytwosports,0.765625,0.0,48,#ickandthegirlsi|playwithareawesom|eifihavechosebe|weenmytwosports
+Cellular_Bounds,16,64,19,eredwiththetetra|rchcoolingsystem|precludedthemfro|mbeingintegrated,#eredwiththetetrarchcoolingsystemprecludedthemfrombeingintegrate,#eredwiththetetrrchcoolingsystemprecludedthemfrombeingintegrated,0.265625,0.0,16,#eredwiththetetr|rchcoolingsystem|precludedthemfro|mbeingintegrated
