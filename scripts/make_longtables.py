@@ -27,6 +27,15 @@ def convert(name, label, caption):
     print(f"wrote tables/{name}_lt.tex ({len(body)} body lines)")
 
 
+def dependency_block():
+    """The dependency-task block of perpos_tasks.tex on its own, as an ordinary tabular (one page)."""
+    lines = (TABLES / "perpos_tasks.tex").read_text().strip().split("\n")
+    mid = next(i for i, l in enumerate(lines) if l.strip() == "\\midrule")
+    start = next(i for i, l in enumerate(lines) if "Dependency tasks" in l)
+    body = [l for l in lines[start + 1:] if l.strip() not in ("\\bottomrule", "\\end{tabular}")]
+    (TABLES / "perpos_tasks_dep.tex").write_text("\n".join(lines[:mid + 1] + body + ["\\bottomrule", "\\end{tabular}"]) + "\n")
+    print(f"wrote tables/perpos_tasks_dep.tex ({len(body)} rows)")
+
+
 if __name__ == "__main__":
-    for n, (lab, cap) in LONG.items():
-        convert(n, lab, cap)
+    dependency_block()

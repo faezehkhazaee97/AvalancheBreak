@@ -19,24 +19,15 @@ Output:            (expected: CBCA|CBBC)
 \end{verbatim}
 \end{small}
 
-\par\medskip\noindent\textbf{\task{conditional\_shift}, digits ($N = 8$, $k = 4$, $A = 4$).}\par
+\par\medskip\noindent\textbf{\task{conditional\_shift}, digits: lines that differ from the letter prompt ($N = 8$, $k = 4$, $A = 4$).}\par
 \begin{small}
 \begin{verbatim}
-You are a deterministic sequence transformer.
-Task: Branching character shift.
 Alphabet: 0, 1, 2, 3 (positions numbered 0, 1, 2, ... in this order)
-Rule: For each character, look at its position number in the alphabet.
 - If the position is EVEN, replace the character with the NEXT character in the alphabet
 (e.g. 0 -> 1).
 - If the position is ODD, replace the character with the PREVIOUS character in the alphabet
 (e.g. 1 -> 0).
-Wrap around the alphabet if needed.
-Constraint: The input contains vertical bars (|). These are structural boundaries. DO NOT
-shift them. Copy them exactly to the output.
-No spaces, no explanations.
-
 Input: 3031|3003
-Output:            (expected: 2120|2112)
 \end{verbatim}
 \end{small}
 
@@ -78,59 +69,27 @@ Output:            (expected: 1101|0000)
 \end{verbatim}
 \end{small}
 
-\par\medskip\noindent\textbf{\task{running\_xor}, neutral wording ($N = 8$, $k = 4$).}\par
+\par\medskip\noindent\textbf{\task{running\_xor}, neutral wording: lines that differ ($N = 8$, $k = 4$).}\par
 \begin{small}
 \begin{verbatim}
-You are a deterministic sequence transformer.
-Task: Running XOR with previous input.
-Alphabet: 0, 1 (binary digits)
-Rule: At each position, output the XOR of the current input digit with the previous input
-digit.
-The first digit is copied as-is (no previous input to XOR with).
-Each subsequent digit: output[i] = input[i] XOR input[i-1]
-Example: Input 1011 -> Output 1110 (calculation: 1, 0^1=1, 1^0=1, 1^1=0)
 Constraint: The input contains vertical bars (|). Copy each bar to the output at the same
 position.
-No spaces, no explanations.
-
-Input: 1001|1111
-Output:            (expected: 1101|0000)
 \end{verbatim}
 \end{small}
 
-\par\medskip\noindent\textbf{\task{running\_xor}, across wording ($N = 8$, $k = 4$).}\par
+\par\medskip\noindent\textbf{\task{running\_xor}, across wording: lines that differ ($N = 8$, $k = 4$).}\par
 \begin{small}
 \begin{verbatim}
-You are a deterministic sequence transformer.
-Task: Running XOR with previous input.
-Alphabet: 0, 1 (binary digits)
-Rule: At each position, output the XOR of the current input digit with the previous input
-digit.
-The first digit is copied as-is (no previous input to XOR with).
-Each subsequent digit: output[i] = input[i] XOR input[i-1]
-Example: Input 1011 -> Output 1110 (calculation: 1, 0^1=1, 1^0=1, 1^1=0)
 Constraint: The input contains vertical bars (|). They are only visual separators: apply the
 rule to the digits as if the bars were not there (the digit right after a bar uses the digit
 right before the bar as its previous input), and copy each bar to the output at the same
 position.
-No spaces, no explanations.
-
-Input: 1001|1111
-Output:            (expected: 1101|0000)
 \end{verbatim}
 \end{small}
 
-\par\medskip\noindent\textbf{\task{running\_xor}, across wording with worked examples ($N = 8$, $k = 4$).}\par
+\par\medskip\noindent\textbf{\task{running\_xor}, across wording with worked examples: lines that differ ($N = 8$, $k = 4$).}\par
 \begin{small}
 \begin{verbatim}
-You are a deterministic sequence transformer.
-Task: Running XOR with previous input.
-Alphabet: 0, 1 (binary digits)
-Rule: At each position, output the XOR of the current input digit with the previous input
-digit.
-The first digit is copied as-is (no previous input to XOR with).
-Each subsequent digit: output[i] = input[i] XOR input[i-1]
-Example: Input 1011 -> Output 1110 (calculation: 1, 0^1=1, 1^0=1, 1^1=0)
 Constraint: The input contains vertical bars (|). They are only visual separators: apply the
 rule to the digits as if the bars were not there, and copy each bar to the output at the
 same position. The digit right after a bar still depends on the input digit(s) right before
@@ -139,9 +98,5 @@ Worked examples with bars:
 Input 01|01|00|11 -> Output 01|11|10|10 (the output digit right after the first bar is 1: it
 uses the input digit just before the bar (1) together with the digit right after it (0))
 Input 0101|1000 -> Output 0111|0100
-No spaces, no explanations.
-
-Input: 1001|1111
-Output:            (expected: 1101|0000)
 \end{verbatim}
 \end{small}
