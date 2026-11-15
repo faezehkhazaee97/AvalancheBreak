@@ -37,8 +37,8 @@ from analyze_per_position import load  # noqa: E402
 from analyze_aligned_scoring import summarize, index_vector  # noqa: E402
 
 MODELS = [("Qwen2.5 32B", "Qwen2.5-32B-Instruct"), ("Qwen3.8 27B", "Qwen3.8-27B"), ("Gemma 4 31B", "gemma-4-31B-it")]
-TASKS = ["running_xor", "running_sum_local"]
-VARIANTS = [("original", ""), ("neutral", "_neutral"), ("across", "_across")]
+TASKS = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]
+VARIANTS = [("original", ""), ("neutral", "_neutral"), ("across", "_across"), ("worked", "_worked")]
 
 
 def wording():
@@ -160,16 +160,23 @@ def fmt(x):
 def write_tables(w, d):
     tdir = REPO / "paper_tmlr" / "tables"
     tdir.mkdir(parents=True, exist_ok=True)
-    lines = ["\\begin{tabular}{ll ccc ccc}", "\\toprule",
-             "& & \\multicolumn{3}{c}{Post-marker} & \\multicolumn{3}{c}{Within-segment} \\\\",
-             "\\cmidrule(lr){3-5}\\cmidrule(lr){6-8}",
-             "Task & Model & Original & Neutral & Across & Original & Neutral & Across \\\\", "\\midrule"]
+    lines = ["\\begin{tabular}{ll cccc cccc}", "\\toprule",
+             "& & \\multicolumn{4}{c}{Post-marker} & \\multicolumn{4}{c}{Within-segment} \\\\",
+             "\\cmidrule(lr){3-6}\\cmidrule(lr){7-10}",
+             "Task & Model & Orig. & Neutral & Across & + worked & Orig. & Neutral & Across & + worked \\\\", "\\midrule"]
     for task in TASKS:
+        first = True
         for label, _ in MODELS:
             x = w[(w.task == task) & (w.model == label)].set_index("wording")
-            cells = [fmt(x.loc[v, "post_gain"]) for v, _ in VARIANTS] + [fmt(x.loc[v, "within_gain"]) for v, _ in VARIANTS]
-            lines.append(f"\\task{{{task.replace('_', chr(92) + '_')}}} & {label} & " + " & ".join(cells) + " \\\\")
-    lines += ["\\bottomrule", "\\end{tabular}"]
+            if x.empty:
+                continue
+            g = lambda v, c: fmt(x.loc[v, c]) if v in x.index else "--"
+            cells = [g(v, "post_gain") for v, _ in VARIANTS] + [g(v, "within_gain") for v, _ in VARIANTS]
+            name = "\\task{" + task.replace("_", chr(92) + "_") + "}" if first else ""
+            lines.append(f"{name} & {label} & " + " & ".join(cells) + " \\\\")
+            first = False
+        lines.append("\\addlinespace")
+    lines[-1:] = ["\\bottomrule", "\\end{tabular}"]
     (tdir / "wording.tex").write_text("\n".join(lines) + "\n")
     lines = ["\\begin{tabular}{ll ccc}", "\\toprule",
              "Format & Heads blocked & Top $n$ & Random $n$ & Sham \\\\", "\\midrule"]

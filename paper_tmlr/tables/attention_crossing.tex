@@ -5,9 +5,31 @@ Model & Task & Run, positions & Input $j-1$ & Input $j$ & Marker & Peak layer fo
 Qwen2.5 32B & Running XOR & clean, post-marker indices & 0.44 & 0.63 & -- & 41 \\
  &  & marked, post-marker & 0.17 & 0.67 & 0.59 & 40 \\
  &  & marked, within-segment & 0.43 & 0.81 & 0.00 & 41 \\
+ &  & input markers only, post-marker & 0.40 & 0.34 & 0.45 & 41 \\
 \addlinespace
  & Running sum (mod 4) & clean, post-marker indices & 0.46 & 0.68 & -- & 41 \\
  &  & marked, post-marker & 0.14 & 0.98 & 0.56 & 40 \\
  &  & marked, within-segment & 0.48 & 1.01 & 0.00 & 41 \\
+ &  & input markers only, post-marker & 0.37 & 0.35 & 0.45 & 41 \\
+\addlinespace
+Gemma 4 31B & Running XOR & clean, post-marker indices & 0.47 & 0.59 & -- & 35 \\
+ &  & marked, post-marker & 0.13 & 0.39 & 0.52 & 32 \\
+ &  & marked, within-segment & 0.37 & 0.83 & 0.00 & 29 \\
+ &  & input markers only, post-marker & 0.33 & 0.26 & 0.48 & 35 \\
+\addlinespace
+ & Running sum (mod 4) & clean, post-marker indices & 0.57 & 0.78 & -- & 41 \\
+ &  & marked, post-marker & 0.08 & 0.74 & 0.53 & 32 \\
+ &  & marked, within-segment & 0.44 & 0.97 & 0.00 & 29 \\
+ &  & input markers only, post-marker & 0.30 & 0.22 & 0.52 & 41 \\
+\addlinespace
+Qwen3.8 27B & Running XOR & clean, post-marker indices & 0.49 & 0.67 & -- & 10 \\
+ &  & marked, post-marker & 0.11 & 0.38 & 0.43 & 8 \\
+ &  & marked, within-segment & 0.41 & 0.93 & 0.00 & 10 \\
+ &  & input markers only, post-marker & 0.42 & 0.19 & 0.40 & 10 \\
+\addlinespace
+ & Running sum (mod 4) & clean, post-marker indices & 0.51 & 0.67 & -- & 10 \\
+ &  & marked, post-marker & 0.09 & 0.85 & 0.41 & 8 \\
+ &  & marked, within-segment & 0.56 & 1.10 & 0.00 & 10 \\
+ &  & input markers only, post-marker & 0.40 & 0.34 & 0.41 & 10 \\
 \bottomrule
 \end{tabular}

@@ -21,7 +21,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: E402
 
-MODELS = [("Qwen2.5 32B", "Qwen2.5-32B-Instruct"), ("Gemma 4 31B", "gemma-4-31B-it")]
+MODELS = [("Qwen2.5 32B", "Qwen2.5-32B-Instruct"), ("Gemma 4 31B", "gemma-4-31B-it"), ("Qwen3.8 27B", "Qwen3.8-27B")]
 TASKN = {"running_xor": "Running XOR", "running_sum_local": "Running sum (mod 4)"}
 COLS = ["prev_in", "cur_in", "marker", "prev_out", "max_head_prev_in"]
 
@@ -62,12 +62,14 @@ def main():
                 ax.plot(x.Layer, x.marker, color="#CC79A7", linestyle=":", linewidth=1.1, label="marked run, mass on the marker")
             ax.set_title(f"{label}: {TASKN[task]}", loc="left"); ax.set_xlabel("layer")
             ax.set_ylabel("attention to input $j-1$" if j == 0 else "")
-    axes[0][-1].legend(frameon=False, fontsize=6.5, loc="upper right")
-    fig.tight_layout(); savefig(fig, REPO / "paper_tmlr" / "figures" / "attention_crossing.pdf")
+    h, l = axes[0][0].get_legend_handles_labels()
+    fig.legend(h, l, frameon=False, fontsize=6.5, loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.02))
+    fig.tight_layout(rect=(0, 0.05, 1, 1)); savefig(fig, REPO / "paper_tmlr" / "figures" / "attention_crossing.pdf")
 
     lines = ["\\begin{tabular}{ll l ccc c}", "\\toprule",
              "Model & Task & Run, positions & Input $j-1$ & Input $j$ & Marker & Peak layer for input $j-1$ \\\\", "\\midrule"]
-    names = {("clean", "post"): "clean, post-marker indices", ("marked", "post"): "marked, post-marker", ("marked", "within"): "marked, within-segment"}
+    names = {("clean", "post"): "clean, post-marker indices", ("marked", "post"): "marked, post-marker", ("marked", "within"): "marked, within-segment",
+             ("input_only", "post"): "input markers only, post-marker"}
     for label in models:
         first = True
         for task in TASKN:
@@ -77,7 +79,7 @@ def main():
                     continue
                 tot = x[COLS].sum(); peak = int(x.loc[x.prev_in.idxmax()].Layer)
                 lines.append(f"{label if first else ''} & {TASKN[task] if key == ('clean', 'post') else ''} & {nm} & {tot.prev_in:.2f} & {tot.cur_in:.2f} & "
-                             + (f"{tot.marker:.2f}" if key[0] == "marked" else "--") + f" & {peak} \\\\")
+                             + (f"{tot.marker:.2f}" if key[0] in ("marked", "input_only") else "--") + f" & {peak} \\\\")
                 first = False
             lines.append("\\addlinespace")
     while lines[-1] == "\\addlinespace":
