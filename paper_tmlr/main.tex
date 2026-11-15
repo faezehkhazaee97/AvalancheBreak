@@ -19,6 +19,9 @@
 \usepackage{flafter} % a float never appears above the text that introduces it
 \usepackage{float}   % [H] for the decision table
 \makeatletter\setlength{\@fptop}{0pt}\makeatother % float-only pages start at the top, not centered
+% let floats share pages with text instead of sitting alone on half-empty pages
+\renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.8}\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.75}\setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}
 
 % Task names in monospace (escape underscores in the argument).
 \newcommand{\task}[1]{\texttt{#1}}
@@ -367,7 +370,6 @@ Where is the blind spot represented? We teacher-force Qwen2.5-32B on \task{runni
 \label{fig:mechlayers}
 \end{figure}
 
-\FloatBarrier
 \section{Discussion and Conclusion}
 \label{sec:practical}
 \label{sec:limitations}
@@ -456,7 +458,6 @@ In sum, a content-free marker is a cheap, single-call intervention whose benefit
 % =====================================================================
 \appendix
 
-\FloatBarrier
 \section{Prompts}
 \label{app:prompts}
 
@@ -489,7 +490,6 @@ The mapping line is the literal string the prompt code generates: it shows the w
 
 \input{tables/prompts_verbatim.tex}
 
-\FloatBarrier
 \section{Trials per cell}
 \label{app:trials}
 
@@ -528,7 +528,6 @@ Qwen3.8-27B \texttt{37561816e66b}, Gemma-4-31B-it \texttt{842da3794eaa}.
 
 \paragraph{Generation budget.} The no-marker run and every spacing $k \ge 2$ share one budget, $1.5N + 20$ new tokens; $k = 1$ uses $2N + 20$. To check that the budget does not drive any effect, we re-tokenized every stored raw output of the seven open models ($N \le 64$; 86,400 generations) and counted those that used the whole budget while giving fewer than $N$ answer characters on the first line. Raw generations are stored for every spaced-letter and digit control run, every Qwen3.8 and Gemma 4 run, and, at Qwen2.5-32B, the second \task{sliding\_window\_max} batch and the $N = 128$ runs; the 80-trial second batches of \task{copy\_previous} and \task{running\_sum\_local} at 32B (Table~\ref{tab:trials}) do not store it. The original contiguous-letter and dependency grids of the five earlier models (Qwen2.5-7B, 14B, and the first 32B batch, Mistral, and Phi) predate raw-generation logging and retain only the clipped answer, which is why some marker-compliance entries elsewhere are unavailable. That count is an upper bound on cut-off answers, because it also counts short answers followed by unrequested text. The share is 0.58\% without markers, 0.49\% at $k \ge 2$, and 0.31\% at $k = 1$; at the four stronger models it is 0.04\%, 0.02\%, and 0\%. Nearly all cases are Phi-3.5-mini on spaced letters (up to 19\% of one cell without markers, against 14\% with), and on the dependency tasks the share is 0.03\% or less in every class. Because of the logging gap, the dependency-task compliance rows of Appendix~\ref{app:wfr} for Qwen2.5-7B, 14B, and 32B, Mistral, and Phi rest only on the runs that do store raw output: \task{sliding\_window\_max}, added later with logging on, and at Phi also \task{copy\_previous}.
 
-\FloatBarrier
 \section{How the uncertainty was computed}
 \label{app:stats}
 
@@ -609,7 +608,6 @@ changes in 5 of 91 cells. Finding~2 is unchanged: 23 of its 24 cells remain sign
 \input{tables/paired.tex}
 \end{table}
 
-\FloatBarrier
 \section{Per-model results}
 \label{app:models}
 
@@ -630,7 +628,6 @@ Per-model accuracy over the whole length-by-spacing grid is in Figure~\ref{fig:g
 \label{fig:density}
 \end{figure}
 
-\FloatBarrier
 
 \section{Per-position accuracy}
 \label{app:perpos}
@@ -696,7 +693,6 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \label{fig:profiletask}
 \end{figure}
 
-\FloatBarrier
 \section{Reset variants}
 \label{app:reset}
 
@@ -755,7 +751,6 @@ We also ran CLRS-Text's Kadane algorithm; its base accuracy at both Qwen scales 
 \resizebox{\linewidth}{!}{\input{tables/naturalistic.tex}}
 \end{table}
 
-\FloatBarrier
 \section{Real sequences, all eight rules}
 \label{app:real}
 
@@ -769,7 +764,6 @@ Table~\ref{tab:realfull} gives all eight real-sequence rules of Section~\ref{sec
 \resizebox{\linewidth}{!}{\input{tables/real_data_full.tex}}
 \end{table}
 
-\FloatBarrier
 
 \section{Mechanism details}
 \label{app:mechanism}
@@ -822,7 +816,6 @@ To ask where the blind spot is represented, we teacher-force Qwen2.5-32B on \tas
 \label{fig:mechanism}
 \end{figure}
 
-\FloatBarrier
 \section{Marker ablations}
 \label{app:marker}
 
@@ -981,7 +974,6 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 
 \paragraph{A byte-level model.} EvaByte-SFT \citep{zheng2025evabyte}, a 6.5B byte-level chat model, gives one token per character and per marker; its released code needs one fix under current library versions (its rotary position tables are left uninitialized and must be rebuilt after loading). On \task{running\_xor}, \task{copy\_previous}, and two position-local digit tasks it writes the input back instead of applying the rule in 45\% of outputs and stays at or below chance with and without markers (every marker effect $|z| \le 1.8$), so it gives no test of either effect.
 
-\FloatBarrier
 \section{Well-formedness and cost}
 \label{app:wfr}
 
