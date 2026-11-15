@@ -303,7 +303,7 @@ On the other four (Table~\ref{tab:real}), the synthetic results reappear. The po
 \begin{table}[!htb]
 \centering
 \small
-\caption{Real sequences: windows of human promoter DNA and of WikiText-2 letters, $N \in \{16, 32, 64\}$, 20 trials per cell. No-marker accuracy, pooled marker effect (no-marker mean length-matched, $k = 3$ excluded), and per-position effects at post-marker and within-segment positions against the no-marker run at the same positions ($k \in \{2, 4, 8, 16\}$), in the contiguous and spaced formats. The other four rules are near chance without markers (Appendix Table~\ref{tab:realfull}).}
+\caption{Real sequences: windows of human promoter DNA and of WikiText-2 letters, $N \in \{16, 32, 64\}$, 20 trials per cell. No-marker accuracy, pooled marker effect (no-marker mean length-matched, $k = 3$ excluded), and per-position effects at post-marker and within-segment positions against the no-marker run at the same positions ($k \in \{2, 4, 8, 16\}$), in the contiguous and spaced formats. The other four rules are near chance without markers (Appendix Table~\ref{tab:realfull}). Bold: post-marker changes of 0.25 or more in size.}
 \label{tab:real}
 \resizebox{\linewidth}{!}{\input{tables/real_data.tex}}
 \end{table}
@@ -323,7 +323,7 @@ The interventions here are narrower than the rest of the paper: mostly at Qwen2.
 \begin{table}[t]
 \centering
 \small
-\caption{Head ablation at Qwen2.5-32B (\task{random\_permutation}, $A = 8$, 20 trials per cell, pooled over $k \in \{2, 8\}$). ``Top 10'': the ten most marker-attending heads, chosen on held-out trials, are blocked from attending to markers (weights zeroed, rows renormalized). Controls: ten random heads blocked from markers, and the top ten blocked from as many random non-marker input tokens (sham). Share of gain removed is $(\text{Markers} - \text{blocked}) / (\text{Markers} - \text{No markers})$; ``Controls'' gives the larger of the two control shares.}
+\caption{Head ablation at Qwen2.5-32B (\task{random\_permutation}, $A = 8$, 20 trials per cell, pooled over $k \in \{2, 8\}$). ``Top 10'': the ten most marker-attending heads, chosen on held-out trials, are blocked from attending to markers (weights zeroed, rows renormalized). Controls: ten random heads blocked from markers, and the top ten blocked from as many random non-marker input tokens (sham). Share of gain removed is $(\text{Markers} - \text{blocked}) / (\text{Markers} - \text{No markers})$; ``Controls'' gives the larger of the two control shares. Bold: shares of 10\% or more removed by the top ten heads.}
 \label{tab:ablation}
 \input{tables/ablation_32b.tex}
 \end{table}
@@ -660,7 +660,7 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \begin{table}[!htbp]
 \centering
 \small
-\caption{Per-position accuracy by model ($N \le 64$, $k \in \{2,4,8,16\}$), mean over the tasks in each block.}
+\caption{Per-position accuracy by model ($N \le 64$, $k \in \{2,4,8,16\}$), mean over the tasks in each block. Bold: post-marker changes of 0.20 or more in size.}
 \label{tab:perpos}
 \resizebox{0.85\linewidth}{!}{\input{tables/perpos.tex}}
 \end{table}
@@ -668,7 +668,7 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \begin{table}[!htbp]
 \centering
 \small
-\caption{\task{sliding\_window\_max} reads the two previous inputs, so the first two positions after a marker cross it. Change against the no-marker run at the same positions for the first position after a marker ($i \bmod k = 0$), the second ($i \bmod k = 1$), and the strictly internal positions ($i \bmod k \ge 2$, only at $k \ge 3$; ---: none at $k = 2$), by spacing and pooled over $k \in \{2, 4, 8, 16\}$. Positions 0 and 1 of the sequence, which follow no marker, are in none of the classes.}
+\caption{\task{sliding\_window\_max} reads the two previous inputs, so the first two positions after a marker cross it. Change against the no-marker run at the same positions for the first position after a marker ($i \bmod k = 0$), the second ($i \bmod k = 1$), and the strictly internal positions ($i \bmod k \ge 2$, only at $k \ge 3$; ---: none at $k = 2$), by spacing and pooled over $k \in \{2, 4, 8, 16\}$. Positions 0 and 1 of the sequence, which follow no marker, are in none of the classes. Bold: pooled losses of 0.10 or more.}
 \label{tab:blindwindow}
 \resizebox{0.85\linewidth}{!}{\input{tables/blind_spot_window.tex}}
 \end{table}
@@ -676,7 +676,7 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \begin{table}[!htbp]
 \centering
 \small
-\caption{Per-position gains on dependency tasks (marker run minus the no-marker run at the same positions) under index-by-index scoring and under edit-distance alignment, which repairs dropped or inserted characters. $N \le 64$, $k \in \{2,4,8,16\}$. Share: the alignment-sensitive part of the within-segment gain, (index $-$ aligned) / index, shown only where the index-scored gain is positive; where that gain is tiny (the 7B-class models) the ratio is unstable and is not interpreted.}
+\caption{Per-position gains on dependency tasks (marker run minus the no-marker run at the same positions) under index-by-index scoring and under edit-distance alignment, which repairs dropped or inserted characters. $N \le 64$, $k \in \{2,4,8,16\}$. Share: the alignment-sensitive part of the within-segment gain, (index $-$ aligned) / index, shown only where the index-scored gain is positive; where that gain is tiny (the 7B-class models) the ratio is unstable and is not interpreted. Bold: post-marker losses of 0.10 or more that survive alignment.}
 \label{tab:aligned}
 \resizebox{0.85\linewidth}{!}{\input{tables/aligned.tex}}
 \end{table}
@@ -694,7 +694,7 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \begin{table}[!htbp]
 \centering
 \small
-\caption{The blind spot at $k = 2$ to 6 separately (dependency tasks, $N \le 64$; $k = 5$ and 6 were run at Qwen2.5-7B and 32B only): change at the post-marker and within-segment positions against the no-marker run at the same positions. $k = 3$ is otherwise excluded from the pooled analyses. At $k = 2$, every within-segment position of \task{sliding\_window\_max} is the second position after a marker, whose window still crosses it (Table~\ref{tab:blindwindow}).}
+\caption{The blind spot at $k = 2$ to 6 separately (dependency tasks, $N \le 64$; $k = 5$ and 6 were run at Qwen2.5-7B and 32B only): change at the post-marker and within-segment positions against the no-marker run at the same positions. $k = 3$ is otherwise excluded from the pooled analyses. At $k = 2$, every within-segment position of \task{sliding\_window\_max} is the second position after a marker, whose window still crosses it (Table~\ref{tab:blindwindow}). Bold: post-marker losses of 0.25 or more.}
 \label{tab:blindk}
 \resizebox{0.85\linewidth}{!}{\input{tables/blind_spot_by_k.tex}}
 \end{table}
@@ -765,7 +765,7 @@ Table~\ref{tab:realfull} gives all eight real-sequence rules of Section~\ref{sec
 \begin{table}[!htb]
 \centering
 \small
-\caption{All eight real-sequence rules; columns as in Table~\ref{tab:real}.}
+\caption{All eight real-sequence rules; columns as in Table~\ref{tab:real}. Bold: post-marker changes of 0.25 or more in size.}
 \label{tab:realfull}
 \resizebox{\linewidth}{!}{\input{tables/real_data_full.tex}}
 \end{table}
@@ -788,7 +788,7 @@ where $\ell$ is the log-odds of the correct digit against the reset digit, so $R
 \begin{table}[!htbp]
 \centering
 \small
-\caption{Activation patching at four models: post-marker accuracy in the clean and marked runs, and the log-odds recovery when each site is patched at every layer, with the best single layer in parentheses.}
+\caption{Activation patching at four models: post-marker accuracy in the clean and marked runs, and the log-odds recovery when each site is patched at every layer, with the best single layer in parentheses. Bold: recoveries of 0.50 or more with every layer patched.}
 \label{tab:patching}
 \resizebox{\linewidth}{!}{\input{tables/patching.tex}}
 \end{table}
@@ -798,7 +798,7 @@ where $\ell$ is the log-odds of the correct digit against the reset digit, so $R
 \begin{table}[!htbp]
 \centering
 \small
-\caption{Attention from the step that writes answer character $j$ ($N = 32$, $k = 4$, 20 inputs per task), averaged over heads and summed over layers (64 at Qwen2.5-32B, 60 at Gemma 4, and the 16 softmax-attention layers of Qwen3.8, so sums compare conditions within a model, not across models), with the layer where the attention to input $j-1$ peaks. Clean: no markers; marked: markers in input and answer, so the step after a marker is read at the output bar; input markers only: marked input with an unmarked answer, so that step is read at the previous answer digit. The within-segment retention of 89\% to 96\% quoted in the text refers to the lookback band in layers 35 to 45 at Qwen2.5-32B, not to these sums.}
+\caption{Attention from the step that writes answer character $j$ ($N = 32$, $k = 4$, 20 inputs per task), averaged over heads and summed over layers (64 at Qwen2.5-32B, 60 at Gemma 4, and the 16 softmax-attention layers of Qwen3.8, so sums compare conditions within a model, not across models), with the layer where the attention to input $j-1$ peaks. Clean: no markers; marked: markers in input and answer, so the step after a marker is read at the output bar; input markers only: marked input with an unmarked answer, so that step is read at the previous answer digit. The within-segment retention of 89\% to 96\% quoted in the text refers to the lookback band in layers 35 to 45 at Qwen2.5-32B, not to these sums. Bold: attention of 0.20 or less to input $j-1$, where the lookback collapses.}
 \label{tab:attention}
 \resizebox{\linewidth}{!}{\input{tables/attention_crossing.tex}}
 \end{table}
@@ -877,7 +877,7 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \begin{table}[!htbp]
 \centering
 \small
-\caption{LoRA separators at Qwen2.5-7B-Instruct and Qwen2.5-32B-Instruct, evaluated with the standard grid ($N \le 64$, 20 trials per cell). ``Marked targets'': trained on \task{running\_xor} and \task{running\_sum\_local} at every spacing with marked answers; ``$k = 0$ only'': the same tasks without markers, for two epochs or for a number of steps matched to the marked adapter. Per task: no-marker accuracy (Base), and the change at the post-marker and within-segment positions against the checkpoint's own no-marker run at the same positions. The rows ``as released'' come from one 20-trial batch, so they differ slightly from the main grid's values, which pool 40 to 80 trials (for example $-0.16$ against $-0.15$ on \task{copy\_previous} at 32B).}
+\caption{LoRA separators at Qwen2.5-7B-Instruct and Qwen2.5-32B-Instruct, evaluated with the standard grid ($N \le 64$, 20 trials per cell). ``Marked targets'': trained on \task{running\_xor} and \task{running\_sum\_local} at every spacing with marked answers; ``$k = 0$ only'': the same tasks without markers, for two epochs or for a number of steps matched to the marked adapter. Per task: no-marker accuracy (Base), and the change at the post-marker and within-segment positions against the checkpoint's own no-marker run at the same positions. The rows ``as released'' come from one 20-trial batch, so they differ slightly from the main grid's values, which pool 40 to 80 trials (for example $-0.16$ against $-0.15$ on \task{copy\_previous} at 32B). Bold: post-marker changes at or above zero on the held-out dependency tasks.}
 \label{tab:lora}
 \resizebox{\linewidth}{!}{\input{tables/lora.tex}}
 \end{table}

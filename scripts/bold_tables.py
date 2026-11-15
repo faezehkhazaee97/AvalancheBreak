@@ -4,7 +4,9 @@ before compiling). One rule per table, stated in its caption in paper_tmlr/main.
   wording.tex                        post-marker changes at or above zero (the blind spot removed)
   marker_sides_forced.tex            interactions whose 95% interval excludes zero
   control_cells.tex                  z values with |z| >= 3.54 (Bonferroni threshold)
-Idempotent: cells already in bold are left alone."""
+Further rules (real_data, ablation_32b, perpos, aligned, blind_spot_by_k, blind_spot_window, patching,
+attention_crossing, lora) are listed in RULES and stated in each caption. Idempotent: cells already in bold
+are left alone."""
 import re
 from pathlib import Path
 
@@ -65,8 +67,49 @@ def control(text):
     return "\n".join(out)
 
 
+NUM = re.compile(r"\$?([+-]?\d+\.\d+|\d+)\$?(\\%)?")
+
+
+def bold_cells(text, cols, pred, row_filter=None):
+    """Bold the first number in each listed column of every data row (rows after the first \midrule)
+    when pred(value) holds; numbers already in bold are skipped."""
+    out, data = [], False
+    for line in text.split("\n"):
+        if line.strip() == "\\midrule":
+            data = True
+        if data and "&" in line and line.rstrip().endswith("\\\\") and "multicolumn" not in line and (row_filter is None or row_filter(line)):
+            cells = line.rstrip()[:-2].split("&")
+            for j in cols:
+                if j >= len(cells) or "mathbf" in cells[j] or "textbf" in cells[j]:
+                    continue
+                m = NUM.search(cells[j])
+                if not m:
+                    continue
+                v = float(m.group(1))
+                if pred(v):
+                    tok = m.group(0)
+                    if tok.startswith("$"):
+                        new = "$\\mathbf{" + m.group(1) + "}" + ("\\%" if m.group(2) else "") + "$"
+                    else:
+                        new = "\\textbf{" + m.group(1) + ("\\%" if m.group(2) else "") + "}"
+                    cells[j] = cells[j][:m.start()] + new + cells[j][m.end():]
+            line = "&".join(cells) + "\\\\"
+        out.append(line)
+    return "\n".join(out)
+
+
 RULES = {"wording.tex": wording,
-         "marker_sides_forced.tex": sides, "control_cells.tex": control}
+         "marker_sides_forced.tex": sides, "control_cells.tex": control,
+         "real_data.tex": lambda t: bold_cells(t, [7, 8], lambda v: abs(v) >= 0.25),
+         "real_data_full.tex": lambda t: bold_cells(t, [7, 8], lambda v: abs(v) >= 0.25),
+         "ablation_32b.tex": lambda t: bold_cells(t, [7], lambda v: v >= 10),
+         "perpos.tex": lambda t: bold_cells(t, [6], lambda v: abs(v) >= 0.20),
+         "aligned.tex": lambda t: bold_cells(t, [3], lambda v: v <= -0.10),
+         "blind_spot_by_k.tex": lambda t: bold_cells(t, [2, 3, 4, 5, 6], lambda v: v <= -0.25),
+         "blind_spot_window.tex": lambda t: bold_cells(t, [7], lambda v: v <= -0.10),
+         "patching.tex": lambda t: bold_cells(t, [5, 6, 7, 8], lambda v: v >= 0.50),
+         "attention_crossing.tex": lambda t: bold_cells(t, [3], lambda v: v <= 0.20),
+         "lora.tex": lambda t: bold_cells(t, [8, 11], lambda v: v >= 0.0)}
 
 
 def main():
