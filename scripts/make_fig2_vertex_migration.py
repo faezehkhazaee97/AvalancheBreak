@@ -23,14 +23,20 @@ set_rc()
 MODEL = "Qwen2.5-32B-Instruct"
 
 # Validated palette (dataviz skill, references/palette.md)
-CAT_ORANGE = "#eb6834"  # slot 2 -- the Cellular_Bounds line
-CAT_BLUE = "#2a78d6"    # slot 1 -- the best-density star
+CAT_ORANGE = "#D55E00"  # Okabe-Ito vermilion -- the Cellular_Bounds line
+CAT_BLUE = "#0072B2"    # Okabe-Ito blue -- the best-density star
 
 
 def load_task(task, axis_val_col, axis_val, n128_path=None):
     grid_dir = REPO_ROOT / "results_clean" / task / "grid"
     frames = []
-    for p in grid_dir.glob(f"{MODEL}*.csv"):
+    # Only this model's own grid files: MODEL.csv and MODEL_<suffix>.csv (trial batches, N = 128).
+    # Excluded: *_POOLED_* summaries (cyclic_shift's holds a legacy batch under the same trial
+    # numbers) and the LoRA runs (MODEL-lorabase.csv, MODEL-lorasep.csv), which a bare MODEL*
+    # glob would also match. Sorted, so the drop_duplicates below is deterministic.
+    for p in sorted(grid_dir.glob(f"{MODEL}*.csv")):
+        if not (p.name == f"{MODEL}.csv" or p.name.startswith(f"{MODEL}_")) or "POOLED" in p.name:
+            continue
         frames.append(pd.read_csv(p))
     df = pd.concat(frames, ignore_index=True)
     key_cols = [c for c in ["Method", "Interval", "Seq_Length", axis_val_col, "Trial"] if c and c in df.columns]
@@ -60,6 +66,8 @@ for row, (task, axis_col, axis_val, lengths, panel_label) in enumerate(TASKS):
             continue
         N = lengths[col]
         sub = df[df.Seq_Length == N]
+        n_tr = sub.groupby(["Method", "Interval"]).Trial.nunique()
+        print(f"{task:20s} N={N:4d}: trials per cell {n_tr.min()}-{n_tr.max()}")
         base = sub[sub.Method == "Base"]["TAR"]
         bnd = sub[sub.Method == "Cellular_Bounds"].groupby("Interval")["TAR"].agg(["mean", "sem"])
         ax.axhline(chance, color="#999999", linestyle=":", linewidth=1, alpha=0.8,
@@ -74,7 +82,10 @@ for row, (task, axis_col, axis_val, lengths, panel_label) in enumerate(TASKS):
             best_idx = bnd["mean"].values[order].argmax()
             ax.scatter([density[order][best_idx]], [bnd["mean"].values[order][best_idx]],
                       marker="*", s=140, color=CAT_BLUE, zorder=5, edgecolor="black", linewidth=0.5)
+            # Rotated 45 degrees so 1/16 ... 1 do not overlap in the narrow panels
             set_power_of_2_xticks(ax, density[order], fontsize=6)
+            plt.setp(ax.get_xticklabels(), rotation=45, ha="right", rotation_mode="anchor")
+            ax.tick_params(axis="x", pad=1.5)
             ax.set_xlim(0.045, 1.3)
         ax.set_ylim(0, 1.05)
         ax.set_title(f"N={N}", fontsize=8)
@@ -91,6 +102,7 @@ for row, (task, axis_col, axis_val, lengths, panel_label) in enumerate(TASKS):
 handles, labels = axes[0, 0].get_legend_handles_labels()
 fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.5, 1.0), ncol=2, frameon=False, fontsize=7.5)
 fig.tight_layout(rect=[0.02, 0, 1, 0.95])
+fig.align_xlabels(axes[2, :])  # rotated tick labels differ in height; keep the x labels on one line
 
 OUT = REPO_ROOT / "figs" / "fig2_vertex_migration.pdf"
 savefig(fig, OUT)

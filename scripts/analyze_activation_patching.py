@@ -113,10 +113,12 @@ def main():
         savefig(fig, REPO / "paper_tmlr" / "figures" / "patching.pdf")
 
     # table
-    lines = ["\\begin{tabular}{ll cc cccc}", "\\toprule",
-             "& & \\multicolumn{2}{c}{Post-marker acc.} & \\multicolumn{4}{c}{Recovery, all layers (best single layer)} \\\\",
-             "\\cmidrule(lr){3-4}\\cmidrule(lr){5-8}",
-             "Model & Task & Clean & Marked & Input before & Input after & All inputs & Answer before \\\\", "\\midrule"]
+    def num(v):
+        return "0.00" if abs(v) < 0.005 else f"${v:.2f}$"
+    lines = ["\\begin{tabular}{ll cc c cccc}", "\\toprule",
+             "& & \\multicolumn{2}{c}{Post-marker acc.} & Gap & \\multicolumn{4}{c}{Recovery, all layers (best single layer)} \\\\",
+             "\\cmidrule(lr){3-4}\\cmidrule(lr){6-9}",
+             "Model & Task & Clean & Marked & (nats) & Input before & Input after & All inputs & Answer before \\\\", "\\midrule"]
     for label, _ in MODELS:
         first = True
         for task in TASKN:
@@ -124,16 +126,17 @@ def main():
             if s.empty:
                 continue
             cells = []
+            gap = float(s[s.site == "clean"].logodds.iloc[0]) - float(s[s.site == "marked"].logodds.iloc[0])
             for site, _, _ in SITES:
                 z = s[s.site == site]
                 a = z[z.layer == "all"]
                 per = z[z.layer != "all"]
-                if a.empty or per.empty:
+                if a.empty or per.empty or gap < 2:      # ratios over a gap under 2 nats are not interpretable
                     cells.append("--"); continue
                 b = per.loc[per.rec_logodds.idxmax()]
-                cells.append(f"{float(a.rec_logodds.iloc[0]):.2f} ({float(b.rec_logodds):.2f} at {b.layer})")
+                cells.append(f"{num(float(a.rec_logodds.iloc[0]))} ({num(float(b.rec_logodds))} at {b.layer})")
             cl = float(s[s.site == "clean"].acc.iloc[0]); mk = float(s[s.site == "marked"].acc.iloc[0])
-            lines.append(f"{label if first else ''} & {TASKN[task]} & {cl:.2f} & {mk:.2f} & " + " & ".join(cells) + " \\\\")
+            lines.append(f"{label if first else ''} & {TASKN[task]} & {cl:.2f} & {mk:.2f} & {gap:.1f} & " + " & ".join(cells) + " \\\\")
             first = False
     lines += ["\\bottomrule", "\\end{tabular}"]
     (REPO / "paper_tmlr" / "tables" / "patching.tex").write_text("\n".join(lines) + "\n")

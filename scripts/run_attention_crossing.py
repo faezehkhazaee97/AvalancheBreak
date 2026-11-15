@@ -15,7 +15,11 @@ that predicts answer character j (the token just before it), we record the atten
 per layer, averaged over heads, and also the largest single-head mass on prev_in in that layer.
 Positions are classified as post-marker (j > 0, j mod k = 0) or within-segment (the rest, j > 0),
 so the marked run's post-marker rows can be compared with its own within-segment rows and with the
-clean run at the same indices.
+clean run at the same indices. A third run, input_only (review follow-up), presents the marked input
+with the unmarked answer, so the query predicting every answer character is the previous answer
+digit rather than an output bar, as in the input-only cell of the constrained 2x2. Layers that return
+no attention weights (the linear-attention layers of Qwen3.8) are skipped; Layer keeps the model's
+own layer index.
 
 Output: results/attention_crossing/<model_tag>.csv (Task, Trial, Run, PosType, Layer, prev_in, cur_in,
         marker, prev_out, max_head_prev_in, n_pos)
@@ -74,6 +78,8 @@ def main():
             out = model(input_ids=torch.tensor([ids], device=dev), output_attentions=True)
         groups = {"post": [j for j in range(1, N) if j % K == 0], "within": [j for j in range(1, N) if j % K != 0]}
         for li, att in enumerate(out.attentions):           # [1, heads, L, L]
+            if att is None:
+                continue
             a = att[0].float()
             for ptype, js in groups.items():
                 acc = dict(prev_in=0.0, cur_in=0.0, marker=0.0, prev_out=0.0, max_head_prev_in=0.0)
@@ -83,7 +89,7 @@ def main():
                     acc["prev_in"] += row[:, in_pos[j - 1]].mean().item()
                     acc["cur_in"] += row[:, in_pos[j]].mean().item()
                     acc["prev_out"] += row[:, out_pos[j - 1]].mean().item()
-                    if run == "marked" and j % K == 0:
+                    if run in ("marked", "input_only") and j % K == 0:
                         acc["marker"] += row[:, in_pos[j] - 1].mean().item()
                     acc["max_head_prev_in"] += row[:, in_pos[j - 1]].max().item()
                 w.writerow(dict(Task=task, Trial=t, Run=run, PosType=ptype, Layer=li, n_pos=len(js),
@@ -101,6 +107,9 @@ def main():
                 record(task, t, "clean", ids_c, in_c, out_c)
             if (task, str(t), "marked") not in done:
                 record(task, t, "marked", ids_m, in_m, out_m)
+            if (task, str(t), "input_only") not in done:
+                ids_i, in_i, out_i = positions(tokenizer, p_m, inp_m, ans_c)
+                record(task, t, "input_only", ids_i, in_i, out_i)
             print(f"done {task} trial {t}", flush=True)
     f.close(); print("Finished.")
 

@@ -1,0 +1,2 @@
+task,model,n_outputs,echo_written_back,post_none,within_none,post_plain,within_plain,post_echo,within_echo
+running_xor,Qwen2.5 32B,280,0.236,0.649,0.657,0.531,0.801,0.547,0.695

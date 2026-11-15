@@ -69,7 +69,7 @@ def gemini_table():
         if r6 is not None:
             lines.append(f"{tt(t)} & Gemini 3.6 & {r6.base:.3f} & {r6.bounds:.3f} & {dz(r6)} \\\\")
     lines.append(r"\midrule")
-    for t, lab in [("clrs_minimum", "CLRS minimum"), ("clrs_kadane", "CLRS Kadane")]:
+    for t, lab in [("clrs_minimum", "CLRS minimum")]:   # Kadane is at chance at both Qwen scales; disclosed in the text only
         first = True
         for m in ["Qwen2.5 7B", "Qwen2.5 32B", "Gemini 3.5 Flash"]:
             r = get("external", t, m)

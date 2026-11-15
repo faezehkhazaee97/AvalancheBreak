@@ -35,9 +35,15 @@ SIG_Z = None  # set below to the Bonferroni threshold over the plotted cells
 ROW_BLOCKS = [
     ("Position-local", ["cyclic_shift", "random_permutation", "conditional_shift"]),
     ("Dependency, as is", ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]),
-    ("Dependency severed\n(reset variant)", ["copy_previous_reset", "running_xor_reset",
-                                             "running_sum_local_reset", "sliding_window_max_reset"]),
+    ("Reset rule\n(different task\nand baseline)", ["copy_previous_reset", "running_xor_reset",
+                                                   "running_sum_local_reset", "sliding_window_max_reset"]),
 ]
+RESET_BLOCK = ROW_BLOCKS[-1][0]
+CSV_BLOCK = {RESET_BLOCK: "Dependency severed (reset variant)"}  # block name kept stable in the values CSV
+# Drawn as a separate group under a header row: these variants change the rule at the position
+# after each marker, so they are different tasks with their own (shifted) no-marker baselines.
+RESET_HEADER = ("Reset variants: the rule restarts at the position after each marker, "
+                "so the task and its no-marker baseline differ from the rows above")
 # (column label, local model tag or None for Gemini)
 MODELS = [
     ("Qwen2.5\n7B", "Qwen2.5-7B-Instruct"),
@@ -97,7 +103,7 @@ for block, tasks in ROW_BLOCKS:
             r = pooled_delta(df) if df is not None else None
             cells.append(r)
             if r:
-                records.append(dict(block=block.replace("\n", " "), task=task,
+                records.append(dict(block=CSV_BLOCK.get(block, block.replace("\n", " ")), task=task,
                                     model=label.replace("\n", " "), **r))
         rows.append((block, task, cells))
 
@@ -119,18 +125,26 @@ pd.DataFrame(records).round(4).to_csv(out_csv, index=False)
 print(f"Wrote {out_csv}")
 
 set_rc()
+# Insert a spacer row (None) above the reset block: it holds the group header and opens a gap.
+first_reset = next(i for i, (b, _, _) in enumerate(rows) if b == RESET_BLOCK)
+rows = rows[:first_reset] + [None] + rows[first_reset:]
+SPACER = first_reset
 n_rows, n_cols = len(rows), len(models)
 fig, ax = plt.subplots(figsize=(MULTI_COL_WIDTH * 0.92, 0.27 * n_rows + 1.1))
 grid = np.full((n_rows, n_cols), np.nan)
-for i, (_, _, cells) in enumerate(rows):
-    for j, c in enumerate(cells):
+for i, row in enumerate(rows):
+    if row is None:
+        continue
+    for j, c in enumerate(row[2]):
         if c:
             grid[i, j] = c["delta"]
 
 ax.set_facecolor(BLANK)
 im = ax.imshow(np.ma.masked_invalid(grid), cmap=CMAP, vmin=-VMAX, vmax=VMAX, aspect="auto")
-for i, (_, _, cells) in enumerate(rows):
-    for j, c in enumerate(cells):
+for i, row in enumerate(rows):
+    if row is None:
+        continue
+    for j, c in enumerate(row[2]):
         if not c:
             ax.text(j, i, "—", ha="center", va="center", fontsize=7.5, color="#9a9a96")
             continue
@@ -146,17 +160,25 @@ ax.grid(which="minor", color="#ffffff", linewidth=1.5)
 ax.tick_params(which="minor", length=0)
 start = 0
 for block, tasks in ROW_BLOCKS:
-    if start:
+    if block == RESET_BLOCK:
+        start += 1  # the spacer row
+    elif start:
         ax.axhline(start - 0.5, color="#1a1a1a", linewidth=0.9)
     ax.text(n_cols - 0.35, start + (len(tasks) - 1) / 2, block, ha="left", va="center",
             fontsize=7, color="#4a4a47")
     start += len(tasks)
+# The spacer: white band (gap), a rule above the gap, and the group header inside it.
+ax.axhspan(SPACER - 0.5, SPACER + 0.5, color="white", zorder=2)
+ax.axhline(SPACER - 0.5, color="#1a1a1a", linewidth=0.9, zorder=3)
+ax.text(-0.5, SPACER + 0.12, RESET_HEADER, ha="left", va="center", fontsize=6.8, style="italic",
+        color="#4a4a47", zorder=4)
 
 ax.set_xticks(range(n_cols))
 ax.set_xticklabels([m[0] for m in models], fontsize=7.5)
 ax.xaxis.tick_top()
 ax.set_yticks(range(n_rows))
-ax.set_yticklabels([t.replace("_reset", " (reset)") for _, t, _ in rows], fontsize=7.5)
+ax.set_yticklabels(["" if r is None else r[1].replace("_reset", " (reset)") for r in rows], fontsize=7.5)
+ax.set_xlim(-0.5, n_cols - 0.5)
 for s in ax.spines.values():
     s.set_visible(False)
 ax.tick_params(length=0)

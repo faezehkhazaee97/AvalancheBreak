@@ -49,7 +49,7 @@ def panel(ax, d):
         ax.axhline(1.0 / (v or 2), color=color, linestyle=":", linewidth=0.8, alpha=0.8)
     ax.set_xscale("log", base=2)
     ax.set_xticks(LENGTHS)
-    ax.set_xticklabels(["4", "", "16", "", "64"], fontsize=6.5)
+    ax.set_xticklabels([str(n) for n in LENGTHS], fontsize=5.8)
     ax.tick_params(axis="y", labelsize=6.5)
     ax.minorticks_off()
     ax.set_ylim(0, 1.05)

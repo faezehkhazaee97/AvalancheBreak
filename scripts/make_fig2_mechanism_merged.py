@@ -8,8 +8,10 @@ the misaligned boundary density (copy_previous, N=32) -- the mechanistic
 half of the dip story, now grouped with the rest of the attention-sink
 evidence rather than split across two figures.
 
-Qwen2.5-32B-Instruct throughout. Panels (a)-(c): cyclic_shift, real
-(concatenated) letter tokenization. Panel (d): copy_previous.
+Qwen2.5-32B-Instruct throughout. Panels (a)-(b): cyclic_shift, real
+(concatenated) letter tokenization. Panel (c) (replacing the earlier, uncontrolled
+cyclic_shift ablation-by-length): the controlled head-count dose response on
+random_permutation with spaced letters and digits (Table tab:dose). Panel (d): copy_previous.
 """
 
 import sys
@@ -27,10 +29,10 @@ from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_powe
 set_rc()
 
 # Validated palette (dataviz skill, references/palette.md)
-SEQ_BLUE_ORDINAL = ["#86b6ef", "#6da7ec", "#5598e7", "#2a78d6", "#256abf", "#184f95", "#0d366b"]
-CAT_BLUE = "#2a78d6"
-CAT_ORANGE = "#eb6834"
-CAT_AQUA = "#1baf7a"
+SEQ_BLUE_ORDINAL = ["#b9d7ee", "#9cc4e6", "#6faad8", "#0072B2", "#2b6ea8", "#0072B2", "#003f6b"]
+CAT_BLUE = "#0072B2"
+CAT_ORANGE = "#D55E00"
+CAT_AQUA = "#009E73"
 
 RESULTS_DIR = REPO_ROOT / "results" / "Qwen2.5-32B-Instruct"
 
@@ -72,11 +74,18 @@ l, h = best_lh
 ax_b = fig.add_subplot(gs[0, 1])
 m = attn_cell[l, h]
 im = ax_b.imshow(m, cmap="viridis", vmin=0, vmax=np.percentile(m, 99), aspect="auto")
+# Horizontal tick labels (tokens are at most four characters), the marker shown as a real bar
+# in orange like its grid lines, so each label stands apart from the letter tokens beside it.
 ax_b.set_xticks(range(len(tokens_cell)))
-ax_b.set_xticklabels(tokens_cell, rotation=90, fontsize=6.5)
+ax_b.set_xticklabels(tokens_cell, rotation=0, fontsize=6.5)
 ax_b.set_yticks(range(len(tokens_cell)))
 ax_b.set_yticklabels(tokens_cell, fontsize=6.5)
+for axis in (ax_b.xaxis, ax_b.yaxis):
+    for tick, tok in zip(axis.get_major_ticks(len(tokens_cell)), tokens_cell):
+        if "|" in tok:
+            tick.label1.set_color(CAT_ORANGE)
 ax_b.tick_params(axis="x", pad=2)
+ax_b.grid(False)
 ax_b.set_xlabel("Key token (attended to)", fontsize=7)
 ax_b.set_ylabel("Query token (attending from)", fontsize=7)
 for i in boundary_idx:
@@ -85,26 +94,45 @@ for i in boundary_idx:
 ax_b.set_title(f"(b) Head L{l}/H{h} (orange lines: markers)", fontsize=8.5)
 fig.colorbar(im, ax=ax_b, fraction=0.046, pad=0.04)
 
-# ---- Panel (c): causal ablation-by-length ----
-ax_c = fig.add_subplot(gs[1, 0])
-abl_csv = RESULTS_DIR / "causal_ablation_grid.csv"
-base_grid = pd.read_csv(RESULTS_DIR / "thermodynamics_grid_templated_v2.csv")
-abl = pd.read_csv(abl_csv)
-ablation_N = sorted(abl.Seq_Length.unique())
-ref = base_grid[(base_grid.Alphabet_Size == 2) & (base_grid.Seq_Length.isin(ablation_N))]
-base_tar = ref[ref.Method == "Base"].groupby("Seq_Length")["TAR"].mean().reindex(ablation_N)
-normal_tar = ref[(ref.Method == "Cellular_Bounds") & (ref.Interval == 2)].groupby("Seq_Length")["TAR"].mean().reindex(ablation_N)
-ablated_tar = abl.groupby("Seq_Length")["TAR"].mean().reindex(ablation_N)
-
-ax_c.plot(ablation_N, base_tar, color="black", linestyle="--", marker="o", markersize=4, linewidth=1.3, label="Base")
-ax_c.plot(ablation_N, normal_tar, color=CAT_BLUE, marker="s", markersize=4, linewidth=1.6, label="Markers")
-ax_c.plot(ablation_N, ablated_tar, color=CAT_ORANGE, marker="^", markersize=4, linewidth=1.6, label="Markers, top heads\nblocked from markers")
-set_power_of_2_xticks(ax_c, ablation_N)
-ax_c.set_ylim(0.4, 1.05)
-ax_c.set_xlabel("Sequence length N")
-ax_c.set_ylabel("TAR")
-ax_c.set_title("(c) Earlier ablation (letters, k = 2)", fontsize=8.5)
-ax_c.legend(loc="lower left", frameon=False, fontsize=6)
+# ---- Panel (c): controlled head-blocking dose response (Table tab:dose) ----
+# results_clean/_summary/head_dose.csv (scripts/analyze_wording_and_dose.py): Qwen2.5-32B,
+# random_permutation, A = 8, N = 64, k = 8, 20 trials; share of the marker gain (Bounds - Base)
+# removed by blocking the top-n marker-attending heads from the markers, n random heads from the
+# markers, or the top-n heads from as many random non-marker tokens (sham). Bars: 95% intervals.
+dose = pd.read_csv(REPO_ROOT / "results_clean" / "_summary" / "head_dose.csv")
+dose["gain"] = dose.bounds - dose.base
+dose["share_ci"] = dose.ci / dose.gain
+gs_c = gs[1, 0].subgridspec(1, 2, wspace=0.12)
+ax_c = fig.add_subplot(gs_c[0, 0])
+ax_c2 = fig.add_subplot(gs_c[0, 1], sharey=ax_c)
+DOSE_STYLE = {"ablate_top": ("Top heads", CAT_ORANGE, "o", "-"),
+              "ctrl_random": ("Random heads", "#6e6e6e", "s", "--"),
+              "ctrl_sham": ("Sham (top heads,\nnon-marker tokens)", CAT_AQUA, "^", ":")}
+DODGE = {"ablate_top": 0.94, "ctrl_random": 1.0, "ctrl_sham": 1.06}
+for axx, (task, fmt_label) in zip([ax_c, ax_c2], [("random_permutation_spaced", "Spaced letters"),
+                                                   ("random_permutation_digits", "Digits")]):
+    axx.axhline(0, color="#6e6e6e", linewidth=0.6, zorder=1)
+    for cond, (lab, color, mk, ls) in DOSE_STYLE.items():
+        d = dose[(dose.task == task) & (dose.condition == cond)].sort_values("heads")
+        axx.errorbar(d.heads * DODGE[cond], d.share, yerr=d.share_ci, color=color, marker=mk, markersize=3.5,
+                     linestyle=ls, linewidth=1.3, elinewidth=0.7, capsize=1.5, label=lab, zorder=3)
+    axx.set_xscale("log")
+    axx.set_xticks([10, 50, 200])
+    axx.set_xticklabels(["10", "50", "200"], fontsize=6.5)
+    axx.minorticks_off()
+    axx.set_xlim(7, 290)
+    axx.set_title(fmt_label, fontsize=7.5)
+    axx.set_xlabel("Heads blocked", fontsize=7.5)
+from matplotlib.ticker import PercentFormatter
+ax_c.set_ylim(-0.12, 0.47)
+ax_c.set_yticks([-0.1, 0, 0.1, 0.2, 0.3, 0.4])
+ax_c.yaxis.set_major_formatter(PercentFormatter(1.0, decimals=0))
+ax_c.set_ylabel("Share of marker gain removed")
+plt.setp(ax_c2.get_yticklabels(), visible=False)
+ax_c2.legend(*ax_c.get_legend_handles_labels(), loc="upper left", frameon=False, fontsize=5.6,
+             handlelength=2.0, labelspacing=0.3, borderaxespad=0.1)
+ax_c.text(0, 1.13, "(c) Head blocking, with controls", transform=ax_c.transAxes, fontsize=8.5,
+          ha="left", va="bottom")
 
 # ---- Panel (d): dip mechanism -- attention to correct target (from former Fig 3a) ----
 ax_d = fig.add_subplot(gs[1, 1])
@@ -113,7 +141,7 @@ top10 = retrieval.groupby("k")["correct_target_attn"].apply(lambda s: s.sort_val
 k_labels = {1: "k = 1", 2: "k = 2", 8: "k = 8"}
 ks = [1, 2, 8]
 colors = [CAT_BLUE, CAT_ORANGE, CAT_AQUA]
-bars = ax_d.bar([k_labels[k] for k in ks], [top10[k] for k in ks], color=colors, width=0.6)
+bars = ax_d.bar([k_labels[k] for k in ks], [top10[k] for k in ks], color="#0072B2", width=0.6)
 for bar, k in zip(bars, ks):
     ax_d.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.015, f"{top10[k]:.3f}",
                ha="center", fontsize=8)

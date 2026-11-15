@@ -53,7 +53,8 @@ def main():
                   "Code, prompts, raw generations, and analysis scripts are at \\\\url{%s}." % PERSON["code_url"], body)
     assert "\\pending{" not in body + appendix, "a placeholder is left in the project version"
     # tables wider than the 6.5-inch text block are shrunk to fit; those already in a \resizebox are left alone
-    fit = lambda t: re.sub(r"(?<!\{)\\input\{tables/([^}]+)\}", r"\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{\\input{tables/\1}}", t)
+    # verbatim blocks and longtables cannot sit inside a box: leave those inputs alone
+    fit = lambda t: re.sub(r"(?<!\{)\\input\{tables/((?!prompts_verbatim|[^}]*_lt\.tex)[^}]+)\}", r"\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{\\input{tables/\1}}", t)
     body, appendix = fit(body), fit(appendix)
     # inline tabulars (Table 1, the summary and decision tables) get the same treatment
     inl = lambda t: re.sub(r"(?<!\{)(\\begin\{tabular\}.*?\\end\{tabular\})", r"\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{\1}", t, flags=re.S)
@@ -98,6 +99,7 @@ def main():
 \usepackage{placeins}
 \usepackage{flafter}
 \usepackage{float}
+\usepackage{longtable}
 \usepackage{adjustbox}
 \usepackage[htt]{hyphenat}
 \makeatletter\setlength{\@fptop}{0pt}\makeatother

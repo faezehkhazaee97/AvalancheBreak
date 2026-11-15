@@ -67,17 +67,65 @@ def _plain_labels(fig):
              # glyphs absent from Computer Modern: use mathtext or plain equivalents
              ("\u2212", "-"), ("\u2014", "-"), ("\u2013", "-"), ("\u2190", r"$\leftarrow$"), ("\u2192", r"$\rightarrow$"),
              ("\u2265", r"$\geq$"), ("\u2264", r"$\leq$"), ("\u00b1", r"$\pm$"), ("\u2295", r"$\oplus$")]
-    for t in fig.findobj(Text):
-        s = t.get_text()
+    from matplotlib.ticker import FixedFormatter, FuncFormatter
+
+    def fix(s):
         if not s:
-            continue
+            return s
         new = re.sub(r"\bTAR\b", "Character accuracy", s)
         for a, b in swaps:
             new = new.replace(a, b)
         if "Bounds" not in new:  # keep "Bounds - Base", the paper's name for the difference
             new = re.sub(r"\bBase\b", "No markers", new)
+        return cm_safe_text(new)
+
+    # Tick labels set with set_[xy]ticklabels live in a FixedFormatter (or, in recent matplotlib,
+    # a FuncFormatter over the label list) and are re-rendered from it at draw time, so rewriting
+    # the Text objects alone would not stick: rewrite the source.
+    for ax in fig.axes:
+        for axis in (ax.xaxis, ax.yaxis):
+            for fmt in (axis.get_major_formatter(), axis.get_minor_formatter()):
+                if isinstance(fmt, FixedFormatter):
+                    fmt.seq = [fix(str(s)) for s in fmt.seq]
+                elif isinstance(fmt, FuncFormatter) and not getattr(fmt.func, "_plain_labels", False):
+                    def wrapped(x, pos=None, _f=fmt.func):
+                        return fix(str(_f(x, pos)))
+                    wrapped._plain_labels = True
+                    fmt.func = wrapped
+    for t in fig.findobj(Text):
+        s = t.get_text()
+        new = fix(s)
         if new != s:
             t.set_text(new)
+
+
+def cm_safe_text(s):
+    """Rewrite the ASCII characters that Computer Modern Roman (cmr10) has no glyph for, outside
+    any $...$ math: in cmr10's slots, '_' prints as a raised dot accent, '|' as an em dash, and
+    '<' / '>' as inverted exclamation and question marks. Task names (cyclic_shift, ...) become
+    typewriter text with a real underscore, as \\task{} sets them in the paper; a bare '|' becomes
+    a math bar. Each line is handled on its own (matplotlib parses math per line), and a line
+    with an unbalanced '$' is left alone."""
+    import re
+    out = []
+    for line in s.split("\n"):
+        if line.replace(r"\$", "").count("$") % 2:
+            out.append(line)
+            continue
+        parts = re.split(r"(?<!\\)(\$[^$]*(?<!\\)\$)", line)
+        for i, p in enumerate(parts):
+            if p.startswith("$") or not p:
+                continue
+            p = re.sub(r"[A-Za-z0-9]+(?:_[A-Za-z0-9]*)+|_+[A-Za-z0-9]+(?:_[A-Za-z0-9]*)*",
+                       lambda m: r"$\mathtt{" + m.group(0).replace("_", r"\_") + "}$", p)
+            sub = re.split(r"(\$[^$]*\$)", p)   # leave the \mathtt pieces just made alone
+            for j, q in enumerate(sub):
+                if not q.startswith("$"):
+                    sub[j] = (q.replace("_", r"$\_$").replace("|", "$|$")
+                              .replace("<", "$<$").replace(">", "$>$"))
+            parts[i] = "".join(sub)
+        out.append("".join(parts))
+    return "\n".join(out)
 
 
 def savefig(fig, path):

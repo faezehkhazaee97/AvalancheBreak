@@ -24,7 +24,8 @@ from tasks.common.boundary import STANDARD_LENGTHS  # noqa: E402
 DIGIT_TASKS = ("cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits",
                "cyclic_shift_spaced", "random_permutation_spaced", "conditional_shift_spaced",
                "running_xor_neutral", "running_xor_across", "running_sum_local_neutral", "running_sum_local_across",
-               "copy_previous_worked", "running_xor_worked", "running_sum_local_worked", "sliding_window_max_worked")
+               "copy_previous_worked", "running_xor_worked", "running_sum_local_worked", "sliding_window_max_worked",
+               "copy_previous_neutral", "copy_previous_across", "sliding_window_max_neutral", "sliding_window_max_across")
 
 
 def main():

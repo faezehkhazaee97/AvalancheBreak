@@ -29,6 +29,25 @@ B = 10000
 RNG = np.random.default_rng(20261111)
 
 
+def prefix_positions(text, n):
+    """Marker offsets within the scored prefix: the first n answer characters and the bars among them
+    (bars written after the n-th character do not affect the clipped answer)."""
+    line = str(text).strip().split("\n")[0].replace(" ", "")
+    out, seen, kept = [], 0, 0
+    for c in line:
+        if c == "|":
+            if seen < n:
+                out.append(kept)
+            kept += 1
+        else:
+            if seen >= n:
+                break
+            seen += 1; kept += 1
+    while out and out[-1] == kept - 1 and seen >= n:   # a bar right after the n-th character
+        out.pop()
+    return out
+
+
 def vec(t, p):
     p = "" if pd.isna(p) else str(p)
     return np.array([i < len(p) and p[i] == c for i, c in enumerate(t)], dtype=float)
@@ -48,6 +67,9 @@ def analyze(label, d):
             want = cond in ("out_only", "in_out")
             ok = np.mean([(marker_positions(r.Raw_Model_Output) == expected_positions(len(r.Ground_Truth), r.k))
                           if want else (len(marker_positions(r.Raw_Model_Output)) == 0) for r in g.itertuples()])
+            okp = np.array([(prefix_positions(r.Raw_Model_Output, len(r.Ground_Truth)) == expected_positions(len(r.Ground_Truth), r.k))
+                            if want else (len(prefix_positions(r.Raw_Model_Output, len(r.Ground_Truth))) == 0) for r in g.itertuples()])
+            acc_ok = g.TAR.to_numpy()[okp].mean() if okp.any() else np.nan
             post = np.nan
             if hi == "yes":
                 pv = []
@@ -59,7 +81,7 @@ def analyze(label, d):
                 post = np.mean(pv)
             rows.append(dict(model=label, task=task, cond=cond, markers_in=hi, markers_out=ho, n=len(g),
                              acc=g.TAR.mean(), se=g.TAR.sem(), delta=g.TAR.mean() - base.TAR.mean(),
-                             format_ok=ok, post=post))
+                             format_ok=ok, format_prefix=okp.mean(), acc_compliant=acc_ok, post=post))
         piv = {c: x[x.Condition == c].set_index(["N", "k", "t"]).TAR for c in ("in_out", "in_only", "out_only")}
         keys = piv["in_out"].index.intersection(piv["in_only"].index).intersection(piv["out_only"].index)
         M = np.column_stack([piv[c].loc[keys].to_numpy() for c in ("in_out", "in_only", "out_only")])
@@ -88,23 +110,24 @@ def main():
     names = {"base": "Neither side", "in_only": "Input only", "out_only": "Output only", "in_out": "Both sides"}
 
     def table(models, path):
-        lines = ["\\begin{tabular}{ll cc cc cc}", "\\toprule",
-                 "& & \\multicolumn{2}{c}{Markers} & & & & \\\\", "\\cmidrule(lr){3-4}",
-                 "Task & Condition & Input & Output & Accuracy & Change & Format & Post-marker \\\\", "\\midrule"]
+        lines = ["\\begin{tabular}{ll cc cc ccc c}", "\\toprule",
+                 "& & \\multicolumn{2}{c}{Markers} & & & \\multicolumn{3}{c}{Format realized} & \\\\", "\\cmidrule(lr){3-4}\\cmidrule(lr){7-9}",
+                 "Task & Condition & Input & Output & Accuracy & Change & Full output & First $N$ & Acc.\\ if so & Post-marker \\\\", "\\midrule"]
         blocks = [(m, t) for m in models for t, _ in TASKS if (m, t) in inter]
         for bi, (label, task) in enumerate(blocks):
             lab = dict(TASKS)[task]
             if len(models) > 1 and (bi == 0 or blocks[bi - 1][0] != label):
-                lines.append(f"\\multicolumn{{8}}{{l}}{{\\emph{{{label}}}}} \\\\")
+                lines.append(f"\\multicolumn{{10}}{{l}}{{\\emph{{{label}}}}} \\\\")
             for i, (cond, hi_, ho_) in enumerate(CONDS):
                 r = o[(o.model == label) & (o.task == task) & (o.cond == cond)].iloc[0]
                 ch = "---" if cond == "base" else f"${r.delta:+.2f}$"
                 post = "---" if np.isnan(r.post) else f"{r.post:.2f}"
                 lines.append(" & ".join(["\\task{" + lab + "}" if i == 0 else "", names[cond], hi_, ho_,
                                          f"{r.acc:.2f} $\\pm$ {1.96 * r.se:.2f}", ch,
-                                         f"{r.format_ok:.0%}".replace("%", "\\%"), post]) + " \\\\")
+                                         f"{r.format_ok:.0%}".replace("%", "\\%"), f"{r.format_prefix:.0%}".replace("%", "\\%"),
+                                         "---" if np.isnan(r.acc_compliant) else f"{r.acc_compliant:.2f}", post]) + " \\\\")
             p, lo, hi = inter[(label, task)]
-            lines.append(f"\\multicolumn{{8}}{{l}}{{\\quad Interaction ${p:+.2f}$, 95\\% interval $[{lo:+.2f}, {hi:+.2f}]$}} \\\\")
+            lines.append(f"\\multicolumn{{10}}{{l}}{{\\quad Interaction ${p:+.2f}$, 95\\% interval $[{lo:+.2f}, {hi:+.2f}]$}} \\\\")
             if bi != len(blocks) - 1:
                 lines.append("\\midrule")
         lines += ["\\bottomrule", "\\end{tabular}"]

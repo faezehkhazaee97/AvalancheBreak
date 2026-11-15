@@ -108,6 +108,8 @@ def main():
     for task in [t for t, _ in NAT] + ["synthetic_mean"]:
         first = True
         for label, _ in ALL_MODELS:
+            if label == "Qwen2.5 7B":
+                continue    # at chance on both natural tasks (0.30 and 0.22 against 0.25 and 0.10); disclosed in the text
             x = out[(out.task == task) & (out.model == label)]
             if x.empty:
                 continue

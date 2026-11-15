@@ -36,7 +36,8 @@ from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH, set_powe
 
 set_rc()
 
-SEQ_BLUE_ORDINAL = ["#b9d7ee", "#6faad8", "#0072B2", "#0072B2", "#003f6b"]
+# five distinct steps (k = 4 and k = 8 previously shared one color)
+SEQ_BLUE_ORDINAL = ["#b9d7ee", "#74afdc", "#2f88c8", "#005a96", "#002a4a"]
 
 
 def plot_by_density(ax, df, chance, title):
@@ -59,12 +60,12 @@ dfs = [pd.read_csv(REPO_ROOT / "results_clean" / "gemini_pilot" / f"gemini-3.5-f
 full = pd.concat(dfs, ignore_index=True)
 full = full[full.Interval != 3]
 
-fig, axes = plt.subplots(1, 2, figsize=(MULTI_COL_WIDTH * 0.7, 2.8))
+# clrs_kadane panel removed: it is at chance (the text keeps a one-sentence disclosure).
+fig, ax = plt.subplots(1, 1, figsize=(MULTI_COL_WIDTH * 0.4, 2.8))
 
-plot_by_density(axes[0], full[full.Task == "clrs_minimum"], chance=None, title="clrs_minimum")
-plot_by_density(axes[1], full[full.Task == "clrs_kadane"], chance=None, title="clrs_kadane")
+plot_by_density(ax, full[full.Task == "clrs_minimum"], chance=None, title="clrs_minimum")
 
-axes[0].legend(loc="lower left", frameon=False, fontsize=5.5, ncol=1)
+ax.legend(loc="lower left", frameon=False, fontsize=5.5, ncol=1)
 fig.suptitle("CLRS-Text tasks on Gemini (gemini-3.5-flash), 3 trials/condition, by boundary density k", fontsize=9, y=1.05)
 fig.tight_layout()
 

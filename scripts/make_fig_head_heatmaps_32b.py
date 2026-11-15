@@ -21,6 +21,7 @@ from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH
 
 set_rc()
 
+MARKER_COLOR = "#D55E00"  # Okabe-Ito vermilion, as in the mechanism figure
 RESULTS_DIR = REPO_ROOT / "results" / "Qwen2.5-32B-Instruct"
 NPZ = RESULTS_DIR / "attention_run_0_32b_realletters.npz"
 print(f"Provenance: {NPZ.relative_to(REPO_ROOT)}")
@@ -52,18 +53,25 @@ for row, (layer, head) in enumerate(TOP_HEADS):
         ax = axes[row, col]
         m = attn[layer, head]
         ax.imshow(m, cmap="viridis", vmin=0, vmax=np.percentile(m, 99), aspect="auto")
+        # Horizontal tick labels (tokens are at most four characters), the marker shown as a real
+        # bar in orange like its grid lines, so each label stands apart from its neighbours.
         ax.set_xticks(range(len(tokens)))
-        ax.set_xticklabels(tokens, rotation=90, fontsize=5)
+        ax.set_xticklabels(tokens, rotation=0, fontsize=6)
         ax.set_yticks(range(len(tokens)))
-        ax.set_yticklabels(tokens, fontsize=5)
+        ax.set_yticklabels(tokens, fontsize=6)
+        for axis in (ax.xaxis, ax.yaxis):
+            for tick, tok in zip(axis.get_major_ticks(len(tokens)), tokens):
+                if "|" in tok:
+                    tick.label1.set_color(MARKER_COLOR)
+        ax.grid(False)
         for i, t in enumerate(tokens):
             if "|" in t:
-                ax.axvline(i, color="#eb6834", alpha=0.4, linewidth=0.8)
-                ax.axhline(i, color="#eb6834", alpha=0.4, linewidth=0.8)
+                ax.axvline(i, color=MARKER_COLOR, alpha=0.4, linewidth=0.8)
+                ax.axhline(i, color=MARKER_COLOR, alpha=0.4, linewidth=0.8)
         ax.set_title(f"L{layer}/H{head} -- {label}", fontsize=7)
         if col == 0:
-            ax.set_ylabel("query", fontsize=6)
-        ax.set_xlabel("key", fontsize=6)
+            ax.set_ylabel("Query token (attending from)", fontsize=6.5)
+        ax.set_xlabel("Key token (attended to)", fontsize=6.5)
 
 fig.suptitle("Persistent 3-head boundary-attention core, Qwen2.5-32B-Instruct "
              "(Base vs. Cellular_Bounds; orange lines = boundary token positions)",

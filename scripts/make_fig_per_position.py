@@ -69,8 +69,11 @@ def make_fig1():
         for i, r in enumerate(block_means(block)):
             y = n - 1 - i
             if r is None:
-                ax.text(0, y, "not run", ha="center", va="center", fontsize=6, color=BASE)
+                # right of the zero line, on a white box, so the label never sits on the line
+                ax.text(0.04, y, "not run", ha="left", va="center", fontsize=6, color=BASE, zorder=4,
+                        bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none"))
                 continue
+            print(f"{block:32s} {MODELS[i]:18s} within {r['within'] - r['base_within']:+.3f}  post {r['post'] - r['base_post']:+.3f}")
             ax.errorbar(r["within"] - r["base_within"], y + 0.17, xerr=r["within_ci"], fmt="o", markersize=3.4, color=WITHIN,
                         ecolor=WITHIN, elinewidth=0.8, capsize=1.5, zorder=3)
             ax.errorbar(r["post"] - r["base_post"], y - 0.17, xerr=r["post_ci"], fmt="D", markersize=3.2, color=POST,
@@ -78,7 +81,12 @@ def make_fig1():
         ax.set_title(title.split(" (")[0], fontsize=7.5)
         ax.set_xlabel("Change in accuracy with markers")
         ax.set_xlim(-0.55, 0.55)
-        ax.grid(True, axis="x", color="#e6e6e6", linewidth=0.5); ax.grid(False, axis="y")
+        # labelled ticks every 0.2, light gridlines every 0.1, so points near zero (e.g. Mistral's
+        # +0.03 within-segment change on spaced letters) read unambiguously against Table tab:perpos
+        ax.set_xticks(np.arange(-0.4, 0.41, 0.2))
+        ax.set_xticks(np.arange(-0.5, 0.51, 0.1), minor=True)
+        ax.tick_params(axis="x", which="minor", length=1.5, width=0.4)
+        ax.grid(True, axis="x", which="both", color="#e6e6e6", linewidth=0.5); ax.grid(False, axis="y")
         for yy in range(n):
             ax.axhline(yy - 0.5, color="#f0f0f0", linewidth=0.5, zorder=0)
     axes[0].set_yticks(range(n)); axes[0].set_yticklabels([SHORT[m].replace("\n", " ") for m in MODELS][::-1], fontsize=6.8)

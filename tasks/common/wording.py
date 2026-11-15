@@ -66,14 +66,25 @@ VARIANTS = {
 }
 
 
-def make_wording(engine, variant):
-    new = VARIANTS[variant]
+# sliding_window_max states its marker constraint differently and reads the two previous inputs
+WINDOW_ORIGINAL = ("Constraint: The input contains vertical bars (|). These are structural boundaries.\n"
+                   "DO NOT include them in the window or count them as digits. Copy them exactly to the output.")
+WINDOW_ACROSS = ("Constraint: The input contains vertical bars (|). They are only visual separators: apply the rule "
+                 "to the digits as if the bars were not there (the window of the digit right after a bar includes "
+                 "the two digits right before the bar, and that of the next digit includes the digit right before "
+                 "the bar), and copy each bar to the output at the same position.")
 
+
+def make_wording(engine, variant):
     def build_prompt(N, k, rng, axis_val=None):
         if engine.AXIS_NAME:
             inp, out, prompt = engine.build_prompt(N, k, rng, axis_val=axis_val)
         else:
             inp, out, prompt = engine.build_prompt(N, k, rng)
-        assert prompt.count(ORIGINAL) == 1
-        return inp, out, prompt.replace(ORIGINAL, new)
+        if ORIGINAL in prompt:
+            old, new = ORIGINAL, VARIANTS[variant]
+        else:
+            old, new = WINDOW_ORIGINAL, (WINDOW_ACROSS if variant == "across" else VARIANTS[variant])
+        assert prompt.count(old) == 1
+        return inp, out, prompt.replace(old, new)
     return build_prompt

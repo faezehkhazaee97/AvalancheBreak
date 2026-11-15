@@ -23,7 +23,8 @@ SRC = REPO_ROOT / "results" / "Qwen2.5-32B-Instruct" / "divide_conquer_grid.csv"
 print(f"Provenance -- canonical file used for Figure 7: {SRC.relative_to(REPO_ROOT)}")
 df = pd.read_csv(SRC)
 
-COLORS = {"Base": "black", "Cellular_Bounds": "#d95f02", "Divide_Conquer": "#1b9e77"}
+COLORS = {"Base": "black", "Cellular_Bounds": "#D55E00", "Divide_Conquer": "#009E73"}  # Okabe-Ito
+LABELS = {"Base": "Base", "Cellular_Bounds": "Cellular_Bounds", "Divide_Conquer": "Divide-and-conquer"}
 STYLES = {"Base": "--", "Cellular_Bounds": "-", "Divide_Conquer": "-"}
 MARKERS = {"Base": "o", "Cellular_Bounds": "s", "Divide_Conquer": "^"}
 
@@ -35,12 +36,12 @@ for cond in ["Base", "Cellular_Bounds", "Divide_Conquer"]:
     wt = sub.groupby("Seq_Length")["Wall_Time_Sec"].agg(["mean", "sem"])
 
     ax1.plot(tar.index, tar["mean"], color=COLORS[cond], linestyle=STYLES[cond],
-              marker=MARKERS[cond], markersize=4, linewidth=1.5, label=cond.replace("_", " "))
+              marker=MARKERS[cond], markersize=4, linewidth=1.5, label=LABELS[cond])
     ax1.fill_between(tar.index, tar["mean"] - tar["sem"], tar["mean"] + tar["sem"],
                        color=COLORS[cond], alpha=0.15)
 
     ax2.plot(wt.index, wt["mean"], color=COLORS[cond], linestyle=STYLES[cond],
-              marker=MARKERS[cond], markersize=4, linewidth=1.5, label=cond.replace("_", " "))
+              marker=MARKERS[cond], markersize=4, linewidth=1.5, label=LABELS[cond])
     ax2.fill_between(wt.index, wt["mean"] - wt["sem"], wt["mean"] + wt["sem"],
                        color=COLORS[cond], alpha=0.15)
 
@@ -55,6 +56,9 @@ ax2.set_xlabel("Sequence length N")
 ax2.set_ylabel("Wall-clock time (s)")
 set_power_of_2_xticks(ax2, df.Seq_Length.unique(), fontsize=6.5)
 ax2.set_yscale("log")
+ax2.set_yticks([1, 2, 5, 10, 20, 50])
+ax2.set_yticklabels(["1", "2", "5", "10", "20", "50"])
+ax2.minorticks_off()
 ax2.legend(loc="upper left", frameon=False, fontsize=6.5)
 ax2.set_title("Cost")
 

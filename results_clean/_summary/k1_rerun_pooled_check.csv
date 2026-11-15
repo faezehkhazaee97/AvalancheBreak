@@ -1,0 +1,9 @@
+family,task,model,delta,delta_without_diverged,delta_without_regenerated,n_bounds,n_diverged_dropped,n_regenerated_dropped,change_div,change_regen
+letters,conditional_shift,Mistral 7B,0.0613,0.0605,0.06,2280,84,120,-0.0008,-0.0013
+letters,conditional_shift,Phi-3.5 mini,0.0459,0.0456,0.0454,1140,49,60,-0.0003,-0.0005
+letters,conditional_shift,Qwen2.5 7B,0.0512,0.0521,0.051,2280,103,120,0.0009,-0.0002
+dependency,copy_previous,Qwen2.5 7B,-0.0898,-0.0895,-0.0882,760,13,40,0.0003,0.0016
+letters,random_permutation,Mistral 7B,0.0683,0.0688,0.0679,2280,85,120,0.0004,-0.0004
+letters,random_permutation,Phi-3.5 mini,0.0439,0.0436,0.0444,1140,36,60,-0.0002,0.0006
+letters,random_permutation,Qwen2.5 7B,0.1467,0.1467,0.1447,2280,94,120,-0.0001,-0.002
+dependency,running_xor,Phi-3.5 mini,0.0261,0.0264,0.0258,380,16,20,0.0003,-0.0003

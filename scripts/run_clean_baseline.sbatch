@@ -11,7 +11,7 @@
 # at the four stronger models. Submit as an array over the model list:
 #   sbatch --array=0-3%2 --job-name=cleanbase scripts/run_clean_baseline.sbatch
 set -euo pipefail
-MODELS=(Qwen/Qwen2.5-14B-Instruct Qwen/Qwen2.5-32B-Instruct Qwen/Qwen3.8-27B google/gemma-4-31B-it)
+MODELS=(Qwen/Qwen2.5-14B-Instruct Qwen/Qwen2.5-32B-Instruct Qwen/Qwen3.8-27B google/gemma-4-31B-it Qwen/Qwen2.5-7B-Instruct)
 M=${MODELS[$SLURM_ARRAY_TASK_ID]}
 ENV=/group/gquongrp/workspaces/baran/AvalancheBreak/.conda/envs/qwen-focus
 export HF_HOME=/group/gquongrp/workspaces/baran/AvalancheBreak/hf_cache
