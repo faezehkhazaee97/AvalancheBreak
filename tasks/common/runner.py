@@ -90,7 +90,12 @@ def load_model(model_id):
         kw["trust_remote_code"] = True
     else:
         kw["attn_implementation"] = "eager"
-    return cls.from_pretrained(model_id, **kw)
+    model = cls.from_pretrained(model_id, **kw)
+    if remote:
+        # transformers 5 leaves EvaByte's rotary tables uninitialized (tasks/common/evabyte_generate.py)
+        from .evabyte_generate import rebuild_rotary
+        rebuild_rotary(model)
+    return model
 
 
 def _build_grid(engine, trials_per_cell, trial_start=0):

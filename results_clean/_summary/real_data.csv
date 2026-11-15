@@ -1,0 +1,39 @@
+task,model,n,base,delta,post,post_gain,within_gain,source,name,kind,format
+dna_complement,Qwen2.5 7B,400,0.4596,0.145,0.6885,0.2777,0.0894,DNA,Complement,position-local,contiguous
+dna_complement,Qwen2.5 7B,400,0.6846,0.0951,0.7502,0.089,0.1045,DNA,Complement,position-local,spaced
+dna_complement,Qwen2.5 32B,400,0.6203,0.2112,0.8289,0.2699,0.1672,DNA,Complement,position-local,contiguous
+dna_complement,Qwen2.5 32B,400,0.8312,0.1331,0.9317,0.124,0.1369,DNA,Complement,position-local,spaced
+dna_complement,Gemma 4 31B,400,0.8195,0.1232,0.9237,0.1211,0.1069,DNA,Complement,position-local,contiguous
+dna_complement,Gemma 4 31B,400,0.9904,0.0099,1.0,0.0082,0.0099,DNA,Complement,position-local,spaced
+dna_copy_previous,Qwen2.5 7B,400,0.6688,-0.1045,0.5157,-0.1028,-0.0718,DNA,Copy previous base,one-step,contiguous
+dna_copy_previous,Qwen2.5 7B,400,0.7742,-0.1934,0.502,-0.2533,-0.1834,DNA,Copy previous base,one-step,spaced
+dna_copy_previous,Qwen2.5 32B,400,0.9471,-0.345,0.5364,-0.4,-0.3546,DNA,Copy previous base,one-step,contiguous
+dna_copy_previous,Qwen2.5 32B,400,0.9349,-0.368,0.4687,-0.4467,-0.3158,DNA,Copy previous base,one-step,spaced
+dna_copy_previous,Gemma 4 31B,400,0.9771,-0.2571,0.1699,-0.8121,-0.2149,DNA,Copy previous base,one-step,contiguous
+dna_copy_previous,Gemma 4 31B,400,0.9977,-0.2485,0.052,-0.9472,-0.1242,DNA,Copy previous base,one-step,spaced
+dna_same_class,Qwen2.5 7B,400,0.3956,-0.0004,0.3906,-0.0691,-0.0206,DNA,Same class as previous base,one-step,contiguous
+dna_same_class,Qwen2.5 7B,400,0.5125,-0.0607,0.4659,-0.0958,-0.0762,DNA,Same class as previous base,one-step,spaced
+dna_same_class,Qwen2.5 32B,400,0.5214,0.0404,0.4524,-0.0402,0.0274,DNA,Same class as previous base,one-step,contiguous
+dna_same_class,Qwen2.5 32B,400,0.6344,0.0073,0.4602,-0.1291,0.0297,DNA,Same class as previous base,one-step,spaced
+dna_same_class,Gemma 4 31B,400,0.4901,0.1182,0.5236,0.0429,0.1115,DNA,Same class as previous base,one-step,contiguous
+dna_same_class,Gemma 4 31B,400,0.6701,0.0092,0.456,-0.2208,0.0608,DNA,Same class as previous base,one-step,spaced
+dna_gc_count,Qwen2.5 7B,400,0.2026,-0.0452,0.1179,-0.055,-0.0654,DNA,Running GC count mod 4,prefix state,contiguous
+dna_gc_count,Qwen2.5 7B,400,0.1156,-0.0045,0.1097,0.0173,-0.0047,DNA,Running GC count mod 4,prefix state,spaced
+dna_gc_count,Qwen2.5 32B,400,0.2596,0.0418,0.2238,-0.002,-0.0071,DNA,Running GC count mod 4,prefix state,contiguous
+dna_gc_count,Qwen2.5 32B,400,0.3138,0.0568,0.3003,0.0688,0.0219,DNA,Running GC count mod 4,prefix state,spaced
+dna_gc_count,Gemma 4 31B,400,0.3125,0.1585,0.286,0.0329,0.0338,DNA,Running GC count mod 4,prefix state,contiguous
+text_shift,Qwen2.5 7B,400,0.1742,0.1458,0.3553,0.2067,0.1409,Text,Shift letters by one,position-local,contiguous
+text_shift,Qwen2.5 7B,400,0.2779,0.1814,0.4835,0.3094,0.1449,Text,Shift letters by one,position-local,spaced
+text_shift,Qwen2.5 32B,400,0.3133,0.1792,0.4941,0.235,0.1538,Text,Shift letters by one,position-local,contiguous
+text_shift,Gemma 4 31B,400,0.481,0.2599,0.707,0.2872,0.1956,Text,Shift letters by one,position-local,contiguous
+text_copy_previous,Qwen2.5 7B,400,0.3122,-0.06,0.1524,-0.1283,-0.064,Text,Copy previous letter,one-step,contiguous
+text_copy_previous,Qwen2.5 7B,400,0.4372,-0.1314,0.251,-0.1292,-0.0781,Text,Copy previous letter,one-step,spaced
+text_copy_previous,Qwen2.5 32B,400,0.9062,-0.334,0.5903,-0.3088,-0.2862,Text,Copy previous letter,one-step,contiguous
+text_copy_previous,Qwen2.5 32B,400,0.8224,-0.3922,0.4368,-0.3594,-0.3391,Text,Copy previous letter,one-step,spaced
+text_copy_previous,Gemma 4 31B,400,0.9036,-0.2425,0.386,-0.5091,-0.2922,Text,Copy previous letter,one-step,contiguous
+text_ascending,Qwen2.5 7B,400,0.275,0.0129,0.2392,-0.0554,-0.0219,Text,Later than previous letter,one-step,contiguous
+text_ascending,Qwen2.5 32B,400,0.5198,0.0229,0.4964,0.0278,-0.0018,Text,Later than previous letter,one-step,contiguous
+text_ascending,Gemma 4 31B,400,0.5023,0.0554,0.4721,0.0422,0.0056,Text,Later than previous letter,one-step,contiguous
+text_vowel_count,Qwen2.5 7B,400,0.0354,0.0652,0.0653,0.0418,0.0634,Text,Running vowel count mod 4,prefix state,contiguous
+text_vowel_count,Qwen2.5 32B,400,0.2865,-0.0196,0.2103,-0.0493,0.0044,Text,Running vowel count mod 4,prefix state,contiguous
+text_vowel_count,Gemma 4 31B,400,0.3245,0.0916,0.3162,0.0174,-0.0026,Text,Running vowel count mod 4,prefix state,contiguous
