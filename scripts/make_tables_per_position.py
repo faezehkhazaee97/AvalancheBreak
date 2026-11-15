@@ -162,9 +162,10 @@ def distance():
 
 
 def share_cell(idx, ali):
-    """Alignment-sensitive share of a within-segment gain, shown only where the index-scored gain is positive
-    as printed (at least +0.01 after rounding; a gain that prints as 0.00 has no share to split)."""
-    if not round(idx, 2) > 0:
+    """Alignment-sensitive share of a within-segment gain, shown only where the index-scored gain is
+    at least +0.02 and the aligned gain is not negative. Otherwise the ratio leaves [0, 1] and
+    carries no meaning: the 7B-class cells produced shares of 152% and 270% this way."""
+    if round(idx, 2) < 0.02 or ali < 0:
         return "--"
     s = (idx - ali) / idx
     return f"${'-' if s < 0 else ''}{abs(100 * s):.0f}\\%$"
@@ -195,7 +196,7 @@ def aligned():
             lines.append(f"{name} & {m} & {signed(r[('post_gain', 'index')])} & {signed(r[('post_gain', 'aligned')])} & "
                          f"{signed(wi)} & {signed(wa)} & {share_cell(wi, wa)} \\\\")
             if m in STRONG:
-                shares.append(dict(task=task, model=m, index=wi, aligned=wa, share=(wi - wa) / wi if round(wi, 2) > 0 else np.nan))
+                shares.append(dict(task=task, model=m, index=wi, aligned=wa, share=(wi - wa) / wi if round(wi, 2) >= 0.02 else np.nan))
             first = False
         lines.append(r"\midrule")
     lines[-1] = r"\bottomrule"

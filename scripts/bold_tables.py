@@ -2,7 +2,9 @@
 """Bold the cells that carry each table's claim (run after the analysis scripts and tidy_tables.py,
 before compiling). One rule per table, stated in its caption in paper_tmlr/main.tex:
   wording.tex                        post-marker changes at or above zero (the blind spot removed)
-  marker_sides_forced.tex            interactions whose 95% interval excludes zero
+  marker_sides_forced.tex            interactions whose 95% interval excludes zero, and
+  marker_sides_forced_full.tex       (post - within) - base values whose 95% interval excludes zero
+  marker_sides_forced_7b.tex         (post - within) - base values whose 95% interval excludes zero
   control_cells.tex                  z values with |z| >= 3.54 (Bonferroni threshold)
 Further rules (real_data, ablation_32b, perpos, aligned, blind_spot_by_k, blind_spot_window, patching,
 attention_crossing, lora) are listed in RULES and stated in each caption. Idempotent: cells already in bold
@@ -53,12 +55,25 @@ def sides(text):
     return re.sub(r"Interaction \$([+-]\d+\.\d+)\$, 95\\% interval \$\[([+-]?\d+\.\d+), ([+-]?\d+\.\d+)\]\$", rep, text)
 
 
+DID = re.compile(r"(\$[+-]\d+\.\d+\$|(?<![\w.])0\.\d+(?![\w.])) \$\[([+-]?\d+\.\d+), ([+-]?\d+\.\d+)\]\$")
+
+
+def sides_did(text):
+    """Post-marker minus within-segment, relative to the no-marker cell: bold the point estimate
+    where the 95% interval excludes zero. The interaction line is left to sides(): its point and
+    interval are separated by ', 95\\% interval ', so this pattern cannot match it."""
+    def rep(m):
+        point, lo, hi = m.group(1), float(m.group(2)), float(m.group(3))
+        return m.group(0).replace(point, bold_math(point.strip("$")), 1) if lo > 0 or hi < 0 else m.group(0)
+    return DID.sub(rep, text)
+
+
 def control(text):
     out = []
     for line in rows(text):
         if "&" in line and "\\\\" in line and "Model &" not in line:
             cells = line.rstrip(" \\").split("&")
-            for j in range(len(cells) - 3, len(cells)):            # the three z columns
+            for j in (7, 8, 9):                                    # the three z columns
                 c = cells[j].strip()
                 if re.fullmatch(r"-?\d+\.\d", c) and abs(float(c)) >= 3.54:
                     cells[j] = " \\textbf{" + c + "} "
@@ -99,7 +114,10 @@ def bold_cells(text, cols, pred, row_filter=None):
 
 
 RULES = {"wording.tex": wording,
-         "marker_sides_forced.tex": sides, "control_cells.tex": control,
+         "marker_sides_forced.tex": lambda t: sides_did(sides(t)),
+         "marker_sides_forced_full.tex": lambda t: sides_did(sides(t)),
+         "marker_sides_forced_7b.tex": sides_did,
+         "control_cells.tex": control,
          "real_data.tex": lambda t: bold_cells(t, [7, 8], lambda v: abs(v) >= 0.25),
          "real_data_full.tex": lambda t: bold_cells(t, [7, 8], lambda v: abs(v) >= 0.25),
          "ablation_32b.tex": lambda t: bold_cells(t, [7], lambda v: v >= 10),

@@ -18,7 +18,8 @@ sys.path.insert(0, str(REPO / "scripts"))
 from analyze_aligned_scoring import summarize, index_vector  # noqa: E402
 
 TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output")}
-MODELS = [("Qwen2.5-7B (base)", "Qwen2.5-7B"), ("Qwen2.5-7B-Instruct", "Qwen2.5-7B-Instruct")]
+MODELS = [("Qwen2.5-7B (base)", "Qwen2.5-7B"), ("Qwen2.5-7B-Instruct", "Qwen2.5-7B-Instruct"),
+          ("Qwen2.5-32B (base)", "Qwen2.5-32B"), ("Qwen2.5-32B-Instruct", "Qwen2.5-32B-Instruct")]
 FAM = {"Digits": ["cyclic_shift_digits", "random_permutation_digits", "conditional_shift_digits"],
        "Dependency": ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]}
 
@@ -53,10 +54,9 @@ def main():
              "Model & Format & No-marker acc. & $\\Delta$ & Post-marker & Within-segment \\\\", "\\midrule"]
     for label, _ in MODELS:
         first = True
-        for fam in FAM:
-            if (label, fam) not in s.index:
+        for (lab, fam), r in s.iterrows():
+            if lab != label:
                 continue
-            r = s.loc[(label, fam)]
             lines.append(f"{label if first else ''} & {fam} & {r.base:.2f} & ${r.delta:+.2f}$ & ${r.post_gain:+.2f}$ & "
                          f"${r.within_gain:+.2f}$ \\\\")
             first = False

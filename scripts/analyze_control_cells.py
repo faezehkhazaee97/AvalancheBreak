@@ -53,7 +53,7 @@ def strat(d):
     c64, b64 = c[c.N == 64], b[b.N == 64]
     d64 = c64.TAR.mean() - b64.TAR.mean() if len(c64) and len(b64) else np.nan
     return dict(base=base_m, bounds=bounds_m, delta=delta, z=delta / se, z_strat=delta / se_s,
-                share=delta / (1 - base_m) if base_m < 1 else np.nan, delta64=d64)
+                share=delta / (1 - base_m) if base_m < 0.98 else np.nan, delta64=d64)
 
 
 def main():
@@ -89,13 +89,19 @@ def main():
     names = {"cyclic_shift": "\\task{cyclic\\_shift}", "random_permutation": "\\task{random\\_permutation}",
              "conditional_shift": "\\task{conditional\\_shift}"}
     f = lambda v: "--" if pd.isna(v) else f"{v:.1f}"
-    lines = ["\\begin{tabular}{lll ccc c ccc}", "\\toprule",
-             "Model & Format & Task & No markers & Markers & $\\Delta$ & Share removed & $z$ & $z$ (stratified) & $z$ (cell bootstrap) \\\\", "\\midrule"]
+    lines = ["\\begin{tabular}{lll ccc c ccc c}", "\\toprule",
+             "Model & Format & Task & No markers & Markers & $\\Delta$ & Share removed & $z$ & $z$ (stratified) & $z$ (cell bootstrap) & $\\Delta$ at $N = 64$ \\\\", "\\midrule"]
+    d64 = lambda v: "--" if pd.isna(v) else f"${v:+.2f}$".replace("$-0.00$", "$0.00$").replace("$+0.00$", "$0.00$")
+
+    def pct(v):
+        """Share of remaining errors removed; blank at ceiling, where the denominator vanishes."""
+        return "--" if not np.isfinite(v) else f"{100 * v:.0f}\\%"
+
     for model in t.model.unique():
         g = t[t.model == model]; first = True
         for r in g.itertuples():
             lines.append(f"{model if first else ''} & {r.format} & {names[r.task]} & {r.base:.2f} & {r.bounds:.2f} & ${r.delta:+.2f}$ & "
-                         f"{100 * r.share:.0f}\\% & {r.z:.1f} & {r.z_strat:.1f} & {f(r.z_cluster)} \\\\".replace("$-0.00$", "$0.00$").replace("$+0.00$", "$0.00$"))
+                         f"{pct(r.share)} & {r.z:.1f} & {r.z_strat:.1f} & {f(r.z_cluster)} & {d64(r.delta64)} \\\\".replace("$-0.00$", "$0.00$").replace("$+0.00$", "$0.00$"))
             first = False
         lines.append("\\addlinespace")
     lines[-1:] = ["\\bottomrule", "\\end{tabular}"]

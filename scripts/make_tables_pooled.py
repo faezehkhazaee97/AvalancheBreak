@@ -23,8 +23,8 @@ def tt(t):
 
 def dz(r, signed_z=False):
     d = r.delta
-    prec = 3 if abs(d) >= 0.0005 or d == 0 else 4   # a delta that rounds to zero at 3 decimals shows 4
-    s = f"{'+' if d > 0 else ('$-$' if d < 0 else '')}{abs(d):.{prec}f}"
+    # uniform 3 decimals; a delta that rounds to zero prints unsigned rather than at 4 decimals
+    s = "0.000" if abs(d) < 0.0005 else f"{'+' if d > 0 else '$-$'}{abs(d):.3f}"
     return f"{s} ({abs(r.z):.1f})"
 
 

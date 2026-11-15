@@ -68,11 +68,24 @@ def max_new_tokens(engine, N, k):
     int(1.5N)+20 once N > 42: every k=1 output at N >= 64 used to be cut off
     (58 of 64 characters at N = 64). k = 1 therefore gets 2N+20. Decoding is
     greedy, so a larger budget only extends outputs that were cut off; cells
-    that never hit the old budget are unchanged."""
+    that never hit the old budget are unchanged.
+
+    AB_GEN_BUDGET (opt-in, default unset) overrides the boundary-task budget
+    with int(<mult> * N) + 20 at every k, for budget-sensitivity reruns (e.g.
+    AB_GEN_BUDGET=2n for 2N+20 everywhere, the spaced-format check). It is
+    deliberately an environment variable rather than a changed default: the
+    stored grid under results_clean/<task>/grid/ was produced with the default
+    and must stay reproducible from it. Reruns write elsewhere (see
+    tasks/rerun_budget2n.py)."""
     if hasattr(engine, "estimate_max_new_tokens"):
         return engine.estimate_max_new_tokens(N)
     if not engine.OUTPUT_HAS_BOUNDARIES:
         return N + 20
+    override = os.environ.get("AB_GEN_BUDGET", "").strip().lower()
+    if override:
+        if not override.endswith("n"):
+            raise ValueError(f"AB_GEN_BUDGET must look like '2n' or '2.5n', got {override!r}")
+        return int(float(override[:-1]) * N) + 20
     return 2 * N + 20 if k == 1 else int(N * 1.5) + 20
 
 

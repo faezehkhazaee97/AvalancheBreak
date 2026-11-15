@@ -1,0 +1,49 @@
+source,task,name,kind,model,format,n,index_base,index_post,index_within,index_post_gain,index_within_gain,aligned_base,aligned_post,aligned_within,aligned_post_gain,aligned_within_gain,post_share,within_share
+DNA,dna_complement,Complement,position-local,Qwen2.5 7B,contiguous,400,0.4596,0.6885,0.5526,0.2777,0.0894,0.6844,0.7897,0.704,0.1106,0.0233,0.6017,0.7395
+DNA,dna_complement,Complement,position-local,Qwen2.5 7B,spaced,400,0.6846,0.7502,0.7672,0.089,0.1045,0.8068,0.8469,0.8472,0.0499,0.0559,0.4388,0.4647
+DNA,dna_complement,Complement,position-local,Qwen2.5 32B,contiguous,400,0.6203,0.8289,0.7831,0.2699,0.1672,0.8747,0.9614,0.9123,0.089,0.0426,0.6704,0.7455
+DNA,dna_complement,Complement,position-local,Qwen2.5 32B,spaced,400,0.8312,0.9317,0.9535,0.124,0.1369,0.9495,0.998,0.9969,0.051,0.0516,0.5889,0.6231
+DNA,dna_complement,Complement,position-local,Gemma 4 31B,contiguous,400,0.8195,0.9237,0.9206,0.1211,0.1069,0.9766,0.9972,0.9887,0.0199,0.0142,0.8356,0.867
+DNA,dna_complement,Complement,position-local,Gemma 4 31B,spaced,400,0.9904,1.0,0.9996,0.0082,0.0099,0.9995,1.0,1.0,0.0,0.0008,,
+DNA,dna_copy_previous,Copy previous base,one-step,Qwen2.5 7B,contiguous,400,0.6688,0.5157,0.5981,-0.1028,-0.0718,0.9125,0.742,0.9101,-0.1397,-0.0089,-0.358,0.8758
+DNA,dna_copy_previous,Copy previous base,one-step,Qwen2.5 7B,spaced,400,0.7742,0.502,0.5944,-0.2533,-0.1834,0.975,0.889,0.9356,-0.0781,-0.0427,0.6917,0.7673
+DNA,dna_copy_previous,Copy previous base,one-step,Qwen2.5 32B,contiguous,400,0.9471,0.5364,0.594,-0.4,-0.3546,0.9938,0.8084,0.8898,-0.186,-0.1059,0.5351,0.7013
+DNA,dna_copy_previous,Copy previous base,one-step,Qwen2.5 32B,spaced,400,0.9349,0.4687,0.6157,-0.4467,-0.3158,0.9872,0.6965,0.8974,-0.278,-0.0911,0.3776,0.7114
+DNA,dna_copy_previous,Copy previous base,one-step,Gemma 4 31B,contiguous,400,0.9771,0.1699,0.7594,-0.8121,-0.2149,0.9938,0.3149,0.9223,-0.6818,-0.0704,0.1605,0.6725
+DNA,dna_copy_previous,Copy previous base,one-step,Gemma 4 31B,spaced,400,0.9977,0.052,0.8729,-0.9472,-0.1242,0.9982,0.1431,0.9049,-0.8564,-0.0929,0.0959,0.2524
+DNA,dna_same_class,Same class as previous base,one-step,Qwen2.5 7B,contiguous,400,0.3956,0.3906,0.3665,-0.0691,-0.0206,0.5227,0.5182,0.5082,-0.0177,-0.0013,0.7446,0.9378
+DNA,dna_same_class,Same class as previous base,one-step,Qwen2.5 7B,spaced,400,0.5125,0.4659,0.4288,-0.0958,-0.0762,0.5956,0.566,0.5711,-0.0427,-0.0178,0.5541,0.7663
+DNA,dna_same_class,Same class as previous base,one-step,Qwen2.5 32B,contiguous,400,0.5214,0.4524,0.5557,-0.0402,0.0274,0.8854,0.6904,0.7481,-0.1999,-0.15,-3.9755,
+DNA,dna_same_class,Same class as previous base,one-step,Qwen2.5 32B,spaced,400,0.6344,0.4602,0.6643,-0.1291,0.0297,0.7323,0.5821,0.717,-0.1084,-0.0205,0.1606,
+DNA,dna_same_class,Same class as previous base,one-step,Gemma 4 31B,contiguous,400,0.4901,0.5236,0.6083,0.0429,0.1115,0.7299,0.5936,0.7655,-0.1061,0.0265,,0.7622
+DNA,dna_same_class,Same class as previous base,one-step,Gemma 4 31B,spaced,400,0.6701,0.456,0.7147,-0.2208,0.0608,0.7878,0.555,0.7887,-0.2161,0.0041,0.0215,0.933
+DNA,dna_gc_count,Running GC count mod 4,prefix state,Qwen2.5 7B,contiguous,400,0.2026,0.1179,0.1457,-0.055,-0.0654,0.4745,0.4256,0.3761,-0.0372,-0.1029,0.3243,-0.5746
+DNA,dna_gc_count,Running GC count mod 4,prefix state,Qwen2.5 7B,spaced,400,0.1156,0.1097,0.1146,0.0173,-0.0047,0.3091,0.3001,0.2821,0.0065,-0.0209,0.623,
+DNA,dna_gc_count,Running GC count mod 4,prefix state,Qwen2.5 32B,contiguous,400,0.2596,0.2238,0.261,-0.002,-0.0071,0.6766,0.5606,0.5737,-0.0955,-0.1128,,
+DNA,dna_gc_count,Running GC count mod 4,prefix state,Qwen2.5 32B,spaced,400,0.3138,0.3003,0.3499,0.0688,0.0219,0.5734,0.5573,0.5878,0.024,0.0154,0.6517,0.2958
+DNA,dna_gc_count,Running GC count mod 4,prefix state,Gemma 4 31B,contiguous,400,0.3125,0.286,0.3557,0.0329,0.0338,0.5667,0.6495,0.6778,0.0846,0.1138,-1.5685,-2.3698
+DNA,dna_gc_count,Running GC count mod 4,prefix state,Gemma 4 31B,spaced,400,0.7138,0.7243,0.7583,0.0237,0.0611,0.8391,0.8502,0.8665,0.0347,0.0336,-0.4633,0.4497
+Text,text_shift,Shift letters by one,position-local,Qwen2.5 7B,contiguous,400,0.1742,0.3553,0.3166,0.2067,0.1409,0.4031,0.6103,0.5236,0.1881,0.1266,0.0903,0.1011
+Text,text_shift,Shift letters by one,position-local,Qwen2.5 7B,spaced,400,0.2779,0.4835,0.4292,0.3094,0.1449,0.4732,0.7733,0.5801,0.3245,0.1201,-0.0488,0.1711
+Text,text_shift,Shift letters by one,position-local,Qwen2.5 32B,contiguous,400,0.3133,0.4941,0.4669,0.235,0.1538,0.6021,0.8746,0.7585,0.2779,0.1608,-0.1826,-0.0452
+Text,text_shift,Shift letters by one,position-local,Qwen2.5 32B,spaced,400,0.4872,0.674,0.6871,0.2651,0.2121,0.7635,0.9388,0.8919,0.1947,0.137,0.2657,0.3541
+Text,text_shift,Shift letters by one,position-local,Gemma 4 31B,contiguous,400,0.481,0.707,0.6794,0.2872,0.1956,0.7867,0.9632,0.8896,0.2169,0.0977,0.2447,0.5005
+Text,text_shift,Shift letters by one,position-local,Gemma 4 31B,spaced,400,0.7862,0.9523,0.9467,0.1953,0.1736,0.9635,0.9949,0.9897,0.0294,0.0283,0.8493,0.8369
+Text,text_copy_previous,Copy previous letter,one-step,Qwen2.5 7B,contiguous,400,0.3122,0.1524,0.2502,-0.1283,-0.064,0.8008,0.5698,0.7606,-0.2506,-0.0417,-0.9528,0.3491
+Text,text_copy_previous,Copy previous letter,one-step,Qwen2.5 7B,spaced,400,0.4372,0.251,0.3592,-0.1292,-0.0781,0.7862,0.6089,0.7767,-0.1811,-0.0087,-0.4022,0.8888
+Text,text_copy_previous,Copy previous letter,one-step,Qwen2.5 32B,contiguous,400,0.9062,0.5903,0.6145,-0.3088,-0.2862,0.9852,0.9176,0.949,-0.054,-0.0356,0.8251,0.8757
+Text,text_copy_previous,Copy previous letter,one-step,Qwen2.5 32B,spaced,400,0.8224,0.4368,0.4788,-0.3594,-0.3391,0.932,0.8043,0.8324,-0.1128,-0.1,0.6862,0.705
+Text,text_copy_previous,Copy previous letter,one-step,Gemma 4 31B,contiguous,400,0.9036,0.386,0.6049,-0.5091,-0.2922,0.9922,0.5791,0.9665,-0.42,-0.0247,0.1752,0.9156
+Text,text_copy_previous,Copy previous letter,one-step,Gemma 4 31B,spaced,400,0.9943,0.2107,0.7095,-0.7883,-0.2836,0.9943,0.3979,0.9179,-0.6011,-0.0753,0.2374,0.7346
+Text,text_ascending,Later than previous letter,one-step,Qwen2.5 7B,contiguous,400,0.275,0.2392,0.2512,-0.0554,-0.0219,0.5104,0.5612,0.4767,-0.0164,-0.0167,0.704,0.2375
+Text,text_ascending,Later than previous letter,one-step,Qwen2.5 7B,spaced,400,0.3935,0.4083,0.361,-0.0008,-0.0339,0.5945,0.6017,0.5597,-0.0368,-0.018,,0.4696
+Text,text_ascending,Later than previous letter,one-step,Qwen2.5 32B,contiguous,400,0.5198,0.4964,0.5308,0.0278,-0.0018,0.9495,0.8648,0.8774,-0.0757,-0.0825,,
+Text,text_ascending,Later than previous letter,one-step,Qwen2.5 32B,spaced,400,0.5771,0.5311,0.5976,-0.0035,0.0209,0.8104,0.7428,0.7655,-0.0543,-0.0431,,
+Text,text_ascending,Later than previous letter,one-step,Gemma 4 31B,contiguous,400,0.5023,0.4721,0.5223,0.0422,0.0056,0.8182,0.7635,0.7908,-0.045,-0.0348,,
+Text,text_ascending,Later than previous letter,one-step,Gemma 4 31B,spaced,400,0.6289,0.4472,0.6711,-0.1314,0.0499,0.8091,0.6264,0.8121,-0.1922,0.006,-0.4626,0.8797
+Text,text_vowel_count,Running vowel count mod 4,prefix state,Qwen2.5 7B,contiguous,400,0.0354,0.0653,0.1028,0.0418,0.0634,0.0857,0.2383,0.2541,0.1484,0.166,-2.55,-1.6184
+Text,text_vowel_count,Running vowel count mod 4,prefix state,Qwen2.5 7B,spaced,400,0.2026,0.1625,0.1844,-0.1038,-0.0085,0.3477,0.3343,0.3213,-0.0005,-0.0207,0.9949,
+Text,text_vowel_count,Running vowel count mod 4,prefix state,Qwen2.5 32B,contiguous,400,0.2865,0.2103,0.287,-0.0493,0.0044,0.7156,0.5394,0.5775,-0.1576,-0.143,-2.1985,
+Text,text_vowel_count,Running vowel count mod 4,prefix state,Qwen2.5 32B,spaced,400,0.2354,0.2598,0.3057,0.078,0.0586,0.482,0.4116,0.4777,-0.0272,-0.0079,,
+Text,text_vowel_count,Running vowel count mod 4,prefix state,Gemma 4 31B,contiguous,400,0.3245,0.3162,0.3293,0.0174,-0.0026,0.532,0.6058,0.5849,0.0897,0.0429,-4.1427,
+Text,text_vowel_count,Running vowel count mod 4,prefix state,Gemma 4 31B,spaced,400,0.4987,0.4286,0.4999,-0.0344,0.0087,0.7503,0.7015,0.7518,-0.0412,0.0031,-0.1963,

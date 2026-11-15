@@ -1,0 +1,31 @@
+\begin{tabular}{ll cc cc ccc cc l}
+\toprule
+& & \multicolumn{2}{c}{Markers} & & & \multicolumn{3}{c}{Format realized} & \multicolumn{2}{c}{Accuracy by position} & \\
+\cmidrule(lr){3-4}\cmidrule(lr){7-9}\cmidrule(lr){10-11}
+Task & Condition & Input & Output & Accuracy & Change & Full output & First $N$ & Acc.\ if so & Post-marker & Within segment & (Post $-$ within) $-$ base \\
+\midrule
+\task{running\_xor} & Neither side & no & no & 0.66 $\pm$ 0.03 & --- & 100\% & 100\% & 0.66 & 0.69 & 0.65 & --- \\
+ & Input only & yes & no & 0.63 $\pm$ 0.02 & $-0.03$ & 100\% & 100\% & 0.63 & 0.53 & 0.63 & $\mathbf{-0.15}$ $[-0.24, -0.06]$ \\
+ & Output only & no & yes & 0.61 $\pm$ 0.02 & $-0.05$ & 75\% & 100\% & 0.61 & 0.53 & 0.61 & $\mathbf{-0.12}$ $[-0.21, -0.03]$ \\
+ & Both sides & yes & yes & 0.77 $\pm$ 0.02 & $+0.10$ & 100\% & 100\% & 0.77 & 0.51 & 0.81 & $\mathbf{-0.34}$ $[-0.43, -0.25]$ \\
+\multicolumn{12}{l}{\quad Interaction $\mathbf{+0.19}$, 95\% interval $[+0.15, +0.24]$} \\
+\midrule
+\task{random\_permutation (digits)} & Neither side & no & no & 0.55 $\pm$ 0.06 & --- & 100\% & 100\% & 0.55 & 0.50 & 0.55 & --- \\
+ & Input only & yes & no & 0.40 $\pm$ 0.03 & $-0.15$ & 100\% & 100\% & 0.40 & 0.35 & 0.39 & 0.00 $[-0.09, +0.09]$ \\
+ & Output only & no & yes & 0.39 $\pm$ 0.03 & $-0.16$ & 64\% & 100\% & 0.39 & 0.39 & 0.38 & $+0.05$ $[-0.03, +0.14]$ \\
+ & Both sides & yes & yes & 0.94 $\pm$ 0.02 & $+0.39$ & 100\% & 100\% & 0.94 & 0.94 & 0.94 & $+0.04$ $[-0.02, +0.11]$ \\
+\multicolumn{12}{l}{\quad Interaction $\mathbf{+0.70}$, 95\% interval $[+0.61, +0.79]$} \\
+\midrule
+\task{copy\_previous} & Neither side & no & no & 0.77 $\pm$ 0.06 & --- & 100\% & 100\% & 0.77 & 0.73 & 0.77 & --- \\
+ & Input only & yes & no & 0.65 $\pm$ 0.03 & $-0.12$ & 100\% & 100\% & 0.65 & 0.59 & 0.65 & $-0.01$ $[-0.10, +0.07]$ \\
+ & Output only & no & yes & 0.71 $\pm$ 0.04 & $-0.06$ & 35\% & 100\% & 0.71 & 0.68 & 0.70 & $+0.02$ $[-0.05, +0.09]$ \\
+ & Both sides & yes & yes & 0.79 $\pm$ 0.03 & $+0.02$ & 99\% & 100\% & 0.79 & 0.60 & 0.81 & $\mathbf{-0.17}$ $[-0.25, -0.08]$ \\
+\multicolumn{12}{l}{\quad Interaction $\mathbf{+0.20}$, 95\% interval $[+0.12, +0.27]$} \\
+\midrule
+\task{running\_sum\_local ($M=4$)} & Neither side & no & no & 0.40 $\pm$ 0.03 & --- & 100\% & 100\% & 0.40 & 0.31 & 0.39 & --- \\
+ & Input only & yes & no & 0.35 $\pm$ 0.02 & $-0.04$ & 100\% & 100\% & 0.35 & 0.28 & 0.35 & $+0.01$ $[-0.08, +0.10]$ \\
+ & Output only & no & yes & 0.35 $\pm$ 0.02 & $-0.05$ & 32\% & 100\% & 0.35 & 0.30 & 0.34 & $+0.04$ $[-0.05, +0.13]$ \\
+ & Both sides & yes & yes & 0.48 $\pm$ 0.02 & $+0.08$ & 100\% & 100\% & 0.48 & 0.27 & 0.51 & $\mathbf{-0.16}$ $[-0.25, -0.06]$ \\
+\multicolumn{12}{l}{\quad Interaction $\mathbf{+0.17}$, 95\% interval $[+0.13, +0.22]$} \\
+\bottomrule
+\end{tabular}
