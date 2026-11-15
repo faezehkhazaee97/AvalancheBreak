@@ -169,7 +169,7 @@ for i in headers:
 
 ax.set_xticks(range(n_cols))
 ax.set_xticklabels([m[0] for m in models])
-ax.xaxis.tick_top()
+ax.xaxis.tick_bottom()   # model names below the table, so each block's title opens its block
 ax.set_yticks(range(n_rows))
 ax.set_yticklabels(["" if r[0] == "header" else r[1].replace("_reset", "") for r in rows])
 ax.set_xlim(-0.5, n_cols - 0.5)
@@ -177,7 +177,7 @@ for s in ax.spines.values():
     s.set_visible(False)
 ax.tick_params(length=0)
 
-cb = fig.colorbar(im, ax=ax, orientation="horizontal", fraction=0.05, pad=0.04, aspect=40, shrink=0.6)
+cb = fig.colorbar(im, ax=ax, orientation="horizontal", fraction=0.05, pad=0.13, aspect=40, shrink=0.6)
 cb.set_label("Change in accuracy with markers")
 cb.outline.set_visible(False)
 
