@@ -41,7 +41,7 @@ TOKENS = [
 
 def panel_tokens(ax):
     ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
-    ax.set_title("(a) Letters: markers re-tokenize", loc="left", fontsize=8.5)
+    ax.set_title("(a) Letters: markers re-tokenize")
     unit, x0 = 0.5, 3.0
     for row, (label, toks) in enumerate(TOKENS):
         y = 7.6 - row * 2.55
@@ -58,7 +58,7 @@ def panel_tokens(ax):
             x += w
     ax.add_patch(FancyBboxPatch((x0, 0.15), 0.5, 0.5, boxstyle="round,pad=0,rounding_size=0.08",
                                 facecolor=MERGED_FILL, edgecolor=GRAY, linewidth=0.6))
-    ax.text(x0 + 0.7, 0.4, "multi-letter token", va="center", fontsize=6.3, color=GRAY)
+    ax.text(x0 + 0.7, 0.4, "multi-letter token", va="center", fontsize=7, color=GRAY)
 
 
 def panel_profile(ax):
@@ -74,19 +74,20 @@ def panel_profile(ax):
     ax.grid(axis="y", color="#e6e6e6", linewidth=0.6); ax.set_axisbelow(True)
     ax.set_xlabel("Sequence length $N$")
     ax.set_ylabel("Gain from markers")
-    ax.set_title("(b) Gain on long sequences", loc="left", fontsize=8.5)
-    ax.legend(frameon=False, loc="upper left", fontsize=6.5)
+    ax.set_title("(b) Gain on long sequences")
+    # legend outside the axes, below the panel (the house placement for legends)
+    ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, handlelength=1.4, columnspacing=1.0)
 
 
 def panel_blindspot(ax):
     ax.set_xlim(0, 10); ax.set_ylim(0, 10); ax.axis("off")
-    ax.set_title("(c) Dependency tasks: blind spot", loc="left", fontsize=8.5)
+    ax.set_title("(c) Dependency tasks: blind spot")
     x_in = list("1011") + ["|"] + list("0110")
     y_out = ["1", "1", "1", "0", "|", "1", "1", "0", "1"]   # XOR with the previous input
     xs = [2.4 + i * 0.85 for i in range(len(x_in))]
     yi, yo = 7.4, 2.9
-    ax.text(0.0, yi, "in", ha="left", va="center", fontsize=6.5, color=GRAY)
-    ax.text(0.0, yo, "out", ha="left", va="center", fontsize=6.5, color=GRAY)
+    ax.text(0.0, yi, "in", ha="left", va="center", fontsize=7, color=GRAY)
+    ax.text(0.0, yo, "out", ha="left", va="center", fontsize=7, color=GRAY)
     for x, a, b in zip(xs, x_in, y_out):
         c = MARK if a == "|" else INK
         ax.text(x, yi, a, ha="center", va="center", fontsize=8, family="cmtt10", color=c,
@@ -101,8 +102,8 @@ def panel_blindspot(ax):
                                      arrowstyle="-|>", mutation_scale=6, linewidth=1.3 if crosses else 0.7,
                                      color=BAD if crosses else GRAY, linestyle="--" if crosses else "-"))
     post = digits[4]
-    ax.text(xs[post] + 0.3, yo - 1.25, "post-marker:\nnear chance", ha="right", va="top", fontsize=6.3, color=BAD)
-    ax.text(xs[post + 1] - 0.2, yo - 1.25, "next:\nrecovers", ha="left", va="top", fontsize=6.3, color=GRAY)
+    ax.text(xs[post] + 0.15, yo - 1.25, "post-marker:\nnear chance", ha="right", va="top", fontsize=7, color=BAD)
+    ax.text(xs[post + 1] + 0.05, yo - 1.25, "next:\nrecovers", ha="left", va="top", fontsize=7, color=GRAY)
 
 
 def main():

@@ -47,36 +47,36 @@ def grid(tag, tasks):
 
 def main():
     set_rc()
-    fig, axes = plt.subplots(len(BLOCKS), len(MODELS), figsize=(MULTI_COL_WIDTH, 2.9), sharex=True, sharey=True)
+    from matplotlib.transforms import offset_copy
+    fig, axes = plt.subplots(len(BLOCKS), len(MODELS), figsize=(MULTI_COL_WIDTH, 3.1), sharex=True, sharey=True)
     for r, (bname, tasks) in enumerate(BLOCKS):
         for c, (label, tag) in enumerate(MODELS):
             ax = axes[r][c]
             g = grid(tag, tasks)
             im = ax.imshow(np.ma.masked_invalid(g), cmap=CMAP, vmin=0, vmax=1, aspect="auto", interpolation="nearest")
             ax.axhline(0.5, color="white", linewidth=1.2)          # separates the no-marker row
-            ax.set_xticks(range(len(NS))); ax.set_xticklabels([str(n) for n in NS], fontsize=5.5)
-            ax.set_yticks(range(len(KS))); ax.set_yticklabels(["none"] + [str(k) for k in KS[1:]], fontsize=5.5)
+            ax.set_xticks(range(len(NS))); ax.set_xticklabels([str(n) if n in (4, 16, 64) else "" for n in NS])   # every other label: room at 7 pt
+            ax.set_yticks(range(len(KS))); ax.set_yticklabels(["none"] + [str(k) for k in KS[1:]])
+            ax.tick_params(axis="x", pad=1.5)
             ax.grid(False)
             for sp in ("top", "right"):
                 ax.spines[sp].set_visible(True)
             if r == 0:
-                ax.set_title(label, fontsize=6.8)
-            if r == len(BLOCKS) - 1:
-                ax.set_xlabel("$N$", fontsize=6.5)
-        axes[r][0].set_ylabel(f"{bname}\nmarker spacing $k$", fontsize=6.5)
-    cax = fig.add_axes([0.915, 0.18, 0.012, 0.64]); cb = fig.colorbar(im, cax=cax)
-    cb.set_label("Character accuracy", fontsize=6.5); cb.ax.tick_params(labelsize=6)
-    fig.subplots_adjust(left=0.09, right=0.9, top=0.92, bottom=0.12, wspace=0.12, hspace=0.18)
-    # Panel letters, one per block of panels, in Figure 1's style (8.5 pt, normal weight): top left
-    # of the block, left of its row label, on the baseline of the panel titles.
-    from matplotlib.transforms import blended_transform_factory, offset_copy
-    fig.canvas.draw()
-    renderer = fig.canvas.get_renderer()
-    for letter, row in zip("ab", axes):
-        x = fig.transFigure.inverted().transform((row[0].yaxis.label.get_window_extent(renderer).x0, 0))[0]
-        tr = offset_copy(blended_transform_factory(fig.transFigure, row[0].transAxes), fig=fig,
-                         x=-2, y=plt.rcParams["axes.titlepad"], units="points")
-        fig.text(x, 1.0, f"({letter})", transform=tr, ha="right", va="baseline", fontsize=8.5)
+                ax.set_title(label, loc="center", fontsize=7)    # column header: the model
+        axes[r][0].set_ylabel("Marker spacing $k$")
+    cax = fig.add_axes([0.915, 0.14, 0.012, 0.68]); cb = fig.colorbar(im, cax=cax)
+    cb.set_label("Character accuracy")
+    fig.subplots_adjust(left=0.08, right=0.9, top=0.84, bottom=0.13, wspace=0.12, hspace=0.42)
+    fig.supxlabel("Sequence length $N$", y=0.02, fontsize=plt.rcParams["axes.labelsize"])
+    # Block titles, one per row of panels, each starting with its panel letter in Figure 1's style
+    # (8.5 pt, normal weight), left-aligned with the row's first panel: (a) above the model names,
+    # (b) at the usual title position of its row.
+    pad = plt.rcParams["axes.titlepad"]
+    for r, (letter, (bname, _)) in enumerate(zip("ab", BLOCKS)):
+        lift = pad + (7 * 1.2 + 3 if r == 0 else 0)
+        tr = offset_copy(axes[r][0].transAxes, fig=fig, x=0, y=lift, units="points")
+        fig.text(0.0, 1.0, f"({letter}) {bname}", transform=tr, ha="left", va="baseline",
+                 fontsize=plt.rcParams["axes.titlesize"])
     savefig(fig, REPO / "figs" / "fig_length_spacing_grid.pdf")
 
 

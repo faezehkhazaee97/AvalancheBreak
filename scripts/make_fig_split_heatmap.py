@@ -40,10 +40,11 @@ ROW_BLOCKS = [
 ]
 RESET_BLOCK = ROW_BLOCKS[-1][0]
 CSV_BLOCK = {RESET_BLOCK: "Dependency severed (reset variant)"}  # block name kept stable in the values CSV
-# Drawn as a separate group under a header row: these variants change the rule at the position
-# after each marker, so they are different tasks with their own (shifted) no-marker baselines.
-RESET_HEADER = ("Reset variants: the rule restarts at the position after each marker, "
-                "so the task and its no-marker baseline differ from the rows above")
+# Displayed block titles, one header row above each block, starting with the panel letter. The reset
+# variants change the rule at the position after each marker (different tasks with their own shifted
+# no-marker baselines); the caption says so.
+BLOCK_TITLES = {"Position-local": "(a) Position-local tasks", "Dependency, as is": "(b) Dependency tasks",
+                RESET_BLOCK: "(c) Reset variants"}
 # (column label, local model tag or None for Gemini)
 MODELS = [
     ("Qwen2.5\n7B", "Qwen2.5-7B-Instruct"),
@@ -125,15 +126,17 @@ pd.DataFrame(records).round(4).to_csv(out_csv, index=False)
 print(f"Wrote {out_csv}")
 
 set_rc()
-# Insert a spacer row (None) above the reset block: it holds the group header and opens a gap.
-first_reset = next(i for i, (b, _, _) in enumerate(rows) if b == RESET_BLOCK)
-rows = rows[:first_reset] + [None] + rows[first_reset:]
-SPACER = first_reset
+# A header row (None) above each block: it holds the block's title and opens a gap.
+blocked = []
+for block, _ in ROW_BLOCKS:
+    blocked.append(("header", block))
+    blocked += [r for r in rows if r[0] == block]
+rows = blocked
 n_rows, n_cols = len(rows), len(models)
-fig, ax = plt.subplots(figsize=(MULTI_COL_WIDTH * 0.92, 0.27 * n_rows + 1.1))
+fig, ax = plt.subplots(figsize=(MULTI_COL_WIDTH * 0.92, 0.27 * n_rows + 1.0))
 grid = np.full((n_rows, n_cols), np.nan)
 for i, row in enumerate(rows):
-    if row is None:
+    if row[0] == "header":
         continue
     for j, c in enumerate(row[2]):
         if c:
@@ -142,69 +145,55 @@ for i, row in enumerate(rows):
 ax.set_facecolor(BLANK)
 im = ax.imshow(np.ma.masked_invalid(grid), cmap=CMAP, vmin=-VMAX, vmax=VMAX, aspect="auto")
 for i, row in enumerate(rows):
-    if row is None:
+    if row[0] == "header":
         continue
     for j, c in enumerate(row[2]):
         if not c:
-            ax.text(j, i, "—", ha="center", va="center", fontsize=7.5, color="#9a9a96")
+            ax.text(j, i, "—", ha="center", va="center", fontsize=7, color="#9a9a96")
             continue
         txt = f"{c['delta']:+.2f}" + ("*" if abs(c["z"]) >= SIG_Z else "")
         dark = abs(c["delta"]) > 0.55 * VMAX
-        ax.text(j, i, txt, ha="center", va="center", fontsize=7.5,
+        ax.text(j, i, txt, ha="center", va="center", fontsize=7,
                 color=INK_ON_DARK if dark else INK)
 
-# 2px surface gaps between cells, heavier rules between row blocks.
+# 2px surface gaps between cells; each header row is a white band with a rule above it (except the first).
 ax.set_xticks(np.arange(-0.5, n_cols, 1), minor=True)
 ax.set_yticks(np.arange(-0.5, n_rows, 1), minor=True)
 ax.grid(which="minor", color="#ffffff", linewidth=1.5)
 ax.tick_params(which="minor", length=0)
-start = 0
-for block, tasks in ROW_BLOCKS:
-    if block == RESET_BLOCK:
-        start += 1  # the spacer row
-    elif start:
-        ax.axhline(start - 0.5, color="#1a1a1a", linewidth=0.9)
-    ax.text(n_cols - 0.35, start + (len(tasks) - 1) / 2, block, ha="left", va="center",
-            fontsize=7, color="#4a4a47")
-    start += len(tasks)
-# The spacer: white band (gap), a rule above the gap, and the group header inside it.
-ax.axhspan(SPACER - 0.5, SPACER + 0.5, color="white", zorder=2)
-ax.axhline(SPACER - 0.5, color="#1a1a1a", linewidth=0.9, zorder=3)
-ax.text(-0.5, SPACER + 0.12, RESET_HEADER, ha="left", va="center", fontsize=6.8, style="italic",
-        color="#4a4a47", zorder=4)
+headers = [i for i, r in enumerate(rows) if r[0] == "header"]
+for i in headers:
+    ax.axhspan(i - 0.5, i + 0.5, color="white", zorder=2)
+    if i:
+        ax.axhline(i - 0.5, color="#1a1a1a", linewidth=0.9, zorder=3)
 
 ax.set_xticks(range(n_cols))
-ax.set_xticklabels([m[0] for m in models], fontsize=7.5)
+ax.set_xticklabels([m[0] for m in models])
 ax.xaxis.tick_top()
 ax.set_yticks(range(n_rows))
-ax.set_yticklabels(["" if r is None else r[1].replace("_reset", " (reset)") for r in rows], fontsize=7.5)
+ax.set_yticklabels(["" if r[0] == "header" else r[1].replace("_reset", "") for r in rows])
 ax.set_xlim(-0.5, n_cols - 0.5)
 for s in ax.spines.values():
     s.set_visible(False)
 ax.tick_params(length=0)
 
 cb = fig.colorbar(im, ax=ax, orientation="horizontal", fraction=0.05, pad=0.04, aspect=40, shrink=0.6)
-cb.set_label("TAR change with markers (Bounds − Base)   ← hurts    helps →", fontsize=8)
-cb.ax.tick_params(labelsize=6.5)
+cb.set_label("Change in accuracy with markers")
 cb.outline.set_visible(False)
 
-# Panel letters, one per row block, in Figure 1's style (8.5 pt, normal weight): top left of each
-# block, left of the task names, top-aligned with the block's first row (for the reset block, its
-# header row). Measured after the paper's wording is applied, since that changes the label widths.
-from matplotlib.transforms import blended_transform_factory, offset_copy  # noqa: E402
+# Block titles in Figure 1's panel-title style (8.5 pt, normal weight), starting with the panel
+# letter, left-aligned with the task names, on the block's header row. Measured after the paper's
+# wording is applied, since that changes the label widths.
+from matplotlib.transforms import blended_transform_factory  # noqa: E402
 _plain_labels(fig)
 fig.canvas.draw()
 renderer = fig.canvas.get_renderer()
 x_left = min(t.get_window_extent(renderer).x0 for t in ax.get_yticklabels() if t.get_text())
 x_left = ax.transAxes.inverted().transform((x_left, 0))[0]
-letter_tr = offset_copy(blended_transform_factory(ax.transAxes, ax.transData), fig=fig, x=-6, y=0, units="points")
-start = 0
-for letter, (block, tasks) in zip("abc", ROW_BLOCKS):
-    if block == RESET_BLOCK:
-        start += 1  # the spacer row holds the reset block's header
-    top = (SPACER if block == RESET_BLOCK else start) - 0.5
-    ax.text(x_left, top, f"({letter})", transform=letter_tr, ha="right", va="top", fontsize=8.5)
-    start += len(tasks)
+title_tr = blended_transform_factory(ax.transAxes, ax.transData)
+for i in headers:
+    ax.text(x_left, i + 0.25, BLOCK_TITLES[rows[i][1]], transform=title_tr, ha="left", va="baseline",
+            fontsize=plt.rcParams["axes.titlesize"], zorder=4)
 
 out = REPO / "figs" / "fig1_split_heatmap.pdf"
 savefig(fig, out)

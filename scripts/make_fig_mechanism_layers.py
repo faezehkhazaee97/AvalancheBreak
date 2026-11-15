@@ -25,7 +25,7 @@ from tasks.common.figure_style import set_rc, savefig, MULTI_COL_WIDTH  # noqa: 
 
 TASKS = [("running_xor", "Running XOR"), ("running_sum_local", "Running sum (mod 4)")]
 SITES = [("pre_in", "input before marker"), ("post_in", "input after marker"), ("all_in", "every input"), ("prev_out", "answer before marker")]
-ROWS = [("clean", "post", "clean run"), ("marked", "within", "marked, within segment"), ("marked", "post", "marked, after marker")]
+ROWS = [("clean", "post", "no markers"), ("marked", "within", "markers, within segment"), ("marked", "post", "markers, after marker")]
 REC = LinearSegmentedColormap.from_list("rec", ["#f7f7f7", "#9ecae1", "#0072B2", "#08306b"])
 ATT = LinearSegmentedColormap.from_list("att", ["#f7f7f7", "#fdd0a2", "#D55E00", "#7f2704"])
 
@@ -45,24 +45,25 @@ def main():
                 g[r, int(row.layer)] = row.rec_logodds
         ax = axes[0][j]
         im1 = ax.imshow(np.clip(g, 0, 1), cmap=REC, vmin=0, vmax=1, aspect="auto", interpolation="nearest")
-        ax.set_yticks(range(len(SITES))); ax.set_yticklabels([n for _, n in SITES] if j == 0 else [""] * len(SITES), fontsize=6)
-        ax.set_title(f"{tname}: patching the residual stream", fontsize=7.5)
+        ax.set_yticks(range(len(SITES))); ax.set_yticklabels([n for _, n in SITES] if j == 0 else [""] * len(SITES))
+        ax.set_title(f"({'ab'[j]}) {tname}: patching")
         a = np.full((len(ROWS), L), np.nan)
         for r, (run, ptype, _) in enumerate(ROWS):
             x = att[(att.Task == task) & (att.Run == run) & (att.PosType == ptype)].set_index("Layer").max_head_prev_in
             a[r, x.index.values] = x.values
         ax = axes[1][j]
         im2 = ax.imshow(a, cmap=ATT, vmin=0, vmax=0.6, aspect="auto", interpolation="nearest")
-        ax.set_yticks(range(len(ROWS))); ax.set_yticklabels([n for _, _, n in ROWS] if j == 0 else [""] * len(ROWS), fontsize=6)
-        ax.set_title(f"{tname}: attention to the input before the step", fontsize=7.5)
+        ax.set_yticks(range(len(ROWS))); ax.set_yticklabels([n for _, _, n in ROWS] if j == 0 else [""] * len(ROWS))
+        ax.set_title(f"({'cd'[j]}) {tname}: attention")
         ax.set_xlabel("Layer")
         for axx in (axes[0][j], axes[1][j]):
             axx.grid(False); axx.set_xticks([0, 10, 20, 30, 40, 50, 60])
             for sp in ("top", "right"):
                 axx.spines[sp].set_visible(True)
-    c1 = fig.add_axes([0.915, 0.57, 0.011, 0.33]); cb1 = fig.colorbar(im1, cax=c1); cb1.set_label("log-odds recovery", fontsize=6); cb1.ax.tick_params(labelsize=5.5)
-    c2 = fig.add_axes([0.915, 0.12, 0.011, 0.33]); cb2 = fig.colorbar(im2, cax=c2); cb2.set_label("strongest head", fontsize=6); cb2.ax.tick_params(labelsize=5.5)
-    fig.subplots_adjust(left=0.15, right=0.9, top=0.93, bottom=0.12, hspace=0.42, wspace=0.06)
+    fig.subplots_adjust(left=0.17, right=0.89, top=0.93, bottom=0.12, hspace=0.42, wspace=0.06)
+    for axx, im, lab in [(axes[0][1], im1, "Log-odds recovery"), (axes[1][1], im2, "Attention")]:
+        p = axx.get_position()   # colorbar as tall as its row of panels
+        cb = fig.colorbar(im, cax=fig.add_axes([0.905, p.y0, 0.011, p.height])); cb.set_label(lab)
     savefig(fig, REPO / "figs" / "fig_mechanism_layers.pdf")
 
 

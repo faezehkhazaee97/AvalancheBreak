@@ -41,10 +41,10 @@ def vectors(d, k):
 def main():
     set_rc()
     fig = plt.figure(figsize=(MULTI_COL_WIDTH, 4.6))
-    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.25], hspace=0.55, wspace=0.12)
+    gs = fig.add_gridspec(2, 2, height_ratios=[1.0, 1.25], hspace=0.62, wspace=0.12)
     # (a) curves at Qwen2.5-32B
-    lines = [(0, "No markers", INK, "--"), (4, "Markers every 4", "#D55E00", "-"), (8, "Markers every 8", "#0072B2", "-")]
-    for col, (task, title) in enumerate([("random_permutation_digits", "(a) Position-local task, Qwen2.5-32B"), ("running_xor", "(b) One-step dependency task, Qwen2.5-32B")]):
+    lines = [(0, "No markers", INK, "--"), (4, "Markers, $k = 4$", "#D55E00", "-"), (8, "Markers, $k = 8$", "#0072B2", "-")]
+    for col, (task, title) in enumerate([("random_permutation_digits", "(a) Random permutation, digits"), ("running_xor", "(b) Running XOR")]):
         ax = fig.add_subplot(gs[0, col]); d = load(task, "Qwen2.5-32B-Instruct"); pos = np.arange(1, N + 1)
         for k, lab, c, ls in lines:
             vs = vectors(d, k); m = vs.mean(0); ci = 1.96 * vs.std(0, ddof=1) / np.sqrt(len(vs))
@@ -59,11 +59,10 @@ def main():
             ax.set_ylabel("Character accuracy")
         else:
             ax.set_yticklabels([])
-            h, l = ax.get_legend_handles_labels()
-            fig.legend(h, l, loc="upper center", ncol=3, frameon=False, fontsize=6.5, bbox_to_anchor=(0.5, 1.0))
+            top_row = ax
     # (c, d) heatmaps across models
     models = [(lab, tag) for lab, tag in MODELS]
-    for col, (tasks, title) in enumerate([(LOC, "(c) Position-local digit tasks, every model"), (DEP, "(d) Dependency tasks, every model")]):
+    for col, (tasks, title) in enumerate([(LOC, "(c) Position-local digit tasks"), (DEP, "(d) Dependency tasks")]):
         ax = fig.add_subplot(gs[1, col]); grid = np.full((len(models), N), np.nan)
         for i, (lab, tag) in enumerate(models):
             vals = []
@@ -78,16 +77,20 @@ def main():
             if vals:
                 grid[i] = np.mean(vals, axis=0)
         im = ax.imshow(np.ma.masked_invalid(grid), cmap=CMAP, vmin=-0.5, vmax=0.5, aspect="auto", interpolation="nearest")
-        ax.set_yticks(range(len(models))); ax.set_yticklabels([SHORT[l] for l, _ in models] if col == 0 else [""] * len(models), fontsize=6.5)
+        ax.set_yticks(range(len(models))); ax.set_yticklabels([SHORT[l] for l, _ in models] if col == 0 else [""] * len(models))
         ax.set_xticks([0, 7, 15, 23, 31]); ax.set_xticklabels([1, 8, 16, 24, 32]); ax.set_xlabel("Output position")
         for p in range(K, N, K):
             ax.axvline(p - 0.5, color="white", linewidth=0.8)
         ax.set_title(title); ax.grid(False)
         for s in ("top", "right"):
             ax.spines[s].set_visible(True)
-    cax = fig.add_axes([0.92, 0.11, 0.012, 0.3])
-    cb = fig.colorbar(im, cax=cax); cb.set_label("Change in accuracy with markers every 4", fontsize=6.5); cb.ax.tick_params(labelsize=6)
-    fig.subplots_adjust(left=0.13, right=0.9, top=0.9, bottom=0.08)
+    fig.subplots_adjust(left=0.13, right=0.9, top=0.97, bottom=0.08)
+    pos = ax.get_position()
+    cax = fig.add_axes([0.92, pos.y0, 0.012, pos.height])
+    cb = fig.colorbar(im, cax=cax); cb.set_label("Change in accuracy, $k = 4$")
+    # legend of the curves, outside the axes, right below the top row's axis labels
+    h, l = top_row.get_legend_handles_labels()
+    fig.legend(h, l, loc="upper center", ncol=3, bbox_to_anchor=(0.5, top_row.get_position().y0 - 0.075))
     savefig(fig, REPO / "figs" / "fig_position_curve.pdf")
 
 

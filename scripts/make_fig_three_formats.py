@@ -43,7 +43,10 @@ def load(task, tag):
             return None
         d = pd.read_csv(GEMINI36); d = d[d.Task == task].rename(columns={"Axis_Val": "Alphabet_Size"})
         return d[(d.Interval != 3) & (d.Seq_Length <= 64)] if len(d) else None
-    fs = [f for f in glob.glob(str(REPO / "results_clean" / task / "grid" / f"{tag}*.csv"))
+    # the base model's own files only ({tag}.csv, {tag}_*.csv): the LoRA runs saved next to them
+    # ({tag}-lorabase*.csv, {tag}-lorasep.csv) are other models and must not be mixed in
+    fs = [f for f in sorted(glob.glob(str(REPO / "results_clean" / task / "grid" / f"{tag}*.csv")))
+          if Path(f).name == f"{tag}.csv" or Path(f).name.startswith(f"{tag}_")
           if "POOLED" not in f and "N128" not in f]
     x = pd.concat([pd.read_csv(f) for f in fs]).drop_duplicates(
         ["Method", "Interval", "Seq_Length", "Trial", "Alphabet_Size"])
@@ -81,8 +84,8 @@ SHORT = {"Qwen2.5 7B": "Qwen2.5 7B", "Qwen2.5 14B": "Qwen2.5 14B", "Qwen2.5 32B"
 def fig_three_formats(p):
     """Slopegraph, one panel per format: for each model a line from its no-marker accuracy to its
     accuracy with markers (95% interval at the marker end), mean over the three position-local tasks."""
-    fig, axes = plt.subplots(1, 3, figsize=(MULTI_COL_WIDTH, 2.6), sharey=True)
-    for ax, (fmt, _, lab, _) in zip(axes, FORMATS):
+    fig, axes = plt.subplots(1, 3, figsize=(MULTI_COL_WIDTH, 3.0), sharey=True)
+    for letter, ax, (fmt, _, lab, _) in zip("abc", axes, FORMATS):
         rows = []
         for m in MODELS:
             s = p[(p.model == m) & (p.fmt == fmt)]
@@ -95,17 +98,28 @@ def fig_three_formats(p):
             ax.plot(0, b, marker="o", markersize=3.2, color=col, zorder=4)
             ax.errorbar(1, c, yerr=ci, fmt="o", markersize=3.2, color=col, ecolor=col, elinewidth=0.7, capsize=1.5, zorder=4)
             rows.append((c, m, col))
-        # right-hand labels, nudged apart when they would collide
+        # right-hand labels, spread apart (in both directions, kept under the top of the axis)
+        # where they would collide
         rows.sort()
         ys = [r[0] for r in rows]
-        for k in range(1, len(ys)):
-            if ys[k] - ys[k - 1] < 0.035:
-                ys[k] = ys[k - 1] + 0.035
+        gap, top = 0.036, 1.0
+        for _ in range(500):  # symmetric spreading of colliding neighbours
+            moved = False
+            for k in range(1, len(ys)):
+                d = ys[k] - ys[k - 1]
+                if d < gap - 1e-9:
+                    ys[k] += (gap - d) / 2; ys[k - 1] -= (gap - d) / 2; moved = True
+            if not moved:
+                break
+        if ys[-1] > top:      # keep the top label inside the axis, pushing the ones below down
+            ys[-1] = top
+            for k in range(len(ys) - 2, -1, -1):
+                ys[k] = min(ys[k], ys[k + 1] - gap)
         for (c, m, col), y in zip(rows, ys):
-            ax.annotate(SHORT[m], xy=(1, c), xytext=(1.08, y), fontsize=5.8, color=col, va="center",
+            ax.annotate(SHORT[m], xy=(1, c), xytext=(1.08, y), fontsize=7, color=col, va="center",
                         arrowprops=dict(arrowstyle="-", color=col, linewidth=0.4, alpha=0.6, shrinkA=0, shrinkB=1))
-        ax.set_title(lab)
-        ax.set_xticks([0, 1]); ax.set_xticklabels(["No markers", "Markers"], fontsize=7)
+        ax.set_title(f"({letter}) {lab}")
+        ax.set_xticks([0, 1]); ax.set_xticklabels(["No markers", "Markers"])
         ax.set_xlim(-0.15, 1.75); ax.set_ylim(0.25, 1.02)
         ax.grid(True, axis="y", color="#e6e6e6", linewidth=0.5)
     axes[0].set_ylabel("Character accuracy")
@@ -126,7 +140,7 @@ def fig_profile(cells):
         byk = x[x.N == 64].groupby(["model", "task", "k"]).delta.mean().groupby("k").agg(["mean", "sem"])
         axes[1].errorbar(byk.index, byk["mean"], yerr=1.96 * byk["sem"], color=col, marker=MARKERS[fmt],
                          markersize=3.5, linewidth=1.6, capsize=1.5, label=lab)
-    for ax, xl in [(axes[0], "Sequence length $N$"), (axes[1], "Marker spacing $k$ (at $N = 64$)")]:
+    for ax, xl in [(axes[0], "Sequence length $N$"), (axes[1], "Marker spacing $k$")]:
         ax.set_xscale("log", base=2)
         ax.set_xlabel(xl)
         ax.axhline(0, color=GRAY, linewidth=0.8)
@@ -136,12 +150,13 @@ def fig_profile(cells):
             ax.spines[sp].set_visible(False)
     axes[0].set_xticks([4, 8, 16, 32, 64]); axes[0].set_xticklabels(["4", "8", "16", "32", "64"])
     axes[1].set_xticks([1, 2, 4, 8, 16]); axes[1].set_xticklabels(["1", "2", "4", "8", "16"])
-    axes[0].set_ylabel("Gain from markers\n(Bounds $-$ Base)")
-    axes[0].legend(frameon=False, loc="upper left", bbox_to_anchor=(0.0, 0.9))
-    axes[0].set_title("(a) By sequence length", loc="left", fontsize=8.5)
-    axes[1].set_title("(b) By marker spacing, at $N = 64$", loc="left", fontsize=8.5)
-    axes[1].set_xlabel("Marker spacing $k$")
+    axes[0].set_ylabel("Gain from markers")
+    axes[0].set_title("(a) By sequence length")
+    axes[1].set_title("(b) By marker spacing, $N = 64$")
     fig.tight_layout()
+    # one shared legend, outside the axes, below the panels (the house placement)
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, loc="upper center", bbox_to_anchor=(0.5, 0.0), ncol=3)
     savefig(fig, REPO / "figs" / "fig_profile.pdf")
     fig.savefig(REPO / "figs" / "png" / "fig_profile.png", dpi=200, bbox_inches="tight")
 

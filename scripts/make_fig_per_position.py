@@ -29,9 +29,9 @@ MODELS = ["Qwen2.5 7B", "Qwen2.5 14B", "Qwen2.5 32B", "Mistral 7B", "Phi-3.5 min
           "Qwen3.8 27B", "Gemma 4 31B", "Gemini 3.5 Flash", "Gemini 3.6 Flash"]
 SHORT = {m: m.replace(" ", "\n", 1) for m in MODELS}
 BLOCKS = [
-    ("Position-local, letters", "Position-local tasks, letters (merge into multi-letter tokens without markers)"),
-    ("Position-local, spaced letters", "Position-local tasks, spaced letters (one token per letter either way)"),
-    ("Dependency, as is", "Dependency tasks (digits, one token per digit either way)"),
+    ("Position-local, letters", "Position-local, letters"),
+    ("Position-local, spaced letters", "Position-local, spaced letters"),
+    ("Dependency, as is", "Dependency tasks"),
 ]
 
 vals = pd.read_csv(REPO / "results_clean" / "_summary" / "per_position_values.csv")
@@ -70,7 +70,7 @@ def make_fig1():
             y = n - 1 - i
             if r is None:
                 # right of the zero line, on a white box, so the label never sits on the line
-                ax.text(0.04, y, "not run", ha="left", va="center", fontsize=6, color=BASE, zorder=4,
+                ax.text(0.04, y, "not run", ha="left", va="center", fontsize=7, color=BASE, zorder=4,
                         bbox=dict(boxstyle="square,pad=0.15", facecolor="white", edgecolor="none"))
                 continue
             print(f"{block:32s} {MODELS[i]:18s} within {r['within'] - r['base_within']:+.3f}  post {r['post'] - r['base_post']:+.3f}")
@@ -78,7 +78,7 @@ def make_fig1():
                         ecolor=WITHIN, elinewidth=0.8, capsize=1.5, zorder=3)
             ax.errorbar(r["post"] - r["base_post"], y - 0.17, xerr=r["post_ci"], fmt="D", markersize=3.2, color=POST,
                         ecolor=POST, elinewidth=0.8, capsize=1.5, zorder=3)
-        ax.set_title(f"({letter}) " + title.split(" (")[0], fontsize=8.5)   # panel letter as in Figure 1
+        ax.set_title(f"({letter}) {title}")   # panel letter as in Figure 1
         ax.set_xlabel("Change in accuracy with markers")
         ax.set_xlim(-0.55, 0.55)
         # labelled ticks every 0.2, light gridlines every 0.1, so points near zero (e.g. Mistral's
@@ -89,12 +89,12 @@ def make_fig1():
         ax.grid(True, axis="x", which="both", color="#e6e6e6", linewidth=0.5); ax.grid(False, axis="y")
         for yy in range(n):
             ax.axhline(yy - 0.5, color="#f0f0f0", linewidth=0.5, zorder=0)
-    axes[0].set_yticks(range(n)); axes[0].set_yticklabels([SHORT[m].replace("\n", " ") for m in MODELS][::-1], fontsize=6.8)
+    axes[0].set_yticks(range(n)); axes[0].set_yticklabels([SHORT[m].replace("\n", " ") for m in MODELS][::-1])
     axes[0].set_ylim(-0.6, n - 0.4)
     handles = [Line2D([], [], marker="o", linestyle="none", color=WITHIN, markersize=4, label="Within a segment"),
                Line2D([], [], marker="D", linestyle="none", color=POST, markersize=3.8, label="Right after a marker")]
-    fig.legend(handles=handles, loc="lower center", ncol=2, frameon=False, bbox_to_anchor=(0.5, -0.02))
-    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    fig.tight_layout()
+    fig.legend(handles=handles, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 0.0))
     out = REPO / "figs" / "fig1_per_position.pdf"
     savefig(fig, out)
     fig.savefig(REPO / "figs" / "png" / "fig1_per_position.png", dpi=200, bbox_inches="tight")
@@ -113,7 +113,7 @@ def make_reset_fig():
                 o = vals[(vals.task == t) & (vals.model == m)]
                 r = vals[(vals.task == f"{t}_reset") & (vals.model == m)]
                 if o.empty or r.empty:
-                    ax.text(i, 0.6, "not\nrun", ha="center", va="center", fontsize=5.5, color=BASE, linespacing=0.9)
+                    ax.text(i, 0.6, "not\nrun", ha="center", va="center", fontsize=7, color=BASE, linespacing=0.9)
                     continue
                 a, b = o[col].iloc[0], r[col].iloc[0]
                 ax.annotate("", xy=(i, b), xytext=(i, a), arrowprops=dict(arrowstyle="-|>", color=color, linewidth=1.1, mutation_scale=7), zorder=3)
@@ -126,15 +126,20 @@ def make_reset_fig():
                 ax.spines[s].set_visible(False)
             ax.set_xticks(range(len(models)))
             ax.set_xlim(-0.6, len(models) - 0.4)
-            ax.set_xticklabels(["Q2.5\n7B", "Q2.5\n32B", "Q3.8\n27B", "Gemma\n4"], fontsize=6.0)
-            if row == 0:
-                ax.set_title(t, fontsize=7.5, family="monospace")
+            # model names once, under the bottom row, slanted so the full names fit
+            if row == 1:
+                ax.set_xticklabels(["Qwen2.5 7B", "Qwen2.5 32B", "Qwen3.8 27B", "Gemma 4 31B"],
+                                   rotation=30, ha="right", rotation_mode="anchor")
+            else:
+                ax.set_xticklabels([])
+            # every panel titled "(letter) task"; the task name is set in typewriter by _plain_labels
+            ax.set_title(f"({'abcdefgh'[row * len(tasks) + j]}) {t}")
             if j == 0:
-                ax.set_ylabel(f"{label}\ntoken accuracy", fontsize=7.5)
-    handles = [Line2D([], [], marker="o", linestyle="none", color=INK, markerfacecolor="white", markeredgewidth=1.0, markersize=4, label="Dependency intact (original task)"),
-               Line2D([], [], marker=">", linestyle="-", color=INK, markersize=4, label="Dependency severed (recurrence restarts at each marker)")]
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 1.0), ncol=2, frameon=False, fontsize=6.8)
+                ax.set_ylabel("Accuracy right\nafter a marker" if row == 0 else "Accuracy within\na segment")
+    handles = [Line2D([], [], marker="o", linestyle="none", color=INK, markerfacecolor="white", markeredgewidth=1.0, markersize=4, label="Original task"),
+               Line2D([], [], marker=">", linestyle="-", color=INK, markersize=4, label="Reset variant")]
     fig.tight_layout()
+    fig.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, 0.0), ncol=2)
     out = REPO / "figs" / "fig_reset_per_position.pdf"
     savefig(fig, out)
     fig.savefig(REPO / "figs" / "png" / "fig_reset_per_position.png", dpi=200, bbox_inches="tight")
