@@ -82,14 +82,32 @@ def main():
     assert "\\pending{" not in body + appendix, "a placeholder is left in the project version"
     # tables wider than the 6.5-inch text block are shrunk to fit; those already in a \resizebox are left alone
     # verbatim blocks and longtables cannot sit inside a box: leave those inputs alone
-    fit = lambda t: re.sub(r"(?<!\{)\\input\{tables/((?!prompts_verbatim|[^}]*_lt\.tex)[^}]+)\}", r"\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{\\input{tables/\1}}", t)
+    fit = lambda t: re.sub(r"(?<!\{)\\input\{tables/((?!prompts_verbatim|[^}]*_lt\.tex)[^}]+)\}", r"\\adjustbox{max width=\\linewidth,max totalheight=0.70\\textheight}{\\input{tables/\1}}", t)
     body, appendix = fit(body), fit(appendix)
     # inline tabulars (Table 1, the summary and decision tables) get the same treatment
-    inl = lambda t: re.sub(r"(?<!\{)(\\begin\{tabular\}.*?\\end\{tabular\})", r"\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{\1}", t, flags=re.S)
+    inl = lambda t: re.sub(r"(?<!\{)(\\begin\{tabular\}.*?\\end\{tabular\})", r"\\adjustbox{max width=\\linewidth,max totalheight=0.70\\textheight}{\1}", t, flags=re.S)
     body, appendix = inl(body), inl(appendix)
     # tables the TMLR source already scales to the line width: bound their height too
-    rb = lambda t: t.replace("\\resizebox{\\linewidth}{!}{", "\\adjustbox{max width=\\linewidth,max totalheight=0.86\\textheight}{")
+    # The prompt appendix is verbatim, so it cannot go in an adjustbox; its 92-column lines
+    # overrun the right margin at the thesis 12pt base size, so set it smaller instead.
+    # prompts_verbatim.tex wraps each block in \begin{small}, which would override an outer
+    # size, and the file is shared with the TMLR version through a symlink, so rebind \small
+    # inside the group instead of editing it.
+    pv = lambda t: t.replace("\\input{tables/prompts_verbatim.tex}",
+                             "{\\let\\small\\scriptsize\\input{tables/prompts_verbatim.tex}}")
+    # Any \resizebox width, not only \linewidth: with {!} the height scales with the width, so a
+    # tall table keeps its height and runs off the page bottom unless the height is capped too.
+    rb = lambda t: re.sub(r"\\resizebox\{[^}]*\}\{!\}\{",
+                          r"\\adjustbox{max width=\\linewidth,max totalheight=0.70\\textheight}{", t)
     body, appendix = rb(body), rb(appendix)
+    body, appendix = pv(body), pv(appendix)
+    # The two position classes sit on one line, which fits the TMLR column at 10pt but runs
+    # past the right margin in the thesis text block at 12pt; stack them instead.
+    def stack_classes(s):
+        return re.sub(r"(\\mathcal\{P\}_k.*?)\\qquad\s*(\\mathcal\{W\}_k.*?\.)",
+                      "\\\\begin{aligned}\n\\1\\\\\\\\\n\\2\n\\\\end{aligned}", s, flags=re.S)
+    body, appendix = stack_classes(body), stack_classes(appendix)
+
     # thesis wording: "the paper" -> "this work"; references to chapter-level labels say Chapter
     chap_labels = re.findall(r"\\chapter\{[^}]*\}\n\\label\{([^}]*)\}", body)
     def wording(x):
@@ -120,6 +138,7 @@ def main():
 \usepackage{float}
 \usepackage{longtable}
 \usepackage{adjustbox}
+\usepackage{relsize}
 \usepackage[htt]{hyphenat}
 \makeatletter\setlength{\@fptop}{0pt}\makeatother
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.8}\renewcommand{\textfraction}{0.07}

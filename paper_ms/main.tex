@@ -16,6 +16,7 @@
 \usepackage{float}
 \usepackage{longtable}
 \usepackage{adjustbox}
+\usepackage{relsize}
 \usepackage[htt]{hyphenat}
 \makeatletter\setlength{\@fptop}{0pt}\makeatother
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.8}\renewcommand{\textfraction}{0.07}
@@ -38,7 +39,7 @@
 % Plan II project report: the document-type line reads Project (change to Thesis for Plan I).
 \makeatletter\def\@Thesisname{Project}\makeatother
 
-\abstract{Inserting a content-free marker (\texttt{|}) into the input every $k$ characters of a character-level transformation, and asking the model to copy it through, is a cheap single-call intervention. We study what it does across seven tasks, seven open instruction-tuned models, and two versions of Gemini Flash (3.5 and 3.6), using two controls that fix tokenization at one token per character: the same letter tasks with spaced letters, and exact relabelings with digits. We find three separate effects. First, on letter strings, markers act largely as re-tokenization: at five of the seven open models, spacing the letters with no markers improves accuracy more ($+0.16$ to $+0.33$) than markers do ($+0.13$ to $+0.26$). Second, the gain survives one token per character: with spaced letters or digits, markers remove 33\% to 83\% of the remaining errors at the four strongest open models, persist to $N = 256$ at Qwen2.5-32B, and match there with commas or line breaks as markers. Third, with a marker every two or more characters, the position right after a marker fails whenever its output depends on the input before it: on four dependency tasks it falls to near chance at the stronger models while the next position recovers, and rewriting the tasks so that position needs nothing before the marker repairs it. Blocking marker-attending heads removes part of the gain, and a constrained-decoding ablation on four tasks at Qwen2.5-32B shows that marking either input or output alone hurts while marking both helps, and that the failure at the crossing position is not specific to the input side. Real promoter DNA and English text show the same gain and failure. In practice: separate characters before adding markers, mark long sequences sparsely on input and output, and keep markers away from positions whose output depends on what came just before them.}
+\abstract{Inserting a content-free marker (\texttt{|}) into the input every $k$ characters of a character-level transformation, and asking the model to copy it through, is a cheap single-call intervention. We study what it does across seven tasks, seven open instruction-tuned models, and two versions of Gemini Flash (3.5 and 3.6), using two controls that fix tokenization at one token per character: the same letter tasks with spaced letters, and exact relabelings with digits. We find three separate effects. First, on letter strings, markers act largely as re-tokenization: at five of the seven open models and at Gemini 3.6, spacing the letters with no markers improves accuracy more ($+0.16$ to $+0.33$, and to $+0.30$ among the open models alone) than markers do ($+0.13$ to $+0.26$). Second, the gain survives one token per character: with spaced letters or digits, markers remove 33\% to 83\% of the remaining errors at the four strongest open models, persist to $N = 256$ at Qwen2.5-32B, and match there with commas or line breaks as markers. Third, with a marker every two or more characters, the position right after a marker fails whenever its output depends on the input before it: on four dependency tasks it falls to near chance at the stronger models while the next position recovers, and rewriting the tasks so that position needs nothing before the marker repairs it. Blocking marker-attending heads removes part of the gain, and a constrained-decoding ablation on four tasks at Qwen2.5-32B shows that marking either input or output alone hurts while marking both helps, and that on \task{running\_xor} the failure at the crossing position is not specific to the input side. Real promoter DNA and English text show the same gain and failure. In practice: separate characters before adding markers, mark long sequences sparsely on input and output, and keep markers away from positions whose output depends on what came just before them.}
 
 \begin{document}
 \makeintropages
@@ -102,7 +103,7 @@ The position-local tasks are posed in three formats. In the \emph{letter} format
 \small
 \caption[Tasks. $A$ = alphabet size, $M$ = modulus.]{Tasks. $A$ = alphabet size, $M$ = modulus. Lengths $N \in \{4, 8, 16, 32, 64\}$. Position-local tasks are run with letters, spaced letters, and digits; dependency tasks use digits.}
 \label{tab:tasks}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\begin{tabular}{llll}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\begin{tabular}{llll}
 \toprule
 Task & Tier & Rule & Axis \\
 \midrule
@@ -157,7 +158,10 @@ where $\bar\Delta$ is the unweighted mean of $\Delta$ over a model's tasks and t
 
 \paragraph{Per-position accuracy.} For a marker run with spacing $k$, output position $i$ (0-indexed, markers stripped) belongs to one of two classes,
 \begin{equation}
-\mathcal{P}_k = \{\, i : i > 0,\ i \bmod k = 0 \,\} \ \text{(post-marker)}, \qquad \mathcal{W}_k = \{\, i : i > 0,\ i \bmod k \neq 0 \,\} \ \text{(within-segment)}.
+\begin{aligned}
+\mathcal{P}_k = \{\, i : i > 0,\ i \bmod k = 0 \,\} \ \text{(post-marker)}, \\
+\mathcal{W}_k = \{\, i : i > 0,\ i \bmod k \neq 0 \,\} \ \text{(within-segment)}.
+\end{aligned}
 \label{eq:classes}
 \end{equation} Each class is compared with the no-marker run's accuracy at the same position indices, which controls for accuracy varying along the sequence. Per-position results (\Eqref{eq:classes}) pool $N \le 64$, $k \in \{2, 4, 8, 16\}$, and alphabet or modulus values; $k = 1$ has no within-segment positions, so per-position claims concern spacings of two or more. The unit for uncertainty is the generation, and intervals are 95\%.
 
@@ -228,7 +232,7 @@ Figure~\ref{fig:poscurve} shows the pattern along the sequence: at Qwen2.5-32B, 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/fig1_split_heatmap.pdf}
-\caption[Pooled change in character accuracy when markers are added (Bounds $-$ Base, \Eqref{eq:delta}), every model.]{Pooled change in character accuracy when markers are added (Bounds $-$ Base, \Eqref{eq:delta}), every model: (a) contiguous-letter position-local tasks, (b) digit dependency tasks, (c) reset variants. Pooled over $N \in \{4,\dots,64\}$, $k \in \{1,2,4,8,16\}$, and alphabet or modulus values, with the no-marker mean length-matched to the marker runs. $^*$: $|z| \ge 3.54$ (Bonferroni across the 125 pooled cells we test). Blue: markers help; red: markers hurt; ---: not run. The reset variants of Section~\ref{sec:reset} are deliberately not shown: they change the rule at the post-marker position and shift the no-marker baseline, so a pooled effect would not be a comparison on the original task. Appendix Figure~\ref{fig:reset} gives their per-position test.}
+\caption[Pooled change in character accuracy when markers are added (Bounds $-$ Base, \Eqref{eq:delta}), every model.]{Pooled change in character accuracy when markers are added (Bounds $-$ Base, \Eqref{eq:delta}), every model: (a) contiguous-letter position-local tasks, (b) digit dependency tasks. Pooled over $N \in \{4,\dots,64\}$, $k \in \{1,2,4,8,16\}$, and alphabet or modulus values, with the no-marker mean length-matched to the marker runs. $^*$: $|z| \ge 3.54$ (Bonferroni across the 125 pooled cells we test). Blue: markers help; red: markers hurt; ---: not run. The reset variants of Section~\ref{sec:reset} are deliberately not shown: they change the rule at the post-marker position and shift the no-marker baseline, so a pooled effect would not be a comparison on the original task. Appendix Figure~\ref{fig:reset} gives their per-position test.}
 \label{fig:split}
 \end{figure}
 
@@ -241,7 +245,7 @@ The checks in this subsection change how the effect is measured or delivered and
 
 \paragraph{Spacing, delivery, and state size.} The loss is a property of the position after a marker, not of the power-of-two rhythm the per-position analyses use. Taking $k = 2$, 3, and 4 separately gives mean post-marker changes of $-0.18$, $-0.18$, and $-0.17$ over the twenty dependency-task cells at the five open models, with $k = 3$ matching the sign of its neighbours in 18 of 20; moving every marker by $-1$, 0, or $+1$ from its periodic place, so the spacing is irregular, leaves the post-marker loss where it was or slightly deeper (Appendix Table~\ref{tab:jitterdep}); at Qwen2.5-32B, where we also ran $k = 5$ and 6, which share no divisor with that grid, the change stays between $-0.16$ and $-0.13$ across $k = 2$ to 6, without a trend while the within-segment change rises from $+0.04$ to $+0.11$ (Appendix Table~\ref{tab:blindk}). Four further checks change nothing: delivering the prompt without the chat template or with other system prompts, raising the modulus of \task{running\_sum\_local} to 8 and 16, and sampling instead of greedy decoding (Appendix~\ref{app:delimiter}, Table~\ref{tab:decoding}).
 
-\paragraph{Other delimiters and longer sequences.} At Qwen2.5-32B we replaced \texttt{|} with a comma or a line break, each with a constraint sentence naming it, and extended \task{running\_xor} and \task{running\_sum\_local} (modulus 4) to $N = 128$ and 256 ($k \in \{4, 16\}$, 20 trials per cell; Appendix Table~\ref{tab:delimiter}). With every delimiter and at every length, the post-marker position is at chance: 0.48 to 0.52 on \task{running\_xor} (chance 0.5) and 0.21 to 0.26 on \task{running\_sum\_local} (chance 0.25). Within-segment positions gain $+0.16$ to $+0.26$ and $+0.09$ to $+0.19$ over the no-marker run at the same positions. Measured against the no-marker run, the post-marker loss shrinks with length (on \task{running\_xor}, $-0.11$ to $-0.14$ at $N = 64$, $-0.03$ to $-0.05$ at 128, and $+0.03$ to $+0.05$ at 256), but only because the no-marker run itself decays toward chance on long sequences; the post-marker position does not improve. The blind spot is a property of the boundary, not of the symbol. The line break gives the largest pooled gain in all six dependency cells, by up to 0.08.
+\paragraph{Other delimiters and longer sequences.} At Qwen2.5-32B we replaced \texttt{|} with a comma or a line break, each with a constraint sentence naming it, and extended \task{running\_xor} and \task{running\_sum\_local} (modulus 4) to $N = 128$ and 256 ($k \in \{4, 16\}$, 20 trials per cell; Appendix Table~\ref{tab:delimiter}). With every delimiter and at every length, the post-marker position is at chance: 0.48 to 0.52 on \task{running\_xor} (chance 0.5) and 0.21 to 0.26 on \task{running\_sum\_local} (chance 0.25). Within-segment positions gain $+0.16$ to $+0.26$ and $+0.09$ to $+0.19$ over the no-marker run at the same positions. Measured against the no-marker run, the post-marker loss shrinks with length (on \task{running\_xor}, $-0.11$ to $-0.14$ at $N = 64$, $-0.03$ to $-0.05$ at 128, and $+0.03$ to $+0.05$ at 256), but only because the no-marker run itself decays toward chance on long sequences; the post-marker position does not improve. The blind spot is a property of the boundary, not of the symbol. The line break gives the largest pooled gain in all six dependency cells, by up to 0.08 over commas and 0.05 over the bar.
 
 \paragraph{One-sided markers.} Markers in the input with an output asked for without them leave the post-marker position at chance on \task{running\_xor}; so does a delimiter forced into the output of an unmarked input, so on that task the loss is not specific to either side. On the other dependency tasks a one-sided condition lowers accuracy across the whole output rather than at the boundary (Section~\ref{sec:sides}).
 
@@ -265,7 +269,7 @@ Appendix Figure~\ref{fig:reset} confirms the prediction. On \task{running\_xor},
 \small
 \caption[Instruction wording and the blind spot.]{Instruction wording and the blind spot: per-position change from adding markers (marker run minus the no-marker run of the same wording at the same positions). Orig.: ``structural boundaries''; Neutral: copy each bar through; Across: the bars are only visual separators and the rule applies across them; + worked: the across wording with two worked examples with bars, the first annotated at the position after its first bar. Four dependency tasks, $N \le 64$, $k \in \{2,4,8,16\}$, 20 trials per cell. Bold: post-marker changes at or above zero, where the wording removes the blind spot.}
 \label{tab:wording}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/wording.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/wording.tex}}
 \end{table}
 
 \paragraph{A finetuned separator.} Training can do what prompting only partly does. LoRA adapters trained on \task{running\_xor} and \task{running\_sum\_local} with marked answers as targets remove the blind spot entirely on those tasks at Qwen2.5-7B and 32B (post-marker accuracy 1.00), while controls trained on the same tasks without markers widen it. Whether that transfers is the question, and controls trained without markers for the same number of steps answer it: at 32B the only held-out repair specific to marker supervision is \task{sliding\_window\_max} (post-marker change $+0.02$, against $-0.23$ for the step-matched control), while on \task{copy\_previous} the step-matched control repairs the position as well as the marked adapter does. The marked adapter also loses accuracy without markers on held-out tasks, but so does the step-matched control, so that cost comes from the amount of finetuning rather than from the markers. Marker supervision therefore looks like adaptation to the boundaries of the tasks it saw rather than a general rule for crossing a delimiter. Appendix~\ref{app:base} and Table~\ref{tab:lora} give the per-task numbers at both scales, including a shorter control that raises unmarked accuracy where the step-matched one lowers it.
@@ -283,14 +287,14 @@ Every input so far is drawn uniformly at random. Real sequences repeat symbols, 
 
 Four of these rules, the same-class, later-letter, and two counting rules, sit near or below chance without markers in the contiguous format at every model (0.04 to 0.52), where a marker effect would be uninterpretable; the analysis below therefore uses the position-local and copy-previous rules, which both models do above chance in both formats. Where spacing lifts one of the four clear of chance it shows the synthetic pattern: on the same-class rule at Gemma 4 (0.67 without markers) and Qwen2.5-32B (0.63), and on the later-letter rule at Gemma 4 (0.63), the post-marker position changes by $-0.22$, $-0.13$, and $-0.13$ while the within-segment positions gain $+0.06$, $+0.03$, and $+0.05$ (Appendix Table~\ref{tab:realfull}).
 
-On the other four (Table~\ref{tab:real}), the synthetic results reappear. The position-local rules gain from markers at every model in the contiguous format, by $+0.12$ to $+0.21$ on DNA and $+0.15$ to $+0.26$ on text. As on letter strings (Chapter~\ref{sec:tokenization}), spacing the bases alone does at least as much as markers do, and more at two of the three models ($+0.17$ to $+0.23$), the post-marker advantage on contiguous DNA at the Qwen models ($+0.28$ and $+0.27$, against $+0.09$ and $+0.17$ within segments) disappears with spaced bases, and with spaced bases markers still help the two Qwen models ($+0.10$ and $+0.13$), while Gemma 4 is at 0.99 without them. The copy-previous rules lose at every model and in both formats, by $0.06$ to $0.39$, including where the model is near ceiling without markers (Qwen2.5-32B: 0.95 on DNA, 0.91 on text), and the post-marker position loses most. Gemma 4 restarts the rule at each marker: on DNA it writes the start symbol N, which the rule gives only at the first position, after 55\% of markers in the contiguous format and 90\% in the spaced format, and at the same positions in fewer than 0.1\% of no-marker outputs, so its post-marker accuracy falls to 0.17 and 0.05; on spaced text it writes the start symbol \# after 53\% of markers. The Qwen models restart after at most 13\% of markers; most of their post-marker errors are out of alignment, and their within-segment positions fall with the post-marker position. Rescoring these runs under edit-distance alignment, as for the synthetic tasks, separates the two: over the 12 copy-previous cells (two sources, three models, two formats) alignment removes a median 72\% of the within-segment drop (range 24\% to 92\%, every cell shrinking toward zero), taking it from $-0.23$ to $-0.06$ on average, while the post-marker drop largely survives it ($-0.43$ to $-0.32$, a median 21\% removed, and in three cells it grows). The within-segment loss on real sequences is therefore mostly desynchronization after a genuine error at the marker, not degradation spread through the segment. One qualification: on the position-local real tasks alignment also removes about half of the within-segment \emph{gain}, so it compresses within-segment differences on these sequences generally, and the attribution is directional rather than specific to copy-previous (Table~\ref{tab:real}). The copy-previous cells therefore combine the blind spot with that desynchronization and show no within-segment gain; the spaced one-step rules above, where the models are above chance, show the gain alongside the post-marker loss, as the synthetic dependency tasks do. On real DNA and text, then, a position-local rule gains from markers and a dependency that crosses one fails after it.
+On the other four (Table~\ref{tab:real}), the synthetic results reappear. The position-local rules gain from markers at every model in the contiguous format, by $+0.12$ to $+0.21$ on DNA and $+0.15$ to $+0.26$ on text. As on letter strings (Chapter~\ref{sec:tokenization}), spacing the bases alone does at least as much as markers do, and more at two of the three models ($+0.17$ to $+0.23$), the post-marker advantage on contiguous DNA at the Qwen models ($+0.28$ and $+0.27$, against $+0.09$ and $+0.18$ within segments) disappears with spaced bases, and with spaced bases markers still help the two Qwen models ($+0.10$ and $+0.13$), while Gemma 4 is at 0.99 without them. The copy-previous rules lose at every model and in both formats, by $0.06$ to $0.39$, including where the model is near ceiling without markers (Qwen2.5-32B: 0.95 on DNA, 0.91 on text), and the post-marker position loses most. Gemma 4 restarts the rule at each marker: on DNA it writes the start symbol N, which the rule gives only at the first position, after 55\% of markers in the contiguous format and 90\% in the spaced format, and at the same positions in fewer than 0.1\% of no-marker outputs, so its post-marker accuracy falls to 0.17 and 0.05; on spaced text it writes the start symbol \# after 53\% of markers. The Qwen models restart after at most 13\% of markers; most of their post-marker errors are out of alignment, and their within-segment positions fall with the post-marker position. Rescoring these runs under edit-distance alignment, as for the synthetic tasks, separates the two: over the 12 copy-previous cells (two sources, three models, two formats) alignment removes a median 72\% of the within-segment drop (range 24\% to 92\%, every cell shrinking toward zero), taking it from $-0.23$ to $-0.06$ on average, while the post-marker drop largely survives it ($-0.43$ to $-0.32$, a median 21\% removed, and in three cells it grows). The within-segment loss on real sequences is therefore mostly desynchronization after a genuine error at the marker, not degradation spread through the segment. One qualification: on the position-local real tasks alignment also removes about half of the within-segment \emph{gain}, so it compresses within-segment differences on these sequences generally, and the attribution is directional rather than specific to copy-previous (Table~\ref{tab:real}). The copy-previous cells therefore combine the blind spot with that desynchronization and show no within-segment gain; the spaced one-step rules above, where the models are above chance, show the gain alongside the post-marker loss, as the synthetic dependency tasks do. On real DNA and text, then, a position-local rule gains from markers and a dependency that crosses one fails after it.
 
 \begin{table}[!htb]
 \centering
 \small
 \caption[Real sequences.]{Real sequences: windows of human promoter DNA and of WikiText-2 letters, $N \in \{16, 32, 64\}$, 20 trials per cell. No-marker accuracy, pooled marker effect (no-marker mean length-matched, $k = 3$ excluded), and per-position effects at post-marker and within-segment positions against the no-marker run at the same positions ($k \in \{2, 4, 8, 16\}$), one row per format. Each per-position effect is given under index-by-index scoring and under edit-distance alignment, with the share of the within-segment effect that alignment removes; that share is left blank where the index-scored effect is under 0.02 or the ratio leaves $[0, 1]$ and so is not a share. The other four rules are near chance without markers (Appendix Table~\ref{tab:realfull}). Bold: index-scored post-marker changes of 0.25 or more in size.}
 \label{tab:real}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/real_data.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/real_data.tex}}
 \end{table}
 
 % =====================================================================
@@ -310,12 +314,12 @@ The interventions here are narrower than the rest of this report: mostly at Qwen
 \small
 \caption[Head ablation at Qwen2.5-32B (\task{random\_permutation}, $A = 8$, 20 trials per cell, pooled over $k \in \{2, 8\}$).]{Head ablation at Qwen2.5-32B (\task{random\_permutation}, $A = 8$, 20 trials per cell, pooled over $k \in \{2, 8\}$). ``Top 10'': the ten most marker-attending heads, chosen on held-out trials, are blocked from attending to markers (weights zeroed, rows renormalized). Controls: ten random heads blocked from markers, and the top ten blocked from as many random non-marker input tokens (sham). Share of gain removed is $(\text{Markers} - \text{blocked}) / (\text{Markers} - \text{No markers})$; ``Controls'' gives the larger of the two control shares. Bold: shares of 10\% or more removed by the top ten heads.}
 \label{tab:ablation}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/ablation_32b.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/ablation_32b.tex}}
 \end{table}
 
 \paragraph{Blocking the ten most marker-attending heads.} We block the ten most marker-attending heads from the markers during generation and compare with two controls (Table~\ref{tab:ablation}). The block acts after the softmax: in each blocked head, the attention weights from every query position to the marker tokens are set to zero and each row is renormalized, so the head's remaining attention is redistributed over non-marker tokens and nothing else in the forward pass changes; a self-test at the start of every run confirms that the blocked weights are exactly zero. Random heads are drawn uniformly from all (layer, head) pairs outside the top set, not matched by layer, though their median layer is close to the top heads' (34 against 30 for ten heads). On digits at Qwen2.5-32B, where markers raise accuracy from 0.41 to 0.96 at $N = 64$, blocking removes 1\% of the gain (paired drop $+0.005 \pm 0.009$). At $N = 64$ it removes 13\% on spaced letters ($+0.065 \pm 0.058$) and 19\% on contiguous letters ($+0.049 \pm 0.030$), against at most 5\% for either control; at $N = 32$ it removes 7\% or less in every format. On spaced letters part of this is one trial ($N = 64$, $k = 8$): in it the 10-head runs and the 50-head controls all close the first segment one character early and then copy the rest correctly but shifted by one, which index scoring counts as 54 errors, while the unblocked run, the top-50 run, and every 200-head run get it right. Without that trial, blocking the ten heads removes 9\% on spaced letters and the controls at most 1\%. The heads that attend most to markers thus carry about none of the gain on digits, a modest and uncertain share on spaced letters, and up to a fifth on contiguous letters. At Qwen2.5-7B, marker gains in this 20-trial head-ablation subset are small and the drops from blocking are within the range of the controls (for example, $+0.03 \pm 0.05$ on spaced letters at $N = 32$, against $+0.03$ for random heads). Blocking ten heads is a narrow intervention, and the benefit may be distributed; what we can say is that it is not concentrated in the heads that attend to markers most.
 
-\paragraph{Head-count dose response.} At $N = 64$ and $k = 8$, against $k \in \{2, 8\}$ pooled in Table~\ref{tab:ablation}, blocking the 50 most marker-attending heads removes 1\% to 4\% of the gain and the top 200 (8\% of the model's heads) about a quarter, 28\% on spaced letters and 21\% on digits, while 200 random heads blocked from the markers, or the top 200 blocked from as many random non-marker tokens, remove nothing (Appendix Figure~\ref{fig:mechanism}c). The benefit runs partly through attention to the markers, but thinly spread over the heads this ranking finds: even 200 of them carry about a quarter of it. The ranking is by how much attention a head places on markers, not by its causal contribution, and attention mass marks a passive sink as readily as a working head, so a circuit that a causal ranking would find concentrated is not excluded.
+\paragraph{Head-count dose response.} At $N = 64$ and $k = 8$, against $k \in \{2, 8\}$ pooled in Table~\ref{tab:ablation}, blocking the 50 most marker-attending heads removes 1\% to 4\% of the gain and the top 200 (7.8\% of the model's heads) about a quarter, 28\% on spaced letters and 21\% on digits, while 200 random heads blocked from the markers, or the top 200 blocked from as many random non-marker tokens, remove nothing (Appendix Figure~\ref{fig:mechanism}c). The benefit runs partly through attention to the markers, but thinly spread over the heads this ranking finds: even 200 of them carry about a quarter of it. The ranking is by how much attention a head places on markers, not by its causal contribution, and attention mass marks a passive sink as readily as a working head, so a circuit that a causal ranking would find concentrated is not excluded.
 
 \paragraph{Attention to the needed input.} On \task{copy\_previous} at $N=32$, a marker after every character keeps the marker pattern aligned with the one-step lookback, and attention from each output position to the input it needs is high (0.535). At $k=2$, every other lookback crosses a marker; attention to the needed token falls to 0.101 and accuracy drops from 0.88 to 0.65, below the no-marker baseline of 0.83, on the 40-generation batch these attention runs use (0.85, 0.63 and 0.81 over the pooled grid). At $k=8$ both recover (Appendix Figure~\ref{fig:mechanism}d). The attention here is the mean over the ten heads, chosen separately at each spacing, that attend most to the needed input, averaged over all output positions; part of the recovery at $k = 8$ is therefore that only one position in eight follows a marker, against every other position at $k = 2$, and Section~\ref{sec:patching} isolates the post-marker step. This is the attention-level counterpart of the blind spot.
 
@@ -358,7 +362,7 @@ The output-only cell shows that the loss at the crossing position is not a prope
 \small
 \caption[The 2$\times$2 input-versus-output marker ablation with the output format constrained by a logits processor rather than requested solely through the prompt (Qwen2.5-32B.]{The 2$\times$2 input-versus-output marker ablation with the output format constrained by a logits processor rather than requested solely through the prompt (Qwen2.5-32B; $N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 trials per cell). Full output: the share of generations whose whole output carries the requested markers; shortfalls in the output-only cells are markers written after the answer, where the model keeps generating. The first $N$ answer characters, the scored part, comply in every generation of every cell, so accuracy over compliant generations equals the accuracy column and neither is shown. Change is against the no-marker cell, and the interaction is $I$ of \Eqref{eq:interaction}, computed from unrounded cell means, with a bootstrap interval. Post-marker and within-segment are accuracy at $i \bmod k = 0$ with $i > 0$ in answer coordinates and at the remaining positions: where the input is segmented these are the characters whose inputs lie across a marker, and where the output is, the characters written right after a forced delimiter. The no-marker row is scored at the same indices, pooled with equal weight over $k \in \{4, 16\}$. Both classes are defined over $i > 0$ (\Eqref{eq:classes}), so the first position, which every task copies, counts towards accuracy but towards neither of them. The last column is that cell's post-marker minus within-segment accuracy, differenced against the no-marker cell's, with a 10,000-sample percentile bootstrap resampling cell and baseline generations independently; it asks whether a cell loses more at the crossing position than across its output as a whole. Bold: interactions whose 95\% interval excludes zero, and (post $-$ within) $-$ base values whose 95\% interval excludes zero.}
 \label{tab:sidesforced}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/marker_sides_forced.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/marker_sides_forced.tex}}
 \end{table}
 
 \paragraph{Two 7B-class models.} At Qwen2.5-7B and Mistral-7B the constrained $2\times2$ is near chance in six of its eight task--model blocks; where a model is above chance the interaction holds ($+0.16$ on \task{random\_permutation} at Qwen2.5-7B, $+0.20$ on \task{running\_xor} at Mistral, where only the marked cell clears chance).
@@ -394,7 +398,7 @@ The experiments separate three things a content-free marker does. On letter stri
 \small
 \caption[When to space characters, when to add markers, and when to avoid them.]{When to space characters, when to add markers, and when to avoid them. Based on the models and tasks tested here (the limitations discussed below bound its scope).}
 \label{tab:decision}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\begin{tabular}{p{0.45\linewidth} p{0.49\linewidth}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\begin{tabular}{p{0.45\linewidth} p{0.49\linewidth}}
 \toprule
 Situation & What to do \\
 \midrule
@@ -430,12 +434,14 @@ Latency matters & On contiguous letters from $N = 64$ on, a marker every 4 to 8 
 \section{Summary of the main effects}
 \label{app:summary}
 
+Table~\ref{tab:summary} collects the effects this report reports, their size, and where each one is established, so that a single place gives the whole picture.
+
 \begin{table}[!htbp]
 \centering
 \small
 \caption[Summary of the main effects.]{Summary of the main effects. Pooled effects are over $N \le 64$ with the no-marker mean length-matched; per-position effects are against the no-marker run at the same positions. ``Strong models'': Qwen2.5-14B and 32B, Qwen3.8-27B, Gemma-4-31B.}
 \label{tab:summary}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\begin{tabular}{p{0.43\linewidth} p{0.30\linewidth} p{0.19\linewidth}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\begin{tabular}{p{0.43\linewidth} p{0.30\linewidth} p{0.19\linewidth}}
 \toprule
 Effect & Size & Where \\
 \midrule
@@ -454,7 +460,7 @@ Blocking 10 / 200 marker-attending heads (spaced letters or digits) & removes $\
 Post-marker position vs no-marker run, strong models & $-0.15$ to $-0.26$ (Gemini $-0.34$, $-0.43$); at chance & Figure~\ref{fig:position} \\
 Next position & recovers ($+0.20$ on \task{running\_xor}) & Chapter~\ref{sec:blindspot} \\
 Reset variants (dependency severed at the marker) & post-marker rises to 0.92--1.00 & Appendix Figure~\ref{fig:reset} \\
-Survives alignment-robust scoring, commas and line breaks, $N = 256$, modulus 32, sampling, other prompt deliveries & post-marker stays at chance & Chapter~\ref{sec:blindspot} \\
+Survives alignment-robust scoring, commas and line breaks, $N = 256$, modulus 16, sampling, other prompt deliveries & post-marker stays at chance & Chapter~\ref{sec:blindspot} \\
 Across instruction naming the dependency & narrows it in 11 of 12 cells; removes it only at Gemma 4 on two tasks & Table~\ref{tab:wording} \\
 Across wording plus two worked examples & removes most of the loss at Gemma 4, half at Qwen3.8, a third at Qwen2.5-32B; mostly the wording at Gemma 4, wording and examples alike at Qwen2.5-32B & Table~\ref{tab:wording} \\
 LoRA on marked targets (Qwen2.5-7B, 32B) & removes the loss on the trained tasks, where unmarked controls widen it; against step-matched controls, the only held-out repair specific to it is one task at 32B; its cost in no-marker accuracy comes mostly from the amount of training & Table~\ref{tab:lora} \\
@@ -472,6 +478,8 @@ Input/output 2$\times$2 interaction, constrained decoding & $+0.17$ to $+0.70$ o
 \bottomrule
 \end{tabular}}
 \end{table}
+
+\FloatBarrier
 
 \section{Prompts}
 \label{app:prompts}
@@ -505,7 +513,7 @@ The mapping line is the literal string the prompt code generates: it shows the w
 
 \paragraph{More verbatim prompts.} The prompts below are regenerated from the task code with the grid's seeds ($N = 8$, $k = 4$, trial 0), so they are exactly what the models received, except that long lines are wrapped here to fit the page and the arrow and XOR symbols are printed as \texttt{->} and \texttt{\^{}}. For the digit version of \task{conditional\_shift} and for the neutral, across, and worked wordings of \task{running\_xor}, only the lines that differ from the prompt shown before them are printed.
 
-\input{tables/prompts_verbatim.tex}
+{\let\small\scriptsize\input{tables/prompts_verbatim.tex}}
 
 \section{Trials per cell}
 \label{app:trials}
@@ -519,7 +527,7 @@ Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, de
 \small
 \caption[Trials per cell, $N \le 64$.]{Trials per cell, $N \le 64$. Q2.5: Qwen2.5-Instruct; Q3.8: Qwen3.8-27B; Gemma 4: Gemma-4-31B-it. Reset variants at Qwen2.5-7B cover three of the four dependency tasks (\task{sliding\_window\_max} was not run in reset form there).}
 \label{tab:trials}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\begin{tabular}{lccccccc}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\begin{tabular}{lccccccc}
 \toprule
 Task & Q2.5-7B & Q2.5-14B & Q2.5-32B & Mistral & Phi & Q3.8 & Gemma 4 \\
 \midrule
@@ -555,7 +563,7 @@ Qwen3.8-27B \texttt{37561816e66b}, Gemma-4-31B-it \texttt{842da3794eaa}.
 
 \paragraph{Mistral-7B.} In all three position-local tasks, the benefit is largest at short lengths and decays to zero at the longest length tested (\task{cyclic\_shift}, whose Mistral grid was extended to $N = 256$ with 40 trials per cell: at $N = 256$, $+0.008$, $z = 0.4$; \task{random\_permutation}, $N = 64$: $-0.009$, $z = 0.5$; \task{conditional\_shift}, $N=64$: $-0.006$, $z = 0.4$). In Qwen models the benefit holds or grows with length.
 
-\paragraph{Repetition collapse.} On \task{running\_xor}, Qwen2.5-7B answers \task{running\_xor} with a single repeated character in 30\% of its generations, more often under dense markers. Measured the same way, this falls to 0.8\% at 14B and 0.3\% at Mistral-7B, so it is specific to Qwen2.5-7B.
+\paragraph{Repetition collapse.} On \task{running\_xor}, Qwen2.5-7B answers with a single repeated character in 30\% of its generations, more often under dense markers. Measured the same way, this falls to 0.8\% at 14B and 0.3\% at Mistral-7B, so it is specific to Qwen2.5-7B.
 
 \paragraph{Out-of-alphabet answers.} On the digit tasks, Qwen2.5-7B often writes a letter (usually \texttt{t}, sometimes \texttt{o}) in place of \texttt{0}, in 22\% to 35\% of outputs, depending on the task (the share whose answer contains a \texttt{t} or an \texttt{o}), with or without markers. On spaced letters, several models step outside the alphabet (for example \texttt{I} after \texttt{H} instead of wrapping to \texttt{A}). Such characters are scored as errors.
 
@@ -599,7 +607,7 @@ with $w_c$ the share and $n_c$ the generation count of marker generations in str
 \scriptsize
 \caption[Every pooled cell of the two tokenization controls ($N \le 64$, $k \in \{1, 2, 4, 8, 16\}$, all alphabet sizes).]{Every pooled cell of the two tokenization controls ($N \le 64$, $k \in \{1, 2, 4, 8, 16\}$, all alphabet sizes). No markers: the no-marker accuracy length-matched to the marker runs; share removed: $\Delta / (1 - \text{no-marker})$, left blank where the no-marker accuracy is above 0.98 and the denominator too small to divide by; $z$: generation-level standard errors (this report's default); $z$ (stratified): the fixed-strata estimator above; $z$ (cell bootstrap): resampling whole (length, spacing, alphabet) cells (open models only); $\Delta$ at $N = 64$: the same effect at the longest length alone, which the text quotes separately. Significance is $|z| \ge 3.54$. Bold: $|z| \ge 3.54$.}
 \label{tab:controlcells}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/control_cells.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/control_cells.tex}}
 \end{table}
 
 We therefore read a pooled $z$ as a statement about the mean effect over the grid we ran, not as
@@ -632,7 +640,7 @@ changes in 5 of 91 cells. Finding~2 is unchanged: 23 of its 24 cells remain sign
 \small
 \caption[Paired-input rerun.]{Paired-input rerun. Per model and format, averaged over cells (task, alphabet or modulus, $N$, $k > 0$): the marker effect from the main grid (different inputs per condition) and from the paired run (same inputs), the mean standard error of a cell under the unpaired and the paired estimator, and the mean correlation $r$ between a trial's marker and no-marker accuracies.}
 \label{tab:paired}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/paired.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/paired.tex}}
 \end{table}
 
 \section{Per-position accuracy}
@@ -647,7 +655,7 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \small
 \caption[Per-position accuracy by model ($N \le 64$, $k \in \{2,4,8,16\}$), mean over the tasks in each block.]{Per-position accuracy by model ($N \le 64$, $k \in \{2,4,8,16\}$), mean over the tasks in each block. Bold: post-marker changes of 0.20 or more in size.}
 \label{tab:perpos}
-\resizebox{0.85\linewidth}{!}{\input{tables/perpos.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/perpos.tex}}
 \end{table}
 
 \begin{table}[!htbp]
@@ -655,7 +663,7 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \small
 \caption[\task{sliding\_window\_max} reads the two previous inputs, so the first two positions after a marker cross it.]{\task{sliding\_window\_max} reads the two previous inputs, so the first two positions after a marker cross it. Change against the no-marker run at the same positions for the first position after a marker ($i \bmod k = 0$), the second ($i \bmod k = 1$), and the strictly internal positions ($i \bmod k \ge 2$, only at $k \ge 3$; ---: none at $k = 2$, and $k = 5$ and 6 were run at Qwen2.5-7B and 32B only), by spacing and pooled over $k \in \{2, 4, 8, 16\}$. Positions 0 and 1 of the sequence, which follow no marker, are in none of the classes. Bold: pooled losses of 0.10 or more.}
 \label{tab:blindwindow}
-\resizebox{0.85\linewidth}{!}{\input{tables/blind_spot_window.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/blind_spot_window.tex}}
 \end{table}
 
 \begin{table}[!htbp]
@@ -663,7 +671,7 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \small
 \caption[Per-position gains on dependency tasks (marker run minus the no-marker run at the same positions) under index-by-index scoring and under edit-distance alignment, which repairs dropped or inserted characters.]{Per-position gains on dependency tasks (marker run minus the no-marker run at the same positions) under index-by-index scoring and under edit-distance alignment, which repairs dropped or inserted characters. $N \le 64$, $k \in \{2,4,8,16\}$. Share: the alignment-sensitive part of the within-segment gain, (index $-$ aligned) / index, shown only where the index-scored within-segment gain is at least $+0.02$ and survives alignment; otherwise the ratio falls outside $[0, 1]$ and carries no meaning, which is why all but one of the 7B-class rows are blank. Bold: post-marker losses of 0.10 or more under alignment; two of them reach that size only after alignment.}
 \label{tab:aligned}
-\resizebox{0.85\linewidth}{!}{\input{tables/aligned.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/aligned.tex}}
 \end{table}
 
 \paragraph{Error clustering.} Table~\ref{tab:autocorr} asks whether markers change how errors cluster along the sequence. For every generation at $N = 64$ of the four stronger open models, the per-position error indicator is computed under index scoring and under the edit-distance alignment, and three quantities are pooled over generations: the error rate, the probability $p_{1|1}$ that the position after an error is also wrong, and the probability $p_{1|0}$ that the position after a correct one is wrong. Under index scoring a dropped or inserted character makes every later position wrong, so $p_{1|1}$ there measures cascading misalignment; under alignment it measures the clustering of genuine local errors. Without markers the index-scored $p_{1|1}$ is 0.70 to 0.77 on the spaced and digit formats; sparse markers ($k \in \{2,4,8,16\}$) bring it to 0.24 to 0.59, and the mean run of consecutive errors shortens from 3.1 to 3.9 positions to 1.3 to 2.3. Under alignment the change is smaller ($[0.34, 0.51]$ against $[0.21, 0.40]$) and $p_{1|0}$ falls together with the error rate, so sparse markers mostly stop a slip from propagating, with a smaller reduction in the clustering of substitutions. A marker after every character lowers the error rate but does not shorten the cascades (index-scored $p_{1|1}$ of 0.45 to 0.70). On the dependency tasks the same shift appears (0.63 to 0.79 against 0.40 to 0.61, index-scored), on top of the errors the blind spot adds at the post-marker positions. Read as a two-state Markov error model, $p_{1|1}$ and $p_{1|0}$ are its cascade and fresh-error parameters, and which of them markers lower depends on the scoring. Under index scoring they cut the cascade sharply, because periodic markers stop a phase slip from running to the end of the answer. Under alignment, which repairs those slips, the cascade barely moves and the fresh-error parameter falls instead: at Qwen2.5-32B on spaced letters, aligned $p_{1|1}$ goes from 0.46 to 0.35 while $p_{1|0}$ goes from 0.18 to 0.05, and at Gemma 4 on digits $p_{1|0}$ goes from 0.06 to 0.01. The index-scored effect is therefore about slips propagating, and the aligned effect about substitutions being started.
@@ -673,15 +681,15 @@ Table~\ref{tab:perpos} gives the per-position means plotted in Figure~\ref{fig:p
 \small
 \caption[Error clustering at $N = 64$ at the four stronger open models, pooled over the tasks of each format and over alphabets or moduli.]{Error clustering at $N = 64$ at the four stronger open models, pooled over the tasks of each format and over alphabets or moduli: error rate, $p_{1|1}$ (an error follows an error), and $p_{1|0}$ (an error follows a correct position), by marker density, under index scoring (top) and edit-distance alignment (bottom), and the mean length of a run of consecutive errors. Markers and spaces are stripped before scoring, so pairs of adjacent positions that straddle a marker are included; a run that reaches the end of the answer is counted at its length within the answer, without a correction for censoring, and under index scoring a short answer ends in one run to the end.}
 \label{tab:autocorr}
-\resizebox{0.85\linewidth}{!}{\input{tables/autocorr.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/autocorr.tex}}
 \end{table}
 
 \begin{table}[!htbp]
 \centering
 \small
-\caption[The blind spot at each spacing from $k = 2$ to 16.]{The blind spot at each spacing from $k = 2$ to 16. The blind spot by spacing (dependency tasks, $N \le 64$; $k = 5$ and 6 were run at Qwen2.5-7B and 32B only): change at the post-marker and within-segment positions against the no-marker run at the same positions. $k = 3$ is otherwise excluded from the pooled analyses. At $k = 2$, every within-segment position of \task{sliding\_window\_max} is the second position after a marker, whose window still crosses it (Table~\ref{tab:blindwindow}). Bold: post-marker losses that print as 0.25 or more (the rule reads the rounded value, so two cells of 0.248 and 0.246 are bold).}
+\caption[The blind spot at each spacing from $k = 2$ to 16 (dependency tasks, $N \le 64$.]{The blind spot at each spacing from $k = 2$ to 16 (dependency tasks, $N \le 64$; $k = 5$ and 6 were run at Qwen2.5-7B and 32B only): change at the post-marker and within-segment positions against the no-marker run at the same positions. $k = 3$ is otherwise excluded from the pooled analyses. At $k = 2$, every within-segment position of \task{sliding\_window\_max} is the second position after a marker, whose window still crosses it (Table~\ref{tab:blindwindow}). Bold: post-marker losses that print as 0.25 or more (the rule reads the rounded value, so two cells of 0.248 and 0.246 are bold).}
 \label{tab:blindk}
-\resizebox{0.85\linewidth}{!}{\input{tables/blind_spot_by_k.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/blind_spot_by_k.tex}}
 \end{table}
 
 \paragraph{Reset variants.}\label{app:reset}
@@ -704,7 +712,7 @@ Table~\ref{tab:gemini} gives the Gemini grid; the tasks we did not design are re
 \small
 \caption[Closed-model check and CLRS-Text.]{Closed-model check and CLRS-Text. Gemini 3.5 Flash (3 trials per cell, letter and dependency tasks, pooled over all tested lengths, including $N$ up to 256 for \task{cyclic\_shift}) and Gemini 3.6 Flash (5 trials per cell, all 13 task--format variants, $N \le 64$), with the no-marker mean length-matched. CLRS-Text tasks (Gemini 3.5) use token-level markers and scoring.}
 \label{tab:gemini}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/gemini.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/gemini.tex}}
 \end{table} Minimum is well above chance at Qwen2.5-32B ($z = 4.1$ from shuffled chance).
 
 \paragraph{Gemini's tokenization, from the API's token counts.} We cannot inspect Gemini's tokenizer, but every response reports the prompt's token count, and across the Gemini 3.6 grid the instruction is fixed while the input grows. Table~\ref{tab:geminitokens} gives the prompt tokens added per added input character from $N = 32$ to $N = 64$, counting each marker as one token; the steps $4 \to 8$, $8 \to 16$, and $16 \to 32$ agree to within $0.04$. In the spaced and digit formats and on the binary dependency tasks, every added character adds exactly one token and every marker exactly one more, at every length and spacing, so the one-token-per-character property holds at Gemini 3.6 as at the open models. In the letter format, letters without markers cost $0.46$ tokens each (about 2.2 letters per token); a marker after every letter raises this to one token per letter, while markers every two, four, or eight letters leave it at $0.46$ to $0.51$, so at Gemini a sparse marker splits few of its letter tokens, which fits spacing beating markers there (Chapter~\ref{sec:tokenization}). The counts fix how many tokens the characters occupy, not which characters share one; the open-model verification by inspection remains the primary one.
@@ -714,7 +722,7 @@ Table~\ref{tab:gemini} gives the Gemini grid; the tasks we did not design are re
 \small
 \caption[Gemini 3.6 Flash.]{Gemini 3.6 Flash: prompt tokens added per added input character, from the API's token counts, by input format and marker spacing $k$, at the step from $N = 32$ to $N = 64$, with each marker counted as one token (exact in the spaced, digit, and binary formats, where the count at spacing $k$ exceeds the no-marker count by the number of markers at every $N$). A value of 1.00 is one token per character.}
 \label{tab:geminitokens}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/gemini_tokens.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/gemini_tokens.tex}}
 \end{table}
 
 \paragraph{Naturalistic prefix-state tasks.} Two tasks built for this check have natural readings and carry the whole prefix as state: \task{bracket\_depth} (the input is a random string of parentheses; the output at each position is the nesting depth so far, modulo 4) and \task{running\_checksum} (the input is a digit string; the output at each position is the running sum modulo 10). They were run with the standard grid ($N \le 64$, all spacings, 20 trials per cell) at Qwen2.5-7B, Qwen2.5-32B, and Gemma 4. Table~\ref{tab:naturalistic} gives the pooled effect and the per-position comparison, with the four synthetic dependency tasks summarized the same way for the same models, and in the last four columns, over the marked generations ($k \ge 2$), the share of characters that match the true answer and the share that match the answer a model would give if its running state restarted at every marker; the two coincide whenever the state before the marker is 0 modulo the task's modulus, and such positions count for both. Like the CLRS running minimum, these tasks carry the whole prefix rather than one previous input. Qwen2.5-7B sits near chance on both without markers (0.30 against 0.25, and 0.22 against 0.10), so its cells are not interpretable. At Qwen2.5-32B and Gemma 4 markers hurt both (pooled 0.00 to $-0.14$; at Qwen2.5-32B on the checksum the pooled effect is near zero only because $k = 1$, where every position follows a marker, gains $+0.26$ while every $k \ge 2$ loses 0.02 to 0.15): the post-marker position falls by 0.07 to 0.21, and because the state carries forward, the within-segment positions fall with it (by 0.06 to 0.20) instead of gaining as they do on the one-step tasks. In three of the four task--model cells the digit written after a marker matches the answer of a state restarted at the marker more often than the true answer (0.41 to 0.51 against 0.23 to 0.37); only Gemma 4 on the checksum matches neither (0.16 against 0.32). The blind spot is confined to one position only when one position is all that needs what lies before the marker.
@@ -724,7 +732,7 @@ Table~\ref{tab:gemini} gives the Gemini grid; the tasks we did not design are re
 \small
 \caption[Naturalistic prefix-state tasks.]{Naturalistic prefix-state tasks. No-marker accuracy, the pooled length-matched marker effect, the change at post-marker and within-segment positions against the no-marker run at the same positions ($k \in \{2, 4, 8, 16\}$, index scoring), and, over the marked generations with $k \ge 2$, the share of post-marker and within-segment characters that match the true answer and the share that match the answer of a state restarted at every marker. Positions where the two answers coincide count for both.}
 \label{tab:naturalistic}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/naturalistic.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/naturalistic.tex}}
 \end{table}
 
 \section{Real sequences, all eight rules}
@@ -737,13 +745,13 @@ Table~\ref{tab:realfull} gives the four real-sequence rules that Table~\ref{tab:
 \small
 \caption[All eight real-sequence rules.]{All eight real-sequence rules; columns as in Table~\ref{tab:real}. Bold: post-marker changes of 0.25 or more in size.}
 \label{tab:realfull}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/real_data_full.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/real_data_full.tex}}
 \end{table}
 
 \section{Mechanism details}
 \label{app:mechanism}
 
-\paragraph{Head-count dose response.} To test whether the benefit is spread over heads, we repeated the ablation at $N = 64$ and $k = 8$ with the top 50 and top 200 marker-attending heads (2\% and 8\% of the model's heads), each with random-head and sham controls of the same size (Figure~\ref{fig:mechanism}c). Blocking 50 heads removes 1\% of the gain on spaced letters and 4\% on digits. Blocking 200 removes 28\% (paired drop $+0.155 \pm 0.072$) and 21\% ($+0.115 \pm 0.083$), while 200 random heads blocked from the markers, or the top 200 blocked from as many random non-marker tokens, remove nothing (drops of $-0.007$ to $-0.002$). Because both controls of that size are null, the drop is specific to removing attention to markers rather than a general disruption. (On spaced letters, the drops of about 0.04 for the 10-head conditions and the 50-head controls all come from one trial, the same one in each case; without it they are within 0.01 of zero.)
+\paragraph{Head-count dose response.} To test whether the benefit is spread over heads, we repeated the ablation at $N = 64$ and $k = 8$ with the top 50 and top 200 marker-attending heads (2\% and 7.8\% of the model's heads), each with random-head and sham controls of the same size (Figure~\ref{fig:mechanism}c). Blocking 50 heads removes 1\% of the gain on spaced letters and 4\% on digits. Blocking 200 removes 28\% (paired drop $+0.155 \pm 0.072$) and 21\% ($+0.115 \pm 0.083$), while 200 random heads blocked from the markers, or the top 200 blocked from as many random non-marker tokens, remove nothing (drops of $-0.007$ to $-0.002$). Because both controls of that size are null, the drop is specific to removing attention to markers rather than a general disruption. (On spaced letters, the drops of about 0.04 for the 10-head conditions and the 50-head controls all come from one trial, the same one in each case; without it they are within 0.01 of zero.)
 
 \paragraph{Activation patching.}
 \label{app:patching}
@@ -759,7 +767,7 @@ where $\ell$ is the log-odds of the correct digit against the reset digit, so $R
 \small
 \caption[Activation patching at four models.]{Activation patching at four models: post-marker accuracy in the clean and marked runs, and the log-odds recovery when each site is patched at every layer, with the best single layer in parentheses. Bold: recoveries of 0.50 or more with every layer patched. Patching every layer can recover less than the best single layer (Qwen3.8 on \task{running\_xor}, all inputs: 0.46 against 0.71 at layer 25), since simultaneous patches interfere.}
 \label{tab:patching}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/patching.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/patching.tex}}
 \end{table}
 
 \paragraph{Attention to the needed input.} A separate run reruns the teacher-forced inputs of the patching experiment at Qwen2.5-32B with attention weights kept. For the query position that predicts answer character $j$ (the token before it, which in the marked run is the output marker at a post-marker step) it records, per layer, the attention placed on input character $j-1$, on input character $j$, on the marker before input character $j$, and on answer character $j-1$, averaged over heads, and the largest single-head value on input $j-1$. Positions are post-marker ($j > 0$, $j \bmod k = 0$) or within-segment; the unmarked run is read at the same indices. Table~\ref{tab:attention} sums the head-averaged values over layers; Figure~\ref{fig:mechlayers} shows the strongest head by layer.
@@ -769,7 +777,7 @@ where $\ell$ is the log-odds of the correct digit against the reset digit, so $R
 \small
 \caption[Attention from the step that writes answer character $j$ ($N = 32$, $k = 4$, 20 inputs per task), averaged over heads and summed over layers (64 at Qwen2.5-32B, 60 at Gemma 4, and the 16 softmax-attention layers of Qwen3.8, so sums compare conditions within a model, not across models), with the layer where the attention to input $j-1$ peaks.]{Attention from the step that writes answer character $j$ ($N = 32$, $k = 4$, 20 inputs per task), averaged over heads and summed over layers (64 at Qwen2.5-32B, 60 at Gemma 4, and the 16 softmax-attention layers of Qwen3.8, so sums compare conditions within a model, not across models), with the layer where the attention to input $j-1$ peaks. Layer numbers are each model's own index in its full stack, so Qwen3.8's refer to positions among its 64 layers, not among the 16 softmax layers the sums run over. Clean: no markers; marked: markers in input and answer, so the step after a marker is read at the output bar; input markers only: marked input with an unmarked answer, so that step is read at the previous answer digit. The within-segment retention of 89\% to 96\% quoted in the text refers to the lookback band in layers 35 to 45 at Qwen2.5-32B, not to these sums. Bold: attention of 0.20 or less to input $j-1$, where the lookback collapses.}
 \label{tab:attention}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/attention_crossing.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/attention_crossing.tex}}
 \end{table}
 
 \begin{figure}[!htbp]
@@ -791,7 +799,7 @@ where $\ell$ is the log-odds of the correct digit against the reset digit, so $R
 \small
 \caption[Periodic against jittered marker placement on the dependency tasks ($N \le 64$, $k \in \{4, 8\}$, same inputs.]{Periodic against jittered marker placement on the dependency tasks ($N \le 64$, $k \in \{4, 8\}$, same inputs; index scoring). Pooled $\Delta$ is against the length-matched no-marker mean; post-marker and within-segment changes are against the no-marker run at the same positions.}
 \label{tab:jitterdep}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/jitter_dependency.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/jitter_dependency.tex}}
 \end{table}
 
 \FloatBarrier
@@ -812,7 +820,7 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \small
 \caption[Delimiter type and longer sequences at Qwen2.5-32B ($k \in \{4, 16\}$ pooled, 20 trials per cell.]{Delimiter type and longer sequences at Qwen2.5-32B ($k \in \{4, 16\}$ pooled, 20 trials per cell; \task{random\_permutation} with digits at $A = 8$, \task{running\_xor}, and \task{running\_sum\_local} at modulus 4). Change in accuracy: marker run minus no-marker run, pooled over positions. Post-marker and within-segment: marker run minus the no-marker run at the same positions. Each delimiter is named in its own constraint sentence. The \texttt{|} cells at $N = 64$ reproduce the main grid exactly (same prompts, greedy decoding). No output reached the generation budget.}
 \label{tab:delimiter}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/delimiter.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/delimiter.tex}}
 \end{table}
 
 \begin{table}[!htbp]
@@ -820,7 +828,7 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \small
 \caption[Decoding and prompt delivery at Qwen2.5-32B ($N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 prompts per cell.]{Decoding and prompt delivery at Qwen2.5-32B ($N \in \{32, 64\}$, $k \in \{4, 16\}$ pooled, 20 prompts per cell; \task{random\_permutation} at $A = 8$, \task{running\_sum\_local} at modulus 4). Main grid: greedy decoding with the chat template's own default system prompt, on the same prompts. Sampling: one sample per prompt. Empty system message: \texttt{""}, which suppresses the default; task-oriented: ``You are a precise, deterministic text transformer\ldots''; no chat template: the raw prompt as a completion. Change: marker run minus no-marker run, with a 95\% interval; post-marker and within-segment: against the no-marker run of the same condition at the same positions.}
 \label{tab:decoding}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/decoding_delivery.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/decoding_delivery.tex}}
 \end{table}
 
 \FloatBarrier
@@ -834,7 +842,7 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \small
 \caption[Base against instruction-tuned checkpoints of Qwen2.5-7B and Qwen2.5-32B under one prompt (no chat template, three solved examples.]{Base against instruction-tuned checkpoints of Qwen2.5-7B and Qwen2.5-32B under one prompt (no chat template, three solved examples; $N \in \{16, 32, 64\}$, $k \in \{2, 4, 8, 16\}$ against $k = 0$, 20 trials per cell). Digits: mean over the three digit tasks; Dependency: mean over the four dependency tasks. $\Delta$ is the length-matched pooled effect; per-position changes are against the no-marker run at the same positions.}
 \label{tab:base}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/base_model.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/base_model.tex}}
 \end{table}
 
 \paragraph{A finetuned separator.} Can a small finetune teach the model to carry a dependency across a marker? We train a LoRA adapter (rank 16, all attention and MLP projections, two epochs, learning rate $2 \times 10^{-4}$, 16 sequences per step) on Qwen2.5-7B-Instruct with 2{,}040 examples of \task{running\_xor} and \task{running\_sum\_local} ($M \in \{2, 4, 8\}$) at $N \in \{8, 16, 32, 64\}$ and every spacing $k \in \{0, 2, 4, 8, 16\}$, with the marked answer as the target, so every crossing step is supervised (seeds disjoint from the grid). Two control adapters are trained on the same tasks with the 480 examples at $k = 0$ only, to separate learning the tasks from learning to cross a marker: one for two epochs, and one for nine, which matches the marked adapter's number of example passes (4{,}320 against 4{,}080). All three reach a training loss below $0.001$. The merged models are evaluated with the standard runners (Table~\ref{tab:lora}) on \task{running\_xor} at the grid's own inputs, which the adapter has not seen, on two dependency tasks that were not in training, and on a position-local digit task. On the trained tasks all three adapters are at or near 1.00 without markers (0.98 and 0.99 for the controls on \task{running\_sum\_local}), but the controls' post-marker position falls: to 0.60 on \task{running\_xor} after two epochs ($-0.40$ against their own no-marker run) and to 0.56 after the matched nine ($-0.44$), and to 0.40 and 0.37 on \task{running\_sum\_local} ($-0.57$ and $-0.63$). Learning the task without markers widens the blind spot. The adapter trained on marked targets scores 1.00 at every position of both trained tasks. On \task{copy\_previous} it repairs the post-marker position ($+0.04$, from $-0.11$ in the released model; the matched control reaches $0.00$); on \task{sliding\_window\_max} it does not ($-0.07$, where the matched control reaches $+0.06$). The costs it shows on held-out tasks appear equally in the step-matched control: both lose no-marker accuracy on \task{sliding\_window\_max} (0.60 to 0.43 for both) and both lose the marker gain on \task{random\_permutation} with digits ($+0.08$ in the released model; $-0.02$ and $-0.01$), so those costs come from the amount of finetuning rather than from marker supervision. What marker supervision does on its own is to remove the blind spot on the tasks it was shown, where the same training without markers widens it; on the held-out dependency tasks the step-matched control does as well or better at this size. Set against the worked-example prompt of Chapter~\ref{sec:blindspot}, which is a two-shot across-boundary demonstration, the finetune repairs the trained tasks completely where the prompt repaired them in part, and the prompt leaves other tasks untouched where the finetune does not. The two-epoch control saw 480 examples against 2{,}040, so the matched control is the fair comparison; the remaining asymmetry is that only the marked adapter ever saw a marker. Qwen2.5-7B is near chance on several of these tasks, so this is a bounded test of the idea.
@@ -846,7 +854,7 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \small
 \caption[LoRA separators at Qwen2.5-7B-Instruct and Qwen2.5-32B-Instruct, evaluated with the standard grid ($N \le 64$, 20 trials per cell).]{LoRA separators at Qwen2.5-7B-Instruct and Qwen2.5-32B-Instruct, evaluated with the standard grid ($N \le 64$, 20 trials per cell). ``Marked targets'': trained on \task{running\_xor} and \task{running\_sum\_local} at every spacing with marked answers; ``$k = 0$ only'': the same tasks without markers, for two epochs or for a number of steps matched to the marked adapter. Per task: no-marker accuracy (Base), and the change at the post-marker and within-segment positions against the checkpoint's own no-marker run at the same positions. The rows ``as released'' come from one 20-trial batch, so they differ slightly from the main grid's values, which pool 40 to 80 trials (for example $-0.16$ against $-0.15$ on \task{copy\_previous} at 32B). Bold: post-marker changes above zero on the held-out dependency tasks; a change that rounds to 0.00 is left unbolded, since its sign is not recoverable at two decimals.}
 \label{tab:lora}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/lora.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/lora.tex}}
 \end{table}
 
 \paragraph{A byte-level model.} EvaByte-SFT \citep{zheng2025evabyte}, a 6.5B byte-level chat model, gives one token per character and per marker; its released code needs one fix under current library versions (its rotary position tables are left uninitialized and must be rebuilt after loading). On \task{running\_xor}, \task{copy\_previous}, and two position-local digit tasks it writes the input back instead of applying the rule in 45\% of outputs and stays at or below chance with and without markers. Demonstrations in the base-checkpoint format, delivered both inside the chat template and as a plain completion, reduce the copying but do not produce rule-following at length: with eight examples the model clears chance only at $N = 8$ (0.65 to 0.67 on \task{running\_xor}, chance 0.5) and is back at chance by $N = 32$ (0.51 to 0.53), where the blind spot is measured; \path{results_clean/_summary/evabyte_fewshot_pilot.csv} holds these runs. This checkpoint therefore gives no test of either effect, which bounds the checkpoint rather than byte-level modelling.
@@ -869,7 +877,7 @@ At Qwen2.5-32B (first seed batch), a well-formed output uses only the task alpha
 \small
 \caption[Exact transformation match (markers and spaces removed from both sides) and marker-placement compliance by model ($N \le 64$, all spacings pooled).]{Exact transformation match (markers and spaces removed from both sides) and marker-placement compliance by model ($N \le 64$, all spacings pooled): the dependency tasks and all task groups weighted by generations, and every task group pooled over models. Exact: the cleaned output equals the answer. Compliant: the raw first line carries markers at exactly the expected offsets, or none for the no-marker runs. For Qwen2.5-7B, 14B, and 32B, Mistral, and Phi the ``Dependency, as is'' rows cover only \task{sliding\_window\_max} (at Phi also \task{copy\_previous}), the dependency runs of those models that store raw output, and the contiguous-letter rows cover only Qwen3.8 and Gemma 4, so the pooled letter row averages over those two models (Appendix~\ref{app:trials}).}
 \label{tab:compliance}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\input{tables/compliance_short.tex}}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\input{tables/compliance_short.tex}}
 \end{table}
 
 \begin{table}[!htbp]
@@ -877,7 +885,7 @@ At Qwen2.5-32B (first seed batch), a well-formed output uses only the task alpha
 \small
 \caption[Wall-clock seconds per call at Qwen2.5-32B on contiguous-letter \task{cyclic\_shift} ($A = 2$).]{Wall-clock seconds per call at Qwen2.5-32B on contiguous-letter \task{cyclic\_shift} ($A = 2$). Throughput is 14 to 15 tokens/s in every condition. No marker is inserted after the last character, so the $k = 8$ cell at $N = 8$ contains none and is omitted.}
 \label{tab:wallclock}
-\adjustbox{max width=\linewidth,max totalheight=0.86\textheight}{\begin{tabular}{lcccccc}
+\adjustbox{max width=\linewidth,max totalheight=0.70\textheight}{\begin{tabular}{lcccccc}
 \toprule
 Condition & $k$ & $N=8$ & 16 & 32 & 64 & 128 \\
 \midrule
@@ -888,5 +896,4 @@ Bounds & 4 & 0.380 & 0.787 & 1.729 & 3.298 & 6.453 \\
 Bounds & 8 & --- & 0.613 & 1.288 & 2.479 & 4.976 \\
 \bottomrule
 \end{tabular}}
-\end{table}
-\end{document}
+\end{tab
