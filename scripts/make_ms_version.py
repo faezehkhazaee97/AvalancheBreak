@@ -29,6 +29,9 @@ PERSON = dict(
     code_url="https://github.com/faezehkhazaee97/AvalancheBreak",
 )
 
+# The anonymized mirror the TMLR submission cites; replaced by PERSON["code_url"] in the project.
+ANON_REPO = "https://anonymous.4open.science/r/boundary-markers-2AF8/"
+
 
 def short_captions(t):
     """\\caption{long} -> \\caption[first sentence]{long}, so the lists of figures and tables stay short."""
@@ -42,10 +45,14 @@ def short_captions(t):
         while depth:
             depth += {"{": 1, "}": -1}.get(t[k], 0); k += 1
         body = t[start:k - 1]
-        d, cut = 0, None
+        # The cut must leave the short caption self-contained: track parentheses as well as
+        # braces, or a ";" inside a parenthetical ends the entry on an unbalanced "(" --
+        # "... through the prompt (Qwen2.5-32B." in the list of tables.
+        d, p, cut = 0, 0, None
         for n, ch in enumerate(body):
             d += {"{": 1, "}": -1}.get(ch, 0)
-            if d == 0 and ch in ".:;" and (n + 1 == len(body) or body[n + 1] in " \n") and n > 8:
+            p += {"(": 1, ")": -1}.get(ch, 0)
+            if d == 0 and p == 0 and ch in ".:;" and (n + 1 == len(body) or body[n + 1] in " \n") and n > 8:
                 cut = n; break
         short = (body[:cut] + ".") if cut is not None else body
         short = short.replace("\n", " ")
@@ -53,6 +60,68 @@ def short_captions(t):
             short = body
         out.append(t[i:j] + "\\caption[" + short.replace("[", "{[}").replace("]", "{]}") + "]{" + body + "}")
         i = k
+
+
+TEXTHEIGHT_PT = 8.8 * 72      # \textheight set by ucdavisthesis
+CAPTION_PT_PER_CHAR = 0.16    # measured: a 1,629-char caption typesets to ~265pt at \small
+FLOAT_SLACK_PT = 26           # \abovecaptionskip plus a margin so the float clears the footer
+LONG_CAPTION_CHARS = 1200     # beyond this the caption goes down one size (see \capsize)
+SMALLER_CAPTION_RATIO = 0.85  # \footnotesize against \small, by typeset height
+
+# float_cap estimates the caption's height from its character count, which is first order: a
+# caption with many short lines, wide math or \task{} runs typesets taller than the estimate.
+# Where a build still reports "Float too large for page by Xpt on input line N", put that float's
+# measured cap here rather than shrinking every float to cover the worst case.
+CAP_OVERRIDES = {
+    "tab:compliance": 0.65,   # overran by 13.2pt at the estimated 0.70
+}
+
+
+def float_cap(caption_chars):
+    """Height budget for a float's content, as a fraction of \\textheight.
+
+    A float is its content plus its caption, and several captions here run to 1,500-2,400
+    characters. A fixed 0.70 cap on the content ignores that, so the tallest-captioned floats
+    overran the bottom of the page and printed over the page number. Give the caption its
+    measured height and cap the content with what is left.
+    """
+    rate = CAPTION_PT_PER_CHAR * (SMALLER_CAPTION_RATIO if caption_chars > LONG_CAPTION_CHARS else 1)
+    budget = TEXTHEIGHT_PT - (rate * caption_chars + FLOAT_SLACK_PT)
+    return max(0.35, min(0.70, budget / TEXTHEIGHT_PT))
+
+
+def bound_floats(t):
+    """Per float, scale the content cap to what its caption leaves on the page."""
+    def one(m):
+        env, blk = m.group(1), m.group(2)
+        cm = re.search(r"\\caption(?:\[.*?\])?\{", blk, re.S)
+        if not cm:
+            return m.group(0)
+        k, d = cm.end(), 1
+        while d:
+            d += {"{": 1, "}": -1}.get(blk[k], 0); k += 1
+        nchars = k - cm.end()
+        lab = re.search(r"\\label\{([^}]*)\}", blk)
+        cap = CAP_OVERRIDES.get(lab.group(1) if lab else "", float_cap(nchars))
+        if cap >= 0.70 and nchars <= LONG_CAPTION_CHARS:
+            return m.group(0)
+        if nchars > LONG_CAPTION_CHARS:
+            # a 2,400-character caption is 60% of the page at \small, which leaves the table too
+            # little height to stay legible; one size down buys that height back. Local to the float.
+            opt = re.match(r"\s*\[[^\]]*\]", blk)
+            at = opt.end() if opt else 0
+            blk = blk[:at] + "\n\\renewcommand{\\capsize}{\\footnotesize}" + blk[at:]
+        blk = blk.replace("max totalheight=0.70\\textheight",
+                          "max totalheight=%.2f\\textheight" % cap)
+        # graphics carry no height bound of their own, so a tall figure overruns the page too
+        def gfx(g):
+            opts = g.group(1)
+            if "height" in opts:
+                return g.group(0)
+            return "\\includegraphics[%s,height=%.2f\\textheight,keepaspectratio]{" % (opts, cap)
+        blk = re.sub(r"\\includegraphics\[([^\]]*)\]\{", gfx, blk)
+        return "\\begin{%s}%s\\end{%s}" % (env, blk, env)
+    return re.sub(r"\\begin\{(table|figure)\}(.*?)\\end\{\1\}", one, t, flags=re.S)
 
 
 def main():
@@ -76,10 +145,18 @@ def main():
     # so short appendices do not each start a new page
     body = chapters(body)
     appendix = "\\chapter{Supplementary Results}\n\n" + appendix
-    # the TMLR source keeps a red placeholder for the anonymized code link; the project names the repository
-    body = re.sub(r"\\pending\{Code, prompts, raw generations, and analysis scripts: anonymized repository link\.\}",
-                  "Code, prompts, raw generations, and analysis scripts are at \\\\url{%s}." % PERSON["code_url"], body)
+    # The TMLR source cites the anonymous mirror for double-blind review; the project carries the
+    # author's name on its title page, so it must name the real repository instead. Fail loudly if
+    # the link in the source ever changes again: an earlier version of this substitution matched a
+    # \pending{...} placeholder that no longer exists, so it silently did nothing and the project
+    # shipped the anonymous link.
+    n_anon = (body + appendix).count(ANON_REPO)
+    assert n_anon == 1, (f"expected exactly one {ANON_REPO!r} in the TMLR source, found {n_anon}; "
+                         "the reproducibility link changed and this script needs updating")
+    body = body.replace(ANON_REPO, PERSON["code_url"])
+    appendix = appendix.replace(ANON_REPO, PERSON["code_url"])
     assert "\\pending{" not in body + appendix, "a placeholder is left in the project version"
+    assert "anonymous.4open.science" not in body + appendix, "the anonymous mirror survived into the project version"
     # tables wider than the 6.5-inch text block are shrunk to fit; those already in a \resizebox are left alone
     # verbatim blocks and longtables cannot sit inside a box: leave those inputs alone
     fit = lambda t: re.sub(r"(?<!\{)\\input\{tables/((?!prompts_verbatim|[^}]*_lt\.tex)[^}]+)\}", r"\\adjustbox{max width=\\linewidth,max totalheight=0.70\\textheight}{\\input{tables/\1}}", t)
@@ -101,6 +178,7 @@ def main():
                           r"\\adjustbox{max width=\\linewidth,max totalheight=0.70\\textheight}{", t)
     body, appendix = rb(body), rb(appendix)
     body, appendix = pv(body), pv(appendix)
+    body, appendix = bound_floats(body), bound_floats(appendix)
     # The two position classes sit on one line, which fits the TMLR column at 10pt but runs
     # past the right margin in the thesis text block at 12pt; stack them instead.
     def stack_classes(s):
@@ -141,6 +219,25 @@ def main():
 \usepackage{relsize}
 \usepackage[htt]{hyphenat}
 \makeatletter\setlength{\@fptop}{0pt}\makeatother
+%% ucdavisthesis sets captions in \small. \capsize parameterizes only that size, leaving the
+%% class's caption layout untouched, so a float with an unusually long caption can drop one
+%% size locally and leave its table or figure enough height to stay legible.
+\newcommand{\capsize}{\small}
+\makeatletter
+\long\def\@makecaption#1#2{%%
+  \renewcommand{\baselinestretch}{1.0}%%
+  \capsize
+  \vskip\abovecaptionskip
+  \sbox\@tempboxa{#1. #2}%%
+  \ifdim \wd\@tempboxa >0.9\hsize%%
+    \hskip.05\hsize\parbox{0.9\hsize}{#1. #2}%%
+  \else
+    \global\@minipagefalse
+    \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%%
+  \fi
+  \normalsize
+  \vskip\belowcaptionskip}
+\makeatother
 \renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.8}\renewcommand{\textfraction}{0.07}
 \renewcommand{\floatpagefraction}{0.75}\setcounter{topnumber}{3}\setcounter{bottomnumber}{2}\setcounter{totalnumber}{5}
 \renewcommand{\bibfont}{\singlespacing}
