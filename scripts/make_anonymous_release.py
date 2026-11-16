@@ -159,6 +159,7 @@ corresponding appendix table into `paper_tmlr/tables/`.
 | Instruction wording for the blind spot; head-count dose response | `run_wording_controls.sbatch`; `run_head_ablation_v2.py --top 50/200` | `analyze_wording_and_dose.py` |
 | Delimiter type (bar, comma, line break) and N up to 256 | `run_delimiter_length.py` | `analyze_delimiter_length.py` |
 | Distinct ordered boundary labels vs a repeating marker | `run_ordered_labels.py` | `analyze_ordered_labels.py` |
+| Position-aligned activation patching (across-wording donor) | `run_patching_aligned.py` | `analyze_patching_aligned.py` |
 | Sampling instead of greedy decoding | `run_sampling_decoding.py` | `analyze_sampling_decoding.py` |
 | Larger state space (modulus 8, 16, 32) | `run_large_state.py` | `analyze_large_state.py` |
 | Prompt delivery (system prompt, no chat template) | `run_prompt_delivery.py` | `analyze_prompt_delivery.py` |
