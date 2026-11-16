@@ -117,6 +117,9 @@ def bold_cells(text, cols, pred, row_filter=None):
     return "\n".join(out)
 
 
+# lora.tex bolds strictly above zero: a cell printed 0.00 can be a small negative, because
+# tidy_tables.py rewrites $-0.00$ as 0.00 before this runs, and bolding it would claim a
+# repair that is not in the data.
 RULES = {"wording.tex": wording,
          "marker_sides_forced.tex": lambda t: sides_did(sides(t)),
          "marker_sides_forced_full.tex": lambda t: sides_did(sides(t)),
@@ -134,7 +137,7 @@ RULES = {"wording.tex": wording,
          "blind_spot_window.tex": lambda t: bold_cells(t, [9], lambda v: v <= -0.10),
          "patching.tex": lambda t: bold_cells(t, [5, 6, 7, 8], lambda v: v >= 0.50),
          "attention_crossing.tex": lambda t: bold_cells(t, [3], lambda v: v <= 0.20),
-         "lora.tex": lambda t: bold_cells(t, [8, 11], lambda v: v >= 0.0)}
+         "lora.tex": lambda t: bold_cells(t, [8, 11], lambda v: v > 0.0)}
 
 
 def main():
