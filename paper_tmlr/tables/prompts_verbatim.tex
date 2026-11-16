@@ -100,3 +100,46 @@ uses the input digit just before the bar (1) together with the digit right after
 Input 0101|1000 -> Output 0111|0100
 \end{verbatim}
 \end{small}
+
+\par\medskip\noindent\textbf{\task{copy\_previous}: lines that differ from \task{running\_xor} ($N = 8$, $k = 4$).}\par
+\begin{small}
+\begin{verbatim}
+Task: Copy the previous input digit.
+Rule: At each position, output the PREVIOUS input digit (not the current one).
+The first digit is copied as-is (no previous input to copy).
+Each subsequent digit: output[i] = input[i-1]
+Example: Input 1011 -> Output 1101 (calculation: 1 (copied), then 1, 0, 1 -- each shifted
+from the position before)
+\end{verbatim}
+\end{small}
+
+\par\medskip\noindent\textbf{\task{running\_sum\_local}: lines that differ from \task{running\_xor} ($N = 8$, $k = 4$, $M = 4$).}\par
+\begin{small}
+\begin{verbatim}
+Task: Running sum with previous input (local window).
+Alphabet: 0-3 (digits)
+Modulus: 4
+Rule: At each position, output the sum of the current input digit and the previous input
+digit, modulo 4.
+The first digit is copied as-is (no previous input to add).
+Each subsequent digit: output[i] = (input[i] + input[i-1]) mod 4
+Input: 2122|0101
+\end{verbatim}
+\end{small}
+
+\par\medskip\noindent\textbf{\task{sliding\_window\_max}: lines that differ from \task{running\_xor} ($N = 8$, $k = 4$, $A = 4$).}\par
+\begin{small}
+\begin{verbatim}
+Task: Sliding-window maximum.
+Alphabet: 0-3
+Rule: At each position, output the LARGEST digit among this position and the 2 position(s)
+immediately before it (a window of the last 3 digits, including the current one).
+Near the very start of the sequence, where fewer than 3 digits exist yet, use only the
+digits that exist so far.
+Example (window=3): Input 3021 -> Output 3332 (position 0: window=[3], max=3. position 1:
+window=[3,0], max=3. position 2: window=[3,0,2], max=3. position 3: window=[0,2,1] (oldest
+'3' has fallen out of the window), max=2.)
+DO NOT include them in the window or count them as digits. Copy them exactly to the output.
+Input: 2122|0101
+\end{verbatim}
+\end{small}

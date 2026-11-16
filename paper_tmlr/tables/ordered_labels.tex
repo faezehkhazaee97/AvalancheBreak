@@ -1,0 +1,21 @@
+\begin{tabular}{ll l cc cc c}
+\toprule
+Model & Task & Marker & No markers & Markers & Post-marker $\Delta$ & Within $\Delta$ & Overall $\Delta$ \\
+\midrule
+Qwen2.5 32B & Running XOR & Repeating \texttt{|} & 0.60 & 0.46 & $-0.15$ & $+0.25$ & $+0.15$ \\
+ &  & Repeating \texttt{a} & 0.60 & 0.42 & $-0.18$ & $+0.10$ & $+0.03$ \\
+ &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.60 & 0.47 & $-0.14$ & $+0.23$ & $+0.14$ \\
+\addlinespace
+ & Running sum (mod 4) & Repeating \texttt{|} & 0.33 & 0.26 & $-0.07$ & $+0.23$ & $+0.16$ \\
+ &  & Repeating \texttt{a} & 0.33 & 0.29 & $-0.04$ & $+0.09$ & $+0.06$ \\
+ &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.33 & 0.27 & $-0.06$ & $+0.26$ & $+0.18$ \\
+\addlinespace
+ & Random permutation & Repeating \texttt{|} & 0.42 & 1.00 & $+0.58$ & $+0.59$ & $+0.58$ \\
+ &  & Repeating \texttt{a} & 0.42 & 0.43 & $+0.01$ & $+0.00$ & $+0.00$ \\
+ &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.42 & 0.50 & $+0.08$ & $+0.09$ & $+0.09$ \\
+\addlinespace
+Gemma 4 31B & Running XOR & Repeating \texttt{|} & 0.68 & 0.46 & $-0.22$ & $+0.24$ & $+0.13$ \\
+ &  & Repeating \texttt{a} & 0.68 & 0.44 & $-0.24$ & $+0.18$ & $+0.08$ \\
+ &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.68 & 0.46 & $-0.22$ & $+0.22$ & $+0.11$ \\
+\bottomrule
+\end{tabular}

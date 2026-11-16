@@ -20,6 +20,11 @@ ITEMS = [   # (task, title, axis, base task whose prompt it is shown against, or
     ("running_xor_neutral", "\\task{running\\_xor}, neutral wording: lines that differ", None, "running_xor"),
     ("running_xor_across", "\\task{running\\_xor}, across wording: lines that differ", None, "running_xor"),
     ("running_xor_worked", "\\task{running\\_xor}, across wording with worked examples: lines that differ", None, "running_xor"),
+    # the three remaining tasks of Table 1, shown as the lines that differ from running_xor so the
+    # appendix documents every task's prompt without reprinting the shared scaffolding four times
+    ("copy_previous", "\\task{copy\\_previous}: lines that differ from \\task{running\\_xor}", None, "running_xor"),
+    ("running_sum_local", "\\task{running\\_sum\\_local}: lines that differ from \\task{running\\_xor}", 4, "running_xor"),
+    ("sliding_window_max", "\\task{sliding\\_window\\_max}: lines that differ from \\task{running\\_xor}", 4, "running_xor"),
 ]
 N, K, T = 8, 4, 0
 
@@ -31,10 +36,11 @@ def main():
         a = axis if e.AXIS_NAME else None
         rng = random.Random(_local_seed(N, K, a, T))
         inp, truth, prompt = e.build_prompt(N, K, rng, axis_val=a) if e.AXIS_NAME else e.build_prompt(N, K, rng)
-        return prompt.rstrip().split("\n"), truth, a
+        sym = {"Modulus": "M", "Alphabet_Size": "A"}.get(e.AXIS_NAME, "A")
+        return prompt.rstrip().split("\n"), truth, (a, sym)
 
     for task, title, axis, base in ITEMS:
-        plines, truth, a = render(task, axis)
+        plines, truth, (a, sym) = render(task, axis)
         if base:
             blines = set(render(base, axis)[0])
             plines = [l for l in plines if l not in blines]
@@ -44,7 +50,7 @@ def main():
         if not base:
             lines[-1] = lines[-1] + f"            (expected: {truth})"
         body = "\n".join(lines).replace("→", "->").replace("⊕", "^")
-        out.append(f"\\par\\medskip\\noindent\\textbf{{{title} ($N = {N}$, $k = {K}${', $A = 4$' if a else ''}).}}\\par\n\\begin{{small}}\n\\begin{{verbatim}}\n{body}\n\\end{{verbatim}}\n\\end{{small}}\n")
+        out.append(f"\\par\\medskip\\noindent\\textbf{{{title} ($N = {N}$, $k = {K}${f', ${sym} = {a}$' if a else ''}).}}\\par\n\\begin{{small}}\n\\begin{{verbatim}}\n{body}\n\\end{{verbatim}}\n\\end{{small}}\n")
     (REPO / "paper_tmlr" / "tables" / "prompts_verbatim.tex").write_text("\n".join(out))
     print("\n".join(out)[:3000])
 
