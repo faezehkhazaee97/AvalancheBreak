@@ -50,8 +50,11 @@ TASKS = [("dna_complement", "DNA", "Complement", "position-local"),
 # Only these three models were run on the real sequences
 ALL_MODELS = [m for m in ALL_MODELS if m[0] in ("Qwen2.5 7B", "Qwen2.5 32B", "Gemma 4 31B")]
 FORMATS = [("", "contiguous", "Contig."), ("_spaced", "spaced", "Spaced")]
-# The four rules Section 7 discusses; the appendix table carries exactly the others.
-MAIN = [t for t in TASKS if t[3] == "position-local" or "copy_previous" in t[0]]
+# Table 3 carries every rule Section 7 analyses: the position-local ones and all three one-step
+# ones. Same-class and later-letter were in the appendix before, but the section reads their
+# spaced rows, so the section was not self-contained without them. The appendix keeps the two
+# prefix-state counting rules, which stay near chance in both formats.
+MAIN = [t for t in TASKS if t[3] in ("position-local", "one-step")]
 REST = [t for t in TASKS if t not in MAIN]
 GAINS = ("base", "post", "within", "post_gain", "within_gain")
 

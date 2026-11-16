@@ -69,6 +69,20 @@ Output:            (expected: 1101|0000)
 \end{verbatim}
 \end{small}
 
+\par\medskip\noindent\textbf{\task{running\_xor}, reset variant: lines that differ ($N = 8$, $k = 4$).}\par
+\begin{small}
+\begin{verbatim}
+Task: Running XOR with previous input, reset at boundaries.
+IMPORTANT: The input contains vertical bars (|), structural boundaries. Immediately after
+each boundary, treat that position exactly like the first digit of the whole input -- copy
+it as-is (nothing before a boundary counts as "previous"), then resume the XOR rule from
+there until the next boundary.
+Example: Input 1011|0010 -> Output 1110|0011 (first block: 1 copied, 0^1=1, 1^0=1, 1^1=0;
+second block restarts: 0 copied, 0^0=0, 1^0=1, 0^1=1)
+Copy the boundary characters themselves exactly to the output.
+\end{verbatim}
+\end{small}
+
 \par\medskip\noindent\textbf{\task{running\_xor}, neutral wording: lines that differ ($N = 8$, $k = 4$).}\par
 \begin{small}
 \begin{verbatim}

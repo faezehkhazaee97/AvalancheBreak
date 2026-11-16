@@ -102,7 +102,9 @@ def fig_three_formats(p):
         # where they would collide
         rows.sort()
         ys = [r[0] for r in rows]
-        gap, top = 0.036, 1.0
+        # the gap must exceed the label's own line height or neighbours still touch:
+        # 0.048 of the 0.77 y-range is about 8.5 pt at this panel height, against a 7 pt font
+        gap, top = 0.048, 1.0
         for _ in range(500):  # symmetric spreading of colliding neighbours
             moved = False
             for k in range(1, len(ys)):

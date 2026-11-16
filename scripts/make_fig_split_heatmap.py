@@ -25,7 +25,7 @@ from matplotlib.colors import LinearSegmentedColormap
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
-from tasks.common.pooled import pooled_delta as _pooled  # noqa: E402
+from tasks.common.pooled import pooled_delta as _pooled, axis_col  # noqa: E402
 from tasks.common.figure_style import set_rc, savefig, _plain_labels, MULTI_COL_WIDTH  # noqa: E402
 
 LENGTHS = [4, 8, 16, 32, 64]
@@ -91,7 +91,17 @@ def load_gemini(task, path=None):
 
 
 def pooled_delta(df):
-    """Length-matched pooled effect (tasks/common/pooled.py)."""
+    """Length-matched pooled effect (tasks/common/pooled.py), excluding the redundant binary
+    configurations. At A = 2 the three position-local rules are the same function, and at M = 2
+    running_sum_local computes running_xor, so those cells are not independent evidence across
+    tasks and a cross-task aggregate should not count them. Every per-cell table keeps them;
+    Appendix B.2 reports what including them here would do (median |delta| moves by 0.003 over
+    these 62 cells, at most 0.043, and one cell loses significance)."""
+    a = axis_col(df)
+    if a is not None:
+        keep = df[pd.to_numeric(df[a], errors="coerce").fillna(99) > 2]
+        if len(keep):
+            df = keep
     return _pooled(df, lengths=LENGTHS)
 
 

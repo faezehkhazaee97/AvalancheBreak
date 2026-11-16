@@ -17,6 +17,7 @@ ITEMS = [   # (task, title, axis, base task whose prompt it is shown against, or
     ("conditional_shift_digits", "\\task{conditional\\_shift}, digits: lines that differ from the letter prompt", 4, "conditional_shift"),
     ("random_permutation", "\\task{random\\_permutation}, letters", 4, None),
     ("running_xor", "\\task{running\\_xor}, original wording", None, None),
+    ("running_xor_reset", "\\task{running\\_xor}, reset variant: lines that differ", None, "running_xor"),
     ("running_xor_neutral", "\\task{running\\_xor}, neutral wording: lines that differ", None, "running_xor"),
     ("running_xor_across", "\\task{running\\_xor}, across wording: lines that differ", None, "running_xor"),
     ("running_xor_worked", "\\task{running\\_xor}, across wording with worked examples: lines that differ", None, "running_xor"),
