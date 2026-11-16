@@ -54,7 +54,7 @@ FILENAME_SUBS = [("ctbrowngrp", "altaccount"), ("ctbrown", "alt")]
 FORBIDDEN = re.compile(
     # "scratchpad" is only identifying as a path component (the session temp directory);
     # as a bare word it is the prompting technique, which two legacy scripts discuss.
-    r"gquon|quonbio|\bbaran\b|khazaee|faezeh|ucdavis|davis|cvmfs|ctbrown|/group/|"
+    r"gquon|quonbio|\bbaran\b|khazaee|faezeh|ucdavis|davis|cvmfs|ctbrown|/group/|avalanche|"
     r"[/\\]scratchpad[/\\]|"
     r"\bfarm\b|hpccf|AIza[0-9A-Za-z_-]{30,}|hf_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{20,}",
     re.I)
