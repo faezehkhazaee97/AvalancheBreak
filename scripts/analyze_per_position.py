@@ -155,7 +155,10 @@ def summarize(d, h=1):
                 bwithin.append(ref[is_within].mean())
         if k in (8, 16):
             for dd in range(k):
-                sel = (idx % k == dd) & (idx > 0)
+                # idx >= k, not idx > 0: at dd >= 1 the positions of the first segment follow no
+                # marker at all, so counting them would mix them into the by-distance profile.
+                # This matches analyze_error_taxonomy.by_distance.
+                sel = (idx % k == dd) & (idx >= k)
                 if sel.any():
                     dist.append((k, dd, v[sel].mean()))
 

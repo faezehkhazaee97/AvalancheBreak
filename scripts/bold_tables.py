@@ -41,9 +41,11 @@ def wording(text):
             cells = line.rstrip(" \\").split("&")
             for j in range(2, 6):                                  # the four post-marker columns
                 c = cells[j].strip()
-                m = re.fullmatch(r"\$\+(\d+\.\d+)\$|0\.00", c)
+                # strictly positive only: tidy_tables.py renders a small negative as a bare
+                # 0.00 too, so bolding 0.00 would claim a repair whose sign is not recoverable.
+                m = re.fullmatch(r"\$\+(\d+\.\d+)\$", c)
                 if m:
-                    cells[j] = " " + (bold_math("+" + m.group(1)) if m.group(1) else "$\\mathbf{0.00}$") + " "
+                    cells[j] = " " + bold_math("+" + m.group(1)) + " "
             line = "&".join(cells) + " \\\\"
         out.append(line)
     return "\n".join(out)

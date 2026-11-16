@@ -5,8 +5,6 @@
   paper_tmlr/tables/perpos_tasks.tex  : the same comparison per task (letters, spaced letters,
                                         digits, dependency blocks), replacing the pointer to
                                         results_clean/_summary/per_position_values.csv
-  paper_tmlr/tables/distance.tex      : accuracy by distance after the marker, k = 16
-                                        (tab:distance), with sliding_window_max also on its own
   paper_tmlr/tables/aligned.tex       : index vs alignment-scored per-position gains (tab:aligned),
                                         with the alignment-sensitive share of the within-segment gain
 
@@ -129,33 +127,12 @@ def controls_report():
 
 
 def distance():
+    """By-distance profile at k = 16. The table this used to write was dropped from the
+    paper, so only the summary is printed; the per-position CSV remains the source for the
+    k = 16 sentence in the text."""
     d = pd.read_csv(SUMMARY / "per_position_distance.csv")
     d = d[d.k == 16]
-    bins = [("0", [0]), ("1", [1]), ("2--3", [2, 3]), ("4--7", [4, 5, 6, 7]), ("8--15", list(range(8, 16)))]
-    lines = [r"\begin{tabular}{llccccc}", r"\toprule",
-             r"& & \multicolumn{5}{c}{Positions after the marker} \\", r"\cmidrule(lr){3-7}",
-             "Tasks & Model & " + " & ".join(b for b, _ in bins) + r" \\", r"\midrule"]
     swm = d[d.task == "sliding_window_max"].assign(block="sliding_window_max")
-    for block, title in [("Position-local, letters", "Position-local, letters"),
-                         ("Position-local, spaced letters", "Position-local, spaced"),
-                         ("Position-local, digits", "Position-local, digits"),
-                         ("Dependency, as is", "Dependency"),
-                         ("sliding_window_max", r"\task{sliding\_window\_max}")]:
-        s = swm if block == "sliding_window_max" else d[d.block == block]
-        if s.empty:
-            continue
-        first = True
-        for m in MODELS:
-            x = s[s.model == m]
-            if x.empty:
-                continue
-            cells = " & ".join(f(x[x.d.isin(dd)].acc.mean()) for _, dd in bins)
-            lines.append(f"{title if first else ''} & {m} & {cells} \\\\")
-            first = False
-        lines.append(r"\midrule")
-    lines[-1] = r"\bottomrule"
-    lines.append(r"\end{tabular}")
-    (OUT / "distance.tex").write_text("\n".join(lines) + "\n")
     s = swm[swm.model.isin(STRONG)]
     print("\nsliding_window_max, k = 16, accuracy by distance after the marker:")
     print(s.pivot_table(index="model", columns="d", values="acc").reindex(columns=range(16)).round(2).to_string())
