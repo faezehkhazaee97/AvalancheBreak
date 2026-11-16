@@ -52,13 +52,18 @@ def panel_tokens(ax):
             fill = LIGHT if t == "|" else (MERGED_FILL if len(t) > 1 else "white")
             ax.add_patch(FancyBboxPatch((x + 0.04, y - 0.62), w - 0.08, 1.24,
                                         boxstyle="round,pad=0,rounding_size=0.12",
-                                        facecolor=fill, edgecolor=MARK if t == "|" else GRAY, linewidth=0.6))
+                                        facecolor=fill, edgecolor=MARK if t == "|" else GRAY,
+                                        linewidth=1.3 if t == "|" else 0.6))
             ax.text(x + w / 2, y, t, ha="center", va="center", fontsize=6.6,
                     color=MARK if t == "|" else INK, family="cmtt10", fontweight="bold" if t == "|" else None)
             x += w
-    ax.add_patch(FancyBboxPatch((x0, 0.15), 0.5, 0.5, boxstyle="round,pad=0,rounding_size=0.08",
-                                facecolor=MERGED_FILL, edgecolor=GRAY, linewidth=0.6))
-    ax.text(x0 + 0.7, 0.4, "multi-letter token", va="center", fontsize=7, color=GRAY)
+        # the count is the point of the panel: the same 12 letters cost 6, 9 and 12 tokens
+        ax.text(x + 0.18, y, f"{len(toks)}", ha="left", va="center", fontsize=6.6, color=GRAY)
+    for sx, fc, ec, lw, lab in [(0.6, MERGED_FILL, GRAY, 0.6, "multi-letter"),
+                                (4.9, LIGHT, MARK, 1.3, "marker")]:
+        ax.add_patch(FancyBboxPatch((sx, 0.15), 0.5, 0.5, boxstyle="round,pad=0,rounding_size=0.08",
+                                    facecolor=fc, edgecolor=ec, linewidth=lw))
+        ax.text(sx + 0.64, 0.4, lab, va="center", fontsize=6.5, color=GRAY)
 
 
 def panel_profile(ax):
@@ -86,23 +91,33 @@ def panel_blindspot(ax):
     y_out = ["1", "1", "1", "0", "|", "1", "1", "0", "1"]   # XOR with the previous input
     xs = [2.4 + i * 0.85 for i in range(len(x_in))]
     yi, yo = 7.4, 2.9
+    digits = [i for i, a in enumerate(x_in) if a != "|"]
+    post = digits[4]                      # the first output position whose inputs cross the marker
+    # At this position the model typically restarts the recurrence at the boundary and copies the
+    # post-marker input instead of XOR-ing it with the digit before the marker, so the panel shows
+    # that error rather than the ground truth, which is what "near chance" refers to.
+    reset, truth = x_in[post], y_out[post]
+    assert reset != truth, "pick an example where the reset error is visible"
     ax.text(0.0, yi, "in", ha="left", va="center", fontsize=7, color=GRAY)
     ax.text(0.0, yo, "out", ha="left", va="center", fontsize=7, color=GRAY)
-    for x, a, b in zip(xs, x_in, y_out):
+    for i, (x, a, b) in enumerate(zip(xs, x_in, y_out)):
         c = MARK if a == "|" else INK
         ax.text(x, yi, a, ha="center", va="center", fontsize=8, family="cmtt10", color=c,
                 fontweight="bold" if a == "|" else None)
-        ax.text(x, yo, b, ha="center", va="center", fontsize=8, family="cmtt10", color=c,
-                fontweight="bold" if a == "|" else None)
-    digits = [i for i, a in enumerate(x_in) if a != "|"]
+        shown, oc, bold = (reset, BAD, True) if i == post else (b, c, a == "|")
+        ax.text(x, yo, shown, ha="center", va="center", fontsize=8, family="cmtt10", color=oc,
+                fontweight="bold" if bold else None)
     for j in range(1, len(digits)):
         src, dst = digits[j - 1], digits[j]
         crosses = dst - src > 1
         ax.add_patch(FancyArrowPatch((xs[src] + 0.12, yi - 0.75), (xs[dst] - 0.05, yo + 0.75),
                                      arrowstyle="-|>", mutation_scale=6, linewidth=1.3 if crosses else 0.7,
                                      color=BAD if crosses else GRAY, linestyle="--" if crosses else "-"))
-    post = digits[4]
-    ax.text(xs[post] + 0.15, yo - 1.25, "post-marker:\nnear chance", ha="right", va="top", fontsize=7, color=BAD)
+        if crosses:
+            ax.text((xs[src] + xs[dst]) / 2, 9.2, "crosses the marker",
+                    ha="center", va="top", fontsize=6.2, color=BAD)
+    ax.text(xs[post] + 0.15, yo - 1.25, f"post-marker: near chance\n(writes {reset}, needs {truth})",
+            ha="right", va="top", fontsize=7, color=BAD)
     ax.text(xs[post + 1] + 0.05, yo - 1.25, "next:\nrecovers", ha="left", va="top", fontsize=7, color=GRAY)
 
 

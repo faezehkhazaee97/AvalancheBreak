@@ -8,7 +8,8 @@ FIGS=(fig0_overview fig_three_formats fig_profile fig_profile_by_task fig1_per_p
       divide_and_conquer causal_ablation head_heatmaps_32b
       fig_by_model_local fig_by_model_dependency
       external_vowel_tagging external_procbench
-      external_string_copy external_benchmark_gemini)
+      external_string_copy external_benchmark_gemini
+      fig_cell_scatter fig_examples fig_length_spacing_grid fig_mechanism_layers fig_position_curve)
 mkdir -p figures
 for f in "${FIGS[@]}"; do cp "../figs/$f.pdf" figures/; done
 echo "Copied ${#FIGS[@]} figures."

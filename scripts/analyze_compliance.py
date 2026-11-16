@@ -124,6 +124,24 @@ def main():
             cells += ["---", "---"] if y.empty else [f"{y.ex.sum() / y.n.sum():.2f}", f"{y.co.sum() / y.n.sum():.2f}"]
         lines.append(f"{'All models, weighted' if first else ''} & {block} & " + " & ".join(cells) + " \\\\")
         first = False
+    # The same rows on the two models that store raw output for every format. Without this block the
+    # "All models, weighted" letter row (those two models) is read against spaced-letter and digit
+    # rows pooled over all seven, so a format difference and a model difference are confounded.
+    MATCHED = ["Qwen3.8 27B", "Gemma 4 31B"]
+    have = [m for m in MATCHED if (g.model == m).any()]
+    assert have == MATCHED, f"matched block needs {MATCHED}, found {sorted(g.model.unique())}"
+    lines.append("\\midrule")
+    first = True
+    for block, _t in BLOCKS:
+        if "reset" in block:
+            continue
+        x = g[g.block.eq(block) & g.model.isin(MATCHED)]
+        cells = []
+        for cls in ("no markers", "markers"):
+            y = x[x.cls == cls]
+            cells += ["---", "---"] if y.empty else [f"{y.ex.sum() / y.n.sum():.2f}", f"{y.co.sum() / y.n.sum():.2f}"]
+        lines.append(f"{'Qwen3.8 and Gemma 4 only' if first else ''} & {block} & " + " & ".join(cells) + " \\\\")
+        first = False
     lines.append("\\bottomrule")
     lines.append("\\end{tabular}")
     (REPO / "paper_tmlr" / "tables" / "compliance.tex").write_text("\n".join(lines) + "\n")

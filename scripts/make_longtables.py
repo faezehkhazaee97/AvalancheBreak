@@ -29,7 +29,8 @@ def compliance_short():
         if not b:
             return []
         name = b[0].split("&")[0].strip()
-        if name.startswith("All models"):
+        # the pooled blocks are kept whole; the per-model blocks are cut to two rows
+        if name.startswith(("All models", "Qwen3.8 and Gemma 4 only")):
             return b
         keep = [l for l in b if "Dependency" in l or "all groups" in l]
         keep = [" & ".join([name if i == 0 else ""] + l.split("&")[1:]).replace("  ", " ") if True else l for i, l in enumerate(keep)]

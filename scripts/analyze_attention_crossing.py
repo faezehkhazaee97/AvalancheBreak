@@ -66,8 +66,8 @@ def main():
     fig.legend(h, l, frameon=False, fontsize=6.5, loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.02))
     fig.tight_layout(rect=(0, 0.05, 1, 1)); savefig(fig, REPO / "paper_tmlr" / "figures" / "attention_crossing.pdf")
 
-    lines = ["\\begin{tabular}{ll l ccc c}", "\\toprule",
-             "Model & Task & Run, positions & Input $j-1$ & Input $j$ & Marker & Peak layer for input $j-1$ \\\\", "\\midrule"]
+    lines = ["\\begin{tabular}{ll l cccc c}", "\\toprule",
+             "Model & Task & Run, positions & Input $j-1$ & Input $j$ & Marker & Answer $j-1$ & Peak layer for input $j-1$ \\\\", "\\midrule"]
     names = {("clean", "post"): "clean, post-marker indices", ("marked", "post"): "marked, post-marker", ("marked", "within"): "marked, within-segment",
              ("input_only", "post"): "input markers only, post-marker"}
     for label in models:
@@ -79,7 +79,7 @@ def main():
                     continue
                 tot = x[COLS].sum(); peak = int(x.loc[x.prev_in.idxmax()].Layer)
                 lines.append(f"{label if first else ''} & {TASKN[task] if key == ('clean', 'post') else ''} & {nm} & {tot.prev_in:.2f} & {tot.cur_in:.2f} & "
-                             + (f"{tot.marker:.2f}" if key[0] in ("marked", "input_only") else "--") + f" & {peak} \\\\")
+                             + (f"{tot.marker:.2f}" if key[0] in ("marked", "input_only") else "--") + f" & {tot.prev_out:.2f} & {peak} \\\\")
                 first = False
             lines.append("\\addlinespace")
     while lines[-1] == "\\addlinespace":

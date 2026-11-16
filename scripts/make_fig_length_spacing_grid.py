@@ -28,6 +28,11 @@ BLOCKS = [("Position-local digit tasks", ["cyclic_shift_digits", "random_permuta
           ("Dependency tasks", ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"])]
 NS, KS = [4, 8, 16, 32, 64], [0, 1, 2, 4, 8, 16]
 CMAP = LinearSegmentedColormap.from_list("acc", ["#fff5eb", "#fdd0a2", "#9ecae1", "#2171b5", "#08306b"])
+# A cell with k >= N was never run, and the low end of the ramp is near-white, so an unrun
+# cell and a zero-accuracy one looked the same. Unrun cells are drawn neutral grey instead.
+CMAP = CMAP.copy()
+CMAP.set_bad("#cfcfcf")
+UNRUN = "#cfcfcf"
 
 
 def grid(tag, tasks):
@@ -57,7 +62,8 @@ def main():
             ax.axhline(0.5, color="white", linewidth=1.2)          # separates the no-marker row
             ax.set_xticks(range(len(NS))); ax.set_xticklabels([str(n) if n in (4, 16, 64) else "" for n in NS])   # every other label: room at 7 pt
             ax.set_yticks(range(len(KS))); ax.set_yticklabels(["none"] + [str(k) for k in KS[1:]])
-            ax.tick_params(axis="x", pad=1.5)
+            ax.tick_params(axis="x", pad=1.5, labelsize=6.8)
+            ax.tick_params(axis="y", labelsize=6.8)
             ax.grid(False)
             for sp in ("top", "right"):
                 ax.spines[sp].set_visible(True)
@@ -66,6 +72,11 @@ def main():
         axes[r][0].set_ylabel("Marker spacing $k$")
     cax = fig.add_axes([0.915, 0.14, 0.012, 0.68]); cb = fig.colorbar(im, cax=cax)
     cb.set_label("Character accuracy")
+    cb.ax.tick_params(labelsize=6.8)
+    # legend entry for the unrun cells, directly under the colour bar
+    fig.patches.append(plt.Rectangle((0.915, 0.095), 0.012, 0.022, transform=fig.transFigure,
+                                     facecolor=UNRUN, edgecolor="none"))
+    fig.text(0.933, 0.106, "not run (k >= N)", va="center", fontsize=6.2, color="#6e6e6e")
     fig.subplots_adjust(left=0.08, right=0.9, top=0.84, bottom=0.13, wspace=0.12, hspace=0.42)
     fig.supxlabel("Sequence length $N$", y=0.02, fontsize=plt.rcParams["axes.labelsize"])
     # Block titles, one per row of panels, each starting with its panel letter in Figure 1's style
