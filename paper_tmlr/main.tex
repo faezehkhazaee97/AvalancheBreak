@@ -433,6 +433,10 @@ Latency matters & On contiguous letters from $N = 64$ on, a marker every 4 to 8 
 
 \paragraph{Reproducibility.} Code, prompts, raw generations, and analysis scripts are at \url{https://anonymous.4open.science/r/boundary-markers-2AF8/}. All inputs are generated from deterministic seeds, and every prompt can be regenerated from (task, format, length, spacing, alphabet, trial).
 
+\section*{Broader impact}
+
+This is a measurement study of a prompting convention, and we see no significant risk of harm from it. One finding bears on practice. Inserting delimiters into a model's input is a common formatting habit, and we show that it makes the position right after a delimiter fail whenever the output there depends on what came before it. The failure is quiet: the output keeps its shape and its length, the surrounding positions stay accurate, and a pipeline that checks only the format will not notice. Punctuation, line breaks and field separators all act this way, so the effect can reach text that was never deliberately marked. Anyone splitting a sequence before a model reads it, in text processing or over biological sequences, should test the positions next to the boundaries rather than the output as a whole. Section~\ref{sec:practical} gives the placement rules that avoid it. We release code, prompts and raw generations so the failure can be checked for directly.
+
 \FloatBarrier
 \bibliography{refs}
 \bibliographystyle{tmlr}
@@ -440,7 +444,10 @@ Latency matters & On contiguous letters from $N = 64$ on, a marker every 4 to 8 
 % =====================================================================
 \appendix
 
-\section{Summary of the main effects}
+\FloatBarrier
+\section{Summary of the effects, and the prompts as the models received them}
+
+\subsection{Summary of the main effects}
 \label{app:summary}
 
 Table~\ref{tab:summary} collects the effects the paper reports, their size, and where each one is established, so that a single place gives the whole picture.
@@ -490,7 +497,7 @@ Input/output 2$\times$2 interaction, constrained decoding & $+0.17$ to $+0.70$ o
 
 \FloatBarrier
 
-\section{Prompts}
+\subsection{Prompts}
 \label{app:prompts}
 
 These are the prompts the models received, regenerated from the task engines with the runner's seeds. The digit variants keep the word ``alphabet'' for the symbol set, as the letter prompts do, so that the two formats differ only in the symbols themselves.
@@ -524,7 +531,10 @@ The mapping line is the literal string the prompt code generates: it shows the w
 
 \input{tables/prompts_verbatim.tex}
 
-\section{Trials per cell}
+\FloatBarrier
+\section{Protocol, uncertainty, and cost}
+
+\subsection{Trials per cell}
 \label{app:trials}
 
 Table~\ref{tab:trials} gives trials per cell (one cell = task, model, length, density, and alphabet or modulus value) for the data pooled in Figures~\ref{fig:formats}, \ref{fig:profile}, and~\ref{fig:split}. Gemini 3.5 Flash uses 3 on the letter and dependency tasks; Gemini 3.6 Flash uses 5 on all 13 task--format variants.
@@ -576,7 +586,7 @@ Qwen3.8-27B \texttt{37561816e66b}, Gemma-4-31B-it \texttt{842da3794eaa}.
 
 \paragraph{Out-of-alphabet answers.} On the digit tasks, Qwen2.5-7B often writes a letter (usually \texttt{t}, sometimes \texttt{o}) in place of \texttt{0}, in 22\% to 35\% of outputs, depending on the task (the share whose answer contains a \texttt{t} or an \texttt{o}), with or without markers. On spaced letters, several models step outside the alphabet (for example \texttt{I} after \texttt{H} instead of wrapping to \texttt{A}). Such characters are scored as errors.
 
-\section{How the uncertainty was computed}
+\subsection{How the uncertainty was computed}
 \label{app:stats}
 
 Pooled effects use the length-matched estimator of Section~\ref{sec:setup}, with analytic
@@ -652,7 +662,49 @@ changes in 5 of 91 cells. Finding~2 is unchanged: 23 of its 24 cells remain sign
 \input{tables/paired.tex}
 \end{table}
 
-\section{Per-position accuracy}
+\subsection{Well-formedness and cost}
+\label{app:wfr}
+
+Character accuracy strips markers and spaces before comparing, so it does not say whether the
+model followed the whole instruction. Table~\ref{tab:compliance} adds two stricter measures (with generation-weighted pooled rows) over
+the 86{,}400 generations whose raw text we stored: \emph{exact transformation match}, the share whose output equals the answer
+once markers and spaces are removed from both sides, and \emph{compliant}, the share whose raw first line carries markers
+in exactly the right places (for no-marker runs, carries none). Weighted by generations, markers raise exact match on the position-local tasks, from 0.16 to 0.38 on contiguous letters (Qwen3.8 and Gemma 4 only), 0.39 to 0.43 on digits, and 0.39
+to 0.42 on spaced letters, and lower it on the dependency tasks, from 0.24 to 0.11, the same
+directions as character accuracy. Pooled over all task groups and weighted by the number of generations (the position-local controls contribute most), marker placement is followed in 95\% of marked generations at Gemma 4, 94\% at Qwen3.8, and 92\% at Qwen2.5-32B, against 60\% to 62\% at Mistral, Phi, and Qwen2.5-7B; without markers, models rarely emit one, though Phi-3.5-mini does in 16\% of its unmarked generations and in 77\% on \task{copy\_previous}. On the dependency tasks alone compliance is lower, 0.94 at Gemma 4 and 0.89 at Qwen3.8 but 0.71 at Qwen2.5-32B and 0.65 at Qwen2.5-14B (at the Qwen2.5 models these rows cover \task{sliding\_window\_max} only, the dependency runs there that store raw output; Appendix~\ref{app:trials}), so at the Qwen2.5 models a substantial minority of marked outputs on those tasks do not carry the markers as asked. The blind spot is not a copying failure, however: in the constrained 2$\times$2 the output format is exact in the input-only and both-sides cells, and the post-marker position is at chance in both (Section~\ref{sec:sides}). The averages quoted in this paragraph are weighted by generations; the pooled rows of Table~\ref{tab:compliance} give them directly.
+
+At Qwen2.5-32B (first seed batch), a well-formed output uses only the task alphabet and is at least as long as the answer; markers lower that share in six of seven tasks, by up to 0.11 (\task{conditional\_shift}, 0.86 to 0.75; \task{cyclic\_shift} 0.52 to 0.44, \task{running\_sum\_local} 0.77 to 0.68, \task{copy\_previous} 0.96 to 0.88). On \task{cyclic\_shift}, \task{copy\_previous}, and \task{sliding\_window\_max} the drop comes from the completion rate: more marked outputs stop short of $N$ answer characters (on \task{cyclic\_shift}, 0.92 complete without markers against 0.81 with), so markers that curb running past the required length (Table~\ref{tab:wallclock}) also make stopping too early somewhat more frequent. On \task{conditional\_shift} and \task{running\_sum\_local} markers also lower the share of outputs that use only the task alphabet.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Exact transformation match (markers and spaces removed from both sides) and marker-placement compliance by model ($N \le 64$, all spacings pooled): the dependency tasks and all task groups weighted by generations, and every task group pooled over models. Exact: the cleaned output equals the answer. Compliant: the raw first line carries markers at exactly the expected offsets, or none for the no-marker runs. For Qwen2.5-7B, 14B, and 32B, Mistral, and Phi the ``Dependency, as is'' rows cover only \task{sliding\_window\_max} (at Phi also \task{copy\_previous}), the dependency runs of those models that store raw output, and the contiguous-letter rows cover only Qwen3.8 and Gemma 4, so the pooled letter row averages over those two models (Appendix~\ref{app:trials}).}
+\label{tab:compliance}
+\resizebox{\linewidth}{!}{\input{tables/compliance_short.tex}}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Wall-clock seconds per call at Qwen2.5-32B on contiguous-letter \task{cyclic\_shift} ($A = 2$). Throughput is 14 to 15 tokens/s in every condition. No marker is inserted after the last character, so the $k = 8$ cell at $N = 8$ contains none and is omitted.}
+\label{tab:wallclock}
+\begin{tabular}{lcccccc}
+\toprule
+Condition & $k$ & $N=8$ & 16 & 32 & 64 & 128 \\
+\midrule
+Base & -- & 0.330 & 0.570 & 1.270 & 3.763 & 11.380 \\
+Bounds & 1 & 1.133 & 2.215 & 4.403 & 7.684 & 14.260 \\
+Bounds & 2 & 0.544 & 1.076 & 2.142 & 4.213 & 9.000 \\
+Bounds & 4 & 0.380 & 0.787 & 1.729 & 3.298 & 6.453 \\
+Bounds & 8 & --- & 0.613 & 1.288 & 2.479 & 4.976 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+\section{Position-resolved results and robustness checks}
+
+\subsection{Per-position accuracy}
 \label{app:perpos}
 
 \paragraph{Pooled effects on dependency tasks.} The 8 significantly positive dependency cells of Section~\ref{sec:blindspot} are all on \task{running\_xor}, \task{running\_sum\_local}, or \task{sliding\_window\_max} at the stronger open models. Averaged over tasks, the effect ranges from $-0.05$ (Gemini 3.5) and $-0.04$ (Gemini 3.6 and Qwen2.5-7B) to $+0.04$ (Qwen2.5-32B). \task{copy\_previous}, which needs no computation, is negative even where the model is near ceiling without markers (Qwen3.8: $-0.26$). The pattern with length is consistent with this mixture: short sequences admit only dense spacings ($k < N$), so a larger share of their positions sit right after a marker, while long sequences add sparse spacings and are where the within-segment gain is large. At Qwen2.5-32B, \task{running\_xor} goes from $-0.11$ at $N = 4$ to $+0.13$ at $N = 64$, and \task{running\_sum\_local} from $-0.05$ to $+0.14$; Gemma 4's \task{running\_sum\_local} goes from $-0.10$ at $N = 8$ to $+0.19$ at $N = 64$. Qwen3.8 gains most on balance on \task{running\_xor} and \task{running\_sum\_local} ($+0.10$ and $+0.13$): its post-marker positions fail as at every model, but its within-segment positions on those two tasks gain $+0.13$ and $+0.14$.
@@ -711,92 +763,7 @@ Figure~\ref{fig:reset} gives the per-position comparison of Section~\ref{sec:res
 \end{figure}
 \FloatBarrier
 
-\section{External tasks, naturalistic tasks, and Gemini}
-\label{app:external}
-
-Table~\ref{tab:gemini} gives the Gemini grid; the tasks we did not design are reported in Section~\ref{sec:blindspot}.
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{Closed-model check and CLRS-Text. Gemini 3.5 Flash (3 trials per cell, letter and dependency tasks, pooled over all tested lengths, including $N$ up to 256 for \task{cyclic\_shift}) and Gemini 3.6 Flash (5 trials per cell, all 13 task--format variants, $N \le 64$), with the no-marker mean length-matched. CLRS-Text tasks (Gemini 3.5) use token-level markers and scoring.}
-\label{tab:gemini}
-\input{tables/gemini.tex}
-\end{table} Minimum is well above chance at Qwen2.5-32B ($z = 4.1$ from shuffled chance).
-
-\paragraph{Gemini's tokenization, from the API's token counts.} We cannot inspect Gemini's tokenizer, but every response reports the prompt's token count, and across the Gemini 3.6 grid the instruction is fixed while the input grows. Table~\ref{tab:geminitokens} gives the prompt tokens added per added input character from $N = 32$ to $N = 64$, counting each marker as one token; the steps $4 \to 8$, $8 \to 16$, and $16 \to 32$ agree to within $0.04$. In the spaced and digit formats and on the binary dependency tasks, every added character adds exactly one token and every marker exactly one more, at every length and spacing, so the one-token-per-character property holds at Gemini 3.6 as at the open models. In the letter format, letters without markers cost $0.46$ tokens each (about 2.2 letters per token); a marker after every letter raises this to one token per letter, while markers every two, four, or eight letters leave it at $0.46$ to $0.51$, so at Gemini a sparse marker splits few of its letter tokens, which fits spacing beating markers there (Section~\ref{sec:tokenization}). The counts fix how many tokens the characters occupy, not which characters share one; the open-model verification by inspection remains the primary one.
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{Gemini 3.6 Flash: prompt tokens added per added input character, from the API's token counts, by input format and marker spacing $k$, at the step from $N = 32$ to $N = 64$, with each marker counted as one token (exact in the spaced, digit, and binary formats, where the count at spacing $k$ exceeds the no-marker count by the number of markers at every $N$). A value of 1.00 is one token per character.}
-\label{tab:geminitokens}
-\input{tables/gemini_tokens.tex}
-\end{table}
-
-\paragraph{Naturalistic prefix-state tasks.} Two tasks built for this check have natural readings and carry the whole prefix as state: \task{bracket\_depth} (the input is a random string of parentheses; the output at each position is the nesting depth so far, modulo 4) and \task{running\_checksum} (the input is a digit string; the output at each position is the running sum modulo 10). They were run with the standard grid ($N \le 64$, all spacings, 20 trials per cell) at Qwen2.5-7B, Qwen2.5-32B, and Gemma 4. Table~\ref{tab:naturalistic} gives the pooled effect and the per-position comparison, with the four synthetic dependency tasks summarized the same way for the same models, and in the last four columns, over the marked generations ($k \ge 2$), the share of characters that match the true answer and the share that match the answer a model would give if its running state restarted at every marker; the two coincide whenever the state before the marker is 0 modulo the task's modulus, and such positions count for both. Like the CLRS running minimum, these tasks carry the whole prefix rather than one previous input. Qwen2.5-7B sits near chance on both without markers (0.30 against 0.25, and 0.22 against 0.10), so its cells are not interpretable. At Qwen2.5-32B and Gemma 4 markers hurt both (pooled 0.00 to $-0.14$; at Qwen2.5-32B on the checksum the pooled effect is near zero only because $k = 1$, where every position follows a marker, gains $+0.26$ while every $k \ge 2$ loses 0.02 to 0.15): the post-marker position falls by 0.07 to 0.21, and because the state carries forward, the within-segment positions fall with it (by 0.06 to 0.20) instead of gaining as they do on the one-step tasks. In three of the four task--model cells the digit written after a marker matches the answer of a state restarted at the marker more often than the true answer (0.41 to 0.51 against 0.23 to 0.37); only Gemma 4 on the checksum matches neither (0.16 against 0.32). The blind spot is confined to one position only when one position is all that needs what lies before the marker.
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{Naturalistic prefix-state tasks. No-marker accuracy, the pooled length-matched marker effect, the change at post-marker and within-segment positions against the no-marker run at the same positions ($k \in \{2, 4, 8, 16\}$, index scoring), and, over the marked generations with $k \ge 2$, the share of post-marker and within-segment characters that match the true answer and the share that match the answer of a state restarted at every marker. Positions where the two answers coincide count for both.}
-\label{tab:naturalistic}
-\resizebox{\linewidth}{!}{\input{tables/naturalistic.tex}}
-\end{table}
-
-\section{Real sequences, all eight rules}
-\label{app:real}
-
-Table~\ref{tab:realfull} gives the four real-sequence rules that Table~\ref{tab:real} does not carry. In the contiguous format the same-class, later-letter, and counting rules are near or below chance without markers at every model (chance is 0.5 for the two binary rules and 0.25 for the two counts modulo 4), so their marker effects there are not interpretable; the copy-previous rules were added after this was seen. With spaced characters, Gemma 4 is above chance on all four and Qwen2.5-32B on the same-class rule; Section~\ref{sec:real} discusses those cells.
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{All eight real-sequence rules; columns as in Table~\ref{tab:real}. Bold: post-marker changes of 0.25 or more in size.}
-\label{tab:realfull}
-\resizebox{\linewidth}{!}{\input{tables/real_data_full.tex}}
-\end{table}
-
-\section{Mechanism details}
-\label{app:mechanism}
-
-\paragraph{Head-count dose response.} To test whether the benefit is spread over heads, we repeated the ablation at $N = 64$ and $k = 8$ with the top 50 and top 200 marker-attending heads (2\% and 7.8\% of the model's heads), each with random-head and sham controls of the same size (Figure~\ref{fig:mechanism}c). Blocking 50 heads removes 1\% of the gain on spaced letters and 4\% on digits. Blocking 200 removes 28\% (paired drop $+0.155 \pm 0.072$) and 21\% ($+0.115 \pm 0.083$), while 200 random heads blocked from the markers, or the top 200 blocked from as many random non-marker tokens, remove nothing (drops of $-0.007$ to $-0.002$). Because both controls of that size are null, the drop is specific to removing attention to markers rather than a general disruption. (On spaced letters, the drops of about 0.04 for the 10-head conditions and the 50-head controls all come from one trial, the same one in each case; without it they are within 0.01 of zero.)
-
-\paragraph{Activation patching.}
-\label{app:patching}
-To ask where the blind spot is represented, we teacher-force Qwen2.5-32B on \task{running\_xor} and \task{running\_sum\_local} ($M = 4$) at $N = 32$, $k = 4$, 20 inputs per task, twice: with markers (the marked run) and without (the clean run), each prompt followed by its correct answer. At every post-marker answer position we read the next-token distribution and record the log-odds of the correct digit against the reset digit, the input digit at that position, which is the answer a model gives when it treats the segment as a fresh start, and whether the correct digit is the argmax. Qwen's tokenizer gives one token per digit and per bar, so answer positions align between the two runs once the bars are skipped. We cache the clean run's residual stream after each decoder layer and, in the marked run, overwrite the residual stream at one layer, or at every layer at once, at a chosen set of positions with the clean run's values at the corresponding positions: the input digit before each marker, the input digit after it, every input digit, or the answer digit written just before the marker. The log-odds are averaged over the post-marker positions where the correct and reset digits differ, which on both tasks excludes the positions whose previous input is 0, where the two answers coincide: 69 of the 140 post-marker positions remain on \task{running\_xor} (1 to 5 per input) and 100 of 140 on \task{running\_sum\_local} (3 to 7 per input); accuracy counts every post-marker position. Each input contributes the mean over its usable positions, the 20 inputs are averaged, and recovery is computed on those means,
-\begin{equation}
-R = \frac{\ell_{\text{patched}} - \ell_{\text{marked}}}{\ell_{\text{clean}} - \ell_{\text{marked}}},
-\label{eq:recovery}
-\end{equation}
-where $\ell$ is the log-odds of the correct digit against the reset digit, so $R = 0$ is the marked run and $R = 1$ the clean run. A ratio is only meaningful when the clean--marked gap is large; it is 7 to 9 nats at Qwen2.5-32B. Table~\ref{tab:patching} gives the results, and Figure~\ref{fig:mechlayers} shows the recovery by layer at Qwen2.5-32B. Without patching, the marked run prefers the reset digit by 6 to 7 nats at the post-marker step and is at or near chance there (0.46 on \task{running\_xor}, 0.32 on \task{running\_sum\_local}, against 0.79 and 0.47 in the clean run). Patching every input digit at every layer recovers 75\% and 86\% of the log-odds gap; the input digit right after the marker alone recovers 59\% and 64\%; the digit before the marker recovers 12\% and 1\%, and the answer digit already written 18\% and 20\%. Patched one layer at a time, the recovery from the input digits rises through the first half of the network, peaks at 81\% and 94\% around layer 34 of 64, and falls to zero by layer 50; the post-marker input digit alone peaks at 33\% and 63\% at the same depth. Accuracy recovers less (up to 29\%), because the patched log-odds end near zero rather than clearly positive. The most influential site for the failure is therefore the residual-stream representation of the input tokens, chiefly of the first input of the segment, with the strongest single-layer recovery around layer 34 and little after layer 52; the answer already written carries little of it. Because the clean and marked runs differ in token positions and context, patching identifies where the difference acts on the prediction, not where it originates. At Qwen2.5-7B the same procedure is not informative: its teacher-forced clean run is itself at chance at $N = 32$ (0.49 on \task{running\_xor}, 0.28 on \task{running\_sum\_local}), and the clean--marked gap is 0.4 to 1.1 nats rather than 7 to 9. That near-zero denominator makes the recovery ratios swing between $-0.5$ and $1.1$, so Table~\ref{tab:patching} leaves them blank and the figure omits that model. At Gemma 4 (gaps of 10 and 13 nats) and Qwen3.8 (2.2 and 2.3 nats) the ordering of sites is the one found at Qwen2.5-32B: every input digit 60\% and 61\% and 46\% and 74\%, the input digit after the marker alone 48\% and 30\% at Gemma 4 and 48\% and 69\% at Qwen3.8, the digit before the marker at most 6\% and 21\%, the answer already written 15\% to 20\% and 8\% to 35\%, with single-layer peaks of the every-input curves around layer 26 of 60 at Gemma 4 and layers 25 to 34 at Qwen3.8 and nothing after layer 50. The best single layer for the input after the marker at Gemma 4 on \task{running\_xor} is layer 0 (0.33): patching that input right after the first layer recovers a third of the gap, recovery then dips, and a second band of 0.25 to 0.29 follows around layers 24 to 27; it is an early-layer value, not an indexing artifact. Where the single-layer recovery from the input digit after the marker falls from one layer to the next, the layer at which it falls is where later positions read that digit, so the two hybrid models show which kind of layer does the reading. At Qwen3.8 it is mostly the softmax-attention layers: its 16 softmax layers account for 62\% of the total decline over the two tasks (0.79 of 1.27 in recovery units), about five times as much per layer as its 48 linear-attention layers, and the largest single drop (0.19, \task{running\_sum\_local}) is at softmax layer 51. At Gemma 4, local and global layers contribute about equally per layer (0.020 and 0.018), as expected, because its 1,024-token local window covers our whole prompts, so the local--global split cannot matter at these lengths. With Qwen3.8's small clean--marked gap, this comparison is indicative only.
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{Activation patching at four models: post-marker accuracy in the clean and marked runs, and the log-odds recovery when each site is patched at every layer, with the best single layer in parentheses. Bold: recoveries of 0.50 or more with every layer patched. Patching every layer can recover less than the best single layer (Qwen3.8 on \task{running\_xor}, all inputs: 0.46 against 0.71 at layer 25), since simultaneous patches interfere.}
-\label{tab:patching}
-\resizebox{\linewidth}{!}{\input{tables/patching.tex}}
-\end{table}
-
-\paragraph{Attention to the needed input.} A separate run reruns the teacher-forced inputs of the patching experiment at Qwen2.5-32B with attention weights kept. For the query position that predicts answer character $j$ (the token before it, which in the marked run is the output marker at a post-marker step) it records, per layer, the attention placed on input character $j-1$, on input character $j$, on the marker before input character $j$, and on answer character $j-1$, averaged over heads, and the largest single-head value on input $j-1$. Positions are post-marker ($j > 0$, $j \bmod k = 0$) or within-segment; the unmarked run is read at the same indices. Table~\ref{tab:attention} sums the head-averaged values over layers; Figure~\ref{fig:mechlayers} shows the strongest head by layer.
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{Attention from the step that writes answer character $j$ ($N = 32$, $k = 4$, 20 inputs per task), averaged over heads and summed over layers (64 at Qwen2.5-32B, 60 at Gemma 4, and the 16 softmax-attention layers of Qwen3.8, so sums compare conditions within a model, not across models), with the layer where the attention to input $j-1$ peaks. Layer numbers are each model's own index in its full stack, so Qwen3.8's refer to positions among its 64 layers, not among the 16 softmax layers the sums run over. Clean: no markers; marked: markers in input and answer, so the step after a marker is read at the output bar; input markers only: marked input with an unmarked answer, so that step is read at the previous answer digit. The within-segment retention of 89\% to 96\% quoted in the text refers to the lookback band in layers 35 to 45 at Qwen2.5-32B, not to these sums. Bold: attention of 0.20 or less to input $j-1$, where the lookback collapses.}
-\label{tab:attention}
-\resizebox{\linewidth}{!}{\input{tables/attention_crossing.tex}}
-\end{table}
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=\linewidth]{figures/fig2_mechanism_merged.pdf}
-\caption{Mechanism (Qwen2.5-32B). (a) Total attention mass on all marker tokens rises with density at every length (\task{cyclic\_shift}, $A=2$); the number of markers rises faster, so this is not evidence that individual markers draw more attention than content tokens. (b) The most marker-attending head (layer 21, head 1) attends from each position to an adjacent marker; orange lines and labels mark the markers. (c) Head-count dose response (\task{random\_permutation}, $A = 8$, $N = 64$, $k = 8$, 20 trials): share of the marker gain removed by blocking the top 10, 50, or 200 marker-attending heads from the markers, against as many random heads (random) and the top heads blocked from as many random non-marker tokens (sham), on spaced letters and digits; intervals are those of the drop divided by the gain. The wide spaced-letter intervals at 10 and 50 heads come from the single outlier trial described in Section~\ref{sec:mechanism}; at 200 heads the top heads remove 28\% and 21\% and the controls nothing. (d) \task{copy\_previous} at $N=32$: mean attention, over the ten heads that attend most to it, from each output position to the input token it needs (top-10 heads) is 0.535 at $k=1$, 0.101 at $k=2$, and 0.278 at $k=8$, matching accuracy (Base 0.83; $k=1$: 0.88; $k=2$: 0.65; $k=8$: 0.84).}
-\label{fig:mechanism}
-\end{figure}
-
-\section{Marker symbol and placement, delimiters, length, decoding, and state size}
+\subsection{Marker symbol and placement, delimiters, length, decoding, and state size}
 \label{app:marker}
 
 \paragraph{Symbol, placement, and wording.} On contiguous-letter \task{cyclic\_shift} ($A = 2$, $k = 4$) at Qwen2.5-7B and 32B, where much of the effect is tokenization, the choice of symbol matters less than its familiarity. At $N = 64$ at Qwen2.5-32B, against 0.54 without markers, \texttt{|} reaches 0.76, \texttt{;} 0.66, and \texttt{\#} 0.69; a reserved special token that never appears in ordinary text (\texttt{<|object\_ref\_start|>}) falls far below the baseline (0.16), and a less frequent multi-token marker \texttt{<|>} placed every 12 characters, the same token budget as \texttt{|} every 4, reaches 0.71. Moving each marker by $\pm 1$ or $\pm 2$ positions, or placing the same number at random, falls below the baseline at most lengths at 7B but stays above it at 32B (0.73, 0.73, and 0.68 at $N = 64$). Formal and casual phrasings of the instruction help at 32B at every length ($+0.08$ to $+0.26$), while a terse cipher-style phrasing that says nothing about the markers beyond copying them hurts there ($-0.12$ to $+0.01$). These cover one task and two models; the dependency-task placement check below covers four tasks.
@@ -841,7 +808,55 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 \end{table}
 
 \FloatBarrier
-\section{Base checkpoints, a finetuned separator, and a byte-level model}
+\section{External benchmarks, real sequences, and other checkpoints}
+
+\subsection{External tasks, naturalistic tasks, and Gemini}
+\label{app:external}
+
+Table~\ref{tab:gemini} gives the Gemini grid; the tasks we did not design are reported in Section~\ref{sec:blindspot}.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Closed-model check and CLRS-Text. Gemini 3.5 Flash (3 trials per cell, letter and dependency tasks, pooled over all tested lengths, including $N$ up to 256 for \task{cyclic\_shift}) and Gemini 3.6 Flash (5 trials per cell, all 13 task--format variants, $N \le 64$), with the no-marker mean length-matched. CLRS-Text tasks (Gemini 3.5) use token-level markers and scoring.}
+\label{tab:gemini}
+\input{tables/gemini.tex}
+\end{table} Minimum is well above chance at Qwen2.5-32B ($z = 4.1$ from shuffled chance).
+
+\paragraph{Gemini's tokenization, from the API's token counts.} We cannot inspect Gemini's tokenizer, but every response reports the prompt's token count, and across the Gemini 3.6 grid the instruction is fixed while the input grows. Table~\ref{tab:geminitokens} gives the prompt tokens added per added input character from $N = 32$ to $N = 64$, counting each marker as one token; the steps $4 \to 8$, $8 \to 16$, and $16 \to 32$ agree to within $0.04$. In the spaced and digit formats and on the binary dependency tasks, every added character adds exactly one token and every marker exactly one more, at every length and spacing, so the one-token-per-character property holds at Gemini 3.6 as at the open models. In the letter format, letters without markers cost $0.46$ tokens each (about 2.2 letters per token); a marker after every letter raises this to one token per letter, while markers every two, four, or eight letters leave it at $0.46$ to $0.51$, so at Gemini a sparse marker splits few of its letter tokens, which fits spacing beating markers there (Section~\ref{sec:tokenization}). The counts fix how many tokens the characters occupy, not which characters share one; the open-model verification by inspection remains the primary one.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Gemini 3.6 Flash: prompt tokens added per added input character, from the API's token counts, by input format and marker spacing $k$, at the step from $N = 32$ to $N = 64$, with each marker counted as one token (exact in the spaced, digit, and binary formats, where the count at spacing $k$ exceeds the no-marker count by the number of markers at every $N$). A value of 1.00 is one token per character.}
+\label{tab:geminitokens}
+\input{tables/gemini_tokens.tex}
+\end{table}
+
+\paragraph{Naturalistic prefix-state tasks.} Two tasks built for this check have natural readings and carry the whole prefix as state: \task{bracket\_depth} (the input is a random string of parentheses; the output at each position is the nesting depth so far, modulo 4) and \task{running\_checksum} (the input is a digit string; the output at each position is the running sum modulo 10). They were run with the standard grid ($N \le 64$, all spacings, 20 trials per cell) at Qwen2.5-7B, Qwen2.5-32B, and Gemma 4. Table~\ref{tab:naturalistic} gives the pooled effect and the per-position comparison, with the four synthetic dependency tasks summarized the same way for the same models, and in the last four columns, over the marked generations ($k \ge 2$), the share of characters that match the true answer and the share that match the answer a model would give if its running state restarted at every marker; the two coincide whenever the state before the marker is 0 modulo the task's modulus, and such positions count for both. Like the CLRS running minimum, these tasks carry the whole prefix rather than one previous input. Qwen2.5-7B sits near chance on both without markers (0.30 against 0.25, and 0.22 against 0.10), so its cells are not interpretable. At Qwen2.5-32B and Gemma 4 markers hurt both (pooled 0.00 to $-0.14$; at Qwen2.5-32B on the checksum the pooled effect is near zero only because $k = 1$, where every position follows a marker, gains $+0.26$ while every $k \ge 2$ loses 0.02 to 0.15): the post-marker position falls by 0.07 to 0.21, and because the state carries forward, the within-segment positions fall with it (by 0.06 to 0.20) instead of gaining as they do on the one-step tasks. In three of the four task--model cells the digit written after a marker matches the answer of a state restarted at the marker more often than the true answer (0.41 to 0.51 against 0.23 to 0.37); only Gemma 4 on the checksum matches neither (0.16 against 0.32). The blind spot is confined to one position only when one position is all that needs what lies before the marker.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Naturalistic prefix-state tasks. No-marker accuracy, the pooled length-matched marker effect, the change at post-marker and within-segment positions against the no-marker run at the same positions ($k \in \{2, 4, 8, 16\}$, index scoring), and, over the marked generations with $k \ge 2$, the share of post-marker and within-segment characters that match the true answer and the share that match the answer of a state restarted at every marker. Positions where the two answers coincide count for both.}
+\label{tab:naturalistic}
+\resizebox{\linewidth}{!}{\input{tables/naturalistic.tex}}
+\end{table}
+
+\subsection{Real sequences, all eight rules}
+\label{app:real}
+
+Table~\ref{tab:realfull} gives the four real-sequence rules that Table~\ref{tab:real} does not carry. In the contiguous format the same-class, later-letter, and counting rules are near or below chance without markers at every model (chance is 0.5 for the two binary rules and 0.25 for the two counts modulo 4), so their marker effects there are not interpretable; the copy-previous rules were added after this was seen. With spaced characters, Gemma 4 is above chance on all four and Qwen2.5-32B on the same-class rule; Section~\ref{sec:real} discusses those cells.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{All eight real-sequence rules; columns as in Table~\ref{tab:real}. Bold: post-marker changes of 0.25 or more in size.}
+\label{tab:realfull}
+\resizebox{\linewidth}{!}{\input{tables/real_data_full.tex}}
+\end{table}
+
+\subsection{Base checkpoints, a finetuned separator, and a byte-level model}
 \label{app:base}
 
 \paragraph{Base checkpoint.} The main grids use instruction-tuned models through their chat templates, which a base checkpoint lacks. To compare the two on equal terms, we prompt the base and instruct versions of Qwen2.5-7B and Qwen2.5-32B the same way: no chat template, the task's instruction, three solved examples drawn from a seed stream disjoint from the grid (with markers at the same spacing as the query), and the query ($N \in \{16, 32, 64\}$, $k \in \{0, 2, 4, 8, 16\}$, 20 trials per cell; the four dependency tasks and the three digit tasks). Table~\ref{tab:base} summarizes by format. Both effects are present in the pretrained models. At 7B, on the digit tasks the base checkpoint gains $+0.10$ from markers (post-marker $+0.20$, within-segment $+0.06$) and the instruct version $+0.14$ ($+0.30$, $+0.11$); the few-shot prompt puts both 7B models well above their zero-shot grid accuracy on digits (0.55 and 0.48 without markers). On the dependency tasks both 7B models are near chance under this prompt (0.56 and 0.51), the post-marker change is $-0.07$ at the base checkpoint and $-0.03$ at the instruct one, and where the base checkpoint is clearly above chance, on \task{copy\_previous} (0.73), the position after a marker loses 0.20 while the rest of the segment loses 0.03. At 32B both checkpoints are at 0.96 on the digit tasks under the few-shot prompt and gain $+0.04$ each, so this pair says nothing about the long-sequence gain. On the dependency tasks, where both are far above chance (0.77 and 0.76 without markers), the blind spot is nearly as large in the pretrained model as after instruction tuning: the post-marker position loses 0.17 at the base checkpoint and 0.22 at the instruct one while the within-segment positions gain 0.02 and 0.03, and task by task the losses are 0.19 against 0.33 on \task{copy\_previous}, 0.31 against 0.33 on \task{running\_xor}, 0.16 against 0.17 on \task{running\_sum\_local}, and 0.03 against 0.05 on \task{sliding\_window\_max}. Instruction tuning enlarges both effects somewhat; it creates neither.
@@ -868,43 +883,44 @@ Table~\ref{tab:delimiter} gives the follow-up experiment with commas and line br
 
 \paragraph{A byte-level model.} EvaByte-SFT \citep{zheng2025evabyte}, a 6.5B byte-level chat model, gives one token per character and per marker; its released code needs one fix under current library versions (its rotary position tables are left uninitialized and must be rebuilt after loading). On \task{running\_xor}, \task{copy\_previous}, and two position-local digit tasks it writes the input back instead of applying the rule in 45\% of outputs and stays at or below chance with and without markers. Demonstrations in the base-checkpoint format, delivered both inside the chat template and as a plain completion, reduce the copying but do not produce rule-following at length: with eight examples the model clears chance only at $N = 8$ (0.65 to 0.67 on \task{running\_xor}, chance 0.5) and is back at chance by $N = 32$ (0.51 to 0.53), where the blind spot is measured; \path{results_clean/_summary/evabyte_fewshot_pilot.csv} holds these runs. This checkpoint therefore gives no test of either effect, which bounds the checkpoint rather than byte-level modelling.
 
-\section{Well-formedness and cost}
-\label{app:wfr}
+\FloatBarrier
+\section{Mechanism details}
+\label{app:mechanism}
 
-Character accuracy strips markers and spaces before comparing, so it does not say whether the
-model followed the whole instruction. Table~\ref{tab:compliance} adds two stricter measures (with generation-weighted pooled rows) over
-the 86{,}400 generations whose raw text we stored: \emph{exact transformation match}, the share whose output equals the answer
-once markers and spaces are removed from both sides, and \emph{compliant}, the share whose raw first line carries markers
-in exactly the right places (for no-marker runs, carries none). Weighted by generations, markers raise exact match on the position-local tasks, from 0.16 to 0.38 on contiguous letters (Qwen3.8 and Gemma 4 only), 0.39 to 0.43 on digits, and 0.39
-to 0.42 on spaced letters, and lower it on the dependency tasks, from 0.24 to 0.11, the same
-directions as character accuracy. Pooled over all task groups and weighted by the number of generations (the position-local controls contribute most), marker placement is followed in 95\% of marked generations at Gemma 4, 94\% at Qwen3.8, and 92\% at Qwen2.5-32B, against 60\% to 62\% at Mistral, Phi, and Qwen2.5-7B; without markers, models rarely emit one, though Phi-3.5-mini does in 16\% of its unmarked generations and in 77\% on \task{copy\_previous}. On the dependency tasks alone compliance is lower, 0.94 at Gemma 4 and 0.89 at Qwen3.8 but 0.71 at Qwen2.5-32B and 0.65 at Qwen2.5-14B (at the Qwen2.5 models these rows cover \task{sliding\_window\_max} only, the dependency runs there that store raw output; Appendix~\ref{app:trials}), so at the Qwen2.5 models a substantial minority of marked outputs on those tasks do not carry the markers as asked. The blind spot is not a copying failure, however: in the constrained 2$\times$2 the output format is exact in the input-only and both-sides cells, and the post-marker position is at chance in both (Section~\ref{sec:sides}). The averages quoted in this paragraph are weighted by generations; the pooled rows of Table~\ref{tab:compliance} give them directly.
+\paragraph{Head-count dose response.} To test whether the benefit is spread over heads, we repeated the ablation at $N = 64$ and $k = 8$ with the top 50 and top 200 marker-attending heads (2\% and 7.8\% of the model's heads), each with random-head and sham controls of the same size (Figure~\ref{fig:mechanism}c). Blocking 50 heads removes 1\% of the gain on spaced letters and 4\% on digits. Blocking 200 removes 28\% (paired drop $+0.155 \pm 0.072$) and 21\% ($+0.115 \pm 0.083$), while 200 random heads blocked from the markers, or the top 200 blocked from as many random non-marker tokens, remove nothing (drops of $-0.007$ to $-0.002$). Because both controls of that size are null, the drop is specific to removing attention to markers rather than a general disruption. (On spaced letters, the drops of about 0.04 for the 10-head conditions and the 50-head controls all come from one trial, the same one in each case; without it they are within 0.01 of zero.)
 
-At Qwen2.5-32B (first seed batch), a well-formed output uses only the task alphabet and is at least as long as the answer; markers lower that share in six of seven tasks, by up to 0.11 (\task{conditional\_shift}, 0.86 to 0.75; \task{cyclic\_shift} 0.52 to 0.44, \task{running\_sum\_local} 0.77 to 0.68, \task{copy\_previous} 0.96 to 0.88). On \task{cyclic\_shift}, \task{copy\_previous}, and \task{sliding\_window\_max} the drop comes from the completion rate: more marked outputs stop short of $N$ answer characters (on \task{cyclic\_shift}, 0.92 complete without markers against 0.81 with), so markers that curb running past the required length (Table~\ref{tab:wallclock}) also make stopping too early somewhat more frequent. On \task{conditional\_shift} and \task{running\_sum\_local} markers also lower the share of outputs that use only the task alphabet.
-
-\begin{table}[!htbp]
-\centering
-\small
-\caption{Exact transformation match (markers and spaces removed from both sides) and marker-placement compliance by model ($N \le 64$, all spacings pooled): the dependency tasks and all task groups weighted by generations, and every task group pooled over models. Exact: the cleaned output equals the answer. Compliant: the raw first line carries markers at exactly the expected offsets, or none for the no-marker runs. For Qwen2.5-7B, 14B, and 32B, Mistral, and Phi the ``Dependency, as is'' rows cover only \task{sliding\_window\_max} (at Phi also \task{copy\_previous}), the dependency runs of those models that store raw output, and the contiguous-letter rows cover only Qwen3.8 and Gemma 4, so the pooled letter row averages over those two models (Appendix~\ref{app:trials}).}
-\label{tab:compliance}
-\resizebox{\linewidth}{!}{\input{tables/compliance_short.tex}}
-\end{table}
+\paragraph{Activation patching.}
+\label{app:patching}
+To ask where the blind spot is represented, we teacher-force Qwen2.5-32B on \task{running\_xor} and \task{running\_sum\_local} ($M = 4$) at $N = 32$, $k = 4$, 20 inputs per task, twice: with markers (the marked run) and without (the clean run), each prompt followed by its correct answer. At every post-marker answer position we read the next-token distribution and record the log-odds of the correct digit against the reset digit, the input digit at that position, which is the answer a model gives when it treats the segment as a fresh start, and whether the correct digit is the argmax. Qwen's tokenizer gives one token per digit and per bar, so answer positions align between the two runs once the bars are skipped. We cache the clean run's residual stream after each decoder layer and, in the marked run, overwrite the residual stream at one layer, or at every layer at once, at a chosen set of positions with the clean run's values at the corresponding positions: the input digit before each marker, the input digit after it, every input digit, or the answer digit written just before the marker. The log-odds are averaged over the post-marker positions where the correct and reset digits differ, which on both tasks excludes the positions whose previous input is 0, where the two answers coincide: 69 of the 140 post-marker positions remain on \task{running\_xor} (1 to 5 per input) and 100 of 140 on \task{running\_sum\_local} (3 to 7 per input); accuracy counts every post-marker position. Each input contributes the mean over its usable positions, the 20 inputs are averaged, and recovery is computed on those means,
+\begin{equation}
+R = \frac{\ell_{\text{patched}} - \ell_{\text{marked}}}{\ell_{\text{clean}} - \ell_{\text{marked}}},
+\label{eq:recovery}
+\end{equation}
+where $\ell$ is the log-odds of the correct digit against the reset digit, so $R = 0$ is the marked run and $R = 1$ the clean run. A ratio is only meaningful when the clean--marked gap is large; it is 7 to 9 nats at Qwen2.5-32B. Table~\ref{tab:patching} gives the results, and Figure~\ref{fig:mechlayers} shows the recovery by layer at Qwen2.5-32B. Without patching, the marked run prefers the reset digit by 6 to 7 nats at the post-marker step and is at or near chance there (0.46 on \task{running\_xor}, 0.32 on \task{running\_sum\_local}, against 0.79 and 0.47 in the clean run). Patching every input digit at every layer recovers 75\% and 86\% of the log-odds gap; the input digit right after the marker alone recovers 59\% and 64\%; the digit before the marker recovers 12\% and 1\%, and the answer digit already written 18\% and 20\%. Patched one layer at a time, the recovery from the input digits rises through the first half of the network, peaks at 81\% and 94\% around layer 34 of 64, and falls to zero by layer 50; the post-marker input digit alone peaks at 33\% and 63\% at the same depth. Accuracy recovers less (up to 29\%), because the patched log-odds end near zero rather than clearly positive. The most influential site for the failure is therefore the residual-stream representation of the input tokens, chiefly of the first input of the segment, with the strongest single-layer recovery around layer 34 and little after layer 52; the answer already written carries little of it. Because the clean and marked runs differ in token positions and context, patching identifies where the difference acts on the prediction, not where it originates. At Qwen2.5-7B the same procedure is not informative: its teacher-forced clean run is itself at chance at $N = 32$ (0.49 on \task{running\_xor}, 0.28 on \task{running\_sum\_local}), and the clean--marked gap is 0.4 to 1.1 nats rather than 7 to 9. That near-zero denominator makes the recovery ratios swing between $-0.5$ and $1.1$, so Table~\ref{tab:patching} leaves them blank and the figure omits that model. At Gemma 4 (gaps of 10 and 13 nats) and Qwen3.8 (2.2 and 2.3 nats) the ordering of sites is the one found at Qwen2.5-32B: every input digit 60\% and 61\% and 46\% and 74\%, the input digit after the marker alone 48\% and 30\% at Gemma 4 and 48\% and 69\% at Qwen3.8, the digit before the marker at most 6\% and 21\%, the answer already written 15\% to 20\% and 8\% to 35\%, with single-layer peaks of the every-input curves around layer 26 of 60 at Gemma 4 and layers 25 to 34 at Qwen3.8 and nothing after layer 50. The best single layer for the input after the marker at Gemma 4 on \task{running\_xor} is layer 0 (0.33): patching that input right after the first layer recovers a third of the gap, recovery then dips, and a second band of 0.25 to 0.29 follows around layers 24 to 27; it is an early-layer value, not an indexing artifact. Where the single-layer recovery from the input digit after the marker falls from one layer to the next, the layer at which it falls is where later positions read that digit, so the two hybrid models show which kind of layer does the reading. At Qwen3.8 it is mostly the softmax-attention layers: its 16 softmax layers account for 62\% of the total decline over the two tasks (0.79 of 1.27 in recovery units), about five times as much per layer as its 48 linear-attention layers, and the largest single drop (0.19, \task{running\_sum\_local}) is at softmax layer 51. At Gemma 4, local and global layers contribute about equally per layer (0.020 and 0.018), as expected, because its 1,024-token local window covers our whole prompts, so the local--global split cannot matter at these lengths. With Qwen3.8's small clean--marked gap, this comparison is indicative only.
 
 \begin{table}[!htbp]
 \centering
 \small
-\caption{Wall-clock seconds per call at Qwen2.5-32B on contiguous-letter \task{cyclic\_shift} ($A = 2$). Throughput is 14 to 15 tokens/s in every condition. No marker is inserted after the last character, so the $k = 8$ cell at $N = 8$ contains none and is omitted.}
-\label{tab:wallclock}
-\begin{tabular}{lcccccc}
-\toprule
-Condition & $k$ & $N=8$ & 16 & 32 & 64 & 128 \\
-\midrule
-Base & -- & 0.330 & 0.570 & 1.270 & 3.763 & 11.380 \\
-Bounds & 1 & 1.133 & 2.215 & 4.403 & 7.684 & 14.260 \\
-Bounds & 2 & 0.544 & 1.076 & 2.142 & 4.213 & 9.000 \\
-Bounds & 4 & 0.380 & 0.787 & 1.729 & 3.298 & 6.453 \\
-Bounds & 8 & --- & 0.613 & 1.288 & 2.479 & 4.976 \\
-\bottomrule
-\end{tabular}
+\caption{Activation patching at four models: post-marker accuracy in the clean and marked runs, and the log-odds recovery when each site is patched at every layer, with the best single layer in parentheses. Bold: recoveries of 0.50 or more with every layer patched. Patching every layer can recover less than the best single layer (Qwen3.8 on \task{running\_xor}, all inputs: 0.46 against 0.71 at layer 25), since simultaneous patches interfere.}
+\label{tab:patching}
+\resizebox{\linewidth}{!}{\input{tables/patching.tex}}
 \end{table}
+
+\paragraph{Attention to the needed input.} A separate run reruns the teacher-forced inputs of the patching experiment at Qwen2.5-32B with attention weights kept. For the query position that predicts answer character $j$ (the token before it, which in the marked run is the output marker at a post-marker step) it records, per layer, the attention placed on input character $j-1$, on input character $j$, on the marker before input character $j$, and on answer character $j-1$, averaged over heads, and the largest single-head value on input $j-1$. Positions are post-marker ($j > 0$, $j \bmod k = 0$) or within-segment; the unmarked run is read at the same indices. Table~\ref{tab:attention} sums the head-averaged values over layers; Figure~\ref{fig:mechlayers} shows the strongest head by layer.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Attention from the step that writes answer character $j$ ($N = 32$, $k = 4$, 20 inputs per task), averaged over heads and summed over layers (64 at Qwen2.5-32B, 60 at Gemma 4, and the 16 softmax-attention layers of Qwen3.8, so sums compare conditions within a model, not across models), with the layer where the attention to input $j-1$ peaks. Layer numbers are each model's own index in its full stack, so Qwen3.8's refer to positions among its 64 layers, not among the 16 softmax layers the sums run over. Clean: no markers; marked: markers in input and answer, so the step after a marker is read at the output bar; input markers only: marked input with an unmarked answer, so that step is read at the previous answer digit. The within-segment retention of 89\% to 96\% quoted in the text refers to the lookback band in layers 35 to 45 at Qwen2.5-32B, not to these sums. Bold: attention of 0.20 or less to input $j-1$, where the lookback collapses.}
+\label{tab:attention}
+\resizebox{\linewidth}{!}{\input{tables/attention_crossing.tex}}
+\end{table}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\linewidth]{figures/fig2_mechanism_merged.pdf}
+\caption{Mechanism (Qwen2.5-32B). (a) Total attention mass on all marker tokens rises with density at every length (\task{cyclic\_shift}, $A=2$); the number of markers rises faster, so this is not evidence that individual markers draw more attention than content tokens. (b) The most marker-attending head (layer 21, head 1) attends from each position to an adjacent marker; orange lines and labels mark the markers. (c) Head-count dose response (\task{random\_permutation}, $A = 8$, $N = 64$, $k = 8$, 20 trials): share of the marker gain removed by blocking the top 10, 50, or 200 marker-attending heads from the markers, against as many random heads (random) and the top heads blocked from as many random non-marker tokens (sham), on spaced letters and digits; intervals are those of the drop divided by the gain. The wide spaced-letter intervals at 10 and 50 heads come from the single outlier trial described in Section~\ref{sec:mechanism}; at 200 heads the top heads remove 28\% and 21\% and the controls nothing. (d) \task{copy\_previous} at $N=32$: mean attention, over the ten heads that attend most to it, from each output position to the input token it needs (top-10 heads) is 0.535 at $k=1$, 0.101 at $k=2$, and 0.278 at $k=8$, matching accuracy (Base 0.83; $k=1$: 0.88; $k=2$: 0.65; $k=8$: 0.84).}
+\label{fig:mechanism}
+\end{figure}
 
 \end{document}
