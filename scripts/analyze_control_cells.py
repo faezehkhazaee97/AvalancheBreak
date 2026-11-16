@@ -219,6 +219,24 @@ def main():
     (REPO / "paper_tmlr" / "tables" / "control_cells.tex").write_text("\n".join(lines) + "\n")
     print("wrote tables/control_cells.tex")
 
+    # Finding 2 had no table in the main text: every control cell lived in the appendix. Derive a
+    # compact model-level view from the same rows so the main text carries the evidence it argues
+    # from, while the full per-cell table stays in the appendix.
+    summary = ["\\begin{tabular}{ll cc c c c}", "\\toprule",
+               "Model & Format & No markers & Markers & $\\Delta$ & Share removed & "
+               "$\\Delta$ at $N = 64$ \\\\", "\\midrule"]
+    last = None
+    for line in lines:
+        if "Three-task mean" not in line:
+            continue
+        c = [x.strip() for x in line.rstrip().rstrip("\\\\").split("&")]
+        model = c[0] or last
+        summary.append(f"{c[0]} & {c[1]} & {c[3]} & {c[4]} & {c[5]} & {c[6]} & {c[9]} \\\\")
+        last = model
+    summary += ["\\bottomrule", "\\end{tabular}"]
+    (REPO / "paper_tmlr" / "tables" / "control_summary.tex").write_text("\n".join(summary) + "\n")
+    print("wrote tables/control_summary.tex")
+
 
 if __name__ == "__main__":
     main()
