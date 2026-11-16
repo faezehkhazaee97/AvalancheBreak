@@ -59,6 +59,7 @@ def main():
     if args.dry:
         return
 
+    import numpy as np
     import torch
     from tasks.common.runner import load_model
     model = load_model(args.model); model.eval()
@@ -74,6 +75,8 @@ def main():
     f = open(out_csv, "a", newline=""); w = csv.DictWriter(f, fieldnames=fields)
     if not done and f.tell() == 0:
         w.writeheader()
+
+    head_lookback, head_count = {}, {}
 
     def record(task, t, run, ids, in_pos, out_pos):
         with torch.no_grad():
@@ -94,6 +97,16 @@ def main():
                     if run in ("marked", "input_only") and j % K == 0:
                         acc["marker"] += row[:, in_pos[j] - 1].mean().item()
                     acc["max_head_prev_in"] += row[:, in_pos[j - 1]].max().item()
+                    # per-head lookback mass, for ranking heads by the edge that actually
+                    # carries the dependency rather than by how much they look at markers
+                    if run == "marked" and ptype == "post":
+                        hv = row[:, in_pos[j - 1]].cpu().numpy()
+                        key = (task, li)
+                        if key not in head_lookback:
+                            head_lookback[key] = np.zeros(len(hv))
+                            head_count[key] = 0
+                        head_lookback[key] += hv
+                        head_count[key] += 1
                 w.writerow(dict(Task=task, Trial=t, Run=run, PosType=ptype, Layer=li, n_pos=len(js),
                                 **{k: v / len(js) for k, v in acc.items()}))
         f.flush()
@@ -120,7 +133,20 @@ def main():
                 ids_o, in_o, out_o = positions(tokenizer, p_c, inp_c, ans_m)
                 record(task, t, "output_only", ids_o, in_o, out_o)
             print(f"done {task} trial {t}", flush=True)
-    f.close(); print("Finished.")
+    f.close()
+    # per-head lookback scores at post-marker positions in the marked run, so heads can be ranked
+    # by the dependency edge; run_head_ablation_v2.py --heads-from reads this.
+    if head_lookback:
+        hp = REPO / "results" / "attention_crossing" / f"{tag}_lookback_heads.csv"
+        with open(hp, "w", newline="") as g:
+            ww = csv.DictWriter(g, fieldnames=["Task", "Layer", "Head", "lookback"])
+            ww.writeheader()
+            for (task, li), v in sorted(head_lookback.items()):
+                v = v / max(head_count[(task, li)], 1)
+                for h, val in enumerate(v):
+                    ww.writerow(dict(Task=task, Layer=li, Head=h, lookback=round(float(val), 6)))
+        print(f"wrote {hp}")
+    print("Finished.")
 
 
 if __name__ == "__main__":
