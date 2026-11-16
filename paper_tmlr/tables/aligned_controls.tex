@@ -1,0 +1,16 @@
+\begin{tabular}{ll cc cc c}
+\toprule
+& & \multicolumn{2}{c}{Index scoring} & \multicolumn{2}{c}{Aligned} & \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-6}
+Model & Format & No markers & $\Delta$ & No markers & $\Delta$ & Survives \\
+\midrule
+Qwen2.5 14B & Spaced letters & 0.41 & $+0.30$ & 0.62 & $+0.18$ & 60\% \\
+ & Digits & 0.55 & $+0.28$ & 0.69 & $+0.16$ & 57\% \\
+Qwen2.5 32B & Spaced letters & 0.53 & $+0.37$ & 0.71 & $+0.22$ & 60\% \\
+ & Digits & 0.64 & $+0.28$ & 0.78 & $+0.15$ & 53\% \\
+Qwen3.8 27B & Spaced letters & 0.66 & $+0.24$ & 0.79 & $+0.12$ & 50\% \\
+ & Digits & 0.75 & $+0.19$ & 0.83 & $+0.11$ & 56\% \\
+Gemma 4 31B & Spaced letters & 0.75 & $+0.19$ & 0.89 & $+0.05$ & 29\% \\
+ & Digits & 0.79 & $+0.20$ & 0.91 & $+0.07$ & 38\% \\
+\bottomrule
+\end{tabular}
