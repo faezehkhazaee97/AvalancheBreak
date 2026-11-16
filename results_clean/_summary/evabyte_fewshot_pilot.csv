@@ -1,0 +1,13 @@
+log,task,N,axis,ks,trials,shots,variant,tar,exact,copied
+evabyte-fs-pilot4-40648080.log,random_permutation_digits,8,8,"0, 4",20,0,zero-shot chat,0.056,0.0,0.05
+evabyte-fs-pilot4-40648080.log,random_permutation_digits,8,8,"0, 4",20,8,8-shot chat,0.144,0.0,0.025
+evabyte-fs-pilot4-40648080.log,random_permutation_digits,8,8,"0, 4",20,8,8-shot raw,0.134,0.0,0.0
+evabyte-fs-pilot4-40648080.log,random_permutation_digits,32,8,"0, 4",20,0,zero-shot chat,0.032,0.0,0.325
+evabyte-fs-pilot4-40648080.log,random_permutation_digits,32,8,"0, 4",20,8,8-shot chat,0.111,0.0,0.1
+evabyte-fs-pilot4-40648080.log,random_permutation_digits,32,8,"0, 4",20,8,8-shot raw,0.105,0.0,0.075
+evabyte-fs-pilot4-40648080.log,running_xor,8,None,"0, 4",20,0,zero-shot chat,0.559,0.025,0.45
+evabyte-fs-pilot4-40648080.log,running_xor,8,None,"0, 4",20,8,8-shot chat,0.653,0.075,0.225
+evabyte-fs-pilot4-40648080.log,running_xor,8,None,"0, 4",20,8,8-shot raw,0.666,0.05,0.15
+evabyte-fs-pilot4-40648080.log,running_xor,32,None,"0, 4",20,0,zero-shot chat,0.489,0.0,0.75
+evabyte-fs-pilot4-40648080.log,running_xor,32,None,"0, 4",20,8,8-shot chat,0.512,0.0,0.5
+evabyte-fs-pilot4-40648080.log,running_xor,32,None,"0, 4",20,8,8-shot raw,0.527,0.0,0.4
