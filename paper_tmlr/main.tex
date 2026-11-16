@@ -39,6 +39,11 @@ What Content-Free Boundary Markers Do in Character-Level Transformations}
 \def\year{YYYY} % Insert correct year for camera-ready version
 \def\openreview{\url{https://openreview.net/forum?id=XXXX}} % Insert correct link to OpenReview for camera-ready version
 
+% Unnumbered footnote, for the first-page disclosure after the abstract.
+\newcommand\blfootnote[1]{%
+  \begingroup\renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}\endgroup}
+
 \begin{document}
 
 \maketitle
@@ -46,6 +51,11 @@ What Content-Free Boundary Markers Do in Character-Level Transformations}
 \begin{abstract}
 Inserting a content-free marker (\texttt{|}) into the input every $k$ characters of a character-level transformation, and asking the model to copy it through, is a cheap single-call intervention. We study what it does across seven tasks, seven open instruction-tuned models, and two versions of Gemini Flash (3.5 and 3.6), using two controls that fix tokenization at one token per character: the same letter tasks with spaced letters, and exact relabelings with digits. We find three separate effects. First, on letter strings, markers act largely as re-tokenization: at five of the seven open models, spacing the letters with no markers improves accuracy more ($+0.16$ to $+0.33$) than markers do ($+0.13$ to $+0.26$). Second, the gain survives one token per character: with spaced letters or digits, markers remove 33\% to 83\% of the remaining errors at the four strongest open models, persist to $N = 256$ at Qwen2.5-32B, and match there with commas or line breaks as markers. Third, with a marker every two or more characters, the position right after a marker fails whenever its output depends on the input before it: on four dependency tasks it falls to near chance at the stronger models while the next position recovers, and rewriting the tasks so that position needs nothing before the marker repairs it. Blocking marker-attending heads removes part of the gain, and a constrained-decoding ablation on four tasks at Qwen2.5-32B shows that marking either input or output alone hurts while marking both helps, and that the failure at the crossing position is not specific to the input side. Real promoter DNA and English text show the same gain and failure. In practice: separate characters before adding markers, mark long sequences sparsely on input and output, and keep markers away from positions whose output depends on what came just before them.
 \end{abstract}
+
+% TMLR's FAQ requires a first-page footnote disclosing use of an LLM assistant. It asks that
+% the use be stated, not that a product or vendor be named. \blfootnote is unnumbered so the
+% note does not attach itself to any sentence of the paper.
+\blfootnote{The authors used an AI assistant for drafting and editing. The authors are responsible for all content.}
 
 % =====================================================================
 \section{Introduction}
