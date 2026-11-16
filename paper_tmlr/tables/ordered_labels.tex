@@ -11,11 +11,19 @@ Qwen2.5 32B & Running XOR & Repeating \texttt{|} & 0.60 & 0.46 & $-0.15$ & $+0.2
  &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.33 & 0.27 & $-0.06$ & $+0.26$ & $+0.18$ \\
 \addlinespace
  & Random permutation & Repeating \texttt{|} & 0.42 & 1.00 & $+0.58$ & $+0.59$ & $+0.58$ \\
- &  & Repeating \texttt{a} & 0.42 & 0.43 & $+0.01$ & $+0.00$ & $+0.00$ \\
+ &  & Repeating \texttt{a} & 0.42 & 0.43 & $+0.01$ & 0.00 & 0.00 \\
  &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.42 & 0.50 & $+0.08$ & $+0.09$ & $+0.09$ \\
 \addlinespace
 Gemma 4 31B & Running XOR & Repeating \texttt{|} & 0.68 & 0.46 & $-0.22$ & $+0.24$ & $+0.13$ \\
  &  & Repeating \texttt{a} & 0.68 & 0.44 & $-0.24$ & $+0.18$ & $+0.08$ \\
- &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.68 & 0.46 & $-0.22$ & $+0.22$ & $+0.11$ \\
+ &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.68 & 0.47 & $-0.22$ & $+0.23$ & $+0.12$ \\
+\addlinespace
+ & Running sum (mod 4) & Repeating \texttt{|} & 0.42 & 0.29 & $-0.13$ & $+0.38$ & $+0.26$ \\
+ &  & Repeating \texttt{a} & 0.42 & 0.27 & $-0.15$ & $+0.12$ & $+0.06$ \\
+ &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.42 & 0.28 & $-0.14$ & $+0.29$ & $+0.18$ \\
+\addlinespace
+ & Random permutation & Repeating \texttt{|} & 0.59 & 1.00 & $+0.41$ & $+0.43$ & $+0.42$ \\
+ &  & Repeating \texttt{a} & 0.59 & 0.91 & $+0.32$ & $+0.33$ & $+0.32$ \\
+ &  & Ordered \texttt{a}, \texttt{b}, \texttt{c}, \ldots & 0.59 & 0.96 & $+0.37$ & $+0.38$ & $+0.37$ \\
 \bottomrule
 \end{tabular}
