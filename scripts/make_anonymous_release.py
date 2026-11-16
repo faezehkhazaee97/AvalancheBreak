@@ -218,8 +218,13 @@ def tracked_files():
 
 
 def main():
+    # Clear the release but keep .git: the directory is pushed to the anonymous mirror as its own
+    # repository, and wiping .git would orphan that remote and force a re-init on every rebuild.
     if OUT.exists():
-        shutil.rmtree(OUT)
+        for child in OUT.iterdir():
+            if child.name == ".git":
+                continue
+            shutil.rmtree(child) if child.is_dir() else child.unlink()
     files = tracked_files()
     n_changed = 0
     for rel in files:
@@ -246,6 +251,8 @@ def main():
 
     hits = []
     for p in OUT.rglob("*"):
+        if ".git" in p.parts:        # the mirror's own history: compressed blobs, not release content
+            continue
         if p.is_file():
             data = p.read_bytes().decode("utf-8", errors="ignore")
             for m in FORBIDDEN.finditer(data):
