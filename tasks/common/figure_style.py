@@ -193,6 +193,11 @@ def align_panel_titles(fig):
         tights[ax] = ax.get_tightbbox(renderer)
         t.set_visible(True)
 
+    # A panel letter drawn with fig.text (a panel built from a sub-gridspec cannot carry an axes
+    # title above its sub-titles) is anchored to the plotting area, not to the leftmost content,
+    # so it has to be moved with the column it belongs to.
+    loose = [x for x in fig.texts if _re.match(r"\([a-z]\)", x.get_text() or "")]
+
     for col in group(lambda b: b.x0, lambda b: b.x1):
         lefts = [tights[ax].x0 for ax, _ in col if tights[ax] is not None]
         if not lefts:
@@ -202,6 +207,15 @@ def align_panel_titles(fig):
             box = boxes[ax]
             if box.width:
                 t.set_x((target - box.x0) / box.width)
+        lo = min(boxes[ax].x0 for ax, _ in col)
+        hi = max(boxes[ax].x1 for ax, _ in col)
+        for x in loose:
+            e = x.get_window_extent(renderer)
+            if lo - 1 <= e.x0 <= hi + 1:                 # this letter belongs to this column
+                tf = x.get_transform()
+                px, py = tf.transform(x.get_position())
+                nx, _ = tf.inverted().transform((px + (target - e.x0), py))
+                x.set_position((nx, x.get_position()[1]))
 
 
 def savefig(fig, path):
