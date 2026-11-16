@@ -4,9 +4,11 @@
 \cmidrule(lr){2-3}\cmidrule(lr){4-5}
 Patched site & Running XOR & Running sum (mod 4) & Running XOR & Running sum (mod 4) \\
 \midrule
-Every input digit & 34\% & 37\% & 28\% (L40) & 34\% (L40) \\
-Input after the marker & 18\% & 28\% & 9\% (L38) & 22\% (L40) \\
-Input before the marker & 9\% & 4\% & 6\% (L40) & 5\% (L39) \\
-Answer already written & 10\% & 10\% & 4\% (L42) & 6\% (L43) \\
+Every input digit & 34\% [27, 41] & 37\% [32, 43] & 28\% (L40) & 34\% (L40) \\
+Input after the marker & 18\% [14, 24] & 28\% [23, 33] & 9\% (L38) & 22\% (L40) \\
+Input before the marker & 9\% [5, 13] & 4\% [0, 8] & 6\% (L40) & 5\% (L39) \\
+Answer already written & 10\% [6, 15] & 10\% [7, 14] & 4\% (L42) & 6\% (L43) \\
+Output bar (the query) & 103\% [90, 116] & 101\% [93, 109] & 103\% (L63) & 101\% (L63) \\
+Output bar + input after & 103\% [90, 116] & 101\% [93, 110] & 103\% (L63) & 102\% (L62) \\
 \bottomrule
 \end{tabular}

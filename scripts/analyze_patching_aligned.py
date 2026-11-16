@@ -25,7 +25,11 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 
 SITEN = {"all_in": "Every input digit", "post_in": "Input after the marker",
-         "pre_in": "Input before the marker", "prev_out": "Answer already written"}
+         "pre_in": "Input before the marker", "prev_out": "Answer already written",
+         "query_bar": "Output bar (the query)", "query_bar_post_in": "Output bar + input after"}
+# the two query sites are the generating position itself, so their all-layer recovery is ~100% by
+# construction; only their per-layer profile carries information
+TABLE_SITES = ("all_in", "post_in", "pre_in", "prev_out", "query_bar", "query_bar_post_in")
 TASKN = {"running_xor": "Running XOR", "running_sum_local": "Running sum (mod 4)"}
 MODELS = [("Qwen2.5 32B", "Qwen2.5-32B-Instruct")]
 
@@ -80,16 +84,27 @@ def main():
     print(o.groupby("task").agg(recipient=("recipient_logodds", "first"),
                                 donor=("donor_logodds", "first"), gap=("gap", "first")).round(2).to_string())
 
+    # 95% percentile intervals over the 20 inputs, if scripts/patching_bootstrap.py has been run
+    ivf = REPO / "results_clean" / "_summary" / "patching_intervals.csv"
+    iv = None
+    if ivf.exists():
+        iv = pd.read_csv(ivf)
+        iv = iv[(iv.experiment == "patching_aligned")]
     lines = ["\\begin{tabular}{l cc cc}", "\\toprule",
              "& \\multicolumn{2}{c}{Log-odds recovery} & \\multicolumn{2}{c}{Best single layer} \\\\",
              "\\cmidrule(lr){2-3}\\cmidrule(lr){4-5}",
              "Patched site & " + " & ".join(TASKN[t] for t in TASKN) + " & "
              + " & ".join(TASKN[t] for t in TASKN) + " \\\\", "\\midrule"]
-    for site in ("all_in", "post_in", "pre_in", "prev_out"):
+    for site in TABLE_SITES:
         cells, peaks = [], []
         for task in TASKN:
             a = allr[(allr.task == task) & (allr.site == site)]
-            cells.append(f"{100 * a.rec_logodds.iloc[0]:.0f}\\%" if len(a) else "--")
+            ci = iv[(iv.task == task) & (iv.site == site) & (iv.layer.astype(str) == "all")] if iv is not None else None
+            if len(a) and ci is not None and len(ci):
+                r = ci.iloc[0]
+                cells.append(f"{100 * a.rec_logodds.iloc[0]:.0f}\\% [{100 * r.lo:.0f}, {100 * r.hi:.0f}]")
+            else:
+                cells.append(f"{100 * a.rec_logodds.iloc[0]:.0f}\\%" if len(a) else "--")
             per = o[(o.task == task) & (o.site == site) & (o.layer.astype(str) != "all")].copy()
             if len(per):
                 per["L"] = per.layer.astype(int)

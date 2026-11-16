@@ -44,7 +44,16 @@ from tasks.common.runner import _local_seed  # noqa: E402
 
 TASKS = {"running_xor": None, "running_sum_local": 4}
 N, K, TRIALS = 32, 4, 20
-SITES = ["pre_in", "post_in", "all_in", "prev_out"]
+SITES = ["pre_in", "post_in", "all_in", "prev_out", "query_bar", "query_bar_post_in"]
+# query_bar is the output marker itself, which is the token the post-marker prediction is
+# read at and the one site the clean-donor experiment cannot patch (the no-marker run has no
+# output bar). With a position-aligned donor both runs have it, so we can ask how much of the
+# repair lives in the generating query state rather than in the input digits.
+# READ THE 'all' ROW FOR query_bar WITH CARE: the logits are read at this very position, so
+# overwriting its residual stream at every layer transplants the donor's readout and must
+# recover ~100% by construction. The informative part is the per-layer profile -- the depth
+# at which the query state starts to carry the answer -- and its comparison with the input
+# sites at matched layers.
 DONOR = "_across"
 
 
@@ -206,11 +215,16 @@ def main():
                 write(dict(Task=task, Trial=t, Site="recipient", Layer=-1, logodds=lo, acc=ac,
                            n_post=len(post), prefix_offset=off))
 
+            # the generating query for answer position j is the token at out[j] - 1, which for a
+            # post-marker j is the output bar itself
             site_pos = {
                 "pre_in": [(in_r[j - 1], in_d[j - 1]) for j in post],
                 "post_in": [(in_r[j], in_d[j]) for j in post],
                 "all_in": list(zip(in_r, in_d)),
                 "prev_out": [(out_r[j - 1], out_d[j - 1]) for j in post],
+                "query_bar": [(out_r[j] - 1, out_d[j] - 1) for j in post],
+                "query_bar_post_in": ([(out_r[j] - 1, out_d[j] - 1) for j in post]
+                                      + [(in_r[j], in_d[j]) for j in post]),
             }
             for site in SITES:
                 pairs = site_pos[site]

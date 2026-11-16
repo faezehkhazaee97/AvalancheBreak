@@ -15,7 +15,8 @@ that predicts answer character j (the token just before it), we record the atten
 per layer, averaged over heads, and also the largest single-head mass on prev_in in that layer.
 Positions are classified as post-marker (j > 0, j mod k = 0) or within-segment (the rest, j > 0),
 so the marked run's post-marker rows can be compared with its own within-segment rows and with the
-clean run at the same indices. A third run, input_only (review follow-up), presents the marked input
+clean run at the same indices. A fourth run, output_only, presents the unmarked input with the marked answer, so the query is the
+output bar but no marker sits in the input. A third run, input_only (review follow-up), presents the marked input
 with the unmarked answer, so the query predicting every answer character is the previous answer
 digit rather than an output bar, as in the input-only cell of the constrained 2x2. Layers that return
 no attention weights (the linear-attention layers of Qwen3.8) are skipped, so for a hybrid stack
@@ -111,6 +112,13 @@ def main():
             if (task, str(t), "input_only") not in done:
                 ids_i, in_i, out_i = positions(tokenizer, p_m, inp_m, ans_c)
                 record(task, t, "input_only", ids_i, in_i, out_i)
+            # output_only: unmarked input, marked answer. The step after a marker is read at the
+            # output bar as in the marked run, but there is no marker in the input to draw the
+            # query's attention or to sit between x_{j-1} and x_j. This is the cell needed to tell
+            # whether the output bar alone collapses the lookback, which Section 8.3 asserts.
+            if (task, str(t), "output_only") not in done:
+                ids_o, in_o, out_o = positions(tokenizer, p_c, inp_c, ans_m)
+                record(task, t, "output_only", ids_o, in_o, out_o)
             print(f"done {task} trial {t}", flush=True)
     f.close(); print("Finished.")
 

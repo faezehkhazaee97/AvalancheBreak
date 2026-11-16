@@ -76,7 +76,8 @@ def main():
     lines = ["\\begin{tabular}{ll l cccc c}", "\\toprule",
              "Model & Task & Run, positions & Input $j-1$ & Input $j$ & Marker & Answer $j-1$ & Peak layer for input $j-1$ \\\\", "\\midrule"]
     names = {("clean", "post"): "clean, post-marker indices", ("marked", "post"): "marked, post-marker", ("marked", "within"): "marked, within-segment",
-             ("input_only", "post"): "input markers only, post-marker"}
+             ("input_only", "post"): "input markers only, post-marker",
+             ("output_only", "post"): "output markers only, post-marker"}
     for label in models:
         first = True
         for task in TASKN:
