@@ -157,3 +157,71 @@ DO NOT include them in the window or count them as digits. Copy them exactly to 
 Input: 2122|0101
 \end{verbatim}
 \end{small}
+
+\par\medskip\noindent\textbf{\task{dna\_copy\_previous} (real promoter DNA) ($N = 8$, $k = 4$).}\par
+\begin{small}
+\begin{verbatim}
+You are a deterministic sequence transformer.
+Task: Copy the previous base.
+Alphabet: A, C, G, T in the input (a stretch of a human promoter sequence); A, C, G, T and N
+in the output.
+Rule: At each position, output the base that comes immediately before it in the input. The
+first position has no previous base and gets N.
+Example: Input ACGTTG -> Output NACGTT
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: CTGG|CGGA
+Output:            (expected: NCTG|GCGG)
+\end{verbatim}
+\end{small}
+
+\par\medskip\noindent\textbf{\task{dna\_same\_class}: lines that differ from \task{dna\_copy\_previous} ($N = 8$, $k = 4$).}\par
+\begin{small}
+\begin{verbatim}
+Task: Same base class as the previous base.
+Alphabet: A, C, G, T in the input (a stretch of a human promoter sequence); digits 0 and 1
+in the output.
+Rule: A and G are purines; C and T are pyrimidines. For each base, output 1 if it is in the
+same class as the base immediately before it, and 0 otherwise. The first base has no
+previous base and gets 0.
+Example: Input AGCTTA -> Output 010110 (A: first, 0; G: purine after purine, 1; C: pyrimidine
+after purine, 0; T: pyrimidine after pyrimidine, 1; T: pyrimidine after pyrimidine, 1; A:
+purine after pyrimidine, 0)
+\end{verbatim}
+\end{small}
+
+\par\medskip\noindent\textbf{\task{text\_copy\_previous} (WikiText-2 letters) ($N = 8$, $k = 4$).}\par
+\begin{small}
+\begin{verbatim}
+You are a deterministic sequence transformer.
+Task: Copy the previous letter.
+Alphabet: lowercase letters a-z in the input (English text with spaces and punctuation
+removed); the same letters and # in the output.
+Rule: At each position, output the letter that comes immediately before it in the input. The
+first position has no previous letter and gets #.
+Example: Input thelazydog -> Output #thelazydo
+Constraint: The input contains vertical bars (|). These are structural boundaries.
+DO NOT transform them. Copy them exactly to the output.
+No spaces, no explanations.
+
+Input: toth|ealr
+Output:            (expected: #tot|heal)
+\end{verbatim}
+\end{small}
+
+\par\medskip\noindent\textbf{\task{text\_ascending}: lines that differ from \task{text\_copy\_previous} ($N = 8$, $k = 4$).}\par
+\begin{small}
+\begin{verbatim}
+Task: Later in the alphabet than the previous letter.
+Alphabet: lowercase letters a-z in the input (English text with spaces and punctuation
+removed); digits 0 and 1 in the output.
+Rule: For each letter, output 1 if it comes later in the alphabet than the letter
+immediately before it, and 0 otherwise (also 0 if the two letters are the same). The first
+letter has no previous letter and gets 0.
+Example: Input thelazydog -> Output 0001010010 (t: first, 0; h after t: 0; e after h: 0; l
+after e: 1; a after l: 0; z after a: 1; y after z: 0; d after y: 0; o after d: 1; g after o:
+0)
+\end{verbatim}
+\end{small}

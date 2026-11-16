@@ -40,6 +40,13 @@ def main():
     if not frames:
         print("no results yet"); return
     o = pd.concat(frames, ignore_index=True).round(4)
+    # Qwen3.8 is a hybrid stack: 64 layers of which every 4th is full attention
+    # (config full_attention_interval = 4), and only those produce attention weights. The runner
+    # enumerates what it is given, so its Layer is the softmax index 0..15; map it to the
+    # full-stack index 4i+3 so layer numbers mean the same thing in every row of the table.
+    hyb = o.model == "Qwen3.8 27B"
+    assert not hyb.any() or o.loc[hyb, "Layer"].max() == 15, "unexpected layer count for Qwen3.8"
+    o.loc[hyb, "Layer"] = 4 * o.loc[hyb, "Layer"] + 3
     o.to_csv(REPO / "results_clean" / "_summary" / "attention_crossing.csv", index=False)
     s = o.groupby(["model", "Task", "Run", "PosType"])[COLS].sum().round(3)   # mass summed over layers
     pd.set_option("display.width", 200)

@@ -59,6 +59,9 @@ def main():
             ax = axes[r][c]
             g = grid(tag, tasks)
             im = ax.imshow(np.ma.masked_invalid(g), cmap=CMAP, vmin=0, vmax=1, aspect="auto", interpolation="nearest")
+            # a dash inside each unrun cell, so grey is not mistaken for the pale low end of the ramp
+            for (yy, xx) in zip(*np.where(np.isnan(g))):
+                ax.text(xx, yy, "\u2013", ha="center", va="center", fontsize=5.5, color="#8a8a8a")
             ax.axhline(0.5, color="white", linewidth=1.2)          # separates the no-marker row
             ax.set_xticks(range(len(NS))); ax.set_xticklabels([str(n) if n in (4, 16, 64) else "" for n in NS])   # every other label: room at 7 pt
             ax.set_yticks(range(len(KS))); ax.set_yticklabels(["none"] + [str(k) for k in KS[1:]])
@@ -76,7 +79,7 @@ def main():
     # legend entry for the unrun cells, directly under the colour bar
     fig.patches.append(plt.Rectangle((0.915, 0.095), 0.012, 0.022, transform=fig.transFigure,
                                      facecolor=UNRUN, edgecolor="none"))
-    fig.text(0.933, 0.106, "not run (k >= N)", va="center", fontsize=6.2, color="#6e6e6e")
+    fig.text(0.933, 0.106, "not run ($k \\geq N$)", va="center", fontsize=6.2, color="#6e6e6e")
     fig.subplots_adjust(left=0.08, right=0.9, top=0.84, bottom=0.13, wspace=0.12, hspace=0.42)
     fig.supxlabel("Sequence length $N$", y=0.02, fontsize=plt.rcParams["axes.labelsize"])
     # Block titles, one per row of panels, each starting with its panel letter in Figure 1's style

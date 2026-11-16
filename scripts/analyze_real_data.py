@@ -126,7 +126,7 @@ def write_table(out, tasks, fname):
        | 9 Within segment, index | 10 Within segment, aligned | 11 Share
     Bold (scripts/bold_tables.py): column 7, index-scored post-marker changes of 0.25 or more."""
     lines = [r"\begin{tabular}{llll cc cc cc c}", r"\toprule",
-             r"& & & & & & \multicolumn{2}{c}{Post-marker} & \multicolumn{3}{c}{Within segment} \\",
+             r"& & & & & & \multicolumn{2}{c}{Post-marker} & \multicolumn{3}{c}{Within-segment} \\",
              r"\cmidrule(lr){7-8}\cmidrule(lr){9-11}",
              r"Source, task & Dependency & Model & Format & No-marker acc. & Pooled $\Delta$ & "
              r"Index & Aligned & Index & Aligned & Share \\", r"\midrule"]

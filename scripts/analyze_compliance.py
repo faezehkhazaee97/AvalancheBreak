@@ -122,7 +122,11 @@ def main():
         for cls in ("no markers", "markers"):
             y = x[x.cls == cls]
             cells += ["---", "---"] if y.empty else [f"{y.ex.sum() / y.n.sum():.2f}", f"{y.co.sum() / y.n.sum():.2f}"]
-        lines.append(f"{'All models, weighted' if first else ''} & {block} & " + " & ".join(cells) + " \\\\")
+        # the letter rows cover only the two models that store raw output for every format, so
+        # name each row's coverage: a 2-model row above 7-model rows otherwise reads as comparable
+        nm = x.model.nunique()
+        lines.append(f"{'All models, weighted' if first else ''} & {block} ({nm} model{'s' if nm != 1 else ''}) & "
+                     + " & ".join(cells) + " \\\\")
         first = False
     # The same rows on the two models that store raw output for every format. Without this block the
     # "All models, weighted" letter row (those two models) is read against spaced-letter and digit

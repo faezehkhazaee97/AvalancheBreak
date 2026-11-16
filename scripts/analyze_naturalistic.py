@@ -55,20 +55,35 @@ def reset_consistency(task, d):
     import numpy as np
     from analyze_aligned_scoring import index_vector, clean
     d = d[(d.Method == "Cellular_Bounds") & d.Interval.astype(int).isin([2, 4, 8, 16]) & d.Seq_Length.astype(int).isin(LENGTHS)]
-    out = {"post_true": [], "post_reset": [], "within_true": [], "within_reset": []}
+    out = {"post_true": [], "post_reset": [], "within_true": [], "within_reset": [],
+           "post_coincide": [], "post_true_diff": [], "post_reset_diff": []}
     for _, r in d.iterrows():
         k = int(r.Interval)
         pred = clean(r.LLM_Output)
-        vt = index_vector(clean(r.Ground_Truth), pred)
-        vr = index_vector(reset_truth(task, r.Input_Given), pred)
+        truth, rtruth = clean(r.Ground_Truth), reset_truth(task, r.Input_Given)
+        vt = index_vector(truth, pred)
+        vr = index_vector(rtruth, pred)
         h = horizon(task)
         idx = np.arange(len(vt)); p, w = position_classes(idx, k, h)
         if not p.any():
             continue
         out["post_true"].append(vt[p].mean()); out["post_reset"].append(vr[p].mean())
+        # The two answers agree wherever the prefix state before the marker is already 0 mod M, and
+        # a position where they agree counts for both columns. Record how often that happens and
+        # the match rates on the positions where the two answers actually differ, which is the only
+        # place the comparison can distinguish a reset from the true rule.
+        n = min(len(truth), len(rtruth))
+        same = np.array([truth[i] == rtruth[i] for i in range(n)])
+        pp = p[:n]
+        if pp.any():
+            out["post_coincide"].append(same[pp].mean())
+            diff = pp & ~same
+            if diff.any():
+                out["post_true_diff"].append(vt[:n][diff].mean())
+                out["post_reset_diff"].append(vr[:n][diff].mean())
         if k > h and w.any():
             out["within_true"].append(vt[w].mean()); out["within_reset"].append(vr[w].mean())
-    return {k: float(np.mean(v)) for k, v in out.items()}
+    return {k: (float(np.mean(v)) if len(v) else float("nan")) for k, v in out.items()}
 
 
 def row(task, label, d):

@@ -109,25 +109,26 @@ def main():
     print(o[["model", "task", "N", "marker", "base_post", "post", "post_gain", "post_z",
              "within_gain", "delta"]].to_string(index=False))
 
-    lines = ["\\begin{tabular}{ll l cc cc c}", "\\toprule",
-             "Model & Task & Marker & No markers & Markers & Post-marker $\\Delta$ & "
+    lines = ["\\begin{tabular}{ll l c cc cc c}", "\\toprule",
+             "Model & Task & Marker & $N$ & No markers & Markers & Post-marker $\\Delta$ & "
              "Within $\\Delta$ & Overall $\\Delta$ \\\\",
              "\\midrule"]
     for label, _ in MODELS:
         mfirst = True
         for task in TASKN:
             tfirst = True
-            for N in (64,):                      # the length the blind spot is measured at
-                for marker in MARKN:
+            for marker in MARKN:
+                kfirst = True
+                for N in (32, 64):               # both lengths, so the text's numbers are all here
                     x = o[(o.model == label) & (o.task == task) & (o.N == N) & (o.marker == marker)]
                     if x.empty:
                         continue
                     r = x.iloc[0]
                     lines.append(
                         f"{label if mfirst else ''} & {TASKN[task] if tfirst else ''} & "
-                        f"{MARKN[marker]} & {r.base_post:.2f} & {r.post:.2f} & "
+                        f"{MARKN[marker] if kfirst else ''} & {N} & {r.base_post:.2f} & {r.post:.2f} & "
                         f"${r.post_gain:+.2f}$ & ${r.within_gain:+.2f}$ & ${r.delta:+.2f}$ \\\\")
-                    mfirst = tfirst = False
+                    mfirst = tfirst = kfirst = False
             lines.append("\\addlinespace")
     while lines[-1] == "\\addlinespace":
         lines.pop()

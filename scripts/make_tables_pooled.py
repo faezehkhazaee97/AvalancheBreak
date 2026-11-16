@@ -75,7 +75,8 @@ def gemini_table():
             r = get("external", t, m)
             if r is None:
                 continue
-            name = m.replace("Qwen2.5 ", "Qwen2.5-").replace("Gemini 3.5 Flash", "Gemini 3.5")
+            # every other table writes "Qwen2.5 32B" with a space; keep one convention
+            name = m.replace("Gemini 3.5 Flash", "Gemini 3.5")
             lines.append(f"{lab if first else ''} & {name} & {r.base:.3f} & {r.bounds:.3f} & {dz(r)} \\\\")
             first = False
     lines += [r"\bottomrule", r"\end{tabular}"]

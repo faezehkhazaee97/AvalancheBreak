@@ -18,8 +18,9 @@ so the marked run's post-marker rows can be compared with its own within-segment
 clean run at the same indices. A third run, input_only (review follow-up), presents the marked input
 with the unmarked answer, so the query predicting every answer character is the previous answer
 digit rather than an output bar, as in the input-only cell of the constrained 2x2. Layers that return
-no attention weights (the linear-attention layers of Qwen3.8) are skipped; Layer keeps the model's
-own layer index.
+no attention weights (the linear-attention layers of Qwen3.8) are skipped, so for a hybrid stack
+Layer is the index among the layers that DO produce weights, not the full-stack index;
+scripts/analyze_attention_crossing.py maps it back.
 
 Output: results/attention_crossing/<model_tag>.csv (Task, Trial, Run, PosType, Layer, prev_in, cur_in,
         marker, prev_out, max_head_prev_in, n_pos)

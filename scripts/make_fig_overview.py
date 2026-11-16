@@ -59,8 +59,8 @@ def panel_tokens(ax):
             x += w
         # the count is the point of the panel: the same 12 letters cost 6, 9 and 12 tokens
         ax.text(x + 0.18, y, f"{len(toks)}", ha="left", va="center", fontsize=6.6, color=GRAY)
-    for sx, fc, ec, lw, lab in [(0.6, MERGED_FILL, GRAY, 0.6, "multi-letter"),
-                                (4.9, LIGHT, MARK, 1.3, "marker")]:
+    for sx, fc, ec, lw, lab in [(0.4, MERGED_FILL, GRAY, 0.6, "multi-letter"),
+                                (6.0, LIGHT, MARK, 1.3, "marker")]:
         ax.add_patch(FancyBboxPatch((sx, 0.15), 0.5, 0.5, boxstyle="round,pad=0,rounding_size=0.08",
                                     facecolor=fc, edgecolor=ec, linewidth=lw))
         ax.text(sx + 0.64, 0.4, lab, va="center", fontsize=6.5, color=GRAY)
@@ -77,6 +77,7 @@ def panel_profile(ax):
     ax.set_xticks([4, 8, 16, 32, 64]); ax.set_xticklabels(["4", "8", "16", "32", "64"])
     ax.axhline(0, color=GRAY, linewidth=0.8)
     ax.grid(axis="y", color="#e6e6e6", linewidth=0.6); ax.set_axisbelow(True)
+    ax.margins(y=0.10)          # the top whisker at N = 64 touched the axis without this
     ax.set_xlabel("Sequence length $N$")
     ax.set_ylabel("Gain from markers")
     ax.set_title("(b) Gain on long sequences")

@@ -26,6 +26,12 @@ ITEMS = [   # (task, title, axis, base task whose prompt it is shown against, or
     ("copy_previous", "\\task{copy\\_previous}: lines that differ from \\task{running\\_xor}", None, "running_xor"),
     ("running_sum_local", "\\task{running\\_sum\\_local}: lines that differ from \\task{running\\_xor}", 4, "running_xor"),
     ("sliding_window_max", "\\task{sliding\\_window\\_max}: lines that differ from \\task{running\\_xor}", 4, "running_xor"),
+    # the real-sequence rules of Section 7: one shown in full per source, the others as diffs, so
+    # the position-0 conventions (N on DNA, # on text, 0 for the comparison rules) are on record
+    ("dna_copy_previous", "\\task{dna\\_copy\\_previous} (real promoter DNA)", None, None),
+    ("dna_same_class", "\\task{dna\\_same\\_class}: lines that differ from \\task{dna\\_copy\\_previous}", None, "dna_copy_previous"),
+    ("text_copy_previous", "\\task{text\\_copy\\_previous} (WikiText-2 letters)", None, None),
+    ("text_ascending", "\\task{text\\_ascending}: lines that differ from \\task{text\\_copy\\_previous}", None, "text_copy_previous"),
 ]
 N, K, T = 8, 4, 0
 
