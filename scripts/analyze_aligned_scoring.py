@@ -8,8 +8,9 @@ minimum edit distance (substitution, insertion and deletion all cost 1; the alig
 an insertion or deletion when that saves at least as many substitutions), and a truth position
 counts as correct if it is aligned to an identical predicted character. The same scorer is
 applied to marker and no-marker runs, then the per-position comparison of
-scripts/analyze_per_position.py is repeated (post-marker vs within-segment, each against the
-no-marker run at the same indices; N <= 64, k in {2,4,8,16}).
+scripts/analyze_per_position.py is repeated, with the same horizon-aware position classes
+(crossing vs strictly internal, each against the no-marker run at the same indices; N <= 64,
+k in {2,4,8,16}; spacings with k <= h carry no within-segment comparison).
 
 Output: results_clean/_summary/aligned_scoring.csv (one row per task x model x scorer).
 """
@@ -22,7 +23,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
-from analyze_per_position import load, MODELS, LENGTHS, KS  # noqa: E402
+from analyze_per_position import load, MODELS, LENGTHS, KS, horizon, position_classes  # noqa: E402
 
 TASKS = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]
 
@@ -58,7 +59,7 @@ def aligned_vector(t, p):
     return ok
 
 
-def summarize(d, vec):
+def summarize(d, vec, h=1):
     d = d[d.Seq_Length.astype(int).isin(LENGTHS)]
     base = d[d.Method == "Base"]
     bnd = d[(d.Method == "Cellular_Bounds") & d.Interval.astype(int).isin(KS)]
@@ -78,12 +79,12 @@ def summarize(d, vec):
         k = int(r.Interval)
         v = vec(clean(r.Ground_Truth), text(r))
         idx = np.arange(len(v))
-        is_post = (idx > 0) & (idx % k == 0)
+        is_post, is_within = position_classes(idx, k, h)
         if not is_post.any() or len(v) not in ref:
             continue
-        is_within = (idx > 0) & (idx % k != 0)       # i = 0 is in neither class
-        post.append(v[is_post].mean()); within.append(v[is_within].mean())
-        bpost.append(ref[len(v)][is_post].mean()); bwithin.append(ref[len(v)][is_within].mean())
+        post.append(v[is_post].mean()); bpost.append(ref[len(v)][is_post].mean())
+        if k > h and is_within.any():               # no strictly internal position when k <= h
+            within.append(v[is_within].mean()); bwithin.append(ref[len(v)][is_within].mean())
     return dict(base=np.mean(allb), post=np.mean(post), within=np.mean(within),
                 post_gain=np.mean(post) - np.mean(bpost), within_gain=np.mean(within) - np.mean(bwithin))
 
@@ -98,7 +99,7 @@ def main():
             if d is None:
                 continue
             for name, vec in [("index", index_vector), ("aligned", aligned_vector)]:
-                rows.append(dict(task=task, model=label, scorer=name, **summarize(d, vec)))
+                rows.append(dict(task=task, model=label, scorer=name, **summarize(d, vec, horizon(task))))
             print(f"done {task} {label}", flush=True)
     out = pd.DataFrame(rows).round(4)
     out.to_csv(REPO / "results_clean" / "_summary" / "aligned_scoring.csv", index=False)

@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """Per-position accuracy: where in the sequence do markers help or hurt?
 
-For every task and model, splits token accuracy by output position:
-  post    : the position right after a marker (index i > 0 with i % k == 0)
-  within  : every other position i > 0 of a marker run (inside a segment). Position 0 is in
-            neither class: dependency tasks copy it as-is, so it carries no evidence.
+Positions are classified by the task's lookback horizon h, the number of previous inputs each
+output reads: h = 1 for the one-step tasks (y_i reads x_{i-1}), and h = 2 for
+sliding_window_max, y_i = max(x_{i-2}, x_{i-1}, x_i), whose first TWO positions after a marker
+have an input across it. For a marker spacing k,
+
+  post    : the crossing positions, {i : i >= k, (i mod k) < h}. At h = 1 this is the paper's
+            post-marker class, {i > 0 : i mod k = 0}.
+  within  : the strictly internal positions, {i > 0 : (i mod k) >= h}, which read nothing
+            across a marker. Position 0 is in neither class: dependency tasks copy it as-is, so
+            it carries no evidence. The class is empty when k <= h, and such spacings are left
+            out of the within-segment comparison (at k = 2 sliding_window_max has no strictly
+            internal position at all).
   base    : the no-marker (Base) run, all positions
   base_at_post / base_at_within : Base accuracy at the same position indices as post /
             within (controls for position-in-sequence effects: post positions are not
@@ -49,6 +57,41 @@ MODELS = [
 ]
 TEXT = {c: str for c in ("Input_Given", "Ground_Truth", "LLM_Output", "Raw_Model_Output")}
 
+# Lookback horizon per task: how many previous inputs each output reads. Only the windowed task
+# reads more than one, so only it has a second crossing position after each marker.
+LOOKBACK = {"sliding_window_max": 2}
+# Variant suffixes a task name can carry; the horizon is a property of the rule, not the variant
+# (sliding_window_max_reset still rewrites exactly its two crossing positions).
+VARIANT_SUFFIXES = ("_reset", "_finek", "_jitter", "_worked", "_spaced", "_digits",
+                    "_neutral", "_across", "_natural", "_n128")
+
+
+def horizon(task):
+    """The lookback horizon h of a task or any of its variants (default 1)."""
+    t = str(task)
+    while True:
+        for suf in VARIANT_SUFFIXES:
+            if t.endswith(suf):
+                t = t[: -len(suf)]
+                break
+        else:
+            return LOOKBACK.get(t, 1)
+
+
+def position_classes(idx, k, h=1):
+    """(crossing, strictly_internal) boolean masks over output indices, for spacing k and
+    horizon h.
+
+    crossing = {i : i >= k, (i mod k) < h}: the h positions after each marker, whose inputs
+        reach back across it. At h = 1 this is exactly {i > 0 : i mod k = 0}. The bound is
+        i >= k rather than i > 0 because the first h positions of the sequence follow no
+        marker at all and cross nothing; at h = 1 the two bounds pick out the same set.
+    strictly internal = {i > 0 : (i mod k) >= h}: reads nothing across a marker. Empty when
+        k <= h, so those spacings carry no within-segment comparison.
+    """
+    r = idx % k
+    return (idx >= k) & (r < h), (idx > 0) & (r >= h)
+
 
 def load(task, tag):
     if tag == "gemini36":
@@ -79,7 +122,7 @@ def correct_vector(truth, pred):
     return np.array([i < len(p) and p[i] == ch for i, ch in enumerate(t)], dtype=float)
 
 
-def summarize(d):
+def summarize(d, h=1):
     d = d[d.Seq_Length.astype(int).isin(LENGTHS)]
     base = d[d.Method == "Base"]
     bnd = d[(d.Method == "Cellular_Bounds") & d.Interval.astype(int).isin(KS)]
@@ -99,16 +142,17 @@ def summarize(d):
         k = int(r.Interval)
         v = correct_vector(r.Ground_Truth, r.LLM_Output)
         idx = np.arange(len(v))
-        is_post = (idx > 0) & (idx % k == 0)
+        is_post, is_within = position_classes(idx, k, h)
         if not is_post.any():
             continue
         post_rows.append(v[is_post].mean())
-        is_within = (idx > 0) & (idx % k != 0)       # i = 0 is in neither class
-        within_rows.append(v[is_within].mean())
         ref = base_by_idx.get(len(v))
         if ref is not None:
             bpost.append(ref[is_post].mean())
-            bwithin.append(ref[is_within].mean())
+        if k > h and is_within.any():               # no strictly internal position when k <= h
+            within_rows.append(v[is_within].mean())
+            if ref is not None:
+                bwithin.append(ref[is_within].mean())
         if k in (8, 16):
             for dd in range(k):
                 sel = (idx % k == dd) & (idx > 0)
@@ -121,10 +165,12 @@ def summarize(d):
 
     out = {}
     for name, xs in [("base", base_rows), ("within", within_rows), ("post", post_rows)]:
-        out[name], out[name + "_ci"] = m_ci(xs)
+        out[name], out[name + "_ci"] = m_ci(xs) if len(xs) > 1 else (np.nan, np.nan)
     out["base_at_post"] = float(np.mean(bpost)) if bpost else np.nan
     out["base_at_within"] = float(np.mean(bwithin)) if bwithin else np.nan
+    out["h"] = h
     out["n_base_rows"], out["n_bounds_rows"] = len(base_rows), len(post_rows)
+    out["n_within_rows"] = len(within_rows)
     dist_df = pd.DataFrame(dist, columns=["k", "d", "acc"]).groupby(["k", "d"]).acc.mean().reset_index() if dist else None
     return out, dist_df
 
@@ -137,7 +183,7 @@ def main():
                 d = load(task, tag)
                 if d is None:
                     continue
-                s, dist = summarize(d)
+                s, dist = summarize(d, horizon(task))
                 if s is None:
                     continue
                 rows.append(dict(block=block, task=task, model=label, **s))

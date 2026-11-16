@@ -10,9 +10,12 @@ models. If the loss is a property of the position right after a marker, k = 3 sh
 its neighbours rather than like an artifact of the power-of-two grid.
 
 sliding_window_max reads the two previous inputs (window of 3), so the position one after a
-marker also has an input across it. For that task the positions are also split into
-  first     i mod k = 0, i > 0   (the post-marker position above)
-  second    i mod k = 1, i > k   (one after the post-marker position; its oldest input is across the marker)
+marker also has an input across it: its lookback horizon is h = 2, and both tables below use
+the horizon-aware classes of scripts/analyze_per_position.py, crossing = {i >= k : i mod k < h}
+and strictly internal = {i > 0 : i mod k >= h}, with k <= h carrying no within-segment
+comparison. For sliding_window_max the crossing class is also split by offset:
+  first     i mod k = 0, i >= k  (the post-marker position above)
+  second    i mod k = 1, i >= k  (one after the post-marker position; its oldest input is across the marker)
   internal  i mod k >= 2         (no input across a marker; exists only for k >= 3)
 Positions 0 and 1 (start of the first segment, no marker before them) are in none of the three.
 Each class is compared with the no-marker run at the same indices, per k = 2 to 6, 8 and 16, and
@@ -29,7 +32,7 @@ from pathlib import Path
 import numpy as np, pandas as pd
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
-from analyze_per_position import load, LENGTHS, KS  # noqa: E402
+from analyze_per_position import load, LENGTHS, KS, horizon, position_classes  # noqa: E402
 from analyze_aligned_scoring import index_vector, clean  # noqa: E402
 
 MODELS = [("Qwen2.5 7B", "Qwen2.5-7B-Instruct"), ("Qwen2.5 14B", "Qwen2.5-14B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct"),
@@ -37,7 +40,7 @@ MODELS = [("Qwen2.5 7B", "Qwen2.5-7B-Instruct"), ("Qwen2.5 14B", "Qwen2.5-14B-In
 TASKS = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]
 
 
-def per_k(d, k):
+def per_k(d, k, h=1):
     d = d[d.Seq_Length.astype(int).isin(LENGTHS)]
     base = d[d.Method == "Base"]; bnd = d[(d.Method == "Cellular_Bounds") & (d.Interval.astype(int) == k)]
     if bnd.empty:
@@ -49,13 +52,14 @@ def per_k(d, k):
     post, bpost, within, bwithin = [], [], [], []
     for _, r in bnd.iterrows():
         v = index_vector(clean(r.Ground_Truth), clean(r.LLM_Output)); idx = np.arange(len(v))
-        p = (idx > 0) & (idx % k == 0)
+        p, w = position_classes(idx, k, h)
         if not p.any() or len(v) not in ref:
             continue
         post.append(v[p].mean()); bpost.append(ref[len(v)][p].mean())
-        within.append(v[~p].mean()); bwithin.append(ref[len(v)][~p].mean())
+        if k > h and w.any():                       # no strictly internal position when k <= h
+            within.append(v[w].mean()); bwithin.append(ref[len(v)][w].mean())
     return dict(n=len(post), post=np.mean(post), post_gain=np.mean(post) - np.mean(bpost),
-                within_gain=np.mean(within) - np.mean(bwithin))
+                within_gain=(np.mean(within) - np.mean(bwithin)) if within else np.nan, h=h)
 
 
 def signed(x):
@@ -69,13 +73,15 @@ WINDOW_CLASSES = [("first", "First after marker"), ("second", "Second after mark
 KCOL_KS = (2, 3, 4, 5, 6, 8, 16)
 
 
-def window_classes(idx, k):
-    return {"first": (idx > 0) & (idx % k == 0),
-            "second": (idx > k) & (idx % k == 1),
-            "internal": idx % k >= 2}
+def window_classes(idx, k, h=2):
+    """The h crossing positions after each marker, one class per offset, plus the strictly
+    internal positions: position_classes(idx, k, h) with its crossing class split by offset."""
+    crossing, internal = position_classes(idx, k, h)
+    r = idx % k
+    return {"first": crossing & (r == 0), "second": crossing & (r == 1), "internal": internal}
 
 
-def window_split(d, ks):
+def window_split(d, ks, h=2):
     """sliding_window_max: accuracy and change vs the no-marker run at the same indices for the three
     position classes, pooling the marker rows with k in ks (rows are the unit, as in per_k)."""
     d = d[d.Seq_Length.astype(int).isin(LENGTHS)]
@@ -92,7 +98,7 @@ def window_split(d, ks):
         v = index_vector(clean(r.Ground_Truth), clean(r.LLM_Output)); idx = np.arange(len(v))
         if not ((idx > 0) & (idx % k == 0)).any() or len(v) not in ref:
             continue
-        for c, m in window_classes(idx, k).items():
+        for c, m in window_classes(idx, k, h).items():
             if m.any():
                 acc[c].append(v[m].mean()); bacc[c].append(ref[len(v)][m].mean())
     out = {}
@@ -105,6 +111,7 @@ def window_split(d, ks):
 
 def window_table():
     task = "sliding_window_max"
+    h = horizon(task)
     rows = []
     for lab, tag in MODELS:
         d = load(task, tag)
@@ -115,12 +122,12 @@ def window_table():
             if k in (5, 6):
                 if fine is None:
                     continue
-                r = window_split(pd.concat([d[d.Method == "Base"], fine[fine.Interval.astype(int) == k]], ignore_index=True), [k])
+                r = window_split(pd.concat([d[d.Method == "Base"], fine[fine.Interval.astype(int) == k]], ignore_index=True), [k], h)
             else:
-                r = window_split(d, [k])
+                r = window_split(d, [k], h)
             if r:
                 rows.append(dict(model=lab, k=str(k), **r))
-        r = window_split(d, KS)
+        r = window_split(d, KS, h)
         if r:
             rows.append(dict(model=lab, k="pooled", **r))
     o = pd.DataFrame(rows)  # unrounded, as in main(), so shared cells print alike
@@ -165,9 +172,9 @@ def main():
                 if k in (5, 6):
                     if fine is None:
                         continue
-                    r = per_k(pd.concat([d[d.Method == "Base"], fine[fine.Interval.astype(int) == k]], ignore_index=True), k)
+                    r = per_k(pd.concat([d[d.Method == "Base"], fine[fine.Interval.astype(int) == k]], ignore_index=True), k, horizon(task))
                 else:
-                    r = per_k(d, k)
+                    r = per_k(d, k, horizon(task))
                 if r:
                     rows.append(dict(task=task, model=lab, k=k, **r))
     # NB: kept unrounded for the table. Rounding to three decimals first made a cell such as
@@ -200,7 +207,8 @@ def main():
             if x.empty:
                 continue
             c = [signed(x.loc[k, 'post_gain']) if k in x.index else "---" for k in KS]
-            c += [signed(x.loc[k, 'within_gain']) if k in x.index else "---" for k in KS]
+            c += [signed(x.loc[k, 'within_gain']) if k in x.index and np.isfinite(x.loc[k, 'within_gain'])
+                  else "---" for k in KS]
             lines.append(("\\task{" + task.replace("_", "\\_") + "}" if i == 0 else "") + f" & {lab} & " + " & ".join(c) + " \\\\")
         if task != TASKS[-1]:
             lines.append("\\midrule")

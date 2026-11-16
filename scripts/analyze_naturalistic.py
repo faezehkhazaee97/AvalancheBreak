@@ -21,7 +21,7 @@ import pandas as pd
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO))
 sys.path.insert(0, str(REPO / "scripts"))
-from analyze_per_position import load, MODELS as ALL_MODELS, LENGTHS  # noqa: E402
+from analyze_per_position import load, MODELS as ALL_MODELS, LENGTHS, horizon, position_classes  # noqa: E402
 from analyze_aligned_scoring import summarize, index_vector  # noqa: E402
 
 NAT = [("bracket_depth", "Bracket depth"), ("running_checksum", "Running checksum")]
@@ -61,16 +61,18 @@ def reset_consistency(task, d):
         pred = clean(r.LLM_Output)
         vt = index_vector(clean(r.Ground_Truth), pred)
         vr = index_vector(reset_truth(task, r.Input_Given), pred)
-        idx = np.arange(len(vt)); p = (idx > 0) & (idx % k == 0)
+        h = horizon(task)
+        idx = np.arange(len(vt)); p, w = position_classes(idx, k, h)
         if not p.any():
             continue
         out["post_true"].append(vt[p].mean()); out["post_reset"].append(vr[p].mean())
-        out["within_true"].append(vt[~p].mean()); out["within_reset"].append(vr[~p].mean())
+        if k > h and w.any():
+            out["within_true"].append(vt[w].mean()); out["within_reset"].append(vr[w].mean())
     return {k: float(np.mean(v)) for k, v in out.items()}
 
 
 def row(task, label, d):
-    s = summarize(d, index_vector)
+    s = summarize(d, index_vector, horizon(task))
     r = dict(task=task, model=label, n=len(d), base=s["base"], delta=pooled_delta(d),
              post=s["post"], post_gain=s["post_gain"], within_gain=s["within_gain"])
     if task in ("bracket_depth", "running_checksum"):

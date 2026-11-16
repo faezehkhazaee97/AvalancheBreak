@@ -23,14 +23,14 @@ copy_previous,as released,1160,0.8595,-0.0162,0.6508,-0.1582,-0.0245,Qwen2.5 32B
 copy_previous,"+ LoRA, $k = 0$ only (control)",580,0.9453,-0.0105,0.7079,-0.2168,0.0184,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
 copy_previous,"+ LoRA, $k = 0$ only, matched steps",580,0.7978,0.048,0.7199,-0.0029,0.0689,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase-matched
 copy_previous,"+ LoRA, marked targets",580,0.747,0.0073,0.7289,0.0461,-0.0038,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep
-sliding_window_max,as released,1160,0.5967,-0.0515,0.3987,-0.1088,-0.0304,Qwen2.5 7B,Qwen2.5-7B-Instruct
-sliding_window_max,"+ LoRA, $k = 0$ only (control)",1160,0.5509,0.0049,0.4493,-0.0101,0.0624,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
-sliding_window_max,"+ LoRA, $k = 0$ only, matched steps",1160,0.435,0.0669,0.432,0.0632,0.0889,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched
-sliding_window_max,"+ LoRA, marked targets",1160,0.4327,-0.0065,0.3021,-0.0715,0.0302,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorasep
-sliding_window_max,as released,1160,0.6839,0.0561,0.5555,-0.1253,0.0725,Qwen2.5 32B,Qwen2.5-32B-Instruct
-sliding_window_max,"+ LoRA, $k = 0$ only (control)",1160,0.7816,-0.0555,0.4692,-0.2741,0.0199,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
-sliding_window_max,"+ LoRA, $k = 0$ only, matched steps",1160,0.7725,-0.0861,0.4847,-0.2329,0.011,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase-matched
-sliding_window_max,"+ LoRA, marked targets",1160,0.7567,0.0341,0.6929,0.017,0.0556,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep
+sliding_window_max,as released,1160,0.5967,-0.0515,0.4264,-0.0869,-0.006,Qwen2.5 7B,Qwen2.5-7B-Instruct
+sliding_window_max,"+ LoRA, $k = 0$ only (control)",1160,0.5509,0.0049,0.4899,0.0266,0.0379,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
+sliding_window_max,"+ LoRA, $k = 0$ only, matched steps",1160,0.435,0.0669,0.4388,0.068,0.0658,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched
+sliding_window_max,"+ LoRA, marked targets",1160,0.4327,-0.0065,0.3266,-0.0404,0.0327,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorasep
+sliding_window_max,as released,1160,0.6839,0.0561,0.627,-0.0325,0.1029,Qwen2.5 32B,Qwen2.5-32B-Instruct
+sliding_window_max,"+ LoRA, $k = 0$ only (control)",1160,0.7816,-0.0555,0.6067,-0.1398,0.013,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase
+sliding_window_max,"+ LoRA, $k = 0$ only, matched steps",1160,0.7725,-0.0861,0.5999,-0.1128,-0.0032,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorabase-matched
+sliding_window_max,"+ LoRA, marked targets",1160,0.7567,0.0341,0.728,0.0511,0.0522,Qwen2.5 32B,Qwen2.5-32B-Instruct-lorasep
 random_permutation_digits,as released,1740,0.3546,0.0814,0.416,0.1379,0.0313,Qwen2.5 7B,Qwen2.5-7B-Instruct
 random_permutation_digits,"+ LoRA, $k = 0$ only (control)",1740,0.4673,0.0559,0.4703,0.1262,0.0298,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase
 random_permutation_digits,"+ LoRA, $k = 0$ only, matched steps",1740,0.3358,-0.0124,0.2502,-0.0081,0.0023,Qwen2.5 7B,Qwen2.5-7B-Instruct-lorabase-matched

@@ -16,7 +16,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
-from analyze_per_position import load, MODELS as ALL_MODELS  # noqa: E402
+from analyze_per_position import load, MODELS as ALL_MODELS, horizon  # noqa: E402
 from analyze_aligned_scoring import summarize, index_vector  # noqa: E402
 
 TASKS = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]
@@ -31,7 +31,7 @@ def main():
                 continue
             for v, suf in VARIANTS:
                 d = load(task + suf, tag)
-                r = summarize(d, index_vector)
+                r = summarize(d, index_vector, horizon(task))
                 rows.append(dict(task=task, model=label, wording=v, n=len(d),
                                  **{k: round(float(x), 4) for k, x in r.items()}))
     out = pd.DataFrame(rows)

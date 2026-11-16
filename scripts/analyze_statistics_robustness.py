@@ -6,10 +6,11 @@
        Delta = mean TAR(Bounds) - sum_N p_N * mean TAR(Base at N),
        p_N   = share of marker generations at length N,
 
-   with SE(Delta) = sqrt(SE(Bounds)^2 + sum_N p_N^2 SE(Base at N)^2), which treats generations
-   as independent (tasks/common/pooled.py). Each generation does use its own input, drawn from
-   its own seed, but the marker generations pool cells of different difficulty (lengths,
-   spacings, alphabets), so this script recomputes every pooled cell two further ways:
+   whose primary standard error treats the (length, spacing, alphabet) cells as fixed design
+   strata (tasks/common/pooled.py); `z_unstrat` is the older form that pools all of a
+   condition's generations into one s/sqrt(n). Each generation does use its own input, drawn
+   from its own seed, but the marker generations pool cells of different difficulty, so this
+   script recomputes every pooled cell two further ways:
 
      gen      bootstrap over generations, stratified by condition and length
      cluster  bootstrap over whole (length, spacing, alphabet) cells, which lets whole cells
@@ -124,7 +125,8 @@ def main():
                 r = pooled_delta(d, lengths=LENGTHS)
                 if r is None:
                     continue
-                rec = dict(family=fam, task=task, model=label, delta=r["delta"], z=r["z"])
+                rec = dict(family=fam, task=task, model=label, delta=r["delta"], z=r["z"],
+                           z_unstrat=r["z_unstrat"])
                 for mode in ("gen", "cluster"):
                     bs = bootstrap(d, mode, sorted(d.N.unique()))
                     if len(bs) < 100:
@@ -138,13 +140,26 @@ def main():
                 r2 = pooled_delta(drop, lengths=LENGTHS) if len(drop) else None
                 rec["delta_no_redundant"] = r2["delta"] if r2 else np.nan
                 rec["z_no_redundant"] = r2["z"] if r2 else np.nan
+                rec["z_no_redundant_unstrat"] = r2["z_unstrat"] if r2 else np.nan
                 rows.append(rec)
         print("done", fam, flush=True)
     out = pd.DataFrame(rows).round(4)
     out.to_csv(REPO / "results_clean" / "_summary" / "statistics_robustness.csv", index=False)
 
     sig = out.z.abs() >= SIG_Z
-    print(f"\ncells: {len(out)}; significant analytically: {sig.sum()}")
+    sig_u = out.z_unstrat.abs() >= SIG_Z
+    print(f"\ncells: {len(out)}; significant analytically: {sig.sum()} stratified (primary), "
+          f"{sig_u.sum()} unstratified (old); verdict differs in {(sig != sig_u).sum()} cells")
+    for fam, g in out.groupby("family", sort=False):
+        gs, gu = g.z.abs() >= SIG_Z, g.z_unstrat.abs() >= SIG_Z
+        pos = (g.z >= SIG_Z).sum(), (g.z_unstrat >= SIG_Z).sum()
+        neg = (g.z <= -SIG_Z).sum(), (g.z_unstrat <= -SIG_Z).sum()
+        print(f"  {fam:11s} {len(g):2d} cells: significant {gu.sum()} -> {gs.sum()}; "
+              f"significantly positive {pos[1]} -> {pos[0]}, negative {neg[1]} -> {neg[0]}")
+    for r in out.itertuples():
+        if (abs(r.z) >= SIG_Z) != (abs(r.z_unstrat) >= SIG_Z):
+            print(f"      FLIPS {'to significant' if abs(r.z) >= SIG_Z else 'to NOT significant'}: "
+                  f"{r.family} {r.task} {r.model}  z {r.z_unstrat:+.2f} -> {r.z:+.2f}")
     for mode in ("gen", "cluster"):
         s2 = out[f"{mode}_z"].abs() >= SIG_Z
         print(f"  {mode:8s} bootstrap: significant {s2.sum()};  verdict differs in {(sig != s2).sum()} cells;"

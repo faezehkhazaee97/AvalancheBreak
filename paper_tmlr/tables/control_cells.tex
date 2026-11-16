@@ -1,62 +1,80 @@
 {\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lll ccc c ccc c}
+\begin{tabular}{lll ccc c cc c}
 \toprule
-Model & Format & Task & \begin{tabular}[b]{@{}c@{}}No\\markers\end{tabular} & Markers & $\Delta$ & \begin{tabular}[b]{@{}c@{}}Share\\removed\end{tabular} & $z$ & \begin{tabular}[b]{@{}c@{}}$z$\\(stratified)\end{tabular} & \begin{tabular}[b]{@{}c@{}}$z$ (cell\\bootstrap)\end{tabular} & \begin{tabular}[b]{@{}c@{}}$\Delta$ at\\$N = 64$\end{tabular} \\
+Model & Format & Task & \begin{tabular}[b]{@{}c@{}}No\\markers\end{tabular} & Markers & $\Delta$ & \begin{tabular}[b]{@{}c@{}}Share\\removed\end{tabular} & \begin{tabular}[b]{@{}c@{}}$z$\\(stratified)\end{tabular} & \begin{tabular}[b]{@{}c@{}}$z$ (cell\\bootstrap)\end{tabular} & \begin{tabular}[b]{@{}c@{}}$\Delta$ at\\$N = 64$\end{tabular} \\
 \midrule
-Qwen2.5 7B & Spaced & \task{cyclic\_shift} & 0.65 & 0.69 & $+0.04$ & 12\% & 3.1 & \textbf{3.9} & 1.1 & $+0.13$ \\
- & Spaced & \task{random\_permutation} & 0.62 & 0.64 & $+0.02$ & 4\% & 1.1 & 1.5 & 0.3 & $+0.07$ \\
- & Spaced & \task{conditional\_shift} & 0.39 & 0.40 & $0.00$ & 1\% & 0.2 & 0.4 & 0.1 & $+0.03$ \\
- & Digits & \task{cyclic\_shift} & 0.38 & 0.45 & $+0.07$ & 11\% & \textbf{4.9} & \textbf{5.6} & 2.0 & $+0.10$ \\
- & Digits & \task{random\_permutation} & 0.33 & 0.41 & $+0.08$ & 12\% & \textbf{6.0} & \textbf{6.9} & 2.4 & $+0.06$ \\
- & Digits & \task{conditional\_shift} & 0.33 & 0.33 & $+0.01$ & 1\% & 0.7 & 0.8 & 0.4 & $+0.01$ \\
+Qwen2.5 7B & Spaced & \task{cyclic\_shift} & 0.65 & 0.69 & $+0.04$ & 12\% & \textbf{3.9} & 1.1 & $+0.13$ \\
+ & Spaced & \task{random\_permutation} & 0.62 & 0.64 & $+0.02$ & 4\% & 1.5 & 0.3 & $+0.07$ \\
+ & Spaced & \task{conditional\_shift} & 0.39 & 0.40 & $0.00$ & 1\% & 0.4 & 0.1 & $+0.03$ \\
+ & Digits & \task{cyclic\_shift} & 0.38 & 0.45 & $+0.07$ & 11\% & \textbf{5.6} & 2.0 & $+0.10$ \\
+ & Digits & \task{random\_permutation} & 0.33 & 0.41 & $+0.08$ & 12\% & \textbf{6.9} & 2.4 & $+0.06$ \\
+ & Digits & \task{conditional\_shift} & 0.33 & 0.33 & $+0.01$ & 1\% & 0.8 & 0.4 & $+0.01$ \\
 \addlinespace
-Qwen2.5 14B & Spaced & \task{cyclic\_shift} & 0.75 & 0.88 & $+0.13$ & 54\% & \textbf{11.7} & \textbf{15.6} & 3.2 & $+0.32$ \\
- & Spaced & \task{random\_permutation} & 0.70 & 0.81 & $+0.11$ & 36\% & \textbf{8.1} & \textbf{12.7} & 2.0 & $+0.25$ \\
- & Spaced & \task{conditional\_shift} & 0.66 & 0.76 & $+0.10$ & 28\% & \textbf{6.6} & \textbf{10.1} & 1.6 & $+0.29$ \\
- & Digits & \task{cyclic\_shift} & 0.87 & 0.96 & $+0.09$ & 69\% & \textbf{12.5} & \textbf{18.5} & 3.0 & $+0.27$ \\
- & Digits & \task{random\_permutation} & 0.76 & 0.87 & $+0.11$ & 46\% & \textbf{8.6} & \textbf{15.3} & 2.0 & $+0.27$ \\
- & Digits & \task{conditional\_shift} & 0.72 & 0.73 & $+0.01$ & 3\% & 0.6 & 0.9 & 0.2 & $+0.21$ \\
+Qwen2.5 14B & Spaced & \task{cyclic\_shift} & 0.75 & 0.88 & $+0.13$ & 54\% & \textbf{15.6} & 3.2 & $+0.32$ \\
+ & Spaced & \task{random\_permutation} & 0.70 & 0.81 & $+0.11$ & 36\% & \textbf{12.7} & 2.0 & $+0.25$ \\
+ & Spaced & \task{conditional\_shift} & 0.66 & 0.76 & $+0.10$ & 28\% & \textbf{10.1} & 1.6 & $+0.29$ \\
+ & Digits & \task{cyclic\_shift} & 0.87 & 0.96 & $+0.09$ & 69\% & \textbf{18.5} & 3.0 & $+0.27$ \\
+ & Digits & \task{random\_permutation} & 0.76 & 0.87 & $+0.11$ & 46\% & \textbf{15.3} & 2.0 & $+0.27$ \\
+ & Digits & \task{conditional\_shift} & 0.72 & 0.73 & $+0.01$ & 3\% & 0.9 & 0.2 & $+0.21$ \\
 \addlinespace
-Qwen2.5 32B & Spaced & \task{cyclic\_shift} & 0.84 & 0.97 & $+0.13$ & 82\% & \textbf{17.3} & \textbf{20.5} & \textbf{4.5} & $+0.37$ \\
- & Spaced & \task{random\_permutation} & 0.82 & 0.97 & $+0.15$ & 85\% & \textbf{16.9} & \textbf{23.8} & \textbf{4.0} & $+0.37$ \\
- & Spaced & \task{conditional\_shift} & 0.73 & 0.83 & $+0.10$ & 36\% & \textbf{7.4} & \textbf{11.0} & 1.9 & $+0.29$ \\
- & Digits & \task{cyclic\_shift} & 0.90 & 0.98 & $+0.08$ & 84\% & \textbf{10.8} & \textbf{14.0} & 2.9 & $+0.22$ \\
- & Digits & \task{random\_permutation} & 0.83 & 0.97 & $+0.14$ & 83\% & \textbf{13.1} & \textbf{21.9} & 2.9 & $+0.33$ \\
- & Digits & \task{conditional\_shift} & 0.79 & 0.84 & $+0.05$ & 26\% & \textbf{4.2} & \textbf{5.8} & 1.1 & $+0.21$ \\
+Qwen2.5 32B & Spaced & \task{cyclic\_shift} & 0.84 & 0.97 & $+0.13$ & 82\% & \textbf{20.5} & \textbf{4.5} & $+0.37$ \\
+ & Spaced & \task{random\_permutation} & 0.82 & 0.97 & $+0.15$ & 85\% & \textbf{23.8} & \textbf{4.0} & $+0.37$ \\
+ & Spaced & \task{conditional\_shift} & 0.73 & 0.83 & $+0.10$ & 36\% & \textbf{11.0} & 1.9 & $+0.29$ \\
+ & Digits & \task{cyclic\_shift} & 0.90 & 0.98 & $+0.08$ & 84\% & \textbf{14.0} & 2.9 & $+0.22$ \\
+ & Digits & \task{random\_permutation} & 0.83 & 0.97 & $+0.14$ & 83\% & \textbf{21.9} & 2.9 & $+0.33$ \\
+ & Digits & \task{conditional\_shift} & 0.79 & 0.84 & $+0.05$ & 26\% & \textbf{5.8} & 1.1 & $+0.21$ \\
 \addlinespace
-Mistral 7B & Spaced & \task{cyclic\_shift} & 0.45 & 0.54 & $+0.09$ & 17\% & \textbf{6.7} & \textbf{10.3} & 2.0 & $+0.03$ \\
- & Spaced & \task{random\_permutation} & 0.43 & 0.46 & $+0.03$ & 5\% & 2.0 & 3.1 & 0.5 & $-0.01$ \\
- & Spaced & \task{conditional\_shift} & 0.36 & 0.41 & $+0.05$ & 9\% & \textbf{4.2} & \textbf{5.6} & 1.4 & $+0.02$ \\
- & Digits & \task{cyclic\_shift} & 0.43 & 0.38 & $-0.05$ & $-9\%$ & $-3.3$ & $\mathbf{-3.8}$ & $-1.6$ & $-0.07$ \\
- & Digits & \task{random\_permutation} & 0.41 & 0.45 & $+0.04$ & 6\% & 2.2 & \textbf{3.6} & 0.6 & $0.00$ \\
- & Digits & \task{conditional\_shift} & 0.46 & 0.44 & $-0.03$ & $-5\%$ & $-1.7$ & $-2.9$ & $-0.4$ & $-0.02$ \\
+Mistral 7B & Spaced & \task{cyclic\_shift} & 0.45 & 0.54 & $+0.09$ & 17\% & \textbf{10.3} & 2.0 & $+0.03$ \\
+ & Spaced & \task{random\_permutation} & 0.43 & 0.46 & $+0.03$ & 5\% & 3.1 & 0.5 & $-0.01$ \\
+ & Spaced & \task{conditional\_shift} & 0.36 & 0.41 & $+0.05$ & 9\% & \textbf{5.6} & 1.4 & $+0.02$ \\
+ & Digits & \task{cyclic\_shift} & 0.43 & 0.38 & $-0.05$ & $-9\%$ & $\mathbf{-3.8}$ & $-1.6$ & $-0.07$ \\
+ & Digits & \task{random\_permutation} & 0.41 & 0.45 & $+0.04$ & 6\% & \textbf{3.6} & 0.6 & $0.00$ \\
+ & Digits & \task{conditional\_shift} & 0.46 & 0.44 & $-0.03$ & $-5\%$ & $-2.9$ & $-0.4$ & $-0.02$ \\
 \addlinespace
-Phi-3.5 mini & Spaced & \task{cyclic\_shift} & 0.38 & 0.42 & $+0.04$ & 7\% & 3.1 & \textbf{3.7} & 1.4 & $-0.01$ \\
- & Spaced & \task{random\_permutation} & 0.34 & 0.39 & $+0.04$ & 7\% & 3.0 & \textbf{4.0} & 1.1 & $-0.01$ \\
- & Spaced & \task{conditional\_shift} & 0.36 & 0.36 & $0.00$ & 0\% & 0.1 & 0.2 & 0.0 & $0.00$ \\
- & Digits & \task{cyclic\_shift} & 0.52 & 0.64 & $+0.12$ & 24\% & \textbf{9.1} & \textbf{11.7} & 3.1 & $+0.13$ \\
- & Digits & \task{random\_permutation} & 0.44 & 0.54 & $+0.10$ & 18\% & \textbf{5.4} & \textbf{13.2} & 1.2 & $+0.04$ \\
- & Digits & \task{conditional\_shift} & 0.50 & 0.57 & $+0.07$ & 14\% & \textbf{5.2} & \textbf{7.9} & 1.4 & $+0.10$ \\
+Phi-3.5 mini & Spaced & \task{cyclic\_shift} & 0.38 & 0.42 & $+0.04$ & 7\% & \textbf{3.7} & 1.4 & $-0.01$ \\
+ & Spaced & \task{random\_permutation} & 0.34 & 0.39 & $+0.04$ & 7\% & \textbf{4.0} & 1.1 & $-0.01$ \\
+ & Spaced & \task{conditional\_shift} & 0.36 & 0.36 & $0.00$ & 0\% & 0.2 & 0.0 & $0.00$ \\
+ & Digits & \task{cyclic\_shift} & 0.52 & 0.64 & $+0.12$ & 24\% & \textbf{11.7} & 3.1 & $+0.13$ \\
+ & Digits & \task{random\_permutation} & 0.44 & 0.54 & $+0.10$ & 18\% & \textbf{13.2} & 1.2 & $+0.04$ \\
+ & Digits & \task{conditional\_shift} & 0.50 & 0.57 & $+0.07$ & 14\% & \textbf{7.9} & 1.4 & $+0.10$ \\
 \addlinespace
-Qwen3.8 27B & Spaced & \task{cyclic\_shift} & 0.89 & 0.96 & $+0.06$ & 59\% & \textbf{6.9} & \textbf{8.0} & 2.4 & $+0.16$ \\
- & Spaced & \task{random\_permutation} & 0.86 & 0.98 & $+0.12$ & 86\% & \textbf{10.8} & \textbf{13.2} & 3.1 & $+0.31$ \\
- & Spaced & \task{conditional\_shift} & 0.76 & 0.84 & $+0.08$ & 35\% & \textbf{6.0} & \textbf{8.5} & 1.6 & $+0.25$ \\
- & Digits & \task{cyclic\_shift} & 0.93 & 0.97 & $+0.04$ & 59\% & \textbf{6.4} & \textbf{7.1} & 2.7 & $+0.07$ \\
- & Digits & \task{random\_permutation} & 0.87 & 0.97 & $+0.10$ & 77\% & \textbf{8.5} & \textbf{10.8} & 2.4 & $+0.26$ \\
- & Digits & \task{conditional\_shift} & 0.78 & 0.90 & $+0.12$ & 56\% & \textbf{8.0} & \textbf{9.7} & 2.5 & $+0.25$ \\
+Qwen3.8 27B & Spaced & \task{cyclic\_shift} & 0.89 & 0.96 & $+0.06$ & 59\% & \textbf{8.0} & 2.4 & $+0.16$ \\
+ & Spaced & \task{random\_permutation} & 0.86 & 0.98 & $+0.12$ & 86\% & \textbf{13.2} & 3.1 & $+0.31$ \\
+ & Spaced & \task{conditional\_shift} & 0.76 & 0.84 & $+0.08$ & 35\% & \textbf{8.5} & 1.6 & $+0.25$ \\
+ & Digits & \task{cyclic\_shift} & 0.93 & 0.97 & $+0.04$ & 59\% & \textbf{7.1} & 2.7 & $+0.07$ \\
+ & Digits & \task{random\_permutation} & 0.87 & 0.97 & $+0.10$ & 77\% & \textbf{10.8} & 2.4 & $+0.26$ \\
+ & Digits & \task{conditional\_shift} & 0.78 & 0.90 & $+0.12$ & 56\% & \textbf{9.7} & 2.5 & $+0.25$ \\
 \addlinespace
-Gemma 4 31B & Spaced & \task{cyclic\_shift} & 0.95 & 1.00 & $+0.05$ & 98\% & \textbf{7.0} & \textbf{8.7} & 2.0 & $+0.16$ \\
- & Spaced & \task{random\_permutation} & 0.94 & 1.00 & $+0.06$ & 98\% & \textbf{9.0} & \textbf{13.7} & 2.1 & $+0.21$ \\
- & Spaced & \task{conditional\_shift} & 0.76 & 0.82 & $+0.06$ & 25\% & \textbf{3.6} & \textbf{5.7} & 0.9 & $+0.18$ \\
- & Digits & \task{cyclic\_shift} & 0.96 & 1.00 & $+0.04$ & 98\% & \textbf{7.1} & \textbf{8.3} & 2.4 & $+0.14$ \\
- & Digits & \task{random\_permutation} & 0.92 & 1.00 & $+0.08$ & 95\% & \textbf{9.9} & \textbf{14.1} & 2.4 & $+0.24$ \\
- & Digits & \task{conditional\_shift} & 0.90 & 0.97 & $+0.07$ & 68\% & \textbf{7.6} & \textbf{9.8} & 2.1 & $+0.21$ \\
+Gemma 4 31B & Spaced & \task{cyclic\_shift} & 0.95 & 1.00 & $+0.05$ & 98\% & \textbf{8.7} & 2.0 & $+0.16$ \\
+ & Spaced & \task{random\_permutation} & 0.94 & 1.00 & $+0.06$ & 98\% & \textbf{13.7} & 2.1 & $+0.21$ \\
+ & Spaced & \task{conditional\_shift} & 0.76 & 0.82 & $+0.06$ & 25\% & \textbf{5.7} & 0.9 & $+0.18$ \\
+ & Digits & \task{cyclic\_shift} & 0.96 & 1.00 & $+0.04$ & 98\% & \textbf{8.3} & 2.4 & $+0.14$ \\
+ & Digits & \task{random\_permutation} & 0.92 & 1.00 & $+0.08$ & 95\% & \textbf{14.1} & 2.4 & $+0.24$ \\
+ & Digits & \task{conditional\_shift} & 0.90 & 0.97 & $+0.07$ & 68\% & \textbf{9.8} & 2.1 & $+0.21$ \\
 \addlinespace
-Gemini 3.6 Flash & Spaced & \task{cyclic\_shift} & 0.99 & 1.00 & $+0.01$ & -- & 1.5 & 1.5 & -- & $+0.03$ \\
- & Spaced & \task{random\_permutation} & 0.97 & 1.00 & $+0.03$ & 100\% & 2.7 & 3.4 & -- & $+0.11$ \\
- & Spaced & \task{conditional\_shift} & 0.94 & 0.97 & $+0.04$ & 58\% & 2.7 & 2.6 & -- & $+0.12$ \\
- & Digits & \task{cyclic\_shift} & 1.00 & 1.00 & $0.00$ & -- & $-1.0$ & $-1.0$ & -- & $0.00$ \\
- & Digits & \task{random\_permutation} & 0.98 & 1.00 & $+0.02$ & -- & 2.0 & 2.1 & -- & $+0.03$ \\
- & Digits & \task{conditional\_shift} & 0.99 & 1.00 & $+0.01$ & -- & 1.8 & 1.7 & -- & $+0.01$ \\
+Gemini 3.6 Flash & Spaced & \task{cyclic\_shift} & 0.99 & 1.00 & $+0.01$ & -- & 1.5 & -- & $+0.03$ \\
+ & Spaced & \task{random\_permutation} & 0.97 & 1.00 & $+0.03$ & 100\% & 3.4 & -- & $+0.11$ \\
+ & Spaced & \task{conditional\_shift} & 0.94 & 0.97 & $+0.04$ & 58\% & 2.6 & -- & $+0.12$ \\
+ & Digits & \task{cyclic\_shift} & 1.00 & 1.00 & $0.00$ & -- & $-1.0$ & -- & $0.00$ \\
+ & Digits & \task{random\_permutation} & 0.98 & 1.00 & $+0.02$ & -- & 2.1 & -- & $+0.03$ \\
+ & Digits & \task{conditional\_shift} & 0.99 & 1.00 & $+0.01$ & -- & 1.7 & -- & $+0.01$ \\
+\midrule
+\multicolumn{10}{l}{\emph{Model level: mean over the model's three tasks, and the model-level $\rho$}} \\
+Qwen2.5 7B & Spaced & \emph{Three-task mean} & 0.55 & 0.57 & $+0.02$ & 5\% & -- & -- & $+0.08$ \\
+ & Digits & \emph{Three-task mean} & 0.35 & 0.40 & $+0.05$ & 8\% & -- & -- & $+0.06$ \\
+Qwen2.5 14B & Spaced & \emph{Three-task mean} & 0.70 & 0.82 & $+0.11$ & 38\% & -- & -- & $+0.29$ \\
+ & Digits & \emph{Three-task mean} & 0.78 & 0.85 & $+0.07$ & 33\% & -- & -- & $+0.25$ \\
+Qwen2.5 32B & Spaced & \emph{Three-task mean} & 0.80 & 0.92 & $+0.13$ & 62\% & -- & -- & $+0.34$ \\
+ & Digits & \emph{Three-task mean} & 0.84 & 0.93 & $+0.09$ & 58\% & -- & -- & $+0.25$ \\
+Mistral 7B & Spaced & \emph{Three-task mean} & 0.41 & 0.47 & $+0.06$ & 10\% & -- & -- & $+0.01$ \\
+ & Digits & \emph{Three-task mean} & 0.44 & 0.42 & $-0.01$ & $-2\%$ & -- & -- & $-0.03$ \\
+Phi-3.5 mini & Spaced & \emph{Three-task mean} & 0.36 & 0.39 & $+0.03$ & 4\% & -- & -- & $0.00$ \\
+ & Digits & \emph{Three-task mean} & 0.49 & 0.58 & $+0.10$ & 19\% & -- & -- & $+0.09$ \\
+Qwen3.8 27B & Spaced & \emph{Three-task mean} & 0.84 & 0.93 & $+0.09$ & 55\% & -- & -- & $+0.24$ \\
+ & Digits & \emph{Three-task mean} & 0.86 & 0.95 & $+0.09$ & 63\% & -- & -- & $+0.19$ \\
+Gemma 4 31B & Spaced & \emph{Three-task mean} & 0.88 & 0.94 & $+0.06$ & 48\% & -- & -- & $+0.19$ \\
+ & Digits & \emph{Three-task mean} & 0.93 & 0.99 & $+0.06$ & 83\% & -- & -- & $+0.20$ \\
+Gemini 3.6 Flash & Spaced & \emph{Three-task mean} & 0.97 & 0.99 & $+0.02$ & 74\% & -- & -- & $+0.09$ \\
+ & Digits & \emph{Three-task mean} & 0.99 & 1.00 & $+0.01$ & -- & -- & -- & $+0.01$ \\
 \bottomrule
 \end{tabular}}

@@ -33,7 +33,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
-from analyze_per_position import load  # noqa: E402
+from analyze_per_position import load, horizon  # noqa: E402
 from analyze_aligned_scoring import summarize, index_vector  # noqa: E402
 
 MODELS = [("Qwen2.5 32B", "Qwen2.5-32B-Instruct"), ("Qwen3.8 27B", "Qwen3.8-27B"), ("Gemma 4 31B", "gemma-4-31B-it")]
@@ -49,7 +49,7 @@ def wording():
                 d = load(task + suf, tag)
                 if d is None:
                     continue
-                r = summarize(d, index_vector)
+                r = summarize(d, index_vector, horizon(task))
                 rows.append(dict(task=task, model=label, wording=v, **{k: round(float(x), 4) for k, x in r.items()}))
     out = pd.DataFrame(rows)
     out.to_csv(REPO / "results_clean" / "_summary" / "wording_per_position.csv", index=False)

@@ -4,8 +4,9 @@ magnitude change when markers are not exactly periodic?).
 
 The <task>_jitter runs (tasks/common/jitter.py) move every marker by -1, 0 or +1 positions from
 its periodic place at k = 4 and 8, on the same inputs and seeds as the main grid's k = 4 and 8
-cells. Positions are classified from where the markers actually are: "post-marker" is the
-character right after a marker, "within-segment" every other one. Both the exactly periodic run
+cells. Positions are classified from where the markers actually are: "post-marker" is any of
+the h characters after a marker whose inputs reach back across it (h = 1 on the one-step tasks,
+h = 2 on sliding_window_max), "within-segment" every other position i > 0. Both the exactly periodic run
 (main grid) and the jittered run are compared with the no-marker run at the same indices
 (N <= 64; index scoring), so the two columns differ only in placement.
 
@@ -20,7 +21,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
-from analyze_per_position import load, LENGTHS  # noqa: E402
+from analyze_per_position import load, LENGTHS, horizon  # noqa: E402
 from analyze_aligned_scoring import index_vector, clean  # noqa: E402
 
 MODELS = [("Qwen2.5 7B", "Qwen2.5-7B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct")]
@@ -28,21 +29,23 @@ TASKS = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_ma
 KS = [4, 8]
 
 
-def post_mask(shown, n):
-    """Boolean mask over plain indices: True where the character follows a marker."""
+def post_mask(shown, n, h=1):
+    """Boolean mask over plain indices: True at the h characters after a marker, the ones whose
+    inputs reach back across it (h is the task's lookback horizon)."""
     m = np.zeros(n, dtype=bool)
     j = 0
     for c in shown:
         if c == "|":
-            if j < n:
-                m[j] = True
+            for t in range(h):
+                if j + t < n:
+                    m[j + t] = True
         else:
             j += 1
     m[0] = False
     return m
 
 
-def compare(base, bnd):
+def compare(base, bnd, h=1):
     ref = {}
     for _, r in base.iterrows():
         v = index_vector(clean(r.Ground_Truth), clean(r.LLM_Output)); ref.setdefault(len(v), []).append(v)
@@ -52,11 +55,12 @@ def compare(base, bnd):
         v = index_vector(clean(r.Ground_Truth), clean(r.LLM_Output))
         if len(v) not in ref:
             continue
-        p = post_mask(r.Input_Given, len(v))
-        if not p.any():
+        p = post_mask(r.Input_Given, len(v), h)
+        w = ~p & (np.arange(len(v)) > 0)            # position 0 is in neither class
+        if not p.any() or not w.any():
             continue
         post.append(v[p].mean()); bpost.append(ref[len(v)][p].mean())
-        within.append(v[~p].mean()); bwithin.append(ref[len(v)][~p].mean())
+        within.append(v[w].mean()); bwithin.append(ref[len(v)][w].mean())
         acc.append(v.mean()); bacc.append(ref[len(v)].mean())
     return dict(n=len(post), acc=np.mean(acc), delta=np.mean(acc) - np.mean(bacc), post=np.mean(post),
                 post_gain=np.mean(post) - np.mean(bpost), within_gain=np.mean(within) - np.mean(bwithin))
@@ -76,7 +80,7 @@ def main():
                 bnd = src[(src.Method == "Cellular_Bounds") & src.Interval.astype(int).isin(KS)]
                 if bnd.empty:
                     continue
-                rows.append(dict(task=task, model=lab, placement=name, **compare(base, bnd)))
+                rows.append(dict(task=task, model=lab, placement=name, **compare(base, bnd, horizon(task))))
     o = pd.DataFrame(rows).round(4)
     if o.empty:
         print("no results yet"); return

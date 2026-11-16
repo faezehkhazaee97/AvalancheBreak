@@ -4,9 +4,14 @@
 
 family: letters | spaced | digits | dependency | reset | gemini_table | external
 Main-grid families pool N <= 64; the Gemini table and external tasks pool every tested length.
+
+`z` is the primary, stratified z of tasks/common/pooled.py (the (N, k, A) cells of the grid are
+fixed design strata); `z_unstrat` is the older form that pools all of a condition's generations
+into one s/sqrt(n). The script prints the |z| >= 3.54 counts the paper quotes, under both.
 """
 
 import glob
+import pathlib
 import sys
 from pathlib import Path
 
@@ -22,13 +27,19 @@ MODELS = {"Qwen2.5 7B": "Qwen2.5-7B-Instruct", "Qwen2.5 14B": "Qwen2.5-14B-Instr
 PL = ["cyclic_shift", "random_permutation", "conditional_shift"]
 DEP = ["copy_previous", "running_xor", "running_sum_local", "sliding_window_max"]
 L64 = [4, 8, 16, 32, 64]
+SIG_Z = 3.54   # Bonferroni |z| across the 125 pooled cells of the main analysis (Section 3.4)
 GEMINI = REPO / "results_clean" / "gemini_pilot" / "gemini-flash-latest_POOLED_3trials.csv"
 GEMINI36 = REPO / "results_clean" / "gemini_pilot" / "gemini-3.6-flash_POOLED.csv"
 
 
 def grid(task, tag, n128=False):
+    # The tag must match the whole stem or be followed by "_", as in analyze_per_position.load:
+    # a bare "{tag}*" glob also swept up the LoRA runs ("{tag}-lorabase.csv", "-lorasep.csv",
+    # "-lorabase-matched.csv"), pooling adapter generations into the base model's effect on the
+    # four dependency tasks and on random_permutation_digits at Qwen2.5-7B and 32B.
     fs = [f for f in sorted(glob.glob(str(REPO / "results_clean" / task / "grid" / f"{tag}*.csv")))
-          if "POOLED" not in f and (n128 or "N128" not in f)]
+          if "POOLED" not in f and (n128 or "N128" not in f)
+          and (pathlib.Path(f).name == f"{tag}.csv" or pathlib.Path(f).name.startswith(f"{tag}_"))]
     if not fs:
         return None
     d = pd.concat([pd.read_csv(f) for f in fs], ignore_index=True)
@@ -89,6 +100,22 @@ def main():
     out = pd.DataFrame(rows).round(4)
     out.to_csv(REPO / "results_clean" / "_summary" / "pooled_all.csv", index=False)
     print(f"Wrote {len(out)} pooled cells to results_clean/_summary/pooled_all.csv")
+    if out.thin_strata.sum():
+        print(f"WARNING: {int(out.thin_strata.sum())} strata hold a single generation "
+              "(given the pooled within-stratum variance)")
+    print("\n|z| >= 3.54, unstratified (old) -> stratified (new), by family:")
+    for fam, g in out.groupby("family", sort=False):
+        s_new, s_old = g.z.abs() >= SIG_Z, g.z_unstrat.abs() >= SIG_Z
+        print(f"  {fam:12s} {len(g):3d} cells: significant {s_old.sum():3d} -> {s_new.sum():3d}; "
+              f"positive {int((g.z_unstrat >= SIG_Z).sum()):3d} -> {int((g.z >= SIG_Z).sum()):3d}; "
+              f"negative {int((g.z_unstrat <= -SIG_Z).sum()):3d} -> {int((g.z <= -SIG_Z).sum()):3d}; "
+              f"all positive delta: {bool((g.delta > 0).all())}")
+        for r in g.itertuples():
+            if (abs(r.z) >= SIG_Z) != (abs(r.z_unstrat) >= SIG_Z):
+                print(f"      FLIPS {'to significant' if abs(r.z) >= SIG_Z else 'to NOT significant'}: "
+                      f"{r.task} {r.model}  z {r.z_unstrat:+.2f} -> {r.z:+.2f}  (delta {r.delta:+.3f})")
+    print(f"\nstratified |z| larger than unstratified in "
+          f"{int((out.z.abs() > out.z_unstrat.abs()).sum())} of {len(out)} cells")
 
 
 if __name__ == "__main__":

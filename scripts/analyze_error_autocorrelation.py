@@ -40,7 +40,7 @@ import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
-from analyze_per_position import load  # noqa: E402
+from analyze_per_position import load, horizon, position_classes  # noqa: E402
 from analyze_aligned_scoring import clean, index_vector, aligned_vector  # noqa: E402
 
 MODELS = [("Qwen2.5 14B", "Qwen2.5-14B-Instruct"), ("Qwen2.5 32B", "Qwen2.5-32B-Instruct"),
@@ -70,18 +70,23 @@ def stats(errs):
                 run=e.sum() / runs if runs else np.nan)
 
 
-def postmarker(errs, ks):
-    """Isolation of post-marker errors and p11 / p01 without the pairs touching a post-marker position."""
+def postmarker(errs, ks, hs):
+    """Isolation of crossing-position errors and p11 / p01 without the pairs touching one.
+
+    The crossing class is the task's own: the h positions after each marker whose inputs reach
+    back across it (h = 2 on sliding_window_max), from
+    scripts/analyze_per_position.position_classes."""
     n_post = n_err = n_iso = 0
     a_all, b_all, a_ex, b_ex = [], [], [], []
-    for v, k in zip(errs, ks):
+    for v, k, h in zip(errs, ks, hs):
         idx = np.arange(len(v))
-        post = (idx > 0) & (idx % k == 0) & (idx < len(v) - 1)
+        cross, _ = position_classes(idx, k, h)
+        post = cross & (idx < len(v) - 1)
         n_post += int(post.sum())
         e = post & (v == 1)
         n_err += int(e.sum())
         n_iso += int((e & np.r_[False, v[:-1] == 0] & np.r_[v[1:] == 0, False]).sum())
-        keep = ~(post[:-1] | post[1:] | ((idx[:-1] > 0) & (idx[:-1] % k == 0)) | ((idx[1:] > 0) & (idx[1:] % k == 0)))
+        keep = ~(post[:-1] | post[1:] | cross[:-1] | cross[1:])
         a_all.append(v[:-1]); b_all.append(v[1:]); a_ex.append(v[:-1][keep]); b_ex.append(v[1:][keep])
     a, b, ax, bx = map(np.concatenate, (a_all, b_all, a_ex, b_ex))
     return dict(post_positions=n_post, post_errors=n_err, post_error_rate=n_err / max(n_post, 1),
@@ -96,6 +101,7 @@ def main():
         for fmt, tasks in FORMATS:
             vecs = {(g, s): [] for g, _ in GROUPS for s in ("index", "aligned")}
             kvec = {g: [] for g, _ in GROUPS}
+            hvec = {g: [] for g, _ in GROUPS}
             for task in tasks:
                 d = load(task, tag)
                 if d is None:
@@ -107,14 +113,14 @@ def main():
                     if g is None:
                         continue
                     t, p = clean(r.Ground_Truth), text(r)
-                    kvec[g].append(k)
+                    kvec[g].append(k); hvec[g].append(horizon(task))
                     vecs[(g, "index")].append(1 - index_vector(t, p))
                     vecs[(g, "aligned")].append(1 - aligned_vector(t, p))
             for (g, s), v in vecs.items():
                 if v:
                     rows.append(dict(model=label, format=fmt, group=g, scorer=s, **stats(v)))
                 if v and g == "sparse":
-                    prows.append(dict(model=label, format=fmt, scorer=s, **postmarker(v, kvec[g])))
+                    prows.append(dict(model=label, format=fmt, scorer=s, **postmarker(v, kvec[g], hvec[g])))
             print("done", label, fmt, flush=True)
     out = pd.DataFrame(rows).round(4)
     out.to_csv(REPO / "results_clean" / "_summary" / "error_autocorrelation.csv", index=False)
