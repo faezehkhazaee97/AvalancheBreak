@@ -27,10 +27,18 @@ Gemma 4 31B,random_permutation_digits,32,base,20,0.9078,0.0373,0.0
 Gemma 4 31B,random_permutation_digits,32,bar_k4,20,0.9984,0.0016,0.0906
 Gemma 4 31B,random_permutation_digits,32,space_both,20,1.0,0.0,0.0922
 Gemma 4 31B,random_permutation_digits,32,space_in,20,0.7859,0.0446,-0.1219
+Gemma 4 31B,random_permutation_digits,64,base,20,0.575,0.0262,0.0
+Gemma 4 31B,random_permutation_digits,64,bar_k4,20,0.9922,0.0027,0.4172
+Gemma 4 31B,random_permutation_digits,64,space_both,20,0.9977,0.0013,0.4227
+Gemma 4 31B,random_permutation_digits,64,space_in,20,0.4953,0.0232,-0.0797
 Gemma 4 31B,running_sum_local,32,base,20,0.7234,0.022,0.0
 Gemma 4 31B,running_sum_local,32,bar_k4,20,0.7625,0.0176,0.0391
 Gemma 4 31B,running_sum_local,32,space_both,20,0.7844,0.013,0.0609
 Gemma 4 31B,running_sum_local,32,space_in,20,0.4969,0.0147,-0.2266
+Gemma 4 31B,running_sum_local,64,base,20,0.4492,0.0117,0.0
+Gemma 4 31B,running_sum_local,64,bar_k4,20,0.7062,0.02,0.257
+Gemma 4 31B,running_sum_local,64,space_both,20,0.7344,0.0175,0.2852
+Gemma 4 31B,running_sum_local,64,space_in,20,0.3695,0.0216,-0.0797
 Gemma 4 31B,running_xor,32,base,20,0.8,0.0212,0.0
 Gemma 4 31B,running_xor,32,bar_k4,20,0.8391,0.0129,0.0391
 Gemma 4 31B,running_xor,32,space_both,20,0.8531,0.0151,0.0531
@@ -38,4 +46,4 @@ Gemma 4 31B,running_xor,32,space_in,20,0.7078,0.0289,-0.0922
 Gemma 4 31B,running_xor,64,base,20,0.6914,0.0163,0.0
 Gemma 4 31B,running_xor,64,bar_k4,20,0.818,0.0116,0.1266
 Gemma 4 31B,running_xor,64,space_both,20,0.8273,0.0148,0.1359
-Gemma 4 31B,running_xor,64,space_in,5,0.6219,0.0364,-0.0695
+Gemma 4 31B,running_xor,64,space_in,20,0.6148,0.016,-0.0766
