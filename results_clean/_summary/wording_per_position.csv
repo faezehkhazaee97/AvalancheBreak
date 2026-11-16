@@ -1,49 +1,49 @@
 task,model,wording,base,post,within,post_gain,within_gain
-copy_previous,Qwen2.5 32B,original,0.8584,0.6611,0.8117,-0.1462,-0.0208
-copy_previous,Qwen2.5 32B,neutral,0.8619,0.6879,0.7982,-0.1231,-0.029
-copy_previous,Qwen2.5 32B,across,0.8644,0.7286,0.8039,-0.11,-0.0237
-copy_previous,Qwen2.5 32B,worked,0.8797,0.6937,0.8423,-0.128,0.0005
-copy_previous,Qwen3.8 27B,original,0.9745,0.5232,0.7259,-0.4545,-0.242
-copy_previous,Qwen3.8 27B,neutral,0.9653,0.513,0.7062,-0.4463,-0.2506
-copy_previous,Qwen3.8 27B,across,0.9459,0.632,0.831,-0.3032,-0.1117
-copy_previous,Qwen3.8 27B,worked,0.98,0.7079,0.9504,-0.2754,-0.0212
-copy_previous,Gemma 4 31B,original,0.9333,0.6211,0.8449,-0.2871,-0.0683
-copy_previous,Gemma 4 31B,neutral,0.9277,0.7783,0.8449,-0.1076,-0.0716
-copy_previous,Gemma 4 31B,across,0.8961,0.8807,0.8927,0.027,0.0126
-copy_previous,Gemma 4 31B,worked,0.9131,0.8591,0.8362,-0.0018,-0.0681
-running_xor,Qwen2.5 32B,original,0.781,0.5216,0.848,-0.1897,0.1091
-running_xor,Qwen2.5 32B,neutral,0.7805,0.5437,0.8054,-0.1746,0.0561
-running_xor,Qwen2.5 32B,across,0.7688,0.5793,0.8238,-0.1383,0.0905
-running_xor,Qwen2.5 32B,worked,0.7606,0.5721,0.8287,-0.123,0.0929
-running_xor,Qwen3.8 27B,original,0.6837,0.5092,0.7791,-0.0575,0.1278
-running_xor,Qwen3.8 27B,neutral,0.7013,0.5111,0.7362,-0.0711,0.0696
-running_xor,Qwen3.8 27B,across,0.6867,0.5427,0.7863,-0.0273,0.1266
-running_xor,Qwen3.8 27B,worked,0.7003,0.5748,0.7878,0.0158,0.1322
-running_xor,Gemma 4 31B,original,0.838,0.5227,0.9055,-0.2644,0.0885
-running_xor,Gemma 4 31B,neutral,0.8352,0.5543,0.8946,-0.2468,0.0696
-running_xor,Gemma 4 31B,across,0.8636,0.6645,0.873,-0.1496,0.0343
-running_xor,Gemma 4 31B,worked,0.8569,0.6777,0.8704,-0.1298,0.0392
-running_sum_local,Qwen2.5 32B,original,0.593,0.3121,0.6627,-0.1564,0.1119
-running_sum_local,Qwen2.5 32B,neutral,0.5973,0.3333,0.6288,-0.1538,0.0713
-running_sum_local,Qwen2.5 32B,across,0.5861,0.348,0.6349,-0.1407,0.0881
-running_sum_local,Qwen2.5 32B,worked,0.577,0.3845,0.6498,-0.0875,0.1052
-running_sum_local,Qwen3.8 27B,original,0.486,0.2795,0.5978,-0.0605,0.1445
-running_sum_local,Qwen3.8 27B,neutral,0.4975,0.288,0.5958,-0.0734,0.1339
-running_sum_local,Qwen3.8 27B,across,0.4782,0.3011,0.5835,-0.0428,0.1422
-running_sum_local,Qwen3.8 27B,worked,0.5,0.3153,0.5648,-0.0498,0.1078
-running_sum_local,Gemma 4 31B,original,0.796,0.3157,0.8547,-0.408,0.1088
-running_sum_local,Gemma 4 31B,neutral,0.8127,0.3571,0.85,-0.3884,0.082
-running_sum_local,Gemma 4 31B,across,0.7997,0.5872,0.8281,-0.1456,0.0723
-running_sum_local,Gemma 4 31B,worked,0.792,0.627,0.8284,-0.0664,0.0916
-sliding_window_max,Qwen2.5 32B,original,0.6849,0.5694,0.748,-0.0911,0.0834
-sliding_window_max,Qwen2.5 32B,neutral,0.6799,0.5615,0.7416,-0.11,0.0777
-sliding_window_max,Qwen2.5 32B,across,0.6913,0.5917,0.7511,-0.0929,0.082
-sliding_window_max,Qwen2.5 32B,worked,0.722,0.6418,0.7265,-0.0251,0.0492
-sliding_window_max,Qwen3.8 27B,original,0.7155,0.4574,0.7006,-0.1842,0.0497
-sliding_window_max,Qwen3.8 27B,neutral,0.7262,0.473,0.7059,-0.172,0.043
-sliding_window_max,Qwen3.8 27B,across,0.7144,0.4896,0.7014,-0.1452,0.0561
-sliding_window_max,Qwen3.8 27B,worked,0.6637,0.5236,0.6416,-0.089,0.0418
-sliding_window_max,Gemma 4 31B,original,0.7449,0.6146,0.778,-0.0676,0.0787
-sliding_window_max,Gemma 4 31B,neutral,0.7551,0.6911,0.7642,-0.0029,0.0499
-sliding_window_max,Gemma 4 31B,across,0.7238,0.7545,0.7522,0.0867,0.079
-sliding_window_max,Gemma 4 31B,worked,0.7352,0.8269,0.7722,0.1376,0.0802
+copy_previous,Qwen2.5 32B,original,0.8584,0.6611,0.796,-0.1462,-0.0264
+copy_previous,Qwen2.5 32B,neutral,0.8619,0.6879,0.7796,-0.1231,-0.0387
+copy_previous,Qwen2.5 32B,across,0.8644,0.7286,0.7872,-0.11,-0.0309
+copy_previous,Qwen2.5 32B,worked,0.8797,0.6937,0.8338,-0.128,-0.0016
+copy_previous,Qwen3.8 27B,original,0.9745,0.5232,0.7013,-0.4545,-0.2647
+copy_previous,Qwen3.8 27B,neutral,0.9653,0.513,0.6774,-0.4463,-0.2773
+copy_previous,Qwen3.8 27B,across,0.9459,0.632,0.8121,-0.3032,-0.1268
+copy_previous,Qwen3.8 27B,worked,0.98,0.7079,0.947,-0.2754,-0.0234
+copy_previous,Gemma 4 31B,original,0.9333,0.6211,0.8367,-0.2871,-0.0728
+copy_previous,Gemma 4 31B,neutral,0.9277,0.7783,0.8345,-0.1076,-0.0778
+copy_previous,Gemma 4 31B,across,0.8961,0.8807,0.8876,0.027,0.0138
+copy_previous,Gemma 4 31B,worked,0.9131,0.8591,0.8275,-0.0018,-0.0719
+running_xor,Qwen2.5 32B,original,0.781,0.5216,0.8377,-0.1897,0.1149
+running_xor,Qwen2.5 32B,neutral,0.7805,0.5437,0.7876,-0.1746,0.0555
+running_xor,Qwen2.5 32B,across,0.7688,0.5793,0.8086,-0.1383,0.0937
+running_xor,Qwen2.5 32B,worked,0.7606,0.5721,0.8133,-0.123,0.0958
+running_xor,Qwen3.8 27B,original,0.6837,0.5092,0.7627,-0.0575,0.1331
+running_xor,Qwen3.8 27B,neutral,0.7013,0.5111,0.7162,-0.0711,0.0694
+running_xor,Qwen3.8 27B,across,0.6867,0.5427,0.774,-0.0273,0.1363
+running_xor,Qwen3.8 27B,worked,0.7003,0.5748,0.7767,0.0158,0.1415
+running_xor,Gemma 4 31B,original,0.838,0.5227,0.9006,-0.2644,0.0952
+running_xor,Gemma 4 31B,neutral,0.8352,0.5543,0.8881,-0.2468,0.0763
+running_xor,Gemma 4 31B,across,0.8636,0.6645,0.8644,-0.1496,0.0349
+running_xor,Gemma 4 31B,worked,0.8569,0.6777,0.862,-0.1298,0.0408
+running_sum_local,Qwen2.5 32B,original,0.593,0.3121,0.6381,-0.1564,0.1176
+running_sum_local,Qwen2.5 32B,neutral,0.5973,0.3333,0.5994,-0.1538,0.0719
+running_sum_local,Qwen2.5 32B,across,0.5861,0.348,0.6076,-0.1407,0.0927
+running_sum_local,Qwen2.5 32B,worked,0.577,0.3845,0.6227,-0.0875,0.1106
+running_sum_local,Qwen3.8 27B,original,0.486,0.2795,0.5682,-0.0605,0.1533
+running_sum_local,Qwen3.8 27B,neutral,0.4975,0.288,0.5654,-0.0734,0.1409
+running_sum_local,Qwen3.8 27B,across,0.4782,0.3011,0.5549,-0.0428,0.1538
+running_sum_local,Qwen3.8 27B,worked,0.5,0.3153,0.5318,-0.0498,0.113
+running_sum_local,Gemma 4 31B,original,0.796,0.3157,0.8479,-0.408,0.1136
+running_sum_local,Gemma 4 31B,neutral,0.8127,0.3571,0.8419,-0.3884,0.0841
+running_sum_local,Gemma 4 31B,across,0.7997,0.5872,0.8178,-0.1456,0.0731
+running_sum_local,Gemma 4 31B,worked,0.792,0.627,0.8193,-0.0664,0.0934
+sliding_window_max,Qwen2.5 32B,original,0.6849,0.5694,0.7309,-0.0911,0.0769
+sliding_window_max,Qwen2.5 32B,neutral,0.6799,0.5615,0.7225,-0.11,0.0652
+sliding_window_max,Qwen2.5 32B,across,0.6913,0.5917,0.7344,-0.0929,0.072
+sliding_window_max,Qwen2.5 32B,worked,0.722,0.6418,0.7113,-0.0251,0.0558
+sliding_window_max,Qwen3.8 27B,original,0.7155,0.4574,0.675,-0.1842,0.0439
+sliding_window_max,Qwen3.8 27B,neutral,0.7262,0.473,0.6801,-0.172,0.0365
+sliding_window_max,Qwen3.8 27B,across,0.7144,0.4896,0.675,-0.1452,0.0502
+sliding_window_max,Qwen3.8 27B,worked,0.6637,0.5236,0.611,-0.089,0.0381
+sliding_window_max,Gemma 4 31B,original,0.7449,0.6146,0.7668,-0.0676,0.0861
+sliding_window_max,Gemma 4 31B,neutral,0.7551,0.6911,0.7541,-0.0029,0.0571
+sliding_window_max,Gemma 4 31B,across,0.7238,0.7545,0.7428,0.0867,0.0876
+sliding_window_max,Gemma 4 31B,worked,0.7352,0.8269,0.7584,0.1376,0.0872

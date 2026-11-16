@@ -81,8 +81,9 @@ def summarize(d, vec):
         is_post = (idx > 0) & (idx % k == 0)
         if not is_post.any() or len(v) not in ref:
             continue
-        post.append(v[is_post].mean()); within.append(v[~is_post].mean())
-        bpost.append(ref[len(v)][is_post].mean()); bwithin.append(ref[len(v)][~is_post].mean())
+        is_within = (idx > 0) & (idx % k != 0)       # i = 0 is in neither class
+        post.append(v[is_post].mean()); within.append(v[is_within].mean())
+        bpost.append(ref[len(v)][is_post].mean()); bwithin.append(ref[len(v)][is_within].mean())
     return dict(base=np.mean(allb), post=np.mean(post), within=np.mean(within),
                 post_gain=np.mean(post) - np.mean(bpost), within_gain=np.mean(within) - np.mean(bwithin))
 

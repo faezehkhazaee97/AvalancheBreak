@@ -3,7 +3,8 @@
 
 For every task and model, splits token accuracy by output position:
   post    : the position right after a marker (index i > 0 with i % k == 0)
-  within  : every other position of a marker run (inside a segment, incl. i = 0)
+  within  : every other position i > 0 of a marker run (inside a segment). Position 0 is in
+            neither class: dependency tasks copy it as-is, so it carries no evidence.
   base    : the no-marker (Base) run, all positions
   base_at_post / base_at_within : Base accuracy at the same position indices as post /
             within (controls for position-in-sequence effects: post positions are not
@@ -102,11 +103,12 @@ def summarize(d):
         if not is_post.any():
             continue
         post_rows.append(v[is_post].mean())
-        within_rows.append(v[~is_post].mean())
+        is_within = (idx > 0) & (idx % k != 0)       # i = 0 is in neither class
+        within_rows.append(v[is_within].mean())
         ref = base_by_idx.get(len(v))
         if ref is not None:
             bpost.append(ref[is_post].mean())
-            bwithin.append(ref[~is_post].mean())
+            bwithin.append(ref[is_within].mean())
         if k in (8, 16):
             for dd in range(k):
                 sel = (idx % k == dd) & (idx > 0)

@@ -129,23 +129,79 @@ def cm_safe_text(s):
 
 
 def align_panel_titles(fig):
-    """Start every lettered panel title ("(a) ...") at the panel's leftmost content -- its y tick
-    labels and y-axis label included -- rather than at the edge of the plotting area, so the letter
-    sits at the true top-left corner of each panel."""
+    """Start every lettered panel title ("(a) ...") at the leftmost content of its COLUMN of panels
+    -- y tick labels and y-axis label included -- and give every title in a ROW the same number of
+    lines, so the letters line up down each column and across each row.
+
+    Aligning each title to its own panel instead put letters in one column at different x whenever
+    the panels' y labels differed in width, and let a two-line title start higher than a one-line
+    neighbour; both showed up in the compiled figures."""
     import re as _re
+    lettered = []
+    for ax in fig.axes:
+        t = getattr(ax, "_left_title", None)
+        if t is not None and _re.match(r"\([a-z]\)", t.get_text() or ""):
+            lettered.append((ax, t))
+    if not lettered:
+        return
+
+    # equalise line counts within a row first: a taller title changes the tight bbox
     fig.canvas.draw()
     renderer = fig.canvas.get_renderer()
-    for ax in fig.axes:
-        t = ax._left_title
-        if not _re.match(r"\([a-z]\)", t.get_text() or ""):
-            continue
+    boxes = {ax: ax.get_window_extent(renderer) for ax, _ in lettered}
+
+    def group(lo, hi):
+        """Cluster panels whose [lo, hi] intervals overlap by at least half the narrower one.
+        Overlap, not centres or left edges: a panel nested in a sub-gridspec sits inside its
+        column's span, so its centre and its left edge both differ from the column's while its
+        interval is contained in it."""
+        items = [(ax, t, lo(boxes[ax]), hi(boxes[ax])) for ax, t in lettered]
+        parent = list(range(len(items)))
+
+        def find(i):
+            while parent[i] != i:
+                parent[i] = parent[parent[i]]
+                i = parent[i]
+            return i
+
+        for i in range(len(items)):
+            for j in range(i + 1, len(items)):
+                a0, a1 = items[i][2], items[i][3]
+                b0, b1 = items[j][2], items[j][3]
+                overlap = min(a1, b1) - max(a0, b0)
+                narrower = min(a1 - a0, b1 - b0)
+                if narrower > 0 and overlap >= 0.5 * narrower:
+                    parent[find(i)] = find(j)
+        out = {}
+        for i, (ax, t, _, _) in enumerate(items):
+            out.setdefault(find(i), []).append((ax, t))
+        return list(out.values())
+
+    for row in group(lambda b: b.y0, lambda b: b.y1):
+        n = max(len(t.get_text().split("\n")) for _, t in row)
+        for _, t in row:
+            missing = n - len(t.get_text().split("\n"))
+            if missing > 0:                      # pad below, so the real first line stays on top
+                t.set_text(t.get_text() + "\n" * missing)
+
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    boxes = {ax: ax.get_window_extent(renderer) for ax, _ in lettered}
+    tights = {}
+    for ax, t in lettered:
         t.set_visible(False)
-        bb = ax.get_tightbbox(renderer)
+        tights[ax] = ax.get_tightbbox(renderer)
         t.set_visible(True)
-        box = ax.get_window_extent(renderer)
-        if bb is None or box.width == 0:
+
+    for col in group(lambda b: b.x0, lambda b: b.x1):
+        lefts = [tights[ax].x0 for ax, _ in col if tights[ax] is not None]
+        if not lefts:
             continue
-        t.set_x((bb.x0 - box.x0) / box.width)
+        target = min(lefts)                      # flush with the whole column's leftmost content
+        for ax, t in col:
+            box = boxes[ax]
+            if box.width:
+                t.set_x((target - box.x0) / box.width)
 
 
 def savefig(fig, path):
