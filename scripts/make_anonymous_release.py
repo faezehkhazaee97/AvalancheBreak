@@ -27,6 +27,8 @@ EXCLUDE = (
     "results_clean/_excluded_undocumented_models/",  # models not in the paper
     "results_clean/_k1_rerun/",                      # staging area, merged into the sources
     "scripts/make_anonymous_release.py",             # this file
+    "scripts/make_ms_version.py",                    # builds the degree version: carries the
+                                                     # author's name and the real repo URL
 )
 TEXT_EXT = {".py", ".sh", ".sbatch", ".md", ".txt", ".csv", ".json", ".typed", ""}
 
@@ -50,7 +52,10 @@ SUBS = [  # (regex, replacement), applied in order
 ]
 FILENAME_SUBS = [("ctbrowngrp", "altaccount"), ("ctbrown", "alt")]
 FORBIDDEN = re.compile(
-    r"gquon|quonbio|\bbaran\b|khazaee|faezeh|ucdavis|davis|cvmfs|ctbrown|/group/|scratchpad|"
+    # "scratchpad" is only identifying as a path component (the session temp directory);
+    # as a bare word it is the prompting technique, which two legacy scripts discuss.
+    r"gquon|quonbio|\bbaran\b|khazaee|faezeh|ucdavis|davis|cvmfs|ctbrown|/group/|"
+    r"[/\\]scratchpad[/\\]|"
     r"\bfarm\b|hpccf|AIza[0-9A-Za-z_-]{30,}|hf_[A-Za-z0-9]{30,}|sk-[A-Za-z0-9]{20,}",
     re.I)
 
